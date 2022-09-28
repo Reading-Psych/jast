@@ -1,0 +1,6 @@
+---
+title: "Multiple Regressions"
+output: html_notebook
+---
+
+Due by Oct 20th

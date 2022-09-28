@@ -1,10 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-Equiv="Cache-Control" Content="no-cache" />
+    <meta http-Equiv="Pragma" Content="no-cache" />
+    <meta http-Equiv="Expires" Content="0" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Just Another Statistics Textbook</title>
     <link href="libraries/bootstrapCollector.css" rel="stylesheet">
+    <script>
+      // https://stackoverflow.com/a/9976309
+      function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+      }
+    </script>    
   </head>
   <style>
     #main{
@@ -34,15 +44,20 @@
     .content_p{
       padding:20px;
     }
+    .iframe_chapter{
+      width: 100%;
+      height: 100%;
+    }
     
   </style>
   
 
   <body>    
     <nav class="navbar navbar-expand-lg navbar-light justify-content-center sticky-top gap-3 border-bottom border-primary">
-      <h1 class="text-primary">Just Another Statistics Textbook (JAST)</h1>
+      <h1 class="text-primary">Just Another Statistics Textbook (JAST) for Psychology</h1>
       <a class="btn btn-danger" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document" target="_blank">Report an error</a>
       <a class="btn btn-success" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications" target="_blank">Request a clarification</a>  
+      <a class="btn btn-primary" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content" target="_blank">Suggest Content</a>  
     </nav>
 
 
@@ -53,33 +68,29 @@
         <div id="sidebar" class="col-3 overflow-auto">
           
           <a class="btn content_btn" href="#Welcome">Welcome</a>
+          <a class="btn content_btn" href="#statsBasics">Statistics Basics</a>
           <a class="btn content_btn" href="#DownloadingAndInstalling">Installing Software</a>
+          <a class="btn content_btn" href="#rBasics">R basics</a>
+          <a class="btn content_btn" href="#dataTransform">Data Transformation</a>
+          <a class="btn content_btn" href="#correlation">Correlation</a>
+          <a class="btn content_btn" href="#simpleRegress">Simple Regression</a>
+          <a class="btn content_btn" href="#multRegress">Multiple Regression</a>
+
           
         </div>
         <div id="main" class="overflow-auto align-items-end">
-          <h2 id="Welcome">Welcome</h2>
+          
 
-          <em>Developed at the University of Reading School of Psychology and Clinical Language Sciences. This is not developed by the same team as JASP (although JASP is great).</em>
-
-          <p class="content_p">
-          This textbook  is under-development, and is aimed at students in the school of Psychology and Clinical Language Sciences. The aim will be to focus on statistics taught in Reading (for now MSc year) using the following free software:
-          
-          <br>
-          <br>
-          <a href="https://jasp-stats.org" target="_blank">JASP (open-source)</a> <br>
-          Microsoft Excel (can be free online with an outlook account) <br>
-          <a href="https://www.python.org">Python (open-source)</a><br>
-          <a href="https://www.r-project.org">R (open-source)</a><br>
-          </p>
-          
-          <h2 id="DownloadingAndInstalling">Downloading and Installing Software</h2>
+          <iframe id="Welcome"                  class="iframe_chapter" src="welcome.html"          frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="statsBasics"              class="iframe_chapter" src="statsBasics.html"       frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="DownloadingAndInstalling" class="iframe_chapter" src="installing.html"       frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="rBasics"                  class="iframe_chapter" src="rBasics.nb.html"       frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="dataTransform"            class="iframe_chapter" src="dataTransform.nb.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="correlation"              class="iframe_chapter" src="correlation.nb.html"   frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="simpleRegress"            class="iframe_chapter" src="simpleRegress.nb.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="multRegress"              class="iframe_chapter" src="multRegress.nb.html"   frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
           
           
-          
-          <!--
-          https://www.anaconda.com/products/distribution
-          -->
-
           
           <!--
           <h1>Data transformation</h1>
@@ -105,10 +116,10 @@
   </body>
   
 
-  <script src="libraries/bootstrap.min.js"></script>
-  <script src="libraries/jquery.min.js"></script>
-
+  
   </html>
+<script src="libraries/bootstrap.min.js"></script>
+<script src="libraries/jquery.min.js"></script>
 <script>
 </script>
 

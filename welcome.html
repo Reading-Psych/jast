@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<link href="libraries/bootstrapCollector.css" rel="stylesheet">
-<style>
-  .html_div{
-      position: absolute;
-      margin: auto;
-      max-width: 900px;
-      top: 0px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-    }
-</style>
-<body onLoad="resize();">
-<div class="html_div">
+
+<div>
   <h2 id="Welcome">Welcome</h2>
     <em>Developed at the University of Reading School of Psychology and Clinical Language Sciences. This is not developed by the same team as JASP (although JASP is great).</em><br><br>
 
@@ -31,11 +17,3 @@
   </p>
 
 </div>
-</body>
-</html>
-<script>
-function resize() {
-  var height = document.getElementsByTagName("html")[0].scrollHeight;
-  window.parent.postMessage(["setHeight", height], "*"); 
-}
-</script>

@@ -17,7 +17,7 @@
   <style>
     #main{
       position:absolute;
-      top: 75px;
+      top: 90px;
       bottom: 0px;
       right: 0px;
       left: 20%;
@@ -42,8 +42,11 @@
     .content_p{
       padding:20px;
     }
-    .iframe_chapter{
-      width: 100%;
+    .div_chapter{
+      max-width: 900px;
+    }
+    .navigation_a{
+      margin:5px;
     }
     
   </style>
@@ -57,36 +60,39 @@
       <a class="btn btn-primary" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content" target="_blank">Suggest Content</a>  
     </nav>
 
-
+          
     <div class="container">
       
       
       <div class="row" id="parent" class="d-flex">
         <div id="sidebar" class="col-3 overflow-auto">
           
-          <a class="btn content_btn" href="#Welcome">Welcome</a>
-          <a class="btn content_btn" href="#statsBasics">Statistics Basics</a>
-          <a class="btn content_btn" href="#DownloadingAndInstalling">Installing Software</a>
-          <a class="btn content_btn" href="#rBasics">R basics</a>
-          <a class="btn content_btn" href="#dataTransform">Data Transformation</a>
-          <a class="btn content_btn" href="#correlation">Correlation</a>
-          <a class="btn content_btn" href="#simpleRegress">Simple Regression</a>
-          <a class="btn content_btn" href="#multRegress">Multiple Regression</a>
+          <div class="navigation_a"><a href="#Welcome">Welcome</a></div>
+          <div class="navigation_a"><a href="#statsBasics">Statistics Basics</a></div>
+          <div class="navigation_a"><a href="#installing">Installing Software</a></div>
+          <div class="navigation_a"><a href="#rBasics">R basics</a></div>
+          <div class="navigation_a"><a href="#dataTransform">Data Transformation</a></div>
+          <div class="navigation_a"><a href="#correlation">Correlation</a></div>
+          <div class="navigation_a"><a href="#simpleRegress">Simple Regression</a></div>
+          <div class="navigation_a"><a href="#multRegress">Multiple Regression</a></div>
 
           
         </div>
-        <div id="main" class="overflow-auto align-items-end">
-          
-
+        <div id="main" class="overflow-auto">
+          <div id="welcome"></div>
+          <div id="statsBasics"></div>
+          <div id="installing"></div>
+          <div id="rBasics"></div>
+          <div id="dataTransform"></div>
+          <div id="correlation"></div>
+          <div id="simpleRegress"></div>
+          <div id="multRegress"></div>
+    
+          <!--
           <iframe id="Welcome"                  class="iframe_chapter" src="welcome.html"          frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
           <iframe id="statsBasics"              class="iframe_chapter" src="statsBasics.html"       frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          <iframe id="DownloadingAndInstalling" class="iframe_chapter" src="installing.html"       frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          <iframe id="rBasics"                  class="iframe_chapter" src="rBasics.nb.html"       frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          <iframe id="dataTransform"            class="iframe_chapter" src="dataTransform.nb.html" frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          <iframe id="correlation"              class="iframe_chapter" src="correlation.nb.html"   frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          <iframe id="simpleRegress"            class="iframe_chapter" src="simpleRegress.nb.html" frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          <iframe id="multRegress"              class="iframe_chapter" src="multRegress.nb.html"   frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
           
+          -->
           
           
           <!--
@@ -118,15 +124,37 @@
 <script src="libraries/bootstrap.min.js"></script>
 <script src="libraries/jquery.min.js"></script>
 <script>
-window.addEventListener('message', function(e) {
-  var $iframe = jQuery("#Welcome");
-  var eventName = e.data[0];
-  var data = e.data[1];
-  switch(eventName) {
-    case 'setHeight':
-      $iframe.height(data);
-      break;
-  }
-}, false);
+var main_htmls = [
+  "welcome.html",
+  "statsBasics.html",
+  "installing.html",
+  "rBasics.nb.html",
+  "dataTransform.nb.html",
+  "correlation.nb.html",
+  "simpleRegress.nb.html",
+  "multRegress.nb.html"
+];
+main_htmls.forEach(function(main_html){
+  $("#" + main_html.replace(".html","").replace(".nb",""))
+    .load(main_html)
+    .addClass("div_chapter");
+});
+/*
+
+  $.get(main_html, function(result_html){
+    console.log("main_html");
+    console.log(main_html);
+    $("#main").append(
+      $("<div>")
+        .prop("id",main_html.replace(".html","").replace(".nb",""))
+        .html(result_html)
+    );
+  });
+});
+*/
+//$('#welcome').load("welcome.html");  
+//$('#statsBasics').load("statsBasics.html");  
+          
+
 </script>
 

@@ -11,9 +11,7 @@
     <link href="libraries/bootstrapCollector.css" rel="stylesheet">
     <script>
       // https://stackoverflow.com/a/9976309
-      function resizeIframe(obj) {
-        obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
-      }
+      
     </script>    
   </head>
   <style>
@@ -81,14 +79,14 @@
         <div id="main" class="overflow-auto align-items-end">
           
 
-          <iframe id="Welcome"                  class="iframe_chapter" src="welcome.html"          frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-          <iframe id="statsBasics"              class="iframe_chapter" src="statsBasics.html"       frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-          <iframe id="DownloadingAndInstalling" class="iframe_chapter" src="installing.html"       frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-          <iframe id="rBasics"                  class="iframe_chapter" src="rBasics.nb.html"       frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-          <iframe id="dataTransform"            class="iframe_chapter" src="dataTransform.nb.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-          <iframe id="correlation"              class="iframe_chapter" src="correlation.nb.html"   frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-          <iframe id="simpleRegress"            class="iframe_chapter" src="simpleRegress.nb.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
-          <iframe id="multRegress"              class="iframe_chapter" src="multRegress.nb.html"   frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+          <iframe id="Welcome"                  class="iframe_chapter" src="welcome.html"          frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+          <iframe id="statsBasics"              class="iframe_chapter" src="statsBasics.html"       frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+          <iframe id="DownloadingAndInstalling" class="iframe_chapter" src="installing.html"       frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+          <iframe id="rBasics"                  class="iframe_chapter" src="rBasics.nb.html"       frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+          <iframe id="dataTransform"            class="iframe_chapter" src="dataTransform.nb.html" frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+          <iframe id="correlation"              class="iframe_chapter" src="correlation.nb.html"   frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+          <iframe id="simpleRegress"            class="iframe_chapter" src="simpleRegress.nb.html" frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+          <iframe id="multRegress"              class="iframe_chapter" src="multRegress.nb.html"   frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
           
           
           
@@ -121,5 +119,15 @@
 <script src="libraries/bootstrap.min.js"></script>
 <script src="libraries/jquery.min.js"></script>
 <script>
+window.addEventListener('message', function(e) {
+  var $iframe = jQuery("#Welcome");
+  var eventName = e.data[0];
+  var data = e.data[1];
+  switch(eventName) {
+    case 'setHeight':
+      $iframe.height(data);
+      break;
+  }
+}, false);
 </script>
 

@@ -34,4 +34,8 @@ Often, you can use R as a calculator, for example:
 ```
 
 
-Hi
+It's helpful to store these calculations into **objects**:
+```{r}
+a = 5 + 2
+a # to show what a is equal to
+```

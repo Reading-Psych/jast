@@ -8,11 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Just Another Statistics Textbook</title>
-    <link href="libraries/bootstrapCollector.css" rel="stylesheet">
-    <script>
-      // https://stackoverflow.com/a/9976309
-      
-    </script>    
+    <link href="libraries/bootstrapCollector.css" rel="stylesheet">    
   </head>
   <style>
     #main{
@@ -25,11 +21,14 @@
     }
     #sidebar{
       position:absolute;
-      top: 75px;
+      top: 100px;
       bottom: 0px;
       right: 80%;
       left: 0px;
       width: 20%;
+    }
+    .code-folding-btn{
+      display:none;
     }
     .content_btn{
       width:100%;
@@ -39,11 +38,11 @@
     .content_btn:hover{
       color: blue;
     }
-    .content_p{
-      padding:20px;
-    }
     .div_chapter{
-      max-width: 900px;
+      max-width: 800px;
+    }
+    .html_div{
+      margin: 20px;
     }
     .navigation_a{
       margin:5px;
@@ -53,8 +52,8 @@
   
 
   <body>    
-    <nav class="navbar navbar-expand-lg navbar-light justify-content-center sticky-top gap-3 border-bottom border-primary">
-      <h1 class="text-primary">Just Another Statistics Textbook (JAST) for Psychology</h1>
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-center sticky-top gap-3" style="box-shadow: 0px 5px 5px grey; border-radius: 0px;">
+      <h1 class="text-primary">Just Another Statistics Textbook (JAST)</h1>
       <a class="btn btn-danger" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document" target="_blank">Report an error</a>
       <a class="btn btn-success" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications" target="_blank">Request a clarification</a>  
       <a class="btn btn-primary" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content" target="_blank">Suggest Content</a>  
@@ -86,31 +85,7 @@
           <div id="dataTransform"></div>
           <div id="correlation"></div>
           <div id="simpleRegress"></div>
-          <div id="multRegress"></div>
-    
-          <!--
-          <iframe id="Welcome"                  class="iframe_chapter" src="welcome.html"          frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          <iframe id="statsBasics"              class="iframe_chapter" src="statsBasics.html"       frameborder="0" scrolling="no" onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
-          
-          -->
-          
-          
-          <!--
-          <h1>Data transformation</h1>
-          tbc
-          
-          <h1>Correlations</h1>
-          tbc
-
-
-          <h1>Simple Regression</h1>
-          tbc
-
-          
-          <h1>Multiple regression</h1>
-          tbc
-          -->
-          
+          <div id="multRegress"></div>          
         </div>
       </div>
     </div>
@@ -120,9 +95,9 @@
   
 
   
-  </html>
-<script src="libraries/bootstrap.min.js"></script>
+</html>
 <script src="libraries/jquery.min.js"></script>
+<script src="libraries/bootstrap.min.js"></script>
 <script>
 var main_htmls = [
   "welcome.html",
@@ -138,7 +113,16 @@ main_htmls.forEach(function(main_html){
   $("#" + main_html.replace(".html","").replace(".nb",""))
     .load(main_html)
     .addClass("div_chapter");
+    
 });
+/*
+ * Scrappy way to remove code buttons which are acting up atm
+ */
+
+setTimeout(function(){
+  $(".code-folding-btn").fadeOut();
+},1000);
+
 /*
 
   $.get(main_html, function(result_html){

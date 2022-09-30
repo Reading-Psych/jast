@@ -1,5 +1,5 @@
 ---
-title: "R basics"
+title: "R (Studio) basics"
 output: html_notebook
 ---
 
@@ -170,7 +170,7 @@ if(!require(ggplot2)){install.packages("ggplot2")}
 library(ggplot2)
 ```
 
-Now that you have a package for making beautiful plots, less learn about "intelligent copy and paste" to make use of it.
+Now that you have a package for making beautiful plots, lets learn about "intelligent copy and paste" to make use of it.
 
 ### Intelligent copy and paste
 

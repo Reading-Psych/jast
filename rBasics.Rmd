@@ -183,16 +183,17 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 Good news is that we have a nice looking figure. But now we need to work out how to understand the code we've copied so that you can apply it to your own scripts. There's a lot to unpack, so making the code more **vertical** can help you break it down and comment it out. Using the below and a description of the mpg dataframe (https://ggplot2.tidyverse.org/reference/mpg.html), can you comment it out
 
 ```{r}
-ggplot(
+ggplot(             # R will keep looking at your code until all the open brackets have been closed)
   mpg,              #
   aes(              #
     displ,          #
     hwy,            #
     colour = class  #
   )
-) + 
+) +                 # R will look to the next line if you end a line with +
 geom_point()        #
 ```
+
 Here's how I would comment it out:
 
 ```{r}
@@ -204,8 +205,11 @@ ggplot(
     colour = class  # which column I will base the color on (often "color" is safer spelling in code)
   )
 ) + 
-geom_point()        # what I would like drawn on
+geom_point()        # what I would like drawn on (as opposed to boxplots, lines, etc.)
 ```
+
+**Formatting code like above to be clearer to read is useful when sharing your scripts with other researchers so that they can understand it!**
+
 
 Now to understand the above code, try running it after changing lines. For example, what happens if you change the x-axis:
 
@@ -218,7 +222,7 @@ ggplot(
     colour = class  # which column I will base the color on (often "color" is safer spelling in code)
   )
 ) + 
-geom_point()        # what I would like drawn on
+geom_point()        # what I would like drawn on (as opposed to boxplots, lines, etc.
 
 ```
 To make beautiful figures in R, you can largely google the type of plot you want, copy the example code that the website has, and then swap in the relevant features for your plot. This principle of copying and pasting code, (making it vertical to make it legible is not necessary, but can be helpful), and then editing it to work for your own script is an **essential skill** to speed up your coding.

@@ -2,4 +2,5 @@
 title: "Simple Regression"
 output: html_notebook
 ---
-Due Oct 20th
+
+Available on Oct 20th (2022)

@@ -41,54 +41,57 @@ As highlighted above, R Markdown is a type of "script" in the general sense of t
 
 **The following points apply to both R Markdown and R Notebooks**
 
-If you look above, you may notice that there are 2 types of code: Markdown (to write a nice looking report) and R (in grey chunks). I think these are well explained here: https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf so I'll just explain that R Markdowns run all the code in the chunks each time they generate the output file (e.g. html file). This is important to know, because R Notebooks do **not** do this.
+If you look above, you may notice that there are 2 types of code: Markdown (to write a nice looking report) and R (in grey chunks). I think these are well explained here: https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf so I'll just explain that R Markdowns run all the code in the chunks each time they generate the output file (e.g. html file). This is important to know, because R Notebooks do **not** run all the code in all the chunks when you generate them (see below for more on this).
 
 ### R Notebooks
 
 R Notebooks can be created by clicking on **File -> New File -> R Notebook**. They look quite similar to R Markdowns, but automatically generate the .html output **each time you save the notebook**. The output file will be a **.nb.html** file in the same folder as your notebook. 
 
-***Very importantly*** - the *.nb.html* file will be built based on what happened the last time you run each R chunk. If you never ran the R Chunk, then the nb.html file will not use the output from that chunk. **This makes R Notebooks quicker than R Markdowns, because you don't have to generate the output from scratch each time, but there is a risk of you forgetting to run a chunk after changing it**.
+***Very importantly*** - the *.nb.html* file will be built based on what happened the last time you run each R chunk. If you never ran the R Chunk, then the nb.html file will not use the output from that chunk. **This makes R Notebooks quicker than R Markdowns, because you don't have to generate the output from scratch each time, as it will just use whatever was generated the last time the chunk was run. However, this means that there's a risk your .html output will not be what you expect if you failed to run all of your chunks before saving your file. To address this risk (when you've finished editing your file), you can select the "run all" option**.
+
+<img src="rBasics/runAllChunks.png"/>
 
 ## Fundamental's of R
 
 R allows you to complete calculations, so lets start with that. Type into your markdown or script
 
-Often, you can use R as a calculator, for example:
+Often, you can use R as a calculator, for example, if you want to know what two people's heights are together you can add them:
 ```{r}
-5 + 2
+120 + 130
 ```
 
-It's helpful to store these calculations into **objects**:
+It's helpful to store these calculations into **objects** using *<-* as shown below:
 ```{r}
-a <- 5 + 2  # this is exactly the same as writing a = 5 + 2, but <- is encouraged in R to avoid confusion with other uses of = (e.g. == operator when you are comparing if two values are identical)
 # this # is starting a comment, code that will be ignored but allows you to annotate your work
-a # to show what the value 7 is now stored in the object "a"
+ant_height <- 120 # this is exactly the same as writing ant_height = 5 + 2, but <- is encouraged in R to avoid confusion with other uses of = (e.g. == operator when you are comparing if two values are identical)
+bob_height <- 130
+ant_height # to show what the value 120 is now stored in the object "ant_height"
+bob_height # to show what the value 130 is now stored in the object "bob_height"
 ```
 
 
-This means that you can compare objects to each other later
+This means that you can compare objects to each other later, e.g. how much taller is Bob than Ant:
 
 ```{r}
-b <- 2
-b - a
-c <- b-a
-c # to show what c is
+bob_height - ant_height
 ```
 
-Some advice/rules for **Objects**:
+Some advice/rules for **Objects** (sometimes known as variables in other coding languages):
 
 - You cannot have a space in an object name. "my object" would be an invalid object name.
-- object names are ***case-sensitive***, so if your object is called "MyObject" you cannot refer to it as "myobject".
+- Object names are ***case-sensitive***, so if your object is called "MyObject" you cannot refer to it as "myobject".
 - "." and "_" are acceptable characters in variable names.
-- you can overwrite objects in the same way that you define an object
+- You can overwrite objects in the same way that you define an object, but it arguably will make your code more **brittle**, so be careful doing so:
 
 ```{r}
-this_object <- 5
-this_object # to show what the object value is
-this_object <- 10 # overwrites this_object
-this_object # should now show 10
+ant_age <- 35 # at timepoint 1
+ant_age # to confirm what the age was at this point
+# wait a year
+ant_age <- 36 # at timepoint 1
+ant_age # to confirm that the age has been updated
 ```
 
+- You can't start an object name with a number
 - be careful to not give an object the same name as a function! This will overwrite the function. To check if the name already exists, you can start typing it and press tab. So typing "t.te" and pressing the tab will give you "t.test"
 
 
@@ -113,40 +116,40 @@ The **great news** is that you don't need to write functions 99% of the time in 
 **Vectors** store a series of values. Often these will be a series of numbers:
 
 ```{r}
-numeric_vector = c(1,2,3)
-numeric_vector
+heights_vector = c(120,130,135)
+heights_vector
 ```
 
 The "c" above is short for "combine" as you're combining values together to make this vector. 
-**Strings** are values that have characters (also known as letters) in them. Lets see if we can make a vector of **strings**:
+**Strings** are values that have *characters* (also known as letters) in them. Lets see if we can make a vector of **strings**:
 
 ```{r}
-string_vector = c("a", "b", "c")
-string_vector
+names_vector = c("ant", "bob", "charles")
+names_vector
 ```
 
 Looks like we can. But what happens if you mix strings and numbers in a **vector**:
 
 ```{r}
-mixed_vector = c("a", 1, "c")
-mixed_vector
+year_group = c(1, "2a", "2b")
+year_group
 ```
 
 R seems to be happy to put them into a single vector. But there are different types of values and vectors, so lets ask R what each type of (using the "typeof" **function**) vectors we have above:
 
 ```{r}
-typeof(numeric_vector)
-typeof(string_vector)
-typeof(mixed_vector)
+typeof(heights_vector)
+typeof(names_vector)
+typeof(year_group)
 ```
 
-The numeric vector is a "double" vector. **Double** refers to the fact that the numbers *can include decimals*, as opposed to **integer** numbers *which have to be whole numbers*. Interestingly, R has assumed the list of numbers should be **double** rather than **integer**, which seems like the more robust thing to do, as integer numbers can always be double, but double numbers can't always be integers.
+The numeric vector ("heights") is a "double" vector. **Double** refers to the fact that the numbers *can include decimals*, as opposed to **integer** numbers *which have to be whole numbers*. Interestingly, R has assumed the list of numbers should be **double** rather than **integer**, which seems like the more robust thing to do, as integer numbers can always be double, but double numbers can't always be integers. **Strings** are identified as "**character**" objects, because they are made of *characters*.
 
 #### Data frames
 
 **Data frames** look like tables, in which you have a series of columns with **headers** that describe each column. 
 
-Some data frames are already loaded into RStudio when you run it, such as the "mpg" dataframe. To look at it, just type in it's name:
+Some data frames are already loaded into RStudio when you run it, such as the "mpg" dataframe. To look at it, just type in it's name (and press CTRL-ENTER on the line, or CTRL-SHIFT-ENTER within the chunk. Note that the below won't work properly if you write it in the console, you should be running this within an rMarkdown or rNotebook):
 
 ```{r}
 mpg

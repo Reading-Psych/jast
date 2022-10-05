@@ -1768,10 +1768,498 @@ pre code {
 
 
 <!-- rnb-text-begin -->
-<p>Available on October 6th (2022)</p>
+<div id="describing-data-aka-univariate-statistics" class="section level1">
+<h1>Describing data (AKA univariate statistics)</h1>
+<p><strong>Univariate statistics</strong> is a term for statistics that
+describes a numerical and continuous variable. We will be describing the
+data along the following parameters:</p>
+<ul>
+<li>central tendency (mean and median)</li>
+<li>dispersion (range, variance and standard deviation)</li>
+<li>distribution (skewness and kurtosis)</li>
+</ul>
+<div id="central-tendancy" class="section level2">
+<h2>Central tendancy</h2>
+<p>Central tendancy describes typical values of a variable, such as it’s
+mean and median.</p>
+<div id="mean-vs.-median" class="section level3">
+<h3>Mean vs. Median</h3>
+<p>The <strong>mean</strong> is often called the “average” informally,
+but is actually a specific type of “average”. The mean is the average
+you get when add together a group of numbers, and then divide by the
+number of items you combined. For example, to calculate the mean life
+expectancy of countries in 2007, we’ll re-use the gapminder data
+referred to above:</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyXzIwMDcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgYSByZW1pbmRlciBvZiB0aGUgZGF0YSBmcmFtZVxuc3VtX2xpZmVfZXhwZWN0YW5jeSAgPSBzdW0oZ2FwbWluZGVyXzIwMDckbGlmZUV4cCkgICAgICAgICAgICMgdG90YWwgb2YgYWxsIHllYXJzXG5uX2xpZmVfZXhwZWN0YW5jeSAgICA9IGxlbmd0aChnYXBtaW5kZXJfMjAwNyRsaWZlRXhwKSAgICAgICAgIyBjb3VudCB0aGUgcGVvcGxlXG5tZWFuX2xpZmVfZXhwZWN0YW5jeSA9IHN1bV9saWZlX2V4cGVjdGFuY3kvbl9saWZlX2V4cGVjdGFuY3kgXG5tZWFuX2xpZmVfZXhwZWN0YW5jeVxuYGBgIn0= -->
+<pre class="r"><code>gapminder_2007                                               # a reminder of the data frame
+sum_life_expectancy  = sum(gapminder_2007$lifeExp)           # total of all years
+n_life_expectancy    = length(gapminder_2007$lifeExp)        # count the people
+mean_life_expectancy = sum_life_expectancy/n_life_expectancy 
+mean_life_expectancy</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>For those of you who like to double check these things (which is a
+good instinct), lets see what number you get if you use the r function
+for mean:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihnYXBtaW5kZXJfMjAwNyRsaWZlRXhwKVxuYGBgIn0= -->
+<pre class="r"><code>mean(gapminder_2007$lifeExp)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><em>Whew</em> - it’s the same as the manual calculation above.</p>
+<p>Now <strong>median</strong> is less known than <strong>mean</strong>,
+but median is the value in the middle once you order all your data. It’s
+well explained in the first paragraph on wikipedia:
+<a href="https://en.wikipedia.org/wiki/Median" target="_blank">https://en.wikipedia.org/wiki/Median</a>,
+so I would suggest looking there. As you can see below, the mean and
+median are not always the same (in fact, they are usually at least
+slightly different):</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihnYXBtaW5kZXJfMjAwNyRsaWZlRXhwKVxubWVkaWFuKGdhcG1pbmRlcl8yMDA3JGxpZmVFeHApXG5gYGAifQ== -->
+<pre class="r"><code>mean(gapminder_2007$lifeExp)
+median(gapminder_2007$lifeExp)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="dispersion" class="section level2">
+<h2>Dispersion</h2>
+<p>To understand distribution below, it’s helpful to clarify some more
+basic concepts around how data is <strong>dispersed</strong> around the
+mean.</p>
+<p><strong>Range</strong> simply captures the min and the maximum
+values.</p>
+</div>
+<div id="distribution" class="section level2">
+<h2>Distribution</h2>
+<p>Lets just imagine we want to summarise the life expectancy of people
+across the world. Using the gapminder [<a href="https://www.gapminder.org/" class="uri">https://www.gapminder.org/</a>] dataset that is freely
+available about the world, we can look at the distribution of life
+expectancies across countries in 2007:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBpbnN0YWxsIChpZiByZXF1aXJlZCkgYW5kIGxvYWQgdGhlIGdhcG1pbmRlciBkYXRhXG5pZighcmVxdWlyZShnYXBtaW5kZXIpKXtpbnN0YWxsLnBhY2thZ2VzKFwiZ2FwbWluZGVyXCIpfVxubGlicmFyeShnYXBtaW5kZXIpXG5cbiMgY3JlYXRlIGEgbmV3IGRhdGEgZnJhbWUgdGhhdCBvbmx5IGZvY3VzZXMgb24gZGF0YSBmcm9tIDIwMDdcbmdhcG1pbmRlcl8yMDA3IDwtIHN1YnNldChcbiAgZ2FwbWluZGVyLCAgICMgdGhlIGRhdGEgc2V0XG4gIHllYXIgPT0gMjAwNyAgICAgXG4pXG5cbiMgbGV0cyBoYXZlIGEgbG9vayBhdCB0aGUgZGF0YVxuZ2FwbWluZGVyXzIwMDdcblxuIyBhbmQgbm93IHBsb3QgYSBoaXN0b2dyYW0gb2YgdGhlIGxpZmUgZXhwZWN0YW5jeSBkYXRhIHRvIHNlZSB0aGUgZGlzdHJpYnV0aW9uXG5oaXN0KGdhcG1pbmRlcl8yMDA3JGxpZmVFeHApXG5gYGAifQ== -->
+<pre class="r"><code># install (if required) and load the gapminder data
+if(!require(gapminder)){install.packages(&quot;gapminder&quot;)}
+library(gapminder)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSB0cmFuc2Zvcm1hdGlvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKQXZhaWxhYmxlIG9uIE9jdG9iZXIgNnRoICgyMDIyKQ==</div>
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 &lt;- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+# lets have a look at the data
+gapminder_2007
+
+# and now plot a histogram of the life expectancy data to see the distribution
+hist(gapminder_2007$lifeExp)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>So whilst this histogram visualises the distribution of the data,
+it’s helpful to be able to <strong>statistically quantify</strong>
+(i.e. give numbers that represent) this distribution. Remember that for
+many statistical tests (parmatric) it’s helpful to have data that is
+<strong>normally distributed</strong>. Normally distributed data (also
+known as <strong>Gaussian distributions</strong> and associated with
+<strong>parametric statistics</strong>) generally looks like a bell
+curve:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZW5lcmF0aW5nIHJhbmRvbSBkYXRhIHRvIGZpdCBhIG5vcm1hbCBkaXN0cmlidXRpb24uXG5ub3JtX2RhdGEgPC1ybm9ybShcbiAgMTAwMDAwLCAgICAgICAgICAgICAgICMgdGhlIG51bWJlciBvZiBzYW1wbGVzXG4gIG1lYW49MCwgICAgICAgICAgICAgICAjIHRoZSBtZWFuICh3aGljaCBpbiB0aGlzIGNhc2Ugc2hvdWxkIGJlIGFsbW9zdCBpZGVudGljYWwgdG8gdGhlIG1lZGlhbilcbiAgc2Q9MSAgICAgICAgICAgICAgICAgICMgdGhlIHN0YW5kYXJkIGRldmlhdGlvblxuKVxuaGlzdChcbiAgbm9ybV9kYXRhLFxuICBicmVha3MgPSAxMDAsICAgICAgICAgICAjIHRoZSBudW1iZXIgb2YgYmlucyAodGhlIG1vcmUgYmlucyB0aGVyZSBhcmUsIHRoZSB0aGlubmVyIGVhY2ggYmluIGlzKVxuICB4bGltICAgPSBjKC0zLDMpLCAgICAgICAjIHRoZSByYW5nZSBvZiB0aGUgeC1heGlzXG4gIGZyZXEgICA9IEZBTFNFLCAgICAgICAgICMgY2hhbmdlcyB0aGUgeS1heGlzIGZyb20gcmVwb3J0aW5nIHRoZSBhYnNvbHV0ZSBmcmVxdWVuY3kgdG8gcmVwb3J0aW5nIHRoZSByZWxhdGl2ZSBkZW5zaXR5XG4gIHhsYWIgICA9IFwiU0RzXCIsIFxuICBtYWluICAgPSBcIk5vcm1hbCBkaXN0cmlidXRpb24gKHBzZXVkby1yYW5kb21seSBnZW5lcmF0ZWQpXCJcbilcbmBgYCJ9 -->
+<pre class="r"><code># generating random data to fit a normal distribution.
+norm_data &lt;-rnorm(
+  100000,               # the number of samples
+  mean=0,               # the mean (which in this case should be almost identical to the median)
+  sd=1                  # the standard deviation
+)
+hist(
+  norm_data,
+  breaks = 100,           # the number of bins (the more bins there are, the thinner each bin is)
+  xlim   = c(-3,3),       # the range of the x-axis
+  freq   = FALSE,         # changes the y-axis from reporting the absolute frequency to reporting the relative density
+  xlab   = &quot;SDs&quot;, 
+  main   = &quot;Normal distribution (pseudo-randomly generated)&quot;
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>So we can see when comparing the shape of life expectancies and the
+shape of a normal distribution that the two aren’t the same. There are 3
+things we’ll look for to <em>quantify</em> how much of a problem we have
+with our current distribution:</p>
+<ul>
+<li>skewness</li>
+<li>kurtosis</li>
+</ul>
+<div id="skewness" class="section level3">
+<h3>Skewness</h3>
+<p>Data can be negatively skewed, where the mean is less than the
+median:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTa2V3ZWQgdG8gdGhlIHJpZ2h0XG5uZWdhdGl2ZV9za2V3ID0gcmJldGEoMTAwMDAsNSwyKVxuaGlzdChuZWdhdGl2ZV9za2V3LCBtYWluID0gXCJOZWdhdGl2ZWx5IHNrZXdlZCBkYXRhXCIpXG5hYmxpbmUoXG4gIHY9bWVhbihuZWdhdGl2ZV9za2V3KSwgICMgd2hlcmUgdGhlIGxpbmUgZm9yIHRoZSBtZWFuIHdpbGwgYmUgXG4gIGx3ZD01XG4pXG5hYmxpbmUoXG4gIHY9bWVkaWFuKG5lZ2F0aXZlX3NrZXcpLCBcbiAgbHdkPTMsXG4gIGx0eT0zXG4pXG5gYGAifQ== -->
+<pre class="r"><code># Skewed to the right
+negative_skew = rbeta(10000,5,2)
+hist(negative_skew, main = &quot;Negatively skewed data&quot;)
+abline(
+  v=mean(negative_skew),  # where the line for the mean will be 
+  lwd=5
+)
+abline(
+  v=median(negative_skew), 
+  lwd=3,
+  lty=3
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><em>The thick lines represents the mean; the dashed lines represents
+the median. The bigger the distance between these, the less normally
+distributed your data is. (see </em> <strong>central tendancy</strong>
+<em>below)</em></p>
+<p>Or positively skewed, where the median is less than the mean:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIFNrZXdlZCB0byB0aGUgbGVmdFxucG9zaXRpdmVfc2tldyA9IHJiZXRhKDEwMDAwLDIsNSlcbmhpc3QocG9zaXRpdmVfc2tldywgbWFpbj1cIlBvc2l0aXZlbHkgc2tld2VkIGRhdGFcIilcbmFibGluZShcbiAgdj1tZWFuKHBvc2l0aXZlX3NrZXcpLCAgIyB3aGVyZSB0aGUgbGluZSBmb3IgdGhlIG1lYW4gd2lsbCBiZSBcbiAgbHdkPTVcbilcbmFibGluZShcbiAgdj1tZWRpYW4ocG9zaXRpdmVfc2tldyksICMgd2hlcmUgdGhlIGxpbmUgZm9yIHRoZSBtZWRpYW4gd2lsbCBiZVxuICBsd2Q9MyxcbiAgbHR5PTNcbilcbmBgYCJ9 -->
+<pre class="r"><code>
+# Skewed to the left
+positive_skew = rbeta(10000,2,5)
+hist(positive_skew, main=&quot;Positively skewed data&quot;)
+abline(
+  v=mean(positive_skew),  # where the line for the mean will be 
+  lwd=5
+)
+abline(
+  v=median(positive_skew), # where the line for the median will be
+  lwd=3,
+  lty=3
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><em>The thick lines represents the mean; the dashed lines represents
+the median. The bigger the distance between these, the less normally
+distributed your data is. (see central tendancy below)</em></p>
+<p>So now that we know what skewed distributions look like, we now need
+to <strong>quantify</strong> how much of a problem with skewness there
+is. If we add together the amount of skewness for each data point
+together and then divide by a general summary of the total standard
+deviation, then you get an estimate of skewness. The next section is a
+breakdown of the formula for those interested in it (but this is <em>not
+crucial</em>), but <strong>the key point point is that outliers skew the
+data, and so outliers that are larger than the mean positively skew the
+data, and outliers below the mean negatively skew it. If there are an
+equal number of outliers on either side of the mean then the data will
+not be skewed.</strong></p>
+<div id="optional" class="section level4 optional_content">
+<h4>Optional</h4>
+<p>If we want to manually calculate skewness:</p>
+<p><span class="math display">\[
+\tilde{\mu_{3}} = \sum((\frac{x_i- \bar{x}{}} {\sigma} )^3) *
+\frac{N}{(N-1) * (N-2)}
+\]</span> To do this in R you <em>could</em> calculate it manually</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBhcHBseWluZyB0aGlzIHRvIHRoZSBwb3NpdGl2ZSBza2V3IGRhdGEgYWJvdmVcbnBvc2l0aXZlX3NrZXdfbiA9IGxlbmd0aChwb3NpdGl2ZV9za2V3KVxucG9zaXRpdmVfc2tld25lc3MgPSBzdW0oKChwb3NpdGl2ZV9za2V3IC0gbWVhbihwb3NpdGl2ZV9za2V3KSkvc2QocG9zaXRpdmVfc2tldykpXjMpICogKFxuICBwb3NpdGl2ZV9za2V3X24gLyAoKHBvc2l0aXZlX3NrZXdfbi0xKSAqIChwb3NpdGl2ZV9za2V3X24gLSAyKSlcbilcbiMgdG8gc2hvdyB0aGUgb3V0cHV0OlxucG9zaXRpdmVfc2tld25lc3NcbmBgYCJ9 -->
+<pre class="r"><code># applying this to the positive skew data above
+positive_skew_n = length(positive_skew)
+positive_skewness = sum(((positive_skew - mean(positive_skew))/sd(positive_skew))^3) * (
+  positive_skew_n / ((positive_skew_n-1) * (positive_skew_n - 2))
+)
+# to show the output:
+positive_skewness</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>… or just</p>
+</div>
+<p>use code from <a href="https://stackoverflow.com/a/54369572" class="uri">https://stackoverflow.com/a/54369572</a> to give you values
+for skewness (this has been chosen as this gives skewness and its
+standard error as calculated by major software like SPSS and JASP):</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIFNrZXduZXNzIGFuZCBrdXJ0b3NpcyBhbmQgdGhlaXIgc3RhbmRhcmQgZXJyb3JzIGFzIGltcGxlbWVudCBieSBTUFNTXG4jXG4jIFJlZmVyZW5jZTogcHAgNDUxLTQ1MiBvZlxuIyBodHRwOi8vc3VwcG9ydC5zcHNzLmNvbS9Qcm9kdWN0c0V4dC9TUFNTL0RvY3VtZW50YXRpb24vTWFudWFscy8xNi4wL1NQU1MgMTYuMCBBbGdvcml0aG1zLnBkZlxuIyBcbiMgU2VlIGFsc286IFN1Z2dlc3Rpb24gZm9yIFVzaW5nIFBvd2VyZnVsIGFuZCBJbmZvcm1hdGl2ZSBUZXN0cyBvZiBOb3JtYWxpdHksXG4jIFJhbHBoIEIuIEQnQWdvc3Rpbm8sIEFsYmVydCBCZWxhbmdlciwgUmFscGggQi4gRCdBZ29zdGlubywgSnIuLFxuIyBUaGUgQW1lcmljYW4gU3RhdGlzdGljaWFuLCBWb2wuIDQ0LCBOby4gNCAoTm92LiwgMTk5MCksIHBwLiAzMTYtMzIxXG5cbnNwc3NTa2V3S3VydG9zaXM9ZnVuY3Rpb24oeCkge1xuICB3PWxlbmd0aCh4KVxuICBtMT1tZWFuKHgpXG4gIG0yPXN1bSgoeC1tMSleMilcbiAgbTM9c3VtKCh4LW0xKV4zKVxuICBtND1zdW0oKHgtbTEpXjQpXG4gIHMxPXNkKHgpXG4gIHNrZXc9dyptMy8ody0xKS8ody0yKS9zMV4zXG4gIHNkc2tldz1zcXJ0KCA2KncqKHctMSkgLyAoKHctMikqKHcrMSkqKHcrMykpIClcbiAga3VydG9zaXM9KHcqKHcrMSkqbTQgLSAzKm0yXjIqKHctMSkpIC8gKCh3LTEpKih3LTIpKih3LTMpKnMxXjQpXG4gIHNka3VydG9zaXM9c3FydCggNCood14yLTEpICogc2Rza2V3XjIgLyAoKHctMykqKHcrNSkpIClcbiAgbWF0PW1hdHJpeChjKHNrZXcsa3VydG9zaXMsIHNkc2tldyxzZGt1cnRvc2lzKSwgMixcbiAgICAgICAgZGltbmFtZXM9bGlzdChjKFwic2tld1wiLFwia3VydG9zaXNcIiksIGMoXCJlc3RpbWF0ZVwiLFwic2VcIikpKVxuICByZXR1cm4obWF0KVxufVxuc3Bzc1NrZXdLdXJ0b3Npcyhwb3NpdGl2ZV9za2V3KVxuXG5gYGAifQ== -->
+<pre class="r"><code>
+# Skewness and kurtosis and their standard errors as implement by SPSS
+#
+# Reference: pp 451-452 of
+# http://support.spss.com/ProductsExt/SPSS/Documentation/Manuals/16.0/SPSS 16.0 Algorithms.pdf
+# 
+# See also: Suggestion for Using Powerful and Informative Tests of Normality,
+# Ralph B. D&#39;Agostino, Albert Belanger, Ralph B. D&#39;Agostino, Jr.,
+# The American Statistician, Vol. 44, No. 4 (Nov., 1990), pp. 316-321
+
+spssSkewKurtosis=function(x) {
+  w=length(x)
+  m1=mean(x)
+  m2=sum((x-m1)^2)
+  m3=sum((x-m1)^3)
+  m4=sum((x-m1)^4)
+  s1=sd(x)
+  skew=w*m3/(w-1)/(w-2)/s1^3
+  sdskew=sqrt( 6*w*(w-1) / ((w-2)*(w+1)*(w+3)) )
+  kurtosis=(w*(w+1)*m4 - 3*m2^2*(w-1)) / ((w-1)*(w-2)*(w-3)*s1^4)
+  sdkurtosis=sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)) )
+  mat=matrix(c(skew,kurtosis, sdskew,sdkurtosis), 2,
+        dimnames=list(c(&quot;skew&quot;,&quot;kurtosis&quot;), c(&quot;estimate&quot;,&quot;se&quot;)))
+  return(mat)
+}
+spssSkewKurtosis(positive_skew)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>However, this value is not very meaningful by itself to confirm
+whether there’s a significant problem with skewness. To address this,
+lets use the skewness standard error (see above), to calculate a
+<strong>z-score</strong>. <strong>Z-scores</strong> can capture how
+<em>significant</em> a value is, i.e. how unlikely the number is
+considering what you would normally expect. In this case, when you
+divide skewness by standard error, you get a z-score, and if the
+<strong>absolute value</strong> (i.e. ignoring whether it is positive or
+negative) of the z-score is greater than 1.96 then it is significantly
+skewed.</p>
+<div class="optional_content">
+<div id="optional-1" class="section level4">
+<h4>Optional</h4>
+<div id="why-is-1.96-sometimes-the-threshold-for-significance-with-z-values" class="section level5">
+<h5>Why is 1.96 (sometimes) the threshold for “significance” with
+z-values?</h5>
+<p><strong>Parametric statistics</strong> often compare values to a
+<strong>normal</strong> distribution of <strong>expected
+results</strong>, based on the <strong>estimated mean and SD</strong>.
+For example, lets imagine that a man called John thinks he’s either
+unusually tall, or unusally short, but he isn’t sure which. He could
+compare his height to a normal distribution of heights, and see whether
+he’s in the top or bottom 2.5%.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQbG90IGEgbm9ybWFsIGRpc3RyaWJ1dGlvbiBvZiBoZWlnaHRzXG56X3Njb3JlX3ggPC0gc2VxKFxuICAtMywgICAgIyBtaW5cbiAgMywgICAgIyBtYXhcbiAgYnkgPSAuMSAgXG4pXG56X3Njb3JlX3kgPC0gZG5vcm0oXG4gIHpfc2NvcmVfeCxcbiAgbWVhbiA9IDAsXG4gIHNkICAgPSAxXG4pXG5wbG90KFxuICB6X3Njb3JlX3gsXG4gIHpfc2NvcmVfeVxuKVxuIyBBZGQgbGluZSB0byBzaG93IG1lYW5cbmFibGluZShcbiAgdj0wLCAgIyB3aGVyZSB0aGUgbGluZSBmb3IgdGhlIG1lYW4gd2lsbCBiZSBcbiAgbHdkPTNcbilcbiMgQWRkIGxpbmUgdG8gc2hvdyBsb3dlciB0aHJlc2hvbGRcbmFibGluZShcbiAgdj0gLTEuOTYsXG4gIGx3ZD0zLFxuICBsdHk9M1xuKVxuIyBBZGQgbGluZSB0byBzaG93IGhpZ2hlciB0aHJlc2hvbGRcbmFibGluZShcbiAgdj0gMS45NixcbiAgbHdkPTMsXG4gIGx0eT0zXG4pXG5cbmBgYCJ9 -->
+<pre class="r"><code># Plot a normal distribution of heights
+z_score_x &lt;- seq(
+  -3,    # min
+  3,    # max
+  by = .1  
+)
+z_score_y &lt;- dnorm(
+  z_score_x,
+  mean = 0,
+  sd   = 1
+)
+plot(
+  z_score_x,
+  z_score_y
+)
+# Add line to show mean
+abline(
+  v=0,  # where the line for the mean will be 
+  lwd=3
+)
+# Add line to show lower threshold
+abline(
+  v= -1.96,
+  lwd=3,
+  lty=3
+)
+# Add line to show higher threshold
+abline(
+  v= 1.96,
+  lwd=3,
+  lty=3
+)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="draw-red-blocks-to-highlight-the-values-less-than--1.96-and-greater-than-1.96" class="section level1">
+<h1>draw red blocks to highlight the values less than -1.96 and greater
+than 1.96</h1>
+<p>So lets say he’s 170cm tall, the average person is 150cm, and the
+standard deviation of height across the population is 10cm. The data
+would look something like:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQbG90IGEgbm9ybWFsIGRpc3RyaWJ1dGlvbiBvZiBoZWlnaHRzXG5wb3B1bGF0aW9uX2hlaWdodHNfeCA8LSBzZXEoXG4gIDE0MCwgICAgIyBtaW5cbiAgMjAwLCAgICAjIG1heFxuICBieSA9IDEgIFxuKVxucG9wdWxhdGlvbl9oZWlnaHRzX3kgPC0gZG5vcm0oXG4gIHBvcHVsYXRpb25faGVpZ2h0c194LFxuICBtZWFuID0gMTUwLFxuICBzZCAgID0gMTBcbilcbnBsb3QoXG4gIHBvcHVsYXRpb25faGVpZ2h0c194LFxuICBwb3B1bGF0aW9uX2hlaWdodHNfeVxuKVxuIyBBZGQgbGluZSB0byBzaG93IG1lYW5cbmFibGluZShcbiAgdj0xNTAsICAjIHdoZXJlIHRoZSBsaW5lIGZvciB0aGUgbWVhbiB3aWxsIGJlIFxuICBsd2Q9NVxuKVxuIyBBZGQgbGluZSB0byBzaG93IEpvaG4ncyBoZWlnaHRcbmFibGluZShcbiAgdj0xNzAsIFxuICBsd2Q9MyxcbiAgbHR5PTNcbilcbmBgYCJ9 -->
+<pre class="r"><code># Plot a normal distribution of heights
+population_heights_x &lt;- seq(
+  140,    # min
+  200,    # max
+  by = 1  
+)
+population_heights_y &lt;- dnorm(
+  population_heights_x,
+  mean = 150,
+  sd   = 10
+)
+plot(
+  population_heights_x,
+  population_heights_y
+)
+# Add line to show mean
+abline(
+  v=150,  # where the line for the mean will be 
+  lwd=5
+)
+# Add line to show John&#39;s height
+abline(
+  v=170, 
+  lwd=3,
+  lty=3
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><em>The thick line refers to the mean height, the dashed line refers
+to John’s height</em></p>
+<p>You can see above that John is pretty unusually tall. To work out
+whether he’s in the top 5%, lets work out his z-score:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuam9obl9oZWlnaHQgPC0gMTcwXG5tZWFuX2hlaWdodCA8LSAxNTBcbmhlaWdodF9zZCAgIDwtIDEwXG5qb2huX3pfc2NvcmUgPC0gKGpvaG5faGVpZ2h0IC0gbWVhbl9oZWlnaHQpL2hlaWdodF9zZFxuam9obl96X3Njb3JlXG5gYGAifQ== -->
+<pre class="r"><code>john_height &lt;- 170
+mean_height &lt;- 150
+height_sd   &lt;- 10
+john_z_score &lt;- (john_height - mean_height)/height_sd
+john_z_score</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>So based on the above, John’s Z-score is greater than 1.96, which I
+claimed above was meaningful. To understand why this is meaningful, lets
+start by plotting John’s score as a z-score:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQbG90IGEgbm9ybWFsIGRpc3RyaWJ1dGlvbiBvZiBoZWlnaHRzXG56X3Njb3JlX3ggPC0gc2VxKFxuICAtMSwgICAgIyBtaW5cbiAgNSwgICAgIyBtYXhcbiAgYnkgPSAuMSAgXG4pXG56X3Njb3JlX3kgPC0gZG5vcm0oXG4gIHpfc2NvcmVfeCxcbiAgbWVhbiA9IDAsXG4gIHNkICAgPSAxXG4pXG5wbG90KFxuICB6X3Njb3JlX3gsXG4gIHpfc2NvcmVfeVxuKVxuIyBBZGQgbGluZSB0byBzaG93IG1lYW5cbmFibGluZShcbiAgdj0wLCAgIyB3aGVyZSB0aGUgbGluZSBmb3IgdGhlIG1lYW4gd2lsbCBiZSBcbiAgbHdkPTNcbilcbiMgQWRkIGxpbmUgdG8gc2hvdyBKb2huJ3MgaGVpZ2h0XG5hYmxpbmUoXG4gIHY9am9obl96X3Njb3JlLFxuICBsd2Q9MyxcbiAgbHR5PTNcbilcblxuYGBgIn0= -->
+<pre class="r"><code># Plot a normal distribution of heights
+z_score_x &lt;- seq(
+  -1,    # min
+  5,    # max
+  by = .1  
+)
+z_score_y &lt;- dnorm(
+  z_score_x,
+  mean = 0,
+  sd   = 1
+)
+plot(
+  z_score_x,
+  z_score_y
+)
+# Add line to show mean
+abline(
+  v=0,  # where the line for the mean will be 
+  lwd=3
+)
+# Add line to show John&#39;s height
+abline(
+  v=john_z_score,
+  lwd=3,
+  lty=3
+)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>As you may have noticed, these figures are identical in their
+distributions and the relative locations of the vertical lines. So when
+you have calculated a <strong>z-score</strong> you have calculated a
+standardised value of how many standard deviations you are above (or
+below) the mean. People have previously calculated that if you get a
+z-value of 1.96 and above then you are in the top 5 percentile. However,
+lets double check that using the pnorm function:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjb21wYXJlIHRoZSB2YWx1ZXMgYmVsb3cgd2l0aCB0aGUgcGxvdCBvZiB0aGUgel9zY29yZSBwbG90XG5wbm9ybShcbiAgcSA9IDEuOTYsICMgcHV0IGluIHRoZSB6LXZhbHVlIGhlcmVcbiAgbWVhbiA9IDAsXG4gIHNkID0gMSxcbiAgbG93ZXIudGFpbCA9IEZcbilcblxuYGBgIn0= -->
+<pre class="r"><code># compare the values below with the plot of the z_score plot
+pnorm(
+  q = 1.96, # put in the z-value here
+  mean = 0,
+  sd = 1,
+  lower.tail = F
+)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The above p-value of .024998 shows that any Z-score above</p>
+<p>Note that how you ask a question <strong>greatly</strong> impacts
+your approach, and so my claim that I’m in the top 5% of the population
+is very different to a more general claim I’m taller than the average
+person. So whether I’m in the top 5% of the population is a very</p>
+<p>you can calculate the <em>standard error of skewness</em> as
+below:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBcbiMgc3FydCgoNipwb3NpdGl2ZV9za2V3X24qKHBvc2l0aXZlX3NrZXdfbi0xKSkvKChwb3NpdGl2ZV9za2V3X24tMikqKHBvc2l0aXZlX3NrZXdfbisxKSoocG9zaXRpdmVfc2tld19uKzMpKSlcbiMgXG4jIFxuIyBcbiMgXG4jIHBvc2l0aXZlX3NrZXdfbiA9IGxlbmd0aChwb3NpdGl2ZV9za2V3KVxuIyBcbiMgXG4jIGdpbmlfbiA9IGxlbmd0aChnaW5pX2NsZWFuKVxuIyBcbiMgZ2luaV9za2V3bmVzcyA9IHN1bSgoKGdpbmlfY2xlYW4gLSBtZWFuKGdpbmlfY2xlYW4pKS9zZChnaW5pX2NsZWFuKSleMykgKiAoXG4jICAgZ2luaV9uIC8gKChnaW5pX24tMSkgKiAoZ2luaV9uIC0gMikpXG4jIClcbiMgXG4jIHBvc19za2V3X3NlcyA9IHNxcnQoKDYqcG9zaXRpdmVfc2tld19uKihwb3NpdGl2ZV9za2V3X24tMSkpLygocG9zaXRpdmVfc2tld19uLTIpKihwb3NpdGl2ZV9za2V3X24rMSkqKHBvc2l0aXZlX3NrZXdfbiszKSkpXG4jIFxuIyBzcHNzU2tld0t1cnRvc2lzPWZ1bmN0aW9uKHgpIHtcbiMgICB3PWxlbmd0aCh4KVxuIyAgIG0xPW1lYW4oeClcbiMgICBtMj1zdW0oKHgtbTEpXjIpXG4jICAgbTM9c3VtKCh4LW0xKV4zKVxuIyAgIG00PXN1bSgoeC1tMSleNClcbiMgICBzMT1zZCh4KVxuIyAgIHNrZXc9dyptMy8ody0xKS8ody0yKS9zMV4zXG4jICAgc2Rza2V3PXNxcnQoIDYqdyoody0xKSAvICgody0yKSoodysxKSoodyszKSkgKVxuIyAgIGt1cnRvc2lzPSh3Kih3KzEpKm00IC0gMyptMl4yKih3LTEpKSAvICgody0xKSoody0yKSoody0zKSpzMV40KVxuIyAgIHNka3VydG9zaXM9c3FydCggNCood14yLTEpICogc2Rza2V3XjIgLyAoKHctMykqKHcrNSkpIClcbiMgICBtYXQ9bWF0cml4KGMoc2tldyxrdXJ0b3Npcywgc2Rza2V3LHNka3VydG9zaXMpLCAyLFxuIyAgICAgICAgIGRpbW5hbWVzPWxpc3QoYyhcInNrZXdcIixcImt1cnRvc2lzXCIpLCBjKFwiZXN0aW1hdGVcIixcInNlXCIpKSlcbiMgICByZXR1cm4obWF0KVxuIyB9XG4jIFxuIyBza2V3bmVzcyhpbmVxX2RhdGEkR2luaSlcbiMga3VydG9zaXMoaW5lcV9kYXRhJEdpbmkpXG4jIHNrZXduZXNzKGdpbmlfY2xlYW4pXG4jIGRlc2NyaWJlKGdpbmlfY2xlYW4pXG4jIGdpbmlfbiA9IGxlbmd0aChnaW5pX2NsZWFuKVxuIyBzdW0oKGdpbmlfY2xlYW4gLSBtZWFuKGdpbmlfY2xlYW4pKV4zKS9cbiMgICAoZ2luaV9uLTEpICogKGdpbmlfbi0yKSAqIHNkKGdpbmlfY2xlYW4pXjMpXG4jICNzdW0oKChnaW5pX2NsZWFuIC0gbWVhbihnaW5pX2NsZWFuKSkvc2QoZ2luaV9jbGVhbikpXjMpICogKDEvbGVuZ3RoKGdpbmlfY2xlYW4pXG5gYGAifQ== -->
+<pre class="r"><code># 
+# sqrt((6*positive_skew_n*(positive_skew_n-1))/((positive_skew_n-2)*(positive_skew_n+1)*(positive_skew_n+3)))
+# 
+# 
+# 
+# 
+# positive_skew_n = length(positive_skew)
+# 
+# 
+# gini_n = length(gini_clean)
+# 
+# gini_skewness = sum(((gini_clean - mean(gini_clean))/sd(gini_clean))^3) * (
+#   gini_n / ((gini_n-1) * (gini_n - 2))
+# )
+# 
+# pos_skew_ses = sqrt((6*positive_skew_n*(positive_skew_n-1))/((positive_skew_n-2)*(positive_skew_n+1)*(positive_skew_n+3)))
+# 
+# spssSkewKurtosis=function(x) {
+#   w=length(x)
+#   m1=mean(x)
+#   m2=sum((x-m1)^2)
+#   m3=sum((x-m1)^3)
+#   m4=sum((x-m1)^4)
+#   s1=sd(x)
+#   skew=w*m3/(w-1)/(w-2)/s1^3
+#   sdskew=sqrt( 6*w*(w-1) / ((w-2)*(w+1)*(w+3)) )
+#   kurtosis=(w*(w+1)*m4 - 3*m2^2*(w-1)) / ((w-1)*(w-2)*(w-3)*s1^4)
+#   sdkurtosis=sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)) )
+#   mat=matrix(c(skew,kurtosis, sdskew,sdkurtosis), 2,
+#         dimnames=list(c(&quot;skew&quot;,&quot;kurtosis&quot;), c(&quot;estimate&quot;,&quot;se&quot;)))
+#   return(mat)
+# }
+# 
+# skewness(ineq_data$Gini)
+# kurtosis(ineq_data$Gini)
+# skewness(gini_clean)
+# describe(gini_clean)
+# gini_n = length(gini_clean)
+# sum((gini_clean - mean(gini_clean))^3)/
+#   (gini_n-1) * (gini_n-2) * sd(gini_clean)^3)
+# #sum(((gini_clean - mean(gini_clean))/sd(gini_clean))^3) * (1/length(gini_clean)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+</div>
+<div id="kurtosis" class="section level3">
+<h3>kurtosis</h3>
+</div>
+</div>
+</div>
+<div id="transforming-data" class="section level1">
+<h1>Transforming data</h1>
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSB0cmFuc2Zvcm1hdGlvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBEZXNjcmliaW5nIGRhdGEgKEFLQSB1bml2YXJpYXRlIHN0YXRpc3RpY3MpCgoqKlVuaXZhcmlhdGUgc3RhdGlzdGljcyoqIGlzIGEgdGVybSBmb3Igc3RhdGlzdGljcyB0aGF0IGRlc2NyaWJlcyBhIG51bWVyaWNhbCBhbmQgY29udGludW91cyB2YXJpYWJsZS4gV2Ugd2lsbCBiZSBkZXNjcmliaW5nIHRoZSBkYXRhIGFsb25nIHRoZSBmb2xsb3dpbmcgcGFyYW1ldGVyczoKCi0gY2VudHJhbCB0ZW5kZW5jeSAobWVhbiBhbmQgbWVkaWFuKQotIGRpc3BlcnNpb24gKHJhbmdlLCB2YXJpYW5jZSBhbmQgc3RhbmRhcmQgZGV2aWF0aW9uKQotIGRpc3RyaWJ1dGlvbiAoc2tld25lc3MgYW5kIGt1cnRvc2lzKQoKCiMjIENlbnRyYWwgdGVuZGFuY3kKQ2VudHJhbCB0ZW5kYW5jeSBkZXNjcmliZXMgdHlwaWNhbCB2YWx1ZXMgb2YgYSB2YXJpYWJsZSwgc3VjaCBhcyBpdCdzIG1lYW4gYW5kIG1lZGlhbi4KCiMjIyBNZWFuIHZzLiBNZWRpYW4KVGhlICoqbWVhbioqIGlzIG9mdGVuIGNhbGxlZCB0aGUgImF2ZXJhZ2UiIGluZm9ybWFsbHksIGJ1dCBpcyBhY3R1YWxseSBhIHNwZWNpZmljIHR5cGUgb2YgImF2ZXJhZ2UiLiBUaGUgbWVhbiBpcyB0aGUgYXZlcmFnZSB5b3UgZ2V0IHdoZW4gYWRkIHRvZ2V0aGVyIGEgZ3JvdXAgb2YgbnVtYmVycywgYW5kIHRoZW4gZGl2aWRlIGJ5IHRoZSBudW1iZXIgb2YgaXRlbXMgeW91IGNvbWJpbmVkLiBGb3IgZXhhbXBsZSwgdG8gY2FsY3VsYXRlIHRoZSBtZWFuIGxpZmUgZXhwZWN0YW5jeSBvZiBjb3VudHJpZXMgaW4gMjAwNywgd2UnbGwgcmUtdXNlIHRoZSBnYXBtaW5kZXIgZGF0YSByZWZlcnJlZCB0byBhYm92ZToKCmBgYHtyfQpnYXBtaW5kZXJfMjAwNyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIyBhIHJlbWluZGVyIG9mIHRoZSBkYXRhIGZyYW1lCnN1bV9saWZlX2V4cGVjdGFuY3kgID0gc3VtKGdhcG1pbmRlcl8yMDA3JGxpZmVFeHApICAgICAgICAgICAjIHRvdGFsIG9mIGFsbCB5ZWFycwpuX2xpZmVfZXhwZWN0YW5jeSAgICA9IGxlbmd0aChnYXBtaW5kZXJfMjAwNyRsaWZlRXhwKSAgICAgICAgIyBjb3VudCB0aGUgcGVvcGxlCm1lYW5fbGlmZV9leHBlY3RhbmN5ID0gc3VtX2xpZmVfZXhwZWN0YW5jeS9uX2xpZmVfZXhwZWN0YW5jeSAKbWVhbl9saWZlX2V4cGVjdGFuY3kKYGBgCkZvciB0aG9zZSBvZiB5b3Ugd2hvIGxpa2UgdG8gZG91YmxlIGNoZWNrIHRoZXNlIHRoaW5ncyAod2hpY2ggaXMgYSBnb29kIGluc3RpbmN0KSwgbGV0cyBzZWUgd2hhdCBudW1iZXIgeW91IGdldCBpZiB5b3UgdXNlIHRoZSByIGZ1bmN0aW9uIGZvciBtZWFuOgoKYGBge3J9Cm1lYW4oZ2FwbWluZGVyXzIwMDckbGlmZUV4cCkKYGBgCipXaGV3KiAtIGl0J3MgdGhlIHNhbWUgYXMgdGhlIG1hbnVhbCBjYWxjdWxhdGlvbiBhYm92ZS4gCgpOb3cgKiptZWRpYW4qKiBpcyBsZXNzIGtub3duIHRoYW4gKiptZWFuKiosIGJ1dCBtZWRpYW4gaXMgdGhlIHZhbHVlIGluIHRoZSBtaWRkbGUgb25jZSB5b3Ugb3JkZXIgYWxsIHlvdXIgZGF0YS4gSXQncyB3ZWxsIGV4cGxhaW5lZCBpbiB0aGUgZmlyc3QgcGFyYWdyYXBoIG9uIHdpa2lwZWRpYTogPGEgaHJlZj0iaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTWVkaWFuIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTWVkaWFuPC9hPiwgc28gSSB3b3VsZCBzdWdnZXN0IGxvb2tpbmcgdGhlcmUuIEFzIHlvdSBjYW4gc2VlIGJlbG93LCB0aGUgbWVhbiBhbmQgbWVkaWFuIGFyZSBub3QgYWx3YXlzIHRoZSBzYW1lIChpbiBmYWN0LCB0aGV5IGFyZSB1c3VhbGx5IGF0IGxlYXN0IHNsaWdodGx5IGRpZmZlcmVudCk6CgpgYGB7cn0KbWVhbihnYXBtaW5kZXJfMjAwNyRsaWZlRXhwKQptZWRpYW4oZ2FwbWluZGVyXzIwMDckbGlmZUV4cCkKYGBgCgojIyBEaXNwZXJzaW9uClRvIHVuZGVyc3RhbmQgZGlzdHJpYnV0aW9uIGJlbG93LCBpdCdzIGhlbHBmdWwgdG8gY2xhcmlmeSBzb21lIG1vcmUgYmFzaWMgY29uY2VwdHMgYXJvdW5kIGhvdyBkYXRhIGlzICoqZGlzcGVyc2VkKiogYXJvdW5kIHRoZSBtZWFuLiAKCioqUmFuZ2UqKiBzaW1wbHkgY2FwdHVyZXMgdGhlIG1pbiBhbmQgdGhlIG1heGltdW0gdmFsdWVzLgoKCiMjIERpc3RyaWJ1dGlvbgpMZXRzIGp1c3QgaW1hZ2luZSB3ZSB3YW50IHRvIHN1bW1hcmlzZSB0aGUgbGlmZSBleHBlY3RhbmN5IG9mIHBlb3BsZSBhY3Jvc3MgdGhlIHdvcmxkLiBVc2luZyB0aGUgZ2FwbWluZGVyIFtodHRwczovL3d3dy5nYXBtaW5kZXIub3JnL10gZGF0YXNldCB0aGF0IGlzIGZyZWVseSBhdmFpbGFibGUgYWJvdXQgdGhlIHdvcmxkLCB3ZSBjYW4gbG9vayBhdCB0aGUgZGlzdHJpYnV0aW9uIG9mIGxpZmUgZXhwZWN0YW5jaWVzIGFjcm9zcyBjb3VudHJpZXMgaW4gMjAwNzoKCmBgYHtyfQojIGluc3RhbGwgKGlmIHJlcXVpcmVkKSBhbmQgbG9hZCB0aGUgZ2FwbWluZGVyIGRhdGEKaWYoIXJlcXVpcmUoZ2FwbWluZGVyKSl7aW5zdGFsbC5wYWNrYWdlcygiZ2FwbWluZGVyIil9CmxpYnJhcnkoZ2FwbWluZGVyKQoKIyBjcmVhdGUgYSBuZXcgZGF0YSBmcmFtZSB0aGF0IG9ubHkgZm9jdXNlcyBvbiBkYXRhIGZyb20gMjAwNwpnYXBtaW5kZXJfMjAwNyA8LSBzdWJzZXQoCiAgZ2FwbWluZGVyLCAgICMgdGhlIGRhdGEgc2V0CiAgeWVhciA9PSAyMDA3ICAgICAKKQoKIyBsZXRzIGhhdmUgYSBsb29rIGF0IHRoZSBkYXRhCmdhcG1pbmRlcl8yMDA3CgojIGFuZCBub3cgcGxvdCBhIGhpc3RvZ3JhbSBvZiB0aGUgbGlmZSBleHBlY3RhbmN5IGRhdGEgdG8gc2VlIHRoZSBkaXN0cmlidXRpb24KaGlzdChnYXBtaW5kZXJfMjAwNyRsaWZlRXhwKQpgYGAKU28gd2hpbHN0IHRoaXMgaGlzdG9ncmFtIHZpc3VhbGlzZXMgdGhlIGRpc3RyaWJ1dGlvbiBvZiB0aGUgZGF0YSwgaXQncyBoZWxwZnVsIHRvIGJlIGFibGUgdG8gKipzdGF0aXN0aWNhbGx5IHF1YW50aWZ5KiogKGkuZS4gZ2l2ZSBudW1iZXJzIHRoYXQgcmVwcmVzZW50KSB0aGlzIGRpc3RyaWJ1dGlvbi4gUmVtZW1iZXIgdGhhdCBmb3IgbWFueSBzdGF0aXN0aWNhbCB0ZXN0cyAocGFybWF0cmljKSBpdCdzIGhlbHBmdWwgdG8gaGF2ZSBkYXRhIHRoYXQgaXMgKipub3JtYWxseSBkaXN0cmlidXRlZCoqLiBOb3JtYWxseSBkaXN0cmlidXRlZCBkYXRhIChhbHNvIGtub3duIGFzICoqR2F1c3NpYW4gZGlzdHJpYnV0aW9ucyoqIGFuZCBhc3NvY2lhdGVkIHdpdGggKipwYXJhbWV0cmljIHN0YXRpc3RpY3MqKikgZ2VuZXJhbGx5IGxvb2tzIGxpa2UgYSBiZWxsIGN1cnZlOgoKYGBge3J9CiMgZ2VuZXJhdGluZyByYW5kb20gZGF0YSB0byBmaXQgYSBub3JtYWwgZGlzdHJpYnV0aW9uLgpub3JtX2RhdGEgPC1ybm9ybSgKICAxMDAwMDAsICAgICAgICAgICAgICAgIyB0aGUgbnVtYmVyIG9mIHNhbXBsZXMKICBtZWFuPTAsICAgICAgICAgICAgICAgIyB0aGUgbWVhbiAod2hpY2ggaW4gdGhpcyBjYXNlIHNob3VsZCBiZSBhbG1vc3QgaWRlbnRpY2FsIHRvIHRoZSBtZWRpYW4pCiAgc2Q9MSAgICAgICAgICAgICAgICAgICMgdGhlIHN0YW5kYXJkIGRldmlhdGlvbgopCmhpc3QoCiAgbm9ybV9kYXRhLAogIGJyZWFrcyA9IDEwMCwgICAgICAgICAgICMgdGhlIG51bWJlciBvZiBiaW5zICh0aGUgbW9yZSBiaW5zIHRoZXJlIGFyZSwgdGhlIHRoaW5uZXIgZWFjaCBiaW4gaXMpCiAgeGxpbSAgID0gYygtMywzKSwgICAgICAgIyB0aGUgcmFuZ2Ugb2YgdGhlIHgtYXhpcwogIGZyZXEgICA9IEZBTFNFLCAgICAgICAgICMgY2hhbmdlcyB0aGUgeS1heGlzIGZyb20gcmVwb3J0aW5nIHRoZSBhYnNvbHV0ZSBmcmVxdWVuY3kgdG8gcmVwb3J0aW5nIHRoZSByZWxhdGl2ZSBkZW5zaXR5CiAgeGxhYiAgID0gIlNEcyIsIAogIG1haW4gICA9ICJOb3JtYWwgZGlzdHJpYnV0aW9uIChwc2V1ZG8tcmFuZG9tbHkgZ2VuZXJhdGVkKSIKKQpgYGAKU28gd2UgY2FuIHNlZSB3aGVuIGNvbXBhcmluZyB0aGUgc2hhcGUgb2YgbGlmZSBleHBlY3RhbmNpZXMgYW5kIHRoZSBzaGFwZSBvZiBhIG5vcm1hbCBkaXN0cmlidXRpb24gdGhhdCB0aGUgdHdvIGFyZW4ndCB0aGUgc2FtZS4gVGhlcmUgYXJlIDMgdGhpbmdzIHdlJ2xsIGxvb2sgZm9yIHRvICpxdWFudGlmeSogaG93IG11Y2ggb2YgYSBwcm9ibGVtIHdlIGhhdmUgd2l0aCBvdXIgY3VycmVudCBkaXN0cmlidXRpb246CgotIHNrZXduZXNzCi0ga3VydG9zaXMKCiMjIyBTa2V3bmVzcwoKRGF0YSBjYW4gYmUgbmVnYXRpdmVseSBza2V3ZWQsIHdoZXJlIHRoZSBtZWFuIGlzIGxlc3MgdGhhbiB0aGUgbWVkaWFuOgoKYGBge3J9CiMgU2tld2VkIHRvIHRoZSByaWdodApuZWdhdGl2ZV9za2V3ID0gcmJldGEoMTAwMDAsNSwyKQpoaXN0KG5lZ2F0aXZlX3NrZXcsIG1haW4gPSAiTmVnYXRpdmVseSBza2V3ZWQgZGF0YSIpCmFibGluZSgKICB2PW1lYW4obmVnYXRpdmVfc2tldyksICAjIHdoZXJlIHRoZSBsaW5lIGZvciB0aGUgbWVhbiB3aWxsIGJlIAogIGx3ZD01CikKYWJsaW5lKAogIHY9bWVkaWFuKG5lZ2F0aXZlX3NrZXcpLCAKICBsd2Q9MywKICBsdHk9MwopCmBgYAoqVGhlIHRoaWNrIGxpbmVzIHJlcHJlc2VudHMgdGhlIG1lYW47IHRoZSBkYXNoZWQgbGluZXMgcmVwcmVzZW50cyB0aGUgbWVkaWFuLiBUaGUgYmlnZ2VyIHRoZSBkaXN0YW5jZSBiZXR3ZWVuIHRoZXNlLCB0aGUgbGVzcyBub3JtYWxseSBkaXN0cmlidXRlZCB5b3VyIGRhdGEgaXMuIChzZWUgKiAqKmNlbnRyYWwgdGVuZGFuY3kqKiAqYmVsb3cpKgoKT3IgcG9zaXRpdmVseSBza2V3ZWQsIHdoZXJlIHRoZSBtZWRpYW4gaXMgbGVzcyB0aGFuIHRoZSBtZWFuOgpgYGB7cn0KCiMgU2tld2VkIHRvIHRoZSBsZWZ0CnBvc2l0aXZlX3NrZXcgPSByYmV0YSgxMDAwMCwyLDUpCmhpc3QocG9zaXRpdmVfc2tldywgbWFpbj0iUG9zaXRpdmVseSBza2V3ZWQgZGF0YSIpCmFibGluZSgKICB2PW1lYW4ocG9zaXRpdmVfc2tldyksICAjIHdoZXJlIHRoZSBsaW5lIGZvciB0aGUgbWVhbiB3aWxsIGJlIAogIGx3ZD01CikKYWJsaW5lKAogIHY9bWVkaWFuKHBvc2l0aXZlX3NrZXcpLCAjIHdoZXJlIHRoZSBsaW5lIGZvciB0aGUgbWVkaWFuIHdpbGwgYmUKICBsd2Q9MywKICBsdHk9MwopCmBgYAoqVGhlIHRoaWNrIGxpbmVzIHJlcHJlc2VudHMgdGhlIG1lYW47IHRoZSBkYXNoZWQgbGluZXMgcmVwcmVzZW50cyB0aGUgbWVkaWFuLiBUaGUgYmlnZ2VyIHRoZSBkaXN0YW5jZSBiZXR3ZWVuIHRoZXNlLCB0aGUgbGVzcyBub3JtYWxseSBkaXN0cmlidXRlZCB5b3VyIGRhdGEgaXMuIChzZWUgY2VudHJhbCB0ZW5kYW5jeSBiZWxvdykqCgpTbyBub3cgdGhhdCB3ZSBrbm93IHdoYXQgc2tld2VkIGRpc3RyaWJ1dGlvbnMgbG9vayBsaWtlLCB3ZSBub3cgbmVlZCB0byAqKnF1YW50aWZ5KiogaG93IG11Y2ggb2YgYSBwcm9ibGVtIHdpdGggc2tld25lc3MgdGhlcmUgaXMuIElmIHdlIGFkZCB0b2dldGhlciB0aGUgYW1vdW50IG9mIHNrZXduZXNzIGZvciBlYWNoIGRhdGEgcG9pbnQgdG9nZXRoZXIgYW5kIHRoZW4gZGl2aWRlIGJ5IGEgZ2VuZXJhbCBzdW1tYXJ5IG9mIHRoZSB0b3RhbCBzdGFuZGFyZCBkZXZpYXRpb24sIHRoZW4geW91IGdldCBhbiBlc3RpbWF0ZSBvZiBza2V3bmVzcy4gVGhlIG5leHQgc2VjdGlvbiBpcyBhIGJyZWFrZG93biBvZiB0aGUgZm9ybXVsYSBmb3IgdGhvc2UgaW50ZXJlc3RlZCBpbiBpdCAoYnV0IHRoaXMgaXMgKm5vdCBjcnVjaWFsKiksIGJ1dCAqKnRoZSBrZXkgcG9pbnQgcG9pbnQgaXMgdGhhdCBvdXRsaWVycyBza2V3IHRoZSBkYXRhLCBhbmQgc28gb3V0bGllcnMgdGhhdCBhcmUgbGFyZ2VyIHRoYW4gdGhlIG1lYW4gcG9zaXRpdmVseSBza2V3IHRoZSBkYXRhLCBhbmQgb3V0bGllcnMgYmVsb3cgdGhlIG1lYW4gbmVnYXRpdmVseSBza2V3IGl0LiBJZiB0aGVyZSBhcmUgYW4gZXF1YWwgbnVtYmVyIG9mIG91dGxpZXJzIG9uIGVpdGhlciBzaWRlIG9mIHRoZSBtZWFuIHRoZW4gdGhlIGRhdGEgd2lsbCBub3QgYmUgc2tld2VkLioqCgo8ZGl2IGNsYXNzPSJvcHRpb25hbF9jb250ZW50Ij4KIyMjIyBPcHRpb25hbApJZiB3ZSB3YW50IHRvIG1hbnVhbGx5IGNhbGN1bGF0ZSBza2V3bmVzczoKCiQkClx0aWxkZXtcbXVfezN9fSA9IFxzdW0oKFxmcmFje3hfaS0gXGJhcnt4fXt9fSB7XHNpZ21hfSApXjMpICogXGZyYWN7Tn17KE4tMSkgKiAoTi0yKX0KJCQKVG8gZG8gdGhpcyBpbiBSIHlvdSAqY291bGQqIGNhbGN1bGF0ZSBpdCBtYW51YWxseQpgYGB7cn0KIyBhcHBseWluZyB0aGlzIHRvIHRoZSBwb3NpdGl2ZSBza2V3IGRhdGEgYWJvdmUKcG9zaXRpdmVfc2tld19uID0gbGVuZ3RoKHBvc2l0aXZlX3NrZXcpCnBvc2l0aXZlX3NrZXduZXNzID0gc3VtKCgocG9zaXRpdmVfc2tldyAtIG1lYW4ocG9zaXRpdmVfc2tldykpL3NkKHBvc2l0aXZlX3NrZXcpKV4zKSAqICgKICBwb3NpdGl2ZV9za2V3X24gLyAoKHBvc2l0aXZlX3NrZXdfbi0xKSAqIChwb3NpdGl2ZV9za2V3X24gLSAyKSkKKQojIHRvIHNob3cgdGhlIG91dHB1dDoKcG9zaXRpdmVfc2tld25lc3MKYGBgCgoKLi4uIG9yIGp1c3QgCjwvZGl2Pgp1c2UgY29kZSBmcm9tIGh0dHBzOi8vc3RhY2tvdmVyZmxvdy5jb20vYS81NDM2OTU3MiB0byBnaXZlIHlvdSB2YWx1ZXMgZm9yIHNrZXduZXNzICh0aGlzIGhhcyBiZWVuIGNob3NlbiBhcyB0aGlzIGdpdmVzIHNrZXduZXNzIGFuZCBpdHMgc3RhbmRhcmQgZXJyb3IgYXMgY2FsY3VsYXRlZCBieSBtYWpvciBzb2Z0d2FyZSBsaWtlIFNQU1MgYW5kIEpBU1ApOgpgYGB7cn0KCiMgU2tld25lc3MgYW5kIGt1cnRvc2lzIGFuZCB0aGVpciBzdGFuZGFyZCBlcnJvcnMgYXMgaW1wbGVtZW50IGJ5IFNQU1MKIwojIFJlZmVyZW5jZTogcHAgNDUxLTQ1MiBvZgojIGh0dHA6Ly9zdXBwb3J0LnNwc3MuY29tL1Byb2R1Y3RzRXh0L1NQU1MvRG9jdW1lbnRhdGlvbi9NYW51YWxzLzE2LjAvU1BTUyAxNi4wIEFsZ29yaXRobXMucGRmCiMgCiMgU2VlIGFsc286IFN1Z2dlc3Rpb24gZm9yIFVzaW5nIFBvd2VyZnVsIGFuZCBJbmZvcm1hdGl2ZSBUZXN0cyBvZiBOb3JtYWxpdHksCiMgUmFscGggQi4gRCdBZ29zdGlubywgQWxiZXJ0IEJlbGFuZ2VyLCBSYWxwaCBCLiBEJ0Fnb3N0aW5vLCBKci4sCiMgVGhlIEFtZXJpY2FuIFN0YXRpc3RpY2lhbiwgVm9sLiA0NCwgTm8uIDQgKE5vdi4sIDE5OTApLCBwcC4gMzE2LTMyMQoKc3Bzc1NrZXdLdXJ0b3Npcz1mdW5jdGlvbih4KSB7CiAgdz1sZW5ndGgoeCkKICBtMT1tZWFuKHgpCiAgbTI9c3VtKCh4LW0xKV4yKQogIG0zPXN1bSgoeC1tMSleMykKICBtND1zdW0oKHgtbTEpXjQpCiAgczE9c2QoeCkKICBza2V3PXcqbTMvKHctMSkvKHctMikvczFeMwogIHNkc2tldz1zcXJ0KCA2KncqKHctMSkgLyAoKHctMikqKHcrMSkqKHcrMykpICkKICBrdXJ0b3Npcz0odyoodysxKSptNCAtIDMqbTJeMioody0xKSkgLyAoKHctMSkqKHctMikqKHctMykqczFeNCkKICBzZGt1cnRvc2lzPXNxcnQoIDQqKHdeMi0xKSAqIHNkc2tld14yIC8gKCh3LTMpKih3KzUpKSApCiAgbWF0PW1hdHJpeChjKHNrZXcsa3VydG9zaXMsIHNkc2tldyxzZGt1cnRvc2lzKSwgMiwKICAgICAgICBkaW1uYW1lcz1saXN0KGMoInNrZXciLCJrdXJ0b3NpcyIpLCBjKCJlc3RpbWF0ZSIsInNlIikpKQogIHJldHVybihtYXQpCn0Kc3Bzc1NrZXdLdXJ0b3Npcyhwb3NpdGl2ZV9za2V3KQoKYGBgCgpIb3dldmVyLCB0aGlzIHZhbHVlIGlzIG5vdCB2ZXJ5IG1lYW5pbmdmdWwgYnkgaXRzZWxmIHRvIGNvbmZpcm0gd2hldGhlciB0aGVyZSdzIGEgc2lnbmlmaWNhbnQgcHJvYmxlbSB3aXRoIHNrZXduZXNzLiBUbyBhZGRyZXNzIHRoaXMsIGxldHMgdXNlIHRoZSBza2V3bmVzcyBzdGFuZGFyZCBlcnJvciAoc2VlIGFib3ZlKSwgdG8gY2FsY3VsYXRlIGEgKip6LXNjb3JlKiouICoqWi1zY29yZXMqKiBjYW4gY2FwdHVyZSBob3cgKnNpZ25pZmljYW50KiBhIHZhbHVlIGlzLCBpLmUuIGhvdyB1bmxpa2VseSB0aGUgbnVtYmVyIGlzIGNvbnNpZGVyaW5nIHdoYXQgeW91IHdvdWxkIG5vcm1hbGx5IGV4cGVjdC4gSW4gdGhpcyBjYXNlLCB3aGVuIHlvdSBkaXZpZGUgc2tld25lc3MgYnkgc3RhbmRhcmQgZXJyb3IsIHlvdSBnZXQgYSB6LXNjb3JlLCBhbmQgaWYgdGhlICoqYWJzb2x1dGUgdmFsdWUqKiAoaS5lLiBpZ25vcmluZyB3aGV0aGVyIGl0IGlzIHBvc2l0aXZlIG9yIG5lZ2F0aXZlKSBvZiB0aGUgei1zY29yZSBpcyBncmVhdGVyIHRoYW4gMS45NiB0aGVuIGl0IGlzIHNpZ25pZmljYW50bHkgc2tld2VkLiAKCjxkaXYgY2xhc3M9Im9wdGlvbmFsX2NvbnRlbnQiPgojIyMjIE9wdGlvbmFsCgojIyMjIyBXaHkgaXMgMS45NiAoc29tZXRpbWVzKSB0aGUgdGhyZXNob2xkIGZvciAic2lnbmlmaWNhbmNlIiB3aXRoIHotdmFsdWVzPwoKKipQYXJhbWV0cmljIHN0YXRpc3RpY3MqKiBvZnRlbiBjb21wYXJlIHZhbHVlcyB0byBhICoqbm9ybWFsKiogZGlzdHJpYnV0aW9uIG9mICoqZXhwZWN0ZWQgcmVzdWx0cyoqLCBiYXNlZCBvbiB0aGUgKiplc3RpbWF0ZWQgbWVhbiBhbmQgU0QqKi4gRm9yIGV4YW1wbGUsIGxldHMgaW1hZ2luZSB0aGF0IGEgbWFuIGNhbGxlZCBKb2huIHRoaW5rcyBoZSdzIGVpdGhlciB1bnVzdWFsbHkgdGFsbCwgb3IgdW51c2FsbHkgc2hvcnQsIGJ1dCBoZSBpc24ndCBzdXJlIHdoaWNoLiBIZSBjb3VsZCBjb21wYXJlIGhpcyBoZWlnaHQgdG8gYSBub3JtYWwgZGlzdHJpYnV0aW9uIG9mIGhlaWdodHMsIGFuZCBzZWUgd2hldGhlciBoZSdzIGluIHRoZSB0b3Agb3IgYm90dG9tIDIuNSUuIAoKYGBge3J9CiMgUGxvdCBhIG5vcm1hbCBkaXN0cmlidXRpb24gb2YgaGVpZ2h0cwp6X3Njb3JlX3ggPC0gc2VxKAogIC0zLCAgICAjIG1pbgogIDMsICAgICMgbWF4CiAgYnkgPSAuMSAgCikKel9zY29yZV95IDwtIGRub3JtKAogIHpfc2NvcmVfeCwKICBtZWFuID0gMCwKICBzZCAgID0gMQopCnBsb3QoCiAgel9zY29yZV94LAogIHpfc2NvcmVfeQopCiMgQWRkIGxpbmUgdG8gc2hvdyBtZWFuCmFibGluZSgKICB2PTAsICAjIHdoZXJlIHRoZSBsaW5lIGZvciB0aGUgbWVhbiB3aWxsIGJlIAogIGx3ZD0zCikKIyBBZGQgbGluZSB0byBzaG93IGxvd2VyIHRocmVzaG9sZAphYmxpbmUoCiAgdj0gLTEuOTYsCiAgbHdkPTMsCiAgbHR5PTMKKQojIEFkZCBsaW5lIHRvIHNob3cgaGlnaGVyIHRocmVzaG9sZAphYmxpbmUoCiAgdj0gMS45NiwKICBsd2Q9MywKICBsdHk9MwopCgpgYGAKCiMgZHJhdyByZWQgYmxvY2tzIHRvIGhpZ2hsaWdodCB0aGUgdmFsdWVzIGxlc3MgdGhhbiAtMS45NiBhbmQgZ3JlYXRlciB0aGFuIDEuOTYKCgpTbyBsZXRzIHNheSBoZSdzIDE3MGNtIHRhbGwsIHRoZSBhdmVyYWdlIHBlcnNvbiBpcyAxNTBjbSwgYW5kIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgaGVpZ2h0IGFjcm9zcyB0aGUgcG9wdWxhdGlvbiBpcyAxMGNtLiBUaGUgZGF0YSB3b3VsZCBsb29rIHNvbWV0aGluZyBsaWtlOgoKYGBge3J9CiMgUGxvdCBhIG5vcm1hbCBkaXN0cmlidXRpb24gb2YgaGVpZ2h0cwpwb3B1bGF0aW9uX2hlaWdodHNfeCA8LSBzZXEoCiAgMTQwLCAgICAjIG1pbgogIDIwMCwgICAgIyBtYXgKICBieSA9IDEgIAopCnBvcHVsYXRpb25faGVpZ2h0c195IDwtIGRub3JtKAogIHBvcHVsYXRpb25faGVpZ2h0c194LAogIG1lYW4gPSAxNTAsCiAgc2QgICA9IDEwCikKcGxvdCgKICBwb3B1bGF0aW9uX2hlaWdodHNfeCwKICBwb3B1bGF0aW9uX2hlaWdodHNfeQopCiMgQWRkIGxpbmUgdG8gc2hvdyBtZWFuCmFibGluZSgKICB2PTE1MCwgICMgd2hlcmUgdGhlIGxpbmUgZm9yIHRoZSBtZWFuIHdpbGwgYmUgCiAgbHdkPTUKKQojIEFkZCBsaW5lIHRvIHNob3cgSm9obidzIGhlaWdodAphYmxpbmUoCiAgdj0xNzAsIAogIGx3ZD0zLAogIGx0eT0zCikKYGBgCipUaGUgdGhpY2sgbGluZSByZWZlcnMgdG8gdGhlIG1lYW4gaGVpZ2h0LCB0aGUgZGFzaGVkIGxpbmUgcmVmZXJzIHRvIEpvaG4ncyBoZWlnaHQqCgpZb3UgY2FuIHNlZSBhYm92ZSB0aGF0IEpvaG4gaXMgcHJldHR5IHVudXN1YWxseSB0YWxsLiBUbyB3b3JrIG91dCB3aGV0aGVyIGhlJ3MgaW4gdGhlIHRvcCA1JSwgbGV0cyB3b3JrIG91dCBoaXMgei1zY29yZToKCmBgYHtyfQpqb2huX2hlaWdodCA8LSAxNzAKbWVhbl9oZWlnaHQgPC0gMTUwCmhlaWdodF9zZCAgIDwtIDEwCmpvaG5fel9zY29yZSA8LSAoam9obl9oZWlnaHQgLSBtZWFuX2hlaWdodCkvaGVpZ2h0X3NkCmpvaG5fel9zY29yZQpgYGAKClNvIGJhc2VkIG9uIHRoZSBhYm92ZSwgSm9obidzIFotc2NvcmUgaXMgZ3JlYXRlciB0aGFuIDEuOTYsIHdoaWNoIEkgY2xhaW1lZCBhYm92ZSB3YXMgbWVhbmluZ2Z1bC4gVG8gdW5kZXJzdGFuZCB3aHkgdGhpcyBpcyBtZWFuaW5nZnVsLCBsZXRzIHN0YXJ0IGJ5IHBsb3R0aW5nIEpvaG4ncyBzY29yZSBhcyBhIHotc2NvcmU6CgpgYGB7cn0KIyBQbG90IGEgbm9ybWFsIGRpc3RyaWJ1dGlvbiBvZiBoZWlnaHRzCnpfc2NvcmVfeCA8LSBzZXEoCiAgLTEsICAgICMgbWluCiAgNSwgICAgIyBtYXgKICBieSA9IC4xICAKKQp6X3Njb3JlX3kgPC0gZG5vcm0oCiAgel9zY29yZV94LAogIG1lYW4gPSAwLAogIHNkICAgPSAxCikKcGxvdCgKICB6X3Njb3JlX3gsCiAgel9zY29yZV95CikKIyBBZGQgbGluZSB0byBzaG93IG1lYW4KYWJsaW5lKAogIHY9MCwgICMgd2hlcmUgdGhlIGxpbmUgZm9yIHRoZSBtZWFuIHdpbGwgYmUgCiAgbHdkPTMKKQojIEFkZCBsaW5lIHRvIHNob3cgSm9obidzIGhlaWdodAphYmxpbmUoCiAgdj1qb2huX3pfc2NvcmUsCiAgbHdkPTMsCiAgbHR5PTMKKQoKYGBgCgpBcyB5b3UgbWF5IGhhdmUgbm90aWNlZCwgdGhlc2UgZmlndXJlcyBhcmUgaWRlbnRpY2FsIGluIHRoZWlyIGRpc3RyaWJ1dGlvbnMgYW5kIHRoZSByZWxhdGl2ZSBsb2NhdGlvbnMgb2YgdGhlIHZlcnRpY2FsIGxpbmVzLiBTbyB3aGVuIHlvdSBoYXZlIGNhbGN1bGF0ZWQgYSAqKnotc2NvcmUqKiB5b3UgaGF2ZSBjYWxjdWxhdGVkIGEgc3RhbmRhcmRpc2VkIHZhbHVlIG9mIGhvdyBtYW55IHN0YW5kYXJkIGRldmlhdGlvbnMgeW91IGFyZSBhYm92ZSAob3IgYmVsb3cpIHRoZSBtZWFuLiBQZW9wbGUgaGF2ZSBwcmV2aW91c2x5IGNhbGN1bGF0ZWQgdGhhdCBpZiB5b3UgZ2V0IGEgei12YWx1ZSBvZiAxLjk2IGFuZCBhYm92ZSB0aGVuIHlvdSBhcmUgaW4gdGhlIHRvcCA1IHBlcmNlbnRpbGUuIEhvd2V2ZXIsIGxldHMgZG91YmxlIGNoZWNrIHRoYXQgdXNpbmcgdGhlIHBub3JtIGZ1bmN0aW9uOgoKYGBge3J9CiMgY29tcGFyZSB0aGUgdmFsdWVzIGJlbG93IHdpdGggdGhlIHBsb3Qgb2YgdGhlIHpfc2NvcmUgcGxvdApwbm9ybSgKICBxID0gMS45NiwgIyBwdXQgaW4gdGhlIHotdmFsdWUgaGVyZQogIG1lYW4gPSAwLAogIHNkID0gMSwKICBsb3dlci50YWlsID0gRgopCgpgYGAKClRoZSBhYm92ZSBwLXZhbHVlIG9mIC4wMjQ5OTggc2hvd3MgdGhhdCBhbnkgWi1zY29yZSBhYm92ZSAgCgoKCk5vdGUgdGhhdCBob3cgeW91IGFzayBhIHF1ZXN0aW9uICoqZ3JlYXRseSoqIGltcGFjdHMgeW91ciBhcHByb2FjaCwgYW5kIHNvIG15IGNsYWltIHRoYXQgSSdtIGluIHRoZSB0b3AgNSUgb2YgdGhlIHBvcHVsYXRpb24gaXMgdmVyeSBkaWZmZXJlbnQgdG8gYSBtb3JlIGdlbmVyYWwgY2xhaW0gSSdtIHRhbGxlciB0aGFuIHRoZSBhdmVyYWdlIHBlcnNvbi4gU28gd2hldGhlciBJJ20gaW4gdGhlIHRvcCA1JSBvZiB0aGUgcG9wdWxhdGlvbiBpcyBhIHZlcnkgCgp5b3UgY2FuIGNhbGN1bGF0ZSB0aGUgKnN0YW5kYXJkIGVycm9yIG9mIHNrZXduZXNzKiBhcyBiZWxvdzoKCmBgYHtyfQojIAojIHNxcnQoKDYqcG9zaXRpdmVfc2tld19uKihwb3NpdGl2ZV9za2V3X24tMSkpLygocG9zaXRpdmVfc2tld19uLTIpKihwb3NpdGl2ZV9za2V3X24rMSkqKHBvc2l0aXZlX3NrZXdfbiszKSkpCiMgCiMgCiMgCiMgCiMgcG9zaXRpdmVfc2tld19uID0gbGVuZ3RoKHBvc2l0aXZlX3NrZXcpCiMgCiMgCiMgZ2luaV9uID0gbGVuZ3RoKGdpbmlfY2xlYW4pCiMgCiMgZ2luaV9za2V3bmVzcyA9IHN1bSgoKGdpbmlfY2xlYW4gLSBtZWFuKGdpbmlfY2xlYW4pKS9zZChnaW5pX2NsZWFuKSleMykgKiAoCiMgICBnaW5pX24gLyAoKGdpbmlfbi0xKSAqIChnaW5pX24gLSAyKSkKIyApCiMgCiMgcG9zX3NrZXdfc2VzID0gc3FydCgoNipwb3NpdGl2ZV9za2V3X24qKHBvc2l0aXZlX3NrZXdfbi0xKSkvKChwb3NpdGl2ZV9za2V3X24tMikqKHBvc2l0aXZlX3NrZXdfbisxKSoocG9zaXRpdmVfc2tld19uKzMpKSkKIyAKIyBzcHNzU2tld0t1cnRvc2lzPWZ1bmN0aW9uKHgpIHsKIyAgIHc9bGVuZ3RoKHgpCiMgICBtMT1tZWFuKHgpCiMgICBtMj1zdW0oKHgtbTEpXjIpCiMgICBtMz1zdW0oKHgtbTEpXjMpCiMgICBtND1zdW0oKHgtbTEpXjQpCiMgICBzMT1zZCh4KQojICAgc2tldz13Km0zLyh3LTEpLyh3LTIpL3MxXjMKIyAgIHNkc2tldz1zcXJ0KCA2KncqKHctMSkgLyAoKHctMikqKHcrMSkqKHcrMykpICkKIyAgIGt1cnRvc2lzPSh3Kih3KzEpKm00IC0gMyptMl4yKih3LTEpKSAvICgody0xKSoody0yKSoody0zKSpzMV40KQojICAgc2RrdXJ0b3Npcz1zcXJ0KCA0Kih3XjItMSkgKiBzZHNrZXdeMiAvICgody0zKSoodys1KSkgKQojICAgbWF0PW1hdHJpeChjKHNrZXcsa3VydG9zaXMsIHNkc2tldyxzZGt1cnRvc2lzKSwgMiwKIyAgICAgICAgIGRpbW5hbWVzPWxpc3QoYygic2tldyIsImt1cnRvc2lzIiksIGMoImVzdGltYXRlIiwic2UiKSkpCiMgICByZXR1cm4obWF0KQojIH0KIyAKIyBza2V3bmVzcyhpbmVxX2RhdGEkR2luaSkKIyBrdXJ0b3NpcyhpbmVxX2RhdGEkR2luaSkKIyBza2V3bmVzcyhnaW5pX2NsZWFuKQojIGRlc2NyaWJlKGdpbmlfY2xlYW4pCiMgZ2luaV9uID0gbGVuZ3RoKGdpbmlfY2xlYW4pCiMgc3VtKChnaW5pX2NsZWFuIC0gbWVhbihnaW5pX2NsZWFuKSleMykvCiMgICAoZ2luaV9uLTEpICogKGdpbmlfbi0yKSAqIHNkKGdpbmlfY2xlYW4pXjMpCiMgI3N1bSgoKGdpbmlfY2xlYW4gLSBtZWFuKGdpbmlfY2xlYW4pKS9zZChnaW5pX2NsZWFuKSleMykgKiAoMS9sZW5ndGgoZ2luaV9jbGVhbikKYGBgCgo8L2Rpdj4KIyMjIGt1cnRvc2lzCgoKCgoKCiMgVHJhbnNmb3JtaW5nIGRhdGE=</div>
 
 
 

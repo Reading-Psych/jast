@@ -1,0 +1,24 @@
+---
+title: "Statistics Basics"
+format: html
+editor: visual
+---
+
+## What is a variable?
+In **statistics**, a **variable** is any (measurable) attribute that describes any organism or object. It's called a variable because they **vary** from organism to organism or object to object. Height is a good example of a variable within humans, as height changes from person to person.
+ 
+ 
+Within **coding**, a **variable** tends to refer to a particular **object** in your code, such as a specific value, list, dataset, etc. In R the terminology for a variable tends to be **object**.
+  
+**What is a hypothesis?**
+A(n **experimental) hypothesis** is a possible outcome for the study you will run. Sometimes researchers think in terms of **null hypotheses**, which is what you would expect if your (experimental) hypothesis is incorrect. 
+
+
+## What is a p-value?
+
+**Oversimplification:** A p-value tells you how likely your hypothesis is correct
+
+**Better definition:** How likely you would get your current results by chance (i.e. randomly). We assume that a result is meaningful if there is only a very small chance that they could happen by accident. This can also be thought of the likelihood of the null hypotheses being correct based on the current data.
+
+## What is the alpha value?
+It is the p-value threshold that identifies if a result is "significant" or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is "significant" (i.e. so unlikely that this would have happened by chance that we conclude this didn't happen randomly).

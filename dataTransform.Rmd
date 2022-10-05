@@ -1,6 +1,0 @@
----
-title: "Data transformation"
-output: html_notebook
----
-
-Available on October 6th (2022)

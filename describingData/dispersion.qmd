@@ -1,0 +1,29 @@
+---
+title: "Dispersion"
+format: html
+editor: visual
+---
+To understand distribution below, it's helpful to clarify some more basic concepts around how data is **dispersed** around the mean. 
+
+**Range** simply captures the min and the maximum values. Lets look at the min and max for the life expectancy data from 2007:
+
+```{r}
+# install (if required) and load the gapminder data
+if(!require(gapminder)){install.packages("gapminder")}
+library(gapminder)
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+min(gapminder_2007$lifeExp)
+max(gapminder_2007$lifeExp)
+```
+So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
+
+
+**Variance** is how much the data varies around a mean. The formula for variance of the sample is:
+
+

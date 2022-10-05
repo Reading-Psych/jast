@@ -18,7 +18,11 @@ A(n **experimental) hypothesis** is a possible outcome for the study you will ru
 
 **Oversimplification:** A p-value tells you how likely your hypothesis is correct
 
-**Better definition:** How likely you would get your current results by chance (i.e. randomly). We assume that a result is meaningful if there is only a very small chance that they could happen by accident. This can also be thought of the likelihood of the null hypotheses being correct based on the current data.
+**Better definition:** How likely you would get your current results by chance (i.e. randomly). We assume that a result is meaningful if there is only a very small chance that they could happen by accident.
+
+**Technical definition** The p-value is the probability of observing a particular (or more extreme) effect under the assumption that the null hypothesis is true.
+To give a more concrete example: If the observed difference between two means is small, then there is a high probabilty that this difference could have occured if the null (there is no difference) is true, and so the resulting p-value would also be large. In contrast, if the difference is huge, then this is much less likely to have occured if the null is true, and the subsequent p-value will be smaller to reflect the lower probability.  
+
 
 ## What is the alpha value?
 It is the p-value threshold that identifies if a result is "significant" or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is "significant" (i.e. so unlikely that this would have happened by chance that we conclude this didn't happen randomly).

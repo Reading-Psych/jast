@@ -26,3 +26,5 @@ To give a more concrete example: If the observed difference between two means is
 
 ## What is the alpha value?
 It is the p-value threshold that identifies if a result is "significant" or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is "significant" (i.e. so unlikely that this would have happened by chance that we conclude this didn't happen randomly).
+
+**Technical definition:** The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the value that alpha is sets the chance that a null hypothesis is rejected incorrectly (i.e. we say there is an effect when there isn't one). Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the this false-positive rate, we could change the value.

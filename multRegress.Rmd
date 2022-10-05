@@ -1,6 +1,0 @@
----
-title: "Multiple Regressions"
-output: html_notebook
----
-
-Available on Oct 20th (2022)

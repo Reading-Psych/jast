@@ -1,0 +1,23 @@
+---
+title: "About"
+---
+
+## Contributors (in alphabetical order)
+
+
+| Surname     | First Name  | Contribution  |
+| ----------- | ----------- | --------------|
+| Brady       | Dan         | Reviewer      |
+| Goh         | Vera        | Suggester     |
+| Haffey      | Anthony     | Author, Editor|
+| Matthews    | Imogen      | Reviewer      |
+| Pritchard   | Katherine   | Suggester     |
+| Sahni       | Anghad      | Reviewer      |
+
+
+- Authors have written (sub)sections
+- Editors have managed the formatting of this website/textbook
+- Reviewers have contributed text for a subsection
+- Suggesters have requested elaborations and clarifications
+
+

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Dispersion</title>
+<title>Just Another Statistics Textbook - Dispersion (incomplete)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,6 +122,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -141,13 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page">Home</a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../about.html">About</a>
-  </li>  
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">Report an error</a>
   </li>  
@@ -164,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Dispersion</h1>
+      <h1 class="quarto-secondary-nav-title">Dispersion (incomplete)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -192,12 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,22 +255,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link active">Dispersion</a>
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link active">Dispersion (incomplete)</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  describingData/distribution.qmd
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Transforming Data</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Distributions</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/skewnessKurtosis.html" class="sidebar-item-text sidebar-link">Skewness and Kurtosis (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution (incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Transforming Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   transformingData/transformingData.qmd
   </li>
@@ -285,12 +295,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Correlation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   correlations/correlations.qmd
   </li>
@@ -298,28 +308,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Simple Regressions</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  simpleRegressions/simpleRegressions.qmd
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Multiple Regressions</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Simple Regressions</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  multipleRegressions/multipleRegressions.qmd
+  <div class="sidebar-item-container"> 
+  <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple Regressions</a>
+  </div>
+</li>
+      </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Multiple Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../multipleRegressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -327,14 +341,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#range" id="toc-range" class="nav-link active" data-scroll-target="#range">Range</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a>
+  <ul class="collapse">
+  <li><a href="#population-variance" id="toc-population-variance" class="nav-link" data-scroll-target="#population-variance">Population Variance</a></li>
+  <li><a href="#sample-variance" id="toc-sample-variance" class="nav-link" data-scroll-target="#sample-variance">Sample variance</a></li>
+  </ul></li>
+  <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation">Standard deviation</a>
+  <ul class="collapse">
+  <li><a href="#population-standard-deviation" id="toc-population-standard-deviation" class="nav-link" data-scroll-target="#population-standard-deviation">Population Standard deviation</a></li>
+  <li><a href="#sample-standard-deviation" id="toc-sample-standard-deviation" class="nav-link" data-scroll-target="#sample-standard-deviation">Sample Standard deviation</a></li>
+  </ul></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">degrees of freedom</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Dispersion</h1>
+<h1 class="title d-none d-lg-block">Dispersion (incomplete)</h1>
 </div>
 
 
@@ -348,35 +379,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>To understand distribution below, it’s helpful to clarify some more basic concepts around how data is <strong>dispersed</strong> around the mean.</p>
+<p>To understand distribution (later), it’s helpful to clarify some more basic concepts around how data is <strong>dispersed</strong> or spread.</p>
+<section id="range" class="level2">
+<h2 class="anchored" data-anchor-id="range">Range</h2>
 <p><strong>Range</strong> simply captures the min and the maximum values. Lets look at the min and max for the life expectancy data from 2007:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install (if required) and load the gapminder data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(gapminder)){<span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: gapminder</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span>     </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the gapminder data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span>     </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 39.613</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 82.603</code></pre>
 </div>
 </div>
 <p>So the <strong>range</strong> for life expectancy in 2007 was between 39.613 and 82.603.</p>
-<p><strong>Variance</strong> is how much the data varies around a mean. The formula for variance of the sample is:</p>
+</section>
+<section id="variance" class="level2">
+<h2 class="anchored" data-anchor-id="variance">Variance</h2>
+<section id="population-variance" class="level3">
+<h3 class="anchored" data-anchor-id="population-variance">Population Variance</h3>
+<p><strong>Variance</strong> is how much the data varies around a mean. If you have all the data in a population, then this is the <strong>average(mean) difference each value has from the overall mean</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">life_expectancy =</span> gapminder_2007<span class="sc">$</span>lifeExp,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff_from_mean  =</span> gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(life_expectancy_variance_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["life_expectancy"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["diff_from_mean"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"43.828","2":"-23.1794225"},{"1":"76.423","2":"9.4155775"},{"1":"72.301","2":"5.2935775"},{"1":"42.731","2":"-24.2764225"},{"1":"75.320","2":"8.3125775"},{"1":"81.235","2":"14.2275775"},{"1":"79.829","2":"12.8215775"},{"1":"75.635","2":"8.6275775"},{"1":"64.062","2":"-2.9454225"},{"1":"79.441","2":"12.4335775"},{"1":"56.728","2":"-10.2794225"},{"1":"65.554","2":"-1.4534225"},{"1":"74.852","2":"7.8445775"},{"1":"50.728","2":"-16.2794225"},{"1":"72.390","2":"5.3825775"},{"1":"73.005","2":"5.9975775"},{"1":"52.295","2":"-14.7124225"},{"1":"49.580","2":"-17.4274225"},{"1":"59.723","2":"-7.2844225"},{"1":"50.430","2":"-16.5774225"},{"1":"80.653","2":"13.6455775"},{"1":"44.741","2":"-22.2664225"},{"1":"50.651","2":"-16.3564225"},{"1":"78.553","2":"11.5455775"},{"1":"72.961","2":"5.9535775"},{"1":"72.889","2":"5.8815775"},{"1":"65.152","2":"-1.8554225"},{"1":"46.462","2":"-20.5454225"},{"1":"55.322","2":"-11.6854225"},{"1":"78.782","2":"11.7745775"},{"1":"48.328","2":"-18.6794225"},{"1":"75.748","2":"8.7405775"},{"1":"78.273","2":"11.2655775"},{"1":"76.486","2":"9.4785775"},{"1":"78.332","2":"11.3245775"},{"1":"54.791","2":"-12.2164225"},{"1":"72.235","2":"5.2275775"},{"1":"74.994","2":"7.9865775"},{"1":"71.338","2":"4.3305775"},{"1":"71.878","2":"4.8705775"},{"1":"51.579","2":"-15.4284225"},{"1":"58.040","2":"-8.9674225"},{"1":"52.947","2":"-14.0604225"},{"1":"79.313","2":"12.3055775"},{"1":"80.657","2":"13.6495775"},{"1":"56.735","2":"-10.2724225"},{"1":"59.448","2":"-7.5594225"},{"1":"79.406","2":"12.3985775"},{"1":"60.022","2":"-6.9854225"},{"1":"79.483","2":"12.4755775"},{"1":"70.259","2":"3.2515775"},{"1":"56.007","2":"-11.0004225"},{"1":"46.388","2":"-20.6194225"},{"1":"60.916","2":"-6.0914225"},{"1":"70.198","2":"3.1905775"},{"1":"82.208","2":"15.2005775"},{"1":"73.338","2":"6.3305775"},{"1":"81.757","2":"14.7495775"},{"1":"64.698","2":"-2.3094225"},{"1":"70.650","2":"3.6425775"},{"1":"70.964","2":"3.9565775"},{"1":"59.545","2":"-7.4624225"},{"1":"78.885","2":"11.8775775"},{"1":"80.745","2":"13.7375775"},{"1":"80.546","2":"13.5385775"},{"1":"72.567","2":"5.5595775"},{"1":"82.603","2":"15.5955775"},{"1":"72.535","2":"5.5275775"},{"1":"54.110","2":"-12.8974225"},{"1":"67.297","2":"0.2895775"},{"1":"78.623","2":"11.6155775"},{"1":"77.588","2":"10.5805775"},{"1":"71.993","2":"4.9855775"},{"1":"42.592","2":"-24.4154225"},{"1":"45.678","2":"-21.3294225"},{"1":"73.952","2":"6.9445775"},{"1":"59.443","2":"-7.5644225"},{"1":"48.303","2":"-18.7044225"},{"1":"74.241","2":"7.2335775"},{"1":"54.467","2":"-12.5404225"},{"1":"64.164","2":"-2.8434225"},{"1":"72.801","2":"5.7935775"},{"1":"76.195","2":"9.1875775"},{"1":"66.803","2":"-0.2044225"},{"1":"74.543","2":"7.5355775"},{"1":"71.164","2":"4.1565775"},{"1":"42.082","2":"-24.9254225"},{"1":"62.069","2":"-4.9384225"},{"1":"52.906","2":"-14.1014225"},{"1":"63.785","2":"-3.2224225"},{"1":"79.762","2":"12.7545775"},{"1":"80.204","2":"13.1965775"},{"1":"72.899","2":"5.8915775"},{"1":"56.867","2":"-10.1404225"},{"1":"46.859","2":"-20.1484225"},{"1":"80.196","2":"13.1885775"},{"1":"75.640","2":"8.6325775"},{"1":"65.483","2":"-1.5244225"},{"1":"75.537","2":"8.5295775"},{"1":"71.752","2":"4.7445775"},{"1":"71.421","2":"4.4135775"},{"1":"71.688","2":"4.6805775"},{"1":"75.563","2":"8.5555775"},{"1":"78.098","2":"11.0905775"},{"1":"78.746","2":"11.7385775"},{"1":"76.442","2":"9.4345775"},{"1":"72.476","2":"5.4685775"},{"1":"46.242","2":"-20.7654225"},{"1":"65.528","2":"-1.4794225"},{"1":"72.777","2":"5.7695775"},{"1":"63.062","2":"-3.9454225"},{"1":"74.002","2":"6.9945775"},{"1":"42.568","2":"-24.4394225"},{"1":"79.972","2":"12.9645775"},{"1":"74.663","2":"7.6555775"},{"1":"77.926","2":"10.9185775"},{"1":"48.159","2":"-18.8484225"},{"1":"49.339","2":"-17.6684225"},{"1":"80.941","2":"13.9335775"},{"1":"72.396","2":"5.3885775"},{"1":"58.556","2":"-8.4514225"},{"1":"39.613","2":"-27.3944225"},{"1":"80.884","2":"13.8765775"},{"1":"81.701","2":"14.6935775"},{"1":"74.143","2":"7.1355775"},{"1":"78.400","2":"11.3925775"},{"1":"52.517","2":"-14.4904225"},{"1":"70.616","2":"3.6085775"},{"1":"58.420","2":"-8.5874225"},{"1":"69.819","2":"2.8115775"},{"1":"73.923","2":"6.9155775"},{"1":"71.777","2":"4.7695775"},{"1":"51.542","2":"-15.4654225"},{"1":"79.425","2":"12.4175775"},{"1":"78.242","2":"11.2345775"},{"1":"76.384","2":"9.3765775"},{"1":"73.747","2":"6.7395775"},{"1":"74.249","2":"7.2415775"},{"1":"73.422","2":"6.4145775"},{"1":"62.698","2":"-4.3094225"},{"1":"42.384","2":"-24.6234225"},{"1":"43.487","2":"-23.5204225"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.153937e-15</code></pre>
+</div>
+</div>
+</section>
+<section id="sample-variance" class="level3">
+<h3 class="anchored" data-anchor-id="sample-variance">Sample variance</h3>
+</section>
+</section>
+<section id="standard-deviation" class="level2">
+<h2 class="anchored" data-anchor-id="standard-deviation">Standard deviation</h2>
+<section id="population-standard-deviation" class="level3">
+<h3 class="anchored" data-anchor-id="population-standard-deviation">Population Standard deviation</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.45445</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean))<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.9888</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(life_expectancy_variance_table<span class="sc">$</span>life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12.07302</code></pre>
+</div>
+</div>
+</section>
+<section id="sample-standard-deviation" class="level3">
+<h3 class="anchored" data-anchor-id="sample-standard-deviation">Sample Standard deviation</h3>
+</section>
+</section>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">degrees of freedom</h2>
+<p>The formula for the population’s variance (σ^2) (i.e.&nbsp;when you have everyone from the group you are measuring):</p>
+<p><span class="math display">\[
+\sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
+\]</span></p>
+<p>σ2 = Σ(𝑥i - x̄)2 n Population standard deviation formula</p>
+<p>σ = √(population variance)</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

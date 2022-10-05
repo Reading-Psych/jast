@@ -1,15 +1,15 @@
 ---
-title: "Dispersion"
+title: "Dispersion (incomplete)"
 format: html
 editor: visual
 ---
-To understand distribution below, it's helpful to clarify some more basic concepts around how data is **dispersed** around the mean. 
+To understand distribution (later), it's helpful to clarify some more basic concepts around how data is **dispersed** or spread. 
 
+## Range
 **Range** simply captures the min and the maximum values. Lets look at the min and max for the life expectancy data from 2007:
 
 ```{r}
-# install (if required) and load the gapminder data
-if(!require(gapminder)){install.packages("gapminder")}
+# load the gapminder data
 library(gapminder)
 
 # create a new data frame that only focuses on data from 2007
@@ -23,7 +23,49 @@ max(gapminder_2007$lifeExp)
 ```
 So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
+## Variance
+### Population Variance
+**Variance** is how much the data varies around a mean. If you have all the data in a population, then this is the **average(mean) difference each value has from the overall mean**:
 
-**Variance** is how much the data varies around a mean. The formula for variance of the sample is:
+```{r}
+
+life_expectancy_variance_table <- data.frame(
+  life_expectancy = gapminder_2007$lifeExp,
+  diff_from_mean  = gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp)
+)
+
+rmarkdown::paged_table(life_expectancy_variance_table)
+mean(life_expectancy_variance_table$diff_from_mean)
+```
+
+### Sample variance
+
+## Standard deviation
+### Population Standard deviation
 
 
+```{r}
+mean(abs(life_expectancy_variance_table$diff_from_mean))
+
+sqrt(sum(life_expectancy_variance_table$diff_from_mean^2)/(length(life_expectancy_variance_table$diff_from_mean))-1)
+
+sd(life_expectancy_variance_table$life_expectancy)
+
+```
+
+### Sample Standard deviation
+
+
+## degrees of freedom
+
+The formula for the population's variance (σ^2) (i.e. when you have everyone from the group you are measuring):
+
+$$
+\sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
+$$
+
+σ2 =	Σ(𝑥i - x̄)2
+n
+Population standard deviation formula
+
+σ = √(population variance)

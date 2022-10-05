@@ -1,0 +1,188 @@
+---
+title: "Normal Distribution (incomplete)"
+format: html
+editor: visual
+---
+
+**Parametric statistics** often compare values to a **normal** distribution of **expected results**, based on the **estimated mean and SD**. Lets start by showing a (made up) **normal** distribution of heights in centimeters:
+
+So lets say the average person's height is 150cm, and the standard deviation of height across the population is 10cm. The data would look something like:
+
+```{r}
+# Plot a normal distribution of heights
+population_heights_x <- seq(
+  120,    # min
+  180,    # max
+  by = 1  
+)
+population_heights_y <- dnorm(
+  population_heights_x,
+  mean = 150,
+  sd   = 10
+)
+plot(
+  population_heights_x,
+  population_heights_y
+)
+# Add line to show mean
+abline(
+  v=150,  # where the line for the mean will be 
+  lwd=5
+)
+```
+
+
+
+// explain that a z-score distribution is just a standardised version of the above distribution
+
+## z-distribution
+
+```{r}
+# Plot a normal distribution of heights
+z_score_x <- seq(
+  -3,    # min
+  3,    # max
+  by = .1  
+)
+z_score_y <- dnorm(
+  z_score_x,
+  mean = 0,
+  sd   = 1
+)
+plot(
+  z_score_x,
+  z_score_y
+)
+```
+
+For example, lets imagine that a man called John thinks he's either unusually tall, or unusally short, but he isn't sure which. He could compare his height to a normal distribution of heights, and see whether he's in the top or bottom 2.5%.
+
+```{r}
+# Plot a normal distribution of heights
+z_score_x <- seq(
+  -3,    # min
+  3,    # max
+  by = .1  
+)
+z_score_y <- dnorm(
+  z_score_x,
+  mean = 0,
+  sd   = 1
+)
+plot(
+  z_score_x,
+  z_score_y
+)
+# Add line to show mean
+abline(
+  v=0,  # where the line for the mean will be 
+  lwd=3
+)
+# Add line to show lower threshold
+abline(
+  v= -1.96,
+  lwd=3,
+  lty=3
+)
+# Add line to show higher threshold
+abline(
+  v= 1.96,
+  lwd=3,
+  lty=3
+)
+
+```
+
+# draw red blocks to highlight the values less than -1.96 and greater than 1.96
+
+So lets say he's 170cm tall, the average person is 150cm, and the standard deviation of height across the population is 10cm. The data would look something like:
+
+```{r}
+# Plot a normal distribution of heights
+population_heights_x <- seq(
+  140,    # min
+  200,    # max
+  by = 1  
+)
+population_heights_y <- dnorm(
+  population_heights_x,
+  mean = 150,
+  sd   = 10
+)
+plot(
+  population_heights_x,
+  population_heights_y
+)
+# Add line to show mean
+abline(
+  v=150,  # where the line for the mean will be 
+  lwd=5
+)
+# Add line to show John's height
+abline(
+  v=170, 
+  lwd=3,
+  lty=3
+)
+```
+
+*The thick line refers to the mean height, the dashed line refers to John's height*
+
+You can see above that John is pretty unusually tall. To work out whether he's in the top 5%, lets work out his z-score:
+
+```{r}
+john_height <- 170
+mean_height <- 150
+height_sd   <- 10
+john_z_score <- (john_height - mean_height)/height_sd
+john_z_score
+```
+
+So based on the above, John's Z-score is greater than 1.96, which I claimed above was meaningful. To understand why this is meaningful, lets start by plotting John's score as a z-score:
+
+```{r}
+# Plot a normal distribution of heights
+z_score_x <- seq(
+  -1,    # min
+  5,    # max
+  by = .1  
+)
+z_score_y <- dnorm(
+  z_score_x,
+  mean = 0,
+  sd   = 1
+)
+plot(
+  z_score_x,
+  z_score_y
+)
+# Add line to show mean
+abline(
+  v=0,  # where the line for the mean will be 
+  lwd=3
+)
+# Add line to show John's height
+abline(
+  v=john_z_score,
+  lwd=3,
+  lty=3
+)
+
+```
+
+As you may have noticed, these figures are identical in their distributions and the relative locations of the vertical lines. So when you have calculated a **z-score** you have calculated a standardised value of how many standard deviations you are above (or below) the mean. People have previously calculated that if you get a z-value of 1.96 and above then you are in the top 5 percentile. However, lets double check that using the pnorm function:
+
+```{r}
+# compare the values below with the plot of the z_score plot
+pnorm(
+  q = 1.96, # put in the z-value here
+  mean = 0,
+  sd = 1,
+  lower.tail = F
+)
+
+```
+
+The above p-value of .024998 shows that any Z-score above
+
+Note that how you ask a question **greatly** impacts your approach, and so my claim that I'm in the top 5% of the population is very different to a more general claim I'm taller than the average person. So whether I'm in the top 5% of the population is a very

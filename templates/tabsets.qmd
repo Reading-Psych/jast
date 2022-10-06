@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## tabsets practice
+You can use Python and R within Quarto files
 
 ::: {.panel-tabset}
 ## R

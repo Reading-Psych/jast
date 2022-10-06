@@ -25,18 +25,51 @@ So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
 ## Variance
 ### Population Variance
-**Variance** is how much the data varies around a mean. If you have all the data in a population, then this is the **average(mean) difference each value has from the overall mean**:
+**Variance** is how much the data varies around a mean. To capture this, we compare each individual's score with the mean, so lets do this with our gapminder data's life expectancy:
 
 ```{r}
-
 life_expectancy_variance_table <- data.frame(
   life_expectancy = gapminder_2007$lifeExp,
   diff_from_mean  = gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp)
 )
 
 rmarkdown::paged_table(life_expectancy_variance_table)
-mean(life_expectancy_variance_table$diff_from_mean)
 ```
+So we know for **each** country how different their life expectacy is to the mean life expectancy. But ideally we would like a single value to summarise variance. Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:
+
+```{r}
+mean(life_expectancy_variance_table$diff_from_mean) 
+```
+
+We get a number that is pretty close to zero. 
+
+
+**e values** can be used to indicate whether the number is multiplied by
+
+
+
+there are *before* or *after* a decimal. If there is a "-" symbol, then that states that the 0s are *after* a decimal, like the number above. To illustrate this, lets compare 5.153937e-15 to .000000000000005153937:
+
+```{r}
+5.153937e-15 == .000000000000005153937
+```
+
+e-15 indicates that there are **15** 
+
+
+
+
+)
+e-15 represents that this value if 15 positions after the decimal point. 
+
+The formula for the population's variance (σ^2) (i.e. when you have everyone from the group you are measuring):
+
+$$
+\sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
+$$
+
+
+
 
 ### Sample variance
 

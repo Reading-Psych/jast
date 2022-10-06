@@ -43,11 +43,9 @@ website:
       - section: "Correlation"
         contents:
           - correlations/correlations.qmd
-      - section: "Simple Regressions"
+      - section: "Regressions"
         contents:
           - simpleRegressions/simpleRegressions.qmd
-      - section: "Multiple Regressions"
-        contents:
           - multipleRegressions/multipleRegressions.qmd
 
 format:

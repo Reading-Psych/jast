@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-**Parametric statistics** often compare values to a **normal** distribution of **expected results**, based on the **estimated mean and SD**. Lets start by showing a (made up) **normal** distribution of heights in centimeters:
+**Parametric statistics** often compare values to a **normal** distribution of **expected data**, based on the **estimated mean and SD**. Lets start by showing a (made up) **normal** distribution of heights in centimeters:
 
 So lets say the average person's height is 150cm, and the standard deviation of height across the population is 10cm. The data would look something like:
 
@@ -22,20 +22,24 @@ population_heights_y <- dnorm(
 )
 plot(
   population_heights_x,
-  population_heights_y
+  population_heights_y,
+  xlab = "height",
+  ylab = "frequency"
 )
-# Add line to show mean
+# Add line to show mean and median
 abline(
   v=150,  # where the line for the mean will be 
   lwd=5
 )
 ```
 
+You can see that the above fits a **bell-curve**, and the line in the middle represents both the **mean** and the **median** as the data is symmetrical. In reality, almost no data is a perfect bell-curve, but there are ways to test if the data isn't sufficiently normal to use parametric tests with.
 
+Next, we will look at how normal distributions allow you to transform your data to z-scores to compare to a z-distribution.
 
-// explain that a z-score distribution is just a standardised version of the above distribution
+## Z-scores and the z-distribution
 
-## z-distribution
+A **z-score** is
 
 ```{r}
 # Plot a normal distribution of heights

@@ -8,12 +8,9 @@ editor: visual
 
 Note that you won't be able to preview figures created using this
 
-```{r}
-library(palmerpenguins)
-library(robservable)
-```
 
 ```{ojs}
+//| echo: false
 data = FileAttachment("palmerpenguins.csv").csv({ typed: true })
 
 viewof bill_length_min = Inputs.range(
@@ -26,19 +23,28 @@ viewof islands = Inputs.checkbox(
     label: "Islands:"
   }
 )
-console.log("data");
-console.log(data);
 filtered = data.filter(function(penguin) {
   return bill_length_min < penguin.bill_length_mm &&
          islands.includes(penguin.island);
 })
 
+athletes = FileAttachment("athletes.csv").csv({typed: true})
+
+
+dotplot.legend("color")
+dotplot = Plot.dot(athletes, {x: "weight", y: "height", stroke: "sex"}).plot()
+
+
+//dotplot.legend("color")
+//dotplot = Plot.dot(filtered, {x: "body_mass_g", y: "bill_depth_mm", stroke: "species"}).plot()
+//dotplot = Plot.dot(filtered, {x: "body_mass_g", y: "count", stroke: "sex"}).plot()
+
 Plot.rectY(filtered, 
   Plot.binX(
     {y: "count"}, 
     {x: "body_mass_g", fill: "species", thresholds: 20}
-  ))
-  .plot({
+  )
+).plot({
     facet: {
       data: filtered,
       x: "sex",

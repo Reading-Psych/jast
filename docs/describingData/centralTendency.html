@@ -212,6 +212,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">e Numbers</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -303,6 +308,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   correlations/correlations.qmd
   </li>
+          <li class="sidebar-item">
+  correlations/cooksd.qmd
+  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -375,7 +383,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span>     </span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(<span class="fu">head</span>(gapminder_2007))                 <span class="co"># a reminder of the data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># a reminder of the data frame</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(<span class="fu">head</span>(gapminder_2007))                 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -384,10 +393,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </script>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sum_life_expectancy  <span class="ot">=</span> <span class="fu">sum</span>(gapminder_2007<span class="sc">$</span>lifeExp)           <span class="co"># total of all years</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>n_life_expectancy    <span class="ot">=</span> <span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp)        <span class="co"># count the people</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy <span class="ot">=</span> sum_life_expectancy<span class="sc">/</span>n_life_expectancy </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total of all years</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sum_life_expectancy  <span class="ot">=</span> <span class="fu">sum</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># count the people</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>n_life_expectancy    <span class="ot">=</span> <span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp)        </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy <span class="ot">=</span> sum_life_expectancy<span class="sc">/</span>n_life_expectancy </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 67.00742</code></pre>
 </div>
@@ -421,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 71.9355</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution for calculting mode found at https://stackoverflow.com/a/2547918 as there doesn't seem to be a native function:</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution for calculating mode found at https://stackoverflow.com/a/2547918 as there doesn't seem to be a native function:</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modeest)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mlv</span>(gapminder_2007<span class="sc">$</span>lifeExp, <span class="at">method =</span> <span class="st">"mfv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

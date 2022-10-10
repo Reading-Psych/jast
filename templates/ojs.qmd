@@ -1,0 +1,59 @@
+---
+title: "ojs"
+format: html
+editor: visual
+---
+
+## r observable-js template
+
+Note that you won't be able to preview figures created using this
+
+
+```{ojs}
+//| echo: false
+data = FileAttachment("palmerpenguins.csv").csv({ typed: true })
+
+viewof bill_length_min = Inputs.range(
+  [32, 50], 
+  {value: 35, step: 1, label: "Bill length (min):"}
+)
+viewof islands = Inputs.checkbox(
+  ["Torgersen", "Biscoe", "Dream"], 
+  { value: ["Torgersen", "Biscoe"], 
+    label: "Islands:"
+  }
+)
+filtered = data.filter(function(penguin) {
+  return bill_length_min < penguin.bill_length_mm &&
+         islands.includes(penguin.island);
+})
+
+athletes = FileAttachment("athletes.csv").csv({typed: true})
+
+
+dotplot.legend("color")
+dotplot = Plot.dot(athletes, {x: "weight", y: "height", stroke: "sex"}).plot()
+
+
+//dotplot.legend("color")
+//dotplot = Plot.dot(filtered, {x: "body_mass_g", y: "bill_depth_mm", stroke: "species"}).plot()
+//dotplot = Plot.dot(filtered, {x: "body_mass_g", y: "count", stroke: "sex"}).plot()
+
+Plot.rectY(filtered, 
+  Plot.binX(
+    {y: "count"}, 
+    {x: "body_mass_g", fill: "species", thresholds: 20}
+  )
+).plot({
+    facet: {
+      data: filtered,
+      x: "sex",
+      y: "species",
+      marginRight: 80
+    },
+    marks: [
+      Plot.frame(),
+    ]
+  }
+)
+```

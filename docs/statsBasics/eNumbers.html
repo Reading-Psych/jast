@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Central Tendency</title>
+<title>Just Another Statistics Textbook - e Numbers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,9 +122,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -161,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Central Tendency</h1>
+      <h1 class="quarto-secondary-nav-title">e Numbers</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -214,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">e Numbers</a>
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link active">e Numbers</a>
   </div>
 </li>
       </ul>
@@ -254,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link active">Central Tendency</a>
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,20 +335,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#mean-vs.-median-vs.-mode" id="toc-mean-vs.-median-vs.-mode" class="nav-link active" data-scroll-target="#mean-vs.-median-vs.-mode">Mean vs.&nbsp;Median vs.&nbsp;Mode</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Central Tendency</h1>
+<h1 class="title d-none d-lg-block">e Numbers</h1>
 </div>
 
 
@@ -365,118 +356,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Central tendancy describes typical values of a variable, such as it’s mean and median.</p>
-<section id="mean-vs.-median-vs.-mode" class="level3">
-<h3 class="anchored" data-anchor-id="mean-vs.-median-vs.-mode">Mean vs.&nbsp;Median vs.&nbsp;Mode</h3>
-<p>The <strong>mean</strong> is often called the “average” informally, but is actually a specific type of “average”. The mean is the average you get when add together a group of numbers, and then divide by the number of items you combined. For example, to calculate the mean life expectancy of countries in 2007, we’ll use <a href="https://www.gapminder.org/">gapminder data</a>:</p>
+<p><strong>e values</strong> can be used to indicate a number that is multiplied by 10^e or 0.1^e. For example, 3.1e3 is the same as 3.1 * 10^3 (which is the same as 3100):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install (if required) and load the gapminder data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(gapminder)){<span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: gapminder</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span>     </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># a reminder of the data frame</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(<span class="fu">head</span>(gapminder_2007))                 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"Asia","3":"2007","4":"43.828","5":"31889923","6":"974.5803"},{"1":"Albania","2":"Europe","3":"2007","4":"76.423","5":"3600523","6":"5937.0295"},{"1":"Algeria","2":"Africa","3":"2007","4":"72.301","5":"33333216","6":"6223.3675"},{"1":"Angola","2":"Africa","3":"2007","4":"42.731","5":"12420476","6":"4797.2313"},{"1":"Argentina","2":"Americas","3":"2007","4":"75.320","5":"40301927","6":"12779.3796"},{"1":"Australia","2":"Oceania","3":"2007","4":"81.235","5":"20434176","6":"34435.3674"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total of all years</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sum_life_expectancy  <span class="ot">=</span> <span class="fu">sum</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># count the people</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>n_life_expectancy    <span class="ot">=</span> <span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp)        </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy <span class="ot">=</span> sum_life_expectancy<span class="sc">/</span>n_life_expectancy </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.1e3</span> <span class="sc">-</span> <span class="fl">3.1</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 67.00742</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 </div>
-<p>For those of you who like to double check these things (which is a good instinct), lets see what number you get if you use the r function for mean:</p>
+<p>If e has a minus after it, then you multiply by the number by 0.1^e. For example, 2.5e-3 is the same as 2.5 * 0.1^3 (which is the same as .0025):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.5e-3</span> <span class="sc">-</span> <span class="fl">2.5</span> <span class="sc">*</span> <span class="fl">0.1</span><span class="sc">^</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 67.00742</code></pre>
+<pre><code>[1] -4.336809e-19</code></pre>
 </div>
 </div>
-<p><em>Whew</em> - it’s the same as the manual calculation above.</p>
-<p>Now <strong>median</strong> is less known than <strong>mean</strong>, but median is the value in the middle once you order all your data. It’s well explained in the first paragraph on wikipedia: <a href="https://en.wikipedia.org/wiki/Median" target="_blank">https://en.wikipedia.org/wiki/Median</a>, so I would suggest looking there. As you can see below, the mean and median are not always the same (in fact, they are usually at least slightly different):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 67.00742</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 71.9355</code></pre>
-</div>
-</div>
-<p>Finally, the <strong>mode</strong> is simply the most frequent number in your data. So lets now see if the mode is closer to the mean or median:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 67.00742</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 71.9355</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution for calculating mode found at https://stackoverflow.com/a/2547918 as there doesn't seem to be a native function:</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modeest)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mlv</span>(gapminder_2007<span class="sc">$</span>lifeExp, <span class="at">method =</span> <span class="st">"mfv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] 39.613 42.082 42.384 42.568 42.592 42.731 43.487 43.828 44.741 45.678
- [11] 46.242 46.388 46.462 46.859 48.159 48.303 48.328 49.339 49.580 50.430
- [21] 50.651 50.728 51.542 51.579 52.295 52.517 52.906 52.947 54.110 54.467
- [31] 54.791 55.322 56.007 56.728 56.735 56.867 58.040 58.420 58.556 59.443
- [41] 59.448 59.545 59.723 60.022 60.916 62.069 62.698 63.062 63.785 64.062
- [51] 64.164 64.698 65.152 65.483 65.528 65.554 66.803 67.297 69.819 70.198
- [61] 70.259 70.616 70.650 70.964 71.164 71.338 71.421 71.688 71.752 71.777
- [71] 71.878 71.993 72.235 72.301 72.390 72.396 72.476 72.535 72.567 72.777
- [81] 72.801 72.889 72.899 72.961 73.005 73.338 73.422 73.747 73.923 73.952
- [91] 74.002 74.143 74.241 74.249 74.543 74.663 74.852 74.994 75.320 75.537
-[101] 75.563 75.635 75.640 75.748 76.195 76.384 76.423 76.442 76.486 77.588
-[111] 77.926 78.098 78.242 78.273 78.332 78.400 78.553 78.623 78.746 78.782
-[121] 78.885 79.313 79.406 79.425 79.441 79.483 79.762 79.829 79.972 80.196
-[131] 80.204 80.546 80.653 80.657 80.745 80.884 80.941 81.235 81.701 81.757
-[141] 82.208 82.603</code></pre>
-</div>
-</div>
-<p>The mode for this data was actually <strong>every</strong> value <strong>perhaps because</strong> each value was unique! Lets double check that:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 142</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(gapminder_2007<span class="sc">$</span>lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 142</code></pre>
-</div>
-</div>
-<p>The length of the whole <strong>vector</strong> and the unique values of the vector is the same, confirming that there’s no repetition in this data (and so <strong>no</strong> number is the mode). Lets make up some data so that we can look at what the mode is:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mode_example_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mlv</span>(mode_example_vector, <span class="at">method =</span> <span class="st">"mfv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 4</code></pre>
-</div>
-</div>
-<p>In the above data, there are 2 modes, as the numbers 2 and 4 occur the most.</p>
+<p>(which is effectively 0, R has oddities around generating extremely small numbers rather than 0s sometimes)</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

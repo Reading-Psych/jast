@@ -16,15 +16,15 @@ Do make use of the search-bar in the top-right to find any content within the we
 
 | Surname     | First Name  | Contribution  |
 | ----------- | ----------- | --------------|
-| Brady       | Dan         | Reviewer      |
+| Brady       | Dan         | Contributor   |
 | Goh         | Vera        | Suggestions   |
 | Haffey      | Anthony     | Author, Editor|
-| Matthews    | Imogen      | Reviewer      |
+| Mathews     | Imogen      | Contributor   |
 | Pritchard   | Katherine   | Suggestions   |
-| Sahni       | Anghad      | Reviewer      |
+| Sahni       | Angad       | Contributor   |
 
 
 - **Authors** have written (sub)sections
 - **Editors** have managed the formatting of this website/textbook
-- **Reviewers** have contributed text for a subsection
+- **Contributors** have contributed text for a subsection
 - **Suggestions** are requests for elaborations and clarifications

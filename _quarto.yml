@@ -23,7 +23,8 @@ website:
           - installing.qmd
       - section: "Statistics Basics"
         contents:
-          - statsBasics/statsBasics.qmd      
+          - statsBasics/statsBasics.qmd
+          - statsBasics/eNumbers.qmd    
       - section: "R Basics"
         contents:
           - rBasics/filetypes.qmd
@@ -35,19 +36,18 @@ website:
           - describingData/dispersion.qmd
       - section: "Distributions"
         contents:
-          - distributions/skewnessKurtosis.qmd
           - distributions/normal.qmd
+          - distributions/skewnessKurtosis.qmd
       - section: "Transforming Data"
         contents: 
           - transformingData/transformingData.qmd
       - section: "Correlation"
         contents:
           - correlations/correlations.qmd
-      - section: "Simple Regressions"
+          - correlations/cooksd.qmd
+      - section: "Regressions"
         contents:
           - simpleRegressions/simpleRegressions.qmd
-      - section: "Multiple Regressions"
-        contents:
           - multipleRegressions/multipleRegressions.qmd
 
 format:

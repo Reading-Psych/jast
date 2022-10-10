@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Dispersion (incomplete)</title>
+<title>Just Another Statistics Textbook - Dispersion</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Dispersion (incomplete)</h1>
+      <h1 class="quarto-secondary-nav-title">Dispersion</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -213,6 +213,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">e Numbers</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -255,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link active">Dispersion (incomplete)</a>
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link active">Dispersion</a>
   </div>
 </li>
       </ul>
@@ -270,12 +275,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewnessKurtosis.html" class="sidebar-item-text sidebar-link">Skewness and Kurtosis (incomplete)</a>
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution (incomplete)</a>
+  <a href="../distributions/skewnessKurtosis.html" class="sidebar-item-text sidebar-link">Skewness and Kurtosis (incomplete)</a>
   </div>
 </li>
       </ul>
@@ -304,11 +309,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   correlations/correlations.qmd
   </li>
+          <li class="sidebar-item">
+  correlations/cooksd.qmd
+  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Simple Regressions</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Regressions</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -319,16 +327,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple Regressions</a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Multiple Regressions</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../multipleRegressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions</a>
@@ -351,12 +349,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#population-variance" id="toc-population-variance" class="nav-link" data-scroll-target="#population-variance">Population Variance</a></li>
   <li><a href="#sample-variance" id="toc-sample-variance" class="nav-link" data-scroll-target="#sample-variance">Sample variance</a></li>
   </ul></li>
-  <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation">Standard deviation</a>
-  <ul class="collapse">
-  <li><a href="#population-standard-deviation" id="toc-population-standard-deviation" class="nav-link" data-scroll-target="#population-standard-deviation">Population Standard deviation</a></li>
-  <li><a href="#sample-standard-deviation" id="toc-sample-standard-deviation" class="nav-link" data-scroll-target="#sample-standard-deviation">Sample Standard deviation</a></li>
-  </ul></li>
-  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">degrees of freedom</a></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom">Degrees of Freedom</a></li>
+  <li><a href="#standard-deviation-sd" id="toc-standard-deviation-sd" class="nav-link" data-scroll-target="#standard-deviation-sd">Standard deviation (SD)</a></li>
   </ul>
 </nav>
     </div>
@@ -365,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Dispersion (incomplete)</h1>
+<h1 class="title d-none d-lg-block">Dispersion</h1>
 </div>
 
 
@@ -408,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="variance">Variance</h2>
 <section id="population-variance" class="level3">
 <h3 class="anchored" data-anchor-id="population-variance">Population Variance</h3>
-<p><strong>Variance</strong> is how much the data varies around a mean. If you have all the data in a population, then this is the <strong>average(mean) difference each value has from the overall mean</strong>:</p>
+<p><strong>Variance</strong> is how much the data varies around a mean. To capture this, we compare each individual’s score with the mean, so lets do this with our gapminder data’s life expectancy:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">life_expectancy =</span> gapminder_2007<span class="sc">$</span>lifeExp,</span>
@@ -424,47 +418,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </script>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So we know for <strong>each</strong> country how different their life expectacy is to the mean life expectancy. But ideally we would like a single value to summarise variance. Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.153937e-15</code></pre>
 </div>
 </div>
-</section>
-<section id="sample-variance" class="level3">
-<h3 class="anchored" data-anchor-id="sample-variance">Sample variance</h3>
-</section>
-</section>
-<section id="standard-deviation" class="level2">
-<h2 class="anchored" data-anchor-id="standard-deviation">Standard deviation</h2>
-<section id="population-standard-deviation" class="level3">
-<h3 class="anchored" data-anchor-id="population-standard-deviation">Population Standard deviation</h3>
+<p>We get a number that is effectively zero (go <a href="../statsBasics/eNumbers.html" target="_blank">here</a> for an explanation about e-numbers), because all the values above the mean balance out those below the mean. So to address this, we can square the differences to force all the numbers to be positive:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table<span class="sc">$</span>diff_squared <span class="ot">=</span> life_expectancy_variance_table<span class="sc">$</span>diff_from_mean<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(life_expectancy_variance_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["life_expectancy"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["diff_from_mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["diff_squared"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"43.828","2":"-23.1794225","3":"537.28562907"},{"1":"76.423","2":"9.4155775","3":"88.65309900"},{"1":"72.301","2":"5.2935775","3":"28.02196238"},{"1":"42.731","2":"-24.2764225","3":"589.34469111"},{"1":"75.320","2":"8.3125775","3":"69.09894411"},{"1":"81.235","2":"14.2275775","3":"202.42396052"},{"1":"79.829","2":"12.8215775","3":"164.39284869"},{"1":"75.635","2":"8.6275775","3":"74.43509291"},{"1":"64.062","2":"-2.9454225","3":"8.67551391"},{"1":"79.441","2":"12.4335775","3":"154.59384857"},{"1":"56.728","2":"-10.2794225","3":"105.66652766"},{"1":"65.554","2":"-1.4534225","3":"2.11243707"},{"1":"74.852","2":"7.8445775","3":"61.53739560"},{"1":"50.728","2":"-16.2794225","3":"265.01959808"},{"1":"72.390","2":"5.3825775","3":"28.97214016"},{"1":"73.005","2":"5.9975775","3":"35.97093545"},{"1":"52.295","2":"-14.7124225","3":"216.45537685"},{"1":"49.580","2":"-17.4274225","3":"303.71505622"},{"1":"59.723","2":"-7.2844225","3":"53.06281167"},{"1":"50.430","2":"-16.5774225","3":"274.81093791"},{"1":"80.653","2":"13.6455775","3":"186.20178435"},{"1":"44.741","2":"-22.2664225","3":"495.79357252"},{"1":"50.651","2":"-16.3564225","3":"267.53255815"},{"1":"78.553","2":"11.5455775","3":"133.30035900"},{"1":"72.961","2":"5.9535775","3":"35.44508463"},{"1":"72.889","2":"5.8815775","3":"34.59295347"},{"1":"65.152","2":"-1.8554225","3":"3.44259278"},{"1":"46.462","2":"-20.5454225","3":"422.11438715"},{"1":"55.322","2":"-11.6854225","3":"136.54909983"},{"1":"78.782","2":"11.7745775","3":"138.64067447"},{"1":"48.328","2":"-18.6794225","3":"348.92082625"},{"1":"75.748","2":"8.7405775","3":"76.39769442"},{"1":"78.273","2":"11.2655775","3":"126.91323562"},{"1":"76.486","2":"9.4785775","3":"89.84343076"},{"1":"78.332","2":"11.3245775","3":"128.24605476"},{"1":"54.791","2":"-12.2164225","3":"149.24097956"},{"1":"72.235","2":"5.2275775","3":"27.32756615"},{"1":"74.994","2":"7.9865775","3":"63.78541960"},{"1":"71.338","2":"4.3305775","3":"18.75390118"},{"1":"71.878","2":"4.8705775","3":"23.72252484"},{"1":"51.579","2":"-15.4284225","3":"238.03622193"},{"1":"58.040","2":"-8.9674225","3":"80.41466693"},{"1":"52.947","2":"-14.0604225","3":"197.69548187"},{"1":"79.313","2":"12.3055775","3":"151.42723674"},{"1":"80.657","2":"13.6495775","3":"186.31096497"},{"1":"56.735","2":"-10.2724225","3":"105.52266474"},{"1":"59.448","2":"-7.5594225","3":"57.14486907"},{"1":"79.406","2":"12.3985775","3":"153.72472315"},{"1":"60.022","2":"-6.9854225","3":"48.79612800"},{"1":"79.483","2":"12.4755775","3":"155.64003308"},{"1":"70.259","2":"3.2515775","3":"10.57275601"},{"1":"56.007","2":"-11.0004225","3":"121.00929595"},{"1":"46.388","2":"-20.6194225","3":"425.16058569"},{"1":"60.916","2":"-6.0914225","3":"37.10542850"},{"1":"70.198","2":"3.1905775","3":"10.17978456"},{"1":"82.208","2":"15.2005775","3":"231.05755526"},{"1":"73.338","2":"6.3305775","3":"40.07621104"},{"1":"81.757","2":"14.7495775","3":"217.55003539"},{"1":"64.698","2":"-2.3094225","3":"5.33343245"},{"1":"70.650","2":"3.6425775","3":"13.26837059"},{"1":"70.964","2":"3.9565775","3":"15.65450523"},{"1":"59.545","2":"-7.4624225","3":"55.68775009"},{"1":"78.885","2":"11.8775775","3":"141.07684643"},{"1":"80.745","2":"13.7375775","3":"188.72103460"},{"1":"80.546","2":"13.5385775","3":"183.29307977"},{"1":"72.567","2":"5.5595775","3":"30.90890159"},{"1":"82.603","2":"15.5955775","3":"243.22203646"},{"1":"72.535","2":"5.5275775","3":"30.55411263"},{"1":"54.110","2":"-12.8974225","3":"166.34350805"},{"1":"67.297","2":"0.2895775","3":"0.08385511"},{"1":"78.623","2":"11.6155775","3":"134.92163984"},{"1":"77.588","2":"10.5805775","3":"111.94861949"},{"1":"71.993","2":"4.9855775","3":"24.85598266"},{"1":"42.592","2":"-24.4154225","3":"596.11285757"},{"1":"45.678","2":"-21.3294225","3":"454.94426569"},{"1":"73.952","2":"6.9445775","3":"48.22715616"},{"1":"59.443","2":"-7.5644225","3":"57.22048829"},{"1":"48.303","2":"-18.7044225","3":"349.85542238"},{"1":"74.241","2":"7.2335775","3":"52.32464294"},{"1":"54.467","2":"-12.5404225","3":"157.26219736"},{"1":"64.164","2":"-2.8434225","3":"8.08505171"},{"1":"72.801","2":"5.7935775","3":"33.56553984"},{"1":"76.195","2":"9.1875775","3":"84.41157967"},{"1":"66.803","2":"-0.2044225","3":"0.04178857"},{"1":"74.543","2":"7.5355775","3":"56.78492773"},{"1":"71.164","2":"4.1565775","3":"17.27713622"},{"1":"42.082","2":"-24.9254225","3":"621.27668856"},{"1":"62.069","2":"-4.9384225","3":"24.38801714"},{"1":"52.906","2":"-14.1014225","3":"198.85011752"},{"1":"63.785","2":"-3.2224225","3":"10.38400700"},{"1":"79.762","2":"12.7545775","3":"162.67924631"},{"1":"80.204","2":"13.1965775","3":"174.14965678"},{"1":"72.899","2":"5.8915775","3":"34.71068502"},{"1":"56.867","2":"-10.1404225","3":"102.82816919"},{"1":"46.859","2":"-20.1484225","3":"405.95893066"},{"1":"80.196","2":"13.1885775","3":"173.93857554"},{"1":"75.640","2":"8.6325775","3":"74.52139369"},{"1":"65.483","2":"-1.5244225","3":"2.32386407"},{"1":"75.537","2":"8.5295775","3":"72.75369173"},{"1":"71.752","2":"4.7445775","3":"22.51101532"},{"1":"71.421","2":"4.4135775","3":"19.47966604"},{"1":"71.688","2":"4.6805775","3":"21.90780540"},{"1":"75.563","2":"8.5555775","3":"73.19790576"},{"1":"78.098","2":"11.0905775","3":"123.00090850"},{"1":"78.746","2":"11.7385775","3":"137.79420090"},{"1":"76.442","2":"9.4345775","3":"89.01125194"},{"1":"72.476","2":"5.4685775","3":"29.90533949"},{"1":"46.242","2":"-20.7654225","3":"431.20277307"},{"1":"65.528","2":"-1.4794225","3":"2.18869104"},{"1":"72.777","2":"5.7695775","3":"33.28802412"},{"1":"63.062","2":"-3.9454225","3":"15.56635898"},{"1":"74.002","2":"6.9945775","3":"48.92411391"},{"1":"42.568","2":"-24.4394225","3":"597.28537385"},{"1":"79.972","2":"12.9645775","3":"168.08026884"},{"1":"74.663","2":"7.6555775","3":"58.60786632"},{"1":"77.926","2":"10.9185775","3":"119.21533385"},{"1":"48.159","2":"-18.8484225","3":"355.26303207"},{"1":"49.339","2":"-17.6684225","3":"312.17315488"},{"1":"80.941","2":"13.9335775","3":"194.14458097"},{"1":"72.396","2":"5.3885775","3":"29.03676709"},{"1":"58.556","2":"-8.4514225","3":"71.42654287"},{"1":"39.613","2":"-27.3944225","3":"750.45438604"},{"1":"80.884","2":"13.8765775","3":"192.55940214"},{"1":"81.701","2":"14.6935775","3":"215.90121871"},{"1":"74.143","2":"7.1355775","3":"50.91646576"},{"1":"78.400","2":"11.3925775","3":"129.79082129"},{"1":"52.517","2":"-14.4904225","3":"209.97234525"},{"1":"70.616","2":"3.6085775","3":"13.02183132"},{"1":"58.420","2":"-8.5874225","3":"73.74382580"},{"1":"69.819","2":"2.8115775","3":"7.90496784"},{"1":"73.923","2":"6.9155775","3":"47.82521167"},{"1":"71.777","2":"4.7695775","3":"22.74886919"},{"1":"51.542","2":"-15.4654225","3":"239.17929419"},{"1":"79.425","2":"12.4175775","3":"154.19623009"},{"1":"78.242","2":"11.2345775","3":"126.21573081"},{"1":"76.384","2":"9.3765775","3":"87.92020495"},{"1":"73.747","2":"6.7395775","3":"45.42190440"},{"1":"74.249","2":"7.2415775","3":"52.44044418"},{"1":"73.422","2":"6.4145775","3":"41.14680405"},{"1":"62.698","2":"-4.3094225","3":"18.57112259"},{"1":"42.384","2":"-24.6234225","3":"606.31293735"},{"1":"43.487","2":"-23.5204225","3":"553.21027623"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>If we calculate the average of this, then we get a summary of the variance that is more informative:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 10.45445</code></pre>
+<pre><code>[1] 144.7314</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean))<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, as mean is what you get when you add all the items together and then divide it by the number of items, this can also be done in 2 steps in R (this will help us understand the formula later):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sum_of_squares <span class="ot">=</span> <span class="fu">sum</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>this_variance  <span class="ot">=</span> sum_of_squares<span class="sc">/</span><span class="fu">length</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>this_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11.9888</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(life_expectancy_variance_table<span class="sc">$</span>life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 12.07302</code></pre>
+<pre><code>[1] 144.7314</code></pre>
 </div>
 </div>
-</section>
-<section id="sample-standard-deviation" class="level3">
-<h3 class="anchored" data-anchor-id="sample-standard-deviation">Sample Standard deviation</h3>
-</section>
-</section>
-<section id="degrees-of-freedom" class="level2">
-<h2 class="anchored" data-anchor-id="degrees-of-freedom">degrees of freedom</h2>
-<p>The formula for the population’s variance (σ^2) (i.e.&nbsp;when you have everyone from the group you are measuring):</p>
+<p>We can represent the above in the following formula for the <strong>population</strong>’s (remember, this is when you have everyone from the group you are measuring) variance:</p>
 <p><span class="math display">\[
 \sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
 \]</span></p>
-<p>σ2 = Σ(𝑥i - x̄)2 n Population standard deviation formula</p>
-<p>σ = √(population variance)</p>
+<p>Let’s break down each of the above symbols: σ^2 is population variance Σ is sum <strong>x</strong>i refers to the value for each participant x̄ refers to the mean for all participants N refers to the number of participants</p>
+<p><strong>(note that the above is written as if we’re looking at the variance of a group of participants, but the principles still work if looking at non-participant data)</strong></p>
+</section>
+<section id="sample-variance" class="level3">
+<h3 class="anchored" data-anchor-id="sample-variance">Sample variance</h3>
+<p>To calculate the variance for a <strong>sample</strong> of participants, rather than every participant in the group you’re measuring, you need a slightly different formula:</p>
+<p><span class="math display">\[
+S^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N - 1}
+\]</span> <em>Note that Sample variance is represented by S^2 rather than σ^2</em></p>
+<p>So why do we divide by N-1 rather than N? This is because the sample variance is an <em>estimate</em> rather than the actual population variance. When estimating the population variance you take into account the actual number of people (N) in the sample, whereas when you are estimating what happens generally in the population based on your sample, you take into account the <strong>degrees of freedom</strong> (N-1). In broad terms this reduces the risk of you under-estimating the variance of the population. You don’t necessarily need to understand <strong>degrees of freedom</strong> beyond the idea that you are controlling for the fact that you are analysing a sample rather than the population they represent, <em>so don’t worry if the next section isn’t completely clear</em>.</p>
+</section>
+</section>
+<section id="degrees-of-freedom" class="level2">
+<h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
+<p>Degrees of freedom calculations can be useful to address statistics that are vulnerable to bias within a sample (i.e.&nbsp;the sample being distorted compared to the population). Interestingly, <strong>mean</strong> is not, but <strong>variance</strong> is. Lets see this by looking at differences between the population and sample for mean and variance, looking at the height of three people, and combining them into every combination of 2 people possible:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>three_heights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">150</span>,<span class="dv">160</span>,<span class="dv">170</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>population_height_mean <span class="ot">=</span> <span class="fu">mean</span>(three_heights)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>population_height_variance <span class="ot">=</span> <span class="fu">sum</span>((three_heights <span class="sc">-</span> population_height_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#sample participants in pairs</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>sample_heights <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp1 =</span> <span class="fu">c</span>(<span class="dv">150</span>,<span class="dv">150</span>,<span class="cn">NA</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp2 =</span> <span class="fu">c</span>(<span class="dv">160</span>,<span class="cn">NA</span>,<span class="dv">160</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp3 =</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">170</span>,<span class="dv">170</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">pair =</span> <span class="fu">c</span>(</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1 and 2"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1 and 3"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2 and 3"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>mean <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])),</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])),</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]))</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>pop_var <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>sample_var <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>),</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>),</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(sample_heights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["pp1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pp2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["pp3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pair"],"name":[4],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["pop_var"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sample_var"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"150","2":"160","3":"NA","4":"1 and 2","5":"155","6":"16.66667","7":"25"},{"1":"150","2":"NA","3":"170","4":"1 and 3","5":"160","6":"66.66667","7":"100"},{"1":"NA","2":"160","3":"170","4":"2 and 3","5":"165","6":"16.66667","7":"25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mean_sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>mean)  </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mean_sample_variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>sample_var)  </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mean_population_variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>pop_var)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When comparing the population mean to the mean sample mean (i.e., what is the typical mean for any sample), they’re identical (i.e.&nbsp;<strong><em>NOT</em></strong> biased):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>population_height_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 160</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mean_sample_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 160</code></pre>
+</div>
+</div>
+<p>Whereas when comparing the actual population variance (<strong>population_height_variance</strong>) to the mean (to identify what is a typical) estimate of variance using the <strong>population formula that should not be used for samples (mean_population_variance)</strong> finds the estimate of variance is typically smaller than the actual variance in the population:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 66.66667</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mean_population_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 33.33333</code></pre>
+</div>
+</div>
+<p>As this bias (almost) always underestimates the population variance, <strong>degrees of freedom</strong> is a useful correction to address this within calculations of sample variance. Lets compare the <strong>actual</strong> population height variance (population_height_variance) to the mean estimate using degrees of freedom that <strong>should be used for samples (mean_sample_variance)</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 66.66667</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mean_sample_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<p>So, not perfect, but this is less under-representative of the variance.</p>
+<p>One thing to bear in mind is that calculation of some statistics does <strong>not</strong> require use of the degrees of freedom to correct for <em>bias</em> (as seen above, <strong>mean</strong> was not susceptible to bias).</p>
+<p>If you would like to understand how degrees of freedom are determined, and what the thinking is behind this term, read on for a brief description of this (otherwise, feel free to skip to the next section).</p>
+<p><strong>Degrees of freedom</strong> refers to how many values could change in your variable once you know what the outcome of the relevant statistic is. For example, if you’re interested in the variance of the height of the three people, then you only have 2 degrees of freedom, because once you know the height of 2 of the participants <strong>AND</strong> the variance of the height, then there the remaining participant only has a 2 possible heights (so their height isn’t <strong>free</strong> to change).</p>
+</section>
+<section id="standard-deviation-sd" class="level2">
+<h2 class="anchored" data-anchor-id="standard-deviation-sd">Standard deviation (SD)</h2>
+<p><strong>Standard deviation</strong> is the <strong>square root</strong> of the variance. This takes into account that that the variance includes the <strong>square</strong> of the difference between the individual values and the mean:</p>
+<p><strong>Population Variance</strong> <span class="math display">\[
+\sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Red}{^2})} {N}
+\]</span></p>
+<p><strong>Population SD</strong> <span class="math display">\[
+\sigma^2 = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Red}{^2})} {N}
+\]</span></p>
+<p><strong>Sample Variance</strong> <span class="math display">\[
+S^2 = \frac{\sum((x_i- \bar{x}{} )\color{red}{^2})} {N - 1}
+\]</span> <strong>Sample SD</strong> <span class="math display">\[
+S^2 = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{red}{^2})} {N - 1}
+\]</span></p>
 
 
 </section>

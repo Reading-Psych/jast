@@ -1,0 +1,22 @@
+---
+title: "tabsets template"
+format: html
+editor: visual
+---
+
+You can use Python and R within Quarto files
+
+::: {.panel-tabset}
+## R
+
+``` {r}
+1 + 2
+```
+
+## Python
+
+``` {python}
+1 + 2
+```
+
+:::

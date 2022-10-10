@@ -9,7 +9,8 @@ Central tendancy describes typical values of a variable, such as it's mean and m
 ### Mean vs. Median vs. Mode
 
 The **mean** is often called the "average" informally, but is actually a specific type of "average". The mean is the average you get when add together a group of numbers, and then divide by the number of items you combined. For example, to calculate the mean life expectancy of countries in 2007, we'll use <a href="https://www.gapminder.org/">gapminder data</a>:
-
+::: panel-tabset
+## R
 ```{r}
 # install (if required) and load the gapminder data
 if(!require(gapminder)){install.packages("gapminder")}
@@ -33,7 +34,7 @@ mean_life_expectancy = sum_life_expectancy/n_life_expectancy
 mean_life_expectancy
 ```
 
-#### Python
+## Python
 ```{python}
 # load the gapminder module and import the gapminder dataset
 from gapminder import gapminder
@@ -54,7 +55,7 @@ n_life_expectancy    = gapminder_2007['lifeExp'].count()
 mean_life_expectancy = sum_life_expectancy/n_life_expectancy 
 mean_life_expectancy
 ```
-
+:::
 For those of you who like to double check these things (which is a good instinct), lets see what number you get if you use the r function for mean:
 
 ```{r}
@@ -62,6 +63,7 @@ mean(gapminder_2007$lifeExp)
 ```
 
 #### Python
+
 ```{python}
 gapminder_2007['lifeExp'].mean()
 ```
@@ -76,6 +78,7 @@ median(gapminder_2007$lifeExp)
 ```
 
 #### Python
+
 ```{python}
 gapminder_2007['lifeExp'].mean()
 gapminder_2007['lifeExp'].median()
@@ -94,6 +97,7 @@ mlv(gapminder_2007$lifeExp, method = "mfv")
 ```
 
 #### Python
+
 ```{python}
 gapminder_2007['lifeExp'].mode()
 ```
@@ -106,6 +110,7 @@ length(unique(gapminder_2007$lifeExp))
 ```
 
 #### Python
+
 ```{python}
 # count number of elements in the dataset
 gapminder_2007['lifeExp'].count()
@@ -125,6 +130,7 @@ mlv(mode_example_vector, method = "mfv")
 ```
 
 #### Python
+
 ```{python}
 import pandas as pd
 

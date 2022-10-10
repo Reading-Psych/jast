@@ -343,6 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#mean-vs.-median-vs.-mode" id="toc-mean-vs.-median-vs.-mode" class="nav-link active" data-scroll-target="#mean-vs.-median-vs.-mode">Mean vs.&nbsp;Median vs.&nbsp;Mode</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
   </ul>
 </nav>
     </div>
@@ -368,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Central tendancy describes typical values of a variable, such as it’s mean and median.</p>
 <section id="mean-vs.-median-vs.-mode" class="level3">
 <h3 class="anchored" data-anchor-id="mean-vs.-median-vs.-mode">Mean vs.&nbsp;Median vs.&nbsp;Mode</h3>
-<p>The <strong>mean</strong> is often called the “average” informally, but is actually a specific type of “average”. The mean is the average you get when add together a group of numbers, and then divide by the number of items you combined. For example, to calculate the mean life expectancy of countries in 2007, we’ll use <a href="https://www.gapminder.org/">gapminder data</a>:</p>
+<p>The <strong>mean</strong> is often called the “average” informally, but is actually a specific type of “average”. The mean is the average you get when add together a group of numbers, and then divide by the number of items you combined. For example, to calculate the mean life expectancy of countries in 2007, we’ll use <a href="https://www.gapminder.org/">gapminder data</a>: ::: panel-tabset ## R</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install (if required) and load the gapminder data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(gapminder)){<span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -404,8 +405,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 67.00742</code></pre>
 </div>
 </div>
-<section id="python" class="level4">
-<h4 class="anchored" data-anchor-id="python">Python</h4>
+</section>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the gapminder module and import the gapminder dataset</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gapminder <span class="im">import</span> gapminder</span>
@@ -445,14 +447,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>67.00742253521126</code></pre>
 </div>
 </div>
-<p>For those of you who like to double check these things (which is a good instinct), lets see what number you get if you use the r function for mean:</p>
+<p>::: For those of you who like to double check these things (which is a good instinct), lets see what number you get if you use the r function for mean:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 67.00742</code></pre>
 </div>
 </div>
-</section>
 <section id="python-1" class="level4">
 <h4 class="anchored" data-anchor-id="python-1">Python</h4>
 <div class="cell">

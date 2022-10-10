@@ -81,6 +81,7 @@ plot(
 If you compare the height distribution above to the z-score distribution, you should see that they are identically distributed. This is useful, as we know what percentage of a population fits within each standard deviation of a normal distribution:
 
 ```{r}
+library(ggplot2)
 # https://stackoverflow.com/a/12429538
 norm_x<-seq(-4,4,0.01)
 norm_y<-dnorm(-4,4,0.0)

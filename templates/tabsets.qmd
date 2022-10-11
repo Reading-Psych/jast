@@ -6,17 +6,16 @@ editor: visual
 
 You can use Python and R within Quarto files
 
-::: {.panel-tabset}
+::: panel-tabset
 ## R
 
-``` {r}
+```{r}
 1 + 2
 ```
 
 ## Python
 
-``` {python}
+```{python}
 1 + 2
 ```
-
 :::

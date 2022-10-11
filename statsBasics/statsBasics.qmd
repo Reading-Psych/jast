@@ -5,14 +5,12 @@ editor: visual
 ---
 
 ## What is a variable?
-In **statistics**, a **variable** is any (measurable) attribute that describes any organism or object. It's called a variable because they **vary** from organism to organism or object to object. Height is a good example of a variable within humans, as height changes from person to person.
- 
- 
-Within **coding**, a **variable** tends to refer to a particular **object** in your code, such as a specific value, list, dataset, etc. In R the terminology for a variable tends to be **object**.
-  
-**What is a hypothesis?**
-A(n **experimental) hypothesis** is a possible outcome for the study you will run. Sometimes researchers think in terms of **null hypotheses**, which is what you would expect if your (experimental) hypothesis is incorrect. 
 
+In **statistics**, a **variable** is any (measurable) attribute that describes any organism or object. It's called a variable because they **vary** from organism to organism or object to object. Height is a good example of a variable within humans, as height changes from person to person.
+
+Within **coding**, a **variable** tends to refer to a particular **object** in your code, such as a specific value, list, dataset, etc. In R the terminology for a variable tends to be **object**.
+
+**What is a hypothesis?** A(n **experimental) hypothesis** is a possible outcome for the study you will run. Sometimes researchers think in terms of **null hypotheses**, which is what you would expect if your (experimental) hypothesis is incorrect.
 
 ## What is a p-value?
 
@@ -20,11 +18,18 @@ A(n **experimental) hypothesis** is a possible outcome for the study you will ru
 
 **Better definition:** How likely you would get your current results by chance (i.e. randomly). We assume that a result is meaningful if there is only a very small chance that they could happen by accident.
 
-**Technical definition:** The p-value is the probability of observing a particular (or more extreme) effect under the assumption that the null hypothesis is true.
-To give a more concrete example: If the observed difference between two means is small, then there is a high probabilty that this difference could have occured if the null (there is no difference) is true, and so the resulting p-value would also be large. In contrast, if the difference is huge, then this is much less likely to have occured if the null is true, and the subsequent p-value will be smaller to reflect the lower probability.  
+**Technical definition:** The p-value is the probability of observing a particular (or more extreme) effect under the assumption that the null hypothesis is true (or the probability of the data given the null hypothesis: $Pr(Data|H_0)$).
 
+To give a more concrete example:
+
+-   If the observed difference between two means is small, then there is a high probability that the data underlying this difference could have occurred if the null (there is no difference) is true, and so the resulting p-value would be large.
+
+-   In contrast, if the difference is huge, then the data underlying this difference is much less likely to have occurred if the null is true, and the subsequent p-value will be smaller to reflect the lower probability.
 
 ## What is the alpha value?
+
 It is the p-value threshold that identifies if a result is "significant" or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is "significant" (i.e. so unlikely that this would have happened by chance that we conclude this didn't happen randomly).
 
-**Technical definition:** The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the value that alpha is sets the chance that a null hypothesis is rejected incorrectly (i.e. we say there is an effect when there isn't one). Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the this false-positive rate, we could change the value.
+**Technical definition:** The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the alpha value sets the chance that a null hypothesis is rejected incorrectly (i.e. we say there is an effect when there isn't one).
+
+Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the false-positive rate, we could adjust this value (this has been a contentious issue in recent years, see [here](https://www.nature.com/articles/s41562-017-0189-z "Redefine statistical significance") and [here](https://www.nature.com/articles/s41562-018-0311-x "Justify your alpha")).

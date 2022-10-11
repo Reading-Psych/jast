@@ -1,0 +1,286 @@
+---
+title: "Normal Distribution (incomplete)"
+format: html
+editor: visual
+---
+
+## Bell curve (AKA normal distribution)
+
+**Parametric statistics** often compare values to a **normal** distribution of **expected data**, based on the **estimated mean and SD**. Lets start by showing a (made up) **normal** distribution of heights in centimeters:
+
+So lets say the average person's height is 150cm, and the standard deviation of height across the population is 10cm. The data would look something like:
+
+```{r}
+# Plot a normal distribution of heights
+population_heights_x <- seq(
+  120,    # min
+  180,    # max
+  by = 1  
+)
+population_heights_y <- dnorm(
+  population_heights_x,
+  mean = 150,
+  sd   = 10
+)
+plot(
+  population_heights_x,
+  population_heights_y,
+  xlab = "height",
+  ylab = "frequency"
+)
+# Add line to show mean and median
+abline(
+  v=150,  # where the line for the mean will be 
+  lwd=5
+)
+```
+
+You can see that the above fits a **bell-curve**, and the line in the middle represents both the **mean** and the **median** as the data is symmetrical. In reality, almost no data is a perfect bell-curve, but there are ways to test if the data isn't sufficiently normal to use parametric tests with.
+
+Next, we will look at how normal distributions allow you to transform your data to z-scores to compare to a z-distribution.
+
+## Z-scores and the z-distribution
+
+A **z-score** is a **standardised** value that captures how many standard deviations above or below the mean an individual value is. Thus, to calculate the z-score
+
+$$
+Z = \frac{individualScore-averageScore}{StandardDeviation}
+$$
+
+Or in formal terminology:
+
+$$
+Z = \frac{x-\bar{x}}{\sigma}
+$$
+
+The calculated score can then be applied to a z-distribution, which is parametric/normally distributed. Lets have a look at a z-distribution:
+
+```{r}
+# vector for the x-axis
+z_score_x <- seq(
+  -3,    # min
+  3,    # max
+  by = .1  
+)
+
+# vector for the y-axis
+z_score_y <- dnorm(
+  z_score_x,
+  mean = 0,
+  sd   = 1
+)
+
+plot(
+  z_score_x,
+  z_score_y,
+  xlab = "z-score (SDs from the mean)",
+  ylab = "frequency"
+)
+```
+
+If you compare the height distribution above to the z-score distribution, you should see that they are identically distributed. This is useful, as we know what percentage of a population fits within each standard deviation of a normal distribution:
+
+```{r}
+library(ggplot2)
+# https://stackoverflow.com/a/12429538
+norm_x<-seq(-4,4,0.01)
+norm_y<-dnorm(-4,4,0.0)
+
+norm_data_frame<-data.frame(x=norm_x,y=dnorm(norm_x,0,1))
+
+
+shade_50 <- rbind(
+  c(0,0), 
+  subset(norm_data_frame, x > 0), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+shade_34.1 <- rbind(
+  c(1,0), 
+  subset(norm_data_frame, x > 1), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+
+shade_13.6 <- rbind(
+  c(2,0), 
+  subset(norm_data_frame, x > 2), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+
+p<-qplot(
+  x=norm_data_frame$x,
+  y=norm_data_frame$y,
+  geom="line"
+)
+
+ p +
+   
+   geom_polygon(
+     data = shade_50,
+     aes(
+       x,
+       y,
+       fill="50"
+      )
+    ) +
+   geom_polygon(
+     data = shade_34.1,
+     aes(
+       x,
+       y,
+       fill="34.1"
+      )
+    ) +
+   geom_polygon(
+     data = shade_13.6, 
+     aes(
+       x, 
+       y,
+       fill="13.6"
+      )
+    ) +
+   
+   annotate(
+     "text", 
+     x=0.5, 
+     y=0.01, 
+     label= "34.1%"
+   ) + 
+   annotate(
+     "text", 
+     x=1.5, 
+     y=0.01, 
+     label= "13.6%"
+   ) + 
+   annotate(
+     "text", 
+     x=2.3, 
+     y=0.01, 
+     label= "2.3%"
+   ) +
+   xlab("Z-score") +
+   ylab("Frequency") +
+   theme(legend.position="none")
+
+```
+
+The above visualises how 34.1% of a population's scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population's scores will be between 1-2 standard deviations from the mean, and 2.3% of the population will be more then 2 standard deviations from the mean. **Remember** that the normal distribution is symmetrical, so we also know that 34.1% of the population's score will be between -1 to 0 standard deviations from the mean, 13.6% of the population's score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population's score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:
+
+```{r}
+# https://stackoverflow.com/a/12429538
+norm_x<-seq(-4,4,0.01)
+norm_y<-dnorm(-4,4,0.0)
+
+norm_data_frame<-data.frame(x=norm_x,y=dnorm(norm_x,0,1))
+
+
+shade_2.3 <- rbind(
+  c(-8,0), 
+  subset(norm_data_frame, x > -8), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+shade_13.6 <- rbind(
+  c(-2,0), 
+  subset(norm_data_frame, x > -2), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+shade_34.1 <- rbind(
+  c(-1,0), 
+  subset(norm_data_frame, x > -1), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+shade_50 <- rbind(
+  c(0,0), 
+  subset(norm_data_frame, x > 0), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+shade_84.1 <- rbind(
+  c(1,0), 
+  subset(norm_data_frame, x > 1), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+
+shade_97.7 <- rbind(
+  c(2,0), 
+  subset(norm_data_frame, x > 2), 
+  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+
+
+p<-qplot(
+  x=norm_data_frame$x,
+  y=norm_data_frame$y,
+  geom="line"
+)
+
+ p +
+   geom_polygon(
+     data = shade_2.3,
+     aes(
+       x,
+       y,
+       fill="2.3"
+      )
+    ) +
+   geom_polygon(
+     data = shade_13.6,
+     aes(
+       x,
+       y,
+       fill="13.6"
+      )
+    ) +
+   geom_polygon(
+     data = shade_34.1,
+     aes(
+       x,
+       y,
+       fill="34.1"
+      )
+    ) +
+   geom_polygon(
+     data = shade_50,
+     aes(
+       x,
+       y,
+       fill="50"
+      )
+    ) +
+   geom_polygon(
+     data = shade_84.1,
+     aes(
+       x,
+       y,
+       fill="84.1"
+      )
+    ) +
+   geom_polygon(
+     data = shade_97.7, 
+     aes(
+       x, 
+       y,
+       fill="97.7"
+      )
+    ) +
+   xlim(c(-4,4)) +
+   
+   annotate("text", x=-2.3, y=0.01, label= "13.6%") + 
+   annotate("text", x=-1.4, y=0.01, label= "34.1%") + 
+   annotate("text", x=-0.3, y=0.01, label= "50%") + 
+   annotate("text", x=0.5, y=0.01, label= "84.1%") + 
+   annotate("text", x=1.5, y=0.01, label= "97.7%") + 
+   annotate("text", x=2.3, y=0.01, label= "100%") +
+   xlab("Z-score") +
+   ylab("Frequency") +
+   theme(legend.position="none")
+```
+
+The above figure visualises how 13.6% of the population have score that is more negative than -2 standard deviations from the mean, 34.1% of the population have a standard deviation that is more negative than -1 standard deviations from the mean (this also include all the people who are more than -2 standard deviations from the mean), etc.
+
+We can now use the above information to identify which percentile an individual is within a distribution.
+
+For example, let's imagine that an individual called Jane wants to know what percentile she's at with her height. Lets imagine she is 170cm tall, the mean height of people 150cm, and the SD 10cm. That would make her z-score:
+
+$$
+Z-Score = \frac{170 - 150}{10} = 2
+$$
+
+As we can see from the figure above, that puts her above 97.7% of the population, putting her in the top 2.3%.

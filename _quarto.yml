@@ -5,10 +5,7 @@ project:
 website:
   title: "Just Another Statistics Textbook"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    right:
       - href: https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document
         text: Report an error
       - href: https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications
@@ -23,11 +20,11 @@ website:
       - section: "Welcome"
         contents:
           - index.qmd
-          - about.qmd
           - installing.qmd
       - section: "Statistics Basics"
         contents:
-          - statsBasics/statsBasics.qmd      
+          - statsBasics/statsBasics.qmd
+          - statsBasics/eNumbers.qmd    
       - section: "R Basics"
         contents:
           - rBasics/filetypes.qmd
@@ -37,18 +34,20 @@ website:
           - describingData/describingData.qmd
           - describingData/centralTendency.qmd
           - describingData/dispersion.qmd
-          - describingData/distribution.qmd
+      - section: "Distributions"
+        contents:
+          - distributions/normal.qmd
+          - distributions/skewnessKurtosis.qmd
       - section: "Transforming Data"
         contents: 
           - transformingData/transformingData.qmd
       - section: "Correlation"
         contents:
           - correlations/correlations.qmd
-      - section: "Simple Regressions"
+          - correlations/cooksd.qmd
+      - section: "Regressions"
         contents:
           - simpleRegressions/simpleRegressions.qmd
-      - section: "Multiple Regressions"
-        contents:
           - multipleRegressions/multipleRegressions.qmd
 
 format:

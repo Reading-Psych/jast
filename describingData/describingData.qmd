@@ -3,10 +3,11 @@ title: "Describing Data"
 format: html
 editor: visual
 ---
+
 # Describing data (AKA univariate statistics)
 
 **Univariate statistics** is a term for statistics that describes a numerical and continuous variable. We will be describing the data along the following parameters:
 
-- central tendency (mean and median)
-- dispersion (range, variance and standard deviation)
-- distribution (skewness and kurtosis)
+-   central tendency (mean and median)
+-   dispersion (range, variance and standard deviation)
+-   distribution (skewness and kurtosis)

@@ -1,0 +1,109 @@
+---
+title: "R Logic"
+format: html
+editor: visual
+---
+
+## Greater and less than using > and <
+If you want to see if one **object** is larger than (>) or smaller (<) than another object, you can use the > and < operators:
+
+```{r}
+1 > 2
+```
+Unsurprising that the above is false, as 1 is **not greater than** 2. Lets double check if 1 is less than 2:
+
+```{r}
+1 < 2
+```
+
+## Comparing values using ==
+
+If you want to see if 2 **objects** are the same, then you can use ==. Lets check if 1 is the same as 2:
+
+```{r}
+2 == 1
+```
+
+Unsurprisingly, 2 is not the same as 1. Lets see if 3/2 is the same as 1.5:
+
+```{r}
+3/2 == 1.5
+```
+
+Great! What you're more likely to want to do is to compare a vector to a value. So let's imagine that you have asked your participants a question, and have a **vector** that identifies whether someone got an answer correct or not. Let's compare that vector to the word "correct":
+
+```{r}
+correct_vector <- c("correct", "incorrect", "correct")
+correct_vector == "correct"
+```
+
+This creates an **logical vector** of **TRUE** and **FALSE** values. Let's use this now to select data:
+
+
+## Indexing/Selecting data
+
+Sometimes you want to only focus on certain data, and **indexing** is a way to do this. We're now going to create a data frame for a participant who has completed 3 trials of a reaction time task. This will include whether they were correct or not, and what their response time is. We will then using indexing to select the response times when the participant was correct:
+
+```{r}
+response_table <- data.frame(
+  accuracy = correct_vector, # see the vector created above
+  response_times = c(100,105,180)
+)
+rmarkdown::paged_table(response_table)
+
+# create an index using the logical "same as" operator
+accuracy_index <- response_table$accuracy == "correct"
+
+# use square brackets to use an index to select
+accurate_trials_response_times <- response_table$response_times[accuracy_index]
+# show the valid response times for accurate trials:
+accurate_trials_response_times
+```
+
+Indexing is useful to remove unwanted data. In this case, most researchers think that response times when a participant makes an invalid response are not very informative, so they remove those response times using indexing above.
+
+## ! to reverse logic
+
+Sometimes you'll want to flip the logic so that you get a FALSE when it would be TRUE, or TRUE when it would be FALSE. To do this, put in either a != instead of ==:
+
+```{r}
+1 != 2
+```
+
+
+or a ! before the logical object or statement that you want to reverse:
+
+```{r}
+correct_vector == "correct"
+!correct_vector == "correct" 
+# which is the same as
+!(correct_vector == "correct")
+```
+
+## And using & 
+If you want to get a TRUE outcome only if multiple statements are all TRUE, then you can use the "&" operator. Lets imagine you want to only focus on responses in your data that are correct AND quick enough i.e. less than 1000ms:
+
+```{r}
+response_times_vector <- c (1200,600,800)
+valid_responses <- response_times_vector < 1000 & correct_vector == "correct"
+valid_responses
+```
+So only the third response was both correct and quick enough.
+
+
+## OR using |
+OR statements can be used to get a TRUE outcome if at least one of the logical statements is TRUE. Lets imagine that you were trying to select a subset of participants who either were colorblind or wore glasses. Your data might look like this:
+
+```{r}
+eyesight_data <- data.frame(
+  participant_number = c(1,2,3,4,5),
+  eyesight           = c("colorblind","colorblind","uncorrected","uncorrected","glasses")
+)
+rmarkdown::paged_table(eyesight_data)
+```
+If we just wanted the rows that had people who were colorblind or wore glasess, we could create the following logical vector:
+
+```{r}
+colorblind_glasses_vector <- eyesight_data$eyesight == "colorblind" | eyesight_data$eyesight == "glasses"
+colorblind_glasses_vector
+```

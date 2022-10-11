@@ -1,12 +1,30 @@
 ---
-title: "Welcome"
+title: "About"
 ---
 
 *Developed at the University of Reading School of Psychology and Clinical Language Sciences. This is not developed by the same team as JASP (although JASP is great).*
 
-This textbook  is under-development, and is aimed at students in the school of Psychology and Clinical Language Sciences. The aim will be to focus on statistics taught in MSc students in Reading using the following software:
+This textbook  is under-development (<a href="https://github.com/Reading-Psych/jast" target="_blank">https://github.com/Reading-Psych/jast</a>), and is aimed at students in the school of Psychology and Clinical Language Sciences. The aim will be to focus on statistics taught in MSc students in Reading using the following software:
 
 - Microsoft Excel
 - <a href="https://www.r-project.org">R (open-source)</a>
 
-This "textbook" is all on a single page so that you can search the page for a key term. Ctrl-F (on windows machines) should help you find any nugget of wisdom on the page you previously read.
+Do make use of the search-bar in the top-right to find any content within the website.
+
+## Contributors (in alphabetical order)
+
+
+| Surname     | First Name  | Contribution  |
+| ----------- | ----------- | --------------|
+| Brady       | Dan         | Contributor   |
+| Goh         | Vera        | Suggestions   |
+| Haffey      | Anthony     | Author, Editor|
+| Mathews     | Imogen      | Contributor   |
+| Pritchard   | Katherine   | Suggestions   |
+| Sahni       | Angad       | Contributor   |
+
+
+- **Authors** have written (sub)sections
+- **Editors** have managed the formatting of this website/textbook
+- **Contributors** have contributed text for a subsection
+- **Suggestions** are requests for elaborations and clarifications

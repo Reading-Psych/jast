@@ -48,14 +48,18 @@ ant_age # to confirm that the age has been updated
 
 ### Functions
 
-In a variety of coding languages like R, **functions** are lines of code you can apply each time you call the function, and apply it to **input** to get an **output**. If you wanted to make a function that multiplied numbers by 2, it would look something like:
+In a variety of coding languages like R, **functions** are lines of code you can apply each time you call the function, and apply it to **input(s)** to get an **output**. If you wanted to make a function that multiplied two numbers together, it could look something like:
 
 ```{r}
-times_two <- function(input){  # Define your function by stating it's name, and then using <- to describe it
-  output = input * 2           # creates an output object that is the input object (see line above) x 2
-  return (output)              # gives the output back to the user when they run the function
+to_the_power_of <- function( # Define your function by stating it's name 
+    input_1,           # You can have as many inputs as you like
+    input_2            # 
+){ 
+  output = input_1 ^ input_2  # creates an output object 
+  return (output)             # gives the output back to the user when they run the function
 }
-times_two(4)                   # should give you 8
+to_the_power_of(input_1 = 4, input_2 = 3) # should give you 64
+to_the_power_of(4,3)                      # should also give you 64
 ```
 
 The **great news** is that you don't need to write functions 99% of the time in R, there are a wide variety of functions that are available. Some of which will be used in the next section.

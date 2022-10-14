@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - e Numbers</title>
+<title>Just Another Statistics Textbook - Scientific Notation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,6 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -158,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">e Numbers</h1>
+      <h1 class="quarto-secondary-nav-title">Scientific Notation</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -211,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link active">e Numbers</a>
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link active">Scientific Notation</a>
   </div>
 </li>
       </ul>
@@ -276,32 +277,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewnessKurtosis.html" class="sidebar-item-text sidebar-link">Skewness and Kurtosis (incomplete)</a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/kurtosis.html" class="sidebar-item-text sidebar-link">Kurtosis (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Transforming Data</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  transformingData/transformingData.qmd
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Correlation</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   correlations/correlations.qmd
   </li>
@@ -312,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Regressions</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple Regressions</a>
@@ -342,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">e Numbers</h1>
+<h1 class="title d-none d-lg-block">Scientific Notation</h1>
 </div>
 
 
@@ -356,21 +354,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p><strong>e values</strong> can be used to indicate a number that is multiplied by 10^e or 0.1^e. For example, 3.1e3 is the same as 3.1 * 10^3 (which is the same as 3100):</p>
+<p>Scientific notation is used to express very large or very small numbers in a concise format using exponents of 10 (<span class="math inline">\(10^n\)</span>). So, rather than having to show all of the digits for <span class="math inline">\(4,600,000,000\)</span> (4.6 Trillion) it can be expressed in scientific notation: <span class="math inline">\(4.6 \times 10^9\)</span>. Likewise, very small numbers can be expressed using the same format, e.g.&nbsp;<span class="math inline">\(0.0000005\)</span> = <span class="math inline">\(5.0 \times 10^{-7}\)</span>.</p>
+<p><strong>Note</strong>: for numbers larger than one the exponent is positive (<span class="math inline">\(10^9\)</span>) and for numbers less than one the exponent is negative (<span class="math inline">\(10^{-7}\)</span>)</p>
+<p><strong>e values</strong> are used to express scientific notation within R (and other programming languages) and essentially the <span class="math inline">\(\text{e}\)</span> replaces the <span class="math inline">\(\times 10\)</span> part of the notation.<br>
+For example, <span class="math inline">\(3.1\text{e}3\)</span> is the same as <span class="math inline">\(3.1 \times 10^3\)</span> (which is the same as 3100):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.1e3</span> <span class="sc">-</span> <span class="fl">3.1</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
 </div>
-<p>If e has a minus after it, then you multiply by the number by 0.1^e. For example, 2.5e-3 is the same as 2.5 * 0.1^3 (which is the same as .0025):</p>
+<p>Likewise, <span class="math inline">\(2.5\text{e-}3\)</span> is the same as <span class="math inline">\(2.5 \times 10^{-3}\)</span> (which is the same as .0025):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.5e-3</span> <span class="sc">-</span> <span class="fl">2.5</span> <span class="sc">*</span> <span class="fl">0.1</span><span class="sc">^</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.5e-3</span> <span class="sc">-</span> <span class="fl">2.5</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -4.336809e-19</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 </div>
-<p>(which is effectively 0, R has oddities around generating extremely small numbers rather than 0s sometimes)</p>
 
 
 

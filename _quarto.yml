@@ -37,10 +37,9 @@ website:
       - section: "Distributions"
         contents:
           - distributions/normal.qmd
-          - distributions/skewnessKurtosis.qmd
-      - section: "Transforming Data"
-        contents: 
-          - transformingData/transformingData.qmd
+          - distributions/skewness.qmd
+          - distributions/kurtosis.qmd
+          - distributions/transforming.qmd
       - section: "Correlation"
         contents:
           - correlations/correlations.qmd

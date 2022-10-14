@@ -1,0 +1,155 @@
+---
+title: "Correlations"
+format: html
+editor: visual
+---
+
+Correlations capture how two variables **vary together**. To understand this, we need to think about how each variable varies **independently, together** and compare the two. We'll use the **gapminder** data to look at how how life expectancy correlated with GDP in 2007:
+
+```{r}
+library(gapminder)
+library(ggplot2)
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+# a reminder of the data frame
+rmarkdown::paged_table(head(gapminder_2007))
+
+# Basic scatter plot
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + geom_point()
+```
+
+Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.
+
+## Variance of individual variables
+
+For more insight into variance as a concept, have a look at [dispersion](../distributions/dispersion), but here we will focus on variance within the context of correlations. You have 2 variables, x (for the x-axis) and y (for the y-axis), and the variance for **each** of those is:
+
+$$
+var_x = \frac{\sum(x_i-\bar{x})^2}{N-1}
+$$
+
+$$
+var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
+$$
+
+Just a reminder of what each part of the formula is:
+
+$\sum$ is saying to add together everything
+
+$x_i$ refers to each individual's x-score
+
+$y_i$ refers to each individual's y-score
+
+$\bar{x}$ refers to the mean x-score across all participants
+
+$\bar{y}$ refers to the mean y-score across all participants
+
+$N$ refers to the number of participants
+
+$N-1$ is **degrees of freedom**, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the [dispersion](../distributions/dispersion) section).
+
+An important thing to note, is that variance of x could also be written as:
+
+$$
+var_x = \frac{\sum(x_i-\bar{x})(x_i-\bar{x})}{N-1}
+$$
+
+The $SD$ (Standard deviation; which is just the square root of variance) of how data varies around the mean $gdp$ (per capita) can be visualised as follows within the gapminder $gdp*lifeExpectancy$ in the light blue box:
+
+```{r}
+# Basic scatter plot
+
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + 
+  geom_point() +
+  geom_vline(
+    xintercept = mean(gapminder$gdpPercap), 
+    linetype   = "dashed", 
+    color      = "red", 
+    size       = 2
+  ) +
+  geom_hline(
+    yintercept = mean(gapminder$lifeExp), 
+    linetype   = "dashed",  
+    color      = "red", 
+    size       = 2
+  ) +
+  annotate(
+    "rect", 
+    xmin = mean(gapminder$gdpPercap) - sd(gapminder$gdpPercap),
+    xmax = mean(gapminder$gdpPercap) + sd(gapminder$gdpPercap),
+    ymin = 0,
+    ymax = 100,
+    alpha = .1,
+    fill = "blue"
+  ) + 
+  coord_cartesian(ylim = c(30, 85)) +
+  xlab("GDP per capita") +
+  ylab("Life Expectancy")
+```
+
+Rather than looking at variance just around the x-mean, we can adapt the above formula to focus on variance around **both** the x **and** y-mean:
+
+$$
+var_x = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
+$$
+
+Which can be visualised by highlighting the standard deviation of both the x **AND** y axes.
+
+```{r}
+# Basic scatter plot
+
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + 
+  geom_point() +
+  geom_vline(
+    xintercept = mean(gapminder$gdpPercap), 
+    linetype   = "dashed", 
+    color      = "red", 
+    size       = 2
+  ) +
+  geom_hline(
+    yintercept = mean(gapminder$lifeExp), 
+    linetype   = "dashed",  
+    color      = "red", 
+    size       = 2
+  ) +
+  annotate(
+    "rect", 
+    xmin = mean(gapminder$gdpPercap) - sd(gapminder$gdpPercap),
+    xmax = mean(gapminder$gdpPercap) + sd(gapminder$gdpPercap),
+    ymin = mean(gapminder$lifeExp) - sd(gapminder$lifeExp),
+    ymax = mean(gapminder$lifeExp) + sd(gapminder$lifeExp),
+    alpha = .1,
+    fill = "blue"
+  )
+```
+
+*Note that the above figures uses SD* $\sqrt(variance)$ *rather than* $variance$ *to visualise the which values are within 1 SD of the mean x and y values, which are visualised by the red intersecting lines.*
+
+To complete a **Pearson's** **R** correlation we'll use the variance of x and y values and their co-variance with each other to calculate what proportion of the variance of each variable is explained by the other variable.
+
+(as you use the sample to make assumptions about the population)
+
+## Spearman's Rank/Spearman's Rho

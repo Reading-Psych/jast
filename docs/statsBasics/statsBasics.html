@@ -59,6 +59,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -148,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">e Numbers</a>
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
       </ul>
@@ -213,32 +214,29 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewnessKurtosis.html" class="sidebar-item-text sidebar-link">Skewness and Kurtosis (incomplete)</a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/kurtosis.html" class="sidebar-item-text sidebar-link">Kurtosis (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Transforming Data</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  transformingData/transformingData.qmd
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Correlation</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   correlations/correlations.qmd
   </li>
@@ -249,12 +247,12 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Regressions</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple Regressions</a>
@@ -311,12 +309,18 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="what-is-a-p-value">What is a p-value?</h2>
 <p><strong>Oversimplification:</strong> A p-value tells you how likely your hypothesis is correct</p>
 <p><strong>Better definition:</strong> How likely you would get your current results by chance (i.e.&nbsp;randomly). We assume that a result is meaningful if there is only a very small chance that they could happen by accident.</p>
-<p><strong>Technical definition:</strong> The p-value is the probability of observing a particular (or more extreme) effect under the assumption that the null hypothesis is true. To give a more concrete example: If the observed difference between two means is small, then there is a high probabilty that this difference could have occured if the null (there is no difference) is true, and so the resulting p-value would also be large. In contrast, if the difference is huge, then this is much less likely to have occured if the null is true, and the subsequent p-value will be smaller to reflect the lower probability.</p>
+<p><strong>Technical definition:</strong> The p-value is the probability of observing a particular (or more extreme) effect under the assumption that the null hypothesis is true (or the probability of the data given the null hypothesis: <span class="math inline">\(Pr(Data|H_0)\)</span>).</p>
+<p>To give a more concrete example:</p>
+<ul>
+<li><p>If the observed difference between two means is small, then there is a high probability that the data underlying this difference could have occurred if the null (there is no difference) is true, and so the resulting p-value would be large.</p></li>
+<li><p>In contrast, if the difference is huge, then the data underlying this difference is much less likely to have occurred if the null is true, and the subsequent p-value will be smaller to reflect the lower probability.</p></li>
+</ul>
 </section>
 <section id="what-is-the-alpha-value" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-the-alpha-value">What is the alpha value?</h2>
 <p>It is the p-value threshold that identifies if a result is “significant” or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is “significant” (i.e.&nbsp;so unlikely that this would have happened by chance that we conclude this didn’t happen randomly).</p>
-<p><strong>Technical definition:</strong> The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the value that alpha is sets the chance that a null hypothesis is rejected incorrectly (i.e.&nbsp;we say there is an effect when there isn’t one). Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the this false-positive rate, we could change the value.</p>
+<p><strong>Technical definition:</strong> The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the alpha value sets the chance that a null hypothesis is rejected incorrectly (i.e.&nbsp;we say there is an effect when there isn’t one).</p>
+<p>Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the false-positive rate, we could adjust this value (this has been a contentious issue in recent years, see <a href="https://www.nature.com/articles/s41562-017-0189-z" title="Redefine statistical significance">here</a> and <a href="https://www.nature.com/articles/s41562-018-0311-x" title="Justify your alpha">here</a>).</p>
 
 
 </section>

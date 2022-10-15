@@ -1,0 +1,468 @@
+---
+title: "Correlations"
+format: html
+editor: visual
+---
+
+Correlations capture how two variables **vary together**. To understand this, we need to think about how each variable varies **independently, together** and compare the two. We'll use the **gapminder** data to look at how how life expectancy correlated with GDP in 2007:
+
+```{r}
+library(gapminder)
+library(ggplot2)
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+# a reminder of the data frame
+rmarkdown::paged_table(head(gapminder_2007))
+
+# Basic scatter plot
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + geom_point()
+```
+
+Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.
+
+## Variance of individual variables
+
+For more insight into variance as a concept, have a look at [dispersion](../distributions/dispersion), but here we will focus on variance within the context of correlations. You have 2 variables, x (for the x-axis) and y (for the y-axis), and the variance for **each** of those is:
+
+$$
+var_x = \frac{\sum(x_i-\bar{x})^2}{N-1}
+$$
+
+$$
+var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
+$$
+
+Just a reminder of what each part of the formula is:
+
+$\sum$ is saying to add together everything
+
+$x_i$ refers to each individual's x-score
+
+$y_i$ refers to each individual's y-score
+
+$\bar{x}$ refers to the mean x-score across all participants
+
+$\bar{y}$ refers to the mean y-score across all participants
+
+$N$ refers to the number of participants
+
+$N-1$ is **degrees of freedom**, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the [dispersion](../distributions/dispersion) section).
+
+The $SD$ (Standard deviation; which is just the square root of variance) of how data is distributed around the mean $gdp$ (per capita) can be visualised as follows within the gapminder $gdp*lifeExpectancy$ in the light blue box:
+
+```{r}
+# Basic scatter plot
+
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + 
+  geom_point() +
+  geom_vline(
+    xintercept = mean(gapminder$gdpPercap), 
+    linetype   = "dashed", 
+    color      = "red", 
+    size       = 2
+  ) +
+  geom_hline(
+    yintercept = mean(gapminder$lifeExp), 
+    linetype   = "dashed",  
+    color      = "red", 
+    size       = 2
+  ) +
+  annotate(
+    "rect", 
+    xmin = mean(gapminder$gdpPercap) - sd(gapminder$gdpPercap),
+    xmax = mean(gapminder$gdpPercap) + sd(gapminder$gdpPercap),
+    ymin = 0,
+    ymax = 100,
+    alpha = .1,
+    fill = "blue"
+  ) + 
+  coord_cartesian(ylim = c(30, 85)) +
+  xlab("GDP per capita") +
+  ylab("Life Expectancy")
+```
+
+### Total variance
+
+A correlation aims to explain how much of the $total$ $variance$ is explained by the overlapping variance between the x and y axes. So we need to capture the $total$ $variance$ separately for the x and y axes. We do this by multiplying the variance for $x$ by the variance for $y$ (and square rooting to control for the multiplication itself):
+
+$$
+totalVariance = \sqrt{\frac{\sum(x_i-\bar{x})^2}{N-1}}*\sqrt{\frac{\sum(y_i-\bar{y})^2}{N-1}}
+$$
+
+(Which is the same as:
+
+$$
+totalVariance = \frac{\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}{N-1}
+$$
+
+)
+
+This is analogous to understanding the total area of a square by multiplying the length of each side with each other. This can be visualised by highlighting the standard deviation (**which is the square root of variance**) of both the x **AND** y axes.
+
+```{r}
+# Basic scatter plot
+
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + 
+  geom_point() +
+  geom_vline(
+    xintercept = mean(gapminder$gdpPercap), 
+    linetype   = "dashed", 
+    color      = "red", 
+    size       = 2
+  ) +
+  geom_hline(
+    yintercept = mean(gapminder$lifeExp), 
+    linetype   = "dashed",  
+    color      = "red", 
+    size       = 2
+  ) +
+  annotate(
+    "rect", 
+    xmin = mean(gapminder$gdpPercap) - sd(gapminder$gdpPercap),
+    xmax = mean(gapminder$gdpPercap) + sd(gapminder$gdpPercap),
+    ymin = mean(gapminder$lifeExp) - sd(gapminder$lifeExp),
+    ymax = mean(gapminder$lifeExp) + sd(gapminder$lifeExp),
+    alpha = .1,
+    fill = "blue"
+  )
+```
+
+*Note that the above figures uses SD* $\sqrt(variance)$ *rather than* $variance$ *to visualise the which values are within 1 SD of the mean x and y values, which are visualised by the red intersecting lines. Also, note that many of the data points are not within 1 SD of the x and y axes, suggesting skewed distributions.*
+
+### Shared variance between $x$ and $y$
+
+An important thing to note, is that variance of a single variable, in this case x:
+
+$$
+var_x = \frac{\sum(x_i-\bar{x})^2}{N-1}
+$$
+
+could also be written as:
+
+$$
+var_x = \frac{\sum(x_i-\bar{x})(x_i-\bar{x})}{N-1}
+$$
+
+To look at the amount that x and y vary together, we can adapt a formula for how much $x$ varies (with itself) to now look at how much $x$ varies with $y$:
+
+$$
+var_{xy} = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
+$$
+
+### Comparing $shared$ $variance$ ($var_{xy}$) to $total$ $variance$
+
+To complete a **Pearson's** **R** correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the **proportion** of $total$ $variance$ is explained by the $shared$ $variance$ ($var_{xy}$).
+
+$$
+\frac{var_{xy}}{totalVariance} = \frac{(\sum(x_i-\bar{x})(y_i-\bar{y}))/{N-1}}
+                                      {(\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2)/N-1}
+$$
+
+Note that both $var_{xy}$ and $totalVariance$ correct for the degrees of freedom, so the $N-1$s cancel each other out:
+
+$$
+r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
+                                      {\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}
+$$
+
+Lets apply this to the gapminder data above to calculate $r$:
+
+```{r}
+varxy = 
+  sum(
+    (gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap)) * 
+    (gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))
+   )
+
+
+totalvar = sqrt(
+  sum((gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))^2) * 
+  sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
+)
+varxy/totalvar
+```
+
+If the above calculation is correct, we'll get exactly the same value when using the **cor.test** function:
+
+```{r}
+cor.test(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
+```
+
+To visualise what proportion of the variance is captured by $var_{xy}$, we need to:
+
+-   standardise the $x$ and $y$-axes into z-scores so that the difference in scales doesn't distort comparisons between x and y-axes. We'll do this by calculating z-scores
+
+```{r}
+gapminder_2007$gdpPercap_z <- (gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))/sd(gapminder_2007$gdpPercap)
+
+gapminder_2007$lifeExp_z <- (gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))/sd(gapminder_2007$lifeExp)
+
+gapminder_2007$gdpPercap_z_by_lifeExp_z <- 
+  (gapminder_2007$gdpPercap_z-mean(gapminder_2007$gdpPercap_z)) * 
+  (gapminder_2007$lifeExp_z-mean(gapminder_2007$lifeExp_z))
+
+
+# confirming that everything has been transformed appropriately to get same r-value
+totalvar_z = sqrt(
+  sum((gapminder_2007$gdpPercap_z - mean(gapminder_2007$gdpPercap_z))^2) *
+  sum((gapminder_2007$lifeExp_z - mean(gapminder_2007$lifeExp_z))^2)
+)
+var_explained <- sum(gapminder_2007$gdpPercap_z_by_lifeExp_z)/totalvar_z
+
+# this adjustment reflects the plot using SD rather than variance: 
+sd_adjust <- sqrt(var_explained)
+# 
+# gapminder_2007$gdpPercap_z = (gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))/sd(gapminder_2007$gdpPercap)
+# gapminder_2007$lifeExp_z = (gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))/sd(gapminder_2007$lifeExp)
+# gapminder_2007$gdpPercap_z_by_lifeExp_z = gapminder_2007$gdpPercap_z * gapminder_2007$lifeExp_z
+
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap_z, 
+    y=lifeExp_z
+  )
+) + 
+  geom_point() +
+  geom_vline(
+    xintercept = mean(gapminder_2007$gdpPercap_z), 
+    linetype   = "dashed", 
+    color      = "red", 
+    size       = 2
+  ) +
+  geom_hline(
+    yintercept = mean(gapminder_2007$lifeExp_z), 
+    linetype   = "dashed",  
+    color      = "red", 
+    size       = 2
+  ) +
+  annotate(
+    "rect", 
+    xmin =  - sd_adjust,
+    xmax =  sd_adjust,
+    ymin = - sd_adjust,
+    ymax = + sd_adjust,
+    alpha = .2,
+    fill = "red"
+  ) +
+  annotate(
+    "rect", 
+    xmin = mean(gapminder_2007$gdpPercap_z) - sd(gapminder_2007$gdpPercap_z),
+    xmax = mean(gapminder_2007$gdpPercap_z) + sd(gapminder_2007$gdpPercap_z),
+    ymin = mean(gapminder_2007$lifeExp_z) - sd(gapminder_2007$lifeExp_z),
+    ymax = mean(gapminder_2007$lifeExp_z) + sd(gapminder_2007$lifeExp_z),
+    alpha = .1,
+    fill = "blue"
+  )
+```
+
+The above figure seems consistent with 67.9% of $total$ $variance$ being explained by overlapping variance between $x$ and $y$.
+
+You may have noticed that the data above looks like it's not normally distributed, so lets check skewness and kurtosis to see if we should use Spearman's Rho (AKA Spearman's Rank) instead:
+
+```{r}
+# Skewness and kurtosis and their standard errors as implement by SPSS
+#
+# Reference: pp 451-452 of
+# http://support.spss.com/ProductsExt/SPSS/Documentation/Manuals/16.0/SPSS 16.0 Algorithms.pdf
+# 
+# See also: Suggestion for Using Powerful and Informative Tests of Normality,
+# Ralph B. D'Agostino, Albert Belanger, Ralph B. D'Agostino, Jr.,
+# The American Statistician, Vol. 44, No. 4 (Nov., 1990), pp. 316-321
+
+spssSkewKurtosis=function(x) {
+  w=length(x)
+  m1=mean(x)
+  m2=sum((x-m1)^2)
+  m3=sum((x-m1)^3)
+  m4=sum((x-m1)^4)
+  s1=sd(x)
+  skew=w*m3/(w-1)/(w-2)/s1^3
+  sdskew=sqrt( 6*w*(w-1) / ((w-2)*(w+1)*(w+3)) )
+  kurtosis=(w*(w+1)*m4 - 3*m2^2*(w-1)) / ((w-1)*(w-2)*(w-3)*s1^4)
+  sdkurtosis=sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)) )
+
+  ## z-scores added by reading-psych
+  zskew = skew/sdskew
+  zkurtosis = kurtosis/sdkurtosis
+
+  mat=matrix(c(skew,kurtosis, sdskew,sdkurtosis, zskew, zkurtosis), 2,
+        dimnames=list(c("skew","kurtosis"), c("estimate","se","zScore")))
+  return(mat)
+}
+spssSkewKurtosis(gapminder_2007$gdpPercap)
+spssSkewKurtosis(gapminder_2007$lifeExp)
+```
+
+As GDP and Life Expectancy skewness and (kurtosis for life expectancy) estimates are more than 1.96 \* their standard errors (i.e. their z-scores are above 1.96), we have significant evidence that the data for both variabels is *not* normally distributed, and thus we can/should complete a Spearman's Rank/Rho correlation (in the next subsection).
+
+## Spearman's Rank (AKA Spearman's Rho)
+
+**Spearman's Rank** correlation is identical to a Pearson correlation (described above), but adds a step of converting all the data into ranks before conducting any analyses. This is useful because **ranks** are not vulnerable to outlier (i.e. unusually extreme) data points. Let's now turn the gapminder data we've been working with above into ranks and then run a Pearson's correlation on it to confirm this:
+
+```{r}
+gapminder_2007$gdpPercap_rank <- rank(gapminder_2007$gdpPercap)
+gapminder_2007$lifeExp_rank <- rank(gapminder_2007$lifeExp)
+
+```
+
+Lets do a quick check to see that ranking the data addresses the problems with skewness and kurtosis:
+
+```{r}
+
+spssSkewKurtosis(gapminder_2007$gdpPercap_rank)
+spssSkewKurtosis(gapminder_2007$lifeExp_rank)
+```
+
+This has successfully removed any issue with skewness of the data, but has made the data more platykurtic (i.e. flatter). A problem with platykurtic data is that parametric tests might be **over** sensitive to identifying significant effects (see <a href="../distributions/kurtosis.qmd" target="_blank">kurtosis</a>), i.e. be at a higher risk of **false positives**. This is evidence that using a Spearman's Rank may increase a risk of a false-positive (at least with this data), so <a href="transforming" target="_blank">another transformation of the data</a> may be more appropriate to avoid this problem with kurtosis.
+
+For now, lets focus on how much of the variance in ranks is explained in the overlap in variance of $gdp$ and $life$ $expectancy$ ranks:
+
+```{r}
+# Pearson correlation on **ranked** data:
+cor.test(gapminder_2007$gdpPercap_rank, gapminder_2007$lifeExp_rank, method = "pearson")
+# Spearman correlation applied to original data (letting R do the ranking)
+cor.test(gapminder_2007$gdpPercap, gapminder_2007$lifeExp, method = "spearman")
+```
+
+The $r$ value is now .857, suggesting that the overlap between $gdp$ and $life$ $expectancy$ explains 85.7% of the total variance of the ranks for both of them.
+
+Lets visualise this using similar principles above on the **ranks** of $gdp$ and $life$ $expectancy$:
+
+```{r}
+# gapminder_2007$gdpPercap_rank_z = 
+#   (gapminder_2007$gdpPercap_rank - mean(gapminder_2007$gdpPercap_rank))/
+#   sd(gapminder_2007$gdpPercap_rank)
+# gapminder_2007$lifeExp_rank_z = 
+#   (gapminder_2007$lifeExp_rank - mean(gapminder_2007$lifeExp_rank))/
+#   sd(gapminder_2007$lifeExp_rank)
+# gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z = 
+#   gapminder_2007$gdpPercap_rank_z * gapminder_2007$lifeExp_rank_z
+# 
+# ggplot(
+#   data = gapminder_2007, 
+#   aes(
+#     x=gdpPercap_rank_z, 
+#     y=lifeExp_rank_z
+#   )
+# ) + 
+#   geom_point() +
+#   geom_vline(
+#     xintercept = mean(gapminder_2007$gdpPercap_rank_z), 
+#     linetype   = "dashed", 
+#     color      = "red", 
+#     size       = 2
+#   ) +
+#   geom_hline(
+#     yintercept = mean(gapminder_2007$lifeExp_rank_z), 
+#     linetype   = "dashed",  
+#     color      = "red", 
+#     size       = 2
+#   ) +
+#   annotate(
+#     "rect", 
+#     xmin =  - sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
+#     xmax =  sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
+#     ymin = - sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
+#     ymax = + sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
+#     alpha = .2,
+#     fill = "red"
+#   ) +
+#   annotate(
+#     "rect", 
+#     xmin = mean(gapminder_2007$gdpPercap_rank_z) - sd(gapminder_2007$gdpPercap_rank_z),
+#     xmax = mean(gapminder_2007$gdpPercap_rank_z) + sd(gapminder_2007$gdpPercap_rank_z),
+#     ymin = mean(gapminder_2007$lifeExp_rank_z) - sd(gapminder_2007$lifeExp_rank_z),
+#     ymax = mean(gapminder_2007$lifeExp_rank_z) + sd(gapminder_2007$lifeExp_rank_z),
+#     alpha = .1,
+#     fill = "blue"
+#   )
+
+gapminder_2007$gdpPercap_rank_z <- 
+  (gapminder_2007$gdpPercap_rank - mean(gapminder_2007$gdpPercap_rank))/
+    sd(gapminder_2007$gdpPercap_rank)
+
+gapminder_2007$lifeExp_rank_z <- 
+  (gapminder_2007$lifeExp_rank - mean(gapminder_2007$lifeExp_rank))/
+  sd(gapminder_2007$lifeExp_rank)
+
+gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z <- 
+  (gapminder_2007$gdpPercap_rank_z-mean(gapminder_2007$gdpPercap_rank_z)) * 
+  (gapminder_2007$lifeExp_rank_z-mean(gapminder_2007$lifeExp_rank_z))
+
+# confirming that everything has been transformed appropriately to get same r-value
+totalvar_rank_z = sqrt(
+  sum((gapminder_2007$gdpPercap_rank_z - mean(gapminder_2007$gdpPercap_rank_z))^2) *
+  sum((gapminder_2007$lifeExp_rank_z - mean(gapminder_2007$lifeExp_rank_z))^2)
+)
+rank_var_explained <- sum(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z)/totalvar_rank_z
+
+# this adjustment reflects the plot using SD rather than variance: 
+rank_sd_adjust <- sqrt(rank_var_explained)
+
+
+ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap_rank_z, 
+    y=lifeExp_rank_z
+  )
+) + 
+  geom_point() +
+  geom_vline(
+    xintercept = mean(gapminder_2007$gdpPercap_rank_z), 
+    linetype   = "dashed", 
+    color      = "red", 
+    size       = 2
+  ) +
+  geom_hline(
+    yintercept = mean(gapminder_2007$lifeExp_rank_z), 
+    linetype   = "dashed",  
+    color      = "red", 
+    size       = 2
+  ) +
+  annotate(
+    "rect", 
+    xmin =  - rank_sd_adjust,
+    xmax =  rank_sd_adjust,
+    ymin = - rank_sd_adjust,
+    ymax = rank_sd_adjust,
+    alpha = .2,
+    fill = "red"
+  ) +
+  annotate(
+    "rect", 
+    xmin = mean(gapminder_2007$gdpPercap_rank_z) - sd(gapminder_2007$gdpPercap_rank_z),
+    xmax = mean(gapminder_2007$gdpPercap_rank_z) + sd(gapminder_2007$gdpPercap_rank_z),
+    ymin = mean(gapminder_2007$lifeExp_rank_z) - sd(gapminder_2007$lifeExp_rank_z),
+    ymax = mean(gapminder_2007$lifeExp_rank_z) + sd(gapminder_2007$lifeExp_rank_z),
+    alpha = .1,
+    fill = "blue"
+  )
+
+```
+
+*Note that a larger portion of the* $total$$variance$ *is explained by* $var_{xy}$ *and that the data is no longer skewed. The fact that the data is platykurtic is reflected by there being a relatively low number of data points within 1 SD of the means, compared to outside of the means.*

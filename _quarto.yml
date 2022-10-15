@@ -29,6 +29,7 @@ website:
         contents:
           - rBasics/filetypes.qmd
           - rBasics/fundamentals.qmd
+          - rBasics/logic.qmd
       - section: "Describing Data"
         contents:
           - describingData/describingData.qmd
@@ -37,10 +38,9 @@ website:
       - section: "Distributions"
         contents:
           - distributions/normal.qmd
-          - distributions/skewnessKurtosis.qmd
-      - section: "Transforming Data"
-        contents: 
-          - transformingData/transformingData.qmd
+          - distributions/skewness.qmd
+          - distributions/kurtosis.qmd
+          - distributions/transforming.qmd
       - section: "Correlation"
         contents:
           - correlations/correlations.qmd

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Simple_regression</title>
+<title>Just Another Statistics Textbook - Transforming Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Simple_regression</h1>
+      <h1 class="quarto-secondary-nav-title">Transforming Data</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -286,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data</a>
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link active">Transforming Data</a>
   </div>
 </li>
       </ul>
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link active">Simple_regression</a>
+  <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple_regression</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,7 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link active" data-scroll-target="#simple-regression">Simple Regression</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
   </ul>
 </nav>
     </div>
@@ -347,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Simple_regression</h1>
+<h1 class="title d-none d-lg-block">Transforming Data</h1>
 </div>
 
 
@@ -361,34 +362,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="simple-regression" class="level2">
-<h2 class="anchored" data-anchor-id="simple-regression">Simple Regression</h2>
-<p>Simple regression also known as linear regression builds on correlation, except unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), regression allows you to make <strong>predictions</strong> on how <strong>one variable</strong> affects <strong>another</strong>.</p>
-<p>For example, if your looking to see how ‘x’ influences ‘y’ then regression will help predict or explain a numeric response.</p>
-<p>The main objective of regression analysis is to estimate the values of a random variable (z) based on the values of your known (or fixed) variables (x and y).</p>
-<p>Linear regression analysis operates by drawing the <strong>best fitting line</strong> through the data points. But this <u>does not</u> imply causation, as regression only models the data. Regression can’t tell us exactly what is influencing what (i.e.&nbsp;whether hours of sleep affect depression score or if depression score affects hours of sleep), its not a perfect representation but its good enough!</p>
-<p>If we want to see whether sleep (independent variable in this case) affects depression (dependent variable) then we need to know this equation…</p>
-<p><img src="Screenshot%202022-10-12%20at%2022.13.22.png" class="img-fluid"></p>
-<p>For this equation we will always retrieve values from the graph, except residuals, which is the ‘error’</p>
+<section id="quarto" class="level2">
+<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
+<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+</section>
+<section id="running-code" class="level2">
+<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
+<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
-<section id="why-use-regression" class="level4">
-<h4 class="anchored" data-anchor-id="why-use-regression"><strong>Why use regression?</strong></h4>
-<p>Regression builds on correlation by providing a more detailed view of your data and with this provides an equation that can be used for any future predicting and optimizing of your data.</p>
+<p>You can add options to executable code like this</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
 <p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
-<p><strong>The differences between regression and correlation</strong></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

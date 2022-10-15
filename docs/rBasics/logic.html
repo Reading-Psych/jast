@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Simple_regression</title>
+<title>Just Another Statistics Textbook - R Logic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,6 +122,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -158,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Simple_regression</h1>
+      <h1 class="quarto-secondary-nav-title">R Logic</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -319,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link active">Simple_regression</a>
+  <a href="../simpleRegressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple_regression</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -338,7 +341,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link active" data-scroll-target="#simple-regression">Simple Regression</a></li>
+  <li><a href="#greater-and-less-than-using-and" id="toc-greater-and-less-than-using-and" class="nav-link active" data-scroll-target="#greater-and-less-than-using-and">Greater and less than using &gt; and &lt;</a></li>
+  <li><a href="#comparing-values-using" id="toc-comparing-values-using" class="nav-link" data-scroll-target="#comparing-values-using">Comparing values using ==</a></li>
+  <li><a href="#indexingselecting-data" id="toc-indexingselecting-data" class="nav-link" data-scroll-target="#indexingselecting-data">Indexing/Selecting data</a></li>
+  <li><a href="#to-reverse-logic" id="toc-to-reverse-logic" class="nav-link" data-scroll-target="#to-reverse-logic">! to reverse logic</a></li>
+  <li><a href="#and-using" id="toc-and-using" class="nav-link" data-scroll-target="#and-using">And using &amp;</a></li>
+  <li><a href="#or-using" id="toc-or-using" class="nav-link" data-scroll-target="#or-using">OR using |</a></li>
   </ul>
 </nav>
     </div>
@@ -347,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Simple_regression</h1>
+<h1 class="title d-none d-lg-block">R Logic</h1>
 </div>
 
 
@@ -361,34 +369,146 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="simple-regression" class="level2">
-<h2 class="anchored" data-anchor-id="simple-regression">Simple Regression</h2>
-<p>Simple regression also known as linear regression builds on correlation, except unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), regression allows you to make <strong>predictions</strong> on how <strong>one variable</strong> affects <strong>another</strong>.</p>
-<p>For example, if your looking to see how ‘x’ influences ‘y’ then regression will help predict or explain a numeric response.</p>
-<p>The main objective of regression analysis is to estimate the values of a random variable (z) based on the values of your known (or fixed) variables (x and y).</p>
-<p>Linear regression analysis operates by drawing the <strong>best fitting line</strong> through the data points. But this <u>does not</u> imply causation, as regression only models the data. Regression can’t tell us exactly what is influencing what (i.e.&nbsp;whether hours of sleep affect depression score or if depression score affects hours of sleep), its not a perfect representation but its good enough!</p>
-<p>If we want to see whether sleep (independent variable in this case) affects depression (dependent variable) then we need to know this equation…</p>
-<p><img src="Screenshot%202022-10-12%20at%2022.13.22.png" class="img-fluid"></p>
-<p>For this equation we will always retrieve values from the graph, except residuals, which is the ‘error’</p>
+<section id="greater-and-less-than-using-and" class="level2">
+<h2 class="anchored" data-anchor-id="greater-and-less-than-using-and">Greater and less than using &gt; and &lt;</h2>
+<p>If you want to see if one <strong>object</strong> is larger than (&gt;) or smaller (&lt;) than another object, you can use the &gt; and &lt; operators:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] FALSE</code></pre>
 </div>
 </div>
-<section id="why-use-regression" class="level4">
-<h4 class="anchored" data-anchor-id="why-use-regression"><strong>Why use regression?</strong></h4>
-<p>Regression builds on correlation by providing a more detailed view of your data and with this provides an equation that can be used for any future predicting and optimizing of your data.</p>
+<p>Unsurprising that the above is false, as 1 is <strong>not greater than</strong> 2. Lets double check if 1 is less than 2:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&lt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
-<p><strong>The differences between regression and correlation</strong></p>
-
-
 </section>
+<section id="comparing-values-using" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-values-using">Comparing values using ==</h2>
+<p>If you want to see if 2 <strong>objects</strong> are the same, then you can use ==. Lets check if 1 is the same as 2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>Unsurprisingly, 2 is not the same as 1. Lets see if 3/2 is the same as 1.5:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">==</span> <span class="fl">1.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Great! What you’re more likely to want to do is to compare a vector to a value. So let’s imagine that you have asked your participants a question, and have a <strong>vector</strong> that identifies whether someone got an answer correct or not. Let’s compare that vector to the word “correct”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>correct_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"correct"</span>, <span class="st">"incorrect"</span>, <span class="st">"correct"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>correct_vector <span class="sc">==</span> <span class="st">"correct"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE</code></pre>
+</div>
+</div>
+<p>This creates an <strong>logical vector</strong> of <strong>TRUE</strong> and <strong>FALSE</strong> values. Let’s use this now to select data:</p>
+</section>
+<section id="indexingselecting-data" class="level2">
+<h2 class="anchored" data-anchor-id="indexingselecting-data">Indexing/Selecting data</h2>
+<p>Sometimes you want to only focus on certain data, and <strong>indexing</strong> is a way to do this. We’re now going to create a data frame for a participant who has completed 3 trials of a reaction time task. This will include whether they were correct or not, and what their response time is. We will then using indexing to select the response times when the participant was correct:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>response_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">accuracy =</span> correct_vector, <span class="co"># see the vector created above</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">response_times =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">105</span>,<span class="dv">180</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(response_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["accuracy"],"name":[1],"type":["chr"],"align":["left"]},{"label":["response_times"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"correct","2":"100"},{"1":"incorrect","2":"105"},{"1":"correct","2":"180"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an index using the logical "same as" operator</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>accuracy_index <span class="ot">&lt;-</span> response_table<span class="sc">$</span>accuracy <span class="sc">==</span> <span class="st">"correct"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use square brackets to use an index to select</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>accurate_trials_response_times <span class="ot">&lt;-</span> response_table<span class="sc">$</span>response_times[accuracy_index]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># show the valid response times for accurate trials:</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>accurate_trials_response_times</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100 180</code></pre>
+</div>
+</div>
+<p>Indexing is useful to remove unwanted data. In this case, most researchers think that response times when a participant makes an invalid response are not very informative, so they remove those response times using indexing above.</p>
+</section>
+<section id="to-reverse-logic" class="level2">
+<h2 class="anchored" data-anchor-id="to-reverse-logic">! to reverse logic</h2>
+<p>Sometimes you’ll want to flip the logic so that you get a FALSE when it would be TRUE, or TRUE when it would be FALSE. To do this, put in either a != instead of ==:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">!=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>or a ! before the logical object or statement that you want to reverse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>correct_vector <span class="sc">==</span> <span class="st">"correct"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>correct_vector <span class="sc">==</span> <span class="st">"correct"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which is the same as</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(correct_vector <span class="sc">==</span> <span class="st">"correct"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="and-using" class="level2">
+<h2 class="anchored" data-anchor-id="and-using">And using &amp;</h2>
+<p>If you want to get a TRUE outcome only if multiple statements are all TRUE, then you can use the “&amp;” operator. Lets imagine you want to only focus on responses in your data that are correct AND quick enough i.e.&nbsp;less than 1000ms:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>response_times_vector <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">1200</span>,<span class="dv">600</span>,<span class="dv">800</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>valid_responses <span class="ot">&lt;-</span> response_times_vector <span class="sc">&lt;</span> <span class="dv">1000</span> <span class="sc">&amp;</span> correct_vector <span class="sc">==</span> <span class="st">"correct"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>valid_responses</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE</code></pre>
+</div>
+</div>
+<p>So only the third response was both correct and quick enough.</p>
+</section>
+<section id="or-using" class="level2">
+<h2 class="anchored" data-anchor-id="or-using">OR using |</h2>
+<p>OR statements can be used to get a TRUE outcome if at least one of the logical statements is TRUE. Lets imagine that you were trying to select a subset of participants who either were colorblind or wore glasses. Your data might look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>eyesight_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participant_number =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">eyesight           =</span> <span class="fu">c</span>(<span class="st">"colorblind"</span>,<span class="st">"colorblind"</span>,<span class="st">"uncorrected"</span>,<span class="st">"uncorrected"</span>,<span class="st">"glasses"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(eyesight_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["participant_number"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["eyesight"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"colorblind"},{"1":"2","2":"colorblind"},{"1":"3","2":"uncorrected"},{"1":"4","2":"uncorrected"},{"1":"5","2":"glasses"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>If we just wanted the rows that had people who were colorblind or wore glasess, we could create the following logical vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>colorblind_glasses_vector <span class="ot">&lt;-</span> eyesight_data<span class="sc">$</span>eyesight <span class="sc">==</span> <span class="st">"colorblind"</span> <span class="sc">|</span> eyesight_data<span class="sc">$</span>eyesight <span class="sc">==</span> <span class="st">"glasses"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>colorblind_glasses_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

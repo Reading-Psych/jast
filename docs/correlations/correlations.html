@@ -238,6 +238,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -342,8 +347,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#variance-of-individual-variables" id="toc-variance-of-individual-variables" class="nav-link active" data-scroll-target="#variance-of-individual-variables">Variance of individual variables</a></li>
-  <li><a href="#spearmans-rankspearmans-rho" id="toc-spearmans-rankspearmans-rho" class="nav-link" data-scroll-target="#spearmans-rankspearmans-rho">Spearman’s Rank/Spearman’s Rho</a></li>
+  <li><a href="#variance-of-individual-variables" id="toc-variance-of-individual-variables" class="nav-link active" data-scroll-target="#variance-of-individual-variables">Variance of individual variables</a>
+  <ul class="collapse">
+  <li><a href="#total-variance" id="toc-total-variance" class="nav-link" data-scroll-target="#total-variance">Total variance</a></li>
+  <li><a href="#shared-variance-between-x-and-y" id="toc-shared-variance-between-x-and-y" class="nav-link" data-scroll-target="#shared-variance-between-x-and-y">Shared variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></a></li>
+  <li><a href="#comparing-shared-variance-var_xy-to-total-variance" id="toc-comparing-shared-variance-var_xy-to-total-variance" class="nav-link" data-scroll-target="#comparing-shared-variance-var_xy-to-total-variance">Comparing <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>) to <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span></a></li>
+  </ul></li>
+  <li><a href="#spearmans-rank-aka-spearmans-rho" id="toc-spearmans-rank-aka-spearmans-rho" class="nav-link" data-scroll-target="#spearmans-rank-aka-spearmans-rho">Spearman’s Rank (AKA Spearman’s Rho)</a></li>
   </ul>
 </nav>
     </div>
@@ -417,11 +427,7 @@ var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
 <p><span class="math inline">\(\bar{y}\)</span> refers to the mean y-score across all participants</p>
 <p><span class="math inline">\(N\)</span> refers to the number of participants</p>
 <p><span class="math inline">\(N-1\)</span> is <strong>degrees of freedom</strong>, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the <a href="../distributions/dispersion">dispersion</a> section).</p>
-<p>An important thing to note, is that variance of x could also be written as:</p>
-<p><span class="math display">\[
-var_x = \frac{\sum(x_i-\bar{x})(x_i-\bar{x})}{N-1}
-\]</span></p>
-<p>The <span class="math inline">\(SD\)</span> (Standard deviation; which is just the square root of variance) of how data varies around the mean <span class="math inline">\(gdp\)</span> (per capita) can be visualised as follows within the gapminder <span class="math inline">\(gdp*lifeExpectancy\)</span> in the light blue box:</p>
+<p>The <span class="math inline">\(SD\)</span> (Standard deviation; which is just the square root of variance) of how data is distributed around the mean <span class="math inline">\(gdp\)</span> (per capita) can be visualised as follows within the gapminder <span class="math inline">\(gdp*lifeExpectancy\)</span> in the light blue box:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -461,11 +467,18 @@ var_x = \frac{\sum(x_i-\bar{x})(x_i-\bar{x})}{N-1}
 <p><img src="correlations_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Rather than looking at variance just around the x-mean, we can adapt the above formula to focus on variance around <strong>both</strong> the x <strong>and</strong> y-mean:</p>
+<section id="total-variance" class="level3">
+<h3 class="anchored" data-anchor-id="total-variance">Total variance</h3>
+<p>A correlation aims to explain how much of the <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> is explained by the overlapping variance between the x and y axes. So we need to capture the <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> separately for the x and y axes. We do this by multiplying the variance for <span class="math inline">\(x\)</span> by the variance for <span class="math inline">\(y\)</span> (and square rooting to control for the multiplication itself):</p>
 <p><span class="math display">\[
-var_x = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
+totalVariance = \sqrt{\frac{\sum(x_i-\bar{x})^2}{N-1}}*\sqrt{\frac{\sum(y_i-\bar{y})^2}{N-1}}
 \]</span></p>
-<p>Which can be visualised by highlighting the standard deviation of both the x <strong>AND</strong> y axes.</p>
+<p>(Which is the same as:</p>
+<p><span class="math display">\[
+totalVariance = \frac{\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}{N-1}
+\]</span></p>
+<p>)</p>
+<p>This is analogous to understanding the total area of a square by multiplying the length of each side with each other. This can be visualised by highlighting the standard deviation (<strong>which is the square root of variance</strong>) of both the x <strong>AND</strong> y axes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -502,12 +515,355 @@ var_x = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
 <p><img src="correlations_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><em>Note that the above figures uses SD</em> <span class="math inline">\(\sqrt(variance)\)</span> <em>rather than</em> <span class="math inline">\(variance\)</span> <em>to visualise the which values are within 1 SD of the mean x and y values, which are visualised by the red intersecting lines.</em></p>
-<p>To complete a <strong>Pearson’s</strong> <strong>R</strong> correlation we’ll use the variance of x and y values and their co-variance with each other to calculate what proportion of the variance of each variable is explained by the other variable.</p>
-<p>(as you use the sample to make assumptions about the population)</p>
+<p><em>Note that the above figures uses SD</em> <span class="math inline">\(\sqrt(variance)\)</span> <em>rather than</em> <span class="math inline">\(variance\)</span> <em>to visualise the which values are within 1 SD of the mean x and y values, which are visualised by the red intersecting lines. Also, note that many of the data points are not within 1 SD of the x and y axes, suggesting skewed distributions.</em></p>
 </section>
-<section id="spearmans-rankspearmans-rho" class="level2">
-<h2 class="anchored" data-anchor-id="spearmans-rankspearmans-rho">Spearman’s Rank/Spearman’s Rho</h2>
+<section id="shared-variance-between-x-and-y" class="level3">
+<h3 class="anchored" data-anchor-id="shared-variance-between-x-and-y">Shared variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></h3>
+<p>An important thing to note, is that variance of a single variable, in this case x:</p>
+<p><span class="math display">\[
+var_x = \frac{\sum(x_i-\bar{x})^2}{N-1}
+\]</span></p>
+<p>could also be written as:</p>
+<p><span class="math display">\[
+var_x = \frac{\sum(x_i-\bar{x})(x_i-\bar{x})}{N-1}
+\]</span></p>
+<p>To look at the amount that x and y vary together, we can adapt a formula for how much <span class="math inline">\(x\)</span> varies (with itself) to now look at how much <span class="math inline">\(x\)</span> varies with <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[
+var_{xy} = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
+\]</span></p>
+</section>
+<section id="comparing-shared-variance-var_xy-to-total-variance" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-shared-variance-var_xy-to-total-variance">Comparing <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>) to <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span></h3>
+<p>To complete a <strong>Pearson’s</strong> <strong>R</strong> correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the <strong>proportion</strong> of <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> is explained by the <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>).</p>
+<p><span class="math display">\[
+\frac{var_{xy}}{totalVariance} = \frac{(\sum(x_i-\bar{x})(y_i-\bar{y}))/{N-1}}
+                                      {(\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2)/N-1}
+\]</span></p>
+<p>Note that both <span class="math inline">\(var_{xy}\)</span> and <span class="math inline">\(totalVariance\)</span> correct for the degrees of freedom, so the <span class="math inline">\(N-1\)</span>s cancel each other out:</p>
+<p><span class="math display">\[
+r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
+                                      {\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}
+\]</span></p>
+<p>Lets apply this to the gapminder data above to calculate <span class="math inline">\(r\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>varxy <span class="ot">=</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    (gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap)) <span class="sc">*</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    (gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>totalvar <span class="ot">=</span> <span class="fu">sqrt</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>varxy<span class="sc">/</span>totalvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6786624</code></pre>
+</div>
+</div>
+<p>If the above calculation is correct, we’ll get exactly the same value when using the <strong>cor.test</strong> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>gdpPercap, gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  gapminder_2007$gdpPercap and gapminder_2007$lifeExp
+t = 10.933, df = 140, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.5786217 0.7585843
+sample estimates:
+      cor 
+0.6786624 </code></pre>
+</div>
+</div>
+<p>To visualise what proportion of the variance is captured by <span class="math inline">\(var_{xy}\)</span>, we need to:</p>
+<ul>
+<li>standardise the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>-axes into z-scores so that the difference in scales doesn’t distort comparisons between x and y-axes. We’ll do this by calculating z-scores</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>gdpPercap_z <span class="ot">&lt;-</span> (gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))<span class="sc">/</span><span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>gdpPercap)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>lifeExp_z <span class="ot">&lt;-</span> (gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">/</span><span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>gdpPercap_z_by_lifeExp_z <span class="ot">&lt;-</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>gdpPercap_z<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z)) <span class="sc">*</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>lifeExp_z<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_z))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># confirming that everything has been transformed appropriately to get same r-value</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>totalvar_z <span class="ot">=</span> <span class="fu">sqrt</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>gdpPercap_z <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp_z <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_z))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>var_explained <span class="ot">&lt;-</span> <span class="fu">sum</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z_by_lifeExp_z)<span class="sc">/</span>totalvar_z</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># this adjustment reflects the plot using SD rather than variance: </span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>sd_adjust <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_explained)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007, </span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span>gdpPercap_z, </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span>lifeExp_z</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z), </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_z), </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>,  </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>, </span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span>  <span class="sc">-</span> sd_adjust,</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span>  sd_adjust,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="sc">-</span> sd_adjust,</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="sc">+</span> sd_adjust,</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">2</span>,</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"red"</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>, </span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z) <span class="sc">-</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z),</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z) <span class="sc">+</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>gdpPercap_z),</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_z) <span class="sc">-</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>lifeExp_z),</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_z) <span class="sc">+</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>lifeExp_z),</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">1</span>,</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="correlations_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The above figure seems consistent with 67.9% of <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> being explained by overlapping variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>You may have noticed that the data above looks like it’s not normally distributed, so lets check skewness and kurtosis to see if we should use Spearman’s Rho (AKA Spearman’s Rank) instead:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Skewness and kurtosis and their standard errors as implement by SPSS</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference: pp 451-452 of</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># http://support.spss.com/ProductsExt/SPSS/Documentation/Manuals/16.0/SPSS 16.0 Algorithms.pdf</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># See also: Suggestion for Using Powerful and Informative Tests of Normality,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ralph B. D'Agostino, Albert Belanger, Ralph B. D'Agostino, Jr.,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The American Statistician, Vol. 44, No. 4 (Nov., 1990), pp. 316-321</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis<span class="ot">=</span><span class="cf">function</span>(x) {</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  w<span class="ot">=</span><span class="fu">length</span>(x)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  m1<span class="ot">=</span><span class="fu">mean</span>(x)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  m2<span class="ot">=</span><span class="fu">sum</span>((x<span class="sc">-</span>m1)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  m3<span class="ot">=</span><span class="fu">sum</span>((x<span class="sc">-</span>m1)<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  m4<span class="ot">=</span><span class="fu">sum</span>((x<span class="sc">-</span>m1)<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  s1<span class="ot">=</span><span class="fu">sd</span>(x)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  skew<span class="ot">=</span>w<span class="sc">*</span>m3<span class="sc">/</span>(w<span class="dv">-1</span>)<span class="sc">/</span>(w<span class="dv">-2</span>)<span class="sc">/</span>s1<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  sdskew<span class="ot">=</span><span class="fu">sqrt</span>( <span class="dv">6</span><span class="sc">*</span>w<span class="sc">*</span>(w<span class="dv">-1</span>) <span class="sc">/</span> ((w<span class="dv">-2</span>)<span class="sc">*</span>(w<span class="sc">+</span><span class="dv">1</span>)<span class="sc">*</span>(w<span class="sc">+</span><span class="dv">3</span>)) )</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  kurtosis<span class="ot">=</span>(w<span class="sc">*</span>(w<span class="sc">+</span><span class="dv">1</span>)<span class="sc">*</span>m4 <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span>m2<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(w<span class="dv">-1</span>)) <span class="sc">/</span> ((w<span class="dv">-1</span>)<span class="sc">*</span>(w<span class="dv">-2</span>)<span class="sc">*</span>(w<span class="dv">-3</span>)<span class="sc">*</span>s1<span class="sc">^</span><span class="dv">4</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  sdkurtosis<span class="ot">=</span><span class="fu">sqrt</span>( <span class="dv">4</span><span class="sc">*</span>(w<span class="sc">^</span><span class="dv">2-1</span>) <span class="sc">*</span> sdskew<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> ((w<span class="dv">-3</span>)<span class="sc">*</span>(w<span class="sc">+</span><span class="dv">5</span>)) )</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="do">## z-scores added by reading-psych</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  zskew <span class="ot">=</span> skew<span class="sc">/</span>sdskew</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  zkurtosis <span class="ot">=</span> kurtosis<span class="sc">/</span>sdkurtosis</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  mat<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(skew,kurtosis, sdskew,sdkurtosis, zskew, zkurtosis), <span class="dv">2</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">dimnames=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"skew"</span>,<span class="st">"kurtosis"</span>), <span class="fu">c</span>(<span class="st">"estimate"</span>,<span class="st">"se"</span>,<span class="st">"zScore"</span>)))</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mat)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          estimate        se    zScore
+skew     1.2241977 0.2034292 6.0178067
+kurtosis 0.3500942 0.4041614 0.8662238</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           estimate        se    zScore
+skew     -0.6887771 0.2034292 -3.385832
+kurtosis -0.8298204 0.4041614 -2.053191</code></pre>
+</div>
+</div>
+<p>As GDP and Life Expectancy skewness and (kurtosis for life expectancy) estimates are more than 1.96 * their standard errors (i.e.&nbsp;their z-scores are above 1.96), we have significant evidence that the data for both variabels is <em>not</em> normally distributed, and thus we can/should complete a Spearman’s Rank/Rho correlation (in the next subsection).</p>
+</section>
+</section>
+<section id="spearmans-rank-aka-spearmans-rho" class="level2">
+<h2 class="anchored" data-anchor-id="spearmans-rank-aka-spearmans-rho">Spearman’s Rank (AKA Spearman’s Rho)</h2>
+<p><strong>Spearman’s Rank</strong> correlation is identical to a Pearson correlation (described above), but adds a step of converting all the data into ranks before conducting any analyses. This is useful because <strong>ranks</strong> are not vulnerable to outlier (i.e.&nbsp;unusually extreme) data points. Let’s now turn the gapminder data we’ve been working with above into ranks and then run a Pearson’s correlation on it to confirm this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>gdpPercap_rank <span class="ot">&lt;-</span> <span class="fu">rank</span>(gapminder_2007<span class="sc">$</span>gdpPercap)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>lifeExp_rank <span class="ot">&lt;-</span> <span class="fu">rank</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lets do a quick check to see that ranking the data addresses the problems with skewness and kurtosis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         estimate        se    zScore
+skew          0.0 0.2034292  0.000000
+kurtosis     -1.2 0.4041614 -2.969111</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         estimate        se    zScore
+skew          0.0 0.2034292  0.000000
+kurtosis     -1.2 0.4041614 -2.969111</code></pre>
+</div>
+</div>
+<p>This has successfully removed any issue with skewness of the data, but has made the data more platykurtic (i.e.&nbsp;flatter). A problem with platykurtic data is that parametric tests might be <strong>over</strong> sensitive to identifying significant effects (see <a href="../distributions/kurtosis.html" target="_blank">kurtosis</a>), i.e.&nbsp;be at a higher risk of <strong>false positives</strong>. This is evidence that using a Spearman’s Rank may increase a risk of a false-positive (at least with this data), so <a href="transforming" target="_blank">another transformation of the data</a> may be more appropriate to avoid this problem with kurtosis.</p>
+<p>For now, lets focus on how much of the variance in ranks is explained in the overlap in variance of <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span> ranks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson correlation on **ranked** data:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank, gapminder_2007<span class="sc">$</span>lifeExp_rank, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  gapminder_2007$gdpPercap_rank and gapminder_2007$lifeExp_rank
+t = 19.642, df = 140, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.8055253 0.8950257
+sample estimates:
+      cor 
+0.8565899 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spearman correlation applied to original data (letting R do the ranking)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>gdpPercap, gapminder_2007<span class="sc">$</span>lifeExp, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  gapminder_2007$gdpPercap and gapminder_2007$lifeExp
+S = 68434, p-value &lt; 2.2e-16
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.8565899 </code></pre>
+</div>
+</div>
+<p>The <span class="math inline">\(r\)</span> value is now .857, suggesting that the overlap between <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span> explains 85.7% of the total variance of the ranks for both of them.</p>
+<p>Lets visualise this using similar principles above on the <strong>ranks</strong> of <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gapminder_2007$gdpPercap_rank_z = </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   (gapminder_2007$gdpPercap_rank - mean(gapminder_2007$gdpPercap_rank))/</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   sd(gapminder_2007$gdpPercap_rank)</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># gapminder_2007$lifeExp_rank_z = </span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   (gapminder_2007$lifeExp_rank - mean(gapminder_2007$lifeExp_rank))/</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   sd(gapminder_2007$lifeExp_rank)</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z = </span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   gapminder_2007$gdpPercap_rank_z * gapminder_2007$lifeExp_rank_z</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   data = gapminder_2007, </span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   aes(</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     x=gdpPercap_rank_z, </span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     y=lifeExp_rank_z</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ) + </span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_point() +</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_vline(</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#     xintercept = mean(gapminder_2007$gdpPercap_rank_z), </span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     linetype   = "dashed", </span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#     color      = "red", </span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#     size       = 2</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_hline(</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co">#     yintercept = mean(gapminder_2007$lifeExp_rank_z), </span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     linetype   = "dashed",  </span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co">#     color      = "red", </span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     size       = 2</span></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="co">#   annotate(</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="co">#     "rect", </span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="co">#     xmin =  - sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     xmax =  sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co">#     ymin = - sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="co">#     ymax = + sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="co">#     alpha = .2,</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co">#     fill = "red"</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) +</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   annotate(</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co">#     "rect", </span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co">#     xmin = mean(gapminder_2007$gdpPercap_rank_z) - sd(gapminder_2007$gdpPercap_rank_z),</span></span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="co">#     xmax = mean(gapminder_2007$gdpPercap_rank_z) + sd(gapminder_2007$gdpPercap_rank_z),</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="co">#     ymin = mean(gapminder_2007$lifeExp_rank_z) - sd(gapminder_2007$lifeExp_rank_z),</span></span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a><span class="co">#     ymax = mean(gapminder_2007$lifeExp_rank_z) + sd(gapminder_2007$lifeExp_rank_z),</span></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     alpha = .1,</span></span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a><span class="co">#     fill = "blue"</span></span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>gdpPercap_rank_z <span class="ot">&lt;-</span> </span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>gdpPercap_rank <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank))<span class="sc">/</span></span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank)</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>lifeExp_rank_z <span class="ot">&lt;-</span> </span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>lifeExp_rank <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank))<span class="sc">/</span></span>
+<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank)</span>
+<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>gdpPercap_rank_z_by_lifeExp_rank_z <span class="ot">&lt;-</span> </span>
+<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>gdpPercap_rank_z<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z)) <span class="sc">*</span> </span>
+<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>lifeExp_rank_z<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank_z))</span>
+<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a><span class="co"># confirming that everything has been transformed appropriately to get same r-value</span></span>
+<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>totalvar_rank_z <span class="ot">=</span> <span class="fu">sqrt</span>(</span>
+<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>gdpPercap_rank_z <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span></span>
+<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp_rank_z <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank_z))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>rank_var_explained <span class="ot">&lt;-</span> <span class="fu">sum</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z_by_lifeExp_rank_z)<span class="sc">/</span>totalvar_rank_z</span>
+<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a><span class="co"># this adjustment reflects the plot using SD rather than variance: </span></span>
+<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>rank_sd_adjust <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(rank_var_explained)</span>
+<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007, </span>
+<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span>gdpPercap_rank_z, </span>
+<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span>lifeExp_rank_z</span>
+<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> </span>
+<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z), </span>
+<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank_z), </span>
+<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>,  </span>
+<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>, </span>
+<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span>  <span class="sc">-</span> rank_sd_adjust,</span>
+<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span>  rank_sd_adjust,</span>
+<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="sc">-</span> rank_sd_adjust,</span>
+<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> rank_sd_adjust,</span>
+<span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">2</span>,</span>
+<span id="cb23-99"><a href="#cb23-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"red"</span></span>
+<span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb23-102"><a href="#cb23-102" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>, </span>
+<span id="cb23-103"><a href="#cb23-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z) <span class="sc">-</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z),</span>
+<span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z) <span class="sc">+</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank_z),</span>
+<span id="cb23-105"><a href="#cb23-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank_z) <span class="sc">-</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank_z),</span>
+<span id="cb23-106"><a href="#cb23-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank_z) <span class="sc">+</span> <span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank_z),</span>
+<span id="cb23-107"><a href="#cb23-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">1</span>,</span>
+<span id="cb23-108"><a href="#cb23-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span></span>
+<span id="cb23-109"><a href="#cb23-109" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="correlations_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Note that a larger portion of the</em> <span class="math inline">\(total\)</span><span class="math inline">\(variance\)</span> <em>is explained by</em> <span class="math inline">\(var_{xy}\)</span> <em>and that the data is no longer skewed. The fact that the data is platykurtic is reflected by there being a relatively low number of data points within 1 SD of the means, compared to outside of the means.</em></p>
 
 
 </section>

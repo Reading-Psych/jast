@@ -1,26 +1,163 @@
 ---
-title: "Transforming Data"
+title: "Transforming Data (incomplete)"
 format: html
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+A lot of analyses is dependent on data being <a href="normal">normally distributed</a>. One problem with your data might be that it is <a href="skewness.html" target="_blank">skewed</a>. Lets focus on the **gapminder** data from 2007 to see if the $gdp$ and $life$ $expectancy$ data is skewed, and how this could be addressed.
 
 ```{r}
-1 + 1
+library(gapminder)
+library(ggplot2)
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+# Skewness and kurtosis and their standard errors as implement by SPSS
+#
+# Reference: pp 451-452 of
+# http://support.spss.com/ProductsExt/SPSS/Documentation/Manuals/16.0/SPSS 16.0 Algorithms.pdf
+# 
+# See also: Suggestion for Using Powerful and Informative Tests of Normality,
+# Ralph B. D'Agostino, Albert Belanger, Ralph B. D'Agostino, Jr.,
+# The American Statistician, Vol. 44, No. 4 (Nov., 1990), pp. 316-321
+
+spssSkewKurtosis=function(x) {
+  w=length(x)
+  m1=mean(x)
+  m2=sum((x-m1)^2)
+  m3=sum((x-m1)^3)
+  m4=sum((x-m1)^4)
+  s1=sd(x)
+  skew=w*m3/(w-1)/(w-2)/s1^3
+  sdskew=sqrt( 6*w*(w-1) / ((w-2)*(w+1)*(w+3)) )
+  kurtosis=(w*(w+1)*m4 - 3*m2^2*(w-1)) / ((w-1)*(w-2)*(w-3)*s1^4)
+  sdkurtosis=sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)) )
+  
+  ## z-scores added by reading-psych
+  zskew = skew/sdskew
+  zkurtosis = kurtosis/sdkurtosis
+
+  mat=matrix(c(skew,kurtosis, sdskew,sdkurtosis, zskew, zkurtosis), 2,
+        dimnames=list(c("skew","kurtosis"), c("estimate","se","zScore")))
+  return(mat)
+}
+spssSkewKurtosis(gapminder_2007$gdpPercap)
+spssSkewKurtosis(gapminder_2007$lifeExp)
 ```
 
-You can add options to executable code like this
+So it looks like both the $gdp$ and $life$ $expectancy$ are skewed (as their z-scores are greater than 1.96). Lets double check with a quick plot:
 
 ```{r}
-#| echo: false
-2 * 2
+plot(
+  gapminder_2007$gdpPercap,
+  gapminder_2007$lifeExp
+)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+It's relatively easy to see the skewness of $gdp$, but $life$ $expectancy$ is a bit more subtle. We can complete a logarithmic transformation to reduce the skewness, so lets do that to both variables and then replot the data:
+
+```{r}
+gapminder_2007$gdpPercap_log <- log(gapminder_2007$gdpPercap)
+gapminder_2007$lifeExp_log <- log(gapminder_2007$lifeExp)
+plot(
+  gapminder_2007$gdpPercap_log,
+  gapminder_2007$lifeExp_log
+)
+```
+
+Lets check if the skewness has changed for the $gdp$:
+
+```{r}
+# original gdp
+spssSkewKurtosis(gapminder_2007$gdpPercap)
+# transformed gdp (log)
+spssSkewKurtosis(gapminder_2007$gdpPercap_log)
+```
+
+So, transforming the $gdp$ did reduce skewness but increased Kurtsosis, so beware that applying a transformation may cause other problems! Lets check whether the log transformation reduced skewness for $life$ $expectancy$:
+
+```{r}
+# original life expectancy
+spssSkewKurtosis(gapminder_2007$lifeExp)
+# transformed life expectancy
+spssSkewKurtosis(gapminder_2007$lifeExp_log)
+```
+
+Seems like the answer is **no**.
+
+An important question is whether the associations between your variables change after transformation, so let's check that next:
+
+```{r}
+# correlation on original data
+cor.test(
+  gapminder_2007$gdpPercap,
+  gapminder_2007$lifeExp
+)
+
+# correlation on transformed data
+cor.test(
+  gapminder_2007$gdpPercap_log,
+  gapminder_2007$lifeExp_log
+)
+```
+
+The log transformed data is more strongly associated with each other than the original data. However, there are other transformations that are additive (plus or minus a value to the original data) or multiplicative (which can also include division) that will **not** change the association (check whether the r-value $cor$ changes):
+
+```{r}
+# correlation with original data
+cor.test(
+  gapminder_2007$gdpPercap,
+  gapminder_2007$lifeExp
+)
+# correlation with original data + 5 to one variable
+cor.test(
+  gapminder_2007$gdpPercap + 5,
+  gapminder_2007$lifeExp
+)
+# correlation with original data - 10 to one variable
+cor.test(
+  gapminder_2007$gdpPercap,
+  gapminder_2007$lifeExp - 10
+)
+# correlation with multiplication of 5 to one variable
+cor.test(
+  gapminder_2007$gdpPercap * 5,
+  gapminder_2007$lifeExp
+)
+```
+
+Some transformations will change the association if you apply them to one variable:
+
+```{r}
+# correlation with original data
+cor.test(
+  gapminder_2007$gdpPercap,
+  gapminder_2007$lifeExp
+)
+# correlation with one squared variable
+cor.test(
+  gapminder_2007$gdpPercap ^2,
+  gapminder_2007$lifeExp
+)
+```
+
+but not if you apply similar transformations to both variables
+
+d if the association has changed:
+
+```{r}
+# correlation with original data
+cor.test(
+  gapminder_2007$gdpPercap,
+  gapminder_2007$lifeExp
+)
+# correlation with both variables squared
+cor.test(
+  sqrt(gapminder_2007$gdpPercap),
+  gapminder_2007$lifeExp ^2
+)
+```

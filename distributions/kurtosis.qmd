@@ -5,6 +5,9 @@ editor: visual
 ---
 
 
+# Is Platykurtic vs. leptokurtic data more sensitive to false positives!
+
+
 or **overly** clustered around the mean (leptokurtik)
 
 

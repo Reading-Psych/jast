@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - R Logic</title>
+<title>Just Another Statistics Textbook - Correlations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,6 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -161,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">R Logic</h1>
+      <h1 class="quarto-secondary-nav-title">Correlations</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -304,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations</a>
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link active">Correlations</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -341,12 +342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#greater-and-less-than-using-and" id="toc-greater-and-less-than-using-and" class="nav-link active" data-scroll-target="#greater-and-less-than-using-and">Greater and less than using &gt; and &lt;</a></li>
-  <li><a href="#comparing-values-using" id="toc-comparing-values-using" class="nav-link" data-scroll-target="#comparing-values-using">Comparing values using ==</a></li>
-  <li><a href="#indexingselecting-data" id="toc-indexingselecting-data" class="nav-link" data-scroll-target="#indexingselecting-data">Indexing/Selecting data</a></li>
-  <li><a href="#to-reverse-logic" id="toc-to-reverse-logic" class="nav-link" data-scroll-target="#to-reverse-logic">! to reverse logic</a></li>
-  <li><a href="#and-using" id="toc-and-using" class="nav-link" data-scroll-target="#and-using">And using &amp;</a></li>
-  <li><a href="#or-using" id="toc-or-using" class="nav-link" data-scroll-target="#or-using">OR using |</a></li>
+  <li><a href="#variance-of-individual-variables" id="toc-variance-of-individual-variables" class="nav-link active" data-scroll-target="#variance-of-individual-variables">Variance of individual variables</a></li>
+  <li><a href="#spearmans-rankspearmans-rho" id="toc-spearmans-rankspearmans-rho" class="nav-link" data-scroll-target="#spearmans-rankspearmans-rho">Spearman’s Rank/Spearman’s Rho</a></li>
   </ul>
 </nav>
     </div>
@@ -355,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">R Logic</h1>
+<h1 class="title d-none d-lg-block">Correlations</h1>
 </div>
 
 
@@ -369,144 +366,148 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="greater-and-less-than-using-and" class="level2">
-<h2 class="anchored" data-anchor-id="greater-and-less-than-using-and">Greater and less than using &gt; and &lt;</h2>
-<p>If you want to see if one <strong>object</strong> is larger than (&gt;) or smaller (&lt;) than another object, you can use the &gt; and &lt; operators:</p>
+<p>Correlations capture how two variables <strong>vary together</strong>. To understand this, we need to think about how each variable varies <strong>independently, together</strong> and compare the two. We’ll use the <strong>gapminder</strong> data to look at how how life expectancy correlated with GDP in 2007:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-<p>Unsurprising that the above is false, as 1 is <strong>not greater than</strong> 2. Lets double check if 1 is less than 2:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&lt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-</section>
-<section id="comparing-values-using" class="level2">
-<h2 class="anchored" data-anchor-id="comparing-values-using">Comparing values using ==</h2>
-<p>If you want to see if 2 <strong>objects</strong> are the same, then you can use ==. Lets check if 1 is the same as 2:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-<p>Unsurprisingly, 2 is not the same as 1. Lets see if 3/2 is the same as 1.5:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">==</span> <span class="fl">1.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-<p>Great! What you’re more likely to want to do is to compare a vector to a value. So let’s imagine that you have asked your participants a question, and have a <strong>vector</strong> that identifies whether someone got an answer correct or not. Let’s compare that vector to the word “correct”:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>correct_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"correct"</span>, <span class="st">"incorrect"</span>, <span class="st">"correct"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>correct_vector <span class="sc">==</span> <span class="st">"correct"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE  TRUE</code></pre>
-</div>
-</div>
-<p>This creates an <strong>logical vector</strong> of <strong>TRUE</strong> and <strong>FALSE</strong> values. Let’s use this now to select data:</p>
-</section>
-<section id="indexingselecting-data" class="level2">
-<h2 class="anchored" data-anchor-id="indexingselecting-data">Indexing/Selecting data</h2>
-<p>Sometimes you want to only focus on certain data, and <strong>indexing</strong> is a way to do this. We’re now going to create a data frame for a participant who has completed 3 trials of a reaction time task. This will include whether they were correct or not, and what their response time is. We will then using indexing to select the response times when the participant was correct:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>response_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">accuracy =</span> correct_vector, <span class="co"># see the vector created above</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">response_times =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">105</span>,<span class="dv">180</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(response_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span>     </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># a reminder of the data frame</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(<span class="fu">head</span>(gapminder_2007))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["accuracy"],"name":[1],"type":["chr"],"align":["left"]},{"label":["response_times"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"correct","2":"100"},{"1":"incorrect","2":"105"},{"1":"correct","2":"180"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"Asia","3":"2007","4":"43.828","5":"31889923","6":"974.5803"},{"1":"Albania","2":"Europe","3":"2007","4":"76.423","5":"3600523","6":"5937.0295"},{"1":"Algeria","2":"Africa","3":"2007","4":"72.301","5":"33333216","6":"6223.3675"},{"1":"Angola","2":"Africa","3":"2007","4":"42.731","5":"12420476","6":"4797.2313"},{"1":"Argentina","2":"Americas","3":"2007","4":"75.320","5":"40301927","6":"12779.3796"},{"1":"Australia","2":"Oceania","3":"2007","4":"81.235","5":"20434176","6":"34435.3674"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an index using the logical "same as" operator</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>accuracy_index <span class="ot">&lt;-</span> response_table<span class="sc">$</span>accuracy <span class="sc">==</span> <span class="st">"correct"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use square brackets to use an index to select</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>accurate_trials_response_times <span class="ot">&lt;-</span> response_table<span class="sc">$</span>response_times[accuracy_index]</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># show the valid response times for accurate trials:</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>accurate_trials_response_times</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 100 180</code></pre>
-</div>
-</div>
-<p>Indexing is useful to remove unwanted data. In this case, most researchers think that response times when a participant makes an invalid response are not very informative, so they remove those response times using indexing above.</p>
-</section>
-<section id="to-reverse-logic" class="level2">
-<h2 class="anchored" data-anchor-id="to-reverse-logic">! to reverse logic</h2>
-<p>Sometimes you’ll want to flip the logic so that you get a FALSE when it would be TRUE, or TRUE when it would be FALSE. To do this, put in either a != instead of ==:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">!=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-<p>or a ! before the logical object or statement that you want to reverse:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>correct_vector <span class="sc">==</span> <span class="st">"correct"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE  TRUE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>correct_vector <span class="sc">==</span> <span class="st">"correct"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE  TRUE FALSE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which is the same as</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(correct_vector <span class="sc">==</span> <span class="st">"correct"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE  TRUE FALSE</code></pre>
-</div>
-</div>
-</section>
-<section id="and-using" class="level2">
-<h2 class="anchored" data-anchor-id="and-using">And using &amp;</h2>
-<p>If you want to get a TRUE outcome only if multiple statements are all TRUE, then you can use the “&amp;” operator. Lets imagine you want to only focus on responses in your data that are correct AND quick enough i.e.&nbsp;less than 1000ms:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>response_times_vector <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">1200</span>,<span class="dv">600</span>,<span class="dv">800</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>valid_responses <span class="ot">&lt;-</span> response_times_vector <span class="sc">&lt;</span> <span class="dv">1000</span> <span class="sc">&amp;</span> correct_vector <span class="sc">==</span> <span class="st">"correct"</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>valid_responses</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE FALSE  TRUE</code></pre>
-</div>
-</div>
-<p>So only the third response was both correct and quick enough.</p>
-</section>
-<section id="or-using" class="level2">
-<h2 class="anchored" data-anchor-id="or-using">OR using |</h2>
-<p>OR statements can be used to get a TRUE outcome if at least one of the logical statements is TRUE. Lets imagine that you were trying to select a subset of participants who either were colorblind or wore glasses. Your data might look like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>eyesight_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participant_number =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">eyesight           =</span> <span class="fu">c</span>(<span class="st">"colorblind"</span>,<span class="st">"colorblind"</span>,<span class="st">"uncorrected"</span>,<span class="st">"uncorrected"</span>,<span class="st">"glasses"</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(eyesight_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span>gdpPercap, </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span>lifeExp</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["participant_number"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["eyesight"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"colorblind"},{"1":"2","2":"colorblind"},{"1":"3","2":"uncorrected"},{"1":"4","2":"uncorrected"},{"1":"5","2":"glasses"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<p><img src="correlations_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</div>
-<p>If we just wanted the rows that had people who were colorblind or wore glasess, we could create the following logical vector:</p>
+<p>Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.</p>
+<section id="variance-of-individual-variables" class="level2">
+<h2 class="anchored" data-anchor-id="variance-of-individual-variables">Variance of individual variables</h2>
+<p>For more insight into variance as a concept, have a look at <a href="../distributions/dispersion">dispersion</a>, but here we will focus on variance within the context of correlations. You have 2 variables, x (for the x-axis) and y (for the y-axis), and the variance for <strong>each</strong> of those is:</p>
+<p><span class="math display">\[
+var_x = \frac{\sum(x_i-\bar{x})^2}{N-1}
+\]</span></p>
+<p><span class="math display">\[
+var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
+\]</span></p>
+<p>Just a reminder of what each part of the formula is:</p>
+<p><span class="math inline">\(\sum\)</span> is saying to add together everything</p>
+<p><span class="math inline">\(x_i\)</span> refers to each individual’s x-score</p>
+<p><span class="math inline">\(y_i\)</span> refers to each individual’s y-score</p>
+<p><span class="math inline">\(\bar{x}\)</span> refers to the mean x-score across all participants</p>
+<p><span class="math inline">\(\bar{y}\)</span> refers to the mean y-score across all participants</p>
+<p><span class="math inline">\(N\)</span> refers to the number of participants</p>
+<p><span class="math inline">\(N-1\)</span> is <strong>degrees of freedom</strong>, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the <a href="../distributions/dispersion">dispersion</a> section).</p>
+<p>An important thing to note, is that variance of x could also be written as:</p>
+<p><span class="math display">\[
+var_x = \frac{\sum(x_i-\bar{x})(x_i-\bar{x})}{N-1}
+\]</span></p>
+<p>The <span class="math inline">\(SD\)</span> (Standard deviation; which is just the square root of variance) of how data varies around the mean <span class="math inline">\(gdp\)</span> (per capita) can be visualised as follows within the gapminder <span class="math inline">\(gdp*lifeExpectancy\)</span> in the light blue box:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>colorblind_glasses_vector <span class="ot">&lt;-</span> eyesight_data<span class="sc">$</span>eyesight <span class="sc">==</span> <span class="st">"colorblind"</span> <span class="sc">|</span> eyesight_data<span class="sc">$</span>eyesight <span class="sc">==</span> <span class="st">"glasses"</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>colorblind_glasses_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span>gdpPercap, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span>lifeExp</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>gdpPercap), </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>lifeExp), </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>,  </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>, </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>gdpPercap) <span class="sc">-</span> <span class="fu">sd</span>(gapminder<span class="sc">$</span>gdpPercap),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>gdpPercap) <span class="sc">+</span> <span class="fu">sd</span>(gapminder<span class="sc">$</span>gdpPercap),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="dv">0</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="dv">100</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">1</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">85</span>)) <span class="sc">+</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"GDP per capita"</span>) <span class="sc">+</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Life Expectancy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="correlations_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Rather than looking at variance just around the x-mean, we can adapt the above formula to focus on variance around <strong>both</strong> the x <strong>and</strong> y-mean:</p>
+<p><span class="math display">\[
+var_x = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
+\]</span></p>
+<p>Which can be visualised by highlighting the standard deviation of both the x <strong>AND</strong> y axes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span>gdpPercap, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span>lifeExp</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>gdpPercap), </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>lifeExp), </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype   =</span> <span class="st">"dashed"</span>,  </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color      =</span> <span class="st">"red"</span>, </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">size       =</span> <span class="dv">2</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"rect"</span>, </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>gdpPercap) <span class="sc">-</span> <span class="fu">sd</span>(gapminder<span class="sc">$</span>gdpPercap),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmax =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>gdpPercap) <span class="sc">+</span> <span class="fu">sd</span>(gapminder<span class="sc">$</span>gdpPercap),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>lifeExp) <span class="sc">-</span> <span class="fu">sd</span>(gapminder<span class="sc">$</span>lifeExp),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymax =</span> <span class="fu">mean</span>(gapminder<span class="sc">$</span>lifeExp) <span class="sc">+</span> <span class="fu">sd</span>(gapminder<span class="sc">$</span>lifeExp),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">1</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="correlations_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Note that the above figures uses SD</em> <span class="math inline">\(\sqrt(variance)\)</span> <em>rather than</em> <span class="math inline">\(variance\)</span> <em>to visualise the which values are within 1 SD of the mean x and y values, which are visualised by the red intersecting lines.</em></p>
+<p>To complete a <strong>Pearson’s</strong> <strong>R</strong> correlation we’ll use the variance of x and y values and their co-variance with each other to calculate what proportion of the variance of each variable is explained by the other variable.</p>
+<p>(as you use the sample to make assumptions about the population)</p>
+</section>
+<section id="spearmans-rankspearmans-rho" class="level2">
+<h2 class="anchored" data-anchor-id="spearmans-rankspearmans-rho">Spearman’s Rank/Spearman’s Rho</h2>
 
 
 </section>

@@ -234,10 +234,6 @@ var_explained <- sum(gapminder_2007$gdpPercap_z_by_lifeExp_z)/totalvar_z
 
 # this adjustment reflects the plot using SD rather than variance: 
 sd_adjust <- sqrt(var_explained)
-# 
-# gapminder_2007$gdpPercap_z = (gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))/sd(gapminder_2007$gdpPercap)
-# gapminder_2007$lifeExp_z = (gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))/sd(gapminder_2007$lifeExp)
-# gapminder_2007$gdpPercap_z_by_lifeExp_z = gapminder_2007$gdpPercap_z * gapminder_2007$lifeExp_z
 
 ggplot(
   data = gapminder_2007, 

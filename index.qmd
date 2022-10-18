@@ -14,14 +14,15 @@ Do make use of the search-bar in the top-right to find any content within the we
 ## Contributors (in alphabetical order)
 
 
-| Surname     | First Name  | Contribution  |
-| ----------- | ----------- | --------------|
-| Brady       | Dan         | Contributor   |
-| Goh         | Vera        | Suggestions   |
-| Haffey      | Anthony     | Author, Editor|
-| Mathews     | Imogen      | Contributor   |
-| Pritchard   | Katherine   | Suggestions   |
-| Sahni       | Angad       | Contributor   |
+| Surname     | First Name  | Contribution   |
+| ----------- | ----------- | -------------- |
+| Biagi       | Nico        | Author, Editor |
+| Brady       | Dan         | Contributor    |
+| Goh         | Vera        | Suggestions    |
+| Haffey      | Anthony     | Author, Editor |
+| Mathews     | Imogen      | Author         |
+| Pritchard   | Katherine   | Suggestions    |
+| Sahni       | Angad       | Contributor    |
 
 
 - **Authors** have written (sub)sections

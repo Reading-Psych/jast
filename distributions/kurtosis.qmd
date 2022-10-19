@@ -6,4 +6,150 @@ editor: visual
 
 **Kurtosis** refers to how influenced a distribution is by its tails. 
 
-kurtosis=(w*(w+1)*m4 - 3*m2^2*(w-1)) / ((w-1)*(w-2)*(w-3)*s1^4)
+$kurtosis=\frac{(N*(N+1)*m4 - 3*m2^2*(w-1))}{((N-1)*(N-2)*(N-3)*s1^4)}$
+
+$kurtosis_{SE} = sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)))$ 
+
+
+
+```{r}
+spssSkewKurtosis=function(x) {
+  w=length(x)
+  m1=mean(x)
+  m2=sum((x-m1)^2)
+  m3=sum((x-m1)^3)
+  m4=sum((x-m1)^4)
+  s1=sd(x)
+  skew=w*m3/(w-1)/(w-2)/s1^3
+  sdskew=sqrt( 6*w*(w-1) / ((w-2)*(w+1)*(w+3)) )
+  kurtosis=(w*(w+1)*m4 - 3*m2^2*(w-1)) / ((w-1)*(w-2)*(w-3)*s1^4)
+  sdkurtosis=sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)) )
+  
+  ## z-scores added by reading-psych
+  zskew = skew/sdskew
+  zkurtosis = kurtosis/sdkurtosis
+
+  mat=matrix(c(skew,kurtosis, sdskew,sdkurtosis, zskew, zkurtosis), 2,
+        dimnames=list(c("skew","kurtosis"), c("estimate","se","zScore")))
+  return(mat)
+}
+```
+
+# Is Platykurtic vs. leptokurtic data more sensitive to false positives!
+
+
+or **overly** clustered around the mean (leptokurtik)
+
+
+```{r}
+# 
+# library(ggplot2)
+# # https://stackoverflow.com/a/12429538
+# norm_x<-seq(-4,4,0.01)
+# norm_y<-dnorm(-4,4,0.0)/2
+# 
+# norm_data_frame<-data.frame(x=norm_x,y=dnorm(norm_x,0,1))
+# 
+# 
+# shade_2.3 <- rbind(
+#   c(-8,0), 
+#   subset(norm_data_frame, x > -8), 
+#   c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+# 
+# shade_13.6 <- rbind(
+#   c(-2,0), 
+#   subset(norm_data_frame, x > -2), 
+#   c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+# 
+# shade_34.1 <- rbind(
+#   c(-1,0), 
+#   subset(norm_data_frame, x > -1), 
+#   c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+# 
+# shade_50 <- rbind(
+#   c(0,0), 
+#   subset(norm_data_frame, x > 0), 
+#   c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+# 
+# shade_84.1 <- rbind(
+#   c(1,0), 
+#   subset(norm_data_frame, x > 1), 
+#   c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+# 
+# 
+# shade_97.7 <- rbind(
+#   c(2,0), 
+#   subset(norm_data_frame, x > 2), 
+#   c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
+# 
+# 
+# p<-qplot(
+#   x=norm_data_frame$x,
+#   y=norm_data_frame$y,
+#   geom="line"
+# )
+# 
+#  p +
+#    geom_polygon(
+#      data = shade_2.3,
+#      aes(
+#        x,
+#        y,
+#        fill="2.3"
+#       )
+#     ) +
+#    geom_polygon(
+#      data = shade_13.6,
+#      aes(
+#        x,
+#        y,
+#        fill="13.6"
+#       )
+#     ) +
+#    geom_polygon(
+#      data = shade_34.1,
+#      aes(
+#        x,
+#        y,
+#        fill="34.1"
+#       )
+#     ) +
+#    geom_polygon(
+#      data = shade_50,
+#      aes(
+#        x,
+#        y,
+#        fill="50"
+#       )
+#     ) +
+#    geom_polygon(
+#      data = shade_84.1,
+#      aes(
+#        x,
+#        y,
+#        fill="84.1"
+#       )
+#     ) +
+#    geom_polygon(
+#      data = shade_97.7, 
+#      aes(
+#        x, 
+#        y,
+#        fill="97.7"
+#       )
+#     ) +
+#    xlim(c(-4,4)) +
+#    
+#    annotate("text", x=-2.3, y=0.01, label= "13.6%") + 
+#    annotate("text", x=-1.4, y=0.01, label= "34.1%") + 
+#    annotate("text", x=-0.3, y=0.01, label= "50%") + 
+#    annotate("text", x=0.5, y=0.01, label= "84.1%") + 
+#    annotate("text", x=1.5, y=0.01, label= "97.7%") + 
+#    annotate("text", x=2.3, y=0.01, label= "100%") +
+#    xlab("Z-score") +
+#    ylab("Frequency") +
+#    theme(legend.position="none")
+```
+
+or **underly** clustered around the mean (platykurtik)
+

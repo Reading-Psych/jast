@@ -187,7 +187,7 @@ Note that both $var_{xy}$ and $totalVariance$ correct for the degrees of freedom
 
 $$
 r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
-                                      {\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}
+                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}
 $$
 
 Lets apply this to the gapminder data above to calculate $r$:

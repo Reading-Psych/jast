@@ -5,6 +5,7 @@ project:
 website:
   title: "Just Another Statistics Textbook"
   navbar:
+    background: "#006599"
     right:
       - href: https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document
         text: Report an error
@@ -47,8 +48,8 @@ website:
           - correlations/cooksd.qmd
       - section: "Regressions"
         contents:
-          - simpleRegressions/simpleRegressions.qmd
-          - multipleRegressions/multipleRegressions.qmd
+          - regressions/simpleRegressions.qmd
+          - regressions/multipleRegressions.qmd
 
 format:
   html:

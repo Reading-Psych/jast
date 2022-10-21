@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness</a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness - incomplete</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -410,6 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="correlations_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><em>Note that in the figure above each dot represents an individual point from our data.Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).</em></p>
 <p>Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.</p>
 <section id="variance-of-individual-variables" class="level2">
 <h2 class="anchored" data-anchor-id="variance-of-individual-variables">Variance of individual variables</h2>
@@ -468,6 +469,7 @@ var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
 <p><img src="correlations_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><em>Note that in the figure above the horizontal red dotted line represent the mean of Life Expectancy, while the vertical red dotted line represents the mean of GDP per capita. The blue rectangle is the area within 1 SD away from the mean of GDP per capita.</em></p>
 <section id="total-variance" class="level3">
 <h3 class="anchored" data-anchor-id="total-variance">Total variance</h3>
 <p>A correlation aims to explain how much of the <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> is explained by the overlapping variance between the x and y axes. So we need to capture the <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> separately for the x and y axes. We do this by multiplying the variance for <span class="math inline">\(x\)</span> by the variance for <span class="math inline">\(y\)</span> (and square rooting to control for the multiplication itself):</p>
@@ -543,7 +545,7 @@ var_{xy} = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
 <p>Note that both <span class="math inline">\(var_{xy}\)</span> and <span class="math inline">\(totalVariance\)</span> correct for the degrees of freedom, so the <span class="math inline">\(N-1\)</span>s cancel each other out:</p>
 <p><span class="math display">\[
 r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
-                                      {\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}
+                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}
 \]</span></p>
 <p>Lets apply this to the gapminder data above to calculate <span class="math inline">\(r\)</span>:</p>
 <div class="cell">

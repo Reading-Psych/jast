@@ -1,2 +1,4 @@
 /.quarto/
 */.DS_STORE
+/renv
+/.Rproj.user

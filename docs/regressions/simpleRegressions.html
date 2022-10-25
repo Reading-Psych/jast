@@ -122,6 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -281,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness</a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness - incomplete</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -339,7 +340,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#prediction-using-regression" id="toc-prediction-using-regression" class="nav-link active" data-scroll-target="#prediction-using-regression">Prediction using regression</a></li>
+  <li><a href="#notes-for-anthony" id="toc-notes-for-anthony" class="nav-link" data-scroll-target="#notes-for-anthony">Notes for Anthony</a></li>
+  <li><a href="#proportion-of-variance-explained" id="toc-proportion-of-variance-explained" class="nav-link" data-scroll-target="#proportion-of-variance-explained">Proportion of variance explained</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -360,17 +369,244 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p><strong>Simple regression</strong>, also known as linear regression, builds on <a href="../correlations/correlations.html" target="_blank">correlation</a>. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), regression allows you to make <strong>predictions</strong> on how <strong>one variable</strong> predicts <strong>another</strong>.</p>
-<p>For example, if you are looking to see how ‘x’ predicts ‘y’ then regression will help predict or explain a numeric response.</p>
-<p>The main objective of regression analysis is to estimate the values of a random variable (z) based on the values of your known (or fixed) variables (x and y).</p>
-<p>Linear regression analysis operates by drawing the <strong>best fitting line</strong> through the data points. But this <u>does not</u> imply causation, as regression only models the data. Regression can’t tell us exactly what is influencing what (i.e.&nbsp;whether hours of sleep affect depression score or if depression score affects hours of sleep), its not a perfect representation but its good enough!</p>
-<p>If we want to see whether sleep (independent variable in this case) affects depression (dependent variable) then we need to know this equation…</p>
-<p><img src="Screenshot%202022-10-12%20at%2022.13.22.png" class="img-fluid"></p>
-<p>For this equation we will always retrieve values from the graph, except residuals, which is the ‘error’</p>
+<section id="prediction-using-regression" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-using-regression">Prediction using regression</h2>
+<p><strong>Simple regression</strong>, also known as linear regression, builds on <a href="../correlations/correlations.html" target="_blank">correlation</a>. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), <strong>simple regression</strong> allows you to make <strong>predictions</strong> of an <strong>outcome variable</strong> based on a <strong>predictor variable</strong>.</p>
+<p>For example, regression can be used to predict Life Expectancy in 2007 from GDP. Lets start by visualising the association between them:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span>     </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> gdpPercap,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lifeExp,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add data points as dots</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a line of best fit:</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">method=</span><span class="st">'lm'</span>,  <span class="co"># linear model</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula=</span>y<span class="sc">~</span>x   <span class="co"># predict y from x</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clearer x-axis label</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"GDP per capita"</span>) <span class="sc">+</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clearer y-axis label</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Life expectancy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="simpleRegressions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Linear regression analysis operates by drawing the <strong>best fitting line (AKA the regression line; see the blue line above)</strong> through the data points. But this <u>does not</u> imply causation, as regression only models the data. Simple linear regression can’t tell us exactly what is influencing what (i.e.&nbsp;whether GDP per capita increases life expectancy), this will depend on the design of your study or your broader theoretical understanding. But for now, we can investigate whether <span class="math inline">\(gdp\)</span> predicts <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span>. The formula for the above line could be written as:</p>
+<p><span class="math display">\[
+Life Expectancy = intercept + gradient * GDP
+\]</span></p>
+<ul>
+<li><p><strong>Gradient</strong> reflects how steep the line is</p></li>
+<li><p><strong>Intercept</strong> is the point at which the regression line crosses the y-axis</p></li>
+</ul>
+<p>Let’s use coding magic to find out the intercept and the gradient (AKA slope):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># turn off scientific notation so that the numbers are not e-numbers (and thus easier to read)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a model of a regression</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>life_expectancy_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> lifeExp <span class="sc">~</span> gdpPercap <span class="co"># predict life expectancy from GDP</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># report the intercept and the gradient (AKA slope) of each predictor (which will only be GDP)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>life_expectancy_model<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>  (Intercept)     gdpPercap 
+59.5656500780  0.0006371341 </code></pre>
+</div>
+</div>
+<p>The above shows that the intercept if 59.566, and that for every 1 unit ($) of GDP there is .0006 units more of life expectancy (or, in more useful terms, for every extra $10,000 dollars per person, the life expectancy goes up by 6 years).</p>
+<p>For the above equation we will always retrieve values from the graph, except residuals, which is the ‘error’ and so a more complete formula for the outcome can be represented by the following formula</p>
+<p><span class="math display">\[
+outcome = intercept + gradient * predictor + residual
+\]</span></p>
+<ul>
+<li><strong>Residual</strong> reflects what’s left over, and is not represented in the <strong>line of best fit</strong> formula because you can’t predict what’s left over. Residuals reflect the gap between each data point and the line of best fit:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>fitted <span class="ot">=</span> life_expectancy_model<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> <span class="co"># intercept</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  life_expectancy_model<span class="sc">$</span>coefficients[<span class="dv">2</span>]                       <span class="sc">*</span> <span class="co"># gradient</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  gapminder_2007<span class="sc">$</span>gdpPercap</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> gdpPercap,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lifeExp,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add data points as dots</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a line of best fit:</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">method=</span><span class="st">'lm'</span>,  <span class="co"># linear model</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula=</span>y<span class="sc">~</span>x   <span class="co"># predict y from x</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clearer x-axis label</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"GDP per capita"</span>) <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clearer y-axis label</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Life expectancy"</span>) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add lines to show the residuals</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> gdpPercap,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> fitted,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="simpleRegressions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>These residuals can be thought of the error, i.e.&nbsp;what the model <strong>failed</strong> to predict. In more mathematical terms, the model would be:</p>
+<p><span class="math display">\[
+Y = a + bX + e
+\]</span></p>
+</section>
+<section id="notes-for-anthony" class="level2">
+<h2 class="anchored" data-anchor-id="notes-for-anthony">Notes for Anthony</h2>
+<p>R2 = SSR/SSTO = 1 - SSE/SSTO</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sse  <span class="ot">=</span> <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> gapminder_2007<span class="sc">$</span>fitted)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ssto <span class="ot">=</span> <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rsqr <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>(sse<span class="sc">/</span>ssto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If your model is minimising the error, then what happens if you have 2 predictors:</p>
+<p><span class="math display">\[
+Y = a + b_1X_1 + b_2X_2 + e
+\]</span></p>
+<p>Save the residuals after 1 correlation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>res_gdp <span class="ot">=</span> gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> gapminder_2007<span class="sc">$</span>fitted</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>pop, res_gdp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  gapminder_2007$pop and res_gdp
+t = 1.3842, df = 140, p-value = 0.1685
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.04948127  0.27564447
+sample estimates:
+      cor 
+0.1161931 </code></pre>
+</div>
+</div>
+</section>
+<section id="proportion-of-variance-explained" class="level2">
+<h2 class="anchored" data-anchor-id="proportion-of-variance-explained">Proportion of variance explained</h2>
+<p>In <a href="../correlations/correlations.html" target="_blank">correlations</a> we discussed how the strength of association is the proportion of variance of y explained by x. For simple regression, this is also the case:</p>
+<p><span class="math display">\[
+r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
+                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}
+\]</span></p>
+<p>Lets apply the above formula to see what R is for <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>lifeExp<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)) <span class="sc">*</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>gdpPercap<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">/</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))<span class="sc">^</span><span class="dv">2</span>) </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6786624</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(gapminder_2007<span class="sc">$</span>lifeExp, gapminder_2007<span class="sc">$</span>gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6786624</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># r^2</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(gapminder_2007<span class="sc">$</span>lifeExp, gapminder_2007<span class="sc">$</span>gdpPercap)<span class="sc">^</span><span class="dv">2</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4605827</code></pre>
+</div>
+</div>
+<p>We can confirm that squaring R gives r^2</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(life_expectancy_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ gdpPercap, data = gapminder_2007)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-22.828  -6.316   1.922   6.898  13.128 
+
+Coefficients:
+               Estimate  Std. Error t value            Pr(&gt;|t|)    
+(Intercept) 59.56565008  1.01040864   58.95 &lt;0.0000000000000002 ***
+gdpPercap    0.00063713  0.00005827   10.93 &lt;0.0000000000000002 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.899 on 140 degrees of freedom
+Multiple R-squared:  0.4606,    Adjusted R-squared:  0.4567 
+F-statistic: 119.5 on 1 and 140 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
+<p>Now lets see if the same logic works when there are 2 or more predictors that interact to predict each other:</p>
+<p><span class="math display">\[
+r = \frac{var_{xyz}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})(z_i-\bar{z})}
+                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2 * \sum(z_i-\bar{z})^2}}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>lifeExp<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)) <span class="sc">*</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>gdpPercap<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap)) <span class="sc">*</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>pop<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>pop))  </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">/</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>pop <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>pop))<span class="sc">^</span><span class="dv">2</span>) </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.007330224</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span>  gdpPercap <span class="sc">+</span> pop, <span class="at">data =</span> gapminder_2007))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ gdpPercap + pop, data = gapminder_2007)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-22.496  -6.119   1.899   7.018  13.383 
+
+Coefficients:
+                   Estimate      Std. Error t value            Pr(&gt;|t|)    
+(Intercept) 59.205198140717  1.040398672164  56.906 &lt;0.0000000000000002 ***
+gdpPercap    0.000641608517  0.000058176209  11.029 &lt;0.0000000000000002 ***
+pop          0.000000007001  0.000000005068   1.381               0.169    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.87 on 139 degrees of freedom
+Multiple R-squared:  0.4679,    Adjusted R-squared:  0.4602 
+F-statistic: 61.11 on 2 and 139 DF,  p-value: &lt; 0.00000000000000022</code></pre>
 </div>
 </div>
 <section id="why-use-regression" class="level4">
@@ -381,10 +617,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 <p><strong>The differences between regression and correlation</strong></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -1,6 +1,8 @@
 ---
 title: "Correlations"
-format: html
+format: 
+  html:
+    code-fold: true
 editor: visual
 ---
 
@@ -182,8 +184,8 @@ $$
 To complete a **Pearson's** **R** correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the **proportion** of $total$ $variance$ is explained by the $shared$ $variance$ ($var_{xy}$).
 
 $$
-\frac{var_{xy}}{totalVariance} = \frac{(\sum(x_i-\bar{x})(y_i-\bar{y}))/{N-1}}
-                                      {(\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2)/N-1}
+\frac{var_{xy}}{totalVariance} = \frac{(\sum(x_i-\bar{x})(y_i-\bar{y}))/(N-1)}
+                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}/(N-1)}
 $$
 
 Note that both $var_{xy}$ and $totalVariance$ correct for the degrees of freedom, so the $N-1$s cancel each other out:

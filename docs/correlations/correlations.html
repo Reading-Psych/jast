@@ -328,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression</a>
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -379,6 +379,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Please make sure you’ve read about variance within the <a href="../describingData/dispersion.html" target="_blank">dispersion section</a> before proceeding with this page.</p>
 <p>Correlations capture how much two variables are associated with each other by calculating the proportion of the <strong>total variance</strong> explained by how much the two variables <strong>vary together (explained below).</strong> To understand this, we need to think about how each variable varies <strong>independently, together</strong> and compare the two. We’ll use the <strong>gapminder</strong> data to look at how how life expectancy correlated with GDP in 2007:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -390,6 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># a reminder of the data frame</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(<span class="fu">head</span>(gapminder_2007))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -398,6 +401,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </script>
 </div>
 </div>
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2007, </span>
@@ -406,6 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span>lifeExp</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="correlations_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -431,6 +437,8 @@ var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
 <p><span class="math inline">\(N-1\)</span> is <strong>degrees of freedom</strong>, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the <a href="../distributions/dispersion">dispersion</a> section).</p>
 <p>The <span class="math inline">\(SD\)</span> (Standard deviation; which is just the square root of variance) of how data is distributed around the mean <span class="math inline">\(gdp\)</span> (per capita) can be visualised as follows within the gapminder <span class="math inline">\(gdp*lifeExpectancy\)</span> in the light blue box:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
@@ -465,6 +473,7 @@ var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">85</span>)) <span class="sc">+</span></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"GDP per capita"</span>) <span class="sc">+</span></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Life Expectancy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="correlations_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -483,6 +492,8 @@ totalVariance = \frac{\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}{N-1}
 <p>)</p>
 <p>This is analogous to understanding the total area of a square by multiplying the length of each side with each other. This can be visualised by highlighting the standard deviation (<strong>which is the square root of variance</strong>) of both the x <strong>AND</strong> y axes.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic scatter plot</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
@@ -514,6 +525,7 @@ totalVariance = \frac{\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}{N-1}
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">1</span>,</span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="correlations_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -539,8 +551,8 @@ var_{xy} = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
 <h3 class="anchored" data-anchor-id="comparing-shared-variance-var_xy-to-total-variance">Comparing <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>) to <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span></h3>
 <p>To complete a <strong>Pearson’s</strong> <strong>R</strong> correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the <strong>proportion</strong> of <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> is explained by the <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>).</p>
 <p><span class="math display">\[
-\frac{var_{xy}}{totalVariance} = \frac{(\sum(x_i-\bar{x})(y_i-\bar{y}))/{N-1}}
-                                      {(\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2)/N-1}
+\frac{var_{xy}}{totalVariance} = \frac{(\sum(x_i-\bar{x})(y_i-\bar{y}))/(N-1)}
+                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}/(N-1)}
 \]</span></p>
 <p>Note that both <span class="math inline">\(var_{xy}\)</span> and <span class="math inline">\(totalVariance\)</span> correct for the degrees of freedom, so the <span class="math inline">\(N-1\)</span>s cancel each other out:</p>
 <p><span class="math display">\[
@@ -549,6 +561,8 @@ r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
 \]</span></p>
 <p>Lets apply this to the gapminder data above to calculate <span class="math inline">\(r\)</span>:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>varxy <span class="ot">=</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    (gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap)) <span class="sc">*</span> </span>
@@ -561,13 +575,17 @@ r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>varxy<span class="sc">/</span>totalvar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6786624</code></pre>
 </div>
 </div>
 <p>If the above calculation is correct, we’ll get exactly the same value when using the <strong>cor.test</strong> function:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>gdpPercap, gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -587,6 +605,8 @@ sample estimates:
 <li>standardise the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>-axes into z-scores so that the difference in scales doesn’t distort comparisons between x and y-axes. We’ll do this by calculating z-scores</li>
 </ul>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>gdpPercap_z <span class="ot">&lt;-</span> (gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))<span class="sc">/</span><span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>gdpPercap)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>lifeExp_z <span class="ot">&lt;-</span> (gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">/</span><span class="fu">sd</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
@@ -644,6 +664,7 @@ sample estimates:
 <span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">1</span>,</span>
 <span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span></span>
 <span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="correlations_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -651,6 +672,8 @@ sample estimates:
 <p>The above figure seems consistent with 67.9% of <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> being explained by overlapping variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
 <p>You may have noticed that the data above looks like it’s not normally distributed, so lets check skewness and kurtosis to see if we should use Spearman’s Rho (AKA Spearman’s Rank) instead:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Skewness and kurtosis and their standard errors as implement by SPSS</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference: pp 451-452 of</span></span>
@@ -681,12 +704,16 @@ sample estimates:
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mat)</span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          estimate        se    zScore
 skew     1.2241977 0.2034292 6.0178067
 kurtosis 0.3500942 0.4041614 0.8662238</code></pre>
 </div>
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           estimate        se    zScore
 skew     -0.6887771 0.2034292 -3.385832
@@ -700,18 +727,27 @@ kurtosis -0.8298204 0.4041614 -2.053191</code></pre>
 <h2 class="anchored" data-anchor-id="spearmans-rank-aka-spearmans-rho">Spearman’s Rank (AKA Spearman’s Rho)</h2>
 <p><strong>Spearman’s Rank</strong> correlation is identical to a Pearson correlation (described above), but adds a step of converting all the data into ranks before conducting any analyses. This is useful because <strong>ranks</strong> are not vulnerable to outlier (i.e.&nbsp;unusually extreme) data points. Let’s now turn the gapminder data we’ve been working with above into ranks and then run a Pearson’s correlation on it to confirm this:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>gdpPercap_rank <span class="ot">&lt;-</span> <span class="fu">rank</span>(gapminder_2007<span class="sc">$</span>gdpPercap)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>lifeExp_rank <span class="ot">&lt;-</span> <span class="fu">rank</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Lets do a quick check to see that ranking the data addresses the problems with skewness and kurtosis:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>         estimate        se    zScore
 skew          0.0 0.2034292  0.000000
 kurtosis     -1.2 0.4041614 -2.969111</code></pre>
 </div>
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>lifeExp_rank)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>         estimate        se    zScore
 skew          0.0 0.2034292  0.000000
@@ -721,8 +757,11 @@ kurtosis     -1.2 0.4041614 -2.969111</code></pre>
 <p>This has successfully removed any issue with skewness of the data, but has made the data more platykurtic (i.e.&nbsp;flatter). A problem with platykurtic data is that parametric tests might be <strong>over</strong> sensitive to identifying significant effects (see <a href="../distributions/kurtosis.html" target="_blank">kurtosis</a>), i.e.&nbsp;be at a higher risk of <strong>false positives</strong>. This is evidence that using a Spearman’s Rank may increase a risk of a false-positive (at least with this data), so <a href="transforming" target="_blank">another transformation of the data</a> may be more appropriate to avoid this problem with kurtosis.</p>
 <p>For now, lets focus on how much of the variance in ranks is explained in the overlap in variance of <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span> ranks:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson correlation on **ranked** data:</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>gdpPercap_rank, gapminder_2007<span class="sc">$</span>lifeExp_rank, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -736,8 +775,11 @@ sample estimates:
       cor 
 0.8565899 </code></pre>
 </div>
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spearman correlation applied to original data (letting R do the ranking)</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>gdpPercap, gapminder_2007<span class="sc">$</span>lifeExp, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Spearman's rank correlation rho
@@ -753,6 +795,8 @@ sample estimates:
 <p>The <span class="math inline">\(r\)</span> value is now .857, suggesting that the overlap between <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span> explains 85.7% of the total variance of the ranks for both of them.</p>
 <p>Lets visualise this using similar principles above on the <strong>ranks</strong> of <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span>:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gapminder_2007$gdpPercap_rank_z = </span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   (gapminder_2007$gdpPercap_rank - mean(gapminder_2007$gdpPercap_rank))/</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   sd(gapminder_2007$gdpPercap_rank)</span></span>
@@ -862,6 +906,7 @@ sample estimates:
 <span id="cb23-107"><a href="#cb23-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">1</span>,</span>
 <span id="cb23-108"><a href="#cb23-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span></span>
 <span id="cb23-109"><a href="#cb23-109" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="correlations_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>

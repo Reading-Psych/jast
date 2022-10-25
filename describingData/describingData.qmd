@@ -1,6 +1,8 @@
 ---
 title: "Describing Data"
-format: html
+format: 
+html:  
+code-fold: true
 editor: visual
 ---
 

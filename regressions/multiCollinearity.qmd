@@ -1,0 +1,39 @@
+---
+title: "Multi-collinearity (incomplete)"
+format: 
+  html:
+    code-fold: true
+editor: visual
+---
+
+## What is multi-collinearity
+
+## Measuring multi-collinearity using Variance Inflation Factor (VIF)
+
+```{r}
+library(car)
+library(gapminder)
+library(ggplot2)
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+gdp_pop_predict_lifeExp <- lm(
+  formula = lifeExp ~ pop + gdpPercap,
+  data = gapminder_2007
+    
+)
+
+
+gdp_pop_predict_lifeExp$coefficients
+
+pred_lm <- lm(lifeExp ~ pop, gapminder_2007)
+pred_lm$coefficients[2]
+
+1-sqrt(pred_lm$coefficients[2])
+vif(gdp_pop_predict_lifeExp)
+
+```

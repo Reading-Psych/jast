@@ -1,0 +1,38 @@
+---
+title: "Contingency(incomplete)"
+format:    
+  html:     
+    code-fold: true
+editor: visual
+---
+
+```{r}
+library(psych)
+contingency_data <- matrix(
+  data = c(45,55,120,80),
+  nrow = 2,
+  ncol = 2
+)
+contingency_data
+
+manual_phi = (
+  contingency_data[1,1] * contingency_data[2,2] - 
+    contingency_data[1,2] * contingency_data[2,1]
+  )/sqrt(
+    sum(contingency_data[1,]) *
+    sum(contingency_data[2,]) *
+    sum(contingency_data[,1]) *
+    sum(contingency_data[,2])
+  )
+phi(contingency_data, digits = 7)
+manual_phi
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).

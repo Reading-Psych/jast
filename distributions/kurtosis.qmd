@@ -1,16 +1,16 @@
 ---
 title: "Kurtosis (incomplete)"
-format: html
+format: 
+  html:
+      code-fold: true
 editor: visual
 ---
 
-**Kurtosis** refers to how influenced a distribution is by its tails. 
+**Kurtosis** refers to how influenced a distribution is by its tails.
 
 $kurtosis=\frac{(N*(N+1)*m4 - 3*m2^2*(w-1))}{((N-1)*(N-2)*(N-3)*s1^4)}$
 
-$kurtosis_{SE} = sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)))$ 
-
-
+$kurtosis_{SE} = sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)))$
 
 ```{r}
 spssSkewKurtosis=function(x) {
@@ -37,9 +37,7 @@ spssSkewKurtosis=function(x) {
 
 # Is Platykurtic vs. leptokurtic data more sensitive to false positives!
 
-
 or **overly** clustered around the mean (leptokurtik)
-
 
 ```{r}
 # 
@@ -152,4 +150,3 @@ or **overly** clustered around the mean (leptokurtik)
 ```
 
 or **underly** clustered around the mean (platykurtik)
-

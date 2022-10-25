@@ -1,6 +1,8 @@
 ---
 title: "Normal Distribution"
-format: html
+format: 
+html:  
+code-fold: true
 editor: visual
 ---
 

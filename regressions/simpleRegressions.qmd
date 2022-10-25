@@ -1,6 +1,8 @@
 ---
-title: "Simple regression"
-format: html
+title: "Simple regression (incomplete)"
+format: 
+  html:
+    code-fold: true
 editor: visual
 ---
 
@@ -124,7 +126,6 @@ R2 = SSR/SSTO = 1 - SSE/SSTO
 sse  = sum((gapminder_2007$lifeExp - gapminder_2007$fitted)^2)
 ssto = sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
 rsqr = 1-(sse/ssto)
-sqrt(r)
 ```
 
 If your model is minimising the error, then what happens if you have 2 predictors:

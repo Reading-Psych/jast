@@ -1,8 +1,8 @@
 ---
 title: "Dispersion"
-format: 
-html:  
-code-fold: true
+format:
+  html:
+    code-fold: true
 editor: visual
 ---
 

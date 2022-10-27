@@ -4,8 +4,10 @@ project:
 
 website:
   title: "Just Another Statistics Textbook"
+  favicon: "logo/logo.jpeg"
   navbar:
     background: "#006599"
+    logo: "logo/logo.jpeg"
     right:
       - href: https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document
         text: Report an error

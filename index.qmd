@@ -11,21 +11,21 @@ This textbook  is under-development (<a href="https://github.com/Reading-Psych/j
 
 Do make use of the search-bar in the top-right to find any content within the website.
 
-## Contributors (in alphabetical order)
+## Contributions (in alphabetical order)
 
 
-| Surname     | First Name  | Contribution   |
-| ----------- | ----------- | -------------- |
-| Biagi       | Nico        | Author, Editor |
-| Brady       | Dan         | Contributor    |
-| Goh         | Vera        | Suggestions    |
-| Haffey      | Anthony     | Author, Editor |
-| Mathews     | Imogen      | Author         |
-| Pritchard   | Katherine   | Suggestions    |
-| Sahni       | Angad       | Contributor    |
+| Surname     | First Name  | Contribution           |
+| ----------- | ----------- | -----------------------|
+| Biagi       | Nico        | Architect, Author      |
+| Brady       | Dan         | Architect, Author      |
+| Goh         | Vera        | Suggestions            |
+| Haffey      | Anthony     | Architect, Author      |
+| Mathews     | Imogen      | Author                 |
+| Pritchard   | Katherine   | Suggestions            |
+| Sahni       | Angad       | Contributor            |
 
 
+- **Architects** have managed the formatting of this website/textbook
 - **Authors** have written (sub)sections
-- **Editors** have managed the formatting of this website/textbook
 - **Contributors** have contributed text for a subsection
 - **Suggestions** are requests for elaborations and clarifications

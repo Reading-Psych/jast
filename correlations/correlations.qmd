@@ -32,6 +32,7 @@ ggplot(
   )
 ) + geom_point()
 ```
+
 *Note that in the figure above each dot represents an individual point from our data.Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).*
 
 Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.
@@ -64,12 +65,45 @@ $N$ refers to the number of participants
 
 $N-1$ is **degrees of freedom**, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the [dispersion](../distributions/dispersion) section).
 
-The $SD$ (Standard deviation; which is just the square root of variance) of how data is distributed around the mean $gdp$ (per capita) can be visualised as follows within the gapminder $gdp*lifeExpectancy$ in the light blue box:
+The $SD$ (Standard deviation; which is just the square root of variance) of how data is distributed around the mean $life$$expectancy$ (per capita) can be visualised as follows within the gapminder $gdp*lifeExpectancy$ in the light blue box:
 
 ```{r}
 # Basic scatter plot
 
-ggplot(
+life_exp_resid <- ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + 
+  geom_point() +
+  geom_hline(
+    yintercept = mean(gapminder_2007$lifeExp), 
+    linetype   = "dashed",  
+    color      = "#006599", 
+    size       = 1
+  ) +
+  coord_cartesian(ylim = c(30, 85)) +
+  xlab("GDP per capita") +
+  ylab("Life Expectancy") +
+  geom_segment(
+    aes(
+      xend = gdpPercap,
+      yend = mean(lifeExp),
+      color = "resid"
+    )
+  ) + theme(legend.position = "none")
+
+ggsave("life_exp_resid.png", life_exp_resid)
+```
+
+*Note that in the figure above the horizontal blue dotted line represent the mean of Life Expectancy. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
+
+Lets look at the variance of GDP per capita:
+
+```{r}
+gdp_resid <- ggplot(
   data = gapminder_2007, 
   aes(
     x=gdpPercap, 
@@ -78,34 +112,28 @@ ggplot(
 ) + 
   geom_point() +
   geom_vline(
-    xintercept = mean(gapminder$gdpPercap), 
-    linetype   = "dashed", 
-    color      = "red", 
-    size       = 2
-  ) +
-  geom_hline(
-    yintercept = mean(gapminder$lifeExp), 
+    xintercept = mean(gapminder_2007$gdpPercap), 
     linetype   = "dashed",  
-    color      = "red", 
-    size       = 2
+    color      = "#006599", 
+    size       = 1
   ) +
-  annotate(
-    "rect", 
-    xmin = mean(gapminder$gdpPercap) - sd(gapminder$gdpPercap),
-    xmax = mean(gapminder$gdpPercap) + sd(gapminder$gdpPercap),
-    ymin = 0,
-    ymax = 100,
-    alpha = .1,
-    fill = "blue"
-  ) + 
   coord_cartesian(ylim = c(30, 85)) +
   xlab("GDP per capita") +
-  ylab("Life Expectancy")
+  ylab("Life Expectancy") +
+  geom_segment(
+    aes(
+      xend = mean(gdpPercap),
+      yend = lifeExp,
+      color = "resid"
+    )
+  ) + theme(legend.position = "none")
+ggsave("gdp_resid.png", gdp_resid)
+gdp_resid
 ```
 
-*Note that in the figure above the horizontal red dotted line represent the mean of Life Expectancy, while the vertical red dotted line represents the mean of GDP per capita. The blue rectangle is the area within 1 SD away from the mean of GDP per capita.*
+*Note that in the figure above the vertical blue dotted line represents the mean gdp per capita. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
 
-### Total variance
+## Total variance
 
 A correlation aims to explain how much of the $total$ $variance$ is explained by the overlapping variance between the x and y axes. So we need to capture the $total$ $variance$ separately for the x and y axes. We do this by multiplying the variance for $x$ by the variance for $y$ (and square rooting to control for the multiplication itself):
 
@@ -121,43 +149,37 @@ $$
 
 )
 
-This is analogous to understanding the total area of a square by multiplying the length of each side with each other. This can be visualised by highlighting the standard deviation (**which is the square root of variance**) of both the x **AND** y axes.
+Or, to use the figures above:
 
-```{r}
-# Basic scatter plot
+<table>
 
-ggplot(
-  data = gapminder_2007, 
-  aes(
-    x=gdpPercap, 
-    y=lifeExp
-  )
-) + 
-  geom_point() +
-  geom_vline(
-    xintercept = mean(gapminder$gdpPercap), 
-    linetype   = "dashed", 
-    color      = "red", 
-    size       = 2
-  ) +
-  geom_hline(
-    yintercept = mean(gapminder$lifeExp), 
-    linetype   = "dashed",  
-    color      = "red", 
-    size       = 2
-  ) +
-  annotate(
-    "rect", 
-    xmin = mean(gapminder$gdpPercap) - sd(gapminder$gdpPercap),
-    xmax = mean(gapminder$gdpPercap) + sd(gapminder$gdpPercap),
-    ymin = mean(gapminder$lifeExp) - sd(gapminder$lifeExp),
-    ymax = mean(gapminder$lifeExp) + sd(gapminder$lifeExp),
-    alpha = .1,
-    fill = "blue"
-  )
-```
+<tr>
 
-*Note that the above figures uses SD* $\sqrt(variance)$ *rather than* $variance$ *to visualise the which values are within 1 SD of the mean x and y values, which are visualised by the red intersecting lines. Also, note that many of the data points are not within 1 SD of the x and y axes, suggesting skewed distributions.*
+<td style="font-size:30px">$Total$ $Var$ =</td>
+
+<td style="font-size:50px">sqrt(<img src="life_exp_resid.png" style="width:150px; height:150px;"/> \^2)
+
+$$
+\frac{}{N-1}
+$$
+
+</td>
+
+<td style="font-size:100px">$*$</td>
+
+<td style="font-size:50px">sqrt(<img src="gdp_resid.png" style="width:150px; height:150px;"/> \^ 2)
+
+$$
+\frac{}{N-1}
+$$
+
+</td>
+
+</tr>
+
+</table>
+
+This is analogous to understanding the total area of a rectangle by multiplying the length of each side with each other.
 
 ### Shared variance between $x$ and $y$
 
@@ -173,11 +195,55 @@ $$
 var_x = \frac{\sum(x_i-\bar{x})(x_i-\bar{x})}{N-1}
 $$
 
-To look at the amount that x and y vary together, we can adapt a formula for how much $x$ varies (with itself) to now look at how much $x$ varies with $y$:
+To look at the amount that x and y vary together, we can adapt a formula for how much $x$ varies (with itself as written above) to now look at how much $x$ varies with $y$:
 
 $$
 var_{xy} = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
 $$
+
+This can be visualised as the residuals from the means multiplied by each other for each data point:
+
+```{r}
+shared_resid <- ggplot(
+  data = gapminder_2007, 
+  aes(
+    x=gdpPercap, 
+    y=lifeExp
+  )
+) + 
+  geom_point() +
+  geom_vline(
+    xintercept = mean(gapminder_2007$gdpPercap), 
+    linetype   = "dashed",  
+    color      = "#006599", 
+    size       = 1
+  ) +
+  coord_cartesian(ylim = c(30, 85)) +
+  xlab("GDP per capita") +
+  ylab("Life Expectancy") +
+  geom_segment(
+    aes(
+      xend = mean(gdpPercap),
+      yend = lifeExp,
+      color = "GDP residuals"
+    )
+  ) +
+  geom_segment(
+    aes(
+      xend = gdpPercap,
+      yend = mean(lifeExp),
+      color = "Life Expectancy Residuals"
+    )
+  ) +
+  geom_hline(
+    yintercept = mean(gapminder_2007$lifeExp), 
+    linetype   = "dashed",  
+    color      = "#006599", 
+    size       = 1
+  ) + theme(legend.position = "none")
+ggsave("shared_resid.png", shared_resid) 
+shared_resid
+```
 
 ### Comparing $shared$ $variance$ ($var_{xy}$) to $total$ $variance$
 
@@ -218,71 +284,99 @@ If the above calculation is correct, we'll get exactly the same value when using
 cor.test(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
 ```
 
-To visualise what proportion of the variance is captured by $var_{xy}$, we need to:
+To visualise what proportion of the variance is captured by $var_{xy}$:
 
--   standardise the $x$ and $y$-axes into z-scores so that the difference in scales doesn't distort comparisons between x and y-axes. We'll do this by calculating z-scores
+<table>
+
+<tr>
+
+<td style="font-size:50px; text-align:center" colspan=3><img src="shared_resid.png" style="width:200px; height:200px;"/>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan=3><hr></hr></td>
+
+</tr>
+
+<tr>
+
+<td style="font-size:50px">sqrt(<img src="life_exp_resid.png" style="width:200px; height:200px;"/> \^2
+
+</td>
+
+<td style="font-size:100px">$*$</td>
+
+<td style="font-size:50px"><img src="gdp_resid.png" style="width:200px; height:200px;"/> \^ 2)
+
+</td>
+
+</table>
+
+A question you might have at this point, is whether the above figure seems consistent with 67.9% of $total$ $variance$ being explained by overlapping variance between $x$ and $y$?
+
+If $x$ and $y$ vary together, then you would expect either:
+
+-   a higher $x$ data point should be associated with a **higher** $y$ data point (positive association)
+
+-   a higher $x$ data point should be associated with a **lower** $y$ data point (negative association)
+
+The bottom half of the figure above doesn't give you that much insight into how consistently $x$ and $y$ are positive or negatively associated with each other, but the top half does;
 
 ```{r}
-gapminder_2007$gdpPercap_z <- (gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))/sd(gapminder_2007$gdpPercap)
+shared_resid
+```
 
-gapminder_2007$lifeExp_z <- (gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))/sd(gapminder_2007$lifeExp)
+If there is a *positive association*, then you would expect there to be consistency in $x$ and $y$ both being above their own respective means, or both being below their respective means consistently, which is what we see above.
 
-gapminder_2007$gdpPercap_z_by_lifeExp_z <- 
-  (gapminder_2007$gdpPercap_z-mean(gapminder_2007$gdpPercap_z)) * 
-  (gapminder_2007$lifeExp_z-mean(gapminder_2007$lifeExp_z))
+If there is a negative association, you would expect $y$ to generally be below its mean when $x$ is above its mean, and vice-versa. Lets visualise this by [transforming](../distributions/transforming.html){target="_blank"}the $life$ $expectancy$ to be inverted by subtracting it from 100. This will make younger people older and older people younger:
 
-
-# confirming that everything has been transformed appropriately to get same r-value
-totalvar_z = sqrt(
-  sum((gapminder_2007$gdpPercap_z - mean(gapminder_2007$gdpPercap_z))^2) *
-  sum((gapminder_2007$lifeExp_z - mean(gapminder_2007$lifeExp_z))^2)
-)
-var_explained <- sum(gapminder_2007$gdpPercap_z_by_lifeExp_z)/totalvar_z
-
-# this adjustment reflects the plot using SD rather than variance: 
-sd_adjust <- sqrt(var_explained)
-
-ggplot(
+```{r}
+inverted_resid <- ggplot(
   data = gapminder_2007, 
   aes(
-    x=gdpPercap_z, 
-    y=lifeExp_z
+    x=gdpPercap, 
+    y=125-lifeExp
   )
 ) + 
   geom_point() +
   geom_vline(
-    xintercept = mean(gapminder_2007$gdpPercap_z), 
-    linetype   = "dashed", 
-    color      = "red", 
-    size       = 2
+    xintercept = mean(gapminder_2007$gdpPercap), 
+    linetype   = "dashed",  
+    color      = "#006599", 
+    size       = 1
+  ) +
+  coord_cartesian(ylim = c(30, 85)) +
+  xlab("GDP per capita") +
+  ylab("Life Expectancy") +
+  geom_segment(
+    aes(
+      xend = mean(gdpPercap),
+      yend = 125-lifeExp,
+      color = "GDP residuals"
+    )
+  ) +
+  geom_segment(
+    aes(
+      xend = gdpPercap,
+      yend = mean(125-lifeExp),
+      color = "Life Expectancy Residuals"
+    )
   ) +
   geom_hline(
-    yintercept = mean(gapminder_2007$lifeExp_z), 
+    yintercept = mean(125-gapminder_2007$lifeExp), 
     linetype   = "dashed",  
-    color      = "red", 
-    size       = 2
-  ) +
-  annotate(
-    "rect", 
-    xmin =  - sd_adjust,
-    xmax =  sd_adjust,
-    ymin = - sd_adjust,
-    ymax = + sd_adjust,
-    alpha = .2,
-    fill = "red"
-  ) +
-  annotate(
-    "rect", 
-    xmin = mean(gapminder_2007$gdpPercap_z) - sd(gapminder_2007$gdpPercap_z),
-    xmax = mean(gapminder_2007$gdpPercap_z) + sd(gapminder_2007$gdpPercap_z),
-    ymin = mean(gapminder_2007$lifeExp_z) - sd(gapminder_2007$lifeExp_z),
-    ymax = mean(gapminder_2007$lifeExp_z) + sd(gapminder_2007$lifeExp_z),
-    alpha = .1,
-    fill = "blue"
-  )
+    color      = "#006599", 
+    size       = 1
+  ) + theme(legend.position = "none")
+
+inverted_resid
 ```
 
-The above figure seems consistent with 67.9% of $total$ $variance$ being explained by overlapping variance between $x$ and $y$.
+The $Pearson's$ $r$ is now the reverse of the data before this transformation, i.e. r=-.679. Notice how there's consistency in the above average $x$ values being associated with below average $y$ values, and vice-versa.
 
 You may have noticed that the data above looks like it's not normally distributed, so lets check skewness and kurtosis to see if we should use Spearman's Rho (AKA Spearman's Rank) instead:
 
@@ -356,116 +450,49 @@ The $r$ value is now .857, suggesting that the overlap between $gdp$ and $life$ 
 Lets visualise this using similar principles above on the **ranks** of $gdp$ and $life$ $expectancy$:
 
 ```{r}
-# gapminder_2007$gdpPercap_rank_z = 
-#   (gapminder_2007$gdpPercap_rank - mean(gapminder_2007$gdpPercap_rank))/
-#   sd(gapminder_2007$gdpPercap_rank)
-# gapminder_2007$lifeExp_rank_z = 
-#   (gapminder_2007$lifeExp_rank - mean(gapminder_2007$lifeExp_rank))/
-#   sd(gapminder_2007$lifeExp_rank)
-# gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z = 
-#   gapminder_2007$gdpPercap_rank_z * gapminder_2007$lifeExp_rank_z
-# 
-# ggplot(
-#   data = gapminder_2007, 
-#   aes(
-#     x=gdpPercap_rank_z, 
-#     y=lifeExp_rank_z
-#   )
-# ) + 
-#   geom_point() +
-#   geom_vline(
-#     xintercept = mean(gapminder_2007$gdpPercap_rank_z), 
-#     linetype   = "dashed", 
-#     color      = "red", 
-#     size       = 2
-#   ) +
-#   geom_hline(
-#     yintercept = mean(gapminder_2007$lifeExp_rank_z), 
-#     linetype   = "dashed",  
-#     color      = "red", 
-#     size       = 2
-#   ) +
-#   annotate(
-#     "rect", 
-#     xmin =  - sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
-#     xmax =  sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
-#     ymin = - sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
-#     ymax = + sd(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z),
-#     alpha = .2,
-#     fill = "red"
-#   ) +
-#   annotate(
-#     "rect", 
-#     xmin = mean(gapminder_2007$gdpPercap_rank_z) - sd(gapminder_2007$gdpPercap_rank_z),
-#     xmax = mean(gapminder_2007$gdpPercap_rank_z) + sd(gapminder_2007$gdpPercap_rank_z),
-#     ymin = mean(gapminder_2007$lifeExp_rank_z) - sd(gapminder_2007$lifeExp_rank_z),
-#     ymax = mean(gapminder_2007$lifeExp_rank_z) + sd(gapminder_2007$lifeExp_rank_z),
-#     alpha = .1,
-#     fill = "blue"
-#   )
-
-gapminder_2007$gdpPercap_rank_z <- 
-  (gapminder_2007$gdpPercap_rank - mean(gapminder_2007$gdpPercap_rank))/
-    sd(gapminder_2007$gdpPercap_rank)
-
-gapminder_2007$lifeExp_rank_z <- 
-  (gapminder_2007$lifeExp_rank - mean(gapminder_2007$lifeExp_rank))/
-  sd(gapminder_2007$lifeExp_rank)
-
-gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z <- 
-  (gapminder_2007$gdpPercap_rank_z-mean(gapminder_2007$gdpPercap_rank_z)) * 
-  (gapminder_2007$lifeExp_rank_z-mean(gapminder_2007$lifeExp_rank_z))
-
-# confirming that everything has been transformed appropriately to get same r-value
-totalvar_rank_z = sqrt(
-  sum((gapminder_2007$gdpPercap_rank_z - mean(gapminder_2007$gdpPercap_rank_z))^2) *
-  sum((gapminder_2007$lifeExp_rank_z - mean(gapminder_2007$lifeExp_rank_z))^2)
-)
-rank_var_explained <- sum(gapminder_2007$gdpPercap_rank_z_by_lifeExp_rank_z)/totalvar_rank_z
-
-# this adjustment reflects the plot using SD rather than variance: 
-rank_sd_adjust <- sqrt(rank_var_explained)
-
-
-ggplot(
+rank_resid <- ggplot(
   data = gapminder_2007, 
   aes(
-    x=gdpPercap_rank_z, 
-    y=lifeExp_rank_z
+    x=gdpPercap_rank, 
+    y=lifeExp_rank
   )
 ) + 
   geom_point() +
   geom_vline(
-    xintercept = mean(gapminder_2007$gdpPercap_rank_z), 
-    linetype   = "dashed", 
-    color      = "red", 
-    size       = 2
+    xintercept = mean(gapminder_2007$gdpPercap_rank), 
+    linetype   = "dashed",  
+    color      = "#006599", 
+    size       = 1
+  ) +
+  #coord_cartesian(ylim = c(30, 85)) +
+  xlab("GDP per capita (RANK)") +
+  ylab("Life Expectancy (RANK)") +
+  geom_segment(
+    aes(
+      xend = mean(gdpPercap_rank),
+      yend = lifeExp_rank,
+      color = "GDP residuals"
+    )
+  ) +
+  geom_segment(
+    aes(
+      xend = gdpPercap_rank,
+      yend = mean(lifeExp_rank),
+      color = "Life Expectancy Residuals"
+    )
   ) +
   geom_hline(
-    yintercept = mean(gapminder_2007$lifeExp_rank_z), 
+    yintercept = mean(gapminder_2007$lifeExp_rank), 
     linetype   = "dashed",  
-    color      = "red", 
-    size       = 2
-  ) +
-  annotate(
-    "rect", 
-    xmin =  - rank_sd_adjust,
-    xmax =  rank_sd_adjust,
-    ymin = - rank_sd_adjust,
-    ymax = rank_sd_adjust,
-    alpha = .2,
-    fill = "red"
-  ) +
-  annotate(
-    "rect", 
-    xmin = mean(gapminder_2007$gdpPercap_rank_z) - sd(gapminder_2007$gdpPercap_rank_z),
-    xmax = mean(gapminder_2007$gdpPercap_rank_z) + sd(gapminder_2007$gdpPercap_rank_z),
-    ymin = mean(gapminder_2007$lifeExp_rank_z) - sd(gapminder_2007$lifeExp_rank_z),
-    ymax = mean(gapminder_2007$lifeExp_rank_z) + sd(gapminder_2007$lifeExp_rank_z),
-    alpha = .1,
-    fill = "blue"
-  )
+    color      = "#006599", 
+    size       = 1
+  ) + theme(legend.position = "none")
 
+rank_resid
 ```
 
-*Note that a larger portion of the* $total$$variance$ *is explained by* $var_{xy}$ *and that the data is no longer skewed. The fact that the data is platykurtic is reflected by there being a relatively low number of data points within 1 SD of the means, compared to outside of the means.*
+You may notice that the variance from the mean in X and Y is more aligned in this figure than it was in the data before it was transformed into ranks (and is less skewed!):
+
+```{r}
+shared_resid
+```

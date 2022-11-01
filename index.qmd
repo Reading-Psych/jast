@@ -6,8 +6,9 @@ title: "About"
 
 This textbook  is under-development (<a href="https://github.com/Reading-Psych/jast" target="_blank">https://github.com/Reading-Psych/jast</a>), and is aimed at students in the school of Psychology and Clinical Language Sciences. The aim will be to focus on statistics taught in MSc students in Reading using the following software:
 
-- Microsoft Excel
+- Microsoft Excel (in the future)
 - <a href="https://www.r-project.org">R (open-source)</a>
+- Python (in development)
 
 Do make use of the search-bar in the top-right to find any content within the website.
 

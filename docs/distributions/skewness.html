@@ -93,6 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../logo/logo.jpeg" rel="icon" type="image/jpeg">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -134,6 +135,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo/logo.jpeg" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Just Another Statistics Textbook</span>
     </a>
@@ -672,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>positive_skewness</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6013588</code></pre>
+<pre><code>[1] 0.5882519</code></pre>
 </div>
 </div>
 <p>… or just</p>
@@ -713,9 +717,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(positive_skew)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>           estimate         se    zScore
-skew      0.6013588 0.02449122 24.554052
-kurtosis -0.0723950 0.04897755 -1.478126</code></pre>
+<pre><code>           estimate         se   zScore
+skew      0.5882519 0.02449122 24.01889
+kurtosis -0.1387710 0.04897755 -2.83336</code></pre>
 </div>
 </div>
 <p>The above function generated three columns: <span class="math inline">\(estimate\)</span> of skewness (and kurtosis, but we’ll deal with <a href="kurtosis.html" target="_blank">kurtosis</a> separately, <span class="math inline">\(standard\)</span> <span class="math inline">\(error\)</span> (SE) and the <span class="math inline">\(skewness_z\)</span> score. <strong>Z-scores</strong> can capture how unlikely the <span class="math inline">\(skewness\)</span> estimate is considering what you would normally expect. In this case, when you divide skewness by standard error, you get a z-score, and if the <strong>absolute value</strong> (i.e.&nbsp;ignoring whether it is positive or negative) of the z-score is greater than 1.96 then it is significantly skewed. If you want to understand why 1.96 is the main number, check out the subsection on <a href="normal.html" target="_blank">normal distributions</a>.</p>

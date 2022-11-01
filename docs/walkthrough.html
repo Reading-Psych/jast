@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Simple_regression</title>
+<title>Just Another Statistics Textbook - Hello, Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,22 +86,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./logo/logo.jpeg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -122,8 +123,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -133,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo/logo.jpeg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Just Another Statistics Textbook</span>
     </a>
   </div>
@@ -158,7 +163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Simple_regression</h1>
+      <h1 class="quarto-secondary-nav-title">Hello, Quarto</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -186,12 +191,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
+  <a href="./installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
   </div>
 </li>
       </ul>
@@ -206,12 +211,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  <a href="./statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  <a href="./statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
       </ul>
@@ -226,17 +231,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  <a href="./rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  <a href="./rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  <a href="./rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
   </div>
 </li>
       </ul>
@@ -251,17 +256,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/describingData.html" class="sidebar-item-text sidebar-link">Describing Data</a>
+  <a href="./describingData/describingData.html" class="sidebar-item-text sidebar-link">Describing Data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency</a>
+  <a href="./describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion</a>
+  <a href="./describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion</a>
   </div>
 </li>
       </ul>
@@ -276,22 +281,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
+  <a href="./distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness</a>
+  <a href="./distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness - incomplete</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/kurtosis.html" class="sidebar-item-text sidebar-link">Kurtosis (incomplete)</a>
+  <a href="./distributions/kurtosis.html" class="sidebar-item-text sidebar-link">Kurtosis (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (incomplete)</a>
+  <a href="./distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (incomplete)</a>
   </div>
 </li>
       </ul>
@@ -306,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations</a>
+  <a href="./correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -323,11 +328,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  regressions/simpleRegressions.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (incomplete)</a>
+  </div>
+</li>
           <li class="sidebar-item">
-  regressions/multipleRegressions.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -339,7 +348,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simple-regression" id="toc-simple-regression" class="nav-link active" data-scroll-target="#simple-regression">Simple Regression</a></li>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link active" data-scroll-target="#markdown">Markdown</a></li>
+  <li><a href="#code-cell" id="toc-code-cell" class="nav-link" data-scroll-target="#code-cell">Code Cell</a></li>
+  <li><a href="#equation" id="toc-equation" class="nav-link" data-scroll-target="#equation">Equation</a></li>
   </ul>
 </nav>
     </div>
@@ -348,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Simple_regression</h1>
+<h1 class="title d-none d-lg-block">Hello, Quarto</h1>
 </div>
 
 
@@ -362,34 +373,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="simple-regression" class="level2">
-<h2 class="anchored" data-anchor-id="simple-regression">Simple Regression</h2>
-<p>Simple regression also known as linear regression builds on correlation, except unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), regression allows you to make <strong>predictions</strong> on how <strong>one variable</strong> affects <strong>another</strong>.</p>
-<p>For example, if your looking to see how ‘x’ influences ‘y’ then regression will help predict or explain a numeric response.</p>
-<p>The main objective of regression analysis is to estimate the values of a random variable (z) based on the values of your known (or fixed) variables (x and y).</p>
-<p>Linear regression analysis operates by drawing the <strong>best fitting line</strong> through the data points. But this <u>does not</u> imply causation, as regression only models the data. Regression can’t tell us exactly what is influencing what (i.e.&nbsp;whether hours of sleep affect depression score or if depression score affects hours of sleep), its not a perfect representation but its good enough!</p>
-<p>If we want to see whether sleep (independent variable in this case) affects depression (dependent variable) then we need to know this equation…</p>
-<p><img src="Screenshot%202022-10-12%20at%2022.13.22.png" class="img-fluid"></p>
-<p>For this equation we will always retrieve values from the graph, except residuals, which is the ‘error’</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<section id="why-use-regression" class="level4">
-<h4 class="anchored" data-anchor-id="why-use-regression"><strong>Why use regression?</strong></h4>
-<p>Regression builds on correlation by providing a more detailed view of your data and with this provides an equation that can be used for any future predicting and optimizing of your data.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
-<p><strong>The differences between regression and correlation</strong></p>
-
-
+<section id="markdown" class="level2">
+<h2 class="anchored" data-anchor-id="markdown">Markdown</h2>
+<p>Markdown is an easy to read and write text format:</p>
+<ul>
+<li>It’s <em>plain text</em> so works well with version control</li>
+<li>It can be <strong>rendered</strong> into HTML, PDF, and more</li>
+<li>Learn more at: <a href="https://quarto.org/docs/authoring/" class="uri">https://quarto.org/docs/authoring/</a></li>
+</ul>
 </section>
+<section id="code-cell" class="level2">
+<h2 class="anchored" data-anchor-id="code-cell">Code Cell</h2>
+<p>Here is a Python code cell.</p>
+<p>Install the VS Code Python Extension to enable running this cell interactively.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.cpu_count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>10</code></pre>
+</div>
+</div>
+</section>
+<section id="equation" class="level2">
+<h2 class="anchored" data-anchor-id="equation">Equation</h2>
+<p>Use LaTeX to write equations:</p>
+<p><span class="math display">\[
+\chi' = \sum_{i=1}^n k_i s_i^2
+\]</span></p>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -6,6 +6,19 @@ format:
 editor: visual
 ---
 
+```{r}
+# add google fonts
+library(showtext)
+
+font_add_google("Gochi Hand", "gochi")
+
+
+# also helps ggplot for macos computers with the problem "no font could be found for ..."
+font_add("Arial", "/Library/Fonts/Arial.ttf")  # Use the actual file path
+
+showtext_auto()
+```
+
 Please make sure you've read about variance within the <a href="../describingData/dispersion.html" target="_blank">dispersion section</a> before proceeding with this page.
 
 Correlations capture how much two variables are associated with each other by calculating the proportion of the **total variance** explained by how much the two variables **vary together (explained below).** To understand this, we need to think about how each variable varies **independently, together** and compare the two. We'll use the **gapminder** data to look at how how life expectancy correlated with GDP in 2007:
@@ -23,6 +36,7 @@ gapminder_2007 <- subset(
 # a reminder of the data frame
 rmarkdown::paged_table(head(gapminder_2007))
 
+
 # Basic scatter plot
 ggplot(
   data = gapminder_2007, 
@@ -30,7 +44,13 @@ ggplot(
     x=gdpPercap, 
     y=lifeExp
   )
-) + geom_point()
+) + geom_point() +
+  theme(
+    text=element_text(
+      family="gochi",
+      size = 20
+    )
+  )
 ```
 
 *Note that in the figure above each dot represents an individual point from our data.Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).*
@@ -93,7 +113,14 @@ life_exp_resid <- ggplot(
       yend = mean(lifeExp),
       color = "resid"
     )
-  ) + theme(legend.position = "none")
+  ) + 
+  theme(
+    legend.position = "none",
+    text=element_text(
+      family="gochi",
+      size = 20
+    )
+  )
 
 ggsave("life_exp_resid.png", life_exp_resid)
 ```
@@ -126,7 +153,13 @@ gdp_resid <- ggplot(
       yend = lifeExp,
       color = "resid"
     )
-  ) + theme(legend.position = "none")
+  ) + theme(
+    legend.position = "none",
+    text=element_text(
+      family="gochi",
+      size = 20
+    )
+  )
 ggsave("gdp_resid.png", gdp_resid)
 gdp_resid
 ```
@@ -151,33 +184,9 @@ $$
 
 Or, to use the figures above:
 
-<table>
-
-<tr>
-
-<td style="font-size:30px">$Total$ $Var$ =</td>
-
-<td style="font-size:50px">sqrt(<img src="life_exp_resid.png" style="width:150px; height:150px;"/> \^2)
-
-$$
-\frac{}{N-1}
-$$
-
-</td>
-
-<td style="font-size:100px">$*$</td>
-
-<td style="font-size:50px">sqrt(<img src="gdp_resid.png" style="width:150px; height:150px;"/> \^ 2)
-
-$$
-\frac{}{N-1}
-$$
-
-</td>
-
-</tr>
-
-</table>
+|                     |                                                             |        |                                                         |
+|---------------------|-------------------------------------------------------------|--------|---------------------------------------------------------|
+| \$Total\$ \$Var\$ = | sqrt(![](life_exp_resid.png) \\\^2) \$\$ \\frac{}{N-1} \$\$ | \$\*\$ | sqrt(![](gdp_resid.png) \\\^ 2) \$\$ \\frac{}{N-1} \$\$ |
 
 This is analogous to understanding the total area of a rectangle by multiplying the length of each side with each other.
 
@@ -240,7 +249,12 @@ shared_resid <- ggplot(
     linetype   = "dashed",  
     color      = "#006599", 
     size       = 1
-  ) + theme(legend.position = "none")
+  ) + theme(
+    legend.position = "none",
+    text=element_text(
+      family="gochi"
+    )
+  )
 ggsave("shared_resid.png", shared_resid) 
 shared_resid
 ```
@@ -286,35 +300,13 @@ cor.test(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
 
 To visualise what proportion of the variance is captured by $var_{xy}$:
 
-<table>
-
-<tr>
-
-<td style="font-size:50px; text-align:center" colspan=3><img src="shared_resid.png" style="width:200px; height:200px;"/>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td colspan=3><hr></hr></td>
-
-</tr>
-
-<tr>
-
-<td style="font-size:50px">sqrt(<img src="life_exp_resid.png" style="width:200px; height:200px;"/> \^2
-
-</td>
-
-<td style="font-size:100px">$*$</td>
-
-<td style="font-size:50px"><img src="gdp_resid.png" style="width:200px; height:200px;"/> \^ 2)
-
-</td>
-
-</table>
++:------------------------------------------------------------------------:+
+| ![](shared_resid.png)                                                    |
++--------------------------------------------------------------------------+
+| ------------------------------------------------------------------------ |
++--------------------------------------------------------------------------+
+| sqrt(![](life_exp_resid.png) \\\^2                                       |
++--------------------------------------------------------------------------+
 
 A question you might have at this point, is whether the above figure seems consistent with 67.9% of $total$ $variance$ being explained by overlapping variance between $x$ and $y$?
 
@@ -371,7 +363,12 @@ inverted_resid <- ggplot(
     linetype   = "dashed",  
     color      = "#006599", 
     size       = 1
-  ) + theme(legend.position = "none")
+  ) + theme(
+    legend.position = "none",
+    text=element_text(
+      family="gochi"
+    )
+  )
 
 inverted_resid
 ```
@@ -486,7 +483,13 @@ rank_resid <- ggplot(
     linetype   = "dashed",  
     color      = "#006599", 
     size       = 1
-  ) + theme(legend.position = "none")
+  ) + theme(
+    legend.position = "none",
+    text=element_text(
+      family="gochi",
+      size = 20
+    )
+  )
 
 rank_resid
 ```

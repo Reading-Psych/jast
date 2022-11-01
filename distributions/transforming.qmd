@@ -2,7 +2,7 @@
 title: "Transforming Data (incomplete)"
 format:
   html:
-      code-fold: true
+      code-fold: false
 editor: visual
 ---
 
@@ -149,8 +149,6 @@ cor.test(
 
 but not if you apply similar transformations to both variables
 
-d if the association has changed:
-
 ```{r}
 # correlation with original data
 cor.test(
@@ -160,6 +158,6 @@ cor.test(
 # correlation with both variables squared
 cor.test(
   sqrt(gapminder_2007$gdpPercap),
-  gapminder_2007$lifeExp ^2
+  sqrt(gapminder_2007$lifeExp)
 )
 ```

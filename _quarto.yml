@@ -38,6 +38,7 @@ website:
           - rBasics/logic.qmd
       - section: "Python Basics"
         contents:
+          - pythonBasics/fundamentals.qmd
           - pythonBasics/logic.qmd
       - section: "Describing Data"
         contents:

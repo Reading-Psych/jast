@@ -373,6 +373,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="cell">
+
+</div>
 <section id="prediction-using-regression" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-using-regression">Prediction using regression</h2>
 <p><strong>Simple regression</strong>, also known as linear regression, builds on <a href="../correlations/correlations.html" target="_blank">correlation</a>. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), <strong>simple regression</strong> allows you to make <strong>predictions</strong> of an <strong>outcome variable</strong> based on a <strong>predictor variable</strong>.</p>
@@ -409,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Life expectancy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="simpleRegressions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="simpleRegressions_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Linear regression analysis operates by drawing the <strong>best fitting line (AKA the regression line; see the blue line above)</strong> through the data points. But this <u>does not</u> imply causation, as regression only models the data. Simple linear regression can’t tell us exactly what is influencing what (i.e.&nbsp;whether GDP per capita increases life expectancy), this will depend on the design of your study or your broader theoretical understanding. But for now, we can investigate whether <span class="math inline">\(gdp\)</span> predicts <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span>. The formula for the above line could be written as:</p>
@@ -485,7 +488,7 @@ outcome = intercept + gradient * predictor + residual
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="simpleRegressions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="simpleRegressions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>These residuals can be thought of the error, i.e.&nbsp;what the model <strong>failed</strong> to predict. In more mathematical terms, the model would be:</p>

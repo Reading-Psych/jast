@@ -36,6 +36,9 @@ website:
           - rBasics/filetypes.qmd
           - rBasics/fundamentals.qmd
           - rBasics/logic.qmd
+      - section: "Python Basics"
+        contents:
+          - pythonBasics/logic.qmd
       - section: "Describing Data"
         contents:
           - describingData/describingData.qmd

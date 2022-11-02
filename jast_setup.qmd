@@ -1,0 +1,13 @@
+
+```{r, echo=F, message=FALSE}
+# add google fonts
+library(showtext)
+
+font_add_google("Gochi Hand", "gochi")
+
+
+# also helps ggplot for macos computers with the problem "no font could be found for ..."
+font_add("Arial", "/Library/Fonts/Arial.ttf")  # Use the actual file path
+
+showtext_auto()
+```

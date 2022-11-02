@@ -6,18 +6,7 @@ format:
 editor: visual
 ---
 
-```{r}
-# add google fonts
-library(showtext)
-
-font_add_google("Gochi Hand", "gochi")
-
-
-# also helps ggplot for macos computers with the problem "no font could be found for ..."
-font_add("Arial", "/Library/Fonts/Arial.ttf")  # Use the actual file path
-
-showtext_auto()
-```
+{{< include ../jast_setup.qmd >}}
 
 Please make sure you've read about variance within the <a href="../describingData/dispersion.html" target="_blank">dispersion section</a> before proceeding with this page.
 

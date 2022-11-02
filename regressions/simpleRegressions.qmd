@@ -5,7 +5,7 @@ format:
     code-fold: true
 editor: visual
 ---
-
+{{< include ../jast_setup.qmd >}}
 ## Prediction using regression
 
 **Simple regression**, also known as linear regression, builds on [correlation](../correlations/correlations.html){target="_blank"}. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), **simple regression** allows you to make **predictions** of an **outcome variable** based on a **predictor variable**.
@@ -208,3 +208,4 @@ Regression builds on correlation by providing a more detailed view of your data 
 ```
 
 **The differences between regression and correlation**
+

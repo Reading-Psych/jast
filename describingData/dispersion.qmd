@@ -12,8 +12,6 @@ To understand distribution (later), it's helpful to clarify some more basic conc
 
 **Range** simply captures the min and the maximum values. Lets look at the min and max for the life expectancy data from 2007:
 
-::: panel-tabset
-## R
 
 ```{r}
 # load the gapminder data
@@ -29,24 +27,7 @@ min(gapminder_2007$lifeExp)
 max(gapminder_2007$lifeExp)
 ```
 
-## Python
 
-```{python}
-# load the markdownTable module 
-from markdownTable import markdownTable
-
-# load the gapminder module and import the gapminder dataset
-from gapminder import gapminder
-
-# create a new data frame that only focuses on data from 2007
-gapminder_2007 = gapminder.loc[gapminder['year'] == 2007]
-
-gapminder_2007['lifeExp'].min()
-gapminder_2007['lifeExp'].max()
-
-
-```
-:::
 
 So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
@@ -56,8 +37,6 @@ So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
 **Variance** is how much the data varies around a mean. To capture this, we compare each individual's score with the mean, so lets do this with our gapminder data's life expectancy:
 
-::: panel-tabset
-## R
 
 ```{r}
 life_expectancy_variance_table <- data.frame(
@@ -68,76 +47,35 @@ life_expectancy_variance_table <- data.frame(
 rmarkdown::paged_table(life_expectancy_variance_table)
 ```
 
-## Python
 
-```{python}
-import pandas as pd
-import tabulate
-life_expectancy_variance_table = {
-  'life_expectancy' : gapminder_2007['lifeExp'],
-  'diff_from_mean': gapminder_2007['lifeExp']- gapminder_2007['lifeExp'].mean()
-}
-
-life_expectancy_variance_table = pd.DataFrame(life_expectancy_variance_table)
-
-print(markdownTable(life_expectancy_variance_table.to_dict(orient='records')).getMarkdown())
-```
-:::
 
 So we know for **each** country how different their life expectacy is to the mean life expectancy. But ideally we would like a single value to summarise variance. Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:
 
-::: panel-tabset
-## R
 
 ```{r}
 mean(life_expectancy_variance_table$diff_from_mean) 
 ```
 
-## Python
-
-```{python}
-life_expectancy_variance_table['diff_from_mean'].mean()
-```
-:::
 
 We get a number that is effectively zero (go <a href="../statsBasics/eNumbers.html" target="_blank">here</a> for an explanation about e-numbers), because all the values above the mean balance out those below the mean. So to address this, we can square the differences to force all the numbers to be positive:
 
-::: panel-tabset
-## R
 
 ```{r}
 life_expectancy_variance_table$diff_squared = life_expectancy_variance_table$diff_from_mean^2
 rmarkdown::paged_table(life_expectancy_variance_table)
 ```
 
-## Python
-
-```{python}
-life_expectancy_variance_table['diff_squared'] = life_expectancy_variance_table['diff_from_mean'].pow(2)
-print(markdownTable(life_expectancy_variance_table.to_dict(orient='records')).getMarkdown())
-```
-:::
 
 If we calculate the average of this, then we get a summary of the variance that is more informative:
 
-::: panel-tabset
-## R
 
 ```{r}
 mean(life_expectancy_variance_table$diff_squared)
 ```
 
-## Python
-
-```{python}
-life_expectancy_variance_table['diff_squared'].mean()
-```
-:::
 
 However, as mean is what you get when you add all the items together and then divide it by the number of items, this can also be done in 2 steps in R (this will help us understand the formula later):
 
-::: panel-tabset
-## R
 
 ```{r}
 sum_of_squares = sum(life_expectancy_variance_table$diff_squared)
@@ -145,14 +83,6 @@ this_variance  = sum_of_squares/length(life_expectancy_variance_table$diff_squar
 this_variance
 ```
 
-## Python
-
-```{python}
-sum_of_squares = life_expectancy_variance_table['diff_squared'].sum()
-this_variance = sum_of_squares/life_expectancy_variance_table['diff_squared'].count()
-this_variance
-```
-:::
 
 We can represent the above in the following formula for the **population**'s (remember, this is when you have everyone from the group you are measuring) variance:
 
@@ -178,8 +108,6 @@ So why do we divide by N-1 rather than N? This is because the sample variance is
 
 Degrees of freedom calculations can be useful to address statistics that are vulnerable to bias within a sample (i.e. the sample being distorted compared to the population). Interestingly, **mean** is not, but **variance** is. Lets see this by looking at differences between the population and sample for mean and variance, looking at the height of three people, and combining them into every combination of 2 people possible:
 
-::: panel-tabset
-## R
 
 ```{r}
 three_heights = c(150,160,170)
@@ -223,102 +151,34 @@ mean_sample_variance <- mean(sample_heights$sample_var)
 mean_population_variance <- mean(sample_heights$pop_var)
 ```
 
-## Python
 
-```{python}
-import pandas as pd
-import numpy as np
-
-three_heights = [150,160,170]
-three_heights = pd.DataFrame(three_heights)
-population_height_mean = three_heights.mean()
-population_height_variance = (three_heights - population_height_mean).pow(2).sum()/3
-
-#sample participants in pairs
-sample_heights = {
-  'pp1': [150,150, np.nan],
-  'pp2': [160, np.nan, 160],
-  'pp3': [np.nan, 170, 170],
-  'pair': ["1 and 2", "1 and 3", "2 and 3"]
-}
-
-sample_heights = pd.DataFrame(sample_heights)
-mean = [three_heights.iloc[0:2].mean(),three_heights.iloc[[0,2],].mean(),three_heights.iloc[1:3].mean()]
-mean = pd.DataFrame(mean)
-sample_heights['mean']=mean
-
-pop_var=[((three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2))/3,((three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2))/3,((three_heights.iloc[1] - three_heights.iloc[1:3].mean()).pow(2) + (three_heights.iloc[2] - three_heights.iloc[1:3].mean()).pow(2))/3]
-pop_var = pd.DataFrame(pop_var)
-sample_heights['pop_var']= pop_var
-
-sample_var=[((three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2))/(3-1),((three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2))/(3-1),((three_heights.iloc[1] - three_heights.iloc[1:3].mean()).pow(2) + (three_heights.iloc[2] - three_heights.iloc[1:3].mean()).pow(2))/(3-1)]
-sample_var=pd.DataFrame(sample_var)
-sample_heights['sample_var']=sample_var
-
-
-sample_heights = pd.DataFrame(sample_heights)
-print(markdownTable(sample_heights.to_dict(orient='records')).getMarkdown())
-
-mean_sample_mean = sample_heights['mean'].mean()
-mean_sample_variance = sample_heights['sample_var'].mean()
-mean_population_variance = sample_heights['pop_var'].mean()
-
-```
-:::
 
 When comparing the population mean to the mean sample mean (i.e., what is the typical mean for any sample), they're identical (i.e. ***NOT*** biased):
 
-::: panel-tabset
-## R
 
 ```{r}
 population_height_mean
 mean_sample_mean
 ```
 
-## Python
-
-```{python}
-population_height_mean
-mean_sample_mean
-```
-:::
 
 Whereas when comparing the actual population variance (**population_height_variance**) to the mean (to identify what is a typical) estimate of variance using the **population formula that should not be used for samples (mean_population_variance)** finds the estimate of variance is typically smaller than the actual variance in the population:
 
-::: panel-tabset
-## R
 
 ```{r}
 population_height_variance
 mean_population_variance
 ```
 
-## Python
-
-```{python}
-population_height_variance
-mean_population_variance
-```
-:::
 
 As this bias (almost) always underestimates the population variance, **degrees of freedom** is a useful correction to address this within calculations of sample variance. Lets compare the **actual** population height variance (population_height_variance) to the mean estimate using degrees of freedom that **should be used for samples (mean_sample_variance)**.
 
-::: panel-tabset
-## R
 
 ```{r}
 population_height_variance
 mean_sample_variance
 ```
 
-## Python
-
-```{python}
-population_height_variance
-mean_sample_variance
-```
-:::
 
 So, not perfect, but this is less under-representative of the variance.
 

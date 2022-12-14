@@ -4,29 +4,27 @@ title: "About"
 
 *Developed at the University of Reading School of Psychology and Clinical Language Sciences. This is not developed by the same team as JASP (although JASP is great).*
 
-This textbook  is under-development (<a href="https://github.com/Reading-Psych/jast" target="_blank">https://github.com/Reading-Psych/jast</a>), and is aimed at students in the school of Psychology and Clinical Language Sciences. The aim will be to focus on statistics taught in MSc students in Reading using the following software:
+This textbook is under-development (<a href="https://github.com/Reading-Psych/jast" target="_blank">https://github.com/Reading-Psych/jast</a>), and is aimed at students in the school of Psychology and Clinical Language Sciences. The aim will be to focus on statistics taught in MSc students in Reading using the following software:
 
-- Microsoft Excel (in the future)
-- <a href="https://www.r-project.org">R (open-source)</a>
-- Python (in development)
+-   Microsoft Excel (in the future)
+-   <a href="https://www.r-project.org">R (open-source)</a>
+-   Python (in development)
 
 Do make use of the search-bar in the top-right to find any content within the website.
 
 ## Contributions (in alphabetical order)
 
+| Surname   | First Name | Contribution      |
+|-----------|------------|-------------------|
+| Biagi     | Nico       | Architect, Author |
+| Brady     | Dan        | Architect, Author |
+| Goh       | Vera       | Suggestions       |
+| Haffey    | Anthony    | Architect, Author |
+| Mathews   | Imogen     | Author            |
+| Pritchard | Katherine  | Suggestions       |
+| Sahni     | Angad      | Contributor       |
 
-| Surname     | First Name  | Contribution           |
-| ----------- | ----------- | -----------------------|
-| Biagi       | Nico        | Architect, Author      |
-| Brady       | Dan         | Architect, Author      |
-| Goh         | Vera        | Suggestions            |
-| Haffey      | Anthony     | Architect, Author      |
-| Mathews     | Imogen      | Author                 |
-| Pritchard   | Katherine   | Suggestions            |
-| Sahni       | Angad       | Contributor            |
-
-
-- **Architects** have managed the formatting of this website/textbook
-- **Authors** have written (sub)sections
-- **Contributors** have contributed text for a subsection
-- **Suggestions** are requests for elaborations and clarifications
+-   **Architects** have managed the formatting of this website/textbook
+-   **Authors** have written (sub)sections
+-   **Contributors** have contributed text for a subsection
+-   **Suggestions** are requests for elaborations and clarifications

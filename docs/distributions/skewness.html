@@ -208,11 +208,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  statsBasics/statsBasics.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
           <li class="sidebar-item">
-  statsBasics/eNumbers.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -224,14 +228,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  rBasics/filetypes.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  </div>
+</li>
           <li class="sidebar-item">
-  rBasics/fundamentals.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  </div>
+</li>
           <li class="sidebar-item">
-  rBasics/logic.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -332,11 +342,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  regressions/simpleRegressions.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (incomplete)</a>
+  </div>
+</li>
           <li class="sidebar-item">
-  regressions/multipleRegressions.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -681,7 +695,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>positive_skewness</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6127268</code></pre>
+<pre><code>[1] 0.5848995</code></pre>
 </div>
 </div>
 <p>… or just</p>
@@ -722,9 +736,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(positive_skew)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>           estimate         se   zScore
-skew      0.6127268 0.02449122 25.01822
-kurtosis -0.1151874 0.04897755 -2.35184</code></pre>
+<pre><code>           estimate         se    zScore
+skew      0.5848995 0.02449122 23.882004
+kurtosis -0.1850778 0.04897755 -3.778828</code></pre>
 </div>
 </div>
 <p>The above function generated three columns: <span class="math inline">\(estimate\)</span> of skewness (and kurtosis, but we’ll deal with <a href="kurtosis.html" target="_blank">kurtosis</a> separately, <span class="math inline">\(standard\)</span> <span class="math inline">\(error\)</span> (SE) and the <span class="math inline">\(skewness_z\)</span> score. <strong>Z-scores</strong> can capture how unlikely the <span class="math inline">\(skewness\)</span> estimate is considering what you would normally expect. In this case, when you divide skewness by standard error, you get a z-score, and if the <strong>absolute value</strong> (i.e.&nbsp;ignoring whether it is positive or negative) of the z-score is greater than 1.96 then it is significantly skewed. If you want to understand why 1.96 is the main number, check out the subsection on <a href="normal.html" target="_blank">normal distributions</a>.</p>
@@ -831,8 +845,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<script src="https://giscus.app/client.js" data-repo="reading-psych/jast" data-repo-id="R_kgDOIEndng" data-category="General" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 

@@ -2,7 +2,7 @@
 title: "Scientific Notation"
 format: 
   html:
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 

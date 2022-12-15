@@ -1,5 +1,5 @@
 ---
-title: "Skewness - incomplete"
+title: "Skewness"
 format: 
   html:  
     code-fold: true
@@ -8,169 +8,28 @@ editor: visual
 
 **Parametric** analyses are based on the assumption that the data you are analysing is normally distributed (see below):
 
-```{r}
+```{r warning=FALSE}
 library(ggplot2)
 # https://stackoverflow.com/a/12429538
-norm_x<-seq(-4,4,0.01)
+norm_x<-seq(-4,4,0.001)
 
 norm_data_frame<-data.frame(x=norm_x,y=dnorm(norm_x,0,1))
 
-
-
-shade_50 <- rbind(
-  c(0,0), 
-  subset(norm_data_frame, x > 0), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-shade_84.1 <- rbind(
-  c(1,0), 
-  subset(norm_data_frame, x > 1), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-
-shade_97.7 <- rbind(
-  c(2,0), 
-  subset(norm_data_frame, x > 2), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-
-p<-qplot(
-  x=norm_data_frame$x,
-  y=norm_data_frame$y,
-  geom="line"
-)
+p<- ggplot(
+  data = norm_data_frame, 
+  aes(
+    x = x,
+    y = y
+  )
+) + geom_line()
 
  p +
-   geom_polygon(
-     data = shade_50,
-     aes(
-       x,
-       y,
-       fill="50"
-      )
-    ) +
-   geom_polygon(
-     data = shade_84.1,
-     aes(
-       x,
-       y,
-       fill="84.1"
-      )
-    ) +
-   geom_polygon(
-     data = shade_97.7, 
-     aes(
-       x, 
-       y,
-       fill="97.7"
-      )
-    ) +
-   xlim(c(-4,4)) +
-   
-   annotate("text", x=0.5, y=0.01, label= "34.1%") + 
-   annotate("text", x=1.5, y=0.01, label= "13.6%") + 
-   annotate("text", x=2.25, y=0.01, label= "2.3%") +
-   xlab("Z-score") +
-   ylab("Frequency") +
-   theme(legend.position="none")
-```
-
-```{r}
-library(ggplot2)
-# https://stackoverflow.com/a/12429538
-norm_x<-seq(-4,4,0.01)
-
-norm_data_frame<-data.frame(x=norm_x,y=dnorm(norm_x,0,1))
-
-
-shade_2.3 <- rbind(
-  c(-3,0), 
-  subset(norm_data_frame, x > -3), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-shade_13.6 <- rbind(
-  c(-2,0), 
-  subset(norm_data_frame, x > -2), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-shade_34.1 <- rbind(
-  c(-1,0), 
-  subset(norm_data_frame, x > -1), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-shade_50 <- rbind(
-  c(0,0), 
-  subset(norm_data_frame, x > 0), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-shade_84.1 <- rbind(
-  c(1,0), 
-  subset(norm_data_frame, x > 1), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-
-shade_97.7 <- rbind(
-  c(2,0), 
-  subset(norm_data_frame, x > 2), 
-  c(norm_data_frame[nrow(norm_data_frame), "X"], 0))
-
-
-p<-qplot(
-  x=norm_data_frame$x,
-  y=norm_data_frame$y,
-  geom="line"
-)
-
- p +
-   geom_polygon(
-     data = shade_2.3,
-     aes(
-       x,
-       y,
-       fill="2.3"
-      )
-    ) +
-   geom_polygon(
-     data = shade_13.6,
-     aes(
-       x,
-       y,
-       fill="13.6"
-      )
-    ) +
-   geom_polygon(
-     data = shade_34.1,
-     aes(
-       x,
-       y,
-       fill="34.1"
-      )
-    ) +
-   geom_polygon(
-     data = shade_50,
-     aes(
-       x,
-       y,
-       fill="50"
-      )
-    ) +
-   geom_polygon(
-     data = shade_84.1,
-     aes(
-       x,
-       y,
-       fill="84.1"
-      )
-    ) +
-   geom_polygon(
-     data = shade_97.7, 
-     aes(
-       x, 
-       y,
-       fill="97.7"
-      )
-    ) +
-   xlim(c(-4,4)) +
+   xlim(c(-3,3)) +
+   geom_col(aes(fill=x)) +
+   scale_fill_gradient2(low = "red", 
+                       high = "blue",
+                       mid =  "white",
+                       midpoint = median(norm_data_frame$x))+
    
    annotate("text", x=-2.3, y=0.01, label= "13.6%") + 
    annotate("text", x=-1.5, y=0.01, label= "34.1%") + 
@@ -178,127 +37,83 @@ p<-qplot(
    annotate("text", x=0.5, y=0.01, label= "84.1%") + 
    annotate("text", x=1.5, y=0.01, label= "97.7%") + 
    annotate("text", x=2.25, y=0.01, label= "100%") +
+   geom_vline(xintercept = -2) +
+   geom_vline(xintercept = -1) +
+   geom_vline(xintercept = 0) +
+   geom_vline(xintercept = 1) +
+   geom_vline(xintercept = 2) +
    xlab("Z-score") +
    ylab("Frequency") +
    theme(legend.position="none")
 ```
 
-If your data fits a normal distribution, then you can draw conclusions based on certain facts about this distribution, e.g. the fact that 97.7% of your population *should* have a score that is more negative than +2 standard deviations above the mean (*because Z-scores represent standard deviations from the mean*). As a result, if your data is positively skewed:
+*White in the above figure represents the median. Note that the mean and median overlap in a normal distribution.*
 
-```{r}
-# generate a positively skewed distribution between 0 and 1
-positive_skew = rbeta(10000,2,5)
-positive_skew = positive_skew - mean(positive_skew)
-hist(positive_skew, main="Positively skewed data")
-abline(
-  v=mean(positive_skew),  # where the line for the mean will be 
-  lwd=5
+If your data fits a normal distribution, then you can draw conclusions based on certain facts about this distribution, e.g. the fact that 97.7% of your population *should* have a score that is more negative than +2 standard deviations above the mean (*because Z-scores represent standard deviations from the mean*). As a result, if your data is skewed:
+
+```{r warning=FALSE, message=FALSE}
+library(fGarch)
+
+skew_data_frame<-data.frame(
+  x = norm_x,
+  y = dsnorm(
+    x = norm_x,
+    mean = 0,
+    sd = 1,
+    xi = 2,
+  )
 )
-abline(
-  v=median(positive_skew), # where the line for the median will be
-  lwd=3,
-  lty=3
-)
+
+ggplot(
+  data = skew_data_frame, 
+  aes(
+    x = x,
+    y = y
+  )
+) + 
+  geom_line() + 
+  geom_col(aes(fill=x)) +
+  scale_fill_gradient2(low = "red", 
+                       high = "blue",
+                       mid =  "white",
+                       midpoint = -.15)+
+   theme(legend.position="none") +
+  xlim(-3,3) +
+  ylab("Frequency") +
+  xlab("Z-score")
+
+
 ```
 
-or negatively skewed
+*White represents the median in the figure above.*
 
-```{r}
-negative_skew = rbeta(10000,5,2)
-hist(negative_skew, main = "Negatively skewed data")
-abline(
-  v=mean(negative_skew),  # where the line for the mean will be 
-  lwd=5
-)
-abline(
-  v=median(negative_skew), 
-  lwd=3,
-  lty=3
-)
-```
+As you can see from the above skewed distribution, the median is below the mean, consistent with the data being skewed. Importantly, the assumptions that we can make about what proportion of the population are 1 standard deviation above and below the mean are no longer valid, as more than half the population are below the mean in this case. This would suggest that non-parametric analyses could be more appropriate if your data is skewed.
 
-It is no longer the case that 1 standard deviation above or below the mean will capture the same number of people.
+So now that we know what skewed distributions look like, we now need to **quantify** how much of a problem with skewness there is.
 
-So whilst this histogram visualises the distribution of the data, it's helpful to be able to **statistically quantify** (i.e. give numbers that represent) this distribution. Remember that for many statistical tests (parametric) it's helpful to have data that is **normally distributed**. Normally distributed data (also known as **Gaussian distributions** and associated with **parametric statistics**) generally looks like a bell curve:
+The next section is a breakdown of the formula for those interested in it (but this is *not crucial*).
 
-```{r echo=F}
-# generating random data to fit a normal distribution.
-norm_data <-rnorm(
-  100000,               # the number of samples
-  mean=0,               # the mean (which in this case should be almost identical to the median)
-  sd=1                  # the standard deviation
-)
-hist(
-  norm_data,
-  breaks = 100,           # the number of bins (the more bins there are, the thinner each bin is)
-  xlim   = c(-3,3),       # the range of the x-axis
-  freq   = FALSE,         # changes the y-axis from reporting the absolute frequency to reporting the relative density
-  xlab   = "SDs", 
-  main   = "Normal distribution (pseudo-randomly generated)"
-)
-```
-
-So we can see when comparing the shape of life expectancies and the shape of a normal distribution that the two aren't the same. There are 3 things we'll look for to *quantify* how much of a problem we have with our current distribution:
-
--   skewness
--   kurtosis
-
-## Skewness
-
-Data can be negatively skewed, where the mean is less than the median:
-
-```{r}
-# Skewed to the right
-negative_skew = rbeta(10000,5,2)
-hist(negative_skew, main = "Negatively skewed data")
-abline(
-  v=mean(negative_skew),  # where the line for the mean will be 
-  lwd=5
-)
-abline(
-  v=median(negative_skew), 
-  lwd=3,
-  lty=3
-)
-```
-
-*The thick lines represents the mean; the dashed lines represents the median. The bigger the distance between these, the less normally distributed your data is. (see* **central tendancy** *below)*
-
-Or positively skewed, where the median is less than the mean:
-
-```{r}
-
-# Skewed to the left
-positive_skew = rbeta(10000,2,5)
-hist(positive_skew, main="Positively skewed data")
-abline(
-  v=mean(positive_skew),  # where the line for the mean will be 
-  lwd=5
-)
-abline(
-  v=median(positive_skew), # where the line for the median will be
-  lwd=3,
-  lty=3
-)
-```
-
-*The thick lines represents the mean; the dashed lines represents the median. The bigger the distance between these, the less normally distributed your data is. (see central tendancy below)*
-
-So now that we know what skewed distributions look like, we now need to **quantify** how much of a problem with skewness there is. If we add together the amount of skewness for each data point together and then divide by a general summary of the total standard deviation, then you get an estimate of skewness. The next section is a breakdown of the formula for those interested in it (but this is *not crucial*), but **the key point point is that outliers skew the data, and so outliers that are larger than the mean positively skew the data, and outliers below the mean negatively skew it. If there are an equal number of outliers on either side of the mean then the data will not be skewed.**
-
-::: {.optional_content style="border-radius:10px; border: 5px solid green;"}
 #### Optional
 
 If we want to manually calculate skewness:
 
 $$
 \tilde{\mu_{3}} = \sum((\frac{x_i- \bar{x}{}} {\sigma} )^3) * \frac{N}{(N-1) * (N-2)}
-$$ To do this in R you *could* calculate it manually
+$$ To do this in R you *could* calculate it manually. We'll use Gapminder's data from 2007:
 
 ```{r}
-# applying this to the positive skew data above
-positive_skew_n = length(positive_skew)
-positive_skewness = sum(((positive_skew - mean(positive_skew))/sd(positive_skew))^3) * (
+library(gapminder)
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+hist(gapminder_2007$lifeExp)
+
+positive_skew_n = length(gapminder_2007$lifeExp)
+positive_skewness = sum(((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))/sd(gapminder_2007$lifeExp))^3) * (
   positive_skew_n / ((positive_skew_n-1) * (positive_skew_n - 2))
 )
 # to show the output:
@@ -306,9 +121,9 @@ positive_skewness
 ```
 
 ... or just
-:::
 
-Use code from https://stackoverflow.com/a/54369572 to give you values for skewness (this has been chosen as this gives skewness and its standard error as calculated by major software like SPSS and JASP):
+
+Use code from <https://stackoverflow.com/a/54369572> to give you values for skewness (this has been chosen as this gives skewness and its standard error as calculated by major software like SPSS and JASP):
 
 ```{r}
 
@@ -341,7 +156,7 @@ spssSkewKurtosis=function(x) {
         dimnames=list(c("skew","kurtosis"), c("estimate","se","zScore")))
   return(mat)
 }
-spssSkewKurtosis(positive_skew)
+spssSkewKurtosis(gapminder_2007$lifeExp)
 
 ```
 

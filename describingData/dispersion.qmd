@@ -2,7 +2,7 @@
 title: "Dispersion"
 format:
   html:
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 
@@ -11,7 +11,6 @@ To understand distribution (later), it's helpful to clarify some more basic conc
 ## Range
 
 **Range** simply captures the min and the maximum values. Lets look at the min and max for the life expectancy data from 2007:
-
 
 ```{r}
 # load the gapminder data
@@ -27,8 +26,6 @@ min(gapminder_2007$lifeExp)
 max(gapminder_2007$lifeExp)
 ```
 
-
-
 So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
 ## Variance
@@ -36,7 +33,6 @@ So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 ### Population Variance
 
 **Variance** is how much the data varies around a mean. To capture this, we compare each individual's score with the mean, so lets do this with our gapminder data's life expectancy:
-
 
 ```{r}
 life_expectancy_variance_table <- data.frame(
@@ -47,42 +43,32 @@ life_expectancy_variance_table <- data.frame(
 rmarkdown::paged_table(life_expectancy_variance_table)
 ```
 
-
-
 So we know for **each** country how different their life expectacy is to the mean life expectancy. But ideally we would like a single value to summarise variance. Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:
-
 
 ```{r}
 mean(life_expectancy_variance_table$diff_from_mean) 
 ```
 
-
 We get a number that is effectively zero (go <a href="../statsBasics/eNumbers.html" target="_blank">here</a> for an explanation about e-numbers), because all the values above the mean balance out those below the mean. So to address this, we can square the differences to force all the numbers to be positive:
-
 
 ```{r}
 life_expectancy_variance_table$diff_squared = life_expectancy_variance_table$diff_from_mean^2
 rmarkdown::paged_table(life_expectancy_variance_table)
 ```
 
-
 If we calculate the average of this, then we get a summary of the variance that is more informative:
-
 
 ```{r}
 mean(life_expectancy_variance_table$diff_squared)
 ```
 
-
 However, as mean is what you get when you add all the items together and then divide it by the number of items, this can also be done in 2 steps in R (this will help us understand the formula later):
-
 
 ```{r}
 sum_of_squares = sum(life_expectancy_variance_table$diff_squared)
 this_variance  = sum_of_squares/length(life_expectancy_variance_table$diff_squared)
 this_variance
 ```
-
 
 We can represent the above in the following formula for the **population**'s (remember, this is when you have everyone from the group you are measuring) variance:
 
@@ -107,7 +93,6 @@ So why do we divide by N-1 rather than N? This is because the sample variance is
 ## Degrees of Freedom
 
 Degrees of freedom calculations can be useful to address statistics that are vulnerable to bias within a sample (i.e. the sample being distorted compared to the population). Interestingly, **mean** is not, but **variance** is. Lets see this by looking at differences between the population and sample for mean and variance, looking at the height of three people, and combining them into every combination of 2 people possible:
-
 
 ```{r}
 three_heights = c(150,160,170)
@@ -151,34 +136,26 @@ mean_sample_variance <- mean(sample_heights$sample_var)
 mean_population_variance <- mean(sample_heights$pop_var)
 ```
 
-
-
 When comparing the population mean to the mean sample mean (i.e., what is the typical mean for any sample), they're identical (i.e. ***NOT*** biased):
-
 
 ```{r}
 population_height_mean
 mean_sample_mean
 ```
 
-
 Whereas when comparing the actual population variance (**population_height_variance**) to the mean (to identify what is a typical) estimate of variance using the **population formula that should not be used for samples (mean_population_variance)** finds the estimate of variance is typically smaller than the actual variance in the population:
-
 
 ```{r}
 population_height_variance
 mean_population_variance
 ```
 
-
 As this bias (almost) always underestimates the population variance, **degrees of freedom** is a useful correction to address this within calculations of sample variance. Lets compare the **actual** population height variance (population_height_variance) to the mean estimate using degrees of freedom that **should be used for samples (mean_sample_variance)**.
-
 
 ```{r}
 population_height_variance
 mean_sample_variance
 ```
-
 
 So, not perfect, but this is less under-representative of the variance.
 

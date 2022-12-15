@@ -1,0 +1,43 @@
+---
+title: "General Linear Models"
+format: 
+  html:  
+    code-fold: true
+editor: visual
+---
+
+## What are general linearmodels?
+
+General linear models allow you to analyse data in which the **dependent** variable is continuous. For example, if you are analysing the height of a group of individuals, you might use one of the following analyses:
+
+-   **t-test**, comparisons between two conditions e.g. are males taller than females?
+
+-   **regression**, one or more predictors of a single outcome e.g. does foot size, weight etc. predict height? (Note that **correlations** are equivalent to a regression with a single predictor)
+
+-   **ANOVA**, comparisons between 3 or more conditions or between multiple categorical factors, e.g. are there differences in height between sexes and nationalities?
+
+**Linear** refers to the **dependent variable** being continuous.
+
+**General** refers to the fact that the **independent variables** can both be continuous (e.g. regression) or categorical (e.g. t-test or ANOVA).
+
+In **general linear models** all analyses involve creating a model, and capturing what is and isn't explained by the model (i.e. the **error** of the model). All analyses in general linear models can be formulated as:
+
+$$
+Data = Model + Error
+$$
+
+Data: The dependent variable in your analysis Model: A model which predicts a phenomenon. This could be multiple independent variables. Error: What data isn't explained by the model
+
+## Sum of squares
+
+Now lets see how this looks for the above analyses:
+
+## Simple Regressions and t-tests
+
+As described in more detail in the [simple regression section](../regressions/simpleRegressions.qmd), the simplest general linear model could be formulated as:
+
+$$
+Y = a + bX + e
+$$
+
+## 

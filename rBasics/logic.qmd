@@ -2,7 +2,7 @@
 title: "R Logic"
 format: 
   html:
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 

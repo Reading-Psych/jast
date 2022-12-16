@@ -1,8 +1,8 @@
 ---
-title: "General Linear Models"
+title: "General Linear Models and Sum of Squares"
 format: 
   html:  
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 
@@ -26,9 +26,310 @@ $$
 Data = Model + Error
 $$
 
-Data: The dependent variable in your analysis Model: A model which predicts a phenomenon. This could be multiple independent variables. Error: What data isn't explained by the model
+Data: The dependent variable in your analysis Model: A model which predicts a phenomenon. This could be multiple independent variables. Error: What data isn't explained by the model.
 
-## Sum of squares
+## Mean as the simplest model of data
+
+If you want to estimate what someone's life expectancy would be in 2007, you could look at the mean life expectancy using the gapminder data. In terms of how this corresponds to the above model:
+
+$$
+Data = Model + Error
+$$
+
+$$
+estimatedLifeExpectancy = mean(lifeExpectancy) + Error
+$$
+
+```{r}
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007     
+)
+
+mean(gapminder_2007$lifeExp)
+```
+
+$$
+estimatedLifeExpectancy = 67.01 + Error
+$$
+
+Which could be visualised as:
+
+```{r}
+ggplot(
+  gapminder_2007, aes(x=rank(lifeExp), y=lifeExp)
+) + 
+  geom_jitter() +
+  geom_hline(yintercept = mean(gapminder_2007$lifeExp), color="blue") +
+  geom_segment(
+    aes(
+      xend = rank(lifeExp),
+      yend = mean(lifeExp),
+      color = "resid"
+    )
+  ) +
+  theme(legend.position = "none")
+
+```
+
+*Fig. 1.*
+
+In English, the above model and figure allow you to predict that anyone's life expectancy will be 67 years. However, as you can also see, there's a huge amount of error, i.e. variance in life expectancy that is not explained by the model. These errors can be squared and summed to give the **sum of squares**, a statistic of how much error there is around the model:
+
+$$
+SS = \sum(Y_i-\bar{Y})^2
+$$
+
+Which can be visualised as follows:
+
+```{r}
+ggplot(
+  gapminder_2007, 
+  aes(
+    x=rank(lifeExp), 
+    # y is the square of the difference between each data point and the mean across all data poins. Once these are summed you will get the sum of squares.
+    y=(lifeExp-mean(lifeExp))^2
+  )
+) + 
+  geom_point() +
+  geom_segment(
+    aes(
+      xend = rank(lifeExp),
+      yend = 0,
+      color = "resid"
+    )
+  ) +
+  theme(legend.position = "none")
+```
+
+*Fig. 2.*
+
+You can directly compare **fig. 1. and fig. 2.** to see how much error is associated with each data point compared to the model. Fig. 2. is positive because it is the distance of the data-point from the mean squared. If you added together all the **squares (pink lines)** in fig. 2. that would give you the **sum of squares.**
+
+As you may have guessed, it is possible to have more precise models that have less error, and thus a smaller **sum of squares**. Let's explore those possibilities now.
+
+## T-Tests 
+
+T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let's first check what the sum of squares is when you just use the **mean** as the model of life expectancy across these contents:
+
+```{r}
+gapminder_americas_europe <- subset(
+  gapminder_2007,   # the data set
+  continent == "Europe" | continent == "Americas"
+)
+
+ggplot(
+  gapminder_americas_europe, aes(x=rank(lifeExp), y=lifeExp)
+) + 
+  geom_point() +
+  geom_hline(yintercept = mean(gapminder_americas_europe$lifeExp), color="blue") +
+  geom_segment(
+    aes(
+      xend = rank(lifeExp),
+      yend = mean(lifeExp),
+      color = "resid"
+    )
+  ) +
+  theme(legend.position = "none")
+
+```
+
+*Fig. 3.* The errors around the mean of life expectancy across Europe and American countries.
+
+Once we square the errors in the pink lines above, we'll get the **squares:**
+
+```{r}
+ggplot(
+  gapminder_americas_europe, 
+  aes(
+    x=rank(lifeExp), 
+    # y is the square of the difference between each data point and the mean across all data poins. Once these are summed you will get the sum of squares.
+    y=(lifeExp-mean(lifeExp))^2
+  )
+) + 
+  geom_point() +
+  geom_segment(
+    aes(
+      xend = rank(lifeExp),
+      yend = 0,
+      color = "resid"
+    )
+  ) +
+  theme(legend.position = "none")
+
+sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)
+
+```
+
+And when you add all of these together:
+
+$$
+SumOfSquares = \sum(Y_i-\bar{Y})^2 = 953.4478
+$$
+
+So if the model we create for a t-test would result in a smaller **sum of squares** then that suggests it's a more precise model for estimating life expectancy than simply using the **mean** as a model. This is because this would mean there's less **error** in this model. Let's model this using a t-test. For this we will need to dummy code country:
+
+```{r}
+# create a column to place 1 or -1 for each row dependent on the country
+contDummy = NA
+contDummy[gapminder_americas_europe$continent == "Europe"] = 1
+contDummy[gapminder_americas_europe$continent == "Americas"] = -1
+gapminder_americas_europe = cbind(contDummy,gapminder_americas_europe)
+rmarkdown::paged_table(head(gapminder_americas_europe))
+```
+
+Now that we have dummy coded the continent, we can create a new model to try to predict an individual's life expectancy based on which continent they are from
+
+$$
+Y = intercept + \beta * dummyVariable + Error
+$$
+
+$$
+lifeExp = mean(lifeExp) + \beta * ContDummy + Error
+$$
+
+-   Y being the predicted life expectancy.
+
+-   $\bar{Y}$ being the mean life expectancy regardless of continent. For a t-test this is also the $intercept$.
+
+-   $\beta$ being how much to adjust the prediction based on which continent the person is from
+
+-   $ContDummy$ being 1 (Europe) or -1 (Americas) to reflect which continent the participant is from
+
+-   $Error$ being any error in the prediction not captured by the model
+
+To get the $intercept$ and $\beta$ for the above formula let's use the lm function in R:
+
+```{r}
+continent_ttest <- lm(lifeExp ~ contDummy, gapminder_americas_europe)
+
+continent_ttest$coefficients[1] 
+continent_ttest$coefficients[2]
+
+
+gapminder_americas_europe$t_fit = continent_ttest$coefficients[1] + # intercept
+  continent_ttest$coefficients[2]                       * # gradient
+  gapminder_americas_europe$contDummy
+
+
+ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +
+  geom_segment(
+    position = "jitter",
+    arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    aes(
+      xend = contDummy,
+      yend = t_fit,
+      color = "resid"
+    )
+  ) + 
+  geom_segment(aes(
+    x = -1.9, 
+    xend = -.1, 
+    y = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
+    yend = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
+    color = "blue"
+  ) + 
+  geom_segment(aes(
+    x = 0.1, 
+    xend = 1.9, 
+    y = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
+    yend = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
+    color = "blue"
+  )
+```
+
+*Fig. X. Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a* $contDummy$ score of -1, even if the jittering above makes it look like participants from Europe had slightly different $contDummy$ values to each other.
+
+So now that we've visualised the predictions and the error, lets summarise these errors with their sum of squares:
+
+```{r}
+# to get the sum of squares, you can use the lm from earlier
+sum(continent_ttest$residuals^2)
+
+# to calculate this manually:
+gapminder_americas_europe$t_res = gapminder_americas_europe$t_fit - gapminder_americas_europe$lifeExp
+gapminder_americas_europe$t_res_squared = gapminder_americas_europe$t_res^2
+sum(gapminder_americas_europe$t_res_squared)
+```
+
+So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478), so including the continent the country is in makes the model more precise. To show that we've achieved the same as a t-test, let's run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:
+
+```{r}
+#953.4478/730.8276
+continent_ttest <- t.test(
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1],
+  # general linear models assume the variance between conditions is equal
+  var.equal = T
+)
+continent_model <- summary(lm(lifeExp ~ contDummy, gapminder_americas_europe))
+
+continent_ttest$p.value
+continent_model$coefficients[2,4] # p-value for the continent as a predictor
+```
+
+There are some advantages of conducting a t-test using the "lm" functionality:
+
+-   You can capture residuals
+
+-   You have more flexibility to make more complex models
+
+Let's now see how we can proceed if we have a more complex design, i.e. 3 or more levels and/or more than 1 factor, using ANOVAs.
+
+## ANOVAs
+
+ANOVAs are useful to compare between categorical conditions if you have more than 2 conditions you want to compare or if you have multiple categorical predictor factors you want to investigate. Let's start with an example of a 2 x 2 design, in which continent and whether the population is "large" or "small" are categorical predictors of life expectancy. First, we need to make a new categorical variable, in which countries with a population greater than medium have a "large" population, and other countries have a "small" population:
+
+```{r}
+gapminder_americas_europe$popCategorical = "small"
+gapminder_americas_europe$popDummy = -1
+gapminder_americas_europe$popCategorical[gapminder_americas_europe$pop > median(gapminder_americas_europe$pop)] = "large"
+gapminder_americas_europe$popDummy[gapminder_americas_europe$pop > median(gapminder_americas_europe$pop)] = 1
+
+anova_df <- gapminder_americas_europe[ ,c(
+  "popCategorical",
+  "popDummy",
+  "continent",
+  "contDummy",
+  "lifeExp"
+)]
+rmarkdown::paged_table(head(anova_df))
+```
+
+We can now analyse this using a similar general linear model as the t-test above, but now have a second factor of $popDummy$ to try to make a more specific model.
+
+```{r}
+glm_anova_model <- summary(lm(lifeExp ~ popDummy * contDummy, data = anova_df))
+glm_anova_model
+```
+
+Let's see if this model has less error (i.e. a smaller sum of squares than the t-test; 730.8276):
+
+```{r}
+sum(anova_model$residuals^2)
+```
+
+Yep, so this model is giving us a bit more insight as there is less error. Let's visualise how much error there is:
+
+Let's compare the output of this lm function to an ANOVA function in R to confirm that these are the same thing (i.e. that ANOVA is a general linear model):
+
+```{r}
+car::Anova(aov(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
+temp_model <- lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df)
+summary(temp_model)
+car::Anova(lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
+```
+
+You'll see that the 2 x 2 interaction p-values are identical between analyses, but that the individual factors are similar but not identical.
+
+## Regression
+
+### The simplest model
+
+```{r}
+
+```
 
 Now lets see how this looks for the above analyses:
 

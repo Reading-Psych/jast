@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Just Another Statistics Textbook - R-squared vs.&nbsp;Adjusted R-squared</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../logo/logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo/logo.jpeg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Just Another Statistics Textbook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">Report an error</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">Request a clarification</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">Suggest Content</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">R-squared vs.&nbsp;Adjusted R-squared</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Welcome</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Statistics Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">R Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Describing Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Distributions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/kurtosis.html" class="sidebar-item-text sidebar-link">Kurtosis (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  correlations/cooksd.qmd
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">General Linear Models</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  GeneralLinearModels/One-Way Analysis of Variance
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/rVsAdjustedRSquared.html" class="sidebar-item-text sidebar-link active">R-squared vs.&nbsp;Adjusted R-squared</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">R-squared vs.&nbsp;Adjusted R-squared</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>When completing a regression, there’s always a risk of “overfitting” the data, i.e.&nbsp;creating a model that includes predictors that have no meaningful association with the outcome variable. One reason that overfitting the data is a problem is that it is almost impossible for a predictor to have no association with an outcome variable. For that to happen you would need any data points that suggested a positive association between the outcome and the predictor to be equally balanced out by data points that suggest a negative association:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>no_association_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">predictor =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome   =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(no_association_df, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> outcome)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">formula =</span> <span class="st">'y ~ x'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="rVsAdjustedRSquared_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>Fig. X.</em> An example of how unrealistically balanced your data needs to be to find no association. As this (almost) never happens in reality, samples are <em>biased</em> towards finding associations between predictor and outcome variables even when there aren’t any in the population. For example, let’s generate some random data, and see what R-Values we find. Remember, random data really shouldn’t have <em>any</em> association between predictor and outcome variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>random_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_1 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_2 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_3 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_dv =</span> <span class="fu">runif</span>(<span class="dv">100</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(random_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["random_iv_1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["random_iv_2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["random_iv_3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["random_dv"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.887530698","2":"0.67586616","3":"0.153409589","4":"0.59306513"},{"1":"0.365206437","2":"0.68460902","3":"0.057844327","4":"0.57005044"},{"1":"0.815293702","2":"0.19480933","3":"0.968635812","4":"0.14529475"},{"1":"0.018015701","2":"0.42533224","3":"0.660796250","4":"0.51130435"},{"1":"0.589371487","2":"0.77250796","3":"0.168221319","4":"0.62642345"},{"1":"0.126554931","2":"0.01383743","3":"0.955174090","4":"0.05700784"},{"1":"0.011931401","2":"0.43307506","3":"0.321511718","4":"0.90862091"},{"1":"0.864704242","2":"0.73246716","3":"0.522386033","4":"0.29662345"},{"1":"0.973263477","2":"0.28755489","3":"0.173110569","4":"0.58258173"},{"1":"0.632832654","2":"0.05700990","3":"0.169924035","4":"0.72146716"},{"1":"0.356946510","2":"0.75835725","3":"0.655453733","4":"0.83233199"},{"1":"0.135534202","2":"0.35453794","3":"0.708815633","4":"0.48168580"},{"1":"0.642018371","2":"0.99963370","3":"0.175445019","4":"0.36977490"},{"1":"0.366077693","2":"0.99679994","3":"0.767388361","4":"0.41313423"},{"1":"0.811536232","2":"0.54407910","3":"0.345616013","4":"0.10821858"},{"1":"0.422687148","2":"0.34899651","3":"0.509526019","4":"0.31075597"},{"1":"0.239117761","2":"0.21242428","3":"0.331538899","4":"0.71340709"},{"1":"0.005996976","2":"0.20863842","3":"0.929172228","4":"0.98122012"},{"1":"0.830822964","2":"0.58381493","3":"0.230771999","4":"0.33746180"},{"1":"0.301240477","2":"0.99478012","3":"0.326819801","4":"0.58608470"},{"1":"0.197981578","2":"0.51131051","3":"0.209417915","4":"0.12268758"},{"1":"0.907856750","2":"0.72248280","3":"0.583660677","4":"0.83068071"},{"1":"0.996755716","2":"0.56283618","3":"0.753312532","4":"0.28699491"},{"1":"0.848044041","2":"0.35991944","3":"0.839698300","4":"0.05265971"},{"1":"0.113579997","2":"0.71152125","3":"0.482823513","4":"0.90090299"},{"1":"0.066895379","2":"0.58465592","3":"0.110511309","4":"0.52076167"},{"1":"0.284420253","2":"0.02630594","3":"0.209711081","4":"0.85010489"},{"1":"0.784100217","2":"0.28578913","3":"0.728433037","4":"0.51545643"},{"1":"0.562070428","2":"0.20472689","3":"0.786681422","4":"0.12738126"},{"1":"0.149075241","2":"0.85642959","3":"0.414575255","4":"0.53756461"},{"1":"0.365193420","2":"0.04423735","3":"0.217517125","4":"0.23550869"},{"1":"0.328014540","2":"0.84540671","3":"0.238670899","4":"0.37174586"},{"1":"0.161400674","2":"0.93432015","3":"0.069749754","4":"0.76356956"},{"1":"0.569359014","2":"0.05368762","3":"0.298963930","4":"0.27498902"},{"1":"0.787248783","2":"0.29720075","3":"0.691275518","4":"0.48558664"},{"1":"0.743056068","2":"0.31734817","3":"0.366569928","4":"0.25252501"},{"1":"0.713257891","2":"0.11323238","3":"0.083445689","4":"0.01974825"},{"1":"0.049516770","2":"0.29987268","3":"0.270448677","4":"0.46538431"},{"1":"0.262013911","2":"0.60189176","3":"0.159028147","4":"0.24335299"},{"1":"0.752875757","2":"0.89858360","3":"0.882520214","4":"0.41727280"},{"1":"0.667330907","2":"0.34617411","3":"0.694433412","4":"0.24289518"},{"1":"0.063475898","2":"0.71815895","3":"0.706349360","4":"0.44443480"},{"1":"0.121221991","2":"0.24048948","3":"0.236953350","4":"0.68599386"},{"1":"0.228418037","2":"0.97411406","3":"0.401980086","4":"0.25217144"},{"1":"0.882572259","2":"0.46680970","3":"0.536145997","4":"0.34651284"},{"1":"0.143914042","2":"0.60239760","3":"0.877971148","4":"0.99471236"},{"1":"0.004974689","2":"0.45682204","3":"0.846162511","4":"0.98819438"},{"1":"0.621476543","2":"0.98591803","3":"0.951350486","4":"0.44050596"},{"1":"0.930140645","2":"0.56098615","3":"0.935198972","4":"0.54344068"},{"1":"0.187965510","2":"0.69642819","3":"0.807727556","4":"0.07102421"},{"1":"0.255400382","2":"0.37869246","3":"0.854017670","4":"0.18635965"},{"1":"0.108294498","2":"0.53688253","3":"0.740365235","4":"0.41013339"},{"1":"0.173545937","2":"0.31245781","3":"0.929083480","4":"0.77176812"},{"1":"0.894411072","2":"0.61179130","3":"0.842071184","4":"0.41509316"},{"1":"0.239910170","2":"0.67184458","3":"0.811935965","4":"0.62194890"},{"1":"0.350514292","2":"0.27056400","3":"0.727366379","4":"0.10617517"},{"1":"0.754745735","2":"0.38658274","3":"0.690897096","4":"0.68131761"},{"1":"0.101996732","2":"0.08507118","3":"0.062816000","4":"0.82101072"},{"1":"0.194956373","2":"0.80417914","3":"0.712758867","4":"0.65417811"},{"1":"0.590197611","2":"0.06804531","3":"0.319713448","4":"0.51524771"},{"1":"0.712288761","2":"0.26154604","3":"0.651368485","4":"0.75387644"},{"1":"0.551955936","2":"0.50737437","3":"0.587573510","4":"0.19449427"},{"1":"0.848194226","2":"0.68163420","3":"0.773768000","4":"0.09075492"},{"1":"0.209490641","2":"0.21146894","3":"0.529564734","4":"0.55539592"},{"1":"0.774124327","2":"0.66380175","3":"0.179695921","4":"0.61467931"},{"1":"0.267596326","2":"0.47150940","3":"0.991684587","4":"0.14483953"},{"1":"0.155369007","2":"0.56958505","3":"0.453192837","4":"0.07662780"},{"1":"0.493943604","2":"0.78135087","3":"0.012954532","4":"0.11259586"},{"1":"0.464835804","2":"0.25818569","3":"0.278932942","4":"0.45465182"},{"1":"0.214303601","2":"0.79224991","3":"0.657668300","4":"0.44076380"},{"1":"0.758258325","2":"0.06133738","3":"0.907522148","4":"0.43260468"},{"1":"0.298411552","2":"0.52260158","3":"0.885760361","4":"0.59300090"},{"1":"0.436995976","2":"0.15635096","3":"0.136483321","4":"0.78874610"},{"1":"0.049073203","2":"0.95350680","3":"0.591412564","4":"0.22051790"},{"1":"0.242868121","2":"0.45620726","3":"0.844210193","4":"0.34813398"},{"1":"0.018851996","2":"0.68626779","3":"0.250086002","4":"0.70352932"},{"1":"0.462385235","2":"0.75969873","3":"0.164289590","4":"0.44739620"},{"1":"0.163183439","2":"0.69134806","3":"0.810959590","4":"0.34439383"},{"1":"0.689063989","2":"0.43285732","3":"0.083461106","4":"0.76479925"},{"1":"0.757506386","2":"0.88316569","3":"0.573398905","4":"0.96184590"},{"1":"0.115520345","2":"0.29679412","3":"0.090600808","4":"0.07747754"},{"1":"0.828562718","2":"0.01118948","3":"0.115339429","4":"0.40334055"},{"1":"0.877576433","2":"0.85104568","3":"0.298014153","4":"0.82424067"},{"1":"0.579409334","2":"0.27409104","3":"0.789315559","4":"0.42127689"},{"1":"0.957196306","2":"0.08558060","3":"0.901819836","4":"0.18041768"},{"1":"0.361923547","2":"0.42700133","3":"0.875824766","4":"0.54724684"},{"1":"0.353188465","2":"0.21416560","3":"0.293545763","4":"0.37429528"},{"1":"0.970981287","2":"0.86506741","3":"0.361214107","4":"0.67353746"},{"1":"0.184341623","2":"0.40814108","3":"0.858545088","4":"0.94771706"},{"1":"0.813242218","2":"0.78745104","3":"0.998367583","4":"0.28949319"},{"1":"0.280528108","2":"0.04481377","3":"0.971512820","4":"0.59971969"},{"1":"0.449227221","2":"0.84448417","3":"0.806281700","4":"0.80858674"},{"1":"0.948482189","2":"0.79750321","3":"0.652613749","4":"0.31742006"},{"1":"0.153502986","2":"0.20143499","3":"0.529721226","4":"0.23003885"},{"1":"0.791319918","2":"0.68401780","3":"0.862384009","4":"0.12552215"},{"1":"0.778857553","2":"0.52210477","3":"0.492974089","4":"0.16785469"},{"1":"0.902647591","2":"0.69942766","3":"0.879693150","4":"0.40262511"},{"1":"0.034963500","2":"0.54621565","3":"0.923966296","4":"0.18283700"},{"1":"0.722937864","2":"0.59618276","3":"0.005955333","4":"0.28379617"},{"1":"0.696771547","2":"0.84083712","3":"0.741880643","4":"0.25022851"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>random_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(random_dv <span class="sc">~</span> random_iv_1, random_df)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>random_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(random_lm)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>random_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = random_dv ~ random_iv_1, data = random_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.45534 -0.18720 -0.01486  0.19149  0.55019 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.53255    0.04676  11.390   &lt;2e-16 ***
+random_iv_1 -0.15960    0.08336  -1.915   0.0585 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2562 on 98 degrees of freedom
+Multiple R-squared:  0.03606,   Adjusted R-squared:  0.02622 
+F-statistic: 3.666 on 1 and 98 DF,  p-value: 0.05846</code></pre>
+</div>
+</div>
+<p><strong>Note that the above output is generated each time this page is rendered (generated), and so <em>by chance</em> may happen to look like the random predictor is significant. If so, there’s a 95% chance that this predictor will not be significant next time the page is rendered</strong>.</p>
+<p>Looking at the output above, we can see that 3.6056% of the variance of random_dv was explained by <em>random_iv_1</em> before correction. Considering that these were randomly generated numbers, that’s 3.6056% too much. However, the <em>Adjusted R-squared</em> is only 0.0262. Note that <em>Adjusted R-squared</em> can be a negative number, and a negative number suggests that based on the sample, the predictor(s) has(/have) no association with the outcome variable in the population.</p>
+<p>A formula for the adjusted r-squared is:</p>
+<p><span class="math display">\[
+\bar{R^2} = 1-\frac{SS_{res}/df_{res}}{SS_{tot}/df_{tot}}
+\]</span> <span class="math inline">\(\bar{R^2}\)</span> is the <em>Adjusted R-Squared</em> <span class="math inline">\(SS_{total}\)</span> is the <em>Sum of Squares</em> of the <em>total</em> (i.e.&nbsp;how much total variance there is around the mean to explain) <span class="math inline">\(SS_{res}\)</span> is the <em>Sum of Squares</em> of the <em>residuals</em> (i.e.&nbsp;how much isn’t explained by the model) <span class="math inline">\(df_{total}\)</span> is the <em>Degrees of Freedom</em> of the <em>total</em>. This is the number of data points - 1, so is N - 1 <span class="math inline">\(df_{res}\)</span> is the <em>Degrees of Freedom</em> of the <em>residuals</em>. The degrees of freedom for the residuals takes into account the number of data points and the number of predictors, and so is N - 1 - 1</p>
+<p>Let’s use the above formula to manually calculate the <em>Adjusted R Squared</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ss_res <span class="ot">&lt;-</span> <span class="fu">sum</span>(random_lm<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    random_df<span class="sc">$</span>random_dv <span class="sc">-</span> <span class="fu">mean</span>(random_df<span class="sc">$</span>random_dv)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>random_r_square <span class="ot">=</span> ss_total <span class="sc">-</span> ss_res</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>df_total <span class="ot">&lt;-</span> <span class="fu">length</span>(random_lm<span class="sc">$</span>residuals) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> <span class="fu">length</span>(random_lm<span class="sc">$</span>residuals) <span class="sc">-</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">-</span> <span class="co"># remove 1 from the number of data points</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="co"># remove another 1 to reflect there being 1 predictor</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> (ss_res<span class="sc">/</span>df_res)<span class="sc">/</span>(ss_total<span class="sc">/</span>df_total)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02622009</code></pre>
+</div>
+</div>
+<p>The number above should match the <em>Adjusted R-Squared</em> from the multiple regression above. Let’s explore what happens when we have multiple predictors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>random_lm_multiple <span class="ot">&lt;-</span> <span class="fu">lm</span>(random_dv <span class="sc">~</span> random_iv_1 <span class="sc">+</span> random_iv_2 <span class="sc">+</span> random_iv_3, random_df)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>random_multiple_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(random_lm_multiple)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>random_multiple_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = random_dv ~ random_iv_1 + random_iv_2 + random_iv_3, 
+    data = random_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.45803 -0.17642 -0.00832  0.17020  0.53051 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.54314    0.07902   6.873  6.3e-10 ***
+random_iv_1 -0.16095    0.08381  -1.920   0.0578 .  
+random_iv_2  0.05953    0.09282   0.641   0.5228    
+random_iv_3 -0.07405    0.08566  -0.865   0.3894    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2573 on 96 degrees of freedom
+Multiple R-squared:  0.0473,    Adjusted R-squared:  0.01753 
+F-statistic: 1.589 on 3 and 96 DF,  p-value: 0.1971</code></pre>
+</div>
+</div>
+<p>Two things to look for from the above: - The model with 3 predictors has higher <em>(Multiple) R-Squared</em> than the model with only 1 predictor. This reflects problems with over-fitting the model: the more predictors you include in your sample, the more variance in the outcome that will be explained by the predictors, even if those associations between the predictors are arbitrary (i.e.&nbsp;don’t reflect anything about the general population). - <em>Adjusted R-squared</em> values are less susceptible to this bias of overfitting the data (but is not completely invulnerable to it). All statistical tests are vulnerable to false positives and including <em>Adjusted R-squared</em> values.</p>
+<p>Remember, the adjusted r-square is necessary for us to make claims about the general population. If we just wanted to make a claim about our sample, we would just use the r-squared, as we don’t need to correct our estimate.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -55,6 +55,7 @@ website:
         contents: 
           - "GeneralLinearModels/generalLinearModels.qmd"
           - "GeneralLinearModels/One-Way Analysis of Variance"
+          - "GeneralLinearModels/rVsAdjustedRSquared.qmd"
 
 format:
   html:

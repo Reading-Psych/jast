@@ -1,0 +1,77 @@
+---
+title: "R-squared vs. Adjusted R-squared"
+editor: visual
+---
+
+When completing a regression, there's always a risk of "overfitting" the data, i.e. creating a model that includes predictors that have no meaningful association with the outcome variable. One reason that overfitting the data is a problem is that it is almost impossible for a predictor to have no association with an outcome variable. For that to happen you would need any data points that suggested a positive association between the outcome and the predictor to be equally balanced out by data points that suggest a negative association:
+
+```{r}
+library(ggplot2)
+no_association_df <- data.frame(
+  predictor = c(1,1,1,2,2,2,3,3,3),
+  outcome   = c(1,2,3,1,2,3,1,2,3)
+)
+
+ggplot(no_association_df, aes(x = predictor, y = outcome)) + geom_point() + geom_smooth(method=lm, formula = 'y ~ x')
+```
+
+*Fig. X.* An example of how unrealistically balanced your data needs to be to find no association. As this (almost) never happens in reality, samples are *biased* towards finding associations between predictor and outcome variables even when there aren't any in the population. For example, let's generate some random data, and see what R-Values we find. Remember, random data really shouldn't have *any* association between predictor and outcome variables.
+
+```{r}
+random_df = data.frame(
+  random_iv_1 = runif(100),
+  random_iv_2 = runif(100),
+  random_iv_3 = runif(100),
+  random_dv = runif(100)
+)
+rmarkdown::paged_table(random_df)
+```
+
+```{r}
+random_lm <- lm(random_dv ~ random_iv_1, random_df)
+random_summary <- summary(random_lm)
+random_summary
+```
+
+**Note that the above output is generated each time this page is rendered (generated), and so *by chance* may happen to look like the random predictor is significant. If so, there's a 95% chance that this predictor will not be significant next time the page is rendered**.
+
+Looking at the output above, we can see that `r round(random_summary$r.squared*100,4)`% of the variance of random_dv was explained by *random_iv_1* before correction. Considering that these were randomly generated numbers, that's `r round(random_summary$r.squared*100,4)`% too much. However, the *Adjusted R-squared* is only `r round(random_summary$adj.r.squared,4)`. Note that *Adjusted R-squared* can be a negative number, and a negative number suggests that based on the sample, the predictor(s) has(/have) no association with the outcome variable in the population.
+
+A formula for the adjusted r-squared is:
+
+$$
+\bar{R^2} = 1-\frac{SS_{res}/df_{res}}{SS_{tot}/df_{tot}}
+$$ $\bar{R^2}$ is the *Adjusted R-Squared* $SS_{total}$ is the *Sum of Squares* of the *total* (i.e. how much total variance there is around the mean to explain) $SS_{res}$ is the *Sum of Squares* of the *residuals* (i.e. how much isn't explained by the model) $df_{total}$ is the *Degrees of Freedom* of the *total*. This is the number of data points - 1, so is N - 1 $df_{res}$ is the *Degrees of Freedom* of the *residuals*. The degrees of freedom for the residuals takes into account the number of data points and the number of predictors, and so is N - 1 - 1
+
+Let's use the above formula to manually calculate the *Adjusted R Squared*
+
+```{r}
+ss_res <- sum(random_lm$residuals^2)
+ss_total <- sum(
+  (
+    random_df$random_dv - mean(random_df$random_dv)
+  )^2
+)
+
+
+random_r_square = ss_total - ss_res
+df_total <- length(random_lm$residuals) - 1
+df_res <- length(random_lm$residuals) -
+  1 - # remove 1 from the number of data points
+  1 # remove another 1 to reflect there being 1 predictor
+adjusted_random_r_square = 1 - (ss_res/df_res)/(ss_total/df_total)
+
+adjusted_random_r_square
+```
+
+The number above should match the *Adjusted R-Squared* from the multiple regression above. Let's explore what happens when we have multiple predictors:
+
+```{r}
+random_lm_multiple <- lm(random_dv ~ random_iv_1 + random_iv_2 + random_iv_3, random_df)
+random_multiple_summary <- summary(random_lm_multiple)
+random_multiple_summary
+```
+
+Two things to look for from the above: - The model with 3 predictors has higher *(Multiple) R-Squared* than the model with only 1 predictor. This reflects problems with over-fitting the model: the more predictors you include in your sample, the more variance in the outcome that will be explained by the predictors, even if those associations between the predictors are arbitrary (i.e. don't reflect anything about the general population). - *Adjusted R-squared* values are less susceptible to this bias of overfitting the data (but is not completely invulnerable to it). All statistical tests are vulnerable to false positives and including *Adjusted R-squared* values.
+
+Remember, the adjusted r-square is necessary for us to make claims about the general population. If we just wanted to make a claim about our sample, we would just use the r-squared, as we don't need to correct our estimate.

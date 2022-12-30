@@ -6,7 +6,7 @@ format:
 editor: visual
 ---
 
-## What are general linearmodels?
+## What are general linear models?
 
 General linear models allow you to analyse data in which the **dependent** variable is continuous. For example, if you are analysing the height of a group of individuals, you might use one of the following analyses:
 
@@ -41,6 +41,7 @@ estimatedLifeExpectancy = mean(lifeExpectancy) + Error
 $$
 
 ```{r}
+library(gapminder)
 # create a new data frame that only focuses on data from 2007
 gapminder_2007 <- subset(
   gapminder,   # the data set
@@ -57,6 +58,7 @@ $$
 Which could be visualised as:
 
 ```{r}
+library(ggplot2)
 ggplot(
   gapminder_2007, aes(x=rank(lifeExp), y=lifeExp)
 ) + 
@@ -107,9 +109,11 @@ ggplot(
 
 You can directly compare **fig. 1. and fig. 2.** to see how much error is associated with each data point compared to the model. Fig. 2. is positive because it is the distance of the data-point from the mean squared. If you added together all the **squares (pink lines)** in fig. 2. that would give you the **sum of squares.**
 
-As you may have guessed, it is possible to have more precise models that have less error, and thus a smaller **sum of squares**. Let's explore those possibilities now.
+As you may have guessed, it is possible to have more precise models that have less error, and thus a smaller **sum of squares**. The sum of squares around the mean is also the **total sum of squares,** and the **total variance**. When we calculate the proportion of the variance that a model explains, we are comparing it to this **variance around the mean.**
 
-## T-Tests 
+Let's explore those possibilities now.
+
+## T-Tests
 
 T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let's first check what the sum of squares is when you just use the **mean** as the model of life expectancy across these contents:
 
@@ -216,7 +220,7 @@ gapminder_americas_europe$t_fit = continent_ttest$coefficients[1] + # intercept
 ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +
   geom_segment(
     position = "jitter",
-    arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
     aes(
       xend = contDummy,
       yend = t_fit,
@@ -253,7 +257,109 @@ gapminder_americas_europe$t_res_squared = gapminder_americas_europe$t_res^2
 sum(gapminder_americas_europe$t_res_squared)
 ```
 
-So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478), so including the continent the country is in makes the model more precise. To show that we've achieved the same as a t-test, let's run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:
+So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478) which also summarises the **total variance** (around the mean). In fact, we can use these 2 numbers to calculate the $r^2$ value (i.e. what proportion of the variance around the mean is explained by the model). The amount of variance explained by the model can be calculated by:
+
+$$
+totalSumOfSquares - modelSumOfSquares = totalError - modelError
+$$
+
+This allows us to calculate an r-value and thus a p-value:
+
+```{r}
+this_r2 = 1 - sum(gapminder_americas_europe$t_res_squared)/sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)
+this_r = sqrt(this_r2)
+this_r
+t.test(
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1],
+  var.equal = T
+)
+summary(lm(lifeExp ~ contDummy, gapminder_americas_europe))
+this_r2
+```
+ 
+You may notice above that the manually calculated $r^2$ value is identical to the "Multiple R-Squared", rather than the "Adjusted R-squared". So what's the difference between r-squared and adjusted r-squared?
+
+### R-squared vs. adjusted R-squared
+
+When completing a regression, there's always a risk of "overfitting" the data, i.e. creating a model that includes predictors that have no meaningful association with the outcome variable. One reason that overfitting the data is a problem is that it is almost impossible for a predictor to have no association with an outcome variable. For that to happen you would need any data points that suggested a positive association between the outcome and the predictor to be equally balanced out by data points that suggest a negative association:
+
+
+```{r}
+no_association_df <- data.frame(
+  predictor = c(1,1,1,2,2,2,3,3,3),
+  outcome   = c(1,2,3,1,2,3,1,2,3)
+)
+
+ggplot(no_association_df, aes(x = predictor, y = outcome)) + geom_point() + geom_smooth(method=lm)
+```
+*Fig. X.* An example of how unrealistically balanced your data needs to be to find no association. As this (almost) never happens in reality, samples are *biased* towards finding associations between predictor and outcome variables even when there aren't any in the population. For example, let's generate some random data, and see what R-Values we find. Remember, random data really shouldn't have *any* association between predictor and outcome variables.
+
+```{r}
+random_df = data.frame(
+  random_iv_1 = runif(100),
+  random_iv_2 = runif(100),
+  random_iv_3 = runif(100),
+  random_dv = runif(100)
+)
+rmarkdown::paged_table(random_df)
+```
+```{r}
+random_lm <- lm(random_dv ~ random_iv_1, random_df)
+random_summary <- summary(random_lm)
+random_summary
+```
+**Note that the above output is generated each time this page is rendered (generated), and so *by chance* may happen to look like the random predictor is significant. If so, there's a 95% chance that this predictor will not be significant next time the page is rendered**.
+
+Looking at the output above, we can see that `r round(random_summary$r.squared*100,4)`% of the variance of random_dv was explained by *random_iv_1* before correction. Considering that these were randomly generated numbers, that's `r round(random_summary$r.squared*100,4)`% too much. However, the *Adjusted R-squared* is only `r round(random_summary$adj.r.squared,4)`. Note that *Adjusted R-squared* can be a negative number, and a negative number suggests that based on the sample, the predictor(s) has(/have) no association with the outcome variable in the population. 
+
+A formula for the adjusted r-squared is:
+
+$$
+\bar{R^2} = 1-\frac{SS_{res}/df_{res}}{SS_{tot}/df_{tot}}
+$$
+$\bar{R^2}$  is the *Adjusted R-Squared*
+$SS_{total}$ is the *Sum of Squares* of the *total* (i.e. how much total variance there is around the mean to explain)
+$SS_{res}$   is the *Sum of Squares* of the *residuals* (i.e. how much isn't explained by the model)
+$df_{total}$ is the *Degrees of Freedom* of the *total*. This is the number of data points - 1, so is N - 1
+$df_{res}$   is the *Degrees of Freedom* of the *residuals*. The degrees of freedom for the residuals takes into account the number of data points and the number of predictors, and so is N - 1 - 1
+
+Let's use the above formula to manually calculate the *Adjusted R Squared*
+
+```{r}
+ss_res <- sum(random_lm$residuals^2)
+ss_total <- sum(
+  (
+    random_df$random_dv - mean(random_df$random_dv)
+  )^2
+)
+
+
+random_r_square = ss_total - ss_res
+df_total <- length(random_lm$residuals) - 1
+df_res <- length(random_lm$residuals) -
+  1 - # remove 1 from the number of data points
+  1 # remove another 1 to reflect there being 1 predictor
+adjusted_random_r_square = 1 - (ss_res/df_res)/(ss_total/df_total)
+
+adjusted_random_r_square
+```
+The number above should match the *Adjusted R-Squared* from the multiple regression above. Let's explore what happens when we have multiple predictors:
+
+```{r}
+random_lm_multiple <- lm(random_dv ~ random_iv_1 + random_iv_2 + random_iv_3, random_df)
+random_multiple_summary <- summary(random_lm_multiple)
+random_multiple_summary
+```
+Two things to look for from the above:
+- 
+
+
+Remember, the adjusted r-square is necessary for us to make claims about the general population. If we just wanted to make a claim about our sample, we would just use the r-squared, as we don't need to correct our estimate.
+
+# what is adjusted r-squared?
+
+To show that we've achieved the same as a t-test, let's run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:
 
 ```{r}
 #953.4478/730.8276
@@ -276,6 +382,63 @@ There are some advantages of conducting a t-test using the "lm" functionality:
 -   You have more flexibility to make more complex models
 
 Let's now see how we can proceed if we have a more complex design, i.e. 3 or more levels and/or more than 1 factor, using ANOVAs.
+
+# trying to understand f-values
+
+```{r}
+# manual calculation of F
+# between subject
+
+# sum of squares between:
+
+
+#top_half <- sum(continent_model$residuals^2)/1
+
+bottom_half <- sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)/(2 * (length(gapminder_americas_europe$lifeExp)-1))
+
+
+mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$continent == "Europe"])
+mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$continent == "Americas"])
+mean(gapminder_americas_europe$lifeExp)
+
+top_half = length(gapminder_americas_europe$lifeExp) * sum(
+  (
+    mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$continent == "Europe"]) -
+    mean(gapminder_americas_europe$lifeExp)
+  ) ^2
+)
+
+top_half/bottom_half
+
+
+car::Anova(lm(lifeExp ~ continent , gapminder_americas_europe), type = "III")
+continent_ttest$statistic^2
+```
+
+SSBetween: 185.5168
+
+SSwithin: 953.4478
+
+```{r}
+anova_df <- gapminder_americas_europe
+anova_df$sq_bt <- NA
+anova_df$sq_bt[anova_df$contDummy == -1]<- (mean(anova_df$lifeExp) - mean(anova_df$lifeExp[anova_df$contDummy == -1]))^2
+anova_df$sq_bt[anova_df$contDummy == 1]<- (mean(anova_df$lifeExp) - mean(anova_df$lifeExp[anova_df$contDummy == 1]))^2
+
+bottom_half <- sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)/(2 * (length(gapminder_americas_europe$lifeExp)-1))
+
+
+betweenSS <- sum(anova_df$sq_bt)
+totalVar <- sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)
+withinSS <- totalVar - sum(anova_df$sq_bt)
+
+betweenSS/(withinSS/(2 * (length(gapminder_americas_europe$lifeExp)-1)))
+
+
+length(gapminder_americas_europe$lifeExp) * sum(anova_df$sq_bt)/bottom_half
+```
+
+    16.145
 
 ## ANOVAs
 
@@ -307,25 +470,63 @@ glm_anova_model
 Let's see if this model has less error (i.e. a smaller sum of squares than the t-test; 730.8276):
 
 ```{r}
-sum(anova_model$residuals^2)
+sum(glm_anova_model$residuals^2)
 ```
 
 Yep, so this model is giving us a bit more insight as there is less error. Let's visualise how much error there is:
 
+```{r}
+glm_anova_model$coefficients[1,1]
+glm_anova_model$coefficients[2]
+
+
+
+
+# gapminder_americas_europe$t_fit = continent_ttest$coefficients[1] + # intercept
+#   continent_ttest$coefficients[2]                       * # gradient
+#   gapminder_americas_europe$contDummy
+# 
+# 
+# ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +
+#   geom_segment(
+#     position = "jitter",
+#     arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+#     aes(
+#       xend = contDummy,
+#       yend = t_fit,
+#       color = "resid"
+#     )
+#   ) + 
+#   geom_segment(aes(
+#     x = -1.9, 
+#     xend = -.1, 
+#     y = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
+#     yend = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
+#     color = "blue"
+#   ) + 
+#   geom_segment(aes(
+#     x = 0.1, 
+#     xend = 1.9, 
+#     y = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
+#     yend = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
+#     color = "blue"
+#   )
+```
+
 Let's compare the output of this lm function to an ANOVA function in R to confirm that these are the same thing (i.e. that ANOVA is a general linear model):
 
 ```{r}
-car::Anova(aov(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
-temp_model <- lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df)
-summary(temp_model)
-car::Anova(lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
+# car::Anova(aov(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
+# temp_model <- lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df)
+# summary(temp_model)
+# car::Anova(lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
 ```
 
 You'll see that the 2 x 2 interaction p-values are identical between analyses, but that the individual factors are similar but not identical.
 
 ## Regression
 
-### The simplest model
+### 
 
 ```{r}
 

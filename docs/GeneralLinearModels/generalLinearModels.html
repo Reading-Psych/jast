@@ -351,13 +351,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
           <li class="sidebar-item">
-  GeneralLinearModels/One-Way Analysis of Variance
-  </li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../GeneralLinearModels/rVsAdjustedRSquared.html" class="sidebar-item-text sidebar-link">R-squared vs.&nbsp;Adjusted R-squared</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  GeneralLinearModels/One-Way Analysis of Variance
+  </li>
+          <li class="sidebar-item">
+  GeneralLinearModels/Two-Way (or more) Analysis of Variance
+  </li>
       </ul>
   </li>
     </ul>
@@ -370,21 +378,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#what-are-general-linear-models" id="toc-what-are-general-linear-models" class="nav-link active" data-scroll-target="#what-are-general-linear-models">What are general linear models?</a></li>
+  <li><a href="#dummy-vs.-effect-coding-for-categorical-variables-in-a-model" id="toc-dummy-vs.-effect-coding-for-categorical-variables-in-a-model" class="nav-link" data-scroll-target="#dummy-vs.-effect-coding-for-categorical-variables-in-a-model">Dummy vs.&nbsp;effect coding for categorical variables in a model</a></li>
   <li><a href="#mean-as-the-simplest-model-of-data" id="toc-mean-as-the-simplest-model-of-data" class="nav-link" data-scroll-target="#mean-as-the-simplest-model-of-data">Mean as the simplest model of data</a></li>
   <li><a href="#t-tests" id="toc-t-tests" class="nav-link" data-scroll-target="#t-tests">T-Tests</a>
   <ul class="collapse">
-  <li><a href="#r-squared-vs.-adjusted-r-squared" id="toc-r-squared-vs.-adjusted-r-squared" class="nav-link" data-scroll-target="#r-squared-vs.-adjusted-r-squared">R-squared vs.&nbsp;adjusted R-squared</a></li>
+  <li><a href="#x-2-anova" id="toc-x-2-anova" class="nav-link" data-scroll-target="#x-2-anova">2 x 2 ANOVA</a></li>
+  <li><a href="#way-anova" id="toc-way-anova" class="nav-link" data-scroll-target="#way-anova">3 way ANOVA</a></li>
   </ul></li>
-  <li><a href="#trying-to-understand-f-values" id="toc-trying-to-understand-f-values" class="nav-link" data-scroll-target="#trying-to-understand-f-values">trying to understand f-values</a>
-  <ul class="collapse">
-  <li><a href="#anovas" id="toc-anovas" class="nav-link" data-scroll-target="#anovas">ANOVAs</a></li>
-  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a>
-  <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  </ul></li>
-  <li><a href="#simple-regressions-and-t-tests" id="toc-simple-regressions-and-t-tests" class="nav-link" data-scroll-target="#simple-regressions-and-t-tests">Simple Regressions and t-tests</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
-  </ul></li>
+  <li><a href="#is-there-a-difference-between-a-within-subject-4-level-anova-vs.-a-2-x-2-for-the-interaction" id="toc-is-there-a-difference-between-a-within-subject-4-level-anova-vs.-a-2-x-2-for-the-interaction" class="nav-link" data-scroll-target="#is-there-a-difference-between-a-within-subject-4-level-anova-vs.-a-2-x-2-for-the-interaction">Is there a difference between a within-subject 4 level ANOVA vs.&nbsp;a 2 x 2 for the interaction?</a></li>
+  <li><a href="#plotting-for-the-slides" id="toc-plotting-for-the-slides" class="nav-link" data-scroll-target="#plotting-for-the-slides">plotting for the slides</a></li>
   </ul>
 </nav>
     </div>
@@ -422,6 +424,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Data = Model + Error
 \]</span></p>
 <p>Data: The dependent variable in your analysis Model: A model which predicts a phenomenon. This could be multiple independent variables. Error: What data isn’t explained by the model.</p>
+</section>
+<section id="dummy-vs.-effect-coding-for-categorical-variables-in-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="dummy-vs.-effect-coding-for-categorical-variables-in-a-model">Dummy vs.&nbsp;effect coding for categorical variables in a model</h2>
+<p>General Linear Models need numerical values for the predictors. As categorical variables (e.g.&nbsp;Sex) don’t have a numeric value by default, we have to substitute the categories with numbers:</p>
+<ul>
+<li><em>Effect</em> coding can be used when you have a binary categorical variable, and you allocate one level 1 and the other -1. For example, you could allocate all females the score 1, and all non-female participants -1. A disadvantage of this approach is that it works best when you have binary categorical variable, but doesn’t work as well when you have 3 or more levels. For example, coding female, male and non-binary sex doesn’t work well with effect coding.</li>
+<li><em>Dummy</em> coding involves allocating a 1 if someone is in a cateogory, and 0 if they are outside of the category. For example, you could allocate 1 to all your female participants, and 0 to all participants who aren’t female to a variable “sex_female”. An advantage of this approach is that you have flexibility to have more than 2 levels, such as having “sex_female”, “sex_male” and “sex_nonbinary” as variables that are all either 1 or 0.</li>
+</ul>
 </section>
 <section id="mean-as-the-simplest-model-of-data" class="level2">
 <h2 class="anchored" data-anchor-id="mean-as-the-simplest-model-of-data">Mean as the simplest model of data</h2>
@@ -626,13 +636,30 @@ lifeExp = mean(lifeExp) + \beta * ContDummy + Error
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">*</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">1</span>]),</span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.1</span>, </span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">1.9</span>, </span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">1</span> <span class="sc">*</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> <span class="dv">1</span> <span class="sc">*</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">1</span>]),</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.1</span>, </span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">1.9</span>, </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="dv">1</span> <span class="sc">*</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">1</span>],</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="dv">1</span> <span class="sc">*</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">2</span>] <span class="sc">+</span> continent_ttest<span class="sc">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="sc">-</span> <span class="fl">1.9</span>,</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">1.9</span>,</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp),</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp)</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"dark green"</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of `gapminder_americas_europe$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.
+Use of `gapminder_americas_europe$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <p><img src="generalLinearModels_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -640,36 +667,43 @@ lifeExp = mean(lifeExp) + \beta * ContDummy + Error
 <p><em>Fig. X. Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a</em> <span class="math inline">\(contDummy\)</span> score of -1, even if the jittering above makes it look like participants from Europe had slightly different <span class="math inline">\(contDummy\)</span> values to each other.</p>
 <p>So now that we’ve visualised the predictions and the error, lets summarise these errors with their sum of squares:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to get the sum of squares, you can use the lm from earlier</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(continent_ttest<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#temp_summary &lt;- summary(lm(lifeExp ~ contDummy, data = gapminder_americas_europe))</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> contDummy, <span class="at">data =</span> gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 730.8276</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+contDummy    1  222.6  222.62   16.14 0.000186 ***
+Residuals   53  730.8   13.79                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to calculate this manually:</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>gapminder_americas_europe<span class="sc">$</span>t_res <span class="ot">=</span> gapminder_americas_europe<span class="sc">$</span>t_fit <span class="sc">-</span> gapminder_americas_europe<span class="sc">$</span>lifeExp</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>gapminder_americas_europe<span class="sc">$</span>t_res_squared <span class="ot">=</span> gapminder_americas_europe<span class="sc">$</span>t_res<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(gapminder_americas_europe<span class="sc">$</span>t_res_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># between</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>overall_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>europe_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>america_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>ss_between <span class="ot">&lt;-</span> </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">*</span> (europe_mean <span class="sc">-</span> overall_mean)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">*</span> (america_mean <span class="sc">-</span> overall_mean)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>top_half <span class="ot">=</span> ss_between</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>ss_within <span class="ot">=</span> (</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>] <span class="sc">-</span> europe_mean)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>] <span class="sc">-</span> america_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>bottom_half <span class="ot">=</span> (ss_within<span class="sc">/</span>(<span class="fu">length</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp) <span class="sc">-</span> <span class="dv">2</span>))</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>top_half<span class="sc">/</span>bottom_half</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 730.8276</code></pre>
+<pre><code>[1] 16.14453</code></pre>
 </div>
-</div>
-<p>So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478) which also summarises the <strong>total variance</strong> (around the mean). In fact, we can use these 2 numbers to calculate the <span class="math inline">\(r^2\)</span> value (i.e.&nbsp;what proportion of the variance around the mean is explained by the model). The amount of variance explained by the model can be calculated by:</p>
-<p><span class="math display">\[
-totalSumOfSquares - modelSumOfSquares = totalError - modelError
-\]</span></p>
-<p>This allows us to calculate an r-value and thus a p-value:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>this_r2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(gapminder_americas_europe<span class="sc">$</span>t_res_squared)<span class="sc">/</span><span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>this_r <span class="ot">=</span> <span class="fu">sqrt</span>(this_r2)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>this_r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4832076</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>],</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>],</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal =</span> T</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare with a t-test</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>],</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal =</span> T</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -683,7 +717,43 @@ sample estimates:
 mean of x mean of y 
  77.64860  73.60812 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contDummy, gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fl">4.018</span><span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16.14432</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at a t-distribution compared to an f-distribution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478) which also summarises the <strong>total variance</strong> (around the mean). In fact, we can use these 2 numbers to calculate the <span class="math inline">\(r^2\)</span> value (i.e.&nbsp;what proportion of the variance around the mean is explained by the model). The amount of variance explained by the model can be calculated by:</p>
+<p><span class="math display">\[
+totalSumOfSquares - modelSumOfSquares = totalError - modelError
+\]</span></p>
+<p>This allows us to calculate an r-value and thus a p-value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>this_r2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(gapminder_americas_europe<span class="sc">$</span>t_res_squared)<span class="sc">/</span><span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>this_r <span class="ot">=</span> <span class="fu">sqrt</span>(this_r2)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>this_r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>],</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal =</span> T</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1] and gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1]
+t = 4.018, df = 53, p-value = 0.0001864
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 2.023525 6.057435
+sample estimates:
+mean of x mean of y 
+ 77.64860  73.60812 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contDummy, gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -704,147 +774,28 @@ Residual standard error: 3.713 on 53 degrees of freedom
 Multiple R-squared:  0.2335,    Adjusted R-squared:  0.219 
 F-statistic: 16.14 on 1 and 53 DF,  p-value: 0.0001864</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>this_r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>this_r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2334896</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 <p>You may notice above that the manually calculated <span class="math inline">\(r^2\)</span> value is identical to the “Multiple R-Squared”, rather than the “Adjusted R-squared”. So what’s the difference between r-squared and adjusted r-squared?</p>
-<section id="r-squared-vs.-adjusted-r-squared" class="level3">
-<h3 class="anchored" data-anchor-id="r-squared-vs.-adjusted-r-squared">R-squared vs.&nbsp;adjusted R-squared</h3>
-<p>When completing a regression, there’s always a risk of “overfitting” the data, i.e.&nbsp;creating a model that includes predictors that have no meaningful association with the outcome variable. One reason that overfitting the data is a problem is that it is almost impossible for a predictor to have no association with an outcome variable. For that to happen you would need any data points that suggested a positive association between the outcome and the predictor to be equally balanced out by data points that suggest a negative association:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>no_association_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">predictor =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome   =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(no_association_df, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> outcome)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="generalLinearModels_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><em>Fig. X.</em> An example of how unrealistically balanced your data needs to be to find no association. As this (almost) never happens in reality, samples are <em>biased</em> towards finding associations between predictor and outcome variables even when there aren’t any in the population. For example, let’s generate some random data, and see what R-Values we find. Remember, random data really shouldn’t have <em>any</em> association between predictor and outcome variables.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>random_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_1 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_2 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_3 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_dv =</span> <span class="fu">runif</span>(<span class="dv">100</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(random_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["random_iv_1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["random_iv_2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["random_iv_3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["random_dv"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.752425138","2":"0.83101279","3":"0.951230101","4":"0.252548574"},{"1":"0.500650707","2":"0.44326813","3":"0.322148668","4":"0.210040439"},{"1":"0.590196409","2":"0.29392859","3":"0.643916041","4":"0.610291340"},{"1":"0.888706747","2":"0.84638255","3":"0.584069768","4":"0.155559514"},{"1":"0.555519061","2":"0.71461164","3":"0.676228503","4":"0.119345602"},{"1":"0.413624720","2":"0.62132881","3":"0.728332494","4":"0.902643404"},{"1":"0.898445396","2":"0.92047487","3":"0.348495909","4":"0.131624694"},{"1":"0.753563248","2":"0.57886671","3":"0.850287445","4":"0.169481374"},{"1":"0.616117300","2":"0.56303126","3":"0.709433276","4":"0.155891096"},{"1":"0.979704127","2":"0.40871096","3":"0.430461259","4":"0.645812301"},{"1":"0.961405946","2":"0.10468431","3":"0.331664066","4":"0.004931157"},{"1":"0.852522480","2":"0.10283200","3":"0.661537620","4":"0.802680801"},{"1":"0.359749294","2":"0.65680862","3":"0.370796204","4":"0.489758944"},{"1":"0.379312604","2":"0.78204969","3":"0.927965853","4":"0.491036302"},{"1":"0.386248315","2":"0.36988569","3":"0.918745281","4":"0.662830343"},{"1":"0.181165684","2":"0.25696438","3":"0.891950361","4":"0.456993200"},{"1":"0.193942446","2":"0.11951954","3":"0.485034096","4":"0.588636027"},{"1":"0.100768282","2":"0.32286925","3":"0.214860959","4":"0.824309498"},{"1":"0.963127735","2":"0.61671602","3":"0.846213753","4":"0.611422325"},{"1":"0.640518413","2":"0.22441541","3":"0.776232615","4":"0.995800276"},{"1":"0.004519405","2":"0.39241495","3":"0.782468533","4":"0.569554344"},{"1":"0.914004130","2":"0.14103296","3":"0.008859622","4":"0.282611062"},{"1":"0.759834863","2":"0.87799541","3":"0.534610187","4":"0.759606491"},{"1":"0.651785642","2":"0.47816107","3":"0.692903442","4":"0.036804497"},{"1":"0.231817986","2":"0.87489814","3":"0.235201470","4":"0.624413111"},{"1":"0.594238371","2":"0.57043034","3":"0.064707547","4":"0.486328332"},{"1":"0.506247421","2":"0.24545839","3":"0.860776840","4":"0.114358137"},{"1":"0.415444903","2":"0.28645858","3":"0.759832457","4":"0.114385233"},{"1":"0.314520758","2":"0.52537841","3":"0.504655803","4":"0.620645686"},{"1":"0.972160826","2":"0.59817001","3":"0.789650837","4":"0.638652841"},{"1":"0.058294803","2":"0.60104065","3":"0.899779465","4":"0.464567557"},{"1":"0.767603423","2":"0.35936526","3":"0.023543625","4":"0.030439252"},{"1":"0.776085349","2":"0.05340522","3":"0.070470445","4":"0.808839323"},{"1":"0.645774147","2":"0.78288850","3":"0.940867142","4":"0.043510050"},{"1":"0.724541870","2":"0.92622856","3":"0.890207954","4":"0.448400018"},{"1":"0.062430590","2":"0.91210337","3":"0.448471538","4":"0.790152184"},{"1":"0.002362069","2":"0.19176528","3":"0.442550531","4":"0.418403808"},{"1":"0.785138838","2":"0.79351776","3":"0.371351884","4":"0.141021331"},{"1":"0.007867411","2":"0.19109304","3":"0.561409600","4":"0.959012520"},{"1":"0.318297715","2":"0.63303119","3":"0.263213669","4":"0.968002934"},{"1":"0.671293451","2":"0.25888129","3":"0.476008554","4":"0.235284489"},{"1":"0.124008040","2":"0.37334192","3":"0.655848806","4":"0.948010178"},{"1":"0.733521847","2":"0.89659585","3":"0.450982848","4":"0.137257197"},{"1":"0.416305429","2":"0.05508478","3":"0.097096049","4":"0.284814293"},{"1":"0.050291747","2":"0.32920796","3":"0.495751204","4":"0.069229383"},{"1":"0.082370051","2":"0.50752037","3":"0.259803070","4":"0.827669762"},{"1":"0.951652898","2":"0.70136500","3":"0.826589274","4":"0.133208644"},{"1":"0.209140492","2":"0.02806405","3":"0.423944858","4":"0.963895886"},{"1":"0.935187672","2":"0.90759299","3":"0.827037937","4":"0.207601154"},{"1":"0.644295011","2":"0.68523483","3":"0.640289615","4":"0.905396030"},{"1":"0.798028322","2":"0.53516895","3":"0.461881210","4":"0.774854080"},{"1":"0.366607268","2":"0.15321452","3":"0.047571099","4":"0.609911684"},{"1":"0.971643362","2":"0.23755968","3":"0.110220991","4":"0.355181640"},{"1":"0.887485929","2":"0.35596256","3":"0.220953791","4":"0.662521497"},{"1":"0.612680083","2":"0.49067431","3":"0.954680445","4":"0.728842426"},{"1":"0.178236119","2":"0.55206248","3":"0.162157042","4":"0.570491306"},{"1":"0.337063756","2":"0.10409146","3":"0.892082628","4":"0.674309045"},{"1":"0.461238437","2":"0.65925762","3":"0.095391917","4":"0.285081010"},{"1":"0.631443664","2":"0.90533472","3":"0.829046530","4":"0.087336329"},{"1":"0.707958494","2":"0.12644761","3":"0.117533812","4":"0.335552980"},{"1":"0.093783070","2":"0.67163606","3":"0.301259077","4":"0.385498171"},{"1":"0.400061089","2":"0.88544250","3":"0.540431713","4":"0.168579493"},{"1":"0.667614490","2":"0.72121250","3":"0.332968103","4":"0.998679422"},{"1":"0.940381252","2":"0.47098583","3":"0.817089852","4":"0.293465873"},{"1":"0.977190147","2":"0.87982047","3":"0.562244849","4":"0.370711869"},{"1":"0.447978216","2":"0.22964857","3":"0.868649535","4":"0.896102528"},{"1":"0.579249091","2":"0.92766931","3":"0.039815367","4":"0.142946953"},{"1":"0.121322882","2":"0.77543937","3":"0.683598693","4":"0.957600670"},{"1":"0.541273636","2":"0.50247109","3":"0.035309596","4":"0.338557439"},{"1":"0.858825828","2":"0.14851933","3":"0.654674490","4":"0.079821577"},{"1":"0.516015787","2":"0.06675135","3":"0.254274882","4":"0.964995837"},{"1":"0.176663359","2":"0.76214485","3":"0.693919079","4":"0.138761800"},{"1":"0.488441199","2":"0.29427993","3":"0.356518415","4":"0.473233929"},{"1":"0.250961483","2":"0.35895881","3":"0.642947903","4":"0.173582948"},{"1":"0.401136626","2":"0.53356412","3":"0.390633392","4":"0.761430498"},{"1":"0.159733994","2":"0.18440775","3":"0.583318556","4":"0.742334821"},{"1":"0.161586513","2":"0.72179832","3":"0.371037964","4":"0.717221132"},{"1":"0.361449490","2":"0.93870912","3":"0.527457830","4":"0.609332695"},{"1":"0.328454104","2":"0.83190977","3":"0.922519320","4":"0.982731701"},{"1":"0.833245743","2":"0.44338579","3":"0.519299019","4":"0.786410264"},{"1":"0.149479927","2":"0.78739893","3":"0.021436829","4":"0.457939824"},{"1":"0.960661704","2":"0.44056288","3":"0.119087223","4":"0.303832650"},{"1":"0.773104087","2":"0.73093099","3":"0.228774584","4":"0.750831693"},{"1":"0.775933703","2":"0.88955088","3":"0.259501949","4":"0.910537300"},{"1":"0.909252293","2":"0.22985840","3":"0.312518941","4":"0.506931319"},{"1":"0.863460821","2":"0.34332954","3":"0.187735886","4":"0.092168616"},{"1":"0.902024507","2":"0.38690765","3":"0.587552018","4":"0.647006344"},{"1":"0.769976420","2":"0.28526725","3":"0.588529330","4":"0.521053487"},{"1":"0.133678064","2":"0.82906302","3":"0.017494958","4":"0.453148528"},{"1":"0.290636196","2":"0.13448475","3":"0.107267339","4":"0.196478088"},{"1":"0.064296675","2":"0.36449677","3":"0.422814571","4":"0.370463840"},{"1":"0.530687334","2":"0.93486755","3":"0.354778621","4":"0.182748048"},{"1":"0.813322060","2":"0.40442875","3":"0.713606205","4":"0.642426180"},{"1":"0.934005270","2":"0.13925693","3":"0.341310182","4":"0.570871172"},{"1":"0.168902831","2":"0.78447397","3":"0.310134625","4":"0.616309591"},{"1":"0.098069369","2":"0.89731313","3":"0.904131378","4":"0.519451901"},{"1":"0.035313540","2":"0.79794339","3":"0.439288449","4":"0.153741756"},{"1":"0.489628237","2":"0.66511023","3":"0.075161752","4":"0.484025035"},{"1":"0.741807868","2":"0.71391903","3":"0.268806516","4":"0.483666933"},{"1":"0.578455625","2":"0.22069893","3":"0.785785239","4":"0.715545371"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>random_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(random_dv <span class="sc">~</span> random_iv_1, random_df)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>random_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(random_lm)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>random_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = random_dv ~ random_iv_1, data = random_df)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.51860 -0.26124 -0.01848  0.24262  0.53850 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.59823    0.05697  10.501   &lt;2e-16 ***
-random_iv_1 -0.20678    0.09395  -2.201   0.0301 *  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.2844 on 98 degrees of freedom
-Multiple R-squared:  0.0471,    Adjusted R-squared:  0.03738 
-F-statistic: 4.844 on 1 and 98 DF,  p-value: 0.03009</code></pre>
-</div>
-</div>
-<p><strong>Note that the above output is generated each time this page is rendered (generated), and so <em>by chance</em> may happen to look like the random predictor is significant. If so, there’s a 95% chance that this predictor will not be significant next time the page is rendered</strong>.</p>
-<p>Looking at the output above, we can see that 4.71% of the variance of random_dv was explained by <em>random_iv_1</em> before correction. Considering that these were randomly generated numbers, that’s 4.71% too much. However, the <em>Adjusted R-squared</em> is only 0.0374. Note that <em>Adjusted R-squared</em> can be a negative number, and a negative number suggests that based on the sample, the predictor(s) has(/have) no association with the outcome variable in the population.</p>
-<p>A formula for the adjusted r-squared is:</p>
-<p><span class="math display">\[
-\bar{R^2} = 1-\frac{SS_{res}/df_{res}}{SS_{tot}/df_{tot}}
-\]</span> <span class="math inline">\(\bar{R^2}\)</span> is the <em>Adjusted R-Squared</em> <span class="math inline">\(SS_{total}\)</span> is the <em>Sum of Squares</em> of the <em>total</em> (i.e.&nbsp;how much total variance there is around the mean to explain) <span class="math inline">\(SS_{res}\)</span> is the <em>Sum of Squares</em> of the <em>residuals</em> (i.e.&nbsp;how much isn’t explained by the model) <span class="math inline">\(df_{total}\)</span> is the <em>Degrees of Freedom</em> of the <em>total</em>. This is the number of data points - 1, so is N - 1 <span class="math inline">\(df_{res}\)</span> is the <em>Degrees of Freedom</em> of the <em>residuals</em>. The degrees of freedom for the residuals takes into account the number of data points and the number of predictors, and so is N - 1 - 1</p>
-<p>Let’s use the above formula to manually calculate the <em>Adjusted R Squared</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ss_res <span class="ot">&lt;-</span> <span class="fu">sum</span>(random_lm<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  (</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    random_df<span class="sc">$</span>random_dv <span class="sc">-</span> <span class="fu">mean</span>(random_df<span class="sc">$</span>random_dv)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>random_r_square <span class="ot">=</span> ss_total <span class="sc">-</span> ss_res</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>df_total <span class="ot">&lt;-</span> <span class="fu">length</span>(random_lm<span class="sc">$</span>residuals) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> <span class="fu">length</span>(random_lm<span class="sc">$</span>residuals) <span class="sc">-</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">-</span> <span class="co"># remove 1 from the number of data points</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="co"># remove another 1 to reflect there being 1 predictor</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> (ss_res<span class="sc">/</span>df_res)<span class="sc">/</span>(ss_total<span class="sc">/</span>df_total)</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.03737638</code></pre>
-</div>
-</div>
-<p>The number above should match the <em>Adjusted R-Squared</em> from the multiple regression above. Let’s explore what happens when we have multiple predictors:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>random_lm_multiple <span class="ot">&lt;-</span> <span class="fu">lm</span>(random_dv <span class="sc">~</span> random_iv_1 <span class="sc">+</span> random_iv_2 <span class="sc">+</span> random_iv_3, random_df)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>random_multiple_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(random_lm_multiple)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>random_multiple_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = random_dv ~ random_iv_1 + random_iv_2 + random_iv_3, 
-    data = random_df)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.54754 -0.23857  0.00963  0.23377  0.57801 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.64985    0.08978   7.238 1.12e-10 ***
-random_iv_1 -0.20921    0.09389  -2.228   0.0282 *  
-random_iv_2 -0.14868    0.10442  -1.424   0.1577    
-random_iv_3  0.05322    0.10174   0.523   0.6021    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.2842 on 96 degrees of freedom
-Multiple R-squared:  0.06802,   Adjusted R-squared:  0.0389 
-F-statistic: 2.335 on 3 and 96 DF,  p-value: 0.07864</code></pre>
-</div>
-</div>
-<p>Two things to look for from the above: - The model with 3 predictors has higher <em>(Multiple) R-Squared</em> than the model with only 1 predictor. This reflects problems with over-fitting the model: the more predictors you include in your sample, the more variance in the outcome that will be explained by the predictors, even if those associations between the predictors are arbitrary (i.e.&nbsp;don’t reflect anything about the general population). - <em>Adjusted R-squared</em> values are less susceptible to this bias of overfitting the data (but is not completely invulnerable to it). All statistical tests are vulnerable to false positives and including <em>Adjusted R-squared</em> values.</p>
-<p>Remember, the adjusted r-square is necessary for us to make claims about the general population. If we just wanted to make a claim about our sample, we would just use the r-squared, as we don’t need to correct our estimate.</p>
 <p>To show that we’ve achieved the same as a t-test, let’s run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#953.4478/730.8276</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>continent_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>],</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>],</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># general linear models assume the variance between conditions is equal</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal =</span> T</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>continent_model <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contDummy, gapminder_americas_europe))</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>continent_ttest<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#953.4478/730.8276</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>continent_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>],</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># general linear models assume the variance between conditions is equal</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal =</span> T</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>continent_model <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contDummy, gapminder_americas_europe))</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>continent_ttest<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0001863749</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>continent_model<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">4</span>] <span class="co"># p-value for the continent as a predictor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>continent_model<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">4</span>] <span class="co"># p-value for the continent as a predictor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0001863749</code></pre>
 </div>
@@ -855,219 +806,516 @@ F-statistic: 2.335 on 3 and 96 DF,  p-value: 0.07864</code></pre>
 <li><p>You have more flexibility to make more complex models</p></li>
 </ul>
 <p>Let’s now see how we can proceed if we have a more complex design, i.e.&nbsp;3 or more levels and/or more than 1 factor, using ANOVAs.</p>
-</section>
-</section>
-<section id="trying-to-understand-f-values" class="level1">
-<h1>trying to understand f-values</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manual calculation of F</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># between subject</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sum of squares between:</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co">#top_half &lt;- sum(continent_model$residuals^2)/1</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>bottom_half <span class="ot">&lt;-</span> <span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> (<span class="fu">length</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">1</span>))</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Automatic calculation</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  gapminder_2007, </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  continent <span class="sc">==</span> <span class="st">"Europe"</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">"Africa"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 77.6486</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 73.60812</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 75.81202</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>top_half <span class="ot">=</span> <span class="fu">length</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp) <span class="sc">*</span> <span class="fu">sum</span>(</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  (</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>]) <span class="sc">-</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>top_half<span class="sc">/</span>bottom_half</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 21.01407</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> continent , gapminder_americas_europe), <span class="at">type =</span> <span class="st">"III"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Anova Table (Type III tests)
-
-Response: lifeExp
-            Sum Sq Df  F value    Pr(&gt;F)    
-(Intercept) 135454  1 9823.186 &lt; 2.2e-16 ***
-continent      223  1   16.145 0.0001864 ***
-Residuals      731 53                       
+<pre><code>                   Df Sum Sq Mean Sq F value Pr(&gt;F)    
+factor(continent)   2  12017    6008   114.4 &lt;2e-16 ***
+Residuals         104   5461      53                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>continent_ttest<span class="sc">$</span>statistic<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Manual calculation</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ss_between <span class="ot">=</span> (</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>) </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>totalSS <span class="ot">=</span> <span class="fu">sum</span>((gapminder_3_continents<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>shortcut_ss_within <span class="ot">=</span> totalSS <span class="sc">-</span> ss_between</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>ss_within_long <span class="ot">=</span> <span class="fu">sum</span>(</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>]))<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>]))<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>]))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>(ss_between<span class="sc">/</span><span class="dv">2</span>)<span class="sc">/</span>(ss_within_long<span class="sc">/</span>(<span class="fu">length</span>(gapminder_3_continents<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       t 
-16.14453 </code></pre>
+<pre><code>[1] 114.4212</code></pre>
 </div>
 </div>
-<p>SSBetween: 185.5168</p>
-<p>SSwithin: 953.4478</p>
+<p>To visualise this</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>anova_df <span class="ot">&lt;-</span> gapminder_americas_europe</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>anova_df<span class="sc">$</span>sq_bt <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>anova_df<span class="sc">$</span>sq_bt[anova_df<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>]<span class="ot">&lt;-</span> (<span class="fu">mean</span>(anova_df<span class="sc">$</span>lifeExp) <span class="sc">-</span> <span class="fu">mean</span>(anova_df<span class="sc">$</span>lifeExp[anova_df<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>]))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>anova_df<span class="sc">$</span>sq_bt[anova_df<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span> (<span class="fu">mean</span>(anova_df<span class="sc">$</span>lifeExp) <span class="sc">-</span> <span class="fu">mean</span>(anova_df<span class="sc">$</span>lifeExp[anova_df<span class="sc">$</span>contDummy <span class="sc">==</span> <span class="dv">1</span>]))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>bottom_half <span class="ot">&lt;-</span> <span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> (<span class="fu">length</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">1</span>))</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>betweenSS <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_df<span class="sc">$</span>sq_bt)</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>totalVar <span class="ot">&lt;-</span> <span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>withinSS <span class="ot">&lt;-</span> totalVar <span class="sc">-</span> <span class="fu">sum</span>(anova_df<span class="sc">$</span>sq_bt)</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>betweenSS<span class="sc">/</span>(withinSS<span class="sc">/</span>(<span class="dv">2</span> <span class="sc">*</span> (<span class="fu">length</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>lm_3_continents <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>lm_3_continents<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 32.89829</code></pre>
+<pre><code>                          Estimate Std. Error  t value     Pr(&gt;|t|)
+(Intercept)               54.80604   1.004904 54.53856 2.466786e-78
+factor(continent)Americas 18.80208   1.763600 10.66119 2.243512e-18
+factor(continent)Europe   22.84256   1.661388 13.74908 3.900175e-25</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp) <span class="sc">*</span> <span class="fu">sum</span>(anova_df<span class="sc">$</span>sq_bt)<span class="sc">/</span>bottom_half</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1386.928</code></pre>
+<pre><code>[1] 77.6486</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean <span class="ot">=</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>]</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_3_continents, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> continent,</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> continent_mean,</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.55</span>, </span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">1.45</span>, </span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1.55</span>, </span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">2.45</span>, </span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">2.55</span>, </span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">3.45</span>, </span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>,</span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">3.45</span>,</span>
+<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
+<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Overall Mean"</span></span>
+<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of `gapminder_3_continents$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.
+Use of `gapminder_3_continents$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.</code></pre>
 </div>
-<pre><code>16.145</code></pre>
-<section id="anovas" class="level2">
-<h2 class="anchored" data-anchor-id="anovas">ANOVAs</h2>
-<p>ANOVAs are useful to compare between categorical conditions if you have more than 2 conditions you want to compare or if you have multiple categorical predictor factors you want to investigate. Let’s start with an example of a 2 x 2 design, in which continent and whether the population is “large” or “small” are categorical predictors of life expectancy. First, we need to make a new categorical variable, in which countries with a population greater than medium have a “large” population, and other countries have a “small” population:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>gapminder_americas_europe<span class="sc">$</span>popCategorical <span class="ot">=</span> <span class="st">"small"</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>gapminder_americas_europe<span class="sc">$</span>popDummy <span class="ot">=</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>gapminder_americas_europe<span class="sc">$</span>popCategorical[gapminder_americas_europe<span class="sc">$</span>pop <span class="sc">&gt;</span> <span class="fu">median</span>(gapminder_americas_europe<span class="sc">$</span>pop)] <span class="ot">=</span> <span class="st">"large"</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>gapminder_americas_europe<span class="sc">$</span>popDummy[gapminder_americas_europe<span class="sc">$</span>pop <span class="sc">&gt;</span> <span class="fu">median</span>(gapminder_americas_europe<span class="sc">$</span>pop)] <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>anova_df <span class="ot">&lt;-</span> gapminder_americas_europe[ ,<span class="fu">c</span>(</span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"popCategorical"</span>,</span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"popDummy"</span>,</span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"continent"</span>,</span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"contDummy"</span>,</span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lifeExp"</span></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>)]</span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(<span class="fu">head</span>(anova_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["popCategorical"],"name":[1],"type":["chr"],"align":["left"]},{"label":["popDummy"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["continent"],"name":[3],"type":["fct"],"align":["left"]},{"label":["contDummy"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["lifeExp"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"small","2":"-1","3":"Europe","4":"1","5":"76.423","_rn_":"1"},{"1":"large","2":"1","3":"Americas","4":"-1","5":"75.320","_rn_":"2"},{"1":"small","2":"-1","3":"Europe","4":"1","5":"79.829","_rn_":"3"},{"1":"large","2":"1","3":"Europe","4":"1","5":"79.441","_rn_":"4"},{"1":"small","2":"-1","3":"Americas","4":"-1","5":"65.554","_rn_":"5"},{"1":"small","2":"-1","3":"Europe","4":"1","5":"74.852","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<p><img src="generalLinearModels_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</div>
-<p>We can now analyse this using a similar general linear model as the t-test above, but now have a second factor of <span class="math inline">\(popDummy\)</span> to try to make a more specific model.</p>
+<p><em>Fig. XXX.</em> Our model in the figure above considers the distance from each of the continent’s mean to the overall mean as part of the explained variance. For each data point, the squared distance from the the mean line to the overall mean line is part of the sum of squares at the top of the formula.</p>
+<section id="x-2-anova" class="level3">
+<h3 class="anchored" data-anchor-id="x-2-anova">2 x 2 ANOVA</h3>
+<p>Let’s create data to allow us to compare between 2 years, and between Europe and Americas</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>glm_anova_model <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> popDummy <span class="sc">*</span> contDummy, <span class="at">data =</span> anova_df))</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>glm_anova_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>gapminder_2_by_2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2002</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Africa"</span> <span class="sc">|</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Africa"</span> <span class="sc">|</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2002</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Europe"</span> <span class="sc">|</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Europe"</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(year) <span class="sc">*</span> <span class="fu">factor</span>(continent), gapminder_2_by_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = lifeExp ~ popDummy * contDummy, data = anova_df)
+lm(formula = lifeExp ~ factor(year) * factor(continent), data = gapminder_2_by_2)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--11.1815  -2.3171   0.4615   2.6663   6.6845 
+-15.1930  -4.7758  -0.1898   3.1180  22.4188 
 
 Coefficients:
-                   Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         75.6598     0.4901 154.383  &lt; 2e-16 ***
-popDummy             0.6759     0.4901   1.379  0.17388    
-contDummy            1.9888     0.4901   4.058  0.00017 ***
-popDummy:contDummy  -0.8977     0.4901  -1.832  0.07282 .  
+                                         Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                               53.3252     1.0921  48.830   &lt;2e-16
+factor(year)2007                           1.4808     1.5444   0.959    0.339
+factor(continent)Europe                   23.3754     1.8055  12.947   &lt;2e-16
+factor(year)2007:factor(continent)Europe  -0.5328     2.5533  -0.209    0.835
+                                            
+(Intercept)                              ***
+factor(year)2007                            
+factor(continent)Europe                  ***
+factor(year)2007:factor(continent)Europe    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 3.618 on 51 degrees of freedom
-Multiple R-squared:  0.2999,    Adjusted R-squared:  0.2587 
-F-statistic: 7.281 on 3 and 51 DF,  p-value: 0.0003721</code></pre>
+Residual standard error: 7.875 on 160 degrees of freedom
+Multiple R-squared:  0.6727,    Adjusted R-squared:  0.6665 
+F-statistic: 109.6 on 3 and 160 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-</div>
-<p>Let’s see if this model has less error (i.e.&nbsp;a smaller sum of squares than the t-test; 730.8276):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(glm_anova_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(year) <span class="sc">*</span> <span class="fu">factor</span>(continent), gapminder_2_by_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 667.5443</code></pre>
+<pre><code>                                Df Sum Sq Mean Sq F value Pr(&gt;F)    
+factor(year)                     1     68      68   1.093  0.297    
+factor(continent)                1  20319   20319 327.645 &lt;2e-16 ***
+factor(year):factor(continent)   1      3       3   0.044  0.835    
+Residuals                      160   9922      62                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Yep, so this model is giving us a bit more insight as there is less error. Let’s visualise how much error there is:</p>
+<p>manual calculation of f-value for 2 x 2</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>glm_anova_model<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+✔ purrr   0.3.5      
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>overallMeanLifeExp <span class="ot">=</span> <span class="fu">mean</span>(gapminder_2_by_2<span class="sc">$</span>lifeExp)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>totalVar <span class="ot">=</span> <span class="fu">sum</span>((gapminder_2_by_2<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2_by_2<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>gapminder_2_by_2 <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">countries    =</span> <span class="fu">length</span>(lifeExp),</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">betweenSS    =</span> countries <span class="sc">*</span> ((overallMeanLifeExp <span class="sc">-</span> mean_lifeExp)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> year_continent_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'continent'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>year_continent_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 75.65983</code></pre>
+<pre><code># A tibble: 4 × 5
+# Groups:   continent [2]
+  continent  year mean_lifeExp countries betweenSS
+  &lt;fct&gt;     &lt;int&gt;        &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+1 Africa     2002         53.3        52     4396.
+2 Africa     2007         54.8        52     3094.
+3 Europe     2002         76.7        30     6033.
+4 Europe     2007         77.6        30     6866.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>glm_anova_model<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(year_continent_means<span class="sc">$</span>betweenSS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6758679</code></pre>
+<pre><code>[1] 20389.47</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gapminder_americas_europe$t_fit = continent_ttest$coefficients[1] + # intercept</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   continent_ttest$coefficients[2]                       * # gradient</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   gapminder_americas_europe$contDummy</span></span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +</span></span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_segment(</span></span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     position = "jitter",</span></span>
-<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
-<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     aes(</span></span>
-<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="co">#       xend = contDummy,</span></span>
-<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a><span class="co">#       yend = t_fit,</span></span>
-<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a><span class="co">#       color = "resid"</span></span>
-<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
-<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) + </span></span>
-<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_segment(aes(</span></span>
-<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     x = -1.9, </span></span>
-<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a><span class="co">#     xend = -.1, </span></span>
-<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a><span class="co">#     y = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],</span></span>
-<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     yend = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),</span></span>
-<span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a><span class="co">#     color = "blue"</span></span>
-<span id="cb66-22"><a href="#cb66-22" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) + </span></span>
-<span id="cb66-23"><a href="#cb66-23" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_segment(aes(</span></span>
-<span id="cb66-24"><a href="#cb66-24" aria-hidden="true" tabindex="-1"></a><span class="co">#     x = 0.1, </span></span>
-<span id="cb66-25"><a href="#cb66-25" aria-hidden="true" tabindex="-1"></a><span class="co">#     xend = 1.9, </span></span>
-<span id="cb66-26"><a href="#cb66-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     y = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],</span></span>
-<span id="cb66-27"><a href="#cb66-27" aria-hidden="true" tabindex="-1"></a><span class="co">#     yend = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),</span></span>
-<span id="cb66-28"><a href="#cb66-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     color = "blue"</span></span>
-<span id="cb66-29"><a href="#cb66-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>totalVar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30311.89</code></pre>
 </div>
-<p>Let’s compare the output of this lm function to an ANOVA function in R to confirm that these are the same thing (i.e.&nbsp;that ANOVA is a general linear model):</p>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(year_continent_means<span class="sc">$</span>betweenSS)<span class="sc">/</span>totalVar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6726556</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">sum</span>(year_continent_means<span class="sc">$</span>betweenSS))<span class="sc">/</span>totalVar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6726556</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>df_total <span class="ot">&lt;-</span> <span class="fu">length</span>(gapminder_2_by_2<span class="sc">$</span>country) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> <span class="fu">length</span>(gapminder_2_by_2<span class="sc">$</span>country) <span class="sc">-</span> </span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">-</span> <span class="co">#data points</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>   <span class="co"># predictors</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>ss_res <span class="ot">=</span> totalVar <span class="sc">-</span> <span class="fu">sum</span>(year_continent_means<span class="sc">$</span>betweenSS)</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (ss_res<span class="sc">/</span>df_res)<span class="sc">/</span>(totalVar<span class="sc">/</span>df_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6665179</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># break down of types of variance</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>continent_df <span class="ot">&lt;-</span> gapminder_2_by_2 <span class="sc">%&gt;%</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">countries    =</span> <span class="fu">length</span>(lifeExp),</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">betweenSS    =</span> countries <span class="sc">*</span> ((overallMeanLifeExp <span class="sc">-</span> mean_lifeExp)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(continent_df<span class="sc">$</span>betweenSS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20318.97</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>year_df <span class="ot">&lt;-</span> gapminder_2_by_2 <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">countries    =</span> <span class="fu">length</span>(lifeExp),</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">betweenSS    =</span> countries <span class="sc">*</span> ((overallMeanLifeExp <span class="sc">-</span> mean_lifeExp)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(year_df<span class="sc">$</span>betweenSS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 67.79278</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># interaction</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(year_continent_means<span class="sc">$</span>betweenSS) <span class="sc">-</span> <span class="fu">sum</span>(continent_df<span class="sc">$</span>betweenSS) <span class="sc">-</span> <span class="fu">sum</span>(year_df<span class="sc">$</span>betweenSS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.70036</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# … with 1,694 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20319</span> <span class="sc">+</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="dv">68</span> <span class="sc">+</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20390</code></pre>
+</div>
+</div>
+</section>
+<section id="way-anova" class="level3">
+<h3 class="anchored" data-anchor-id="way-anova">3 way ANOVA</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># car::Anova(aov(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># temp_model &lt;- lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df)</span></span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(temp_model)</span></span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># car::Anova(lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>gapminder_2_by_2<span class="sc">$</span>pop_split <span class="ot">=</span> <span class="st">"high"</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>gapminder_2_by_2<span class="sc">$</span>pop_split[gapminder_2_by_2<span class="sc">$</span>pop <span class="sc">&lt;</span> <span class="fu">median</span>(gapminder_2_by_2<span class="sc">$</span>pop)] <span class="ot">=</span> <span class="st">"low"</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>gapminder_2_by_2 <span class="sc">%&gt;%</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year, pop_split) <span class="sc">%&gt;%</span></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">countries    =</span> <span class="fu">length</span>(lifeExp),</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">betweenSS    =</span> countries <span class="sc">*</span> ((overallMeanLifeExp <span class="sc">-</span> mean_lifeExp)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> three_way_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'continent', 'year'. You can override using
+the `.groups` argument.</code></pre>
 </div>
-<p>You’ll see that the 2 x 2 interaction p-values are identical between analyses, but that the individual factors are similar but not identical.</p>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(three_way_summary<span class="sc">$</span>betweenSS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20403.63</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(year) <span class="sc">*</span> <span class="fu">factor</span>(continent), gapminder_2_by_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ factor(year) * factor(continent), data = gapminder_2_by_2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-15.1930  -4.7758  -0.1898   3.1180  22.4188 
+
+Coefficients:
+                                         Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                               53.3252     1.0921  48.830   &lt;2e-16
+factor(year)2007                           1.4808     1.5444   0.959    0.339
+factor(continent)Europe                   23.3754     1.8055  12.947   &lt;2e-16
+factor(year)2007:factor(continent)Europe  -0.5328     2.5533  -0.209    0.835
+                                            
+(Intercept)                              ***
+factor(year)2007                            
+factor(continent)Europe                  ***
+factor(year)2007:factor(continent)Europe    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.875 on 160 degrees of freedom
+Multiple R-squared:  0.6727,    Adjusted R-squared:  0.6665 
+F-statistic: 109.6 on 3 and 160 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(year) <span class="sc">*</span> <span class="fu">factor</span>(continent), gapminder_2_by_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                Df Sum Sq Mean Sq F value Pr(&gt;F)    
+factor(year)                     1     68      68   1.093  0.297    
+factor(continent)                1  20319   20319 327.645 &lt;2e-16 ***
+factor(year):factor(continent)   1      3       3   0.044  0.835    
+Residuals                      160   9922      62                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(year) <span class="sc">*</span> <span class="fu">factor</span>(continent) <span class="sc">*</span> <span class="fu">factor</span>(pop_split), gapminder_2_by_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                  Df Sum Sq Mean Sq F value
+factor(year)                                       1     68      68   1.067
+factor(continent)                                  1  20319   20319 319.911
+factor(pop_split)                                  1     13      13   0.212
+factor(year):factor(continent)                     1      3       3   0.046
+factor(year):factor(pop_split)                     1      0       0   0.000
+factor(continent):factor(pop_split)                1      0       0   0.007
+factor(year):factor(continent):factor(pop_split)   1      0       0   0.000
+Residuals                                        156   9908      64        
+                                                 Pr(&gt;F)    
+factor(year)                                      0.303    
+factor(continent)                                &lt;2e-16 ***
+factor(pop_split)                                 0.646    
+factor(year):factor(continent)                    0.830    
+factor(year):factor(pop_split)                    0.989    
+factor(continent):factor(pop_split)               0.931    
+factor(year):factor(continent):factor(pop_split)  0.988    
+Residuals                                                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(year) <span class="sc">*</span> <span class="fu">factor</span>(continent) <span class="sc">*</span> <span class="fu">factor</span>(pop_split), gapminder_2_by_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ factor(year) * factor(continent) * factor(pop_split), 
+    data = gapminder_2_by_2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-15.5189  -4.8868  -0.3127   3.1208  22.0864 
+
+Coefficients:
+                                                              Estimate
+(Intercept)                                                   52.96628
+factor(year)2007                                               1.53805
+factor(continent)Europe                                       23.52019
+factor(pop_split)low                                           0.69131
+factor(year)2007:factor(continent)Europe                      -0.59779
+factor(year)2007:factor(pop_split)low                         -0.06377
+factor(continent)Europe:factor(pop_split)low                  -0.26305
+factor(year)2007:factor(continent)Europe:factor(pop_split)low  0.07923
+                                                              Std. Error
+(Intercept)                                                      1.59392
+factor(year)2007                                                 2.21201
+factor(continent)Europe                                          2.60286
+factor(pop_split)low                                             2.21201
+factor(year)2007:factor(continent)Europe                         3.65535
+factor(year)2007:factor(pop_split)low                            3.12825
+factor(continent)Europe:factor(pop_split)low                     3.65535
+factor(year)2007:factor(continent)Europe:factor(pop_split)low    5.16944
+                                                              t value Pr(&gt;|t|)
+(Intercept)                                                    33.230  &lt; 2e-16
+factor(year)2007                                                0.695    0.488
+factor(continent)Europe                                         9.036 5.91e-16
+factor(pop_split)low                                            0.313    0.755
+factor(year)2007:factor(continent)Europe                       -0.164    0.870
+factor(year)2007:factor(pop_split)low                          -0.020    0.984
+factor(continent)Europe:factor(pop_split)low                   -0.072    0.943
+factor(year)2007:factor(continent)Europe:factor(pop_split)low   0.015    0.988
+                                                                 
+(Intercept)                                                   ***
+factor(year)2007                                                 
+factor(continent)Europe                                       ***
+factor(pop_split)low                                             
+factor(year)2007:factor(continent)Europe                         
+factor(year)2007:factor(pop_split)low                            
+factor(continent)Europe:factor(pop_split)low                     
+factor(year)2007:factor(continent)Europe:factor(pop_split)low    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.97 on 156 degrees of freedom
+Multiple R-squared:  0.6731,    Adjusted R-squared:  0.6585 
+F-statistic: 45.89 on 7 and 156 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20319</span> <span class="sc">+</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="dv">68</span> <span class="sc">+</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> </span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">13</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20403</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fl">20403.63</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20403.63</code></pre>
+</div>
+</div>
 </section>
-<section id="regression" class="level2">
-<h2 class="anchored" data-anchor-id="regression">Regression</h2>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
+</section>
+<section id="is-there-a-difference-between-a-within-subject-4-level-anova-vs.-a-2-x-2-for-the-interaction" class="level1">
+<h1>Is there a difference between a within-subject 4 level ANOVA vs.&nbsp;a 2 x 2 for the interaction?</h1>
+</section>
+<section id="plotting-for-the-slides" class="level1">
+<h1>plotting for the slides</h1>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>lifeExp_gdp <span class="ot">&lt;-</span> <span class="fu">lm</span>(lifeExp <span class="sc">~</span> gdpPercap, gapminder_americas_europe)</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lifeExp_gdp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ gdpPercap, data = gapminder_americas_europe)
 
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.5218  -1.0845  -0.0026   1.6917   5.2296 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 7.114e+01  6.466e-01 110.019  &lt; 2e-16 ***
+gdpPercap   2.504e-04  2.857e-05   8.765 6.86e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.71 on 53 degrees of freedom
+Multiple R-squared:  0.5917,    Adjusted R-squared:  0.584 
+F-statistic: 76.82 on 1 and 53 DF,  p-value: 6.861e-12</code></pre>
 </div>
-<p>Now lets see how this looks for the above analyses:</p>
-</section>
-</section>
-<section id="simple-regressions-and-t-tests" class="level2">
-<h2 class="anchored" data-anchor-id="simple-regressions-and-t-tests">Simple Regressions and t-tests</h2>
-<p>As described in more detail in the <a href="../regressions/simpleRegressions.html">simple regression section</a>, the simplest general linear model could be formulated as:</p>
-<p><span class="math display">\[
-Y = a + bX + e
-\]</span></p>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1"></h2>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>gapminder_americas_europe<span class="sc">$</span>gdp_fit <span class="ot">=</span> lifeExp_gdp<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> <span class="co"># intercept</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>  lifeExp_gdp<span class="sc">$</span>coefficients[<span class="dv">2</span>]                       <span class="sc">*</span> <span class="co"># gradient</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>gdpPercap</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_americas_europe, <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb95-9"><a href="#cb95-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
+<span id="cb95-11"><a href="#cb95-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb95-12"><a href="#cb95-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> gdpPercap,</span>
+<span id="cb95-13"><a href="#cb95-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> gdp_fit,</span>
+<span id="cb95-14"><a href="#cb95-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"residual"</span></span>
+<span id="cb95-15"><a href="#cb95-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb95-16"><a href="#cb95-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb95-17"><a href="#cb95-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb95-18"><a href="#cb95-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb95-19"><a href="#cb95-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>,</span>
+<span id="cb95-20"><a href="#cb95-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="dv">50000</span>,</span>
+<span id="cb95-21"><a href="#cb95-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp),</span>
+<span id="cb95-22"><a href="#cb95-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp),</span>
+<span id="cb95-23"><a href="#cb95-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Overall Mean"</span></span>
+<span id="cb95-24"><a href="#cb95-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb95-25"><a href="#cb95-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb95-26"><a href="#cb95-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"dark green"</span></span>
+<span id="cb95-27"><a href="#cb95-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of `gapminder_americas_europe$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.
+Use of `gapminder_americas_europe$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="generalLinearModels_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

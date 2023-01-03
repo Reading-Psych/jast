@@ -18,7 +18,7 @@ Within **coding**, a **variable** tends to refer to a particular **object** in y
 
 **Oversimplification:** A p-value tells you how likely your hypothesis is correct
 
-**Better definition:** How likely you would get your current results by chance (i.e. randomly). We assume that a result is meaningful if there is only a very small chance that they could happen by accident.
+**Better definition:** How likely you would get your current results by chance (i.e. randomly) if your main hypothesis were not true. We assume that a result is meaningful if there is only a very small chance that they could happen by accident.
 
 **Technical definition:** The p-value is the probability of observing a particular (or more extreme) effect under the assumption that the null hypothesis is true (or the probability of the data given the null hypothesis: $Pr(Data|H_0)$).
 

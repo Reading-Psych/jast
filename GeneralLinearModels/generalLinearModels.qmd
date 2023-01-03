@@ -28,6 +28,14 @@ $$
 
 Data: The dependent variable in your analysis Model: A model which predicts a phenomenon. This could be multiple independent variables. Error: What data isn't explained by the model.
 
+## Dummy vs. effect coding for categorical variables in a model
+
+General Linear Models need numerical values for the predictors. As categorical variables (e.g. Sex) don't have a numeric value by default, we have to substitute the categories with numbers: 
+
+- *Effect* coding can be used when you have a binary categorical variable, and you allocate one level 1 and the other -1. For example, you could allocate all females the score 1, and all non-female participants -1. A disadvantage of this approach is that it works best when you have binary categorical variable, but doesn't work as well when you have 3 or more levels. For example, coding female, male and non-binary sex doesn't work well with effect coding. 
+- *Dummy* coding involves allocating a 1 if someone is in a cateogory, and 0 if they are outside of the category. For example, you could allocate 1 to all your female participants, and 0 to all participants who aren't female to a variable "sex_female". An advantage of this approach is that you have flexibility to have more than 2 levels, such as having "sex_female", "sex_male" and "sex_nonbinary" as variables that are all either 1 or 0. 
+
+
 ## Mean as the simplest model of data
 
 If you want to estimate what someone's life expectancy would be in 2007, you could look at the mean life expectancy using the gapminder data. In terms of how this corresponds to the above model:
@@ -234,12 +242,23 @@ ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +
     yend = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
     color = "blue"
   ) + 
-  geom_segment(aes(
-    x = 0.1, 
-    xend = 1.9, 
-    y = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
-    yend = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
+  geom_segment(
+    aes(
+      x = 0.1, 
+      xend = 1.9, 
+      y = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
+      yend = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]
+    ),
     color = "blue"
+  ) + 
+  geom_segment(
+    aes(
+      x = - 1.9,
+      xend = 1.9,
+      y = mean(gapminder_americas_europe$lifeExp),
+      yend = mean(gapminder_americas_europe$lifeExp)
+    ),
+    color = "dark green"
   )
 ```
 
@@ -367,169 +386,223 @@ ss_within_long = sum(
 
 ```
 
-# Make sure to have a chart that visualises this one-way ANOVA!
-
-# Possibly deprecated
-
-
-
-# trying to understand f-values
+To visualise this
 
 ```{r}
-# manual calculation of F
-# between subject
+lm_3_continents <- summary(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
+lm_3_continents$coefficients
+mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"])
 
-# sum of squares between:
+gapminder_3_continents$continent_mean = lm_3_continents$coefficients[1,1] # intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.
+gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Americas"] = gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Americas"] + lm_3_continents$coefficients[2,1]
+
+gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Europe"] = gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Europe"] + lm_3_continents$coefficients[3,1]
 
 
-#top_half <- sum(continent_model$residuals^2)/1
 
-bottom_half <- sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)/(2 * (length(gapminder_americas_europe$lifeExp)-1))
+ggplot(gapminder_3_continents, aes(x = continent, y = lifeExp)) +
+  geom_segment(
+    position = "jitter",
+    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    aes(
+      xend = continent,
+      yend = continent_mean,
+      color = "resid"
+    )
+  ) + 
+  geom_segment(aes(
+    x = 0.55, 
+    xend = 1.45, 
+    y = lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) + 
+  geom_segment(aes(
+    x = 1.55, 
+    xend = 2.45, 
+    y = lm_3_continents$coefficients[2,1] + lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[2,1] + lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) + 
+  geom_segment(aes(
+    x = 2.55, 
+    xend = 3.45, 
+    y = lm_3_continents$coefficients[3,1] + lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[3,1] + lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) +
+  geom_segment(
+    aes(
+      x = 0.55,
+      xend = 3.45,
+      y = mean(gapminder_3_continents$lifeExp),
+      yend = mean(gapminder_3_continents$lifeExp),
+      color = "Overall Mean"
+    )
+  )
+
+```
+*Fig. XXX.* Our model in the figure above considers the distance from each of the continent's mean to the overall mean as part of the explained variance. For each data point, the squared distance from the the mean line to the overall mean line is part of the sum of squares at the top of the formula.
 
 
-mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$continent == "Europe"])
-mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$continent == "Americas"])
-mean(gapminder_americas_europe$lifeExp)
+### 2 x 2 ANOVA
 
-top_half = length(gapminder_americas_europe$lifeExp) * sum(
-  (
-    mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$continent == "Europe"]) -
-    mean(gapminder_americas_europe$lifeExp)
-  ) ^2
+Let's create data to allow us to compare between 2 years, and between Europe and Americas
+```{r}
+# create a new data frame that only focuses on data from 2007
+gapminder_2_by_2 <- subset(
+  gapminder,   # the data set
+  year == 2002 & continent == "Africa" |
+  year == 2007 & continent == "Africa" |
+  year == 2002 & continent == "Europe" |
+  year == 2007 & continent == "Europe"
 )
 
-top_half/bottom_half
+summary(lm(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
+summary(aov(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
 
 
-car::Anova(lm(lifeExp ~ continent , gapminder_americas_europe), type = "III")
-continent_ttest$statistic^2
+
 ```
 
-SSBetween: 185.5168
-
-SSwithin: 953.4478
-
+manual calculation of f-value for 2 x 2 
 ```{r}
-anova_df <- gapminder_americas_europe
-anova_df$sq_bt <- NA
-anova_df$sq_bt[anova_df$contDummy == -1]<- (mean(anova_df$lifeExp) - mean(anova_df$lifeExp[anova_df$contDummy == -1]))^2
-anova_df$sq_bt[anova_df$contDummy == 1]<- (mean(anova_df$lifeExp) - mean(anova_df$lifeExp[anova_df$contDummy == 1]))^2
+library(tidyverse)
 
-bottom_half <- sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)/(2 * (length(gapminder_americas_europe$lifeExp)-1))
+overallMeanLifeExp = mean(gapminder_2_by_2$lifeExp)
+totalVar = sum((gapminder_2_by_2$lifeExp - mean(gapminder_2_by_2$lifeExp))^2)
+gapminder_2_by_2 %>%
+  group_by(continent, year) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  ) -> year_continent_means
+
+year_continent_means
+
+sum(year_continent_means$betweenSS)
+totalVar
+
+sum(year_continent_means$betweenSS)/totalVar
+(sum(year_continent_means$betweenSS))/totalVar
+
+df_total <- length(gapminder_2_by_2$country) - 1
+df_res <- length(gapminder_2_by_2$country) - 
+  1 - #data points
+  3   # predictors
+
+ss_res = totalVar - sum(year_continent_means$betweenSS)
+
+1 - (ss_res/df_res)/(totalVar/df_total)
+
+##
+# break down of types of variance
+##
+continent_df <- gapminder_2_by_2 %>%
+  group_by(continent) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  )
+
+sum(continent_df$betweenSS)
 
 
-betweenSS <- sum(anova_df$sq_bt)
-totalVar <- sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)
-withinSS <- totalVar - sum(anova_df$sq_bt)
+year_df <- gapminder_2_by_2 %>%
+  group_by(year) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  )
 
-betweenSS/(withinSS/(2 * (length(gapminder_americas_europe$lifeExp)-1)))
+sum(year_df$betweenSS)
+
+##
+# interaction
+##
+sum(year_continent_means$betweenSS) - sum(continent_df$betweenSS) - sum(year_df$betweenSS)
 
 
-length(gapminder_americas_europe$lifeExp) * sum(anova_df$sq_bt)/bottom_half
+gapminder
+20319 +
+68 +
+3
 ```
-
-    16.145
-
-## ANOVAs
-
-ANOVAs are useful to compare between categorical conditions if you have more than 2 conditions you want to compare or if you have multiple categorical predictor factors you want to investigate. Let's start with an example of a 2 x 2 design, in which continent and whether the population is "large" or "small" are categorical predictors of life expectancy. First, we need to make a new categorical variable, in which countries with a population greater than medium have a "large" population, and other countries have a "small" population:
-
-```{r}
-gapminder_americas_europe$popCategorical = "small"
-gapminder_americas_europe$popDummy = -1
-gapminder_americas_europe$popCategorical[gapminder_americas_europe$pop > median(gapminder_americas_europe$pop)] = "large"
-gapminder_americas_europe$popDummy[gapminder_americas_europe$pop > median(gapminder_americas_europe$pop)] = 1
-
-anova_df <- gapminder_americas_europe[ ,c(
-  "popCategorical",
-  "popDummy",
-  "continent",
-  "contDummy",
-  "lifeExp"
-)]
-rmarkdown::paged_table(head(anova_df))
-```
-
-We can now analyse this using a similar general linear model as the t-test above, but now have a second factor of $popDummy$ to try to make a more specific model.
-
-```{r}
-glm_anova_model <- summary(lm(lifeExp ~ popDummy * contDummy, data = anova_df))
-glm_anova_model
-```
-
-Let's see if this model has less error (i.e. a smaller sum of squares than the t-test; 730.8276):
-
-```{r}
-sum(glm_anova_model$residuals^2)
-```
-
-Yep, so this model is giving us a bit more insight as there is less error. Let's visualise how much error there is:
-
-```{r}
-glm_anova_model$coefficients[1,1]
-glm_anova_model$coefficients[2]
-
-
-
-
-# gapminder_americas_europe$t_fit = continent_ttest$coefficients[1] + # intercept
-#   continent_ttest$coefficients[2]                       * # gradient
-#   gapminder_americas_europe$contDummy
-# 
-# 
-# ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +
-#   geom_segment(
-#     position = "jitter",
-#     arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
-#     aes(
-#       xend = contDummy,
-#       yend = t_fit,
-#       color = "resid"
-#     )
-#   ) + 
-#   geom_segment(aes(
-#     x = -1.9, 
-#     xend = -.1, 
-#     y = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
-#     yend = -1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
-#     color = "blue"
-#   ) + 
-#   geom_segment(aes(
-#     x = 0.1, 
-#     xend = 1.9, 
-#     y = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1],
-#     yend = 1 * continent_ttest$coefficients[2] + continent_ttest$coefficients[1]),
-#     color = "blue"
-#   )
-```
-
-Let's compare the output of this lm function to an ANOVA function in R to confirm that these are the same thing (i.e. that ANOVA is a general linear model):
-
-```{r}
-# car::Anova(aov(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
-# temp_model <- lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df)
-# summary(temp_model)
-# car::Anova(lm(lifeExp ~ popCategorical + continent + popCategorical:continent, data = anova_df), type = "3")
-```
-
-You'll see that the 2 x 2 interaction p-values are identical between analyses, but that the individual factors are similar but not identical.
-
-## Regression
-
-### 
+### 3 way ANOVA
 
 ```{r}
 
+gapminder_2_by_2$pop_split = "high"
+gapminder_2_by_2$pop_split[gapminder_2_by_2$pop < median(gapminder_2_by_2$pop)] = "low"
+
+gapminder_2_by_2 %>%
+  group_by(continent, year, pop_split) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  ) -> three_way_summary
+
+
+sum(three_way_summary$betweenSS)
+
+summary(lm(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
+summary(aov(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
+
+summary(aov(lifeExp ~ factor(year) * factor(continent) * factor(pop_split), gapminder_2_by_2))
+summary(lm(lifeExp ~ factor(year) * factor(continent) * factor(pop_split), gapminder_2_by_2))
+
+
+20319 +
+68 +
+3 + 
+  13
+
+
+20403.63
 ```
 
-Now lets see how this looks for the above analyses:
 
-## Simple Regressions and t-tests
+# Is there a difference between a within-subject 4 level ANOVA vs. a 2 x 2 for the interaction?
 
-As described in more detail in the [simple regression section](../regressions/simpleRegressions.qmd), the simplest general linear model could be formulated as:
 
-$$
-Y = a + bX + e
-$$
+# plotting for the slides
 
-## 
+```{r}
+
+lifeExp_gdp <- lm(lifeExp ~ gdpPercap, gapminder_americas_europe)
+
+summary(lifeExp_gdp)
+
+gapminder_americas_europe$gdp_fit = lifeExp_gdp$coefficients[1] + # intercept
+  lifeExp_gdp$coefficients[2]                       * # gradient
+  gapminder_americas_europe$gdpPercap
+
+
+ggplot(gapminder_americas_europe, aes(x = gdpPercap, y = lifeExp)) +
+  geom_smooth(method = "glm", se = F) +
+  geom_segment(
+    position = "jitter",
+    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    aes(
+      xend = gdpPercap,
+      yend = gdp_fit,
+      color = "residual"
+    )
+  ) + 
+  geom_segment(
+    aes(
+      x = 0.55,
+      xend = 50000,
+      y = mean(gapminder_americas_europe$lifeExp),
+      yend = mean(gapminder_americas_europe$lifeExp),
+      color = "Overall Mean"
+    ),
+    size = 1,
+    color = "dark green"
+  )
+```
+

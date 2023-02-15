@@ -1,5 +1,5 @@
 
-```{r, echo=F, message=FALSE}
+```{r, echo=T, message=T}
 # add google fonts
 library(showtext)
 

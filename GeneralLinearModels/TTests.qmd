@@ -1,5 +1,5 @@
 ---
-title: "T-Tests"
+title: "T-Tests(incomplete)"
 editor: visual
 ---
 
@@ -195,12 +195,11 @@ gapminder_2007_Am_Eu <- subset(
 
 #### Dummy coding
 
-One way to make a model is to have a variable for each level that either applies to the participant or not. Let's create a new variable for each continent that is 1 if the country is in the continent, and 0 if it's not:
+One way to make a model for a t-test is to have a variable that is 1 for one level, and 0 for the other level (note that this gets more complicated if you are going an ANOVA with 3 or more levels). Let's create a new variable for continent that is 1 if the country is in the Americas, and 0 if it's not:
 
 ```{r}
-gapminder_2007_Am_Eu$americas = ifelse(gapminder_2007_Am_Eu$continent == "Americas", 1,0)
-gapminder_2007_Am_Eu$europe = ifelse(gapminder_2007_Am_Eu$continent == "Europe", 1,0)
-rmarkdown::paged_table(head(gapminder_2007_Am_Eu))
+gapminder_2007_Am_Eu$americas_dummy = ifelse(gapminder_2007_Am_Eu$continent == "Americas", 1,0)
+rmarkdown::paged_table(gapminder_2007_Am_Eu)
 ```
 
 Now that we have added our dummy code, we can write a model for what we expect life expectancy to be for each country:

@@ -58,6 +58,12 @@ website:
           - "GeneralLinearModels/TTests.qmd"
           - "GeneralLinearModels/One-Way Analysis of Variance"
           - "GeneralLinearModels/Two-Way (or more) Analysis of Variance"
+          - "GeneralLinearModels/ANCOVA"
+      - section: "Permutation testing"
+      - section: "University of Reading advice?"
+        contents:
+          - "Psychology"
+          - "Henley Business School"
           
 
 format:

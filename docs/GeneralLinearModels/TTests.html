@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - T-Tests</title>
+<title>Just Another Statistics Textbook - T-Tests(incomplete)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,6 +123,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
@@ -148,13 +151,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">Report an error</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
+ <span class="menu-text">Report an error</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">Request a clarification</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
+ <span class="menu-text">Request a clarification</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">Suggest Content</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
+ <span class="menu-text">Suggest Content</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -163,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">T-Tests</h1>
+      <h1 class="quarto-secondary-nav-title">T-Tests(incomplete)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -354,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link active">T-Tests</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link active">T-Tests(incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,6 +368,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
           <li class="sidebar-item">
   GeneralLinearModels/Two-Way (or more) Analysis of Variance
+  </li>
+          <li class="sidebar-item">
+  GeneralLinearModels/ANCOVA
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Permutation testing</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">University of Reading advice?</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  Psychology
+  </li>
+          <li class="sidebar-item">
+  Henley Business School
   </li>
       </ul>
   </li>
@@ -376,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#one-sample-t-tests" id="toc-one-sample-t-tests" class="nav-link active" data-scroll-target="#one-sample-t-tests">One-Sample t-tests</a>
   <ul class="collapse">
-  <li><a href="#sum-of-squares" id="toc-sum-of-squares" class="nav-link" data-scroll-target="#sum-of-squares">Sum of Squares</a></li>
+  <li><a href="#glm-approach" id="toc-glm-approach" class="nav-link" data-scroll-target="#glm-approach">GLM approach</a></li>
   </ul></li>
   <li><a href="#paired-samples-t-tests" id="toc-paired-samples-t-tests" class="nav-link" data-scroll-target="#paired-samples-t-tests">Paired samples t-tests</a></li>
   <li><a href="#independent-samples-t-tests" id="toc-independent-samples-t-tests" class="nav-link" data-scroll-target="#independent-samples-t-tests">Independent Samples t-tests</a>
   <ul class="collapse">
-  <li><a href="#sum-of-squares-1" id="toc-sum-of-squares-1" class="nav-link" data-scroll-target="#sum-of-squares-1">Sum of squares</a></li>
+  <li><a href="#glm-approach-1" id="toc-glm-approach-1" class="nav-link" data-scroll-target="#glm-approach-1">GLM approach</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -391,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">T-Tests</h1>
+<h1 class="title d-none d-lg-block">T-Tests(incomplete)</h1>
 </div>
 
 
@@ -399,6 +427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -412,8 +441,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For each type of t-test, the way we calculate this is slightly different:</p>
 <section id="one-sample-t-tests" class="level2">
 <h2 class="anchored" data-anchor-id="one-sample-t-tests">One-Sample t-tests</h2>
-<section id="sum-of-squares" class="level3">
-<h3 class="anchored" data-anchor-id="sum-of-squares">Sum of Squares</h3>
+<section id="glm-approach" class="level3">
+<h3 class="anchored" data-anchor-id="glm-approach">GLM approach</h3>
 <p>One sample t-tests try to explain whether variance of data is better explained around one specific value (sample mean) compared to another (previously assumed value). For example, imagine that you wanted to test whether life expectancy is higher than 55 across the world:</p>
 <ul>
 <li><p>Your <span class="math inline">\(\mu\)</span> would be 55. This can be thought of as the assumed population mean that we want to use our sample to test.</p></li>
@@ -602,11 +631,44 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 </section>
 <section id="independent-samples-t-tests" class="level2">
 <h2 class="anchored" data-anchor-id="independent-samples-t-tests">Independent Samples t-tests</h2>
-<section id="sum-of-squares-1" class="level3">
-<h3 class="anchored" data-anchor-id="sum-of-squares-1">Sum of squares</h3>
-<p>For an independent samples t-test we can create a simple model based on the means of the two groups. You can <a href="generalLinearModels.html#dummy-vs.-effect-coding-for-categorical-variables-in-a-model" target="_blank">dummy or effect code</a> the data</p>
+<section id="glm-approach-1" class="level3">
+<h3 class="anchored" data-anchor-id="glm-approach-1">GLM approach</h3>
+<p>For an independent samples t-test we can create a simple model based on the means of the two groups. You can either <a href="generalLinearModels.html#dummy-vs.-effect-coding-for-categorical-variables-in-a-model" target="_blank">dummy or effect code</a> the groups, so we’ll do both to look at how the output is slightly different each way. We’ll use the gapminder data to see if there are differences in life expectancies between the Americas and Europe in 2007 to illustrate these:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Europe"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="dummy-coding" class="level4">
+<h4 class="anchored" data-anchor-id="dummy-coding">Dummy coding</h4>
+<p>One way to make a model for a t-test is to have a variable that is 1 for one level, and 0 for the other level (note that this gets more complicated if you are going an ANOVA with 3 or more levels). Let’s create a new variable for continent that is 1 if the country is in the Americas, and 0 if it’s not:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu<span class="sc">$</span>americas_dummy <span class="ot">=</span> <span class="fu">ifelse</span>(gapminder_2007_Am_Eu<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(gapminder_2007_Am_Eu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["americas_dummy"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Albania","2":"Europe","3":"2007","4":"76.423","5":"3600523","6":"5937.030","7":"0"},{"1":"Argentina","2":"Americas","3":"2007","4":"75.320","5":"40301927","6":"12779.380","7":"1"},{"1":"Austria","2":"Europe","3":"2007","4":"79.829","5":"8199783","6":"36126.493","7":"0"},{"1":"Belgium","2":"Europe","3":"2007","4":"79.441","5":"10392226","6":"33692.605","7":"0"},{"1":"Bolivia","2":"Americas","3":"2007","4":"65.554","5":"9119152","6":"3822.137","7":"1"},{"1":"Bosnia and Herzegovina","2":"Europe","3":"2007","4":"74.852","5":"4552198","6":"7446.299","7":"0"},{"1":"Brazil","2":"Americas","3":"2007","4":"72.390","5":"190010647","6":"9065.801","7":"1"},{"1":"Bulgaria","2":"Europe","3":"2007","4":"73.005","5":"7322858","6":"10680.793","7":"0"},{"1":"Canada","2":"Americas","3":"2007","4":"80.653","5":"33390141","6":"36319.235","7":"1"},{"1":"Chile","2":"Americas","3":"2007","4":"78.553","5":"16284741","6":"13171.639","7":"1"},{"1":"Colombia","2":"Americas","3":"2007","4":"72.889","5":"44227550","6":"7006.580","7":"1"},{"1":"Costa Rica","2":"Americas","3":"2007","4":"78.782","5":"4133884","6":"9645.061","7":"1"},{"1":"Croatia","2":"Europe","3":"2007","4":"75.748","5":"4493312","6":"14619.223","7":"0"},{"1":"Cuba","2":"Americas","3":"2007","4":"78.273","5":"11416987","6":"8948.103","7":"1"},{"1":"Czech Republic","2":"Europe","3":"2007","4":"76.486","5":"10228744","6":"22833.309","7":"0"},{"1":"Denmark","2":"Europe","3":"2007","4":"78.332","5":"5468120","6":"35278.419","7":"0"},{"1":"Dominican Republic","2":"Americas","3":"2007","4":"72.235","5":"9319622","6":"6025.375","7":"1"},{"1":"Ecuador","2":"Americas","3":"2007","4":"74.994","5":"13755680","6":"6873.262","7":"1"},{"1":"El Salvador","2":"Americas","3":"2007","4":"71.878","5":"6939688","6":"5728.354","7":"1"},{"1":"Finland","2":"Europe","3":"2007","4":"79.313","5":"5238460","6":"33207.084","7":"0"},{"1":"France","2":"Europe","3":"2007","4":"80.657","5":"61083916","6":"30470.017","7":"0"},{"1":"Germany","2":"Europe","3":"2007","4":"79.406","5":"82400996","6":"32170.374","7":"0"},{"1":"Greece","2":"Europe","3":"2007","4":"79.483","5":"10706290","6":"27538.412","7":"0"},{"1":"Guatemala","2":"Americas","3":"2007","4":"70.259","5":"12572928","6":"5186.050","7":"1"},{"1":"Haiti","2":"Americas","3":"2007","4":"60.916","5":"8502814","6":"1201.637","7":"1"},{"1":"Honduras","2":"Americas","3":"2007","4":"70.198","5":"7483763","6":"3548.331","7":"1"},{"1":"Hungary","2":"Europe","3":"2007","4":"73.338","5":"9956108","6":"18008.944","7":"0"},{"1":"Iceland","2":"Europe","3":"2007","4":"81.757","5":"301931","6":"36180.789","7":"0"},{"1":"Ireland","2":"Europe","3":"2007","4":"78.885","5":"4109086","6":"40675.996","7":"0"},{"1":"Italy","2":"Europe","3":"2007","4":"80.546","5":"58147733","6":"28569.720","7":"0"},{"1":"Jamaica","2":"Americas","3":"2007","4":"72.567","5":"2780132","6":"7320.880","7":"1"},{"1":"Mexico","2":"Americas","3":"2007","4":"76.195","5":"108700891","6":"11977.575","7":"1"},{"1":"Montenegro","2":"Europe","3":"2007","4":"74.543","5":"684736","6":"9253.896","7":"0"},{"1":"Netherlands","2":"Europe","3":"2007","4":"79.762","5":"16570613","6":"36797.933","7":"0"},{"1":"Nicaragua","2":"Americas","3":"2007","4":"72.899","5":"5675356","6":"2749.321","7":"1"},{"1":"Norway","2":"Europe","3":"2007","4":"80.196","5":"4627926","6":"49357.190","7":"0"},{"1":"Panama","2":"Americas","3":"2007","4":"75.537","5":"3242173","6":"9809.186","7":"1"},{"1":"Paraguay","2":"Americas","3":"2007","4":"71.752","5":"6667147","6":"4172.838","7":"1"},{"1":"Peru","2":"Americas","3":"2007","4":"71.421","5":"28674757","6":"7408.906","7":"1"},{"1":"Poland","2":"Europe","3":"2007","4":"75.563","5":"38518241","6":"15389.925","7":"0"},{"1":"Portugal","2":"Europe","3":"2007","4":"78.098","5":"10642836","6":"20509.648","7":"0"},{"1":"Puerto Rico","2":"Americas","3":"2007","4":"78.746","5":"3942491","6":"19328.709","7":"1"},{"1":"Romania","2":"Europe","3":"2007","4":"72.476","5":"22276056","6":"10808.476","7":"0"},{"1":"Serbia","2":"Europe","3":"2007","4":"74.002","5":"10150265","6":"9786.535","7":"0"},{"1":"Slovak Republic","2":"Europe","3":"2007","4":"74.663","5":"5447502","6":"18678.314","7":"0"},{"1":"Slovenia","2":"Europe","3":"2007","4":"77.926","5":"2009245","6":"25768.258","7":"0"},{"1":"Spain","2":"Europe","3":"2007","4":"80.941","5":"40448191","6":"28821.064","7":"0"},{"1":"Sweden","2":"Europe","3":"2007","4":"80.884","5":"9031088","6":"33859.748","7":"0"},{"1":"Switzerland","2":"Europe","3":"2007","4":"81.701","5":"7554661","6":"37506.419","7":"0"},{"1":"Trinidad and Tobago","2":"Americas","3":"2007","4":"69.819","5":"1056608","6":"18008.509","7":"1"},{"1":"Turkey","2":"Europe","3":"2007","4":"71.777","5":"71158647","6":"8458.276","7":"0"},{"1":"United Kingdom","2":"Europe","3":"2007","4":"79.425","5":"60776238","6":"33203.261","7":"0"},{"1":"United States","2":"Americas","3":"2007","4":"78.242","5":"301139947","6":"42951.653","7":"1"},{"1":"Uruguay","2":"Americas","3":"2007","4":"76.384","5":"3447496","6":"10611.463","7":"1"},{"1":"Venezuela","2":"Americas","3":"2007","4":"73.747","5":"26084662","6":"11415.806","7":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Now that we have added our dummy code, we can write a model for what we expect life expectancy to be for each country:</p>
+<p><span class="math display">\[
+lifeExp = \beta_{americas}*mean(lifeExp_{americas}) + \beta_{europe}*mean(lifeExp_{europe}) + e
+\]</span></p>
+</section>
+<section id="effect-coding" class="level4">
+<h4 class="anchored" data-anchor-id="effect-coding">Effect coding</h4>
+</section>
+<section id="section" class="level4">
+<h4 class="anchored" data-anchor-id="section"></h4>
 
 
+</section>
 </section>
 </section>
 
@@ -652,7 +714,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -688,24 +767,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

@@ -1,5 +1,5 @@
 ---
-title: "Statistics Basics"
+title: "Statistics Basics (incomplete)"
 format: 
   html:
     code-fold: true
@@ -35,3 +35,5 @@ It is the p-value threshold that identifies if a result is "significant" or not.
 **Technical definition:** The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the alpha value sets the chance that a null hypothesis is rejected incorrectly (i.e. we say there is an effect when there isn't one).
 
 Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the false-positive rate, we could adjust this value (this has been a contentious issue in recent years, see [here](https://www.nature.com/articles/s41562-017-0189-z "Redefine statistical significance") and [here](https://www.nature.com/articles/s41562-018-0311-x "Justify your alpha")).
+
+## What is power (and what is the beta value)

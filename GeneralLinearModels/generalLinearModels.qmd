@@ -184,10 +184,10 @@ So if the model we create for a t-test would result in a smaller **sum of square
 
 ```{r}
 # create a column to place 1 or -1 for each row dependent on the country
-contDummy = NA
-contDummy[gapminder_americas_europe$continent == "Europe"] = 1
-contDummy[gapminder_americas_europe$continent == "Americas"] = -1
-gapminder_americas_europe = cbind(contDummy,gapminder_americas_europe)
+contEffect = NA
+contEffect[gapminder_americas_europe$continent == "Europe"] = 1
+contEffect[gapminder_americas_europe$continent == "Americas"] = -1
+gapminder_americas_europe = cbind(contEffect,gapminder_americas_europe)
 rmarkdown::paged_table(head(gapminder_americas_europe))
 ```
 
@@ -198,7 +198,7 @@ Y = intercept + \beta * dummyVariable + Error
 $$
 
 $$
-lifeExp = mean(lifeExp) + \beta * ContDummy + Error
+lifeExp = mean(lifeExp) + \beta * contEffect + Error
 $$
 
 -   Y being the predicted life expectancy.
@@ -207,14 +207,14 @@ $$
 
 -   $\beta$ being how much to adjust the prediction based on which continent the person is from
 
--   $ContDummy$ being 1 (Europe) or -1 (Americas) to reflect which continent the participant is from
+-   $contEffect$ being 1 (Europe) or -1 (Americas) to reflect which continent the participant is from
 
 -   $Error$ being any error in the prediction not captured by the model
 
 To get the $intercept$ and $\beta$ for the above formula let's use the lm function in R:
 
 ```{r}
-continent_ttest <- lm(lifeExp ~ contDummy, gapminder_americas_europe)
+continent_ttest <- lm(lifeExp ~ contEffect, gapminder_americas_europe)
 
 continent_ttest$coefficients[1] 
 continent_ttest$coefficients[2]
@@ -222,15 +222,15 @@ continent_ttest$coefficients[2]
 
 gapminder_americas_europe$t_fit = continent_ttest$coefficients[1] + # intercept
   continent_ttest$coefficients[2]                       * # gradient
-  gapminder_americas_europe$contDummy
+  gapminder_americas_europe$contEffect
 
 
-ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +
+ggplot(gapminder_americas_europe, aes(x = contEffect, y = lifeExp)) +
   geom_segment(
     position = "jitter",
     #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
     aes(
-      xend = contDummy,
+      xend = contEffect,
       yend = t_fit,
       color = "resid"
     )
@@ -262,27 +262,27 @@ ggplot(gapminder_americas_europe, aes(x = contDummy, y = lifeExp)) +
   )
 ```
 
-*Fig. X. Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a* $contDummy$ score of -1, even if the jittering above makes it look like participants from Europe had slightly different $contDummy$ values to each other.
+*Fig. X. Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a* $contEffect$ score of -1, even if the jittering above makes it look like participants from Europe had slightly different $contEffect$ values to each other.
 
 So now that we've visualised the predictions and the error, lets summarise these errors with their sum of squares:
 
 ```{r}
-#temp_summary <- summary(lm(lifeExp ~ contDummy, data = gapminder_americas_europe))
-summary(aov(lifeExp ~ contDummy, data = gapminder_americas_europe))
+#temp_summary <- summary(lm(lifeExp ~ contEffect, data = gapminder_americas_europe))
+summary(aov(lifeExp ~ contEffect, data = gapminder_americas_europe))
 
 # between
 overall_mean <- mean(gapminder_americas_europe$lifeExp)
-europe_mean <- mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1])
-america_mean <- mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1])
+europe_mean <- mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1])
+america_mean <- mean(gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1])
 ss_between <- 
-  sum(gapminder_americas_europe$contDummy == 1) * (europe_mean - overall_mean)^2 +
-  sum(gapminder_americas_europe$contDummy == -1) * (america_mean - overall_mean)^2
+  sum(gapminder_americas_europe$contEffect == 1) * (europe_mean - overall_mean)^2 +
+  sum(gapminder_americas_europe$contEffect == -1) * (america_mean - overall_mean)^2
   
 top_half = ss_between
 
 ss_within = (
-  sum((gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1] - europe_mean)^2) + 
-  sum((gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1] - america_mean)^2)
+  sum((gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1] - europe_mean)^2) + 
+  sum((gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1] - america_mean)^2)
 )
   
 bottom_half = (ss_within/(length(gapminder_americas_europe$lifeExp) - 2))
@@ -292,8 +292,8 @@ top_half/bottom_half
 # Compare with a t-test
 
 t.test(
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1],
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1],
   var.equal = T
 )
 
@@ -316,17 +316,39 @@ this_r2 = 1 - sum(gapminder_americas_europe$t_res_squared)/sum((gapminder_americ
 this_r = sqrt(this_r2)
 this_r
 t.test(
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1],
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1],
   var.equal = T
 )
-summary(lm(lifeExp ~ contDummy, gapminder_americas_europe))
+summary(aov(lifeExp ~ contEffect, gapminder_americas_europe))
 this_r2
 ```
  
 You may notice above that the manually calculated $r^2$ value is identical to the "Multiple R-Squared", rather than the "Adjusted R-squared". So what's the difference between r-squared and adjusted r-squared?
 
 
+### Effect sizes (eta-squared and partial eta-squared)
+
+```{r}
+summary(aov(lifeExp ~ contEffect, gapminder_americas_europe))
+summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))
+
+222.62 /(222.62 +13.79)
+
+
+```
+
+
+```{r}
+male_female_height <- data.frame(
+  sex = c("male","male","female","female","female","female","female","female"),
+  height = c(2.5,2.2,1.5,1.5,1.4,1.4,1.3,1.3),
+  sex_dummy = c(-1,-1,1,1,1,1,1,1)
+)
+mean(male_female_height$height[male_female_height$sex == "male"])
+mean(male_female_height$height[male_female_height$sex == "female"])
+summary(lm(height ~ sex_dummy, data = male_female_height))
+```
 
 
 To show that we've achieved the same as a t-test, let's run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:
@@ -334,12 +356,12 @@ To show that we've achieved the same as a t-test, let's run a between subjects t
 ```{r}
 #953.4478/730.8276
 continent_ttest <- t.test(
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == -1],
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contDummy == 1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1],
+  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1],
   # general linear models assume the variance between conditions is equal
   var.equal = T
 )
-continent_model <- summary(lm(lifeExp ~ contDummy, gapminder_americas_europe))
+continent_model <- summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))
 
 continent_ttest$p.value
 continent_model$coefficients[2,4] # p-value for the continent as a predictor

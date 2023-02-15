@@ -1,3 +1,8 @@
+---
+title: "Fancy Figures"
+editor: visual
+---
+
 
 ```{r, echo=T, message=T}
 # add google fonts

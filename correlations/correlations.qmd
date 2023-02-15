@@ -6,8 +6,6 @@ format:
 editor: visual
 ---
 
-{{< include ../jast_setup.qmd >}}
-
 Please make sure you've read about variance within the <a href="../describingData/dispersion.html" target="_blank">dispersion section</a> before proceeding with this page.
 
 Correlations capture how much two variables are associated with each other by calculating the proportion of the **total variance** explained by how much the two variables **vary together (explained below).** To understand this, we need to think about how each variable varies **independently, together** and compare the two. We'll use the **gapminder** data to look at how how life expectancy correlated with GDP in 2007:
@@ -173,9 +171,9 @@ $$
 
 Or, to use the figures above:
 
-|                     |                                                             |        |                                                         |
-|---------------------|-------------------------------------------------------------|--------|---------------------------------------------------------|
-| \$Total\$ \$Var\$ = | sqrt(![](life_exp_resid.png) \\\^2) \$\$ \\frac{}{N-1} \$\$ | \$\*\$ | sqrt(![](gdp_resid.png) \\\^ 2) \$\$ \\frac{}{N-1} \$\$ |
++---------------------+-------------------------------------------------------------+-----------+---------------------------------------------------------+
+| \$Total\$ \$Var\$ = | sqrt(![](life_exp_resid.png) \\\^2) \$\$ \\frac{}{N-1} \$\$ | \$\*\$    | sqrt(![](gdp_resid.png) \\\^ 2) \$\$ \\frac{}{N-1} \$\$ |
++---------------------+-------------------------------------------------------------+-----------+---------------------------------------------------------+
 
 This is analogous to understanding the total area of a rectangle by multiplying the length of each side with each other.
 

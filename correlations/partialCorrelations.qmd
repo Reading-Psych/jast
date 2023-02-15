@@ -15,9 +15,19 @@ As you may have heard, correlation does not equal causation. One possible reason
 ```{r}
 library(gapminder)
 library(ggplot2)
-cor.test(gapminder$year, gapminder$lifeExp)
-ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point() + geom_smooth(method = lm)
+library(tidyverse)
+
+gapminder %>% 
+  group_by(year) %>% 
+  summarise(
+    lifeExp = mean(lifeExp),
+    gdpPercap = mean(gdpPercap)
+  ) -> gapminder_by_year
+
+cor.test(gapminder_by_year$year, gapminder_by_year$lifeExp)
+ggplot(data = gapminder_by_year, aes(x = year, y = lifeExp)) + geom_point() + geom_smooth(method = lm)
 ```
+
 
 ## Python
 
@@ -28,6 +38,57 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point() + geom_smoot
 
 ```
 
+
+
+## Julia
+
+```{julia}
+#| eval: false
+
+# TBC
+
+```
+
 :::
 
-So now that we've confirmed that there is a positive association between the year and life expectancy, the next question is why? What changes from year to year that could explain increased life expectancy? Let's investigate whether 
+So now that we've confirmed that there is a positive association between the year and life expectancy, the next question is why? What changes from year to year that could explain increased life expectancy? Let's investigate whether gdp per capita generally goes up each year, and whether it's associated with life expectancy. If both of these things are true, then perhaps the increase in gdp per year is an explanation of the association between year and life expectancy.
+
+### Is year and gdp per capita associated?
+
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+cor.test(gapminder_by_year$year, gapminder_by_year$gdpPercap)
+ggplot(data = gapminder_by_year, aes(x = year, y = gdpPercap)) + geom_point() + geom_smooth(method = lm)
+```
+
+Whilst there are some outliers in earlier years, we seem to have found that gdp per capita has gone up.
+
+:::
+
+### Is gdp per capita and life expectancy associated?
+
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+cor.test(gapminder_by_year$gdpPercap, gapminder_by_year$lifeExp)
+ggplot(data = gapminder_by_year, aes(x = gdpPercap, y = lifeExp)) + geom_point() + geom_smooth(method = lm)
+```
+:::
+
+So the above analysis suggests that all three variables are **incredibly** related. (you are unlikely to see such strong associations in psychology experiments.). But let's now check in whether there's still an association between the year and life expectancy once you control for GDP per capita.
+
+
+
+
+
+
+
+
+

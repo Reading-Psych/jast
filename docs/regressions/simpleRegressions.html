@@ -214,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -313,6 +313,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
           <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Statistics Basics (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
   correlations/cooksd.qmd
   </li>
       </ul>
@@ -399,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes-for-anthony" id="toc-notes-for-anthony" class="nav-link active" data-scroll-target="#notes-for-anthony">Notes for Anthony</a></li>
+  <li><a href="#prediction-using-regression" id="toc-prediction-using-regression" class="nav-link active" data-scroll-target="#prediction-using-regression">Prediction using regression</a></li>
+  <li><a href="#notes-for-anthony" id="toc-notes-for-anthony" class="nav-link" data-scroll-target="#notes-for-anthony">Notes for Anthony</a></li>
   <li><a href="#proportion-of-variance-explained" id="toc-proportion-of-variance-explained" class="nav-link" data-scroll-target="#proportion-of-variance-explained">Proportion of variance explained</a></li>
   </ul>
 </nav>
@@ -424,7 +430,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p> ## Prediction using regression</p>
+<section id="prediction-using-regression" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-using-regression">Prediction using regression</h2>
 <p><strong>Simple regression</strong>, also known as linear regression, builds on <a href="../correlations/correlations.html" target="_blank">correlation</a>. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), <strong>simple regression</strong> allows you to make <strong>predictions</strong> of an <strong>outcome variable</strong> based on a <strong>predictor variable</strong>.</p>
 <p>For example, regression can be used to predict Life Expectancy in 2007 from GDP. Lets start by visualising the association between them:</p>
 <div class="cell">
@@ -542,6 +549,7 @@ outcome = intercept + gradient * predictor + residual
 <p><span class="math display">\[
 Y = a + bX + e
 \]</span></p>
+</section>
 <section id="notes-for-anthony" class="level2">
 <h2 class="anchored" data-anchor-id="notes-for-anthony">Notes for Anthony</h2>
 <p>R2 = SSR/SSTO = 1 - SSE/SSTO</p>

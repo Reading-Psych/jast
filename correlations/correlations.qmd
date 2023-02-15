@@ -10,6 +10,9 @@ Please make sure you've read about variance within the <a href="../describingDat
 
 Correlations capture how much two variables are associated with each other by calculating the proportion of the **total variance** explained by how much the two variables **vary together (explained below).** To understand this, we need to think about how each variable varies **independently, together** and compare the two. We'll use the **gapminder** data to look at how how life expectancy correlated with GDP in 2007:
 
+::: panel-tabset
+## R
+
 ```{r}
 library(gapminder)
 library(ggplot2)
@@ -33,6 +36,37 @@ ggplot(
   )
 ) + geom_point()
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+#importing matplotlib library
+import matplotlib.pyplot as plt
+
+# load the gapminder module and import the gapminder dataset
+from gapminder import gapminder
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 = gapminder.loc[gapminder['year'] == 2007]
+
+# a reminder of the data frame
+gapminder_2007
+
+#scatter plot for the dataset
+plt.scatter(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
+
+# add title on the x-axis
+plt.xlabel("GDP per capita")
+
+# add title on the y-axis
+plt.ylabel("Life Expectancy")
+
+# show the plot
+plt.show()
+```
+:::
 
 *Note that in the figure above each dot represents an individual point from our data.Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).*
 
@@ -67,6 +101,9 @@ $N$ refers to the number of participants
 $N-1$ is **degrees of freedom**, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the [dispersion](../distributions/dispersion) section).
 
 The $SD$ (Standard deviation; which is just the square root of variance) of how data is distributed around the mean $life$$expectancy$ (per capita) can be visualised as follows within the gapminder $gdp*lifeExpectancy$ in the light blue box:
+
+::: panel-tabset
+## R
 
 ```{r}
 # Basic scatter plot
@@ -106,9 +143,39 @@ life_exp_resid <- ggplot(
 ggsave("life_exp_resid.png", life_exp_resid)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+#scatter plot for the dataset
+plt.scatter(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
+
+# add vertical line for the mean
+plt.axvline(x=gapminder_2007["gdpPercap"].mean(), color='b', ls='--')
+
+# add horizontal line from the individual point to the mean of "gdpPercap"
+plt.hlines(y=gapminder_2007["lifeExp"],xmin=gapminder_2007["gdpPercap"], xmax=gapminder_2007["gdpPercap"].mean(), colors='red', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("GDP per capita")
+
+# add title on the y-axis
+plt.ylabel("Life Expectancy")
+
+# show the plot
+plt.show()
+
+# save the plot
+plt.savefig('life_exp_resid.png')
+```
+:::
+
 *Note that in the figure above the horizontal blue dotted line represent the mean of Life Expectancy. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
 
 Lets look at the variance of GDP per capita:
+
+::: panel-tabset
+## R
 
 ```{r}
 gdp_resid <- ggplot(
@@ -138,6 +205,33 @@ gdp_resid <- ggplot(
 ggsave("gdp_resid.png", gdp_resid)
 gdp_resid
 ```
+
+## Python
+
+```{python}
+#| eval: false
+#scatter plot for the dataset
+plt.scatter(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
+
+# add vertical line for the mean of "gdpPercap"
+plt.axvline(x=gapminder_2007["gdpPercap"].mean(), color='b', ls='--')
+
+# add horizontal lines from the individual point to the mean of "gdpPercap"
+plt.hlines(y=gapminder_2007["lifeExp"],xmin=gapminder_2007["gdpPercap"], xmax=gapminder_2007["gdpPercap"].mean(), colors='red', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("GDP per capita")
+
+# add title on the y-axis
+plt.ylabel("Life Expectancy")
+
+# show the plot
+plt.show()
+
+# save the plot
+plt.savefig('life_exp_resid.png')
+```
+:::
 
 *Note that in the figure above the vertical blue dotted line represents the mean gdp per capita. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
 
@@ -187,6 +281,9 @@ $$
 
 This can be visualised as the residuals from the means multiplied by each other for each data point:
 
+::: panel-tabset
+## R
+
 ```{r}
 shared_resid <- ggplot(
   data = gapminder_2007, 
@@ -229,6 +326,41 @@ ggsave("shared_resid.png", shared_resid)
 shared_resid
 ```
 
+
+## Python
+
+```{python}
+#| eval: false
+#| 
+#scatter plot for the dataset
+plt.scatter(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
+
+# add vertical line for the mean of "gdpPercap"
+plt.axvline(x=gapminder_2007["gdpPercap"].mean(), color='b', ls='--')
+
+# add horizontal lines from the individual point to the mean of "gdpPercap"
+plt.hlines(y=gapminder_2007["lifeExp"],xmin=gapminder_2007["gdpPercap"], xmax=gapminder_2007["gdpPercap"].mean(), colors='red', lw=0.5)
+
+# add horizontal line for the mean of "lifeExp"
+plt.axhline(y=gapminder_2007["lifeExp"].mean(), color='b', ls='--')
+
+# add vertical lines from the individual point to the mean of "lifeExp"
+plt.vlines(x=gapminder_2007["gdpPercap"],ymin=gapminder_2007["lifeExp"], ymax=gapminder_2007["lifeExp"].mean(), colors='green', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("GDP per capita")
+
+# add title on the y-axis
+plt.ylabel("Life Expectancy")
+
+# show the plot
+plt.show()
+
+# save the plot
+plt.savefig('shared_resid.png')
+```
+:::
+
 ### Comparing $shared$ $variance$ ($var_{xy}$) to $total$ $variance$
 
 To complete a **Pearson's** **R** correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the **proportion** of $total$ $variance$ is explained by the $shared$ $variance$ ($var_{xy}$).
@@ -247,6 +379,9 @@ $$
 
 Lets apply this to the gapminder data above to calculate $r$:
 
+::: panel-tabset
+## R
+
 ```{r}
 varxy = 
   sum(
@@ -262,11 +397,40 @@ totalvar = sqrt(
 varxy/totalvar
 ```
 
+## Python
+
+```{python}
+# Import math Library
+import math
+
+varxy = sum(
+    (gapminder_2007["gdpPercap"] - gapminder_2007["gdpPercap"].mean())*
+    (gapminder_2007["lifeExp"] - gapminder_2007["lifeExp"].mean()))
+
+
+totalvar = math.sqrt(
+   sum((gapminder_2007["gdpPercap"] - gapminder_2007["gdpPercap"].mean())**2)*
+   sum((gapminder_2007["lifeExp"] - gapminder_2007["lifeExp"].mean())**2))
+varxy/totalvar
+```
+:::
+
+
 If the above calculation is correct, we'll get exactly the same value when using the **cor.test** function:
 
+::: panel-tabset
+## R
 ```{r}
 cor.test(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
 ```
+
+## Python
+
+```{python}
+import scipy.stats
+scipy.stats.pearsonr(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
+```
+:::
 
 To visualise what proportion of the variance is captured by $var_{xy}$:
 
@@ -295,6 +459,9 @@ shared_resid
 If there is a *positive association*, then you would expect there to be consistency in $x$ and $y$ both being above their own respective means, or both being below their respective means consistently, which is what we see above.
 
 If there is a negative association, you would expect $y$ to generally be below its mean when $x$ is above its mean, and vice-versa. Lets visualise this by [transforming](../distributions/transforming.html){target="_blank"}the $life$ $expectancy$ to be inverted by subtracting it from 100. This will make younger people older and older people younger:
+
+::: panel-tabset
+## R
 
 ```{r}
 inverted_resid <- ggplot(
@@ -337,6 +504,41 @@ inverted_resid <- ggplot(
 
 inverted_resid
 ```
+
+
+## Python
+
+```{python}
+#| eval: false
+#| 
+#scatter plot for the dataset
+plt.scatter(gapminder_2007["gdpPercap"], 125-gapminder_2007["lifeExp"])
+
+# add vertical line for the mean of "gdpPercap"
+plt.axvline(x=gapminder_2007["gdpPercap"].mean(), color='b', ls='--')
+
+# add horizontal lines from the individual point to the mean of "gdpPercap"
+plt.hlines(y=125-gapminder_2007["lifeExp"],xmin=gapminder_2007["gdpPercap"], xmax=gapminder_2007["gdpPercap"].mean(), colors='red', lw=0.5)
+
+# add horizontal line for the mean of "lifeExp"
+plt.axhline(y=125-gapminder_2007["lifeExp"].mean(), color='b', ls='--')
+
+# add vertical lines from the individual point to the mean of "lifeExp"
+plt.vlines(x=gapminder_2007["gdpPercap"],ymin=125-gapminder_2007["lifeExp"], ymax=125-gapminder_2007["lifeExp"].mean(), colors='green', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("GDP per capita")
+
+# add title on the y-axis
+plt.ylabel("Life Expectancy")
+
+# show the plot
+plt.show()
+
+# save the plot
+plt.savefig('inverted_resid.png')
+```
+:::
 
 The $Pearson's$ $r$ is now the reverse of the data before this transformation, i.e. r=-.679. Notice how there's consistency in the above average $x$ values being associated with below average $y$ values, and vice-versa.
 

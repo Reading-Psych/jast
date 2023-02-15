@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -148,16 +148,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
- <span class="menu-text">Report an error</span></a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">Report an error</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
- <span class="menu-text">Request a clarification</span></a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">Request a clarification</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
- <span class="menu-text">Suggest Content</span></a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">Suggest Content</a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -214,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -313,6 +310,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
           <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Statistics Basics (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
   correlations/cooksd.qmd
   </li>
       </ul>
@@ -399,7 +401,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes-for-anthony" id="toc-notes-for-anthony" class="nav-link active" data-scroll-target="#notes-for-anthony">Notes for Anthony</a></li>
+  <li><a href="#prediction-using-regression" id="toc-prediction-using-regression" class="nav-link active" data-scroll-target="#prediction-using-regression">Prediction using regression</a></li>
+  <li><a href="#notes-for-anthony" id="toc-notes-for-anthony" class="nav-link" data-scroll-target="#notes-for-anthony">Notes for Anthony</a></li>
   <li><a href="#proportion-of-variance-explained" id="toc-proportion-of-variance-explained" class="nav-link" data-scroll-target="#proportion-of-variance-explained">Proportion of variance explained</a></li>
   </ul>
 </nav>
@@ -417,14 +420,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
 
 </header>
 
-<p> ## Prediction using regression</p>
+<section id="prediction-using-regression" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-using-regression">Prediction using regression</h2>
 <p><strong>Simple regression</strong>, also known as linear regression, builds on <a href="../correlations/correlations.html" target="_blank">correlation</a>. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), <strong>simple regression</strong> allows you to make <strong>predictions</strong> of an <strong>outcome variable</strong> based on a <strong>predictor variable</strong>.</p>
 <p>For example, regression can be used to predict Life Expectancy in 2007 from GDP. Lets start by visualising the association between them:</p>
 <div class="cell">
@@ -542,6 +545,7 @@ outcome = intercept + gradient * predictor + residual
 <p><span class="math display">\[
 Y = a + bX + e
 \]</span></p>
+</section>
 <section id="notes-for-anthony" class="level2">
 <h2 class="anchored" data-anchor-id="notes-for-anthony">Notes for Anthony</h2>
 <p>R2 = SSR/SSTO = 1 - SSE/SSTO</p>
@@ -751,24 +755,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -804,42 +791,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>

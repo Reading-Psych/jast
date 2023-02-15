@@ -5,7 +5,7 @@ format:
         code-fold: true
 editor: visual
 ---
-{{< include ../jast_setup.qmd >}}
+
 ## Bell curve (AKA normal distribution)
 
 **Parametric statistics** often compare values to a **normal** distribution of **expected data**, based on the **estimated mean and SD**. Lets start by showing a (made up) **normal** distribution of heights in centimeters:

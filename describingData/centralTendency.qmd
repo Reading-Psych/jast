@@ -12,7 +12,8 @@ Central tendancy describes typical values of a variable, such as it's mean and m
 
 The **mean** is often called the "average" informally, but is actually a specific type of "average". The mean is the average you get when add together a group of numbers, and then divide by the number of items you combined. For example, to calculate the mean life expectancy of countries in 2007, we'll use <a href="https://www.gapminder.org/">gapminder data</a>
 
-
+::: {.panel-tabset}
+## R
 ```{r}
 # install (if required) and load the gapminder data
 if(!require(gapminder)){install.packages("gapminder")}
@@ -35,8 +36,13 @@ n_life_expectancy    = length(gapminder_2007$lifeExp)
 mean_life_expectancy = sum_life_expectancy/n_life_expectancy 
 mean_life_expectancy
 ```
+## Python
 
-
+```{python}
+#| eval: false
+gapminder_2007["lifeExp"].mean()
+```
+:::
 
 For those of you who like to double check these things (which is a good instinct), lets see what number you get if you use the r function for mean:
 

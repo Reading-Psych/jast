@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Statistics Basics</title>
+<title>Just Another Statistics Textbook - Statistics Basics (incomplete)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Statistics Basics</h1>
+      <h1 class="quarto-secondary-nav-title">Statistics Basics (incomplete)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link active">Statistics Basics</a>
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link active">Statistics Basics (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -291,7 +291,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests(incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -299,6 +299,28 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item">
   GeneralLinearModels/Two-Way (or more) Analysis of Variance
+  </li>
+          <li class="sidebar-item">
+  GeneralLinearModels/ANCOVA
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Permutation testing</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">University of Reading advice?</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  Psychology
+  </li>
+          <li class="sidebar-item">
+  Henley Business School
   </li>
       </ul>
   </li>
@@ -314,6 +336,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#what-is-a-variable" id="toc-what-is-a-variable" class="nav-link active" data-scroll-target="#what-is-a-variable">What is a variable?</a></li>
   <li><a href="#what-is-a-p-value" id="toc-what-is-a-p-value" class="nav-link" data-scroll-target="#what-is-a-p-value">What is a p-value?</a></li>
   <li><a href="#what-is-the-alpha-value" id="toc-what-is-the-alpha-value" class="nav-link" data-scroll-target="#what-is-the-alpha-value">What is the alpha value?</a></li>
+  <li><a href="#what-is-power-and-what-is-the-beta-value" id="toc-what-is-power-and-what-is-the-beta-value" class="nav-link" data-scroll-target="#what-is-power-and-what-is-the-beta-value">What is power (and what is the beta value)</a></li>
   </ul>
 </nav>
     </div>
@@ -322,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Statistics Basics</h1>
+<h1 class="title d-none d-lg-block">Statistics Basics (incomplete)</h1>
 </div>
 
 
@@ -358,6 +381,9 @@ ul.task-list li input[type="checkbox"] {
 <p>It is the p-value threshold that identifies if a result is “significant” or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is “significant” (i.e.&nbsp;so unlikely that this would have happened by chance that we conclude this didn’t happen randomly).</p>
 <p><strong>Technical definition:</strong> The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the alpha value sets the chance that a null hypothesis is rejected incorrectly (i.e.&nbsp;we say there is an effect when there isn’t one).</p>
 <p>Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the false-positive rate, we could adjust this value (this has been a contentious issue in recent years, see <a href="https://www.nature.com/articles/s41562-017-0189-z" title="Redefine statistical significance">here</a> and <a href="https://www.nature.com/articles/s41562-018-0311-x" title="Justify your alpha">here</a>).</p>
+</section>
+<section id="what-is-power-and-what-is-the-beta-value" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-power-and-what-is-the-beta-value">What is power (and what is the beta value)</h2>
 
 
 </section>

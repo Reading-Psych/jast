@@ -235,6 +235,33 @@ p<-qplot(
 ```{python}
 #| eval: false
 
+norm_x = np.arange(-4.0, 4.1, 0.1)
+
+norm_y = norm.pdf(norm_x, loc=0, scale=1)
+
+
+fig, ax = plt.subplots()
+
+fig.set_figheight(5)
+fig.set_figwidth(10)
+
+ax.plot(norm_x, norm_y, color='black', alpha=1.00)
+ax.fill_between(norm_x, norm_y, where= (0 <= norm_x)&(norm_x <= 1), color='blue', alpha=.4)
+ax.fill_between(norm_x, norm_y, where= (1 < norm_x)&(norm_x <= 2), color='green', alpha=.4)
+ax.fill_between(norm_x, norm_y, where= (norm_x > 2), color='red', alpha=.4)
+
+plt.text(2.05, 0.001, '2.3%', fontsize = 10)
+plt.text(1.2, 0.001, '13.6%', fontsize = 10)
+plt.text(0.2, 0.001, '34.1%', fontsize = 10)
+
+# add title on the x-axis
+plt.xlabel("Z-score")
+
+# add title on the y-axis
+plt.ylabel("Frequency")
+
+plt.show()
+
 ```
 :::
 
@@ -356,6 +383,43 @@ p<-qplot(
 
 ```{python}
 #| eval: false
+
+
+norm_x = np.arange(-4.0, 4.1, 0.1)
+
+norm_y = norm.pdf(norm_x, loc=0, scale=1)
+
+
+fig, ax = plt.subplots()
+
+fig.set_figheight(5)
+fig.set_figwidth(10)
+
+ax.plot(norm_x, norm_y, color='black', alpha=1.00)
+ax.fill_between(norm_x, norm_y, where= (norm_x < -2), color='gold', alpha=.4)
+ax.fill_between(norm_x, norm_y, where= (-2 <= norm_x)&(norm_x <= -1), color='red', alpha=.4)
+ax.fill_between(norm_x, norm_y, where= (-1 <= norm_x)&(norm_x <= 0), color='green', alpha=.4)
+ax.fill_between(norm_x, norm_y, where= (0 <= norm_x)&(norm_x <= 1), color='cyan', alpha=.4)
+ax.fill_between(norm_x, norm_y, where= (1 < norm_x)&(norm_x <= 2), color='blue', alpha=.4)
+ax.fill_between(norm_x, norm_y, where= (norm_x > 2), color='purple', alpha=.4)
+
+plt.text(2.05, 0.001, '100%', fontsize = 10)
+plt.text(1.2, 0.001, '97.7%', fontsize = 10)
+plt.text(0.2, 0.001, '84.1%', fontsize = 10)
+plt.text(-0.7, 0.001, '50%', fontsize = 10)
+plt.text(-1.8, 0.001, '34.1%', fontsize = 10)
+plt.text(-2.7, 0.001, '13.6%', fontsize = 10)
+
+
+
+# add title on the x-axis
+plt.xlabel("Z-score")
+
+# add title on the y-axis
+plt.ylabel("Frequency")
+
+
+plt.show()
 
 ```
 :::

@@ -8,8 +8,7 @@ editor: visual
 
 As you may have heard, correlation does not equal causation. One possible reason for this is that there's a third variable that explains an association. Let's imagine that we are trying to understand whether life expectancy goes up over time and why. First of all, let's check if lifeExpectancy is going up over time using the **gapminder** data:
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## R
 
 ```{r}
@@ -28,7 +27,6 @@ cor.test(gapminder_by_year$year, gapminder_by_year$lifeExp)
 ggplot(data = gapminder_by_year, aes(x = year, y = lifeExp)) + geom_point() + geom_smooth(method = lm)
 ```
 
-
 ## Python
 
 ```{python}
@@ -38,8 +36,6 @@ ggplot(data = gapminder_by_year, aes(x = year, y = lifeExp)) + geom_point() + ge
 
 ```
 
-
-
 ## Julia
 
 ```{julia}
@@ -48,16 +44,13 @@ ggplot(data = gapminder_by_year, aes(x = year, y = lifeExp)) + geom_point() + ge
 # TBC
 
 ```
-
 :::
 
 So now that we've confirmed that there is a positive association between the year and life expectancy, the next question is why? What changes from year to year that could explain increased life expectancy? Let's investigate whether gdp per capita generally goes up each year, and whether it's associated with life expectancy. If both of these things are true, then perhaps the increase in gdp per year is an explanation of the association between year and life expectancy.
 
 ### Is year and gdp per capita associated?
 
-
-::: {.panel-tabset}
-
+::: panel-tabset
 ## R
 
 ```{r}
@@ -66,14 +59,11 @@ ggplot(data = gapminder_by_year, aes(x = year, y = gdpPercap)) + geom_point() + 
 ```
 
 Whilst there are some outliers in earlier years, we seem to have found that gdp per capita has gone up.
-
 :::
 
 ### Is gdp per capita and life expectancy associated?
 
-
-::: {.panel-tabset}
-
+::: panel-tabset
 ## R
 
 ```{r}
@@ -84,11 +74,20 @@ ggplot(data = gapminder_by_year, aes(x = gdpPercap, y = lifeExp)) + geom_point()
 
 So the above analysis suggests that all three variables are **incredibly** related. (you are unlikely to see such strong associations in psychology experiments.). But let's now check in whether there's still an association between the year and life expectancy once you control for GDP per capita.
 
+```{mermaid}
+flowchart LR
+  A(Year AKA X) <--> B(Life Expectancy AKA Y)
+  A <--> C(GDP per Capita)
+  B <--> C
+```
 
+# Can I add padding?
+# Can I change the colors of boxes?
 
+To calculate the partial correlation r value you control for the association between the two variables
 
+$$
+r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}}
+$$
 
-
-
-
-
+-   $x$ =

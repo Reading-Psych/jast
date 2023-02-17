@@ -122,7 +122,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -584,6 +588,29 @@ sample estimates:
 </div>
 </div>
 <p>So the above analysis suggests that all three variables are <strong>incredibly</strong> related. (you are unlikely to see such strong associations in psychology experiments.). But let’s now check in whether there’s still an association between the year and life expectancy once you control for GDP per capita.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+  A(Year AKA X) &lt;--&gt; B(Life Expectancy AKA Y)
+  A &lt;--&gt; C(GDP per Capita)
+  B &lt;--&gt; C
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p>To calculate the partial correlation r value you control for the association between the two variables</p>
+<p><span class="math display">\[
+r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(x\)</span> =</li>
+</ul>
 
 
 </section>

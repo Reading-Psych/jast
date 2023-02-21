@@ -2,7 +2,7 @@
 title: "Partial Correlations"
 format: 
   html:
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 
@@ -125,3 +125,5 @@ y.z.cor <- cor.test(gapminder_by_year$gdpPercap, gapminder_by_year$lifeExp)
 ```
 
 Confirming that the difference in the manual calculation is a rounding error. Note that the numbers you get from R may be rounded numbers, and so your calculations may reflect the rounding.
+
+To conclude, as there is still an association between Year and Life Expectancy once controlling for GDP, this partial correlation is consistent with GDP not being the only explanation for why Life Expectancy goes up each year.

@@ -67,7 +67,7 @@ website:
           - "Henley Business School"
       - secction: "Advanced R Stuff"
         contents:
-          - "fancyFigures.qmd"
+          - "advancedR/fancyFigures.qmd"
 
 format:
   html:

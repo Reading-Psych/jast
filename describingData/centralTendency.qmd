@@ -12,8 +12,9 @@ Central tendancy describes typical values of a variable, such as it's mean and m
 
 The **mean** is often called the "average" informally, but is actually a specific type of "average". The mean is the average you get when add together a group of numbers, and then divide by the number of items you combined. For example, to calculate the mean life expectancy of countries in 2007, we'll use <a href="https://www.gapminder.org/">gapminder data</a>
 
-::: {.panel-tabset}
+::: panel-tabset
 ## R
+
 ```{r}
 # install (if required) and load the gapminder data
 if(!require(gapminder)){install.packages("gapminder")}
@@ -36,18 +37,23 @@ n_life_expectancy    = length(gapminder_2007$lifeExp)
 mean_life_expectancy = sum_life_expectancy/n_life_expectancy 
 mean_life_expectancy
 ```
+
 ## Python
 
 ```{python}
 #| eval: false
+
 # load the gapminder module and import the gapminder dataset
 from gapminder import gapminder
+
+# import the tabulate
+from tabulate import tabulate
 
 # create a new data frame that only focuses on data from 2007
 gapminder_2007 = gapminder.loc[gapminder['year'] == 2007]
 
-# a reminder of the data frame
-gapminder_2007
+#display table
+print(tabulate(gapminder_2007[:6], headers=gapminder_2007.head() , tablefmt="fancy_grid",showindex=False ))
 
 # total of all years
 sum_life_expectancy  = gapminder_2007['lifeExp'].sum()
@@ -60,6 +66,13 @@ mean_life_expectancy = sum_life_expectancy/n_life_expectancy
 mean_life_expectancy
 ```
 :::
+
+![Table](centralTendency-Table1.png){fig-align="left"}
+
+
+```
+67.00742253521126
+```
 
 For those of you who like to double check these things (which is a good instinct), lets see what number you get if you use the r function for mean:
 
@@ -78,10 +91,13 @@ gapminder_2007['lifeExp'].mean()
 ```
 :::
 
+```
+67.00742253521126
+```
+
 *Whew* - it's the same as the manual calculation above.
 
 Now **median** is less known than **mean**, but median is the value in the middle once you order all your data. It's well explained in the first paragraph on wikipedia: <a href="https://en.wikipedia.org/wiki/Median" target="_blank">https://en.wikipedia.org/wiki/Median</a>, so I would suggest looking there. As you can see below, the mean and median are not always the same (in fact, they are usually at least slightly different):
-
 
 ::: panel-tabset
 ## R
@@ -99,6 +115,11 @@ gapminder_2007['lifeExp'].mean()
 gapminder_2007['lifeExp'].median()
 ```
 :::
+
+```
+67.00742253521126
+71.93549999999999
+```
 
 Finally, the **mode** is simply the most frequent number in your data. So lets now see if the mode is closer to the mean or median:
 
@@ -123,8 +144,9 @@ gapminder_2007['lifeExp'].mode()
 ```
 :::
 
-The mode for this data was actually **every** value **perhaps because** each value was unique! Lets double check that:
+![Mode of 'lifeExp'](centralTendency-Table2.png){fig-align="left" height=300}
 
+The mode for this data was actually **every** value **perhaps because** each value was unique! Lets double check that:
 
 ::: panel-tabset
 ## R
@@ -148,6 +170,11 @@ num_values = gapminder_2007['lifeExp'].unique()
 len(num_values)
 ```
 :::
+
+```
+142
+142
+```
 
 The length of the whole **vector** and the unique values of the vector is the same, confirming that there's no repetition in this data (and so **no** number is the mode). Lets make up some data so that we can look at what the mode is:
 
@@ -175,5 +202,7 @@ mode_example_vector = pd.DataFrame(mode_example_vector)
 mode_example_vector.mode()
 ```
 :::
+
+![Example of Mode](centralTendency-Table3.png){fig-align="left" height=100}
 
 In the above data, there are 2 modes, as the numbers 2 and 4 occur the most.

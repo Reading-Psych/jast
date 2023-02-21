@@ -30,11 +30,10 @@ Data: The dependent variable in your analysis Model: A model which predicts a ph
 
 ## Dummy vs. effect coding for categorical variables in a model
 
-General Linear Models need numerical values for the predictors. As categorical variables (e.g. Sex) don't have a numeric value by default, we have to substitute the categories with numbers: 
+General Linear Models need numerical values for the predictors. As categorical variables (e.g. Sex) don't have a numeric value by default, we have to substitute the categories with numbers:
 
-- *Effect* coding can be used when you have a binary categorical variable, and you allocate one level 1 and the other -1. For example, you could allocate all females the score 1, and all non-female participants -1. A disadvantage of this approach is that it works best when you have binary categorical variable, but doesn't work as well when you have 3 or more levels. For example, coding female, male and non-binary sex doesn't work well with effect coding. 
-- *Dummy* coding involves allocating a 1 if someone is in a cateogory, and 0 if they are outside of the category. For example, you could allocate 1 to all your female participants, and 0 to all participants who aren't female to a variable "sex_female". An advantage of this approach is that you have flexibility to have more than 2 levels, such as having "sex_female", "sex_male" and "sex_nonbinary" as variables that are all either 1 or 0. 
-
+-   *Effect* coding can be used when you have a binary categorical variable, and you allocate one level 1 and the other -1. For example, you could allocate all females the score 1, and all non-female participants -1. A disadvantage of this approach is that it works best when you have binary categorical variable, but doesn't work as well when you have 3 or more levels. For example, coding female, male and non-binary sex doesn't work well with effect coding.
+-   *Dummy* coding involves allocating a 1 if someone is in a cateogory, and 0 if they are outside of the category. For example, you could allocate 1 to all your female participants, and 0 to all participants who aren't female to a variable "sex_female". An advantage of this approach is that you have flexibility to have more than 2 levels, such as having "sex_female", "sex_male" and "sex_nonbinary" as variables that are all either 1 or 0.
 
 ## Mean as the simplest model of data
 
@@ -48,6 +47,10 @@ $$
 estimatedLifeExpectancy = mean(lifeExpectancy) + Error
 $$
 
+
+::: panel-tabset
+## R
+
 ```{r}
 library(gapminder)
 # create a new data frame that only focuses on data from 2007
@@ -59,11 +62,28 @@ gapminder_2007 <- subset(
 mean(gapminder_2007$lifeExp)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+# load the gapminder module and import the gapminder dataset
+from gapminder import gapminder
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2007 = gapminder.loc[gapminder['year'] == 2007]
+
+gapminder_2007['lifeExp'].mean()
+```
+:::
+
 $$
 estimatedLifeExpectancy = 67.01 + Error
 $$
 
 Which could be visualised as:
+
+::: panel-tabset
+## R
 
 ```{r}
 library(ggplot2)
@@ -83,6 +103,30 @@ ggplot(
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+gapminder_2007["lifeExp_rank"] = gapminder_2007["lifeExp"].rank()
+
+fig, ax = plt.subplots(figsize =(10, 7))
+
+#scatter plot for the dataset
+plt.scatter(gapminder_2007["lifeExp_rank"], gapminder_2007["lifeExp"], color='black', s=10)
+# only one line may be specified; full height
+plt.axhline(y=gapminder_2007["lifeExp"].mean(), color='blue', ls='-')
+
+plt.vlines(x=gapminder_2007["lifeExp_rank"],ymin=gapminder_2007["lifeExp"], ymax=gapminder_2007["lifeExp"].mean(), colors='red', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("rank(lifeExp)")
+
+# add title on the y-axis
+plt.ylabel("Life Expectancy")
+plt.show()
+```
+:::
+
 *Fig. 1.*
 
 In English, the above model and figure allow you to predict that anyone's life expectancy will be 67 years. However, as you can also see, there's a huge amount of error, i.e. variance in life expectancy that is not explained by the model. These errors can be squared and summed to give the **sum of squares**, a statistic of how much error there is around the model:
@@ -92,6 +136,9 @@ SS = \sum(Y_i-\bar{Y})^2
 $$
 
 Which can be visualised as follows:
+
+::: panel-tabset
+## R
 
 ```{r}
 ggplot(
@@ -113,6 +160,30 @@ ggplot(
   theme(legend.position = "none")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+fig, ax = plt.subplots(figsize =(10, 7))
+
+#scatter plot for the dataset
+plt.scatter(gapminder_2007["lifeExp_rank"], (gapminder_2007["lifeExp"]-gapminder_2007["lifeExp"].mean())**2, color='black', s=10)
+
+# vertical lines
+plt.vlines(x=gapminder_2007["lifeExp_rank"],ymin=0, ymax=(gapminder_2007["lifeExp"]-gapminder_2007["lifeExp"].mean())**2, colors='red', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("rank(lifeExp)")
+
+# add title on the y-axis
+plt.ylabel("(Life Expectancy - mean(Life Expectancy))^2")
+
+# show plot
+plt.show()
+```
+:::
+
 *Fig. 2.*
 
 You can directly compare **fig. 1. and fig. 2.** to see how much error is associated with each data point compared to the model. Fig. 2. is positive because it is the distance of the data-point from the mean squared. If you added together all the **squares (pink lines)** in fig. 2. that would give you the **sum of squares.**
@@ -124,6 +195,9 @@ Let's explore those possibilities now.
 ## T-Tests
 
 T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let's first check what the sum of squares is when you just use the **mean** as the model of life expectancy across these contents:
+
+::: panel-tabset
+## R
 
 ```{r}
 gapminder_americas_europe <- subset(
@@ -147,9 +221,40 @@ ggplot(
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+gapminder_americas_europe = gapminder_2007.loc[(gapminder_2007['continent'] == "Europe") | (gapminder_2007['continent'] == "Americas")]
+
+gapminder_americas_europe["lifeExp_rank"] = gapminder_americas_europe["lifeExp"].rank()
+
+fig, ax = plt.subplots(figsize =(10, 7))
+
+#scatter plot for the dataset
+plt.scatter(gapminder_americas_europe["lifeExp_rank"], gapminder_americas_europe["lifeExp"], color='black', s=10)
+# only one line may be specified; full height
+plt.axhline(y=gapminder_americas_europe["lifeExp"].mean(), color='blue', ls='-')
+
+plt.vlines(x=gapminder_americas_europe["lifeExp_rank"],ymin=gapminder_americas_europe["lifeExp"], ymax=gapminder_americas_europe["lifeExp"].mean(), colors='red', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("rank(lifeExp)")
+
+# add title on the y-axis
+plt.ylabel("lifeExp")
+plt.show()
+
+```
+:::
+
 *Fig. 3.* The errors around the mean of life expectancy across Europe and American countries.
 
 Once we square the errors in the pink lines above, we'll get the **squares:**
+
+::: panel-tabset
+## R
 
 ```{r}
 ggplot(
@@ -174,6 +279,29 @@ sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp)
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+fig, ax = plt.subplots(figsize =(10, 7))
+
+#scatter plot for the dataset
+plt.scatter(gapminder_americas_europe["lifeExp_rank"], (gapminder_americas_europe["lifeExp"]-gapminder_americas_europe["lifeExp"].mean())**2, color='black', s=10)
+# only one line may be specified; full height
+
+plt.vlines(x=gapminder_americas_europe["lifeExp_rank"],ymin=0, ymax=(gapminder_americas_europe["lifeExp"]-gapminder_americas_europe["lifeExp"].mean())**2, colors='red', lw=0.5)
+
+# add title on the x-axis
+plt.xlabel("rank(lifeExp)")
+
+# add title on the y-axis
+plt.ylabel("(Life Expectancy - mean(Life Expectancy))^2")
+plt.show()
+
+sum((gapminder_americas_europe["lifeExp"]-gapminder_americas_europe["lifeExp"].mean())**2)
+```
+:::
+
 And when you add all of these together:
 
 $$
@@ -181,6 +309,9 @@ SumOfSquares = \sum(Y_i-\bar{Y})^2 = 953.4478
 $$
 
 So if the model we create for a t-test would result in a smaller **sum of squares** then that suggests it's a more precise model for estimating life expectancy than simply using the **mean** as a model. This is because this would mean there's less **error** in this model. Let's model this using a t-test. For this we will need to dummy code country:
+
+::: panel-tabset
+## R
 
 ```{r}
 # create a column to place 1 or -1 for each row dependent on the country
@@ -190,6 +321,20 @@ contEffect[gapminder_americas_europe$continent == "Americas"] = -1
 gapminder_americas_europe = cbind(contEffect,gapminder_americas_europe)
 rmarkdown::paged_table(head(gapminder_americas_europe))
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+gapminder_americas_europe["contEffect"]=0
+gapminder_americas_europe["contEffect"].loc[(gapminder_americas_europe['continent'] == "Europe")]=1
+gapminder_americas_europe["contEffect"].loc[(gapminder_americas_europe['continent'] == "Americas")]=-1
+cols = list(gapminder_americas_europe.columns)
+cols = cols[len(cols)-1:len(cols):1]+cols[0:-1:1]
+gapminder_americas_europe = gapminder_americas_europe[cols]
+```
+:::
 
 Now that we have dummy coded the continent, we can create a new model to try to predict an individual's life expectancy based on which continent they are from
 
@@ -212,6 +357,9 @@ $$
 -   $Error$ being any error in the prediction not captured by the model
 
 To get the $intercept$ and $\beta$ for the above formula let's use the lm function in R:
+
+::: panel-tabset
+## R
 
 ```{r}
 continent_ttest <- lm(lifeExp ~ contEffect, gapminder_americas_europe)
@@ -262,9 +410,58 @@ ggplot(gapminder_americas_europe, aes(x = contEffect, y = lifeExp)) +
   )
 ```
 
+## Python
+
+```{python}
+#| eval: false
+from scipy import stats
+
+# convert 'contEffect' to type category
+gapminder_americas_europe['contEffect'] = gapminder_americas_europe['contEffect'].astype('category')
+
+# lm 'contEffect' ~ 'lifeExp'
+res = stats.linregress(gapminder_americas_europe['contEffect'],gapminder_americas_europe['lifeExp'])
+
+# show results of lm
+res
+
+# calculate 'lifeExp' mean for 'contEffect' ==-1
+m1 = gapminder_americas_europe["lifeExp"][gapminder_americas_europe['contEffect'] == -1].mean()
+
+# calculate 'lifeExp' mean for 'contEffect' ==1
+m2 = gapminder_americas_europe["lifeExp"][gapminder_americas_europe['contEffect'] == 1].mean()
+
+# repeat lifeExp' mean for 'contEffect' ==-1
+m11=np.repeat(m1, len(gapminder_americas_europe["lifeExp"][gapminder_americas_europe['contEffect'] == -1]), axis=0)
+
+# repeat lifeExp' mean for 'contEffect' ==1
+m22=np.repeat(m2, len(gapminder_americas_europe["lifeExp"][gapminder_americas_europe['contEffect'] == 1]), axis=0)
+
+# create x coordinates for 'contEffect' ==-1
+x1 = np.arange(-1.98, -.05, 0.08)
+
+# create x coordinates for 'contEffect' ==1
+x2 = np.arange(0.05, 1.98, 0.065)
+
+
+fig, ax = plt.subplots(figsize =(10, 7))
+ax.set_ylim([60, 80])
+plt.axhline(y=gapminder_americas_europe["lifeExp"].mean(), color='green', ls='-')
+plt.hlines(y=m1,xmin=-1.99, xmax=-.04, colors='blue', lw=0.5)
+plt.hlines(y=m2,xmin=1.99, xmax=.04, colors='blue', lw=0.5)
+plt.vlines(x= x1,ymin=gapminder_americas_europe["lifeExp"][gapminder_americas_europe['contEffect'] == -1], ymax=m11, colors='red', lw=0.5)
+plt.vlines(x= x2,ymin=gapminder_americas_europe["lifeExp"][gapminder_americas_europe['contEffect'] == 1], ymax=m22, colors='red', lw=0.5)
+
+plt.show()
+```
+:::
+
 *Fig. X. Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a* $contEffect$ score of -1, even if the jittering above makes it look like participants from Europe had slightly different $contEffect$ values to each other.
 
 So now that we've visualised the predictions and the error, lets summarise these errors with their sum of squares:
+
+::: panel-tabset
+## R
 
 ```{r}
 #temp_summary <- summary(lm(lifeExp ~ contEffect, data = gapminder_americas_europe))
@@ -303,6 +500,14 @@ t.test(
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
 So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478) which also summarises the **total variance** (around the mean). In fact, we can use these 2 numbers to calculate the $r^2$ value (i.e. what proportion of the variance around the mean is explained by the model). The amount of variance explained by the model can be calculated by:
 
 $$
@@ -310,6 +515,9 @@ totalSumOfSquares - modelSumOfSquares = totalError - modelError
 $$
 
 This allows us to calculate an r-value and thus a p-value:
+
+::: panel-tabset
+## R
 
 ```{r}
 this_r2 = 1 - sum(gapminder_americas_europe$t_res_squared)/sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)
@@ -323,11 +531,21 @@ t.test(
 summary(aov(lifeExp ~ contEffect, gapminder_americas_europe))
 this_r2
 ```
- 
+
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
 You may notice above that the manually calculated $r^2$ value is identical to the "Multiple R-Squared", rather than the "Adjusted R-squared". So what's the difference between r-squared and adjusted r-squared?
 
-
 ### Effect sizes (eta-squared and partial eta-squared)
+
+::: panel-tabset
+## R
 
 ```{r}
 summary(aov(lifeExp ~ contEffect, gapminder_americas_europe))
@@ -338,6 +556,16 @@ summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
+::: panel-tabset
+## R
 
 ```{r}
 male_female_height <- data.frame(
@@ -350,8 +578,19 @@ mean(male_female_height$height[male_female_height$sex == "female"])
 summary(lm(height ~ sex_dummy, data = male_female_height))
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
 
 To show that we've achieved the same as a t-test, let's run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:
+
+
+::: panel-tabset
+## R
 
 ```{r}
 #953.4478/730.8276
@@ -367,6 +606,14 @@ continent_ttest$p.value
 continent_model$coefficients[2,4] # p-value for the continent as a predictor
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
 There are some advantages of conducting a t-test using the "lm" functionality:
 
 -   You can capture residuals
@@ -375,6 +622,8 @@ There are some advantages of conducting a t-test using the "lm" functionality:
 
 Let's now see how we can proceed if we have a more complex design, i.e. 3 or more levels and/or more than 1 factor, using ANOVAs.
 
+::: panel-tabset
+## R
 
 ```{r}
 ## Automatic calculation
@@ -408,7 +657,18 @@ ss_within_long = sum(
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
 To visualise this
+
+::: panel-tabset
+## R
 
 ```{r}
 lm_3_continents <- summary(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
@@ -464,12 +724,24 @@ ggplot(gapminder_3_continents, aes(x = continent, y = lifeExp)) +
   )
 
 ```
-*Fig. XXX.* Our model in the figure above considers the distance from each of the continent's mean to the overall mean as part of the explained variance. For each data point, the squared distance from the the mean line to the overall mean line is part of the sum of squares at the top of the formula.
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
+*Fig. XXX.* Our model in the figure above considers the distance from each of the continent's mean to the overall mean as part of the explained variance. For each data point, the squared distance from the the mean line to the overall mean line is part of the sum of squares at the top of the formula.
 
 ### 2 x 2 ANOVA
 
 Let's create data to allow us to compare between 2 years, and between Europe and Americas
+
+::: panel-tabset
+## R
+
 ```{r}
 # create a new data frame that only focuses on data from 2007
 gapminder_2_by_2 <- subset(
@@ -487,7 +759,19 @@ summary(aov(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
 
 ```
 
-manual calculation of f-value for 2 x 2 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
+manual calculation of f-value for 2 x 2
+
+::: panel-tabset
+## R
+
 ```{r}
 library(tidyverse)
 
@@ -553,7 +837,19 @@ gapminder
 68 +
 3
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
+
 ### 3 way ANOVA
+
+::: panel-tabset
+## R
 
 ```{r}
 
@@ -587,11 +883,20 @@ summary(lm(lifeExp ~ factor(year) * factor(continent) * factor(pop_split), gapmi
 20403.63
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
 
 # Is there a difference between a within-subject 4 level ANOVA vs. a 2 x 2 for the interaction?
 
-
 # plotting for the slides
+
+::: panel-tabset
+## R
 
 ```{r}
 
@@ -628,3 +933,10 @@ ggplot(gapminder_americas_europe, aes(x = gdpPercap, y = lifeExp)) +
   )
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::

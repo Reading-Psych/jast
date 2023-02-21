@@ -68,6 +68,10 @@ plt.show()
 ```
 :::
 
+![Table](correlation-Table1.png){fig-align="left"}
+
+![Scatterplot of 'GDP per capita' and 'Life expectancy'](correlation-Figure1.png){fig-align="left" width="700" height="500"}
+
 *Note that in the figure above each dot represents an individual point from our data.Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).*
 
 Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.
@@ -136,21 +140,25 @@ life_exp_resid <- ggplot(
     legend.position = "none"
   )
 
-ggsave("life_exp_resid.png", life_exp_resid)
+# ggsave("life_exp_resid.png", life_exp_resid)
+life_exp_resid
 ```
 
 ## Python
 
 ```{python}
 #| eval: false
+
+fig, ax = plt.subplots(figsize =(7, 5))
+
 #scatter plot for the dataset
 plt.scatter(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
 
-# add vertical line for the mean
-plt.axvline(x=gapminder_2007["gdpPercap"].mean(), color='b', ls='--')
+# add horizontal line for the mean of 'lifeExp'
+plt.axhline(y=gapminder_2007["lifeExp"].mean(), color='b', ls='--')
 
-# add horizontal line from the individual point to the mean of "gdpPercap"
-plt.hlines(y=gapminder_2007["lifeExp"],xmin=gapminder_2007["gdpPercap"], xmax=gapminder_2007["gdpPercap"].mean(), colors='red', lw=0.5)
+# add vertical lines from the individual point to the mean of "lifeExp"
+plt.vlines(x=gapminder_2007["gdpPercap"],ymin=gapminder_2007["lifeExp"], ymax=gapminder_2007["lifeExp"].mean(), colors='red', lw=0.5)
 
 # add title on the x-axis
 plt.xlabel("GDP per capita")
@@ -161,10 +169,12 @@ plt.ylabel("Life Expectancy")
 # show the plot
 plt.show()
 
-# save the plot
-plt.savefig('life_exp_resid.png')
+## save the plot
+#plt.savefig('life_exp_resid.png')
 ```
 :::
+
+![Scatterplot with residuals of 'Life expectancy'](correlation-Figure2.png){fig-align="left" width="700" height="500"}
 
 *Note that in the figure above the horizontal blue dotted line represent the mean of Life Expectancy. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
 
@@ -206,6 +216,9 @@ gdp_resid
 
 ```{python}
 #| eval: false
+
+fig, ax = plt.subplots(figsize =(7, 5))
+
 #scatter plot for the dataset
 plt.scatter(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
 
@@ -224,10 +237,12 @@ plt.ylabel("Life Expectancy")
 # show the plot
 plt.show()
 
-# save the plot
-plt.savefig('life_exp_resid.png')
+## save the plot
+#plt.savefig('life_exp_resid.png')
 ```
 :::
+
+![Scatterplot with residuals of 'GDP per capita'](correlation-Figure3.png){fig-align="left" width="700" height="500"}
 
 *Note that in the figure above the vertical blue dotted line represents the mean gdp per capita. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
 
@@ -356,6 +371,8 @@ plt.savefig('shared_resid.png')
 ```
 :::
 
+![Scatterplot with shared residuals'](correlation-Figure4.png){fig-align="left" width="700" height="500"}
+
 ### Comparing $shared$ $variance$ ($var_{xy}$) to $total$ $variance$
 
 To complete a **Pearson's** **R** correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the **proportion** of $total$ $variance$ is explained by the $shared$ $variance$ ($var_{xy}$).
@@ -396,7 +413,7 @@ varxy/totalvar
 
 ```{python}
 #| eval: false
-#| 
+
 # Import math Library
 import math
 
@@ -412,6 +429,10 @@ varxy/totalvar
 ```
 :::
 
+```
+0.6786623986777583
+```
+
 If the above calculation is correct, we'll get exactly the same value when using the **cor.test** function:
 
 ::: panel-tabset
@@ -425,11 +446,15 @@ cor.test(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
 
 ```{python}
 #| eval: false
-#| 
+ 
 import scipy.stats
 scipy.stats.pearsonr(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
 ```
 :::
+
+```
+(0.6786623986777585, 1.6891897969647515e-20)
+```
 
 To visualise what proportion of the variance is captured by $var_{xy}$:
 
@@ -509,6 +534,8 @@ inverted_resid
 ```{python}
 #| eval: false
 
+fig, ax = plt.subplots(figsize =(7, 5))
+
 #scatter plot for the dataset
 plt.scatter(gapminder_2007["gdpPercap"], 125-gapminder_2007["lifeExp"])
 
@@ -533,10 +560,13 @@ plt.ylabel("Life Expectancy")
 # show the plot
 plt.show()
 
-# save the plot
-plt.savefig('inverted_resid.png')
+## save the plot
+#plt.savefig('inverted_resid.png')
 ```
 :::
+
+
+![Scatterplot with inverted shared residuals'](correlation-Figure5.png){fig-align="left" width="700" height="500"}
 
 The $Pearson's$ $r$ is now the reverse of the data before this transformation, i.e. r=-.679. Notice how there's consistency in the above average $x$ values being associated with below average $y$ values, and vice-versa.
 
@@ -580,6 +610,7 @@ spssSkewKurtosis(gapminder_2007$lifeExp)
 ```
 
 ## Python
+
 ```{python}
 #| eval: false
 
@@ -619,6 +650,11 @@ spssSkewKurtosis(gapminder_2007["lifeExp"])
 ```
 :::
 
+![Skewness and kurtosis for 'gdpPercap'](correlation-Table2.png){fig-align="left" height=100}
+
+![Skewness and kurtosis for 'lifeExp'](correlation-Table3.png){fig-align="left" height=100}
+
+
 As GDP and Life Expectancy skewness and (kurtosis for life expectancy) estimates are more than 1.96 \* their standard errors (i.e. their z-scores are above 1.96), we have significant evidence that the data for both variabels is *not* normally distributed, and thus we can/should complete a Spearman's Rank/Rho correlation (in the next subsection).
 
 ## Spearman's Rank (AKA Spearman's Rho)
@@ -633,7 +669,9 @@ gapminder_2007$gdpPercap_rank <- rank(gapminder_2007$gdpPercap)
 gapminder_2007$lifeExp_rank <- rank(gapminder_2007$lifeExp)
 
 ```
+
 ## Python
+
 ```{python}
 #| eval: false
 
@@ -653,7 +691,9 @@ Lets do a quick check to see that ranking the data addresses the problems with s
 spssSkewKurtosis(gapminder_2007$gdpPercap_rank)
 spssSkewKurtosis(gapminder_2007$lifeExp_rank)
 ```
+
 ## Python
+
 ```{python}
 #| eval: false
 
@@ -661,6 +701,12 @@ spssSkewKurtosis(gapminder_2007["gdpPercap_rank"])
 spssSkewKurtosis(gapminder_2007["lifeExp_rank"])
 ```
 :::
+
+![Skewness and kurtosis for 'gdpPercap_rank'](correlation-Table4.png){fig-align="left" height=100}
+
+
+![Skewness and kurtosis for 'lifeExp_rank'](correlation-Table5.png){fig-align="left" height=100}
+
 
 This has successfully removed any issue with skewness of the data, but has made the data more platykurtic (i.e. flatter). A problem with platykurtic data is that parametric tests might be **over** sensitive to identifying significant effects (see <a href="../distributions/kurtosis.qmd" target="_blank">kurtosis</a>), i.e. be at a higher risk of **false positives**. This is evidence that using a Spearman's Rank may increase a risk of a false-positive (at least with this data), so <a href="transforming" target="_blank">another transformation of the data</a> may be more appropriate to avoid this problem with kurtosis.
 
@@ -675,7 +721,9 @@ cor.test(gapminder_2007$gdpPercap_rank, gapminder_2007$lifeExp_rank, method = "p
 # Spearman correlation applied to original data (letting R do the ranking)
 cor.test(gapminder_2007$gdpPercap, gapminder_2007$lifeExp, method = "spearman")
 ```
+
 ## Python
+
 ```{python}
 #| eval: false
 
@@ -685,6 +733,12 @@ scipy.stats.pearsonr(gapminder_2007["gdpPercap_rank"], gapminder_2007["lifeExp_r
 scipy.stats.spearmanr(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
 ```
 :::
+
+```
+(0.8565899189213543, 4.6229745362984015e-42)
+
+SpearmanrResult(correlation=0.8565899189213544, pvalue=4.62297453629821e-42)
+```
 
 The $r$ value is now .857, suggesting that the overlap between $gdp$ and $life$ $expectancy$ explains 85.7% of the total variance of the ranks for both of them.
 
@@ -734,12 +788,16 @@ rank_resid <- ggplot(
 
 rank_resid
 ```
+
 ## Python
+
 ```{python}
 #| eval: false
 
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize =(7, 5))
 
 #scatter plot for the dataset
 plt.scatter(gapminder_2007["gdpPercap_rank"], gapminder_2007["lifeExp_rank"])
@@ -771,6 +829,8 @@ plt.legend(handles=[red_patch, green_patch],bbox_to_anchor=(1.05, 1), loc=2, bor
 plt.show()
 ```
 :::
+
+![Scatterplot for 'Life Expectancy (RANK)' and 'GDP per capita (RANK)' with  residuals'](correlation-Figure6.png){fig-align="left" width="700" height="500"}
 
 You may notice that the variance from the mean in X and Y is more aligned in this figure than it was in the data before it was transformed into ranks (and is less skewed!):
 

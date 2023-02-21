@@ -2,7 +2,7 @@
 title: "Skewness"
 format: 
   html:  
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 

@@ -2,7 +2,7 @@
 title: "Kurtosis (incomplete)"
 format: 
   html:
-      code-fold: true
+      code-fold: false
 editor: visual
 ---
 

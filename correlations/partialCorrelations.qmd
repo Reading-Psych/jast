@@ -2,7 +2,7 @@
 title: "Partial Correlations"
 format: 
   html:
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 

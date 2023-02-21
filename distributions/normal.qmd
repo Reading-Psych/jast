@@ -2,7 +2,7 @@
 title: "Normal Distribution"
 format:
     html:  
-        code-fold: true
+        code-fold: false
 editor: visual
 ---
 
@@ -377,7 +377,6 @@ p<-qplot(
    ylab("Frequency") +
    theme(legend.position="none")
 ```
-
 
 ## Python
 

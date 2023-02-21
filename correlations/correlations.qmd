@@ -2,7 +2,7 @@
 title: "Correlations"
 format: 
   html:
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 
@@ -133,11 +133,7 @@ life_exp_resid <- ggplot(
     )
   ) + 
   theme(
-    legend.position = "none",
-    text=element_text(
-      family="gochi",
-      size = 20
-    )
+    legend.position = "none"
   )
 
 ggsave("life_exp_resid.png", life_exp_resid)

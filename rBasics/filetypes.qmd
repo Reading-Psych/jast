@@ -2,7 +2,7 @@
 title: "Types of Scripts"
 format: 
   html:
-    code-fold: true
+    code-fold: false
 editor: visual
 ---
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -151,13 +151,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">Report an error</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
+ <span class="menu-text">Report an error</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">Request a clarification</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
+ <span class="menu-text">Request a clarification</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">Suggest Content</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
+ <span class="menu-text">Suggest Content</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -428,6 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -438,10 +442,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="range" class="level2">
 <h2 class="anchored" data-anchor-id="range">Range</h2>
 <p><strong>Range</strong> simply captures the min and the maximum values. Lets look at the min and max for the life expectancy data from 2007:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the gapminder data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
@@ -461,23 +461,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 82.603</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the gapminder module and import the gapminder dataset</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gapminder <span class="im">import</span> gapminder</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="op">=</span> gapminder.loc[gapminder[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2007</span>]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>gapminder_2007[<span class="st">'lifeExp'</span>].<span class="bu">min</span>()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>gapminder_2007[<span class="st">'lifeExp'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<pre><code>39.613
-82.603</code></pre>
 <p>So the <strong>range</strong> for life expectancy in 2007 was between 39.613 and 82.603.</p>
 </section>
 <section id="variance" class="level2">
@@ -485,17 +468,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="population-variance" class="level3">
 <h3 class="anchored" data-anchor-id="population-variance">Population Variance</h3>
 <p><strong>Variance</strong> is how much the data varies around a mean. To capture this, we compare each individual’s score with the mean, so lets do this with our gapminder data’s life expectancy:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">life_expectancy =</span> gapminder_2007<span class="sc">$</span>lifeExp,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff_from_mean  =</span> gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(life_expectancy_variance_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">life_expectancy =</span> gapminder_2007<span class="sc">$</span>lifeExp,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff_from_mean  =</span> gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(life_expectancy_variance_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -505,61 +484,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table <span class="op">=</span> {</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'life_expectancy'</span> : gapminder_2007[<span class="st">'lifeExp'</span>],</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'diff_from_mean'</span>: gapminder_2007[<span class="st">'lifeExp'</span>]<span class="op">-</span> gapminder_2007[<span class="st">'lifeExp'</span>].mean(),</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'diff_squared'</span>: (gapminder_2007[<span class="st">'lifeExp'</span>]<span class="op">-</span> gapminder_2007[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># convert it to a data frame</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table <span class="op">=</span> pd.DataFrame(life_expectancy_variance_table)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(life_expectancy_variance_table[:<span class="dv">10</span>], headers<span class="op">=</span>life_expectancy_variance_table.head(), tablefmt<span class="op">=</span><span class="st">"fancy_grid"</span>,showindex<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="dispersion-Table1.png" height="500" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
-</figure>
-</div>
 <p>So we know for <strong>each</strong> country how different their life expectacy is to the mean life expectancy. But ideally we would like a single value to summarise variance. Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_from_mean) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.153937e-15</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table[<span class="st">'diff_from_mean'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<pre><code>5.254013186958487e-15</code></pre>
 <p>We get a number that is effectively zero (go <a href="../statsBasics/eNumbers.html" target="_blank">here</a> for an explanation about e-numbers), because all the values above the mean balance out those below the mean. So to address this, we can square the differences to force all the numbers to be positive:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table<span class="sc">$</span>diff_squared <span class="ot">=</span> life_expectancy_variance_table<span class="sc">$</span>diff_from_mean<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(life_expectancy_variance_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table<span class="sc">$</span>diff_squared <span class="ot">=</span> life_expectancy_variance_table<span class="sc">$</span>diff_from_mean<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(life_expectancy_variance_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -569,66 +504,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table[<span class="st">'diff_squared'</span>] <span class="op">=</span> life_expectancy_variance_table[<span class="st">'diff_from_mean'</span>].<span class="bu">pow</span>(<span class="dv">2</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(life_expectancy_variance_table[:<span class="dv">10</span>], headers<span class="op">=</span>life_expectancy_variance_table.head(), tablefmt<span class="op">=</span><span class="st">"fancy_grid"</span>,showindex<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="dispersion-Table2.png" height="500" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
-</figure>
-</div>
 <p>If we calculate the average of this, then we get a summary of the variance that is more informative:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 144.7314</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_variance_table[<span class="st">'diff_squared'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<pre><code>144.73136049752028</code></pre>
 <p>However, as mean is what you get when you add all the items together and then divide it by the number of items, this can also be done in 2 steps in R (this will help us understand the formula later):</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sum_of_squares <span class="ot">=</span> <span class="fu">sum</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>this_variance  <span class="ot">=</span> sum_of_squares<span class="sc">/</span><span class="fu">length</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>this_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sum_of_squares <span class="ot">=</span> <span class="fu">sum</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>this_variance  <span class="ot">=</span> sum_of_squares<span class="sc">/</span><span class="fu">length</span>(life_expectancy_variance_table<span class="sc">$</span>diff_squared)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>this_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 144.7314</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sum_of_squares <span class="op">=</span> life_expectancy_variance_table[<span class="st">'diff_squared'</span>].<span class="bu">sum</span>()</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>this_variance <span class="op">=</span> sum_of_squares<span class="op">/</span>life_expectancy_variance_table[<span class="st">'diff_squared'</span>].count()</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>this_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<pre><code>144.73136049752028</code></pre>
 <p>We can represent the above in the following formula for the <strong>population</strong>’s (remember, this is when you have everyone from the group you are measuring) variance:</p>
 <p><span class="math display">\[
 \sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
@@ -648,46 +539,42 @@ S^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N - 1}
 <section id="degrees-of-freedom" class="level2">
 <h2 class="anchored" data-anchor-id="degrees-of-freedom">Degrees of Freedom</h2>
 <p>Degrees of freedom calculations can be useful to address statistics that are vulnerable to bias within a sample (i.e.&nbsp;the sample being distorted compared to the population). Interestingly, <strong>mean</strong> is not, but <strong>variance</strong> is. Lets see this by looking at differences between the population and sample for mean and variance, looking at the height of three people, and combining them into every combination of 2 people possible:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>three_heights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">150</span>,<span class="dv">160</span>,<span class="dv">170</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>population_height_mean <span class="ot">=</span> <span class="fu">mean</span>(three_heights)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>population_height_variance <span class="ot">=</span> <span class="fu">sum</span>((three_heights <span class="sc">-</span> population_height_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#sample participants in pairs</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>sample_heights <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp1 =</span> <span class="fu">c</span>(<span class="dv">150</span>,<span class="dv">150</span>,<span class="cn">NA</span>),</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp2 =</span> <span class="fu">c</span>(<span class="dv">160</span>,<span class="cn">NA</span>,<span class="dv">160</span>),</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp3 =</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">170</span>,<span class="dv">170</span>),</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pair =</span> <span class="fu">c</span>(</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1 and 2"</span>,</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1 and 3"</span>,</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2 and 3"</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>mean <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])),</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])),</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]))</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>pop_var <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span>,</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span>,</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>sample_var <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>),</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>),</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>)</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(sample_heights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>three_heights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">150</span>,<span class="dv">160</span>,<span class="dv">170</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>population_height_mean <span class="ot">=</span> <span class="fu">mean</span>(three_heights)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>population_height_variance <span class="ot">=</span> <span class="fu">sum</span>((three_heights <span class="sc">-</span> population_height_mean)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#sample participants in pairs</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>sample_heights <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp1 =</span> <span class="fu">c</span>(<span class="dv">150</span>,<span class="dv">150</span>,<span class="cn">NA</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp2 =</span> <span class="fu">c</span>(<span class="dv">160</span>,<span class="cn">NA</span>,<span class="dv">160</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pp3 =</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">170</span>,<span class="dv">170</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pair =</span> <span class="fu">c</span>(</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1 and 2"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1 and 3"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2 and 3"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>mean <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])),</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])),</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]))</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>pop_var <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>sample_heights<span class="sc">$</span>sample_var <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">2</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>),</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">1</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>),</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>((<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>]) <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(three_heights[<span class="dv">2</span>], three_heights[<span class="dv">3</span>])))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="dv">3-1</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(sample_heights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -696,133 +583,41 @@ S^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N - 1}
   </script>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mean_sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>mean)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mean_sample_variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>sample_var)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>mean_population_variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>pop_var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>three_heights <span class="op">=</span> [<span class="dv">150</span>,<span class="dv">160</span>,<span class="dv">170</span>]</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>three_heights <span class="op">=</span> pd.DataFrame(three_heights)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>population_height_mean <span class="op">=</span> three_heights.mean()</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>population_height_variance <span class="op">=</span> (three_heights <span class="op">-</span> population_height_mean).<span class="bu">pow</span>(<span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">/</span><span class="dv">3</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#sample participants in pairs</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>sample_heights <span class="op">=</span> {</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'pp1'</span>: [<span class="dv">150</span>,<span class="dv">150</span>, np.nan],</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'pp2'</span>: [<span class="dv">160</span>, np.nan, <span class="dv">160</span>],</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'pp3'</span>: [np.nan, <span class="dv">170</span>, <span class="dv">170</span>],</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'pair'</span>: [<span class="st">"1 and 2"</span>, <span class="st">"1 and 3"</span>, <span class="st">"2 and 3"</span>]</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>sample_heights <span class="op">=</span> pd.DataFrame(sample_heights)</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> [three_heights.iloc[<span class="dv">0</span>:<span class="dv">2</span>].mean(),three_heights.iloc[[<span class="dv">0</span>,<span class="dv">2</span>],].mean(),three_heights.iloc[<span class="dv">1</span>:<span class="dv">3</span>].mean()]</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> pd.DataFrame(mean)</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>sample_heights[<span class="st">'mean'</span>]<span class="op">=</span>mean</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>pop_var<span class="op">=</span>[((three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">0</span>:<span class="dv">2</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>) <span class="op">+</span> (three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">0</span>:<span class="dv">2</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>))<span class="op">/</span><span class="dv">3</span>,((three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[[<span class="dv">0</span>,<span class="dv">2</span>],].mean()).<span class="bu">pow</span>(<span class="dv">2</span>) <span class="op">+</span> (three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[[<span class="dv">0</span>,<span class="dv">2</span>],].mean()).<span class="bu">pow</span>(<span class="dv">2</span>))<span class="op">/</span><span class="dv">3</span>,((three_heights.iloc[<span class="dv">1</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">1</span>:<span class="dv">3</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>) <span class="op">+</span> (three_heights.iloc[<span class="dv">2</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">1</span>:<span class="dv">3</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>))<span class="op">/</span><span class="dv">3</span>]</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>pop_var <span class="op">=</span> pd.DataFrame(pop_var)</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>sample_heights[<span class="st">'pop_var'</span>]<span class="op">=</span> pop_var</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>sample_var<span class="op">=</span>[((three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">0</span>:<span class="dv">2</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>) <span class="op">+</span> (three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">0</span>:<span class="dv">2</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>))<span class="op">/</span>(<span class="dv">3</span><span class="op">-</span><span class="dv">1</span>),((three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[[<span class="dv">0</span>,<span class="dv">2</span>],].mean()).<span class="bu">pow</span>(<span class="dv">2</span>) <span class="op">+</span> (three_heights.iloc[<span class="dv">0</span>] <span class="op">-</span> three_heights.iloc[[<span class="dv">0</span>,<span class="dv">2</span>],].mean()).<span class="bu">pow</span>(<span class="dv">2</span>))<span class="op">/</span>(<span class="dv">3</span><span class="op">-</span><span class="dv">1</span>),((three_heights.iloc[<span class="dv">1</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">1</span>:<span class="dv">3</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>) <span class="op">+</span> (three_heights.iloc[<span class="dv">2</span>] <span class="op">-</span> three_heights.iloc[<span class="dv">1</span>:<span class="dv">3</span>].mean()).<span class="bu">pow</span>(<span class="dv">2</span>))<span class="op">/</span>(<span class="dv">3</span><span class="op">-</span><span class="dv">1</span>)]</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>sample_var<span class="op">=</span>pd.DataFrame(sample_var)</span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>sample_heights[<span class="st">'sample_var'</span>]<span class="op">=</span>sample_var</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>sample_heights <span class="op">=</span> pd.DataFrame(sample_heights)</span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(sample_heights, headers<span class="op">=</span>sample_heights.head(), tablefmt<span class="op">=</span><span class="st">"fancy_grid"</span>,showindex<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>mean_sample_mean <span class="op">=</span> sample_heights[<span class="st">'mean'</span>].mean()</span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>mean_sample_variance <span class="op">=</span> sample_heights[<span class="st">'sample_var'</span>].mean()</span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>mean_population_variance <span class="op">=</span> sample_heights[<span class="st">'pop_var'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="dispersion-Table3.png" width="600" height="200" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
-</figure>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mean_sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>mean)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mean_sample_variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>sample_var)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mean_population_variance <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_heights<span class="sc">$</span>pop_var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When comparing the population mean to the mean sample mean (i.e., what is the typical mean for any sample), they’re identical (i.e.&nbsp;<strong><em>NOT</em></strong> biased):</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>population_height_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>population_height_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 160</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mean_sample_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mean_sample_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 160</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>population_height_mean</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>mean_sample_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<pre><code>0    160.0
-dtype: float64
-
-160.0</code></pre>
 <p>Whereas when comparing the actual population variance (<strong>population_height_variance</strong>) to the mean (to identify what is a typical) estimate of variance using the <strong>population formula that should not be used for samples (mean_population_variance)</strong> finds the estimate of variance is typically smaller than the actual variance in the population:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 66.66667</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mean_population_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mean_population_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 33.33333</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mean_population_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
 <p>As this bias (almost) always underestimates the population variance, <strong>degrees of freedom</strong> is a useful correction to address this within calculations of sample variance. Lets compare the <strong>actual</strong> population height variance (population_height_variance) to the mean estimate using degrees of freedom that <strong>should be used for samples (mean_sample_variance)</strong>.</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 66.66667</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mean_sample_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mean_sample_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>population_height_variance</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>mean_sample_variance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
 </div>
 </div>
 <p>So, not perfect, but this is less under-representative of the variance.</p>
@@ -834,14 +629,15 @@ dtype: float64
 <h2 class="anchored" data-anchor-id="standard-deviation-sd">Standard deviation (SD)</h2>
 <p><strong>Standard deviation</strong> is the <strong>square root</strong> of the variance. This takes into account that that the variance includes the <strong>square</strong> of the difference between the individual values and the mean:</p>
 <p><strong>Population Variance</strong> <span class="math display">\[
-\sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}
-\]</span> <strong>Population SD</strong> <span class="math display">\[
-\sigma = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}
+\sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Red}{^2}\color{Black})} {N}
+\]</span></p>
+<p><strong>Population SD</strong> <span class="math display">\[
+\sigma = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Red}{^2}\color{Black})} {N}
 \]</span></p>
 <p><strong>Sample Variance</strong> <span class="math display">\[
-S^2 = \frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}
+S^2 = \frac{\sum((x_i- \bar{x}{} )\color{red}{^2}\color{Black})} {N - 1}
 \]</span> <strong>Sample SD</strong> <span class="math display">\[
-S = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}
+S = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{red}{^2}\color{Black})} {N - 1}
 \]</span></p>
 
 
@@ -889,7 +685,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -925,24 +738,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

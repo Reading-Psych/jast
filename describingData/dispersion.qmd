@@ -33,8 +33,6 @@ max(gapminder_2007$lifeExp)
 
 ```{python}
 #| eval: false
-# load the markdownTable module 
-from markdownTable import markdownTable
 
 # load the gapminder module and import the gapminder dataset
 from gapminder import gapminder
@@ -49,6 +47,11 @@ gapminder_2007['lifeExp'].max()
 ```
 :::
 
+```
+39.613
+82.603
+```
+
 So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
 ## Variance
@@ -59,6 +62,7 @@ So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
 ::: panel-tabset
 ## R
+
 ```{r}
 life_expectancy_variance_table <- data.frame(
   life_expectancy = gapminder_2007$lifeExp,
@@ -73,22 +77,31 @@ rmarkdown::paged_table(life_expectancy_variance_table)
 ```{python}
 #| eval: false
 import pandas as pd
-import tabulate
+from tabulate import tabulate
+
 life_expectancy_variance_table = {
   'life_expectancy' : gapminder_2007['lifeExp'],
-  'diff_from_mean': gapminder_2007['lifeExp']- gapminder_2007['lifeExp'].mean()
+  'diff_from_mean': gapminder_2007['lifeExp']- gapminder_2007['lifeExp'].mean(),
+    'diff_squared': (gapminder_2007['lifeExp']- gapminder_2007['lifeExp'].mean())**2
 }
 
+# convert it to a data frame
 life_expectancy_variance_table = pd.DataFrame(life_expectancy_variance_table)
 
-print(markdownTable(life_expectancy_variance_table.to_dict(orient='records')).getMarkdown())
+# print the table
+print(tabulate(life_expectancy_variance_table[:10], headers=life_expectancy_variance_table.head(), tablefmt="fancy_grid",showindex=False))
+
 ```
 :::
+
+![Table](dispersion-Table1.png){fig-align="left" height=500}
+
 
 So we know for **each** country how different their life expectacy is to the mean life expectancy. But ideally we would like a single value to summarise variance. Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:
 
 ::: panel-tabset
 ## R
+
 ```{r}
 mean(life_expectancy_variance_table$diff_from_mean) 
 ```
@@ -100,6 +113,9 @@ mean(life_expectancy_variance_table$diff_from_mean)
 life_expectancy_variance_table['diff_from_mean'].mean()
 ```
 :::
+```
+5.254013186958487e-15
+```
 
 We get a number that is effectively zero (go <a href="../statsBasics/eNumbers.html" target="_blank">here</a> for an explanation about e-numbers), because all the values above the mean balance out those below the mean. So to address this, we can square the differences to force all the numbers to be positive:
 
@@ -116,9 +132,12 @@ rmarkdown::paged_table(life_expectancy_variance_table)
 ```{python}
 #| eval: false
 life_expectancy_variance_table['diff_squared'] = life_expectancy_variance_table['diff_from_mean'].pow(2)
-print(markdownTable(life_expectancy_variance_table.to_dict(orient='records')).getMarkdown())
+# print the table
+print(tabulate(life_expectancy_variance_table[:10], headers=life_expectancy_variance_table.head(), tablefmt="fancy_grid",showindex=False))
 ```
 :::
+
+![Table](dispersion-Table2.png){fig-align="left" height=500}
 
 If we calculate the average of this, then we get a summary of the variance that is more informative:
 
@@ -136,6 +155,10 @@ mean(life_expectancy_variance_table$diff_squared)
 life_expectancy_variance_table['diff_squared'].mean()
 ```
 :::
+
+```
+144.73136049752028
+```
 
 However, as mean is what you get when you add all the items together and then divide it by the number of items, this can also be done in 2 steps in R (this will help us understand the formula later):
 
@@ -157,6 +180,10 @@ this_variance = sum_of_squares/life_expectancy_variance_table['diff_squared'].co
 this_variance
 ```
 :::
+
+```
+144.73136049752028
+```
 
 We can represent the above in the following formula for the **population**'s (remember, this is when you have everyone from the group you are measuring) variance:
 
@@ -262,7 +289,7 @@ sample_heights['sample_var']=sample_var
 
 
 sample_heights = pd.DataFrame(sample_heights)
-print(markdownTable(sample_heights.to_dict(orient='records')).getMarkdown())
+print(tabulate(sample_heights, headers=sample_heights.head(), tablefmt="fancy_grid",showindex=False))
 
 mean_sample_mean = sample_heights['mean'].mean()
 mean_sample_variance = sample_heights['sample_var'].mean()
@@ -270,6 +297,8 @@ mean_population_variance = sample_heights['pop_var'].mean()
 
 ```
 :::
+
+![Table](dispersion-Table3.png){fig-align="left" height=200 width=600}
 
 When comparing the population mean to the mean sample mean (i.e., what is the typical mean for any sample), they're identical (i.e. ***NOT*** biased):
 
@@ -289,6 +318,13 @@ population_height_mean
 mean_sample_mean
 ```
 :::
+```
+0    160.0
+dtype: float64
+
+160.0
+```
+
 Whereas when comparing the actual population variance (**population_height_variance**) to the mean (to identify what is a typical) estimate of variance using the **population formula that should not be used for samples (mean_population_variance)** finds the estimate of variance is typically smaller than the actual variance in the population:
 
 ::: panel-tabset
@@ -307,6 +343,13 @@ population_height_variance
 mean_population_variance
 ```
 :::
+
+```
+0    66.666667
+dtype: float64
+
+33.333333333333336
+```
 
 As this bias (almost) always underestimates the population variance, **degrees of freedom** is a useful correction to address this within calculations of sample variance. Lets compare the **actual** population height variance (population_height_variance) to the mean estimate using degrees of freedom that **should be used for samples (mean_sample_variance)**.
 
@@ -327,6 +370,13 @@ mean_sample_variance
 ```
 :::
 
+```
+0    66.666667
+dtype: float64
+
+50.0
+```
+
 So, not perfect, but this is less under-representative of the variance.
 
 One thing to bear in mind is that calculation of some statistics does **not** require use of the degrees of freedom to correct for *bias* (as seen above, **mean** was not susceptible to bias).
@@ -339,20 +389,14 @@ If you would like to understand how degrees of freedom are determined, and what 
 
 **Standard deviation** is the **square root** of the variance. This takes into account that that the variance includes the **square** of the difference between the individual values and the mean:
 
-**Population Variance** 
-$$
+**Population Variance** $$
 \sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}
-$$
-**Population SD** 
-$$
+$$ **Population SD** $$
 \sigma = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}
 $$
 
-**Sample Variance** 
-$$
+**Sample Variance** $$
 S^2 = \frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}
-$$ 
-**Sample SD** 
-$$
+$$ **Sample SD** $$
 S = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}
 $$

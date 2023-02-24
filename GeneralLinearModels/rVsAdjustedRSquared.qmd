@@ -5,6 +5,9 @@ editor: visual
 
 When completing a regression, there's always a risk of "overfitting" the data, i.e. creating a model that includes predictors that have no meaningful association with the outcome variable. One reason that overfitting the data is a problem is that it is almost impossible for a predictor to have no association with an outcome variable. For that to happen you would need any data points that suggested a positive association between the outcome and the predictor to be equally balanced out by data points that suggest a negative association:
 
+::: panel-tabset
+## R
+
 ```{r}
 library(ggplot2)
 no_association_df <- data.frame(
@@ -15,7 +18,47 @@ no_association_df <- data.frame(
 ggplot(no_association_df, aes(x = predictor, y = outcome)) + geom_point() + geom_smooth(method=lm, formula = 'y ~ x')
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+#sample participants in pairs
+no_association_df = {
+  'predictor': [1,1,1,2,2,2,3,3,3],
+  'outcome': [1,2,3,1,2,3,1,2,3]
+}
+
+no_association_df = pd.DataFrame(no_association_df)
+
+fig, ax = plt.subplots(figsize =(7, 5))
+
+coef = np.polyfit(no_association_df["predictor"],no_association_df["outcome"],1)
+poly1d_fn = np.poly1d(coef) 
+# poly1d_fn is now a function which takes in x and returns an estimate for y
+
+plt.plot(no_association_df["predictor"],no_association_df["outcome"], 'ko', no_association_df["predictor"], poly1d_fn(no_association_df["predictor"]), '-b') #'--k'=black dashed line, 'yo' = yellow circle marker
+
+# add title on the x-axis
+plt.xlabel("predictor")
+
+# add title on the y-axis
+plt.ylabel("outcome")
+
+plt.show()
+```
+:::
+
+![Unrealistic Data Distribution](rVsAdjustedRSquared-Figure1.png){fig-align="left" width="700" height="500"}
+
 *Fig. X.* An example of how unrealistically balanced your data needs to be to find no association. As this (almost) never happens in reality, samples are *biased* towards finding associations between predictor and outcome variables even when there aren't any in the population. For example, let's generate some random data, and see what R-Values we find. Remember, random data really shouldn't have *any* association between predictor and outcome variables.
+
+::: panel-tabset
+## R
 
 ```{r}
 random_df = data.frame(
@@ -27,11 +70,54 @@ random_df = data.frame(
 rmarkdown::paged_table(random_df)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import random
+from tabulate import tabulate
+
+random_df = {
+    'random_iv_1': np.random.random_sample(size = 100),
+    'random_iv_2': np.random.random_sample(size = 100),
+    'random_iv_3': np.random.random_sample(size = 100),
+    'random_dv': np.random.random_sample(size = 100)
+}
+ 
+# convert it to a data frame
+random_df = pd.DataFrame(random_df)
+
+# print the table
+print(tabulate(random_df[:10], headers=random_df.head(), tablefmt="fancy_grid",showindex=False))
+
+```
+:::
+
+![Table](rVsAdjustedRSquared-Table1.png){fig-align="left" height="500"}
+
+
+::: panel-tabset
+## R
+
 ```{r}
 random_lm <- lm(random_dv ~ random_iv_1, random_df)
 random_summary <- summary(random_lm)
 random_summary
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+import statsmodels.formula.api as smf
+random_lm = smf.ols(formula='random_dv ~ random_iv_1', data=random_df).fit()
+random_lm.summary()
+```
+:::
+
+![Table](rVsAdjustedRSquared-Table2.png){fig-align="left" height="500"}
 
 **Note that the above output is generated each time this page is rendered (generated), and so *by chance* may happen to look like the random predictor is significant. If so, there's a 95% chance that this predictor will not be significant next time the page is rendered**.
 
@@ -44,6 +130,9 @@ $$
 $$ $\bar{R^2}$ is the *Adjusted R-Squared* $SS_{total}$ is the *Sum of Squares* of the *total* (i.e. how much total variance there is around the mean to explain) $SS_{res}$ is the *Sum of Squares* of the *residuals* (i.e. how much isn't explained by the model) $df_{total}$ is the *Degrees of Freedom* of the *total*. This is the number of data points - 1, so is N - 1 $df_{res}$ is the *Degrees of Freedom* of the *residuals*. The degrees of freedom for the residuals takes into account the number of data points and the number of predictors, and so is N - 1 - 1
 
 Let's use the above formula to manually calculate the *Adjusted R Squared*
+
+::: panel-tabset
+## R
 
 ```{r}
 ss_res <- sum(random_lm$residuals^2)
@@ -64,13 +153,50 @@ adjusted_random_r_square = 1 - (ss_res/df_res)/(ss_total/df_total)
 adjusted_random_r_square
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+ss_res = sum(random_lm.resid**2)
+ss_total = sum((random_df["random_dv"] - random_df["random_dv"].mean())**2)
+
+random_r_square = ss_total-ss_res
+df_total = len(random_lm.resid)-1
+df_res = len(random_lm.resid)-1 - 1
+
+adjusted_random_r_square = 1-(ss_res/df_res)/(ss_total/df_total)
+adjusted_random_r_square
+```
+:::
+
+```
+-0.009973456268681513
+```
+
 The number above should match the *Adjusted R-Squared* from the multiple regression above. Let's explore what happens when we have multiple predictors:
+
+::: panel-tabset
+## R
 
 ```{r}
 random_lm_multiple <- lm(random_dv ~ random_iv_1 + random_iv_2 + random_iv_3, random_df)
 random_multiple_summary <- summary(random_lm_multiple)
 random_multiple_summary
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+import statsmodels.formula.api as smf
+random_multiple_summary = smf.ols(formula='random_dv ~ random_iv_1 + random_iv_2 + random_iv_3', data=random_df).fit()
+random_multiple_summary.summary()
+```
+:::
+
+![Table](rVsAdjustedRSquared-Table3.png){fig-align="left" height="500"}
 
 Two things to look for from the above: - The model with 3 predictors has higher *(Multiple) R-Squared* than the model with only 1 predictor. This reflects problems with over-fitting the model: the more predictors you include in your sample, the more variance in the outcome that will be explained by the predictors, even if those associations between the predictors are arbitrary (i.e. don't reflect anything about the general population). - *Adjusted R-squared* values are less susceptible to this bias of overfitting the data (but is not completely invulnerable to it). All statistical tests are vulnerable to false positives and including *Adjusted R-squared* values.
 

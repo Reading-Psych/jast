@@ -82,7 +82,6 @@ plt.show()
 
 ![Normal Distribution](normal-Figure1.png){fig-align="left" width="700" height="500"}
 
-
 You can see that the above fits a **bell-curve**, and the line in the middle represents both the **mean** and the **median** as the data is symmetrical. In reality, almost no data is a perfect bell-curve, but there are ways to test if the data isn't sufficiently normal to use parametric tests with.
 
 Next, we will look at how normal distributions allow you to transform your data to z-scores to compare to a z-distribution.

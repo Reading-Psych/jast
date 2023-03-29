@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -148,13 +148,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">Report an error</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
+ <span class="menu-text">Report an error</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">Request a clarification</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
+ <span class="menu-text">Request a clarification</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">Suggest Content</a>
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
+ <span class="menu-text">Suggest Content</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -311,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Statistics Basics (incomplete)</a>
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -420,6 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -431,8 +435,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Simple regression</strong>, also known as linear regression, builds on <a href="../correlations/correlations.html" target="_blank">correlation</a>. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), <strong>simple regression</strong> allows you to make <strong>predictions</strong> of an <strong>outcome variable</strong> based on a <strong>predictor variable</strong>.</p>
 <p>For example, regression can be used to predict Life Expectancy in 2007 from GDP. Lets start by visualising the association between them:</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -460,7 +462,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"GDP per capita"</span>) <span class="sc">+</span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clearer y-axis label</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Life expectancy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="simpleRegressions_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -475,8 +476,6 @@ Life Expectancy = intercept + gradient * GDP
 </ul>
 <p>Let’s use coding magic to find out the intercept and the gradient (AKA slope):</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># turn off scientific notation so that the numbers are not e-numbers (and thus easier to read)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -488,7 +487,6 @@ Life Expectancy = intercept + gradient * GDP
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># report the intercept and the gradient (AKA slope) of each predictor (which will only be GDP)</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>life_expectancy_model<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  (Intercept)     gdpPercap 
 59.5656500780  0.0006371341 </code></pre>
@@ -503,8 +501,6 @@ outcome = intercept + gradient * predictor + residual
 <li><strong>Residual</strong> reflects what’s left over, and is not represented in the <strong>line of best fit</strong> formula because you can’t predict what’s left over. Residuals reflect the gap between each data point and the line of best fit:</li>
 </ul>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007<span class="sc">$</span>fitted <span class="ot">=</span> life_expectancy_model<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> <span class="co"># intercept</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  life_expectancy_model<span class="sc">$</span>coefficients[<span class="dv">2</span>]                       <span class="sc">*</span> <span class="co"># gradient</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  gapminder_2007<span class="sc">$</span>gdpPercap</span>
@@ -536,7 +532,6 @@ outcome = intercept + gradient * predictor + residual
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="simpleRegressions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -550,12 +545,9 @@ Y = a + bX + e
 <h2 class="anchored" data-anchor-id="notes-for-anthony">Notes for Anthony</h2>
 <p>R2 = SSR/SSTO = 1 - SSE/SSTO</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sse  <span class="ot">=</span> <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> gapminder_2007<span class="sc">$</span>fitted)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ssto <span class="ot">=</span> <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rsqr <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span>(sse<span class="sc">/</span>ssto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>If your model is minimising the error, then what happens if you have 2 predictors:</p>
 <p><span class="math display">\[
@@ -563,11 +555,8 @@ Y = a + b_1X_1 + b_2X_2 + e
 \]</span></p>
 <p>Save the residuals after 1 correlation:</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>res_gdp <span class="ot">=</span> gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> gapminder_2007<span class="sc">$</span>fitted</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_2007<span class="sc">$</span>pop, res_gdp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -592,8 +581,6 @@ r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
 \]</span></p>
 <p>Lets apply the above formula to see what R is for <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span>:</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>lifeExp<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)) <span class="sc">*</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>gdpPercap<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))</span>
@@ -602,32 +589,22 @@ r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))<span class="sc">^</span><span class="dv">2</span>) </span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6786624</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(gapminder_2007<span class="sc">$</span>lifeExp, gapminder_2007<span class="sc">$</span>gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6786624</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># r^2</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(gapminder_2007<span class="sc">$</span>lifeExp, gapminder_2007<span class="sc">$</span>gdpPercap)<span class="sc">^</span><span class="dv">2</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4605827</code></pre>
 </div>
 </div>
 <p>We can confirm that squaring R gives r^2</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(life_expectancy_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -655,8 +632,6 @@ r = \frac{var_{xyz}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})(z_i-\
                                       {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2 * \sum(z_i-\bar{z})^2}}
 \]</span></p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>lifeExp<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp)) <span class="sc">*</span> </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  (gapminder_2007<span class="sc">$</span>gdpPercap<span class="sc">-</span><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap)) <span class="sc">*</span></span>
@@ -667,16 +642,12 @@ r = \frac{var_{xyz}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})(z_i-\
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>gdpPercap <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> </span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>pop <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>pop))<span class="sc">^</span><span class="dv">2</span>) </span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.007330224</code></pre>
 </div>
 </div>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span>  gdpPercap <span class="sc">+</span> pop, <span class="at">data =</span> gapminder_2007))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -755,7 +726,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -791,24 +779,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

@@ -12,6 +12,7 @@ editor: visual
 
 So lets say the average person's height is 150cm, and the standard deviation of height across the population is 10cm. The data would look something like:
 
+
 ::: panel-tabset
 ## R
 
@@ -81,30 +82,32 @@ plt.show()
 
 ![Normal Distribution](normal-Figure1.png){fig-align="left" width="700" height="500"}
 
-## Excel/OJS
+## Excel
 
-These are the columns you would need to create a similar figure to the R and Python figures above:
+Download and open the [normal.xlsx](normal.xlsx) file in this repository to see data being used to create the below figure:
 
+(note that making a vertical line to reflect the mean didn't seem as easy in Excel as other languages, so this hasn't been added)
+
+![Normal Distribution using Excel](normal.png){fig-align="left" width="700" height="500"}
+
+
+## OJS
 ```{ojs}
 normal_xlsx = FileAttachment("normal.xlsx").xlsx()
-
 normal_excel = normal_xlsx.sheet(0, { headers: true })
-
 Inputs.table(normal_excel)
+```
 
+```{ojs}
 Plot.plot({
   marks: [
     Plot.lineY(normal_excel, {x: "height", y: "frequency"}),
-    Plot.ruleY([0])
-  ],
-  color: "steelblue"
+    Plot.ruleY([0]),
+    Plot.ruleX([150], {stroke: "black"})
+  ]
 })
-
 ```
-
 :::
-
-![Normal Distribution](normal-Figure1.png){fig-align="left" width="700" height="500"}
 
 You can see that the above fits a **bell-curve**, and the line in the middle represents both the **mean** and the **median** as the data is symmetrical. In reality, almost no data is a perfect bell-curve, but there are ways to test if the data isn't sufficiently normal to use parametric tests with.
 
@@ -115,7 +118,7 @@ Next, we will look at how normal distributions allow you to transform your data 
 A **z-score** is a **standardised** value that captures how many standard deviations above or below the mean an individual value is. Thus, to calculate the z-score
 
 $$
-Z = \frac{individualScore-averageScore}{StandardDeviation}
+Z = \frac{individualScore-meanScore}{StandardDeviation}
 $$
 
 Or in formal terminology:
@@ -183,9 +186,19 @@ plt.ylabel("frequency")
 # show plot
 plt.show()
 ```
-:::
 
 ![Z-score Distribution](normal-Figure2.png){fig-align="left" width="700" height="500"}
+
+## Excel
+
+Download and open the [normal_z_scores_percentages.xlsx](normal.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
+
+![Normal Distribution Z - scores with percentages](normal_z_percentages.png){fig-align="left" width="700" height="500"}
+
+
+## OJS
+
+:::
 
 If you compare the height distribution above to the z-score distribution, you should see that they are identically distributed. This is useful, as we know what percentage of a population fits within each standard deviation of a normal distribution:
 
@@ -305,11 +318,11 @@ plt.ylabel("Frequency")
 plt.show()
 
 ```
-:::
 
 ![Z-score Distribution](normal-Figure3.png){fig-align="left" width="700" height="500"}
+:::
 
-The above visualises how 34.1% of a population's scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population's scores will be between 1-2 standard deviations from the mean, and 2.3% of the population will be more then 2 standard deviations from the mean. **Remember** that the normal distribution is symmetrical, so we also know that 34.1% of the population's score will be between -1 to 0 standard deviations from the mean, 13.6% of the population's score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population's score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:
+The above visualises how 34.1% of a population's scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population's scores will be between 1 to 2 standard deviations above the mean, and 2.3% of the population will be more then 2 standard deviations above the mean. **Remember** that the normal distribution is symmetrical, so we also know that 34.1% of the population's score will be between 0 to 1 standard deviations below the mean (or 0 to -1 SDs), 13.6% of the population's score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population's score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:
 
 ::: panel-tabset
 ## R
@@ -411,12 +424,13 @@ p<-qplot(
     ) +
    xlim(c(-4,4)) +
    
-   annotate("text", x=-2.3, y=0.01, label= "13.6%") + 
-   annotate("text", x=-1.4, y=0.01, label= "34.1%") + 
-   annotate("text", x=-0.3, y=0.01, label= "50%") + 
+   annotate("text", x=-2.3, y=0.01, label= "2.3%") + 
+   annotate("text", x=-1.4, y=0.01, label= "15.9%") + 
+   annotate("text", x=-0.4, y=0.01, label= "50%") + 
    annotate("text", x=0.5, y=0.01, label= "84.1%") + 
    annotate("text", x=1.5, y=0.01, label= "97.7%") + 
    annotate("text", x=2.3, y=0.01, label= "100%") +
+
    xlab("Z-score") +
    ylab("Frequency") +
    theme(legend.position="none")
@@ -445,8 +459,8 @@ plt.text(2.05, 0.001, '100%', fontsize = 10,color='black',weight='bold')
 plt.text(1.2, 0.001, '97.7%', fontsize = 10,color='black',weight='bold')
 plt.text(0.2, 0.001, '84.1%', fontsize = 10,color='black',weight='bold')
 plt.text(-0.8, 0.001, '50%', fontsize = 10,color='black',weight='bold')
-plt.text(-1.85, 0.001, '34.1%', fontsize = 10,color='black',weight='bold')
-plt.text(-2.7, 0.001, '13.6%', fontsize = 10,color='black',weight='bold')
+plt.text(-1.85, 0.001, '15.9%', fontsize = 10,color='black',weight='bold')
+plt.text(-2.7, 0.001, '2.3%', fontsize = 10,color='black',weight='bold')
 
 plt.yticks(np.arange(0, 0.5, step=0.1))
 
@@ -461,8 +475,7 @@ plt.show()
 
 ```
 
-
-![Z-score Distribution](normal-Figure4.png){fig-align="left" width="700" height="500"}
+![Z-score Distribution](python-normal-4.png){fig-align="left" width="700" height="500"}
 :::
 
 The above figure visualises how 13.6% of the population have score that is more negative than -2 standard deviations from the mean, 34.1% of the population have a standard deviation that is more negative than -1 standard deviations from the mean (this also include all the people who are more than -2 standard deviations from the mean), etc.
@@ -479,3 +492,81 @@ As we can see from the figure above, that puts her above 97.7% of the population
 
 
 
+
+## Consolidation questions
+
+### Question 1
+```{ojs}
+//| echo: false
+rand_maths_score = 40 + Math.round(Math.random() * 60);
+mean_maths_score = 70
+sd_maths_score   = 10
+```
+
+Jamie has just completed a mathematics test, where the maximum score is 100%. Their score was ${rand_maths_score}, the mean maths score was ${mean_maths_score} and the SD was ${sd_maths_score}. What is their Z-score?
+
+```{ojs}
+//| echo: false
+viewof question_1_response = Inputs.number([-7,3], {label: "Z-score", step:.1});
+correct_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;
+
+question_1_result = { 
+  if(question_1_response == correct_z_score){
+    return "Correct! (" + rand_maths_score + " - " + mean_maths_score + ")/" + sd_maths_score + " = " + correct_z_score;
+  } else {
+    return "Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."
+  } 
+}
+```
+
+Your answer is... **${question_1_result}**. 
+
+
+### Question 2
+
+Using the above value, which percentile group would you put Jamie's score into?
+
+```{ojs}
+//| echo: false
+question_2_correct = {
+  if(correct_z_score < -2){
+    return "bottom 2.3%";
+  } else if(correct_z_score < -1){
+    return "bottom 15.9%";
+  } else if(correct_z_score < 0){
+    return "bottom 50%";
+  } else if(correct_z_score < 1){
+    return "top 50%";
+  } else if(correct_z_score < 2){
+    return "top 15.9%";
+  } else {
+    return "top 2.3%";
+  }
+}
+
+```
+
+```{ojs}
+//| echo: false
+viewof question_2_response = Inputs.radio([
+  "bottom 2.3%", 
+  "bottom 15.9%",
+  "bottom 50%",
+  "top 50%",
+  "top 15.9%",
+  "top 2.3%", 
+  ], {label: "", value: "A"});
+question_2_result = { 
+  if(question_2_response == ""){
+    return "awaiting your response";
+  } else if(question_2_correct == question_2_response){
+    return "Correct!";
+  } else {
+    return "Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.";
+  }
+}
+```
+
+Your answer is... **${question_2_result}**.
+
+<div style="color:#068">If you want to practice with different numbers in these questions then please reload the page.</div>

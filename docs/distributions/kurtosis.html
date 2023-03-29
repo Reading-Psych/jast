@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -313,6 +313,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
           <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations</a>
+  </div>
+</li>
+          <li class="sidebar-item">
   correlations/cooksd.qmd
   </li>
       </ul>
@@ -427,8 +432,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(kurtosis=\frac{(N*(N+1)*m4 - 3*m2^2*(w-1))}{((N-1)*(N-2)*(N-3)*s1^4)}\)</span></p>
 <p><span class="math inline">\(kurtosis_{SE} = sqrt( 4*(w^2-1) * sdskew^2 / ((w-3)*(w+5)))\)</span></p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis<span class="ot">=</span><span class="cf">function</span>(x) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  w<span class="ot">=</span><span class="fu">length</span>(x)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  m1<span class="ot">=</span><span class="fu">mean</span>(x)</span>
@@ -449,14 +452,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">dimnames=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"skew"</span>,<span class="st">"kurtosis"</span>), <span class="fu">c</span>(<span class="st">"estimate"</span>,<span class="st">"se"</span>,<span class="st">"zScore"</span>)))</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mat)</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <section id="is-platykurtic-vs.-leptokurtic-data-more-sensitive-to-false-positives" class="level1">
 <h1>Is Platykurtic vs.&nbsp;leptokurtic data more sensitive to false positives!</h1>
 <p>or <strong>overly</strong> clustered around the mean (leptokurtik)</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(ggplot2)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># # https://stackoverflow.com/a/12429538</span></span>
@@ -564,7 +564,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="co">#    xlab("Z-score") +</span></span>
 <span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="co">#    ylab("Frequency") +</span></span>
 <span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="co">#    theme(legend.position="none")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>or <strong>underly</strong> clustered around the mean (platykurtik)</p>
 

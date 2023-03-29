@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Statistics Basics (incomplete)</title>
+<title>Just Another Statistics Textbook - Partial Correlations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Statistics Basics (incomplete)</h1>
+      <h1 class="quarto-secondary-nav-title">Partial Correlations</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -317,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link active">Statistics Basics (incomplete)</a>
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link active">Partial Correlations</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -417,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Statistics Basics (incomplete)</h1>
+<h1 class="title d-none d-lg-block">Partial Correlations</h1>
 </div>
 
 
@@ -438,12 +438,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ✔ tibble  3.1.8      ✔ dplyr   1.0.10
@@ -454,8 +451,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
@@ -464,7 +459,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> gapminder_by_year</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_by_year<span class="sc">$</span>year, gapminder_by_year<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -478,10 +472,7 @@ sample estimates:
      cor 
 0.986158 </code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_by_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -492,18 +483,12 @@ sample estimates:
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TBC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TBC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </div>
 </div>
@@ -516,10 +501,7 @@ sample estimates:
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_by_year<span class="sc">$</span>year, gapminder_by_year<span class="sc">$</span>gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -533,10 +515,7 @@ sample estimates:
       cor 
 0.9832101 </code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_by_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gdpPercap)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -556,10 +535,7 @@ sample estimates:
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(gapminder_by_year<span class="sc">$</span>gdpPercap, gapminder_by_year<span class="sc">$</span>lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -573,10 +549,7 @@ sample estimates:
       cor 
 0.9619721 </code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_by_year, <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -587,15 +560,18 @@ sample estimates:
 </div>
 </div>
 </div>
-<p>So the above analysis suggests that all three variables are <strong>incredibly</strong> related. (you are unlikely to see such strong associations in psychology experiments.). But let’s now check in whether there’s still an association between the year and life expectancy once you control for GDP per capita.</p>
+<p>So the above analysis suggests that all three variables are <strong>incredibly</strong> related. (you are unlikely to see such strong associations in real psychology experiments). But let’s now check in whether there’s still an association between the year and life expectancy once you control for GDP per capita. This partial correlation can be visualised as follows:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <p>
 </p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
-  A(Year AKA X) &lt;--&gt; B(Life Expectancy AKA Y)
-  A &lt;--&gt; C(GDP per Capita)
-  B &lt;--&gt; C
+    Year(X:Year) &lt;---&gt; GDP(Z:GDP per Capita)
+    Year &lt;---&gt; Life(Y:Life Expectancy)
+    GDP &lt;---&gt; Life 
+  style Year color:white,fill:#159,stroke:#333,stroke-width:4px
+  style Life color:white,fill:#159,stroke:#333,stroke-width:4px
+  style GDP fill:#571,stroke:#fff,stroke-width:3px,color:#fff,stroke-dasharray: 5 5
 </pre>
 <div id="mermaid-tooltip-1" class="mermaidTooltip">
 
@@ -606,11 +582,79 @@ sample estimates:
 </div>
 <p>To calculate the partial correlation r value you control for the association between the two variables</p>
 <p><span class="math display">\[
-r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}}
+r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}} = \frac{originalCorrelation - varianceExplainedByCovariate}{varianceNotExplainedByCovariate}
 \]</span></p>
 <ul>
-<li><span class="math inline">\(x\)</span> =</li>
+<li><span class="math inline">\(x\)</span> = The Year</li>
+<li><span class="math inline">\(y\)</span> = Life expectancy</li>
+<li><span class="math inline">\(z\)</span> = GDP per capita</li>
+<li><span class="math inline">\(\sqrt{1- r^2_{xz}}\)</span> = variance not explained by correlation between Year(<span class="math inline">\(x\)</span>) and GDP (<span class="math inline">\(z\)</span>)</li>
+<li><span class="math inline">\(\sqrt{1- r^2_{yz}}\)</span> = variance not explained by correlation between Life Expectancy (<span class="math inline">\(y\)</span>) and GDP (<span class="math inline">\(z\)</span>)</li>
 </ul>
+<p>One way to think of the formula above is that: - the top-half represents how much variance is explained by overlap between the two main variables, subtracted by the variance of each variable with the confound - the bottom-half represents how much variance there is left to explain once you’ve removed associations between each main variable and the covariate.</p>
+<p>Let’s see what the r value is after this partial correlation:</p>
+<p><span class="math display">\[
+r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}} = \frac{.986158 - .9832101 * .9619721 }{\sqrt{(1-.9832101^2)(1-.9619721^2)}} = \frac{.040354}{.04984321} = .8092841
+\]</span></p>
+<p>Let’s check if the manually calculated partial r-value is the same as what R gives us:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ppcor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: MASS</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'MASS'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    select</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pcor</span>(gapminder_by_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$estimate
+               year    lifeExp  gdpPercap
+year      1.0000000  0.8092844  0.7629391
+lifeExp   0.8092844  1.0000000 -0.2521280
+gdpPercap 0.7629391 -0.2521280  1.0000000
+
+$p.value
+                 year    lifeExp   gdpPercap
+year      0.000000000 0.00254769 0.006309324
+lifeExp   0.002547690 0.00000000 0.454498736
+gdpPercap 0.006309324 0.45449874 0.000000000
+
+$statistic
+              year    lifeExp  gdpPercap
+year      0.000000  4.1331001  3.5404830
+lifeExp   4.133100  0.0000000 -0.7816358
+gdpPercap 3.540483 -0.7816358  0.0000000
+
+$n
+[1] 12
+
+$gp
+[1] 1
+
+$method
+[1] "pearson"</code></pre>
+</div>
+</div>
+<p>Yes, the pearson correlation between year and life expectancy is .8092844, so the difference of .0000003 is a rounding error from the manual calculations above. Just to confirm that this is a rounding error, here’s what you get if you complete the same steps but with the estimate part of the correlation objects instead:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x.y.cor <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(gapminder_by_year<span class="sc">$</span>year, gapminder_by_year<span class="sc">$</span>lifeExp)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x.z.cor <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(gapminder_by_year<span class="sc">$</span>year, gapminder_by_year<span class="sc">$</span>gdpPercap)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>y.z.cor <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(gapminder_by_year<span class="sc">$</span>gdpPercap, gapminder_by_year<span class="sc">$</span>lifeExp)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>(x.y.cor<span class="sc">$</span>estimate <span class="sc">-</span> x.z.cor<span class="sc">$</span>estimate <span class="sc">*</span> y.z.cor<span class="sc">$</span>estimate)<span class="sc">/</span><span class="fu">sqrt</span>((<span class="dv">1</span><span class="sc">-</span>x.z.cor<span class="sc">$</span>estimate<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> y.z.cor<span class="sc">$</span>estimate<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      cor 
+0.8092844 </code></pre>
+</div>
+</div>
+<p>Confirming that the difference in the manual calculation is a rounding error. Note that the numbers you get from R may be rounded numbers, and so your calculations may reflect the rounding.</p>
+<p>To conclude, as there is still an association between Year and Life Expectancy once controlling for GDP, this partial correlation is consistent with GDP not being the only explanation for why Life Expectancy goes up each year.</p>
 
 
 </section>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -122,6 +122,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -314,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Statistics Basics (incomplete)</a>
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -406,6 +408,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#bell-curve-aka-normal-distribution" id="toc-bell-curve-aka-normal-distribution" class="nav-link active" data-scroll-target="#bell-curve-aka-normal-distribution">Bell curve (AKA normal distribution)</a></li>
   <li><a href="#z-scores-and-the-z-distribution" id="toc-z-scores-and-the-z-distribution" class="nav-link" data-scroll-target="#z-scores-and-the-z-distribution">Z-scores and the z-distribution</a></li>
+  <li><a href="#consolidation-questions" id="toc-consolidation-questions" class="nav-link" data-scroll-target="#consolidation-questions">Consolidation questions</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -433,9 +440,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="bell-curve-aka-normal-distribution">Bell curve (AKA normal distribution)</h2>
 <p><strong>Parametric statistics</strong> often compare values to a <strong>normal</strong> distribution of <strong>expected data</strong>, based on the <strong>estimated mean and SD</strong>. Lets start by showing a (made up) <strong>normal</strong> distribution of heights in centimeters:</p>
 <p>So lets say the average person’s height is 150cm, and the standard deviation of height across the population is 10cm. The data would look something like:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Excel</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">OJS</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a normal distribution of heights</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>population_heights_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">120</span>,    <span class="co"># min</span></span>
@@ -458,9 +467,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">v=</span><span class="dv">150</span>,  <span class="co"># where the line for the mean will be </span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd=</span><span class="dv">5</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a normal distribution of heights</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> FormatStrFormatter</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the x-axis</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>population_heights_x <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">120</span>, <span class="dv">181</span>, <span class="dv">1</span>)]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the y-axis</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>population_heights_y <span class="op">=</span> norm.pdf(population_heights_x, loc<span class="op">=</span><span class="dv">150</span>, scale<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FormatStrFormatter(<span class="st">'</span><span class="sc">%.2f</span><span class="st">'</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.scatter(population_heights_x, population_heights_y, color<span class="op">=</span><span class="st">'w'</span>, edgecolors<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add line to show mean and median</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="dv">150</span>, color<span class="op">=</span><span class="st">'black'</span>, ls<span class="op">=</span><span class="st">'-'</span>, lw<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"height"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># show the plot</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># show plot</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal-Figure1.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Normal Distribution</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Download and open the <a href="normal.xlsx">normal.xlsx</a> file in this repository to see data being used to create the below figure:</p>
+<p>(note that making a vertical line to reflect the mean didn’t seem as easy in Excel as other languages, so this hasn’t been added)</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Normal Distribution using Excel</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" data-startfrom="96" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 95;"><span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>normal_xlsx <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"normal.xlsx"</span>)<span class="op">.</span><span class="fu">xlsx</span>()</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>normal_excel <span class="op">=</span> normal_xlsx<span class="op">.</span><span class="fu">sheet</span>(<span class="dv">0</span><span class="op">,</span> { <span class="dt">headers</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(normal_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-startfrom="101" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 100;"><span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(normal_excel<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"height"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"frequency"</span>})<span class="op">,</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">150</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span>})</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <p>You can see that the above fits a <strong>bell-curve</strong>, and the line in the middle represents both the <strong>mean</strong> and the <strong>median</strong> as the data is symmetrical. In reality, almost no data is a perfect bell-curve, but there are ways to test if the data isn’t sufficiently normal to use parametric tests with.</p>
@@ -470,246 +575,378 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="z-scores-and-the-z-distribution">Z-scores and the z-distribution</h2>
 <p>A <strong>z-score</strong> is a <strong>standardised</strong> value that captures how many standard deviations above or below the mean an individual value is. Thus, to calculate the z-score</p>
 <p><span class="math display">\[
-Z = \frac{individualScore-averageScore}{StandardDeviation}
+Z = \frac{individualScore-meanScore}{StandardDeviation}
 \]</span></p>
 <p>Or in formal terminology:</p>
 <p><span class="math display">\[
 Z = \frac{x-\bar{x}}{\sigma}
 \]</span></p>
 <p>The calculated score can then be applied to a z-distribution, which is parametric/normally distributed. Lets have a look at a z-distribution:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Excel</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">OJS</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the x-axis</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>z_score_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="dv">3</span>,    <span class="co"># min</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>,    <span class="co"># max</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> .<span class="dv">1</span>  </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the y-axis</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>z_score_y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  z_score_x,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> <span class="dv">0</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd   =</span> <span class="dv">1</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  z_score_x,</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  z_score_y,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"z-score (SDs from the mean)"</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"frequency"</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the x-axis</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>z_score_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="dv">3</span>,    <span class="co"># min</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>,    <span class="co"># max</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> .<span class="dv">1</span>  </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the y-axis</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>z_score_y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  z_score_x,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> <span class="dv">0</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd   =</span> <span class="dv">1</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  z_score_x,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  z_score_y,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"z-score (SDs from the mean)"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"frequency"</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="normal_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> FormatStrFormatter</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the x-axis</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>z_score_x <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">3.0</span>, <span class="fl">3.1</span>, <span class="fl">0.1</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># vector for the y-axis</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>z_score_y <span class="op">=</span> norm.pdf(z_score_x, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FormatStrFormatter(<span class="st">'</span><span class="sc">%.1f</span><span class="st">'</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(z_score_x, z_score_y, color<span class="op">=</span><span class="st">'w'</span>, edgecolors<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"z-score (SDs from the mean)"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"frequency"</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># show plot</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal-Figure2.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Z-score Distribution</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>Download and open the <a href="normal.xlsx">normal_z_scores_percentages.xlsx</a> file in this repository to see data being used to create the below figure. To get the colors you need to use the “Select Data…” option when right clicking on the chart:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal_z_percentages.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Normal Distribution Z - scores with percentages</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+
+</div>
 </div>
 </div>
 <p>If you compare the height distribution above to the z-score distribution, you should see that they are identically distributed. This is useful, as we know what percentage of a population fits within each standard deviation of a normal distribution:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: `qplot()` was deprecated in ggplot2 3.4.0.</code></pre>
 </div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>, </span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>       x, </span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">0.5</span>, </span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"34.1%"</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">1.5</span>, </span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"13.6%"</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">2.3</span>, </span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"2.3%"</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>, </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       x, </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">0.5</span>, </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"34.1%"</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">1.5</span>, </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"13.6%"</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">2.3</span>, </span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"2.3%"</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="normal_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The above visualises how 34.1% of a population’s scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population’s scores will be between 1-2 standard deviations from the mean, and 2.3% of the population will be more then 2 standard deviations from the mean. <strong>Remember</strong> that the normal distribution is symmetrical, so we also know that 34.1% of the population’s score will be between -1 to 0 standard deviations from the mean, 13.6% of the population’s score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population’s score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:</p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>shade_2<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>,<span class="dv">0</span>), </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">8</span>), </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>), </span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>), </span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">1</span>), </span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>shade_84<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>shade_97<span class="fl">.7</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_2<span class="fl">.3</span>,</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"2.3"</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>,</span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_84<span class="fl">.1</span>,</span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"84.1"</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_97<span class="fl">.7</span>, </span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>       x, </span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"97.7"</span></span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"13.6%"</span>) <span class="sc">+</span> </span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">1.4</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"34.1%"</span>) <span class="sc">+</span> </span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">0.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"50%"</span>) <span class="sc">+</span> </span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">0.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"84.1%"</span>) <span class="sc">+</span> </span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"97.7%"</span>) <span class="sc">+</span> </span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"100%"</span>) <span class="sc">+</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>norm_x <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">4.0</span>, <span class="fl">4.1</span>, <span class="fl">0.1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>norm_y <span class="op">=</span> norm.pdf(norm_x, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FormatStrFormatter(<span class="st">'</span><span class="sc">%.1f</span><span class="st">'</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>ax.plot(norm_x, norm_y, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">1.00</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">0</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">1</span>), color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">1</span> <span class="op">&lt;</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&gt;</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.05</span>, <span class="fl">0.001</span>, <span class="st">'2.3%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.1</span>, <span class="fl">0.001</span>, <span class="st">'13.6%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.1</span>, <span class="fl">0.001</span>, <span class="st">'34.1%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Z-score"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal-Figure3.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Z-score Distribution</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The above visualises how 34.1% of a population’s scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population’s scores will be between 1 to 2 standard deviations above the mean, and 2.3% of the population will be more then 2 standard deviations above the mean. <strong>Remember</strong> that the normal distribution is symmetrical, so we also know that 34.1% of the population’s score will be between 0 to 1 standard deviations below the mean (or 0 to -1 SDs), 13.6% of the population’s score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population’s score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>shade_2<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>,<span class="dv">0</span>), </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">8</span>), </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>), </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">1</span>), </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>shade_84<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>shade_97<span class="fl">.7</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_2<span class="fl">.3</span>,</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"2.3"</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>,</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_84<span class="fl">.1</span>,</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"84.1"</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_97<span class="fl">.7</span>, </span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>       x, </span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"97.7"</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"2.3%"</span>) <span class="sc">+</span> </span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">1.4</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"15.9%"</span>) <span class="sc">+</span> </span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">0.4</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"50%"</span>) <span class="sc">+</span> </span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">0.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"84.1%"</span>) <span class="sc">+</span> </span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"97.7%"</span>) <span class="sc">+</span> </span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"100%"</span>) <span class="sc">+</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="normal_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="normal_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>norm_x <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">4.0</span>, <span class="fl">4.1</span>, <span class="fl">0.1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>norm_y <span class="op">=</span> norm.pdf(norm_x, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FormatStrFormatter(<span class="st">'</span><span class="sc">%.1f</span><span class="st">'</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.plot(norm_x, norm_y, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">1.00</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>), color<span class="op">=</span><span class="st">'gold'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>), color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="op">-</span><span class="dv">1</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">0</span>), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">0</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">1</span>), color<span class="op">=</span><span class="st">'cyan'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">1</span> <span class="op">&lt;</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&gt;</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'purple'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.05</span>, <span class="fl">0.001</span>, <span class="st">'100%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.2</span>, <span class="fl">0.001</span>, <span class="st">'97.7%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.2</span>, <span class="fl">0.001</span>, <span class="st">'84.1%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">0.8</span>, <span class="fl">0.001</span>, <span class="st">'50%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.85</span>, <span class="fl">0.001</span>, <span class="st">'15.9%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">2.7</span>, <span class="fl">0.001</span>, <span class="st">'2.3%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="fl">0.5</span>, step<span class="op">=</span><span class="fl">0.1</span>))</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Z-score"</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="python-normal-4.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Z-score Distribution</figcaption><p></p>
+</figure>
+</div>
+</div>
 </div>
 </div>
 <p>The above figure visualises how 13.6% of the population have score that is more negative than -2 standard deviations from the mean, 34.1% of the population have a standard deviation that is more negative than -1 standard deviations from the mean (this also include all the people who are more than -2 standard deviations from the mean), etc.</p>
@@ -719,11 +956,165 @@ Z = \frac{x-\bar{x}}{\sigma}
 Z_{score} = \frac{170 - 150}{10} = 2
 \]</span></p>
 <p>As we can see from the figure above, that puts her above 97.7% of the population, putting her in the top 2.3%.</p>
+</section>
+<section id="consolidation-questions" class="level2">
+<h2 class="anchored" data-anchor-id="consolidation-questions">Consolidation questions</h2>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="501" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 500;"><span id="cb13-501"><a href="#cb13-501" aria-hidden="true" tabindex="-1"></a>rand_maths_score <span class="op">=</span> <span class="dv">40</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">60</span>)<span class="op">;</span></span>
+<span id="cb13-502"><a href="#cb13-502" aria-hidden="true" tabindex="-1"></a>mean_maths_score <span class="op">=</span> <span class="dv">70</span></span>
+<span id="cb13-503"><a href="#cb13-503" aria-hidden="true" tabindex="-1"></a>sd_maths_score   <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p>Jamie has just completed a mathematics test, where the maximum score is 100%. Their score was <span><span id="ojs-element-id-1"></span>,</span> the mean maths score was <span><span id="ojs-element-id-2"></span></span> and the SD was <span><span id="ojs-element-id-3"></span>.</span> What is their Z-score?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="510" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 509;"><span id="cb14-510"><a href="#cb14-510" aria-hidden="true" tabindex="-1"></a>viewof question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
+<span id="cb14-511"><a href="#cb14-511" aria-hidden="true" tabindex="-1"></a>correct_z_score <span class="op">=</span> (rand_maths_score <span class="op">-</span> mean_maths_score)<span class="op">/</span>sd_maths_score<span class="op">;</span></span>
+<span id="cb14-512"><a href="#cb14-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-513"><a href="#cb14-513" aria-hidden="true" tabindex="-1"></a>question_1_result <span class="op">=</span> { </span>
+<span id="cb14-514"><a href="#cb14-514" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_1_response <span class="op">==</span> correct_z_score){</span>
+<span id="cb14-515"><a href="#cb14-515" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct! ("</span> <span class="op">+</span> rand_maths_score <span class="op">+</span> <span class="st">" - "</span> <span class="op">+</span> mean_maths_score <span class="op">+</span> <span class="st">")/"</span> <span class="op">+</span> sd_maths_score <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> correct_z_score<span class="op">;</span></span>
+<span id="cb14-516"><a href="#cb14-516" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-517"><a href="#cb14-517" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."</span></span>
+<span id="cb14-518"><a href="#cb14-518" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb14-519"><a href="#cb14-519" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p>Your answer is… <strong><span><span id="ojs-element-id-4"></span></span></strong>.</p>
+</section>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>Using the above value, which percentile group would you put Jamie’s score into?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="530" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 529;"><span id="cb15-530"><a href="#cb15-530" aria-hidden="true" tabindex="-1"></a>question_2_correct <span class="op">=</span> {</span>
+<span id="cb15-531"><a href="#cb15-531" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>){</span>
+<span id="cb15-532"><a href="#cb15-532" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 2.3%"</span><span class="op">;</span></span>
+<span id="cb15-533"><a href="#cb15-533" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">1</span>){</span>
+<span id="cb15-534"><a href="#cb15-534" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 15.9%"</span><span class="op">;</span></span>
+<span id="cb15-535"><a href="#cb15-535" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb15-536"><a href="#cb15-536" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 50%"</span><span class="op">;</span></span>
+<span id="cb15-537"><a href="#cb15-537" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">1</span>){</span>
+<span id="cb15-538"><a href="#cb15-538" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 50%"</span><span class="op">;</span></span>
+<span id="cb15-539"><a href="#cb15-539" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">2</span>){</span>
+<span id="cb15-540"><a href="#cb15-540" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 15.9%"</span><span class="op">;</span></span>
+<span id="cb15-541"><a href="#cb15-541" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-542"><a href="#cb15-542" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 2.3%"</span><span class="op">;</span></span>
+<span id="cb15-543"><a href="#cb15-543" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-544"><a href="#cb15-544" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb16" data-startfrom="551" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 550;"><span id="cb16-551"><a href="#cb16-551" aria-hidden="true" tabindex="-1"></a>viewof question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
+<span id="cb16-552"><a href="#cb16-552" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 2.3%"</span><span class="op">,</span> </span>
+<span id="cb16-553"><a href="#cb16-553" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 15.9%"</span><span class="op">,</span></span>
+<span id="cb16-554"><a href="#cb16-554" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 50%"</span><span class="op">,</span></span>
+<span id="cb16-555"><a href="#cb16-555" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 50%"</span><span class="op">,</span></span>
+<span id="cb16-556"><a href="#cb16-556" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 15.9%"</span><span class="op">,</span></span>
+<span id="cb16-557"><a href="#cb16-557" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 2.3%"</span><span class="op">,</span> </span>
+<span id="cb16-558"><a href="#cb16-558" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
+<span id="cb16-559"><a href="#cb16-559" aria-hidden="true" tabindex="-1"></a>question_2_result <span class="op">=</span> { </span>
+<span id="cb16-560"><a href="#cb16-560" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
+<span id="cb16-561"><a href="#cb16-561" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"awaiting your response"</span><span class="op">;</span></span>
+<span id="cb16-562"><a href="#cb16-562" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(question_2_correct <span class="op">==</span> question_2_response){</span>
+<span id="cb16-563"><a href="#cb16-563" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
+<span id="cb16-564"><a href="#cb16-564" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb16-565"><a href="#cb16-565" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half."</span><span class="op">;</span></span>
+<span id="cb16-566"><a href="#cb16-566" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-567"><a href="#cb16-567" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p>Your answer is… <strong><span><span id="ojs-element-id-5"></span></span></strong>.</p>
+<div style="color:#068">
+If you want to practice with different numbers in these questions then please reload the page.
+</div>
 
 
+<script type="ojs-module-contents">
+{"contents":[
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${rand_maths_score}</span>`", "cellName":"ojs-element-id-1"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${mean_maths_score}</span>`", "cellName":"ojs-element-id-2"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${sd_maths_score}</span>`", "cellName":"ojs-element-id-3"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${question_1_result}</span>`", "cellName":"ojs-element-id-4"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${question_2_result}</span>`", "cellName":"ojs-element-id-5"}
+]}
+</script>
+</section>
 </section>
 
 </main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"normal_xlsx = FileAttachment(\"normal.xlsx\").xlsx()\nnormal_excel = normal_xlsx.sheet(0, { headers: true })\nInputs.table(normal_excel)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"Plot.plot({\n  marks: [\n    Plot.lineY(normal_excel, {x: \"height\", y: \"frequency\"}),\n    Plot.ruleY([0]),\n    Plot.ruleX([150], {stroke: \"black\"})\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nquestion_1_result = { \n  if(question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"viewof question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nquestion_2_result = { \n  if(question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(question_2_correct == question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('question_2_response')"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../distributions";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

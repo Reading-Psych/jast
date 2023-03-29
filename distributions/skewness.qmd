@@ -359,3 +359,39 @@ spssSkewKurtosis(gapminder_2007["lifeExp"])
 The above function generated three columns: $estimate$ of skewness (and kurtosis, but we'll deal with <a href="kurtosis.html" target="_blank">kurtosis</a> separately, $standard$ $error$ (SE) and the $skewness_z$ score. **Z-scores** can capture how unlikely the $skewness$ estimate is considering what you would normally expect. In this case, when you divide skewness by standard error, you get a z-score, and if the **absolute value** (i.e. ignoring whether it is positive or negative) of the z-score is greater than 1.96 then it is significantly skewed. If you want to understand why 1.96 is the main number, check out the subsection on <a href="normal.html" target="_blank">normal distributions</a>.
 
 One way to deal with skewed data is to <a href="transform.html" target="_blank">transform</a> the data.
+
+
+
+## Consolidation questions
+
+### Question 1
+```{ojs}
+//| echo: false
+rand_skew_no = Math.round(Math.random() * 400)/100;
+```
+Is a skewness z-score of ${rand_skew_no} indicative of a significant problem of skewness?
+
+```{ojs}
+//| echo: false
+viewof question_1_response = Inputs.radio(["Yes", "No"], {label: "", value: "A"});
+this_result = { 
+  var question_1_result = "awaiting response";
+
+  if(rand_skew_no > 1.96){
+    if(question_1_response == "Yes"){
+      question_1_result = "Correct - Z scores above 1.96 suggest significant problems with skewness";
+    } else if(question_1_response == "No") {
+      question_1_result = "Not Correct - Z scores above 1.96 suggest significant problems with skewness";
+    }
+  } else {
+    if(question_1_response == "Yes"){
+      question_1_result = "Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness";
+    } else if(question_1_response == "No") {
+      question_1_result = "Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness";
+    }
+  }
+  return question_1_result;
+}
+
+```
+Your answer is **${this_result}**

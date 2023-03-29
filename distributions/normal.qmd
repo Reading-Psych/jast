@@ -78,6 +78,30 @@ plt.show()
 # show plot
 plt.show()
 ```
+
+![Normal Distribution](normal-Figure1.png){fig-align="left" width="700" height="500"}
+
+## Excel/OJS
+
+These are the columns you would need to create a similar figure to the R and Python figures above:
+
+```{ojs}
+normal_xlsx = FileAttachment("normal.xlsx").xlsx()
+
+normal_excel = normal_xlsx.sheet(0, { headers: true })
+
+Inputs.table(normal_excel)
+
+Plot.plot({
+  marks: [
+    Plot.lineY(normal_excel, {x: "height", y: "frequency"}),
+    Plot.ruleY([0])
+  ],
+  color: "steelblue"
+})
+
+```
+
 :::
 
 ![Normal Distribution](normal-Figure1.png){fig-align="left" width="700" height="500"}
@@ -436,9 +460,10 @@ plt.ylabel("Frequency")
 plt.show()
 
 ```
-:::
+
 
 ![Z-score Distribution](normal-Figure4.png){fig-align="left" width="700" height="500"}
+:::
 
 The above figure visualises how 13.6% of the population have score that is more negative than -2 standard deviations from the mean, 34.1% of the population have a standard deviation that is more negative than -1 standard deviations from the mean (this also include all the people who are more than -2 standard deviations from the mean), etc.
 
@@ -451,3 +476,6 @@ Z_{score} = \frac{170 - 150}{10} = 2
 $$
 
 As we can see from the figure above, that puts her above 97.7% of the population, putting her in the top 2.3%.
+
+
+

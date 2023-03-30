@@ -648,264 +648,152 @@ Z = \frac{x-\bar{x}}{\sigma}
 </div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
-<p>Download and open the <a href="normal.xlsx">normal_z_scores_percentages.xlsx</a> file in this repository to see data being used to create the below figure. To get the colors you need to use the “Select Data…” option when right clicking on the chart:</p>
+<p>Download and open the <a href="normal_z_scores.xlsx">normal_z_scores.xlsx</a> file in this repository to see data being used to create the below figure. To get the colors you need to use the “Select Data…” option when right clicking on the chart:</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="normal_z_percentages.png" width="700" height="500" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Normal Distribution Z - scores with percentages</figcaption><p></p>
+<p><img src="normal_z.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Normal Distribution Z - scores</figcaption><p></p>
 </figure>
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" data-startfrom="202" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 201;"><span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a>normal_z_xlsx <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"normal_z_scores.xlsx"</span>)<span class="op">.</span><span class="fu">xlsx</span>()</span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a>normal__z_excel <span class="op">=</span> normal_z_xlsx<span class="op">.</span><span class="fu">sheet</span>(<span class="dv">0</span><span class="op">,</span> { <span class="dt">headers</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(normal__z_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
 
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-startfrom="207" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 206;"><span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="fl">0.05</span>]}<span class="op">,</span></span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(normal__z_excel<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"z-score"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"Frequency"</span>})<span class="op">,</span></span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span>})</span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <p>If you compare the height distribution above to the z-score distribution, you should see that they are identically distributed. This is useful, as we know what percentage of a population fits within each standard deviation of a normal distribution:</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Excel</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">OJS</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: `qplot()` was deprecated in ggplot2 3.4.0.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>, </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       x, </span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">0.5</span>, </span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"34.1%"</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">1.5</span>, </span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"13.6%"</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">2.3</span>, </span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"2.3%"</span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="normal_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>norm_x <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">4.0</span>, <span class="fl">4.1</span>, <span class="fl">0.1</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>norm_y <span class="op">=</span> norm.pdf(norm_x, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FormatStrFormatter(<span class="st">'</span><span class="sc">%.1f</span><span class="st">'</span>))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>ax.plot(norm_x, norm_y, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">1.00</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">0</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">1</span>), color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">1</span> <span class="op">&lt;</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&gt;</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.05</span>, <span class="fl">0.001</span>, <span class="st">'2.3%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.1</span>, <span class="fl">0.001</span>, <span class="st">'13.6%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.1</span>, <span class="fl">0.001</span>, <span class="st">'34.1%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Z-score"</span>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="normal-Figure3.png" width="700" height="500" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Z-score Distribution</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>The above visualises how 34.1% of a population’s scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population’s scores will be between 1 to 2 standard deviations above the mean, and 2.3% of the population will be more then 2 standard deviations above the mean. <strong>Remember</strong> that the normal distribution is symmetrical, so we also know that 34.1% of the population’s score will be between 0 to 1 standard deviations below the mean (or 0 to -1 SDs), 13.6% of the population’s score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population’s score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>shade_2<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>,<span class="dv">0</span>), </span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">8</span>), </span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>), </span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>), </span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">1</span>), </span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>shade_84<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>shade_97<span class="fl">.7</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_2<span class="fl">.3</span>,</span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"2.3"</span></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>,</span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_84<span class="fl">.1</span>,</span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>       x,</span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"84.1"</span></span>
-<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
-<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_97<span class="fl">.7</span>, </span>
-<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
-<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>       x, </span>
-<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>       y,</span>
-<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"97.7"</span></span>
-<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
-<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"2.3%"</span>) <span class="sc">+</span> </span>
-<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">1.4</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"15.9%"</span>) <span class="sc">+</span> </span>
-<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">0.4</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"50%"</span>) <span class="sc">+</span> </span>
-<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">0.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"84.1%"</span>) <span class="sc">+</span> </span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"97.7%"</span>) <span class="sc">+</span> </span>
-<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"100%"</span>) <span class="sc">+</span></span>
-<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
-<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>, </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>       x, </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">0.5</span>, </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"34.1%"</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">1.5</span>, </span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"13.6%"</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span> </span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>     <span class="st">"text"</span>, </span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>     <span class="at">x=</span><span class="fl">2.3</span>, </span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>     <span class="at">y=</span><span class="fl">0.01</span>, </span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>     <span class="at">label=</span> <span class="st">"2.3%"</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">+</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="normal_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>norm_x <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">4.0</span>, <span class="fl">4.1</span>, <span class="fl">0.1</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -915,36 +803,298 @@ Z = \frac{x-\bar{x}}{\sigma}
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FormatStrFormatter(<span class="st">'</span><span class="sc">%.1f</span><span class="st">'</span>))</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ax.plot(norm_x, norm_y, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">1.00</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>), color<span class="op">=</span><span class="st">'gold'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>), color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="op">-</span><span class="dv">1</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">0</span>), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">0</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">1</span>), color<span class="op">=</span><span class="st">'cyan'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">1</span> <span class="op">&lt;</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&gt;</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'purple'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.05</span>, <span class="fl">0.001</span>, <span class="st">'100%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.2</span>, <span class="fl">0.001</span>, <span class="st">'97.7%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.2</span>, <span class="fl">0.001</span>, <span class="st">'84.1%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">0.8</span>, <span class="fl">0.001</span>, <span class="st">'50%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.85</span>, <span class="fl">0.001</span>, <span class="st">'15.9%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">2.7</span>, <span class="fl">0.001</span>, <span class="st">'2.3%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">0</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">1</span>), color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">1</span> <span class="op">&lt;</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&gt;</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.05</span>, <span class="fl">0.001</span>, <span class="st">'2.3%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.1</span>, <span class="fl">0.001</span>, <span class="st">'13.6%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.1</span>, <span class="fl">0.001</span>, <span class="st">'34.1%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>, color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Z-score"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="fl">0.5</span>, step<span class="op">=</span><span class="fl">0.1</span>))</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Z-score"</span>)</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal-Figure3.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Z-score Distribution</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>Download and open the <a href="normal_z_scores_0_plus.xlsx">normal_z_scores_0_plus.xlsx</a> file in this repository to see data being used to create the below figure. To get the colors you need to use the “Select Data…” option when right clicking on the chart:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal_z_0_plus.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Normal Distribution Z-scores with percentages for each boundary</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" data-startfrom="351" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 350;"><span id="cb13-351"><a href="#cb13-351" aria-hidden="true" tabindex="-1"></a>normal_z_0_plus_xlsx <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"normal_z_scores_0_plus.xlsx"</span>)<span class="op">.</span><span class="fu">xlsx</span>()</span>
+<span id="cb13-352"><a href="#cb13-352" aria-hidden="true" tabindex="-1"></a>normal_z_0_plus_excel <span class="op">=</span> normal_z_0_plus_xlsx<span class="op">.</span><span class="fu">sheet</span>(<span class="dv">0</span><span class="op">,</span> { <span class="dt">headers</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb13-353"><a href="#cb13-353" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(normal_z_0_plus_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" data-startfrom="356" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 355;"><span id="cb14-356"><a href="#cb14-356" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb14-357"><a href="#cb14-357" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="fl">0.05</span>]}<span class="op">,</span></span>
+<span id="cb14-358"><a href="#cb14-358" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb14-359"><a href="#cb14-359" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb14-360"><a href="#cb14-360" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb14-361"><a href="#cb14-361" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb14-362"><a href="#cb14-362" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(normal_z_0_plus_excel<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"z-score"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"frequency"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"boundary"</span>})<span class="op">,</span></span>
+<span id="cb14-363"><a href="#cb14-363" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb14-364"><a href="#cb14-364" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span>})</span>
+<span id="cb14-365"><a href="#cb14-365" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb14-366"><a href="#cb14-366" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The above visualises how 34.1% of a population’s scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population’s scores will be between 1 to 2 standard deviations above the mean, and 2.3% of the population will be more then 2 standard deviations above the mean. <strong>Remember</strong> that the normal distribution is symmetrical, so we also know that 34.1% of the population’s score will be between 0 to 1 standard deviations below the mean (or 0 to -1 SDs), 13.6% of the population’s score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population’s score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Excel</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">OJS</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/12429538</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>norm_x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.01</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>norm_y<span class="ot">&lt;-</span><span class="fu">dnorm</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="fl">0.0</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>norm_data_frame<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span>norm_x,<span class="at">y=</span><span class="fu">dnorm</span>(norm_x,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>shade_2<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>,<span class="dv">0</span>), </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">8</span>), </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>shade_13<span class="fl">.6</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>), </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>shade_34<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">1</span>), </span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>shade_50 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), </span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>shade_84<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>shade_97<span class="fl">.7</span> <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>), </span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(norm_data_frame, x <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(norm_data_frame[<span class="fu">nrow</span>(norm_data_frame), <span class="st">"X"</span>], <span class="dv">0</span>))</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">qplot</span>(</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span>norm_data_frame<span class="sc">$</span>x,</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">y=</span>norm_data_frame<span class="sc">$</span>y,</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">geom=</span><span class="st">"line"</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_2<span class="fl">.3</span>,</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"2.3"</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_13<span class="fl">.6</span>,</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"13.6"</span></span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_34<span class="fl">.1</span>,</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"34.1"</span></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_50,</span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"50"</span></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_84<span class="fl">.1</span>,</span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>       x,</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"84.1"</span></span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_polygon</span>(</span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> shade_97<span class="fl">.7</span>, </span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>     <span class="fu">aes</span>(</span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>       x, </span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>       y,</span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span><span class="st">"97.7"</span></span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"2.3%"</span>) <span class="sc">+</span> </span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">1.4</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"15.9%"</span>) <span class="sc">+</span> </span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="sc">-</span><span class="fl">0.4</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"50%"</span>) <span class="sc">+</span> </span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">0.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"84.1%"</span>) <span class="sc">+</span> </span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">1.5</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"97.7%"</span>) <span class="sc">+</span> </span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="fl">2.3</span>, <span class="at">y=</span><span class="fl">0.01</span>, <span class="at">label=</span> <span class="st">"100%"</span>) <span class="sc">+</span></span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"Z-score"</span>) <span class="sc">+</span></span>
+<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="normal_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>norm_x <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">4.0</span>, <span class="fl">4.1</span>, <span class="fl">0.1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>norm_y <span class="op">=</span> norm.pdf(norm_x, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(FormatStrFormatter(<span class="st">'</span><span class="sc">%.1f</span><span class="st">'</span>))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ax.plot(norm_x, norm_y, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">1.00</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>), color<span class="op">=</span><span class="st">'gold'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="op">-</span><span class="dv">2</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>), color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="op">-</span><span class="dv">1</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">0</span>), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">0</span> <span class="op">&lt;=</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">1</span>), color<span class="op">=</span><span class="st">'cyan'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (<span class="dv">1</span> <span class="op">&lt;</span> norm_x)<span class="op">&amp;</span>(norm_x <span class="op">&lt;=</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>ax.fill_between(norm_x, norm_y, where<span class="op">=</span> (norm_x <span class="op">&gt;</span> <span class="dv">2</span>), color<span class="op">=</span><span class="st">'purple'</span>, alpha<span class="op">=</span><span class="fl">.4</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">2.05</span>, <span class="fl">0.001</span>, <span class="st">'100%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.2</span>, <span class="fl">0.001</span>, <span class="st">'97.7%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">0.2</span>, <span class="fl">0.001</span>, <span class="st">'84.1%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">0.8</span>, <span class="fl">0.001</span>, <span class="st">'50%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">1.85</span>, <span class="fl">0.001</span>, <span class="st">'15.9%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="op">-</span><span class="fl">2.7</span>, <span class="fl">0.001</span>, <span class="st">'2.3%'</span>, fontsize <span class="op">=</span> <span class="dv">10</span>,color<span class="op">=</span><span class="st">'black'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="fl">0.5</span>, step<span class="op">=</span><span class="fl">0.1</span>))</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Z-score"</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="python-normal-4.png" width="700" height="500" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Z-score Distribution</figcaption><p></p>
 </figure>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>Download and open the <a href="normal_z_scores_percentages.xlsx">normal_z_scores_percentages.xlsx</a> file in this repository to see data being used to create the below figure. To get the colors you need to use the “Select Data…” option when right clicking on the chart:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="normal_z_percentages.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Normal Distribution Z-scores and percentages</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-startfrom="541" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 540;"><span id="cb17-541"><a href="#cb17-541" aria-hidden="true" tabindex="-1"></a>normal_z_perc_xlsx <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"normal_z_scores_percentages.xlsx"</span>)<span class="op">.</span><span class="fu">xlsx</span>()</span>
+<span id="cb17-542"><a href="#cb17-542" aria-hidden="true" tabindex="-1"></a>normal_z_perc_excel <span class="op">=</span> normal_z_perc_xlsx<span class="op">.</span><span class="fu">sheet</span>(<span class="dv">0</span><span class="op">,</span> { <span class="dt">headers</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb17-543"><a href="#cb17-543" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(normal_z_perc_excel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-startfrom="546" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 545;"><span id="cb18-546"><a href="#cb18-546" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb18-547"><a href="#cb18-547" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="fl">0.05</span>]}<span class="op">,</span></span>
+<span id="cb18-548"><a href="#cb18-548" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb18-549"><a href="#cb18-549" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb18-550"><a href="#cb18-550" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb18-551"><a href="#cb18-551" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb18-552"><a href="#cb18-552" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(normal_z_perc_excel<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"z-score"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"frequency"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"boundary"</span>})<span class="op">,</span></span>
+<span id="cb18-553"><a href="#cb18-553" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb18-554"><a href="#cb18-554" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span>})</span>
+<span id="cb18-555"><a href="#cb18-555" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb18-556"><a href="#cb18-556" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -962,26 +1112,26 @@ Z_{score} = \frac{170 - 150}{10} = 2
 <section id="question-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="501" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 500;"><span id="cb13-501"><a href="#cb13-501" aria-hidden="true" tabindex="-1"></a>rand_maths_score <span class="op">=</span> <span class="dv">40</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">60</span>)<span class="op">;</span></span>
-<span id="cb13-502"><a href="#cb13-502" aria-hidden="true" tabindex="-1"></a>mean_maths_score <span class="op">=</span> <span class="dv">70</span></span>
-<span id="cb13-503"><a href="#cb13-503" aria-hidden="true" tabindex="-1"></a>sd_maths_score   <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb19" data-startfrom="583" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 582;"><span id="cb19-583"><a href="#cb19-583" aria-hidden="true" tabindex="-1"></a>rand_maths_score <span class="op">=</span> <span class="dv">40</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">60</span>)<span class="op">;</span></span>
+<span id="cb19-584"><a href="#cb19-584" aria-hidden="true" tabindex="-1"></a>mean_maths_score <span class="op">=</span> <span class="dv">70</span></span>
+<span id="cb19-585"><a href="#cb19-585" aria-hidden="true" tabindex="-1"></a>sd_maths_score   <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
+<div id="ojs-cell-9-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
+<div id="ojs-cell-9-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-3-3" data-nodetype="declaration">
+<div id="ojs-cell-9-3" data-nodetype="declaration">
 
 </div>
 </div>
@@ -989,33 +1139,33 @@ Z_{score} = \frac{170 - 150}{10} = 2
 </div>
 <p>Jamie has just completed a mathematics test, where the maximum score is 100%. Their score was <span><span id="ojs-element-id-1"></span>,</span> the mean maths score was <span><span id="ojs-element-id-2"></span></span> and the SD was <span><span id="ojs-element-id-3"></span>.</span> What is their Z-score?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="510" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 509;"><span id="cb14-510"><a href="#cb14-510" aria-hidden="true" tabindex="-1"></a>viewof question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
-<span id="cb14-511"><a href="#cb14-511" aria-hidden="true" tabindex="-1"></a>correct_z_score <span class="op">=</span> (rand_maths_score <span class="op">-</span> mean_maths_score)<span class="op">/</span>sd_maths_score<span class="op">;</span></span>
-<span id="cb14-512"><a href="#cb14-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-513"><a href="#cb14-513" aria-hidden="true" tabindex="-1"></a>question_1_result <span class="op">=</span> { </span>
-<span id="cb14-514"><a href="#cb14-514" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_1_response <span class="op">==</span> correct_z_score){</span>
-<span id="cb14-515"><a href="#cb14-515" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct! ("</span> <span class="op">+</span> rand_maths_score <span class="op">+</span> <span class="st">" - "</span> <span class="op">+</span> mean_maths_score <span class="op">+</span> <span class="st">")/"</span> <span class="op">+</span> sd_maths_score <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> correct_z_score<span class="op">;</span></span>
-<span id="cb14-516"><a href="#cb14-516" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb14-517"><a href="#cb14-517" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."</span></span>
-<span id="cb14-518"><a href="#cb14-518" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb14-519"><a href="#cb14-519" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb20" data-startfrom="592" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 591;"><span id="cb20-592"><a href="#cb20-592" aria-hidden="true" tabindex="-1"></a>viewof question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
+<span id="cb20-593"><a href="#cb20-593" aria-hidden="true" tabindex="-1"></a>correct_z_score <span class="op">=</span> (rand_maths_score <span class="op">-</span> mean_maths_score)<span class="op">/</span>sd_maths_score<span class="op">;</span></span>
+<span id="cb20-594"><a href="#cb20-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-595"><a href="#cb20-595" aria-hidden="true" tabindex="-1"></a>question_1_result <span class="op">=</span> { </span>
+<span id="cb20-596"><a href="#cb20-596" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_1_response <span class="op">==</span> correct_z_score){</span>
+<span id="cb20-597"><a href="#cb20-597" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct! ("</span> <span class="op">+</span> rand_maths_score <span class="op">+</span> <span class="st">" - "</span> <span class="op">+</span> mean_maths_score <span class="op">+</span> <span class="st">")/"</span> <span class="op">+</span> sd_maths_score <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> correct_z_score<span class="op">;</span></span>
+<span id="cb20-598"><a href="#cb20-598" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb20-599"><a href="#cb20-599" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."</span></span>
+<span id="cb20-600"><a href="#cb20-600" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb20-601"><a href="#cb20-601" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-4-1" data-nodetype="declaration">
+<div id="ojs-cell-10-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-4-2" data-nodetype="declaration">
+<div id="ojs-cell-10-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-4-3" data-nodetype="declaration">
+<div id="ojs-cell-10-3" data-nodetype="declaration">
 
 </div>
 </div>
@@ -1027,55 +1177,55 @@ Z_{score} = \frac{170 - 150}{10} = 2
 <h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
 <p>Using the above value, which percentile group would you put Jamie’s score into?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="530" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 529;"><span id="cb15-530"><a href="#cb15-530" aria-hidden="true" tabindex="-1"></a>question_2_correct <span class="op">=</span> {</span>
-<span id="cb15-531"><a href="#cb15-531" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>){</span>
-<span id="cb15-532"><a href="#cb15-532" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 2.3%"</span><span class="op">;</span></span>
-<span id="cb15-533"><a href="#cb15-533" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">1</span>){</span>
-<span id="cb15-534"><a href="#cb15-534" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 15.9%"</span><span class="op">;</span></span>
-<span id="cb15-535"><a href="#cb15-535" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb15-536"><a href="#cb15-536" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 50%"</span><span class="op">;</span></span>
-<span id="cb15-537"><a href="#cb15-537" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">1</span>){</span>
-<span id="cb15-538"><a href="#cb15-538" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 50%"</span><span class="op">;</span></span>
-<span id="cb15-539"><a href="#cb15-539" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">2</span>){</span>
-<span id="cb15-540"><a href="#cb15-540" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 15.9%"</span><span class="op">;</span></span>
-<span id="cb15-541"><a href="#cb15-541" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb15-542"><a href="#cb15-542" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 2.3%"</span><span class="op">;</span></span>
-<span id="cb15-543"><a href="#cb15-543" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-544"><a href="#cb15-544" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb21" data-startfrom="612" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 611;"><span id="cb21-612"><a href="#cb21-612" aria-hidden="true" tabindex="-1"></a>question_2_correct <span class="op">=</span> {</span>
+<span id="cb21-613"><a href="#cb21-613" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>){</span>
+<span id="cb21-614"><a href="#cb21-614" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 2.3%"</span><span class="op">;</span></span>
+<span id="cb21-615"><a href="#cb21-615" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">1</span>){</span>
+<span id="cb21-616"><a href="#cb21-616" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 15.9%"</span><span class="op">;</span></span>
+<span id="cb21-617"><a href="#cb21-617" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb21-618"><a href="#cb21-618" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 50%"</span><span class="op">;</span></span>
+<span id="cb21-619"><a href="#cb21-619" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">1</span>){</span>
+<span id="cb21-620"><a href="#cb21-620" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 50%"</span><span class="op">;</span></span>
+<span id="cb21-621"><a href="#cb21-621" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">2</span>){</span>
+<span id="cb21-622"><a href="#cb21-622" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 15.9%"</span><span class="op">;</span></span>
+<span id="cb21-623"><a href="#cb21-623" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb21-624"><a href="#cb21-624" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 2.3%"</span><span class="op">;</span></span>
+<span id="cb21-625"><a href="#cb21-625" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-626"><a href="#cb21-626" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-5" data-nodetype="declaration">
+<div id="ojs-cell-11" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb16" data-startfrom="551" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 550;"><span id="cb16-551"><a href="#cb16-551" aria-hidden="true" tabindex="-1"></a>viewof question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
-<span id="cb16-552"><a href="#cb16-552" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 2.3%"</span><span class="op">,</span> </span>
-<span id="cb16-553"><a href="#cb16-553" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 15.9%"</span><span class="op">,</span></span>
-<span id="cb16-554"><a href="#cb16-554" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 50%"</span><span class="op">,</span></span>
-<span id="cb16-555"><a href="#cb16-555" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 50%"</span><span class="op">,</span></span>
-<span id="cb16-556"><a href="#cb16-556" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 15.9%"</span><span class="op">,</span></span>
-<span id="cb16-557"><a href="#cb16-557" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 2.3%"</span><span class="op">,</span> </span>
-<span id="cb16-558"><a href="#cb16-558" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
-<span id="cb16-559"><a href="#cb16-559" aria-hidden="true" tabindex="-1"></a>question_2_result <span class="op">=</span> { </span>
-<span id="cb16-560"><a href="#cb16-560" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
-<span id="cb16-561"><a href="#cb16-561" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"awaiting your response"</span><span class="op">;</span></span>
-<span id="cb16-562"><a href="#cb16-562" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(question_2_correct <span class="op">==</span> question_2_response){</span>
-<span id="cb16-563"><a href="#cb16-563" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
-<span id="cb16-564"><a href="#cb16-564" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb16-565"><a href="#cb16-565" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half."</span><span class="op">;</span></span>
-<span id="cb16-566"><a href="#cb16-566" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb16-567"><a href="#cb16-567" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb22" data-startfrom="633" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 632;"><span id="cb22-633"><a href="#cb22-633" aria-hidden="true" tabindex="-1"></a>viewof question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
+<span id="cb22-634"><a href="#cb22-634" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 2.3%"</span><span class="op">,</span> </span>
+<span id="cb22-635"><a href="#cb22-635" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 15.9%"</span><span class="op">,</span></span>
+<span id="cb22-636"><a href="#cb22-636" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 50%"</span><span class="op">,</span></span>
+<span id="cb22-637"><a href="#cb22-637" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 50%"</span><span class="op">,</span></span>
+<span id="cb22-638"><a href="#cb22-638" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 15.9%"</span><span class="op">,</span></span>
+<span id="cb22-639"><a href="#cb22-639" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 2.3%"</span><span class="op">,</span> </span>
+<span id="cb22-640"><a href="#cb22-640" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
+<span id="cb22-641"><a href="#cb22-641" aria-hidden="true" tabindex="-1"></a>question_2_result <span class="op">=</span> { </span>
+<span id="cb22-642"><a href="#cb22-642" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
+<span id="cb22-643"><a href="#cb22-643" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"awaiting your response"</span><span class="op">;</span></span>
+<span id="cb22-644"><a href="#cb22-644" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(question_2_correct <span class="op">==</span> question_2_response){</span>
+<span id="cb22-645"><a href="#cb22-645" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
+<span id="cb22-646"><a href="#cb22-646" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb22-647"><a href="#cb22-647" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half."</span><span class="op">;</span></span>
+<span id="cb22-648"><a href="#cb22-648" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-649"><a href="#cb22-649" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-6-1" data-nodetype="declaration">
+<div id="ojs-cell-12-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-6-2" data-nodetype="declaration">
+<div id="ojs-cell-12-2" data-nodetype="declaration">
 
 </div>
 </div>
@@ -1106,7 +1256,7 @@ If you want to practice with different numbers in these questions then please re
 </main> <!-- /main -->
 
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"normal_xlsx = FileAttachment(\"normal.xlsx\").xlsx()\nnormal_excel = normal_xlsx.sheet(0, { headers: true })\nInputs.table(normal_excel)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"Plot.plot({\n  marks: [\n    Plot.lineY(normal_excel, {x: \"height\", y: \"frequency\"}),\n    Plot.ruleY([0]),\n    Plot.ruleX([150], {stroke: \"black\"})\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nquestion_1_result = { \n  if(question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"viewof question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nquestion_2_result = { \n  if(question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(question_2_correct == question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('question_2_response')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"normal_xlsx = FileAttachment(\"normal.xlsx\").xlsx()\nnormal_excel = normal_xlsx.sheet(0, { headers: true })\nInputs.table(normal_excel)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"Plot.plot({\n  marks: [\n    Plot.lineY(normal_excel, {x: \"height\", y: \"frequency\"}),\n    Plot.ruleY([0]),\n    Plot.ruleX([150], {stroke: \"black\"})\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"normal_z_xlsx = FileAttachment(\"normal_z_scores.xlsx\").xlsx()\nnormal__z_excel = normal_z_xlsx.sheet(0, { headers: true })\nInputs.table(normal__z_excel)\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"Plot.plot({\n  y: {domain: [0,0.05]},\n  marks: [\n    Plot.lineY(normal__z_excel, {x: \"z-score\", y: \"Frequency\"}),\n    Plot.ruleY([0]),\n    Plot.ruleX([0], {stroke: \"black\"})\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"normal_z_0_plus_xlsx = FileAttachment(\"normal_z_scores_0_plus.xlsx\").xlsx()\nnormal_z_0_plus_excel = normal_z_0_plus_xlsx.sheet(0, { headers: true })\nInputs.table(normal_z_0_plus_excel)\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"Plot.plot({\n  y: {domain: [0,0.05]},\n  color: {\n    legend: true\n  },\n  marks: [\n    Plot.lineY(normal_z_0_plus_excel, {x: \"z-score\", y: \"frequency\", stroke: \"boundary\"}),\n    Plot.ruleY([0]),\n    Plot.ruleX([0], {stroke: \"black\"})\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"normal_z_perc_xlsx = FileAttachment(\"normal_z_scores_percentages.xlsx\").xlsx()\nnormal_z_perc_excel = normal_z_perc_xlsx.sheet(0, { headers: true })\nInputs.table(normal_z_perc_excel)\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"Plot.plot({\n  y: {domain: [0,0.05]},\n  color: {\n    legend: true\n  },\n  marks: [\n    Plot.lineY(normal_z_perc_excel, {x: \"z-score\", y: \"frequency\", stroke: \"boundary\"}),\n    Plot.ruleY([0]),\n    Plot.ruleX([0], {stroke: \"black\"})\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-10","inline":false,"source":"viewof question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nquestion_1_result = { \n  if(question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-11","inline":false,"source":"question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-12","inline":false,"source":"viewof question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nquestion_2_result = { \n  if(question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(question_2_correct == question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('question_2_response')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../distributions";

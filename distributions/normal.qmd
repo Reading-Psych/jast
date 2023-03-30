@@ -191,12 +191,29 @@ plt.show()
 
 ## Excel
 
-Download and open the [normal_z_scores_percentages.xlsx](normal.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
+Download and open the [normal_z_scores.xlsx](normal_z_scores.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
 
-![Normal Distribution Z - scores with percentages](normal_z_percentages.png){fig-align="left" width="700" height="500"}
+![Normal Distribution Z - scores](normal_z.png){fig-align="left" width="700" height="500"}
 
 
 ## OJS
+
+```{ojs}
+normal_z_xlsx = FileAttachment("normal_z_scores.xlsx").xlsx()
+normal__z_excel = normal_z_xlsx.sheet(0, { headers: true })
+Inputs.table(normal__z_excel)
+```
+
+```{ojs}
+Plot.plot({
+  y: {domain: [0,0.05]},
+  marks: [
+    Plot.lineY(normal__z_excel, {x: "z-score", y: "Frequency"}),
+    Plot.ruleY([0]),
+    Plot.ruleX([0], {stroke: "black"})
+  ]
+})
+```
 
 :::
 
@@ -320,6 +337,39 @@ plt.show()
 ```
 
 ![Z-score Distribution](normal-Figure3.png){fig-align="left" width="700" height="500"}
+
+## Excel
+
+Download and open the [normal_z_scores_0_plus.xlsx](normal_z_scores_0_plus.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
+
+![Normal Distribution Z-scores with percentages for each boundary](normal_z_0_plus.png){fig-align="left" width="700" height="500"}
+
+
+## OJS
+
+```{ojs}
+normal_z_0_plus_xlsx = FileAttachment("normal_z_scores_0_plus.xlsx").xlsx()
+normal_z_0_plus_excel = normal_z_0_plus_xlsx.sheet(0, { headers: true })
+Inputs.table(normal_z_0_plus_excel)
+```
+
+```{ojs}
+Plot.plot({
+  y: {domain: [0,0.05]},
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.lineY(normal_z_0_plus_excel, {x: "z-score", y: "frequency", stroke: "boundary"}),
+    Plot.ruleY([0]),
+    Plot.ruleX([0], {stroke: "black"})
+  ]
+})
+```
+
+
+
+
 :::
 
 The above visualises how 34.1% of a population's scores will be between 0 and 1 standard deviation from the mean, 13.6% of the population's scores will be between 1 to 2 standard deviations above the mean, and 2.3% of the population will be more then 2 standard deviations above the mean. **Remember** that the normal distribution is symmetrical, so we also know that 34.1% of the population's score will be between 0 to 1 standard deviations below the mean (or 0 to -1 SDs), 13.6% of the population's score will be between -2 to -1 standard deviations from the mean, and 2.3% of the population's score will be more negative than -2 standard deviations from the mean. Lets look at this cumulative distribution:
@@ -476,6 +526,38 @@ plt.show()
 ```
 
 ![Z-score Distribution](python-normal-4.png){fig-align="left" width="700" height="500"}
+
+
+## Excel
+
+Download and open the [normal_z_scores_percentages.xlsx](normal_z_scores_percentages.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
+
+![Normal Distribution Z-scores and percentages](normal_z_percentages.png){fig-align="left" width="700" height="500"}
+
+
+## OJS
+
+```{ojs}
+normal_z_perc_xlsx = FileAttachment("normal_z_scores_percentages.xlsx").xlsx()
+normal_z_perc_excel = normal_z_perc_xlsx.sheet(0, { headers: true })
+Inputs.table(normal_z_perc_excel)
+```
+
+```{ojs}
+Plot.plot({
+  y: {domain: [0,0.05]},
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.lineY(normal_z_perc_excel, {x: "z-score", y: "frequency", stroke: "boundary"}),
+    Plot.ruleY([0]),
+    Plot.ruleX([0], {stroke: "black"})
+  ]
+})
+```
+
+
 :::
 
 The above figure visualises how 13.6% of the population have score that is more negative than -2 standard deviations from the mean, 34.1% of the population have a standard deviation that is more negative than -1 standard deviations from the mean (this also include all the people who are more than -2 standard deviations from the mean), etc.

@@ -65,15 +65,27 @@ website:
         contents:
           - "Psychology"
           - "Henley Business School"
-      - secction: "Advanced R Stuff"
+      - section: "Advanced R Stuff"
         contents:
           - "advancedR/fancyFigures.qmd"
+      - section: "Excel tutorial"
+        contents:
+          - "excelIntro/formulas.qmd"
+          - "excelIntro/organisingIf.qmd"
+          - "excelIntro/anchoring.qmd"
+          - "excelIntro/countifs.qmd"
+          - "excelIntro/averageIfs.qmd"
+          - "excelIntro/sumIfs.qmd"
+          
+          
+      
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    page-layout: full
 
 
 

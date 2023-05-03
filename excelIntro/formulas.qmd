@@ -1,0 +1,99 @@
+---
+title: "Formulas"
+format: html
+editor: visual
+---
+
+The spreadsheet this worksheet is based on can be downloaded from [here](Excel_Workshop.xlsx).
+
+By using **formulas** we can automate a lot of processing in excel.
+
+All you need to do to make a cell a formula, is to put an \"=\" sign at the start of it.
+
+Let\'s start by going to the worksheet **Formulas** (you might already be there, or need to scroll left in the tabs at the bottom of the page):
+
+![](formulasTab.png)
+
+You\'ll see that there\'s a hypothetical situation in which someone has done two runs, and wants to calculate the total distance they\'ve run. We can use the following formula to add the values in each of the cells together:
+
+![](formulas_addition.png)
+
+You can see that you can just add cell B2 to cell B3 to get the total added together.
+
+### Your turn
+
+Do this yourself, and complete the following:
+
+The total distance run was...
+
+```{ojs}
+//| echo: false
+viewof question_0_response = Inputs.number([0,100], {label: "", step:.01});
+correct_q0 = 33.37;
+
+question_0_result = { 
+  if(question_0_response == correct_q0){
+    return "Correct!";
+  } else {
+    return "Missing or incorrect."
+  } 
+}
+```
+
+**\${question_0\_result}**
+
+Now let\'s use this logic to work out some other values on that sheet:
+
+The total distance run by James was...
+
+```{ojs}
+//| echo: false
+viewof question_1_response = Inputs.number([0,100], {label: "", step:.0005});
+correct_q1 = 58.3535;
+
+question_1_result = { 
+  if(question_1_response == correct_q1){
+    return "Correct!";
+  } else {
+    return "Missing or incorrect."
+  } 
+}
+```
+
+**\${question_1\_result}**
+
+Elaine ran...
+
+```{ojs}
+//| echo: false
+viewof question_2_response = Inputs.number([0,100], {label: "", step:.333});
+correct_q2 = 16.333;
+
+question_2_result = { 
+  if(question_2_response == correct_q2){
+    return "Correct!";
+  } else {
+    return "Missing or incorrect."
+  } 
+}
+```
+
+**\${question_2\_result}**
+
+The total distance run by Dianna was...
+
+```{ojs}
+//| echo: false
+viewof question_3_response = Inputs.number([0,100], {label: "", step:.002});
+correct_q3 = 32.184;
+
+question_3_result = { 
+  if(question_3_response == correct_q3){
+    return "Correct!";
+  } else {
+    return "Missing or incorrect."
+  } 
+}
+```
+
+Feel free to play around with these formulas a bit more. A really good way to learn excel is to play around with what you\'ve learned to build up confidence with it.

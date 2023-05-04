@@ -71,7 +71,8 @@ website:
       - section: "Excel tutorial"
         contents:
           - "excelIntro/formulas.qmd"
-          - "excelIntro/organisingIf.qmd"
+          - "excelIntro/if.qmd"
+          - "excelIntro/count.qmd"
           - "excelIntro/anchoring.qmd"
           - "excelIntro/countifs.qmd"
           - "excelIntro/averageIfs.qmd"

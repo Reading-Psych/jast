@@ -1,0 +1,62 @@
+---
+title: "Count and countifs function"
+format: html
+editor: visual
+---
+
+The spreadsheet this worksheet is based on can be downloaded from [here](Excel_Workshop.xlsx). You can find the relevant tab below:
+
+![](countTab.png)
+
+This function allows you to count the number of cells in a selection.
+
+Like all formulas, it begins with an "=" sign.
+
+Let's use this to count the number of participants you have (even though in this case we already know it is 10). The general formula is:
+
+``` javascript
+=count(START:END)
+```
+
+So to calculate the number of participants, we would write:
+
+![](countParticipants.png)
+
+An important thing to know about **count** formulas is that they only count cells with numbers in them. So the following would get **zero:**
+
+![](countFail.png)
+
+If you want to count the number of phone and non-phone users, you can use **countifs**. This allows you to count how many occurrences there are of a value you are looking for. You can do this for just one column looking for just one value, or multiple columns looking for multiple values.
+
+The general formula if you are just looking for one value in one column:
+
+``` javascript
+=countifs(column_1,value_1)
+```
+
+If you wanted to know the number of phone users, you could type:
+
+``` javascript
+=countifs(D2:D11,"yes")
+```
+
+However, as there is nothing else in column D, it would be more elegant to refer to the whole column instead:
+
+``` javascript
+=countifs(D:D,"yes")
+```
+
+Now if we wanted to calculate how many females had a phone, you could use add a second column and compare a second value to it:
+
+``` javascript
+=countifs(D:D,"yes",C:C,"Female")
+```
+
+### Your turn
+
+Use ***countif*** ***formulas*** to calculate the following. Your forumas should get you the same numbers as listed below:
+
+| Sex     | Phones | No Phones | Total |
+|---------|--------|-----------|-------|
+| Females | 3      | 2         | 5     |
+| Males   | 3      | 2         | 5     |

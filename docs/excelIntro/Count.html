@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Formulas</title>
+<title>Just Another Statistics Textbook - Count and countifs function</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,8 +122,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -167,7 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Formulas</h1>
+      <h1 class="quarto-secondary-nav-title">Count and countifs function</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -421,12 +419,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link active">Formulas</a>
+  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
   </div>
 </li>
           <li class="sidebar-item">
-  excelIntro/if.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link active">Count and countifs function</a>
+  </div>
+</li>
           <li class="sidebar-item">
   excelIntro/anchoring.qmd
   </li>
@@ -445,21 +450,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link active" data-scroll-target="#your-turn">Your turn</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Formulas</h1>
+<h1 class="title d-none d-lg-block">Count and countifs function</h1>
 </div>
 
 
@@ -474,182 +473,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>The spreadsheet this worksheet is based on can be downloaded from <a href="Excel_Workshop.xlsx">here</a>.</p>
-<p>By using <strong>formulas</strong> we can automate a lot of processing in excel.</p>
-<p>All you need to do to make a cell a formula, is to put an "=" sign at the start of it.</p>
-<p>Let's start by going to the worksheet <strong>Formulas</strong> (you might already be there, or need to scroll left in the tabs at the bottom of the page):</p>
-<p><img src="formulasTab.png" class="img-fluid"></p>
-<p>You'll see that there's a hypothetical situation in which someone has done two runs, and wants to calculate the total distance they've run. We can use the following formula to add the values in each of the cells together:</p>
-<p><img src="formulas_addition.png" class="img-fluid"></p>
-<p>You can see that you can just add cell B2 to cell B3 to get the total added together.</p>
-<section id="your-turn" class="level3">
-<h3 class="anchored" data-anchor-id="your-turn">Your turn</h3>
-<p>Do this yourself, and complete the following:</p>
-<p>The total distance run was…</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="31" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 30;"><span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>viewof question_0_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="dv">0</span><span class="op">,</span><span class="dv">100</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="bn">01</span>})<span class="op">;</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>correct_q0 <span class="op">=</span> <span class="fl">33.37</span><span class="op">;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>question_0_result <span class="op">=</span> { </span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_0_response <span class="op">==</span> correct_q0){</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect."</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p><strong><span><span id="ojs-element-id-1"></span></span></strong></p>
-<p>Now let's use this logic to work out some other values on that sheet:</p>
-<p>The total distance run by James was…</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="51" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>viewof question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="dv">0</span><span class="op">,</span><span class="dv">100</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="bn">0005</span>})<span class="op">;</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>correct_q1 <span class="op">=</span> <span class="fl">58.3535</span><span class="op">;</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>question_1_result <span class="op">=</span> { </span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_1_response <span class="op">==</span> correct_q1){</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect."</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p><strong><span><span id="ojs-element-id-2"></span></span></strong></p>
-<p>Elaine ran…</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="69" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 68;"><span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>viewof question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="dv">0</span><span class="op">,</span><span class="dv">100</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">333</span>})<span class="op">;</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>correct_q2 <span class="op">=</span> <span class="fl">16.333</span><span class="op">;</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>question_2_result <span class="op">=</span> { </span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_2_response <span class="op">==</span> correct_q2){</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect."</span></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p><strong><span><span id="ojs-element-id-3"></span></span></strong></p>
-<p>The total distance run by Dianna was…</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="87" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 86;"><span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>viewof question_3_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="dv">0</span><span class="op">,</span><span class="dv">100</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="bn">002</span>})<span class="op">;</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>correct_q3 <span class="op">=</span> <span class="fl">32.184</span><span class="op">;</span></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>question_3_result <span class="op">=</span> { </span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_3_response <span class="op">==</span> correct_q3){</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect."</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-4-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-4-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-4-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p>Feel free to play around with these formulas a bit more. A really good way to learn excel is to play around with what you've learned to build up confidence with it.</p>
+<p>The spreadsheet this worksheet is based on can be downloaded from <a href="Excel_Workshop.xlsx">here</a>. You can find the relevant tab below:</p>
+<p><img src="countTab.png" class="img-fluid"></p>
+<p>This function allows you to count the number of cells in a selection.</p>
+<p>Like all formulas, it begins with an “=” sign.</p>
+<p>Let’s use this to count the number of participants you have (even though in this case we already know it is 10). The general formula is:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">=</span><span class="fu">count</span>(START<span class="op">:</span>END)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>So to calculate the number of participants, we would write:</p>
+<p><img src="countParticipants.png" class="img-fluid"></p>
+<p>An important thing to know about <strong>count</strong> formulas is that they only count cells with numbers in them. So the following would get <strong>zero:</strong></p>
+<p><img src="countFail.png" class="img-fluid"></p>
+<p>If you want to count the number of phone and non-phone users, you can use <strong>countifs</strong>. This allows you to count how many occurrences there are of a value you are looking for. You can do this for just one column looking for just one value, or multiple columns looking for multiple values.</p>
+<p>The general formula if you are just looking for one value in one column:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">=</span><span class="fu">countifs</span>(column_1<span class="op">,</span>value_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you wanted to know the number of phone users, you could type:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">=</span><span class="fu">countifs</span>(D2<span class="op">:</span>D11<span class="op">,</span><span class="st">"yes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, as there is nothing else in column D, it would be more elegant to refer to the whole column instead:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">=</span><span class="fu">countifs</span>(D<span class="op">:</span>D<span class="op">,</span><span class="st">"yes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now if we wanted to calculate how many females had a phone, you could use add a second column and compare a second value to it:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">=</span><span class="fu">countifs</span>(D<span class="op">:</span>D<span class="op">,</span><span class="st">"yes"</span><span class="op">,</span>C<span class="op">:</span>C<span class="op">,</span><span class="st">"Female"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-<script type="ojs-module-contents">
-{"contents":[
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${question_0_result}</span>`", "cellName":"ojs-element-id-1"}
-,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${question_1_result}</span>`", "cellName":"ojs-element-id-2"}
-,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${question_2_result}</span>`", "cellName":"ojs-element-id-3"}
-]}
-</script>
-</section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof question_0_response = Inputs.number([0,100], {label: \"\", step:.01});\ncorrect_q0 = 33.37;\n\nquestion_0_result = { \n  if(question_0_response == correct_q0){\n    return \"Correct!\";\n  } else {\n    return \"Missing or incorrect.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof question_1_response = Inputs.number([0,100], {label: \"\", step:.0005});\ncorrect_q1 = 58.3535;\n\nquestion_1_result = { \n  if(question_1_response == correct_q1){\n    return \"Correct!\";\n  } else {\n    return \"Missing or incorrect.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"viewof question_2_response = Inputs.number([0,100], {label: \"\", step:.333});\ncorrect_q2 = 16.333;\n\nquestion_2_result = { \n  if(question_2_response == correct_q2){\n    return \"Correct!\";\n  } else {\n    return \"Missing or incorrect.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof question_3_response = Inputs.number([0,100], {label: \"\", step:.002});\ncorrect_q3 = 32.184;\n\nquestion_3_result = { \n  if(question_3_response == correct_q3){\n    return \"Correct!\";\n  } else {\n    return \"Missing or incorrect.\"\n  } \n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('question_0_response')"},{"methodName":"interpretQuiet","source":"shinyInput('question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('question_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('question_3_response')"}]}
-</script>
-<script type="module">
-window._ojs.paths.runtimeToDoc = "../../excelIntro";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

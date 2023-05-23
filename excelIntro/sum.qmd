@@ -1,0 +1,39 @@
+---
+title: "Sum and SumIf"
+format: html
+editor: visual
+---
+
+The spreadsheet this worksheet is based on can be downloaded from [here](Excel_Workshop.xlsx). Go to the **sum** tab at the bottom of excel:
+
+![](sumTab.png)
+
+In this example, we would like to calculate the total response times, known as **sum**. To start with, let's calculate the SUM for all participants in this spreadsheet:
+
+![](sumColumn.png)
+
+So to calculate the SUM (i.e. total of the selected cells added together), you write a formula as follows:
+
+``` javascript
+=sum(START:END)
+```
+
+Now because everything is lined up to have all the mobile users first, and then the non-mobile users, so you can just use the sum function to select the rows where it is "yes" for mobile phone users. It's not always practical to align your data column by column, so **sumifs** is a helpful function. Here's a formula you could run to calculate the sum for females:
+
+![](sumIfs.png)
+
+The excel formula's structure:
+
+``` javascript
+=sumifs(cells_you_want_to_sum, selection_crition_cells_1, selction_criterion_1)
+```
+
+You can have as many criterion as you like. Let's look at females with mobile phones:
+
+![](sumIfs2.png)
+
+You may have noticed 2 things:
+
+-   You just add an extra criteria column (in this case column D) and a new criteria to compare it to ("yes") to allow you to have an extra criteria to select your rows on
+
+-   This example compares column C to **I7** rather than the word "Females". Referring to a specific cell can help make your formulas more efficient, as you don't have to repeatedly type the same word again and again. In fact, arguably it would be better to have [anchored](anchoring.html) I\$7 so that you could copy the formula down.

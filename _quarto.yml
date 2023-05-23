@@ -73,10 +73,9 @@ website:
           - "excelIntro/formulas.qmd"
           - "excelIntro/if.qmd"
           - "excelIntro/count.qmd"
-          - "excelIntro/anchoring.qmd"
-          - "excelIntro/countifs.qmd"
+          - "excelIntro/sum.qmd"
           - "excelIntro/averageIfs.qmd"
-          - "excelIntro/sumIfs.qmd"
+          - "excelIntro/anchoring.qmd"
           
           
       

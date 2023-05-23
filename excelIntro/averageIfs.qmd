@@ -1,0 +1,149 @@
+---
+title: "Averageifs"
+format: html
+editor: visual
+---
+
+The spreadsheet this worksheet is based on can be downloaded from [here](Excel_Workshop.xlsx). Go to the **averageifs** tab at the bottom of excel.
+
+Sometimes it will be helpful to average only specific values in a column. One way to do this is using an \"averageifs\" formula.
+
+Let us imagine we want separate average response times for male and female participants. We can use a formula that lets us use one column to identify which rows we want to average in another column. So if we want to average the response time for **females**, we\'re only interested in the rows with female data:
+
+![](selectedRTs.png)
+
+So here's how an \"averageifs\" formula could look:
+
+![](averageIfs.png)
+
+So let\'s break this down. This averageifs formula has three inputs:
+
+-   The cells that will be averaged - B2:B11
+
+-   A set of cells which will be used to determine which rows are selected: C2:C11
+
+-   A value that is compared with the previous set of cells to determine which rows are selected: \"Female\"
+
+In practice, the above formula does this:
+
+![](averageIfsEffect.png)
+
+So you now have a formula for calculating the mean scores based on one criterion, in this case gender. Let\'s consolidate this by you answering the following questions
+
+```{ojs}
+//| echo: false
+
+viewof question_1_response = Inputs.number([0,500], {label: "Mean female ms", step:1});
+correct_female_ms = 413;
+
+question_1_result = { 
+  if(question_1_response == correct_female_ms){
+    return "Correct!"
+  } else {
+    return "Missing or incorrect."
+  } 
+}
+```
+
+Your answer is... **\${question_1\_result}**
+
+```{ojs}
+//| echo: false
+
+viewof question_2_response = Inputs.number([0,500], {label: "Mean male ms", step:1});
+correct_male_ms = 408;
+
+question_2_result = { 
+  if(question_2_response == correct_male_ms){
+    return "Correct!"
+  } else {
+    return "Missing or incorrect."
+  } 
+}
+```
+
+Your answer is... **\${question_2\_result}**
+
+Now that you have calculated the average score based on one criterion, we can calculate it based on two criterion! It\'s like the original formula, but we add another range of cells, and another value to compare the cells to.
+
+So let us imagine we want the average response time for females with a mobile phone? We would use our original formula (see above), but before closing it we would add the cells referring to whether a mobile phone is present (B2:B11), and then compare these cells to the word \"yes\". Let\'s do that:
+
+![](averageIfs2.png)
+
+Just to really consolidate what is going on, like before, we focussed only on female participants:
+
+![](averageIfsEffect.png)
+
+But are now also focusing on rows in which a mobile phone is present (as indicated by \"yes\")
+
+![](averageIfs2Effect.png)
+
+So now you should be able to calculate the response times for all four groups of participants:
+
+```{ojs}
+//| echo: false
+
+viewof question_3_response = Inputs.number([0,700], {label: "Mean female using phones", step:1});
+correct_female_yes_ms = 385;
+
+question_3_result = { 
+  if(question_3_response == correct_female_yes_ms){
+    return "Correct!"
+  } else {
+    return "Missing or incorrect. Perhaps you forgot to round up?"
+  } 
+}
+```
+
+Your answer is... **\${question_3\_result}**
+
+```{ojs}
+//| echo: false
+
+viewof question_4_response = Inputs.number([0,700], {label: "Mean female NOT using phones", step:1});
+correct_female_no_ms = 457;
+
+question_4_result = { 
+  if(question_4_response == correct_female_no_ms){
+    return "Correct!"
+  } else {
+    return "Missing or incorrect. Perhaps you forgot to round up?"
+  } 
+}
+```
+
+Your answer is... **\${question_4\_result}**
+
+```{ojs}
+//| echo: false
+
+viewof question_5_response = Inputs.number([0,700], {label: "Mean male using phones", step:1});
+correct_male_yes_ms = 612;
+
+question_5_result = { 
+  if(question_5_response == correct_male_yes_ms){
+    return "Correct!"
+  } else {
+    return "Missing or incorrect. Perhaps you forgot to round up?"
+  } 
+}
+```
+
+Your answer is... **\${question_5\_result}**
+
+```{ojs}
+//| echo: false
+
+viewof question_6_response = Inputs.number([0,700], {label: "Mean male NOT using phones", step:1});
+correct_male_no_ms = 103;
+
+question_6_result = { 
+  if(question_6_response == correct_male_no_ms){
+    return "Correct!"
+  } else {
+    return "Missing or incorrect. Perhaps you forgot to round up?"
+  } 
+}
+```
+
+Your answer is... **\${question_6\_result}**

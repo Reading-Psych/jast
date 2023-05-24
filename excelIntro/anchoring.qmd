@@ -38,4 +38,4 @@ In particular, notice the new **dollar signs (\$) next to their respective rows 
 
 ![](anchoring7.png)
 
-This will require practice to become confident with. But it will be an **extremely useful excel skill.**
+This will require practice to become confident with, but it will be an **extremely useful excel skill.**

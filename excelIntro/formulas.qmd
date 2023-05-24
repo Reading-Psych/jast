@@ -8,13 +8,13 @@ The spreadsheet this worksheet is based on can be downloaded from [here](Excel_W
 
 By using **formulas** we can automate a lot of processing in excel.
 
-All you need to do to make a cell a formula, is to put an \"=\" sign at the start of it.
+All you need to do to make a cell a formula, is to put an "=" sign at the start of it.
 
-Let\'s start by going to the worksheet **Formulas** (you might already be there, or need to scroll left in the tabs at the bottom of the page):
+Let's start by going to the worksheet **Formulas** (you might already be there, or need to scroll left in the tabs at the bottom of the page):
 
 ![](formulasTab.png)
 
-You\'ll see that there\'s a hypothetical situation in which someone has done two runs, and wants to calculate the total distance they\'ve run. We can use the following formula to add the values in each of the cells together:
+You'll see that there's a hypothetical situation in which someone has done two runs, and wants to calculate the total distance they've run. We can use the following formula to add the values in each of the cells together:
 
 ![](formulas_addition.png)
 
@@ -42,7 +42,7 @@ question_0_result = {
 
 **\${question_0\_result}**
 
-Now let\'s use this logic to work out some other values on that sheet:
+Now let's use this logic to work out some other values on that sheet:
 
 The total distance run by James was...
 
@@ -96,4 +96,4 @@ question_3_result = {
 }
 ```
 
-Feel free to play around with these formulas a bit more. A really good way to learn excel is to play around with what you\'ve learned to build up confidence with it.
+Feel free to play around with these formulas a bit more. A really good way to learn excel is to play around with what you've learned to build up confidence with it.

@@ -1,0 +1,86 @@
+---
+title: "Question Maker"
+format: html
+editor: visual
+---
+
+If you have any questions you would like to contribute to any of the consolidation questions, this page will help generate the code needed to include them. Alternatively, you can simply suggest a question at:
+
+<https://github.com/Reading-Psych/jast/discussions/categories/suggest-content>
+
+If you would like to generate the code, please complete the following inputs:
+
+```{ojs}
+//| echo: false
+viewof question_name = Inputs.text({label: "question name"});
+viewof question_text = Inputs.text({label: "question text"});
+viewof question_type = Inputs.radio([
+  "multiple choice", 
+  "numeric",
+  "text"
+]);
+viewof question_responses = Inputs.text({label: "responses"});
+viewof question_correct   = Inputs.text({label: "correct"});
+
+
+
+
+/*
+correct_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;
+
+question_1_result = { 
+  if(question_1_response == correct_z_score){
+    return "Correct! (" + rand_maths_score + " - " + mean_maths_score + ")/" + sd_maths_score + " = " + correct_z_score;
+  } else {
+    return "Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."
+  } 
+}
+*/
+```
+
+```{ojs}
+output_string = {
+  var accuracy_code = "correct_" + question_name + " = '" + question_correct + "';\n" +
+    question_name + "_result = {\n" +
+    "  if(" + question_name + "_response == correct_" + question_name + "){\n" +
+    "    return 'Correct!';\n" +
+    "  } else {\n" +
+    "    return 'Incorrect.';\n" +
+    "  };\n" +
+    "}\n" +
+    "```\n" +
+    "${" + question_name + "_result}";
+  switch(question_type){
+    case "multiple choice":
+      return "multiple choice chosen";
+      break;
+    case "numeric":
+      return "```{ojs}\n" +
+         "viewof " + question_name + "_response = Inputs.number({label: '" + question_text + "'});\n" +
+         accuracy_code;
+      break;
+    case "text":
+      return "```{ojs}\n" +
+        "viewof " + question_name + "_response = Inputs.text({label: '" + question_text + "'});\n" +
+        accuracy_code;
+      break;
+  }  
+}
+
+```
+
+<code class='javascript'>\${output_string}</code>
+
+```{ojs}
+viewof age_response = Inputs.number({label: 'age'});
+correct_age = '36';
+age_result = {
+  if(age_response == correct_age){
+    return 'Correct!';
+  } else {
+    return 'Incorrect.';
+  };
+}
+```
+
+\${age_result}

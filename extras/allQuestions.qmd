@@ -1,0 +1,11 @@
+---
+title: "All questions"
+format: html
+editor: visual
+---
+
+## Distributions
+
+### Normal
+
+{{< include ../distributions/normal_questions.qmd >}}

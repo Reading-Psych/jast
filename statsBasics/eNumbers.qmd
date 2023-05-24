@@ -14,11 +14,13 @@ Scientific notation is used to express very large or very small numbers in a con
 For example, $3.1\text{e}3$ is the same as $3.1 \times 10^3$ (which is the same as 3100):
 
 ```{r}
-3.1e3 - 3.1 * 10^3
+3.1e3 == 3.1 * 10^3
 ```
 
 Likewise, $2.5\text{e-}3$ is the same as $2.5 \times 10^{-3}$ (which is the same as .0025):
 
 ```{r}
-2.5e-3 - 2.5 * 10^(-3)
+2.5e-3 == 2.5 * 10^(-3)
 ```
+
+{{< include eNumbersQuestions.qmd >}}

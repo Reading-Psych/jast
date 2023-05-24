@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Scientific Notation</title>
+<title>Just Another Statistics Textbook - Question Maker</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,8 +122,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -166,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Scientific Notation</h1>
+      <h1 class="quarto-secondary-nav-title">Question Maker</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -214,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link active">Scientific Notation</a>
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
       </ul>
@@ -301,7 +302,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Extra tools</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Test yourself</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -309,7 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
+  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link active">Question Maker</a>
   </div>
 </li>
       </ul>
@@ -326,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Scientific Notation</h1>
+<h1 class="title d-none d-lg-block">Question Maker</h1>
 </div>
 
 
@@ -341,27 +347,144 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Scientific notation is used to express very large or very small numbers in a concise format using exponents of 10 (<span class="math inline">\(10^n\)</span>). So, rather than having to show all of the digits for <span class="math inline">\(4,600,000,000\)</span> (4.6 Trillion) it can be expressed in scientific notation: <span class="math inline">\(4.6 \times 10^9\)</span>. Likewise, very small numbers can be expressed using the same format, e.g.&nbsp;<span class="math inline">\(0.0000005\)</span> = <span class="math inline">\(5.0 \times 10^{-7}\)</span>.</p>
-<p><strong>Note</strong>: for numbers larger than one the exponent is positive (<span class="math inline">\(10^9\)</span>) and for numbers less than one the exponent is negative (<span class="math inline">\(10^{-7}\)</span>)</p>
-<p><strong>e values</strong> are used to express scientific notation within R (and other programming languages) and essentially the <span class="math inline">\(\text{e}\)</span> replaces the <span class="math inline">\(\times 10\)</span> part of the notation.<br>
-For example, <span class="math inline">\(3.1\text{e}3\)</span> is the same as <span class="math inline">\(3.1 \times 10^3\)</span> (which is the same as 3100):</p>
+<p>If you have any questions you would like to contribute to any of the consolidation questions, this page will help generate the code needed to include them. Alternatively, you can simply suggest a question at:</p>
+<p><a href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content" class="uri">https://github.com/Reading-Psych/jast/discussions/categories/suggest-content</a></p>
+<p>If you would like to generate the code, please complete the following inputs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.1e3</span> <span class="sc">==</span> <span class="fl">3.1</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="15" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 14;"><span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>viewof question_name <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"question name"</span>})<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>viewof question_text <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"question text"</span>})<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>viewof question_type <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"multiple choice"</span><span class="op">,</span> </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"numeric"</span><span class="op">,</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"text"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>])<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>viewof question_responses <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"responses"</span>})<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>viewof question_correct   <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"correct"</span>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
 </div>
 </div>
-<p>Likewise, <span class="math inline">\(2.5\text{e-}3\)</span> is the same as <span class="math inline">\(2.5 \times 10^{-3}\)</span> (which is the same as .0025):</p>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.5e-3</span> <span class="sc">==</span> <span class="fl">2.5</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode cell-code" id="cb2" data-startfrom="41" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 40;"><span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>output_string <span class="op">=</span> {</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> accuracy_code <span class="op">=</span> <span class="st">"correct_"</span> <span class="op">+</span> question_name <span class="op">+</span> <span class="st">" = '"</span> <span class="op">+</span> question_correct <span class="op">+</span> <span class="st">"';</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    question_name <span class="op">+</span> <span class="st">"_result = {</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  if("</span> <span class="op">+</span> question_name <span class="op">+</span> <span class="st">"_response == correct_"</span> <span class="op">+</span> question_name <span class="op">+</span> <span class="st">"){</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"    return 'Correct!';</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  } else {</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"    return 'Incorrect.';</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  };</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"}</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"```</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="st">"${"</span> <span class="op">+</span> question_name <span class="op">+</span> <span class="st">"_result};"</span><span class="op">;</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(question_type){</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"multiple choice"</span><span class="op">:</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">"multiple choice chosen"</span><span class="op">;</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"numeric"</span><span class="op">:</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">"```{ojs}</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>         <span class="st">"viewof "</span> <span class="op">+</span> question_name <span class="op">+</span> <span class="st">"_response = Inputs.number({label: '"</span> <span class="op">+</span> question_text <span class="op">+</span> <span class="st">"'});</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>         accuracy_code<span class="op">;</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"text"</span><span class="op">:</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">"```{ojs}</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"viewof "</span> <span class="op">+</span> question_name <span class="op">+</span> <span class="st">"_response = Inputs.text({label: '"</span> <span class="op">+</span> question_text <span class="op">+</span> <span class="st">"'});</span><span class="sc">\n</span><span class="st">"</span> <span class="op">+</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        accuracy_code<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  }  </span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
 </div>
 </div>
+</div>
+<p><code class="javascript"><span><span id="ojs-element-id-1"></span></span></code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" data-startfrom="75" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 74;"><span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>viewof age_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">'age'</span>})<span class="op">;</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>correct_age <span class="op">=</span> <span class="st">'36'</span><span class="op">;</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>age_result <span class="op">=</span> {</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(age_response <span class="op">==</span> correct_age){</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect.'</span><span class="op">;</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-2"></span>;</span></p>
 
 
+<script type="ojs-module-contents">
+{"contents":[
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${output_string}</span>`", "cellName":"ojs-element-id-1"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${age_result}</span>`", "cellName":"ojs-element-id-2"}
+]}
+</script>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof question_name = Inputs.text({label: \"question name\"});\nviewof question_text = Inputs.text({label: \"question text\"});\nviewof question_type = Inputs.radio([\n  \"multiple choice\", \n  \"numeric\",\n  \"text\"\n]);\nviewof question_responses = Inputs.text({label: \"responses\"});\nviewof question_correct   = Inputs.text({label: \"correct\"});\n\n\n\n\n/*\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nquestion_1_result = { \n  if(question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n*/\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"output_string = {\n  var accuracy_code = \"correct_\" + question_name + \" = '\" + question_correct + \"';\\n\" +\n    question_name + \"_result = {\\n\" +\n    \"  if(\" + question_name + \"_response == correct_\" + question_name + \"){\\n\" +\n    \"    return 'Correct!';\\n\" +\n    \"  } else {\\n\" +\n    \"    return 'Incorrect.';\\n\" +\n    \"  };\\n\" +\n    \"}\\n\" +\n    \"```\\n\" +\n    \"${\" + question_name + \"_result};\";\n  switch(question_type){\n    case \"multiple choice\":\n      return \"multiple choice chosen\";\n      break;\n    case \"numeric\":\n      return \"```{ojs}\\n\" +\n         \"viewof \" + question_name + \"_response = Inputs.number({label: '\" + question_text + \"'});\\n\" +\n         accuracy_code;\n      break;\n    case \"text\":\n      return \"```{ojs}\\n\" +\n        \"viewof \" + question_name + \"_response = Inputs.text({label: '\" + question_text + \"'});\\n\" +\n        accuracy_code;\n      break;\n  }  \n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"viewof age_response = Inputs.number({label: 'age'});\ncorrect_age = '36';\nage_result = {\n  if(age_response == correct_age){\n    return 'Correct!';\n  } else {\n    return 'Incorrect.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('question_name')"},{"methodName":"interpretQuiet","source":"shinyInput('question_text')"},{"methodName":"interpretQuiet","source":"shinyInput('question_type')"},{"methodName":"interpretQuiet","source":"shinyInput('question_responses')"},{"methodName":"interpretQuiet","source":"shinyInput('question_correct')"},{"methodName":"interpretQuiet","source":"shinyInput('age_response')"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../extras";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

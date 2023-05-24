@@ -39,7 +39,7 @@ website:
       #     - describingData/dispersion.qmd
       - section: "Distributions"
         contents:
-          - distributions/normal.qmd # needs SPSS and JASP
+          - distributions/normal.qmd
       #     - distributions/skewness.qmd
       #     - distributions/kurtosis.qmd
       #     - distributions/transforming.qmd
@@ -76,6 +76,10 @@ website:
           - "excelIntro/sum.qmd"
           - "excelIntro/averageIfs.qmd"
           - "excelIntro/anchoring.qmd"
+      - section: "Test yourself"
+        contents:
+          - "extras/allQuestions.qmd"
+          - "extras/questionMaker.qmd"
           
           
       

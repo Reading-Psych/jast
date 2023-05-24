@@ -26,48 +26,48 @@ website:
           - installing.qmd
       - section: "Statistics Basics"
         contents:
-          - statsBasics/statsBasics.qmd
+          #- statsBasics/statsBasics.qmd
           - statsBasics/eNumbers.qmd    
       - section: "R Basics"
         contents:
           - rBasics/filetypes.qmd
           - rBasics/fundamentals.qmd
           - rBasics/logic.qmd
-      - section: "Describing Data"
-        contents:
-          - describingData/centralTendency.qmd
-          - describingData/dispersion.qmd
+      # - section: "Describing Data"
+      #   contents:
+      #     - describingData/centralTendency.qmd
+      #     - describingData/dispersion.qmd
       - section: "Distributions"
         contents:
-          - distributions/normal.qmd
-          - distributions/skewness.qmd
-          - distributions/kurtosis.qmd
-          - distributions/transforming.qmd
-      - section: "Correlation"
-        contents:
-          - correlations/correlations.qmd
-          - correlations/partialCorrelations.qmd
-          - correlations/cooksd.qmd
-      - section: "Regressions"
-        contents:
-          - regressions/simpleRegressions.qmd
-          - regressions/multipleRegressions.qmd
-      - section: "General Linear Models"
-        contents: 
-          - "GeneralLinearModels/generalLinearModels.qmd"
-          - "GeneralLinearModels/rVsAdjustedRSquared.qmd"
-          - "GeneralLinearModels/TTests.qmd"
-          - "GeneralLinearModels/One-Way Analysis of Variance"
-          - "GeneralLinearModels/Two-Way (or more) Analysis of Variance"
-          - "GeneralLinearModels/ANCOVA"
-      - section: "Permutation testing"
-      - section: "University of Reading advice?"
-        contents:
-          - "Psychology"
-          - "Henley Business School"
-      - section: "Advanced R Stuff"
-        contents:
-          - "advancedR/fancyFigures.qmd"
+          - distributions/normal.qmd # needs SPSS and JASP
+      #     - distributions/skewness.qmd
+      #     - distributions/kurtosis.qmd
+      #     - distributions/transforming.qmd
+      # - section: "Correlation"
+      #   contents:
+      #     - correlations/correlations.qmd
+      #     - correlations/partialCorrelations.qmd
+      #     - correlations/cooksd.qmd
+      # - section: "Regressions"
+      #   contents:
+      #     - regressions/simpleRegressions.qmd
+      #     - regressions/multipleRegressions.qmd
+      # - section: "General Linear Models"
+      #   contents: 
+      #     - "GeneralLinearModels/generalLinearModels.qmd"
+      #     - "GeneralLinearModels/rVsAdjustedRSquared.qmd"
+      #     - "GeneralLinearModels/TTests.qmd"
+      #     - "GeneralLinearModels/One-Way Analysis of Variance"
+      #     - "GeneralLinearModels/Two-Way (or more) Analysis of Variance"
+      #     - "GeneralLinearModels/ANCOVA"
+      # - section: "Permutation testing"
+      # - section: "University of Reading advice?"
+      #   contents:
+      #     - "Psychology"
+      #     - "Henley Business School"
+      # - section: "Advanced R Stuff"
+      #   contents:
+      #     - "advancedR/fancyFigures.qmd"
       - section: "Excel tutorial"
         contents:
           - "excelIntro/formulas.qmd"

@@ -58,20 +58,25 @@ output_string = {
     "```\n" +
     "${" + question_name + "_result}";
   switch(question_type){
-    case "multiple choice":
+    case "Multiple choice":
       return question_text + "\n" +
         "```{ojs}\n" +
+        "//| echo: false\n" +
         "viewof " + question_name + "_response = Inputs.radio(['" + question_responses.split("|").join("','") + "']);\n" +
         accuracy_code;
       break;
-    case "numeric":
-      return "```{ojs}\n" +
-         "viewof " + question_name + "_response = Inputs.number({label: '" + question_text + "'});\n" +
-         accuracy_code;
+    case "Numeric":
+      return question_text + "\n" +
+        "```{ojs}\n" +
+        "//| echo: false\n" +
+        "viewof " + question_name + "_response = Inputs.number();\n" +
+        accuracy_code;
       break;
-    case "text":
-      return "```{ojs}\n" +
-        "viewof " + question_name + "_response = Inputs.text({label: '" + question_text + "'});\n" +
+    case "Text":
+      return question_text + "\n" +
+        "```{ojs}\n" +
+        "//| echo: false\n" +
+        "viewof " + question_name + "_response = Inputs.text();\n" +
         accuracy_code;
       break;
   }  
@@ -79,4 +84,5 @@ output_string = {
 
 ```
 
-<code class='javascript'>\${output_string}</code>
+#### Question code:
+<code class='javascript'>${output_string}</code>

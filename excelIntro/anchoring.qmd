@@ -4,4 +4,38 @@ format: html
 editor: visual
 ---
 
-## 
+This section will keep using the [averageifs](averageIfs.html) tab in excel. There are a couple of tricks that\'ll allow you to copy and paste the formulas in a way that saves you having to write them out again with minor tinkering. The first is to **make your formula as dynamic as possible**. This means to refer to other cells where possible to make your formula do more for you.
+
+This might be still be a bit abstract, so let\'s do something concrete. You\'ll see that we structured our output into a table:
+
+![](anchoring1.png)
+
+This formula doesn\'t yet make use of the information in the table. Here\'s an example of one way that it could:
+
+![](anchoring2.png)
+
+See how we\'re referring to the cell with the word \"Female\" in, rather than having to write \"Female\". In the **Final assignment** this sort of trick will be very helpful. Let\'s do the same to look at whether there\'s a mobile phone present:
+
+![](anchoring3.png)
+
+Now we\'re nearly ready to start copying and pasting this cell into the other 3 cells. However, if we did that now, the cells would only be **partially correctly aligned**, as the **relative location**s would work a little, but not entirely. Let\'s see that in practice. First, let\'s copy the cell one up from it\'s original location:
+
+![](anchoring4.png)
+
+See that whilst it is good that one of the cells moved up to refer to \"male\" rather than \"female\", another of the cells moved to refer to \"mobile phone present\" instead of \"yes\", which is what we would have wanted.
+
+Similarly, if we just copy the original cell one to the right instead, you might already guess what\'s going to go wrong:
+
+![](anchoring5.png)
+
+Whilst it was good that one referred to cell moved to the right to refer to the \"no\" value, we didn\'t want the other cell to move to the right to refer to \"384.5503\", we wanted it to stay on \"female\". You might also notice that all the **columns** we are referring to have moved over also, and are also misaligned!
+
+So to prevent cells moving in ways you do not want them to, you **anchor** them. You anchor them by putting a **dollar sign (\$) before the row and/or column** **you want to stop changing**. So let\'s fix the original cell to be appropriately anchored:
+
+![](anchoring6.png)
+
+In particular, notice the new **dollar signs (\$) next to their respective rows and columns**
+
+![](anchoring7.png)
+
+This will require practice to become confident with. But it will be an **extremely useful excel skill.**

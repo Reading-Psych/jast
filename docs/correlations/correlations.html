@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Correlations</title>
+<title>Just Another Statistics Textbook - Correlations (R,Python)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Correlations</h1>
+      <h1 class="quarto-secondary-nav-title">Correlations (R,Python)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -282,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link active">Correlations</a>
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link active">Correlations (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (r only)</a>
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -378,9 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#variance-of-individual-variables" id="toc-variance-of-individual-variables" class="nav-link active" data-scroll-target="#variance-of-individual-variables">Variance of individual variables</a></li>
-  <li><a href="#total-variance" id="toc-total-variance" class="nav-link" data-scroll-target="#total-variance">Total variance</a>
+  <li><a href="#total-variance" id="toc-total-variance" class="nav-link" data-scroll-target="#total-variance">Total variance</a></li>
+  <li><a href="#shared-variance-between-x-and-y-aka-covariance" id="toc-shared-variance-between-x-and-y-aka-covariance" class="nav-link" data-scroll-target="#shared-variance-between-x-and-y-aka-covariance">Shared variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> (AKA covariance)</a>
   <ul class="collapse">
-  <li><a href="#shared-variance-between-x-and-y" id="toc-shared-variance-between-x-and-y" class="nav-link" data-scroll-target="#shared-variance-between-x-and-y">Shared variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></a></li>
   <li><a href="#comparing-shared-variance-var_xy-to-total-variance" id="toc-comparing-shared-variance-var_xy-to-total-variance" class="nav-link" data-scroll-target="#comparing-shared-variance-var_xy-to-total-variance">Comparing <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>) to <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span></a></li>
   </ul></li>
   <li><a href="#spearmans-rank-aka-spearmans-rho" id="toc-spearmans-rank-aka-spearmans-rho" class="nav-link" data-scroll-target="#spearmans-rank-aka-spearmans-rho">Spearman’s Rank (AKA Spearman’s Rho)</a></li>
@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Correlations</h1>
+<h1 class="title d-none d-lg-block">Correlations (R,Python)</h1>
 </div>
 
 
@@ -692,8 +692,9 @@ totalVariance = \frac{\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}{N-1}
 </tbody>
 </table>
 <p>This is analogous to understanding the total area of a rectangle by multiplying the length of each side with each other.</p>
-<section id="shared-variance-between-x-and-y" class="level3">
-<h3 class="anchored" data-anchor-id="shared-variance-between-x-and-y">Shared variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></h3>
+</section>
+<section id="shared-variance-between-x-and-y-aka-covariance" class="level2">
+<h2 class="anchored" data-anchor-id="shared-variance-between-x-and-y-aka-covariance">Shared variance between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> (AKA covariance)</h2>
 <p>An important thing to note, is that variance of a single variable, in this case x:</p>
 <p><span class="math display">\[
 var_x = \frac{\sum(x_i-\bar{x})^2}{N-1}
@@ -797,7 +798,6 @@ var_{xy} = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
 </div>
 </div>
 </div>
-</section>
 <section id="comparing-shared-variance-var_xy-to-total-variance" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-shared-variance-var_xy-to-total-variance">Comparing <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>) to <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span></h3>
 <p>To complete a <strong>Pearson’s</strong> <strong>R</strong> correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the <strong>proportion</strong> of <span class="math inline">\(total\)</span> <span class="math inline">\(variance\)</span> is explained by the <span class="math inline">\(shared\)</span> <span class="math inline">\(variance\)</span> (<span class="math inline">\(var_{xy}\)</span>).</p>

@@ -2,7 +2,7 @@
 title: "Cronbach's Alpha (R)"
 format: html
 editor: visual
-bibliography: references.bib
+bibliography: ../references.bib
 ---
 
 ## Cronbach's alpha as an index of reliability of a scale
@@ -15,7 +15,6 @@ Let's use some publicly available data to investigate this issue. The Empathy Qu
 
 Whilst this is a general measure of empathy, empathy is a multifacted concept, so let's focus on one of the types of empathy, *cognitive* empathy. This will involve focusing on just items associated with this facet. Note that the items for this are 14, 15, 29, 34 and 35. Let's see how much covariance (see [here](../correlations/correlations.html#shared-variance-between-x-and-y) for a reminder on covariance or shared variance) there is between the items:
 
-
 ```{r}
 eq <- read.csv("EQ_Data.csv")
 cog_eq <- eq[,c("Q14.processed", "Q15.processed", "Q29.processed", "Q34.processed", "Q35.processed")]
@@ -24,7 +23,6 @@ cog_eq <- eq[,c("Q14.processed", "Q15.processed", "Q29.processed", "Q34.processe
 colnames(cog_eq) <-c("cog_1","cog_2","cog_3","cog_4","cog_5")
 knitr::kable(data.frame(cov(cog_eq)))
 ```
-
 
 Note that covariance of an item with itself is just **variance**, e.g. **cog_1** with itself:
 
@@ -176,3 +174,7 @@ There are caveats to these benchmarks, and weird things that can happen with Cro
 -   Greater than .7 is acceptable reliability
 
 -   Greater than .9 suggests that your measure includes redundant items
+
+## Consolidation questions
+
+{{< include cronbachAlphaQuestions.qmd >}}

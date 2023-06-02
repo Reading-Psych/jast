@@ -5,12 +5,19 @@ editor: visual
 ---
 
 ## Statistics Basics
-
+### E numbers
 {{< include ../statsBasics/eNumbersQuestions.qmd >}}
-
+### Basics
 {{< include ../statsBasics/basicsQuestions.qmd >}}
 
 ## Normal
 
 {{< include ../distributions/normal_questions.qmd >}}
+
+## Skewness
+
 {{< include ../distributions/skewnessQuestions.qmd >}}
+
+## Item Analysis
+
+{{< include ../itemAnalyses/cronbachAlphaQuestions.qmd >}}

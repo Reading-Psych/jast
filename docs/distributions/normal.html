@@ -264,16 +264,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link active">Normal Distribution</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Excel tutorial</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Correlation</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  itemAnalyses/pca.qmd
+  </li>
+          <li class="sidebar-item">
+  itemAnalyses/cfa.qmd
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
@@ -308,12 +349,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Test yourself</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
@@ -966,11 +1007,11 @@ Z_{score} = \frac{170 - 150}{10} = 2
 </div>
 <p>Jamie has just completed a mathematics test, where the maximum score is 100%. Their score was <span><span id="ojs-element-id-1"></span>,</span> the mean maths score was <span><span id="ojs-element-id-2"></span></span> and the SD was <span><span id="ojs-element-id-3"></span>.</span> What is their Z-score?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>viewof question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
+<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>viewof normal_question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>correct_z_score <span class="op">=</span> (rand_maths_score <span class="op">-</span> mean_maths_score)<span class="op">/</span>sd_maths_score<span class="op">;</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>question_1_result <span class="op">=</span> { </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_1_response <span class="op">==</span> correct_z_score){</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>normal_question_1_result <span class="op">=</span> { </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_1_response <span class="op">==</span> correct_z_score){</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct! ("</span> <span class="op">+</span> rand_maths_score <span class="op">+</span> <span class="st">" - "</span> <span class="op">+</span> mean_maths_score <span class="op">+</span> <span class="st">")/"</span> <span class="op">+</span> sd_maths_score <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> correct_z_score<span class="op">;</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."</span></span>
@@ -1004,7 +1045,7 @@ Z_{score} = \frac{170 - 150}{10} = 2
 <h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
 <p>Using the above value, which percentile group would you put Jamie’s score into?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb13-0"><a href="#cb13-0" aria-hidden="true" tabindex="-1"></a>question_2_correct <span class="op">=</span> {</span>
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb13-0"><a href="#cb13-0" aria-hidden="true" tabindex="-1"></a>normal_question_2_correct <span class="op">=</span> {</span>
 <span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>){</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 2.3%"</span><span class="op">;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">1</span>){</span>
@@ -1026,7 +1067,7 @@ Z_{score} = \frac{170 - 150}{10} = 2
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>viewof question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>viewof normal_question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 2.3%"</span><span class="op">,</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 15.9%"</span><span class="op">,</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 50%"</span><span class="op">,</span></span>
@@ -1034,10 +1075,10 @@ Z_{score} = \frac{170 - 150}{10} = 2
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 15.9%"</span><span class="op">,</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 2.3%"</span><span class="op">,</span> </span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>question_2_result <span class="op">=</span> { </span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>normal_question_2_result <span class="op">=</span> { </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"awaiting your response"</span><span class="op">;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(question_2_correct <span class="op">==</span> question_2_response){</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(normal_question_2_correct <span class="op">==</span> normal_question_2_response){</span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half."</span><span class="op">;</span></span>
@@ -1072,9 +1113,9 @@ Z_{score} = \frac{170 - 150}{10} = 2
 ,
   {"methodName":"interpret","inline":"true","source":"htl.html`<span>${sd_maths_score}</span>`", "cellName":"ojs-element-id-3"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${question_1_result}</span>`", "cellName":"ojs-element-id-4"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_1_result}</span>`", "cellName":"ojs-element-id-4"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${question_2_result}</span>`", "cellName":"ojs-element-id-5"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_2_result}</span>`", "cellName":"ojs-element-id-5"}
 ]}
 </script>
 </section>
@@ -1082,7 +1123,7 @@ Z_{score} = \frac{170 - 150}{10} = 2
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nquestion_1_result = { \n  if(question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nquestion_2_result = { \n  if(question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(question_2_correct == question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('question_2_response')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof normal_question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nnormal_question_1_result = { \n  if(normal_question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"normal_question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof normal_question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nnormal_question_2_result = { \n  if(normal_question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(normal_question_2_correct == normal_question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_2_response')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../distributions";

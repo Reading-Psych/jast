@@ -141,6 +141,8 @@ div.csl-indent {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -396,6 +398,7 @@ div.csl-indent {
   <li><a href="#cronbachs-alpha-as-an-index-of-reliability-of-a-scale" id="toc-cronbachs-alpha-as-an-index-of-reliability-of-a-scale" class="nav-link active" data-scroll-target="#cronbachs-alpha-as-an-index-of-reliability-of-a-scale">Cronbach’s alpha as an index of reliability of a scale</a></li>
   <li><a href="#standardised-alpha" id="toc-standardised-alpha" class="nav-link" data-scroll-target="#standardised-alpha">Standardised Alpha</a></li>
   <li><a href="#general-benchmarks-for-cronbachs-alpha" id="toc-general-benchmarks-for-cronbachs-alpha" class="nav-link" data-scroll-target="#general-benchmarks-for-cronbachs-alpha"><u><em>General</em></u> benchmarks for Cronbach’s alpha</a></li>
+  <li><a href="#consolidation-questions" id="toc-consolidation-questions" class="nav-link" data-scroll-target="#consolidation-questions">Consolidation questions</a></li>
   </ul>
 </nav>
     </div>
@@ -1075,8 +1078,50 @@ div.csl-indent {
 <li><p>Greater than .7 is acceptable reliability</p></li>
 <li><p>Greater than .9 suggests that your measure includes redundant items</p></li>
 </ul>
+</section>
+<section id="consolidation-questions" class="level2">
+<h2 class="anchored" data-anchor-id="consolidation-questions">Consolidation questions</h2>
+<p>Cronbach’s Alpha is useful to check whether items in a measure are…</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb19" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'valid'</span><span class="op">,</span><span class="st">'reliable'</span>])<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_1 <span class="op">=</span> <span class="st">'reliable'</span><span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_1_result <span class="op">=</span> {</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_1_response <span class="op">==</span> correct_cronbach_alpha_1){</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Specifically, whether they reliably measure the same construct.'</span><span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-1"></span></span></p>
 
 
+<script type="ojs-module-contents">
+{"contents":[
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_1_result}</span>`", "cellName":"ojs-element-id-1"}
+]}
+</script>
 
 </section>
 
@@ -1088,6 +1133,16 @@ Field, Andy. 2013. <em>Discovering Statistics Using IBM SPSS Statistics</em>. sa
 LAWRENCE, E. J., P. SHAW, D. BAKER, S. BARON-COHEN, and A. S. DAVID. 2004. <span>“Measuring Empathy: Reliability and Validity of the Empathy Quotient.”</span> <em>Psychological Medicine</em> 34 (5): 911–20. <a href="https://doi.org/10.1017/s0033291703001624">https://doi.org/10.1017/s0033291703001624</a>.
 </div>
 </div></section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);\ncorrect_cronbach_alpha_1 = 'reliable';\ncronbach_alpha_1_result = {\n  if(cronbach_alpha_1_response == correct_cronbach_alpha_1){\n    return 'Correct! Specifically, whether they reliably measure the same construct.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_1_response')"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../itemAnalyses";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

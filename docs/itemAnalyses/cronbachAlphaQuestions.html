@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook – normal_questions</title>
+<title>Just Another Statistics Textbook – cronbachalphaquestions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -370,27 +370,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 
 
-<section id="question-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>Cronbach’s Alpha is useful to check whether items in a measure are…</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="10" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 9;"><span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>rand_maths_score <span class="op">=</span> <span class="dv">40</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">60</span>)<span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mean_maths_score <span class="op">=</span> <span class="dv">70</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sd_maths_score   <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="9" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 8;"><span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'valid'</span><span class="op">,</span><span class="st">'reliable'</span>])<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_1 <span class="op">=</span> <span class="st">'reliable'</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_1_result <span class="op">=</span> {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_1_response <span class="op">==</span> correct_cronbach_alpha_1){</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Specifically, whether they reliably measure the same construct.'</span><span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -413,127 +411,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Jamie has just completed a mathematics test, where the maximum score is 100%. Their score was <span><span id="ojs-element-id-1"></span>,</span> the mean maths score was <span><span id="ojs-element-id-2"></span></span> and the SD was <span><span id="ojs-element-id-3"></span>.</span> What is their Z-score?</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="19" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 18;"><span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>viewof normal_question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>correct_z_score <span class="op">=</span> (rand_maths_score <span class="op">-</span> mean_maths_score)<span class="op">/</span>sd_maths_score<span class="op">;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>normal_question_1_result <span class="op">=</span> { </span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_1_response <span class="op">==</span> correct_z_score){</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct! ("</span> <span class="op">+</span> rand_maths_score <span class="op">+</span> <span class="st">" - "</span> <span class="op">+</span> mean_maths_score <span class="op">+</span> <span class="st">")/"</span> <span class="op">+</span> sd_maths_score <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> correct_z_score<span class="op">;</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p>Your answer is… <strong><span><span id="ojs-element-id-4"></span></span></strong>.</p>
-</section>
-<section id="question-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
-<p>Using the above value, which percentile group would you put Jamie’s score into?</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="38" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 37;"><span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>normal_question_2_correct <span class="op">=</span> {</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>){</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 2.3%"</span><span class="op">;</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">1</span>){</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 15.9%"</span><span class="op">;</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 50%"</span><span class="op">;</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">1</span>){</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 50%"</span><span class="op">;</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">2</span>){</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 15.9%"</span><span class="op">;</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 2.3%"</span><span class="op">;</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="59" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 58;"><span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>viewof normal_question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 2.3%"</span><span class="op">,</span> </span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 15.9%"</span><span class="op">,</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 50%"</span><span class="op">,</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 50%"</span><span class="op">,</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 15.9%"</span><span class="op">,</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 2.3%"</span><span class="op">,</span> </span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>normal_question_2_result <span class="op">=</span> { </span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"awaiting your response"</span><span class="op">;</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(normal_question_2_correct <span class="op">==</span> normal_question_2_response){</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half."</span><span class="op">;</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-4-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-4-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p>Your answer is… <strong><span><span id="ojs-element-id-5"></span></span></strong>.</p>
-<div style="color:#068">
-<p>If you want to practice with different numbers in these questions then please reload the page.</p>
-</div>
+<p><span><span id="ojs-element-id-1"></span></span></p>
 
 
 <script type="ojs-module-contents">
 {"contents":[
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${rand_maths_score}</span>`", "cellName":"ojs-element-id-1"}
-,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${mean_maths_score}</span>`", "cellName":"ojs-element-id-2"}
-,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${sd_maths_score}</span>`", "cellName":"ojs-element-id-3"}
-,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_1_result}</span>`", "cellName":"ojs-element-id-4"}
-,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_2_result}</span>`", "cellName":"ojs-element-id-5"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_1_result}</span>`", "cellName":"ojs-element-id-1"}
 ]}
 </script>
-</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof normal_question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nnormal_question_1_result = { \n  if(normal_question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"normal_question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof normal_question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nnormal_question_2_result = { \n  if(normal_question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(normal_question_2_correct == normal_question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_2_response')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);\ncorrect_cronbach_alpha_1 = 'reliable';\ncronbach_alpha_1_result = {\n  if(cronbach_alpha_1_response == correct_cronbach_alpha_1){\n    return 'Correct! Specifically, whether they reliably measure the same construct.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_1_response')"}]}
 </script>
 <script type="module">
-window._ojs.paths.runtimeToDoc = "../../distributions";
+window._ojs.paths.runtimeToDoc = "../../itemAnalyses";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;

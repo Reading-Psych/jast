@@ -1,0 +1,18 @@
+---
+title: "Principle Component Analysis"
+format: html
+editor: visual
+bibliography: ../references.bib
+---
+
+## What is Principle Component Analysis (PCA)?
+
+Questionnaires and surveys often have items that reflect multiple sub-scales or multiple related constructs, in a single measure. For example, the empathy quotient [@Lawrence2004] has multiple types of empathy within it:
+
+-   cognitive empathy
+
+-   emotional reactivity
+
+-   social skills
+
+Let's use one publicly available data set to check if we can replicate these subscales

@@ -1,0 +1,34 @@
+---
+format: html
+editor: visual
+---
+
+Cronbach's Alpha is useful to check whether items in a measure are...
+```{ojs}
+//| echo: false
+viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);
+correct_cronbach_alpha_1 = 'reliable';
+cronbach_alpha_1_result = {
+  if(cronbach_alpha_1_response == correct_cronbach_alpha_1){
+    return 'Correct! Specifically, whether they reliably measure the same construct. However, weird things can happen if multiple similar constructs are captured in the measure, so it can be helpful to conduct Principle Component Analysis first.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${cronbach_alpha_1_result}
+
+Do you need to reverse code relevant items before conducting Cronbach's Alpha?
+```{ojs}
+//| echo: false
+viewof cronbach_alpha_2_response = Inputs.radio(['Yes','No']);
+correct_cronbach_alpha_2 = 'Yes';
+cronbach_alpha_2_result = {
+  if(cronbach_alpha_2_response == correct_cronbach_alpha_2){
+    return 'Correct! Otherwise the item will reduce the alpha value even if the item is reliably associated with other items (just going in the opposite direction).';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${cronbach_alpha_2_result}

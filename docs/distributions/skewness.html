@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Item analyses</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Correlation</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -281,7 +281,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha</a>
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -294,12 +309,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Excel tutorial</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
@@ -334,12 +349,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Test yourself</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
@@ -760,24 +775,24 @@ kurtosis -0.8298204 0.4041614 -2.053191</code></pre>
 </div>
 <p>Is a skewness z-score of <span><span id="ojs-element-id-1"></span></span> indicative of a significant problem of skewness?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>viewof question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"Yes"</span><span class="op">,</span> <span class="st">"No"</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>viewof skewness_question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"Yes"</span><span class="op">,</span> <span class="st">"No"</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>this_result <span class="op">=</span> { </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> question_1_result <span class="op">=</span> <span class="st">"awaiting response"</span><span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> skewness_question_1_result <span class="op">=</span> <span class="st">"awaiting response"</span><span class="op">;</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(rand_skew_no <span class="op">&gt;</span> <span class="fl">1.96</span>){</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>      question_1_result <span class="op">=</span> <span class="st">"Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>      question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>      question_1_result <span class="op">=</span> <span class="st">"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> question_1_result<span class="op">;</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> skewness_question_1_result<span class="op">;</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -809,7 +824,7 @@ kurtosis -0.8298204 0.4041614 -2.053191</code></pre>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"rand_skew_no = Math.round(Math.random() * 400)/100;\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof question_1_response = Inputs.radio([\"Yes\", \"No\"], {label: \"\", value: \"A\"});\nthis_result = { \n  var question_1_result = \"awaiting response\";\n\n  if(rand_skew_no > 1.96){\n    if(question_1_response == \"Yes\"){\n      question_1_result = \"Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    } else if(question_1_response == \"No\") {\n      question_1_result = \"Not Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    }\n  } else {\n    if(question_1_response == \"Yes\"){\n      question_1_result = \"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    } else if(question_1_response == \"No\") {\n      question_1_result = \"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    }\n  }\n  return question_1_result;\n}\n\n"},{"methodName":"interpretQuiet","source":"shinyInput('question_1_response')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"rand_skew_no = Math.round(Math.random() * 400)/100;\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof skewness_question_1_response = Inputs.radio([\"Yes\", \"No\"], {label: \"\", value: \"A\"});\nthis_result = { \n  var skewness_question_1_result = \"awaiting response\";\n\n  if(rand_skew_no > 1.96){\n    if(skewness_question_1_response == \"Yes\"){\n      skewness_question_1_result = \"Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    } else if(skewness_question_1_response == \"No\") {\n      skewness_question_1_result = \"Not Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    }\n  } else {\n    if(skewness_question_1_response == \"Yes\"){\n      skewness_question_1_result = \"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    } else if(skewness_question_1_response == \"No\") {\n      skewness_question_1_result = \"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    }\n  }\n  return skewness_question_1_result;\n}\n\n"},{"methodName":"interpretQuiet","source":"shinyInput('skewness_question_1_response')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../distributions";

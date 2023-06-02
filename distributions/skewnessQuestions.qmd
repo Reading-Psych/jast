@@ -12,24 +12,24 @@ Is a skewness z-score of ${rand_skew_no} indicative of a significant problem of 
 
 ```{ojs}
 //| echo: false
-viewof question_1_response = Inputs.radio(["Yes", "No"], {label: "", value: "A"});
+viewof skewness_question_1_response = Inputs.radio(["Yes", "No"], {label: "", value: "A"});
 this_result = { 
-  var question_1_result = "awaiting response";
+  var skewness_question_1_result = "awaiting response";
 
   if(rand_skew_no > 1.96){
-    if(question_1_response == "Yes"){
-      question_1_result = "Correct - Z scores above 1.96 suggest significant problems with skewness";
-    } else if(question_1_response == "No") {
-      question_1_result = "Not Correct - Z scores above 1.96 suggest significant problems with skewness";
+    if(skewness_question_1_response == "Yes"){
+      skewness_question_1_result = "Correct - Z scores above 1.96 suggest significant problems with skewness";
+    } else if(skewness_question_1_response == "No") {
+      skewness_question_1_result = "Not Correct - Z scores above 1.96 suggest significant problems with skewness";
     }
   } else {
-    if(question_1_response == "Yes"){
-      question_1_result = "Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness";
-    } else if(question_1_response == "No") {
-      question_1_result = "Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness";
+    if(skewness_question_1_response == "Yes"){
+      skewness_question_1_result = "Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness";
+    } else if(skewness_question_1_response == "No") {
+      skewness_question_1_result = "Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness";
     }
   }
-  return question_1_result;
+  return skewness_question_1_result;
 }
 
 ```

@@ -16,11 +16,11 @@ Jamie has just completed a mathematics test, where the maximum score is 100%. Th
 
 ```{ojs}
 //| echo: false
-viewof question_1_response = Inputs.number([-7,3], {label: "Z-score", step:.1});
+viewof normal_question_1_response = Inputs.number([-7,3], {label: "Z-score", step:.1});
 correct_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;
 
-question_1_result = { 
-  if(question_1_response == correct_z_score){
+normal_question_1_result = { 
+  if(normal_question_1_response == correct_z_score){
     return "Correct! (" + rand_maths_score + " - " + mean_maths_score + ")/" + sd_maths_score + " = " + correct_z_score;
   } else {
     return "Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."
@@ -28,7 +28,7 @@ question_1_result = {
 }
 ```
 
-Your answer is... **\${question_1\_result}**.
+Your answer is... **\${normal_question_1\_result}**.
 
 ### Question 2
 
@@ -36,7 +36,7 @@ Using the above value, which percentile group would you put Jamie's score into?
 
 ```{ojs}
 //| echo: false
-question_2_correct = {
+normal_question_2_correct = {
   if(correct_z_score < -2){
     return "bottom 2.3%";
   } else if(correct_z_score < -1){
@@ -56,7 +56,7 @@ question_2_correct = {
 
 ```{ojs}
 //| echo: false
-viewof question_2_response = Inputs.radio([
+viewof normal_question_2_response = Inputs.radio([
   "bottom 2.3%", 
   "bottom 15.9%",
   "bottom 50%",
@@ -64,10 +64,10 @@ viewof question_2_response = Inputs.radio([
   "top 15.9%",
   "top 2.3%", 
   ], {label: "", value: "A"});
-question_2_result = { 
-  if(question_2_response == ""){
+normal_question_2_result = { 
+  if(normal_question_2_response == ""){
     return "awaiting your response";
-  } else if(question_2_correct == question_2_response){
+  } else if(normal_question_2_correct == normal_question_2_response){
     return "Correct!";
   } else {
     return "Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.";
@@ -75,7 +75,7 @@ question_2_result = {
 }
 ```
 
-Your answer is... **\${question_2\_result}**.
+Your answer is... **\${normal_question_2\_result}**.
 
 ::: {style="color:#068"}
 If you want to practice with different numbers in these questions then please reload the page.

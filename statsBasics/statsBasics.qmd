@@ -1,5 +1,5 @@
 ---
-title: "Statistics Basics (incomplete)"
+title: "Statistics Basics"
 format: 
   html:
     code-fold: false
@@ -12,7 +12,9 @@ In **statistics**, a **variable** is any (measurable) attribute that describes a
 
 Within **coding**, a **variable** tends to refer to a particular **object** in your code, such as a specific value, list, dataset, etc. In R the terminology for a variable tends to be **object**.
 
-**What is a hypothesis?** A(n **experimental) hypothesis** is a possible outcome for the study you will run. Sometimes researchers think in terms of **null hypotheses**, which is what you would expect if your (experimental) hypothesis is incorrect.
+## **What is a hypothesis?** 
+
+A(n **experimental) hypothesis** is a possible outcome for the study you will run. Sometimes researchers think in terms of **null hypotheses**, which is what you would expect if your (experimental) hypothesis is incorrect.
 
 ## What is a p-value?
 
@@ -30,10 +32,24 @@ To give a more concrete example:
 
 ## What is the alpha value?
 
-It is the p-value threshold that identifies if a result is "significant" or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is "significant" (i.e. so unlikely that this would have happened by chance that we conclude this didn't happen randomly).
+$Alpha$ (⍺) is the p-value threshold that identifies if a result is "significant" or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is "significant" (i.e. so unlikely that this would have happened by chance that we conclude this didn't happen randomly).
 
 **Technical definition:** The alpha-level is the expected rate of false-positives or type 1 errors (in the long run). Under the null hypothesis all p-values are equally probable, and so the alpha value sets the chance that a null hypothesis is rejected incorrectly (i.e. we say there is an effect when there isn't one).
 
 Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the false-positive rate, we could adjust this value (this has been a contentious issue in recent years, see [here](https://www.nature.com/articles/s41562-017-0189-z "Redefine statistical significance") and [here](https://www.nature.com/articles/s41562-018-0311-x "Justify your alpha")).
 
 ## What is power (and what is the beta value)
+
+Power tells you how likely you are to get a significant result (assuming the effect you are investigating is real) based on:
+
+-   the **sample size** of participants you have. The more participants you have, the more powerful your analysis will be (i.e. the more likely you are to find a significant result).
+
+-   the **effect size** (e.g. Cohen's *d*). The bigger the effect size, the more powerful your analysis will be. Effect sizes in power calculations are generally based on previous studies with similar paradigms.
+
+-   the $alpha$ **(⍺) threshold**. A smaller $alpha$ threshold requires a higher powered analysis to get a significant result.
+
+To explore this, you might find the following interactive tool helpful to see what happens when you change the above:
+
+[https://observablehq.com/\@patrickmineault/interactive-demo-in-pure-js](https://observablehq.com/@patrickmineault/interactive-demo-in-pure-js)
+
+{{< include basicsQuestions.qmd >}}

@@ -1,0 +1,178 @@
+---
+title: "Cronbach's Alpha (R)"
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+## Cronbach's alpha as an index of reliability of a scale
+
+If you want to address whether a questionnaire or scale's items are measuring the same underlying variable, it can be helpful to assess how much overlap there is between the items.
+
+Let's use some publicly available data to investigate this issue. The Empathy Quotient [@Lawrence2004] is a self-report measure of how empathic someone is. There are a variety of data sets from people who have used this measure, so we'll use some data from the following repository:
+
+<https://github.com/bhismalab/EyeTracking_PlosOne_2017/blob/master/EQ_Data.csv>
+
+Whilst this is a general measure of empathy, empathy is a multifacted concept, so let's focus on one of the types of empathy, *cognitive* empathy. This will involve focusing on just items associated with this facet. Note that the items for this are 14, 15, 29, 34 and 35. Let's see how much covariance (see [here](../correlations/correlations.html#shared-variance-between-x-and-y) for a reminder on covariance or shared variance) there is between the items:
+
+
+```{r}
+eq <- read.csv("EQ_Data.csv")
+cog_eq <- eq[,c("Q14.processed", "Q15.processed", "Q29.processed", "Q34.processed", "Q35.processed")]
+
+# to improve readability, relabel the variables
+colnames(cog_eq) <-c("cog_1","cog_2","cog_3","cog_4","cog_5")
+knitr::kable(data.frame(cov(cog_eq)))
+```
+
+
+Note that covariance of an item with itself is just **variance**, e.g. **cog_1** with itself:
+
+```{r}
+var(cog_eq$cog_1)
+```
+
+The above covariance matrix suggests all the items have some overlap - all associations are positive. To get a sense of how strongly they overlap a **correlation** matrix could be more useful, so let's quickly look at that:
+
+```{r}
+knitr::kable(data.frame(cor(cog_eq)))
+```
+
+To create an aggregate of whether these all seem to reliably be measuring the same construct, we can calculate the **Cronbach's Alpha**, so let's do that next. Cronbach's Alpha can be calculated in a few ways. One way to conceptualise the cronbach's alpha is:
+
+$$
+\frac{average Covariance Between Variables}{average(co)Variance}
+$$
+
+Using the table above: this is the average of all the cells that capture covariance between items:
+
+![](covarianceOnly.png)
+
+(which captures how much the variables overlap) **divided by** the average of all variance of items with both with other items and with themselves
+
+```{r, echo=FALSE}
+knitr::kable(data.frame(cov(cog_eq)))
+```
+
+Which can be summarised as follows:
+
+$$
+\alpha = \frac{\bar{COV}}{(\sum{s_i^2} + \sum{COV_i})/N^2}
+$$
+
+Based on a formula from [@field2013discovering] (Fourth edition, page 708)
+
+-   $N$ is the number of items
+
+-   $\bar{COV}$ is the average covariance between items (note that this does **not** include an items covariance with itself)
+
+-   $s_i$ is the standard deviation for a single item (remember that squaring it give
+
+-   $COV_i$ is the covariance for an item with another item
+
+-   The bottom half together is the sum of a complete covariance matrix like the one directly above.
+
+What's nice about this formula, is that it's quite easy to implement:
+
+-   $N^2$ is $5^2$ which makes 25
+
+-   $\bar{COV}$ is the mean for the above covariance matrix after removing comparisons of items with themselves, so the mean of:
+
+```{r}
+# we know that a correlation matrix will have 1 where an item is correlating with itself, so we'll create an index to skip those items:
+cov_itself = cor(cog_eq) == 1
+
+# now let's calculate the mean of the valid parts of the covariance matrix
+cov_df = data.frame(cov(cog_eq))
+cov_df[cov_itself] = ""
+knitr::kable(cov_df)
+mean_cov_df = mean(cov(cog_eq)[!cov_itself])
+```
+
+which would make `r mean_cov_df`
+
+-   $\sum{s_i^2}$ is the sum of the variance of each item. In our case, we already have that information when we calculated the "covariance" of each item with itself:
+
+```{r}
+mean_var_df <- data.frame(cov(cog_eq))
+mean_var_df[!cov_itself] = ""
+knitr::kable(mean_var_df)
+sum_var_df = mean(cov(cog_eq)[cov_itself])
+```
+
+-   $\sum{COV_i}$ is just the sum of the all the covariances, which actually are the same values we focus on for the mean:
+
+```{r}
+knitr::kable(cov_df)
+```
+
+This makes it quite simple to calculate the whole of the bottom row, as we can sum the entire covariance matrix (that includes the variances of each item with itself):
+
+```{r}
+sum(cov(cog_eq))
+```
+
+Put together, we can calculate $alpha$:
+
+```{r}
+mean(cov(cog_eq)[cor(cog_eq) != 1])/ # mean covariance
+mean(cov(cog_eq))                    # mean of covariance and variance combined
+
+```
+
+Let's compare this to the **psych** packages **alpha** function (note that it is likely that RStudio will have another **alpha** function active that is not cronbach's alpha if you haven't loaded the psych package!):
+
+```{r}
+#| label: tbl-cronbach-alpha
+#| tbl-cap: "Psych Package's Cronbach Alpha calculations"
+
+eq_alpha_output <- psych::alpha(cog_eq)
+knitr::kable(eq_alpha_output$total) # note that there other outputs available
+```
+
+## Standardised Alpha
+
+Very similar logic to above, but instead of dividing the average covariate between items by the average covariate between and within items, we divide the average **r** value between items by the average r-value for both between and within items:
+
+$$
+\alpha = \frac{\bar{r_{b}}}{\bar{r}}
+$$
+
+-   $\bar{r_b}$ being the average r-value between items
+
+-   $\bar{r}$ being the average r-value both between and within items
+
+This is dividing the mean of:
+
+```{r}
+cor_df = data.frame(cor(cog_eq))
+cor_df[cov_itself] = NA
+knitr::kable(cor_df)
+```
+
+by the mean of:
+
+```{r}
+knitr::kable(data.frame(cor(cog_eq)))
+```
+
+This can be calculated quite elegantly:
+
+```{r}
+mean(cor(cog_eq)[cor(cog_eq) != 1])/ # mean correlation between items
+mean(cor(cog_eq))                    # mean of all correlations
+```
+
+Which matches the value of std.alpha in the output in @tbl-cronbach-alpha.
+
+## [*General*]{.underline} benchmarks for Cronbach's alpha
+
+There are caveats to these benchmarks, and weird things that can happen with Cronbach's alpha, but here are some broad benchmarks about how reliable your items are based on their $\alpha$ value:
+
+-   Less than .6 is unacceptable
+
+-   .6 to .7 is mediocre
+
+-   Greater than .7 is acceptable reliability
+
+-   Greater than .9 suggests that your measure includes redundant items

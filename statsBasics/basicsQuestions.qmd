@@ -1,0 +1,53 @@
+---
+format: html
+editor: visual
+---
+
+### Question 1
+Assuming that you are investigating a real effect, which sample size is more likely to give you a significant result?
+```{ojs}
+//| echo: false
+viewof stats_basics_1_response = Inputs.radio(['100','200','neither']);
+correct_stats_basics_1 = '100';
+stats_basics_1_result = {
+  if(stats_basics_1_response == correct_stats_basics_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${stats_basics_1_result}
+
+### Question 2
+
+Assuming that you are NOT investigating a real effect, which sample size is more likely to give you a significant result?
+```{ojs}
+//| echo: false
+viewof stats_basics_2_response = Inputs.radio(['100','200','neither']);
+correct_stats_basics_2 = 'neither';
+stats_basics_2_result = {
+  if(stats_basics_2_response == correct_stats_basics_2){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${stats_basics_2_result}
+
+### Question 3
+Alpha values are...
+```{ojs}
+//| echo: false
+viewof stats_basics_3_response = Inputs.radio(['higher when the p-value is higher','lower when the p-value is lower','neither']);
+correct_stats_basics_3 = 'neither';
+stats_basics_3_result = {
+  if(stats_basics_3_response == correct_stats_basics_3){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${stats_basics_3_result}

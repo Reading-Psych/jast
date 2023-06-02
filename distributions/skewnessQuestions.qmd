@@ -1,0 +1,36 @@
+---
+format: html
+editor: visual
+---
+
+### Question 1
+```{ojs}
+//| echo: false
+rand_skew_no = Math.round(Math.random() * 400)/100;
+```
+Is a skewness z-score of ${rand_skew_no} indicative of a significant problem of skewness?
+
+```{ojs}
+//| echo: false
+viewof question_1_response = Inputs.radio(["Yes", "No"], {label: "", value: "A"});
+this_result = { 
+  var question_1_result = "awaiting response";
+
+  if(rand_skew_no > 1.96){
+    if(question_1_response == "Yes"){
+      question_1_result = "Correct - Z scores above 1.96 suggest significant problems with skewness";
+    } else if(question_1_response == "No") {
+      question_1_result = "Not Correct - Z scores above 1.96 suggest significant problems with skewness";
+    }
+  } else {
+    if(question_1_response == "Yes"){
+      question_1_result = "Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness";
+    } else if(question_1_response == "No") {
+      question_1_result = "Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness";
+    }
+  }
+  return question_1_result;
+}
+
+```
+Your answer is **${this_result}**

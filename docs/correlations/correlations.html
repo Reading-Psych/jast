@@ -217,6 +217,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
@@ -260,16 +265,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Excel tutorial</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Correlation</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link active">Correlations</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (r only)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  itemAnalyses/pca.qmd
+  </li>
+          <li class="sidebar-item">
+  itemAnalyses/cfa.qmd
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
@@ -304,12 +350,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Test yourself</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
@@ -426,9 +472,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># show the plot</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Table1.png" class="img-fluid figure-img"></p>
@@ -440,6 +483,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="correlation-Figure1.png" width="700" height="500" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Scatterplot of ‘GDP per capita’ and ‘Life expectancy’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 <p><em>Note that in the figure above each dot represents an individual point from our data.Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).</em></p>
 <p>Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.</p>
@@ -531,14 +577,14 @@ var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">## save the plot</span></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefig('life_exp_resid.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Figure2.png" width="700" height="500" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Scatterplot with residuals of ‘Life expectancy’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 <p><em>Note that in the figure above the horizontal blue dotted line represent the mean of Life Expectancy. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the</em> <a href="../describingData/dispersion.html">degrees of freedom</a>.</p>
 <p>Lets look at the variance of GDP per capita:</p>
@@ -606,14 +652,14 @@ var_y = \frac{\sum(y_i-\bar{y})^2}{N-1}
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">## save the plot</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefig('life_exp_resid.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Figure3.png" width="700" height="500" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Scatterplot with residuals of ‘GDP per capita’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 <p><em>Note that in the figure above the vertical blue dotted line represents the mean gdp per capita. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the</em> <a href="../describingData/dispersion.html">degrees of freedom</a>.</p>
 </section>
@@ -742,14 +788,14 @@ var_{xy} = \frac{\sum(x_i-\bar{x})(\color{red}{y_i-\bar{y}})}{N-1}
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co"># save the plot</span></span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'shared_resid.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Figure4.png" width="700" height="500" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Scatterplot with shared residuals’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="comparing-shared-variance-var_xy-to-total-variance" class="level3">
@@ -833,10 +879,10 @@ sample estimates:
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>scipy.stats.pearsonr(gapminder_2007[<span class="st">"gdpPercap"</span>], gapminder_2007[<span class="st">"lifeExp"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <pre><code>(0.6786623986777585, 1.6891897969647515e-20)</code></pre>
+</div>
+</div>
+</div>
 <p>To visualise what proportion of the variance is captured by <span class="math inline">\(var_{xy}\)</span>:</p>
 <table class="table">
 <colgroup>
@@ -949,14 +995,14 @@ sample estimates:
 <span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="co">## save the plot</span></span>
 <span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.savefig('inverted_resid.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Figure5.png" width="700" height="500" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Scatterplot with inverted shared residuals’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 <p>The <span class="math inline">\(Pearson's\)</span> <span class="math inline">\(r\)</span> is now the reverse of the data before this transformation, i.e.&nbsp;r=-.679. Notice how there’s consistency in the above average <span class="math inline">\(x\)</span> values being associated with below average <span class="math inline">\(y\)</span> values, and vice-versa.</p>
 <p>You may have noticed that the data above looks like it’s not normally distributed, so lets check skewness and kurtosis to see if we should use Spearman’s Rho (AKA Spearman’s Rank) instead:</p>
@@ -1044,9 +1090,6 @@ kurtosis -0.8298204 0.4041614 -2.053191</code></pre>
 <span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(gapminder_2007[<span class="st">"gdpPercap"</span>])</span>
 <span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(gapminder_2007[<span class="st">"lifeExp"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Table2.png" height="100" class="figure-img"></p>
@@ -1058,6 +1101,9 @@ kurtosis -0.8298204 0.4041614 -2.053191</code></pre>
 <p><img src="correlation-Table3.png" height="100" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Skewness and kurtosis for ‘lifeExp’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 <p>As GDP and Life Expectancy skewness and (kurtosis for life expectancy) estimates are more than 1.96 * their standard errors (i.e.&nbsp;their z-scores are above 1.96), we have significant evidence that the data for both variabels is <em>not</em> normally distributed, and thus we can/should complete a Spearman’s Rank/Rho correlation (in the next subsection).</p>
 </section>
@@ -1107,9 +1153,6 @@ kurtosis     -1.2 0.4041614 -2.969111</code></pre>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(gapminder_2007[<span class="st">"gdpPercap_rank"</span>])</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(gapminder_2007[<span class="st">"lifeExp_rank"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Table4.png" height="100" class="figure-img"></p>
@@ -1121,6 +1164,9 @@ kurtosis     -1.2 0.4041614 -2.969111</code></pre>
 <p><img src="correlation-Table5.png" height="100" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Skewness and kurtosis for ‘lifeExp_rank’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 <p>This has successfully removed any issue with skewness of the data, but has made the data more platykurtic (i.e.&nbsp;flatter). A problem with platykurtic data is that parametric tests might be <strong>over</strong> sensitive to identifying significant effects (see <a href="../distributions/kurtosis.html" target="_blank">kurtosis</a>), i.e.&nbsp;be at a higher risk of <strong>false positives</strong>. This is evidence that using a Spearman’s Rank may increase a risk of a false-positive (at least with this data), so <a href="transforming" target="_blank">another transformation of the data</a> may be more appropriate to avoid this problem with kurtosis.</p>
 <p>For now, lets focus on how much of the variance in ranks is explained in the overlap in variance of <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span> ranks:</p>
@@ -1166,12 +1212,12 @@ sample estimates:
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Spearman correlation applied to original data (letting R do the ranking)</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>scipy.stats.spearmanr(gapminder_2007[<span class="st">"gdpPercap"</span>], gapminder_2007[<span class="st">"lifeExp"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <pre><code>(0.8565899189213543, 4.6229745362984015e-42)
 
 SpearmanrResult(correlation=0.8565899189213544, pvalue=4.62297453629821e-42)</code></pre>
+</div>
+</div>
+</div>
 <p>The <span class="math inline">\(r\)</span> value is now .857, suggesting that the overlap between <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span> explains 85.7% of the total variance of the ranks for both of them.</p>
 <p>Lets visualise this using similar principles above on the <strong>ranks</strong> of <span class="math inline">\(gdp\)</span> and <span class="math inline">\(life\)</span> <span class="math inline">\(expectancy\)</span>:</p>
 <div class="panel-tabset">
@@ -1259,14 +1305,14 @@ SpearmanrResult(correlation=0.8565899189213544, pvalue=4.62297453629821e-42)</co
 <span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a><span class="co"># show the plot</span></span>
 <span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="correlation-Figure6.png" width="700" height="500" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Scatterplot for ‘Life Expectancy (RANK)’ and ‘GDP per capita (RANK)’ with residuals’</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 <p>You may notice that the variance from the mean in X and Y is more aligned in this figure than it was in the data before it was transformed into ranks (and is less skewed!):</p>
 <div class="cell">

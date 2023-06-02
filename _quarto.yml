@@ -26,7 +26,7 @@ website:
           - installing.qmd
       - section: "Statistics Basics"
         contents:
-          #- statsBasics/statsBasics.qmd
+          - statsBasics/statsBasics.qmd
           - statsBasics/eNumbers.qmd    
       - section: "R Basics"
         contents:
@@ -40,12 +40,12 @@ website:
       - section: "Distributions"
         contents:
           - distributions/normal.qmd
-      #     - distributions/skewness.qmd
+          - distributions/skewness.qmd
       #     - distributions/kurtosis.qmd
       #     - distributions/transforming.qmd
-      # - section: "Correlation"
-      #   contents:
-      #     - correlations/correlations.qmd
+      - section: "Correlation"
+        contents:
+          - correlations/correlations.qmd
       #     - correlations/partialCorrelations.qmd
       #     - correlations/cooksd.qmd
       # - section: "Regressions"
@@ -61,6 +61,11 @@ website:
       #     - "GeneralLinearModels/Two-Way (or more) Analysis of Variance"
       #     - "GeneralLinearModels/ANCOVA"
       # - section: "Permutation testing"
+      - section: "Item analyses"
+        contents: 
+          - "itemAnalyses/cronbachsAlpha.qmd"
+          - "itemAnalyses/pca.qmd"
+          - "itemAnalyses/cfa.qmd"
       # - section: "University of Reading advice?"
       #   contents:
       #     - "Psychology"

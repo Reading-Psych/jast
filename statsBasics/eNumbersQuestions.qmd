@@ -4,3 +4,35 @@ editor: visual
 ---
 
 ### Question 1
+
+Which is bigger?
+```{ojs}
+//| echo: false
+viewof scientific_notation_1_response = Inputs.radio(['3.1e3','310']);
+correct_scientific_notation_1 = '3.1e';
+scientific_notation_1_result = {
+  if(scientific_notation_1_response == correct_scientific_notation_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${scientific_notation_1_result}
+
+### Question 2
+
+Which is bigger?
+```{ojs}
+//| echo: false
+viewof scientific_notation_2_response = Inputs.radio(['2.5 * 10^-3',' .00025']);
+correct_scientific_notation_2 = '2.5 * 10^-3';
+scientific_notation_2_result = {
+  if(scientific_notation_2_response == correct_scientific_notation_2){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${scientific_notation_2_result}

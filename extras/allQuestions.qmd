@@ -4,8 +4,13 @@ format: html
 editor: visual
 ---
 
-## Distributions
+## Statistics Basics
 
-### Normal
+{{< include ../statsBasics/eNumbersQuestions.qmd >}}
+
+{{< include ../statsBasics/basicsQuestions.qmd >}}
+
+## Normal
 
 {{< include ../distributions/normal_questions.qmd >}}
+{{< include ../distributions/skewnessQuestions.qmd >}}

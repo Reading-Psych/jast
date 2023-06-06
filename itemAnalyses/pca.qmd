@@ -1,0 +1,201 @@
+---
+title: "Principle Component Analysis (R)"
+format: html
+editor: visual
+bibliography: ../references.bib
+---
+
+## What is Principle Component Analysis (PCA)?
+
+Questionnaires and surveys often have items that reflect multiple sub-scales or multiple related constructs, in a single measure. For example, the empathy quotient [@Lawrence2004] has multiple types of empathy within it:
+
+-   cognitive empathy
+
+-   emotional reactivity
+
+-   social skills
+
+Let's use one publicly available data set to check if we can replicate these subscales:
+
+<https://github.com/bhismalab/EyeTracking_PlosOne_2017/blob/master/EQ_Data.csv>
+
+```{r}
+eq <- read.csv("EQ_Data.csv")
+# focusing on q1.raw to q40.raw
+eq_processed <- eq[,c(paste("Q",1:40,".processed",sep=""))]
+rmarkdown::paged_table(eq_processed)
+colnames(eq_processed) <- paste("eq",1:40, sep="")
+```
+
+```{r}
+rmarkdown::paged_table(data.frame(cor(eq_processed)))
+```
+
+## Confirmatory factor analysis
+
+We already have three subscales for the empathy quotient, so let's **confirm** whether our current data is consistent with them. The subscales are:
+
+::: callout-important
+## Some of the items below are reverse scored
+
+The items that would go against the component, e.g. "I find it hard to know what to do in a social situation" if the participant agreed are reverse scored, meaning that strongly disagreeing increases their score for the relevant subscale (in this case "social skills").
+:::
+
+Cognitive:
+
+-   14: I am good at predicting how someone will feel.
+
+-   15: I am quick to spot when someone in a group is feeling awkward or uncomfortable.
+
+-   29: I can sense if I am intruding, even if the other person doesn't tell me.
+
+-   34: I can tune into how someone else feels rapidly and intuitively.
+
+-   35: I can easily work out what another person might want to talk about.
+
+Social Skills:
+
+-   2: I find it difficult to explain to others things that I understand easily, when they don't understand it first time.
+
+-   4: I find it hard to know what to do in a social situation.
+
+-   7: Friendships and relationships are just too difficult, so I tend not to bother with them.
+
+-   8: I often find it difficult to judge if something is rude or polite.
+
+-   21: I don't tend to find social situations confusing.
+
+Emotion:
+
+-   3: I really enjoy caring for other people.
+
+-   16: If I say something that someone else is offended by, I think that that's their problem, not mine.
+
+-   19: Seeing people cry doesn't really upset me.
+
+-   33: I usually stay emotionally detached when watching a film.
+
+-   39: I tend to get emotionally involved with a friend's problems.
+
+Let's start by looking at correlation matrices to see if the items tend to correlate with each other in the current data set:
+
+### Cognitive empathy
+
+```{r}
+cor(eq_processed[,c("eq14","eq15","eq29","eq34","eq35")])
+```
+
+So far looking good, as everything positively correlates - mostly with r-values greater than .25. Let's now see how well each item loads onto the total of these scores:
+
+```{r}
+library(tidyverse)
+library(kableExtra)
+
+eq_subscales_r <- data.frame(
+  cor(
+    eq_processed[,c(
+      # Cog
+      "eq14","eq15","eq29","eq34","eq35",
+      
+      # Social Skills
+      "eq2","eq4","eq7","eq8","eq21",
+      
+      # Emotion
+      "eq3","eq16","eq19","eq33","eq39"
+      )],
+    matrix(data = c(
+      rowSums(eq_processed[,c("eq14","eq15","eq29","eq34","eq35")]),
+      rowSums(eq_processed[,c("eq2","eq4", "eq7", "eq8", "eq21")]),
+      rowSums(eq_processed[,c("eq3","eq16","eq19","eq33","eq39")])
+      ), ncol = 3
+    )
+  )
+) 
+
+colnames(eq_subscales_r) <- c( "Cognitive", "Social", "Emotion")
+
+eq_subscales_r %>% mutate_all(~cell_spec(
+        .x, 
+        color = ifelse(.x < .4, "black", "white"),
+        background = ifelse(.x > .4, "red"," white"))) %>%
+    kable(escape = F) %>%
+    kable_styling()
+
+```
+
+This is quite dense, but in broad terms, we want to cluster items that correlate with each other into one component (AKA factor AKA subscale).
+
+If we use a package in R we can start identifying the top 3 components and check if the questions map on to what we would expect for each of the three subscales:
+
+```{r}
+eq_pca <- prcomp(eq_processed)
+sort(abs(eq_pca$rotation[,1]),decreasing = T)[1:5]
+sort(eq_pca$rotation[,1],decreasing = T)[1:5]
+```
+
+Component 1 involves questions 20, 33, 31, 16 and 5. These items are: - 20: I am very blunt, which some people take to be rudeness, even though this is unintentional. - 33: I usually stay emotionally detached when watching a film. - 31: Other people often say that I am insensitive, though I don't always see why. - 16: If I say something that someone else is offended by, I think that that's their problem, not mine. - 5: People often tell me that I went too far in driving my point home in a discussion.
+
+# I think the below are just notes or wrong
+
+So how do we start doing this? We can make a regression to determine the loading of all the items onto the total:
+
+```{r}
+eq_total <- rowSums(eq_processed)
+first_component <- lm(eq_processed)
+first_component$coefficients
+```
+
+# explained in smaller steps
+
+### using r package
+
+```{r}
+eigen(cov(eq_processed))
+```
+
+## learning from https://uc-r.github.io/pca
+
+```{r}
+library(tidyverse)  # data manipulation and visualization
+library(gridExtra)  # plot arrangement
+
+data("USArrests")
+head(USArrests, 10)
+
+scaled_df <- apply(USArrests, 2, scale)
+
+arrests.cov <- cov(scaled_df)
+arrests.eigen <- eigen(arrests.cov)
+
+arrests.cov
+arrests.eigen
+
+
+temp_1 <- lm(scaled_df[,1] ~ scaled_df[,2])
+cov(temp_1$residuals, scaled_df[,1])
+cov(temp_1$residuals, scaled_df[,2])
+
+
+
+str(arrests.eigen)
+
+arrests.eigen
+
+arrests.eigen$values
+
+
+
+arrests.eigen$vectors
+
+
+(beep <- arrests.eigen$vectors[,1:2])
+
+
+beep <- prcomp(scaled_df)
+beep$rotation <- beep$rotation * -1
+beep$rotation <- beep$x * -1
+
+biplot(beep, scale = 0)
+```
+
+To start

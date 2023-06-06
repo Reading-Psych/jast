@@ -243,6 +243,9 @@ div.csl-indent {
   <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  statsBasics/multipleTesting.qmd
+  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -285,7 +288,12 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness</a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R, incomplete)</a>
   </div>
 </li>
       </ul>
@@ -318,12 +326,6 @@ div.csl-indent {
   <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link active">Cronbach’s Alpha (R)</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  itemAnalyses/pca.qmd
-  </li>
-          <li class="sidebar-item">
-  itemAnalyses/cfa.qmd
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -398,6 +400,10 @@ div.csl-indent {
   <li><a href="#cronbachs-alpha-as-an-index-of-reliability-of-a-scale" id="toc-cronbachs-alpha-as-an-index-of-reliability-of-a-scale" class="nav-link active" data-scroll-target="#cronbachs-alpha-as-an-index-of-reliability-of-a-scale">Cronbach’s alpha as an index of reliability of a scale</a></li>
   <li><a href="#standardised-alpha" id="toc-standardised-alpha" class="nav-link" data-scroll-target="#standardised-alpha">Standardised Alpha</a></li>
   <li><a href="#general-benchmarks-for-cronbachs-alpha" id="toc-general-benchmarks-for-cronbachs-alpha" class="nav-link" data-scroll-target="#general-benchmarks-for-cronbachs-alpha"><u><em>General</em></u> benchmarks for Cronbach’s alpha</a></li>
+  <li><a href="#some-warnings" id="toc-some-warnings" class="nav-link" data-scroll-target="#some-warnings">Some warnings</a>
+  <ul class="collapse">
+  <li><a href="#does-this-inflation-of-alpha-get-worse-if-the-average-associations-between-items-are-stronger-or-weaker" id="toc-does-this-inflation-of-alpha-get-worse-if-the-average-associations-between-items-are-stronger-or-weaker" class="nav-link" data-scroll-target="#does-this-inflation-of-alpha-get-worse-if-the-average-associations-between-items-are-stronger-or-weaker">Does this inflation of alpha get worse if the average associations between items are stronger or weaker?</a></li>
+  </ul></li>
   <li><a href="#consolidation-questions" id="toc-consolidation-questions" class="nav-link" data-scroll-target="#consolidation-questions">Consolidation questions</a></li>
   </ul>
 </nav>
@@ -425,7 +431,7 @@ div.csl-indent {
 <section id="cronbachs-alpha-as-an-index-of-reliability-of-a-scale" class="level2">
 <h2 class="anchored" data-anchor-id="cronbachs-alpha-as-an-index-of-reliability-of-a-scale">Cronbach’s alpha as an index of reliability of a scale</h2>
 <p>If you want to address whether a questionnaire or scale’s items are measuring the same underlying variable, it can be helpful to assess how much overlap there is between the items.</p>
-<p>Let’s use some publicly available data to investigate this issue. The Empathy Quotient <span class="citation" data-cites="Lawrence2004">(<a href="#ref-Lawrence2004" role="doc-biblioref">LAWRENCE et al. 2004</a>)</span> is a self-report measure of how empathic someone is. There are a variety of data sets from people who have used this measure, so we’ll use some data from the following repository:</p>
+<p>Let’s use some publicly available data to investigate this issue. The Empathy Quotient <span class="citation" data-cites="Lawrence2004">(<a href="#ref-Lawrence2004" role="doc-biblioref">Lawrence et al. 2004</a>)</span> is a self-report measure of how empathic someone is. There are a variety of data sets from people who have used this measure, so we’ll use some data from the following repository:</p>
 <p><a href="https://github.com/bhismalab/EyeTracking_PlosOne_2017/blob/master/EQ_Data.csv" class="uri">https://github.com/bhismalab/EyeTracking_PlosOne_2017/blob/master/EQ_Data.csv</a></p>
 <p>Whilst this is a general measure of empathy, empathy is a multifacted concept, so let’s focus on one of the types of empathy, <em>cognitive</em> empathy. This will involve focusing on just items associated with this facet. Note that the items for this are 14, 15, 29, 34 and 35. Let’s see how much covariance (see <a href="../correlations/correlations.html#shared-variance-between-x-and-y">here</a> for a reminder on covariance or shared variance) there is between the items:</p>
 <div class="cell">
@@ -937,6 +943,19 @@ div.csl-indent {
 <li><p><span class="math inline">\(\bar{r_b}\)</span> being the average r-value between items</p></li>
 <li><p><span class="math inline">\(\bar{r}\)</span> being the average r-value both between and within items</p></li>
 </ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Cronbach’s Alpha vs.&nbsp;Standardised Cronbach’s Alpha
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember that r-values are comparisons of <strong>covariates</strong> to the <strong>total variance</strong> (see <a href="http://localhost:4285/correlations/correlations.html#comparing-shared-variance-var_xy-to-total-variance">here</a>), and are thus <u><strong><em>standardised</em></strong></u> compared to <strong>covariates</strong> that are not divided by the <strong>total variance</strong>. One way to think about this is that correlations are standardised between -1 to 1, whereas variance has no lower or upper limit.</p>
+</div>
+</div>
 <p>This is dividing the mean of:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cor_df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">cor</span>(cog_eq))</span>
@@ -1079,19 +1098,153 @@ div.csl-indent {
 <li><p>Greater than .9 suggests that your measure includes redundant items</p></li>
 </ul>
 </section>
+<section id="some-warnings" class="level2">
+<h2 class="anchored" data-anchor-id="some-warnings">Some warnings</h2>
+<p>More items in a measure <strong><em>generally</em></strong> means a higher CA, even if the associations between the items is consistent. For example, imagine we had the following correlation matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>example_1_small <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_1 =</span> <span class="fu">c</span>(<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_2 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_3 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_4 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(example_1_small)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: right;">item_1</th>
+<th style="text-align: right;">item_2</th>
+<th style="text-align: right;">item_3</th>
+<th style="text-align: right;">item_4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We would get the following standardised <span class="math inline">\(\alpha\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(example_1_small[example_1_small <span class="sc">!=</span> <span class="dv">1</span>])<span class="sc">/</span> <span class="co"># mean correlation between items</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as.matrix</span>(example_1_small))             <span class="co"># mean of all correlations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3076923</code></pre>
+</div>
+</div>
+<p>Let’s throw in a few more items with exactly the same strength of association to everything else:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>example_1_large <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_1 =</span> <span class="fu">c</span>(<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_2 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_3 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_4 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_5 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_6 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_7 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">1</span>),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_8 =</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,.<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>example_1_large</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  item_1 item_2 item_3 item_4 item_5 item_6 item_7 item_8
+1    1.0    0.1    0.1    0.1    0.1    0.1    0.1    0.1
+2    0.1    1.0    0.1    0.1    0.1    0.1    0.1    0.1
+3    0.1    0.1    1.0    0.1    0.1    0.1    0.1    0.1
+4    0.1    0.1    0.1    1.0    0.1    0.1    0.1    0.1
+5    0.1    0.1    0.1    0.1    1.0    0.1    0.1    0.1
+6    0.1    0.1    0.1    0.1    0.1    1.0    0.1    0.1
+7    0.1    0.1    0.1    0.1    0.1    0.1    1.0    0.1
+8    0.1    0.1    0.1    0.1    0.1    0.1    0.1    1.0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(example_1_large[example_1_large <span class="sc">!=</span> <span class="dv">1</span>])<span class="sc">/</span> <span class="co"># mean correlation between items</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as.matrix</span>(example_1_large))             <span class="co"># mean of all correlations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4705882</code></pre>
+</div>
+</div>
+<section id="does-this-inflation-of-alpha-get-worse-if-the-average-associations-between-items-are-stronger-or-weaker" class="level3">
+<h3 class="anchored" data-anchor-id="does-this-inflation-of-alpha-get-worse-if-the-average-associations-between-items-are-stronger-or-weaker">Does this inflation of alpha get worse if the average associations between items are stronger or weaker?</h3>
+<p>To visualise how rapidly the alpha values increase with the number of items, and if this is a bigger or smaller problems if the average association is stronger or weaker, let’s calculate the alpha values you would get for a range of r-values (.1 to .9) and number of items (5 to 100):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>alpha_inflation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_n  =</span> <span class="fu">rep</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">100</span>,<span class="dv">9</span>),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">r_value =</span> (<span class="fu">rep</span>(<span class="fu">c</span>(.<span class="dv">025</span>, .<span class="dv">05</span>, .<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>, .<span class="dv">4</span>, .<span class="dv">5</span>, .<span class="dv">6</span>, .<span class="dv">7</span>), <span class="at">each =</span> <span class="dv">96</span>)),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha   =</span> <span class="cn">NA</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(alpha_inflation<span class="sc">$</span>item_n)){</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  this_r_value <span class="ot">=</span> alpha_inflation<span class="sc">$</span>r_value[i]</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  this_r_value <span class="ot">=</span> alpha_inflation<span class="sc">$</span>item_n[i]</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  this_example_cor_matrix <span class="ot">=</span> <span class="fu">matrix</span>(</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    alpha_inflation<span class="sc">$</span>r_value[i],</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    alpha_inflation<span class="sc">$</span>item_n[i],</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    alpha_inflation<span class="sc">$</span>item_n[i]</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>alpha_inflation<span class="sc">$</span>item_n[i]){</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    this_example_cor_matrix[j,j] <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  alpha_inflation<span class="sc">$</span>alpha[i] <span class="ot">=</span> <span class="fu">mean</span>(this_example_cor_matrix[this_example_cor_matrix <span class="sc">!=</span> <span class="dv">1</span>])<span class="sc">/</span> <span class="co"># mean correlation between items</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as.matrix</span>(this_example_cor_matrix))             <span class="co"># mean of all correlations</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>alpha_inflation, <span class="fu">aes</span>(<span class="at">x=</span>item_n, <span class="at">y=</span>alpha, <span class="at">group=</span>r_value, <span class="at">color=</span><span class="fu">factor</span>(r_value))) <span class="sc">+</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Number of Items"</span>)  <span class="sc">+</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Standardised Cronbach's Alpha"</span>) <span class="sc">+</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name=</span><span class="st">"Average </span><span class="sc">\n</span><span class="st">r-value"</span>) <span class="sc">+</span> </span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> .<span class="dv">7</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-n-vs-r-alpha" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="cronbachsAlpha_files/figure-html/fig-n-vs-r-alpha-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Visualisation of how an increased number of items inflates Cronbach’s Alpha even if the average association between items is kept consistent. Note that whilst this has been done on standardised Cronbach’s Alpha, the principle applies even for calculation of non-standardised cronbach’s Alpha. The black line is at a value of .7.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see above that the alpha value isn’t inflated hugely when the average correlation is already high, which makes sense as there isn’t much scope for it to be inflated. Measures with items with only weak associations are heavily influenced though. If you have a measure with 100 items, a Standardised Cronbach’s Alpha of .7 will be achieved even if the average <span class="math inline">\(r\)</span> value is as low as .025. In this sort of situation, it might be more helpful to identify sub-factors within your measure using analysis like <a href="pca.html">Principle Components Analysis</a> or <a href="cfa.html">Confirmatory Factor Analysis</a>.</p>
+</section>
+</section>
 <section id="consolidation-questions" class="level2">
 <h2 class="anchored" data-anchor-id="consolidation-questions">Consolidation questions</h2>
 <p>Cronbach’s Alpha is useful to check whether items in a measure are…</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb19" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'valid'</span><span class="op">,</span><span class="st">'reliable'</span>])<span class="op">;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_1 <span class="op">=</span> <span class="st">'reliable'</span><span class="op">;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_1_result <span class="op">=</span> {</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_1_response <span class="op">==</span> correct_cronbach_alpha_1){</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Specifically, whether they reliably measure the same construct.'</span><span class="op">;</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb27" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'valid'</span><span class="op">,</span><span class="st">'reliable'</span>])<span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_1 <span class="op">=</span> <span class="st">'reliable'</span><span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_1_result <span class="op">=</span> {</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_1_response <span class="op">==</span> correct_cronbach_alpha_1){</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Specifically, whether they reliably measure the same construct. However, weird things can happen if multiple similar constructs are captured in the measure, so it can be helpful to conduct Principle Component Analysis first.'</span><span class="op">;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -1115,11 +1268,47 @@ div.csl-indent {
 </div>
 </div>
 <p><span><span id="ojs-element-id-1"></span></span></p>
+<p>Do you need to reverse code relevant items before conducting Cronbach’s Alpha?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb28" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Yes'</span><span class="op">,</span><span class="st">'No'</span>])<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_2 <span class="op">=</span> <span class="st">'Yes'</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_2_result <span class="op">=</span> {</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_2_response <span class="op">==</span> correct_cronbach_alpha_2){</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Otherwise the item will reduce the alpha value even if the item is reliably associated with other items (just going in the opposite direction).'</span><span class="op">;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-2"></span></span></p>
 
 
 <script type="ojs-module-contents">
 {"contents":[
   {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_1_result}</span>`", "cellName":"ojs-element-id-1"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_2_result}</span>`", "cellName":"ojs-element-id-2"}
 ]}
 </script>
 
@@ -1130,11 +1319,11 @@ div.csl-indent {
 Field, Andy. 2013. <em>Discovering Statistics Using IBM SPSS Statistics</em>. sage.
 </div>
 <div id="ref-Lawrence2004" class="csl-entry" role="doc-biblioentry">
-LAWRENCE, E. J., P. SHAW, D. BAKER, S. BARON-COHEN, and A. S. DAVID. 2004. <span>“Measuring Empathy: Reliability and Validity of the Empathy Quotient.”</span> <em>Psychological Medicine</em> 34 (5): 911–20. <a href="https://doi.org/10.1017/s0033291703001624">https://doi.org/10.1017/s0033291703001624</a>.
+Lawrence, E. J., P. Shaw, D. Baker, S. Baron-Cohen, and A. S. David. 2004. <span>“Measuring Empathy: Reliability and Validity of the Empathy Quotient.”</span> <em>Psychological Medicine</em> 34 (5): 911–20. <a href="https://doi.org/10.1017/s0033291703001624">https://doi.org/10.1017/s0033291703001624</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);\ncorrect_cronbach_alpha_1 = 'reliable';\ncronbach_alpha_1_result = {\n  if(cronbach_alpha_1_response == correct_cronbach_alpha_1){\n    return 'Correct! Specifically, whether they reliably measure the same construct.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_1_response')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);\ncorrect_cronbach_alpha_1 = 'reliable';\ncronbach_alpha_1_result = {\n  if(cronbach_alpha_1_response == correct_cronbach_alpha_1){\n    return 'Correct! Specifically, whether they reliably measure the same construct. However, weird things can happen if multiple similar constructs are captured in the measure, so it can be helpful to conduct Principle Component Analysis first.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof cronbach_alpha_2_response = Inputs.radio(['Yes','No']);\ncorrect_cronbach_alpha_2 = 'Yes';\ncronbach_alpha_2_result = {\n  if(cronbach_alpha_2_response == correct_cronbach_alpha_2){\n    return 'Correct! Otherwise the item will reduce the alpha value even if the item is reliably associated with other items (just going in the opposite direction).';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_2_response')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../itemAnalyses";

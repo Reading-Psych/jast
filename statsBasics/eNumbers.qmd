@@ -23,4 +23,10 @@ Likewise, $2.5\text{e-}3$ is the same as $2.5 \times 10^{-3}$ (which is the same
 2.5e-3 == 2.5 * 10^(-3)
 ```
 
+However, if you would like to turn off scientific notation in R you can type:
+
+```{r}
+options(scipen=999)
+```
+
 {{< include eNumbersQuestions.qmd >}}

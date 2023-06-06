@@ -1,5 +1,5 @@
 ---
-title: "Skewness"
+title: "Skewness (R,Python)"
 format: 
   html:  
     code-fold: false

@@ -27,33 +27,34 @@ website:
       - section: "Statistics Basics"
         contents:
           - statsBasics/statsBasics.qmd
-          - statsBasics/eNumbers.qmd    
+          - statsBasics/eNumbers.qmd
+          - statsBasics/multipleTesting.qmd
       - section: "R Basics"
         contents:
           - rBasics/filetypes.qmd
           - rBasics/fundamentals.qmd
           - rBasics/logic.qmd
-      # - section: "Describing Data"
-      #   contents:
-      #     - describingData/centralTendency.qmd
-      #     - describingData/dispersion.qmd
+      - section: "Describing Data"
+        contents:
+          - describingData/centralTendency.qmd
+          - describingData/dispersion.qmd
       - section: "Distributions"
         contents:
           - distributions/normal.qmd
           - distributions/skewness.qmd
       #     - distributions/kurtosis.qmd
-      #     - distributions/transforming.qmd
+          - distributions/transforming.qmd
       - section: "Correlation"
         contents:
           - correlations/correlations.qmd
-      #     - correlations/partialCorrelations.qmd
+          - correlations/partialCorrelations.qmd
       #     - correlations/cooksd.qmd
-      # - section: "Regressions"
-      #   contents:
-      #     - regressions/simpleRegressions.qmd
-      #     - regressions/multipleRegressions.qmd
-      # - section: "General Linear Models"
-      #   contents: 
+      - section: "Regressions"
+        contents:
+          - regressions/simpleRegressions.qmd
+      #    - regressions/multipleRegressions.qmd
+      - section: "General Linear Models"
+        contents: 
       #     - "GeneralLinearModels/generalLinearModels.qmd"
       #     - "GeneralLinearModels/rVsAdjustedRSquared.qmd"
       #     - "GeneralLinearModels/TTests.qmd"
@@ -64,8 +65,8 @@ website:
       - section: "Item analyses"
         contents: 
           - "itemAnalyses/cronbachsAlpha.qmd"
-          - "itemAnalyses/pca.qmd"
-          - "itemAnalyses/cfa.qmd"
+      #    - "itemAnalyses/pca.qmd"
+      #    - "itemAnalyses/cfa.qmd"
       # - section: "University of Reading advice?"
       #   contents:
       #     - "Psychology"

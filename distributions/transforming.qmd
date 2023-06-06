@@ -1,12 +1,12 @@
 ---
-title: "Transforming Data (incomplete)"
+title: "Transforming Data (R, incomplete)"
 format:
   html:
       code-fold: false
 editor: visual
 ---
 
-A lot of analyses is dependent on data being <a href="normal">normally distributed</a>. One problem with your data might be that it is <a href="skewness.html" target="_blank">skewed</a>. Lets focus on the **gapminder** data from 2007 to see if the $gdp$ and $life$ $expectancy$ data is skewed, and how this could be addressed.
+A lot of analyses is dependent on data being <a href="normal">normally distributed</a>. One problem with your data might be that it is <a href="skewness.html" target="_blank">skewed</a>. Lets focus on the **gapminder** data from 2007 to see if the **gdp** and **life expectancy** data is skewed, and how this could be addressed.
 
 ```{r}
 library(gapminder)
@@ -51,7 +51,7 @@ spssSkewKurtosis(gapminder_2007$gdpPercap)
 spssSkewKurtosis(gapminder_2007$lifeExp)
 ```
 
-So it looks like both the $gdp$ and $life$ $expectancy$ are skewed (as their z-scores are greater than 1.96). Lets double check with a quick plot:
+So it looks like both the **gdp** and **life expectancy** are skewed (as their z-scores are greater than 1.96). Lets double check with a quick plot:
 
 ```{r}
 plot(
@@ -60,7 +60,9 @@ plot(
 )
 ```
 
-It's relatively easy to see the skewness of $gdp$, but $life$ $expectancy$ is a bit more subtle. We can complete a logarithmic transformation to reduce the skewness, so lets do that to both variables and then replot the data:
+It's relatively easy to see the skewness of **gdp**, but **life expectancy** is a bit more subtle. As the data is skewed, we may want to **transform** it to make it less skewed.
+
+We can complete a logarithmic transformation to reduce the skewness, so lets do that to both variables and then replot the data:
 
 ```{r}
 gapminder_2007$gdpPercap_log <- log(gapminder_2007$gdpPercap)
@@ -71,7 +73,7 @@ plot(
 )
 ```
 
-Lets check if the skewness has changed for the $gdp$:
+Lets check if the skewness has changed for the **gdp**:
 
 ```{r}
 # original gdp
@@ -80,7 +82,7 @@ spssSkewKurtosis(gapminder_2007$gdpPercap)
 spssSkewKurtosis(gapminder_2007$gdpPercap_log)
 ```
 
-So, transforming the $gdp$ did reduce skewness but increased Kurtsosis, so beware that applying a transformation may cause other problems! Lets check whether the log transformation reduced skewness for $life$ $expectancy$:
+So, transforming the **gdp** did reduce skewness but increased **kurtsosis**, so beware that applying a transformation may cause other problems! Lets check whether the log transformation reduced skewness for **life expectancy**:
 
 ```{r}
 # original life expectancy
@@ -107,7 +109,102 @@ cor.test(
 )
 ```
 
-The log transformed data is more strongly associated with each other than the original data. However, there are other transformations that are additive (plus or minus a value to the original data) or multiplicative (which can also include division) that will **not** change the association (check whether the r-value $cor$ changes):
+The log transformed data is more strongly associated with each other than the original data. However, not all transformations will change associations between variables.
+
+## Linear vs. non-linear transformations
+
+Linear transformation includes adding, subtracting from, multiplying or dividing variables. These transformations change the absolute value, but not **pattern of the distribution of the variable**. Let's use life expectancy to illustrate how linear transformations change the absolute values without changing the distribution.
+
+### Additive transformations
+
+If you added 100 to the life expectancy for all countries, you would change the **absolute value:**
+
+```{r}
+# before transformation
+mean(gapminder_2007$lifeExp)
+
+# after transformation
+mean(gapminder_2007$lifeExp + 100)
+```
+
+There's a big difference between the means, but all we've done is shift the distribution up 100, we haven't made it wider or thinner:
+
+```{r}
+# before transformation
+sd(gapminder_2007$lifeExp)
+
+# after transformation
+sd(gapminder_2007$lifeExp + 100)
+```
+
+If we were to visualise this transformation
+
+```{r}
+life_exp_before_after <- data.frame(
+  life_exp = c(gapminder_2007$lifeExp, gapminder_2007$lifeExp + 100),
+  tranformed = c(rep("before", each = 142), rep("after", each =142))
+)
+
+ggplot(life_exp_before_after, aes(x=life_exp, fill=tranformed)) +
+  geom_histogram(binwidth = 2, alpha=.5, position = "identity") +
+  ggtitle("Before vs. after additive transformation") 
+```
+
+We can see above that there is no difference in the shape of the distributions, but a shift. You would get the same pattern shifted also if you had subtracted from the original data. As a result, any **association** between the transformed variable and another variable will be the same as it was before the transformation as the shapes of the distributions are still the same.
+
+### Multiplicative transformations
+
+If you multiplied the life expectancy by 1.5 then you would change both the mean
+
+```{r}
+# before transformation
+mean(gapminder_2007$lifeExp)
+
+# after transformation
+mean(gapminder_2007$lifeExp * 1.5)
+```
+
+and SD of life expectancy
+
+```{r}
+# before transformation
+sd(gapminder_2007$lifeExp)
+
+# after transformation
+sd(gapminder_2007$lifeExp * 1.5)
+```
+
+We established above that changing the mean isn't sufficient to change the shape of a distribution, but would changing the standard deviation change the shape of the distribution. Let's put two histograms of each distribution side by side to evaluate this:
+
+```{r}
+par(mfrow = c(1,2), 
+    mar = c(0,0,2,1))
+hist(gapminder_2007$lifeExp, breaks = seq(min(gapminder_2007$lifeExp), max(gapminder_2007$lifeExp), length.out = 11), main = "Original")
+hist(gapminder_2007$lifeExp*1.5, breaks = seq(min(gapminder_2007$lifeExp*1.5), max(gapminder_2007$lifeExp*1.5), length.out = 11), main = "Original * 1.5")
+```
+
+We can see that the **shape/pattern** of the distribution is the same, and so the **association** between the transformed variable and other variables will stay the same after transformation. This is because associations between variables ignore the scale of either variable.
+
+### Non-linear transformations
+
+Unlike linear transformations, non-linear transformations change the shape of distributions. There are a wide variety of non-linear transformations you could apply to a variable, such as
+
+#### Square ($^2$)
+
+```{r}
+par(mfrow = c(1,2), 
+    mar = c(0,0,2,1))
+hist(gapminder_2007$lifeExp, main = "Original")
+hist(gapminder_2007$lifeExp^2, main = "Squared")
+```
+
+#### Square root ($\sqrt{}$) 
+
+#### Logarithmic ($\log$)
+
+## Linear transformations will *not* change the association between variables
+
+You can transform a single variable by adding and multiplying it, but as these are **linear transformations** they won't change the shape of the distributions of the original variables, and thus won't change nature of the association between the variables. For example:
 
 ```{r}
 # correlation with original data
@@ -115,24 +212,37 @@ cor.test(
   gapminder_2007$gdpPercap,
   gapminder_2007$lifeExp
 )
-# correlation with original data + 5 to one variable
+# correlation with original data + 5 to one variable (an additive change)
 cor.test(
   gapminder_2007$gdpPercap + 5,
   gapminder_2007$lifeExp
 )
-# correlation with original data - 10 to one variable
+
+
+# correlation with original data - 10 to one variable (an additive change)
 cor.test(
   gapminder_2007$gdpPercap,
   gapminder_2007$lifeExp - 10
 )
-# correlation with multiplication of 5 to one variable
+# correlation with multiplication of 5 to one variable (multiplicative)
 cor.test(
   gapminder_2007$gdpPercap * 5,
   gapminder_2007$lifeExp
 )
+# grid comparing the 4 transformations
+par(mfrow = c(2,2), 
+    mar = c(0,0,2,1))
+plot(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
+plot(gapminder_2007$gdpPercap + 5, gapminder_2007$lifeExp)
+plot(gapminder_2007$gdpPercap - 10, gapminder_2007$lifeExp)
+plot(gapminder_2007$gdpPercap *5, gapminder_2007$lifeExp)
 ```
 
-Some transformations will change the association if you apply them to one variable:
+You can see that the transformations being linear haven't changed the nature of the associations.
+
+## Non-linear transformations ***do*** change associations
+
+If you apply **non-linear** transformations to one or both variables this will change the direction and strength of the associations. Below are some examples when you transform both variables:
 
 ```{r}
 # correlation with original data
@@ -140,24 +250,76 @@ cor.test(
   gapminder_2007$gdpPercap,
   gapminder_2007$lifeExp
 )
-# correlation with one squared variable
-cor.test(
-  gapminder_2007$gdpPercap ^2,
-  gapminder_2007$lifeExp
-)
-```
 
-but not if you apply similar transformations to both variables
-
-```{r}
-# correlation with original data
+# correlation with log of variables squared
 cor.test(
-  gapminder_2007$gdpPercap,
-  gapminder_2007$lifeExp
+  log(gapminder_2007$gdpPercap),
+  log(gapminder_2007$lifeExp)
 )
+
 # correlation with both variables squared
+cor.test(
+  gapminder_2007$gdpPercap ^ 2,
+  gapminder_2007$lifeExp ^ 2
+)
+
 cor.test(
   sqrt(gapminder_2007$gdpPercap),
   sqrt(gapminder_2007$lifeExp)
 )
+
+# grid comparing the 4 transformations
+par(mfrow = c(2,2), 
+    mar = c(0,0,2,1))
+plot(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
+plot(log(gapminder_2007$gdpPercap),log(gapminder_2007$lifeExp))
+plot(gapminder_2007$gdpPercap ^ 2,gapminder_2007$lifeExp ^ 2)
+plot(sqrt(gapminder_2007$gdpPercap),sqrt(gapminder_2007$lifeExp))
 ```
+
+::: callout-warning
+## Transforming is not universally accepted
+
+Whilst this page describes ways to transform the data and how they impact the distributions, this isn't universally accepted practice as it is changing your data (perhaps similar to arguments that you shouldn't remove outliers if they reflect real data points). However, transformation does not necessarily bias your data towards or against hypotheses if done appropriately, and is in fact used in mainstream analyses such [Spearman's Rank correlations](../correlations/correlations.html#spearmans-rank-aka-spearmans-rho). There are at least two major **possible** problems from inappropriately transforming your data:
+
+-   If it becomes a form of fishing for data through [multiple comparisons](../statsBasics/multipleComparisons.qmd).
+
+-   Treating your data unevenly to create meaningless differences between conditions. For example, if you ran a t-test between 2 conditions, but one of them wasn't normally distributed, then transforming only one of the conditions could make your comparison less meaningful. Let's use the gapminder data to illustrate this by comparing **gdp per capita** between Europe and Africa:
+
+```{r}
+gapminder_2007_us_europe <- gapminder_2007[
+  gapminder_2007$continent ==  "Europe"| 
+  gapminder_2007$year == "Americas",
+]
+
+spssSkewKurtosis(gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Europe"])
+spssSkewKurtosis((gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Africa"]))
+
+
+```
+
+So We can see that there's a significant problem with skewness for countries from Africa (zScore \> 1.96) but not from Europe. The correct thing to do is to apply any transformation (to address skewness) to Africa to Europe also to avoid differences between the groups reflecting bias from the distortions. Logarithmic transformations can help reduce skewness, so let's see how the means compare after applying the log transformation to both groups:
+
+```{r}
+mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Europe"])
+mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
+```
+
+There's a difference, in which Europe had a higher GDP per capita in 2007. Let's check if both Europe and Africa are less skewed in their distributions after log-transforming their data:
+
+```{r}
+spssSkewKurtosis(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Europe"])
+spssSkewKurtosis(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
+```
+
+Looking good. Now, what **would have happened** if we had only log-transformed Africa's data as it had the skewed distribution:
+
+```{r}
+mean(gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Europe"])
+mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
+```
+
+It now looks like Europeans have `r round(mean(gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Europe"])/mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"]),3)` times as much GDP per capita as Africa!?
+
+The above example hopefully is quite intuitive how problems arise if you apply transformations mindlessly. If you will be comparing differences in magnitudes between conditions, then it is important that transformations are applied equally to avoid bias. If you are correlating between conditions (or conducting a regression), then you do not have the same issue of bias.
+:::

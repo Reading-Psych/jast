@@ -140,6 +140,12 @@ $$
 
 -   $\bar{r}$ being the average r-value both between and within items
 
+::: callout-note
+## Cronbach's Alpha vs. Standardised Cronbach's Alpha
+
+Remember that r-values are comparisons of **covariates** to the **total variance** (see [here](http://localhost:4285/correlations/correlations.html#comparing-shared-variance-var_xy-to-total-variance)), and are thus [***standardised***]{.underline} compared to **covariates** that are not divided by the **total variance**. One way to think about this is that correlations are standardised between -1 to 1, whereas variance has no lower or upper limit.
+:::
+
 This is dividing the mean of:
 
 ```{r}
@@ -174,6 +180,88 @@ There are caveats to these benchmarks, and weird things that can happen with Cro
 -   Greater than .7 is acceptable reliability
 
 -   Greater than .9 suggests that your measure includes redundant items
+
+## Some warnings
+
+More items in a measure ***generally*** means a higher CA, even if the associations between the items is consistent. For example, imagine we had the following correlation matrix:
+
+```{r}
+example_1_small <- data.frame(
+  item_1 = c(1,.1,.1,.1),
+  item_2 = c(.1,1,.1,.1),
+  item_3 = c(.1,.1,1,.1),
+  item_4 = c(.1,.1,.1,1)
+)
+knitr::kable(example_1_small)
+```
+
+We would get the following standardised $\alpha$:
+
+```{r}
+mean(example_1_small[example_1_small != 1])/ # mean correlation between items
+mean(as.matrix(example_1_small))             # mean of all correlations
+```
+
+Let's throw in a few more items with exactly the same strength of association to everything else:
+
+```{r}
+example_1_large <- data.frame(
+  item_1 = c(1,.1,.1,.1,.1,.1,.1,.1),
+  item_2 = c(.1,1,.1,.1,.1,.1,.1,.1),
+  item_3 = c(.1,.1,1,.1,.1,.1,.1,.1),
+  item_4 = c(.1,.1,.1,1,.1,.1,.1,.1),
+  item_5 = c(.1,.1,.1,.1,1,.1,.1,.1),
+  item_6 = c(.1,.1,.1,.1,.1,1,.1,.1),
+  item_7 = c(.1,.1,.1,.1,.1,.1,1,.1),
+  item_8 = c(.1,.1,.1,.1,.1,.1,.1,1)
+)
+example_1_large
+```
+
+```{r}
+mean(example_1_large[example_1_large != 1])/ # mean correlation between items
+mean(as.matrix(example_1_large))             # mean of all correlations
+```
+
+### Does this inflation of alpha get worse if the average associations between items are stronger or weaker?
+
+To visualise how rapidly the alpha values increase with the number of items, and if this is a bigger or smaller problems if the average association is stronger or weaker, let's calculate the alpha values you would get for a range of r-values (.1 to .9) and number of items (5 to 100):
+
+```{r}
+#| label: fig-n-vs-r-alpha
+#| fig-cap: "Visualisation of how an increased number of items inflates Cronbach's Alpha even if the average association between items is kept consistent. Note that whilst this has been done on standardised Cronbach's Alpha, the principle applies even for calculation of non-standardised cronbach's Alpha. The black line is at a value of .7."
+
+library(ggplot2)
+alpha_inflation <- data.frame(
+  item_n  = rep(5:100,9),
+  r_value = (rep(c(.025, .05, .1, .2, .3, .4, .5, .6, .7), each = 96)),
+  alpha   = NA
+)
+for(i in 1:length(alpha_inflation$item_n)){
+  this_r_value = alpha_inflation$r_value[i]
+  this_r_value = alpha_inflation$item_n[i]
+  this_example_cor_matrix = matrix(
+    alpha_inflation$r_value[i],
+    alpha_inflation$item_n[i],
+    alpha_inflation$item_n[i]
+  )
+  for(j in 1:alpha_inflation$item_n[i]){
+    this_example_cor_matrix[j,j] = 1
+  }
+  alpha_inflation$alpha[i] = mean(this_example_cor_matrix[this_example_cor_matrix != 1])/ # mean correlation between items
+mean(as.matrix(this_example_cor_matrix))             # mean of all correlations
+}
+
+ggplot(data=alpha_inflation, aes(x=item_n, y=alpha, group=r_value, color=factor(r_value))) +
+  geom_line()+
+  geom_point() +
+  xlab("Number of Items")  +
+  ylab("Standardised Cronbach's Alpha") +
+  scale_color_discrete(name="Average \nr-value") + 
+  geom_hline(yintercept = .7, color = "black") 
+```
+
+We can see above that the alpha value isn't inflated hugely when the average correlation is already high, which makes sense as there isn't much scope for it to be inflated. Measures with items with only weak associations are heavily influenced though. If you have a measure with 100 items, a Standardised Cronbach's Alpha of .7 will be achieved even if the average $r$ value is as low as .025. In this sort of situation, it might be more helpful to identify sub-factors within your measure using analysis like [Principle Components Analysis](pca.html) or [Confirmatory Factor Analysis](cfa.html).
 
 ## Consolidation questions
 

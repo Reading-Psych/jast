@@ -53,8 +53,8 @@ website:
         contents:
           - regressions/simpleRegressions.qmd
       #    - regressions/multipleRegressions.qmd
-      - section: "General Linear Models"
-        contents: 
+      # - section: "General Linear Models"
+      #   contents: 
       #     - "GeneralLinearModels/generalLinearModels.qmd"
       #     - "GeneralLinearModels/rVsAdjustedRSquared.qmd"
       #     - "GeneralLinearModels/TTests.qmd"

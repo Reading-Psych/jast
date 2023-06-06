@@ -1,5 +1,5 @@
 ---
-title: "Transforming Data (R, incomplete)"
+title: "Transforming Data (R)"
 format:
   html:
       code-fold: false
@@ -187,24 +187,83 @@ We can see that the **shape/pattern** of the distribution is the same, and so th
 
 ### Non-linear transformations
 
-Unlike linear transformations, non-linear transformations change the shape of distributions. There are a wide variety of non-linear transformations you could apply to a variable, such as
+Unlike linear transformations, non-linear transformations change the shape of distributions. There are a wide variety of non-linear transformations you could apply to a variable, such as...
 
 #### Square ($^2$)
 
 ```{r}
 par(mfrow = c(1,2), 
     mar = c(0,0,2,1))
-hist(gapminder_2007$lifeExp, main = "Original")
-hist(gapminder_2007$lifeExp^2, main = "Squared")
+hist(gapminder_2007$gdpPercap, main = "Original")
+hist(gapminder_2007$gdpPercap^2, main = "Squared")
 ```
 
-#### Square root ($\sqrt{}$) 
+Squaring data is likely to make the distributions more extreme, and so isn't often a pragmatic solution to try to make your data less skewed.
+
+#### Square root ($\sqrt{}$)
+
+```{r}
+par(mfrow = c(1,2), 
+    mar = c(0,0,2,1))
+hist(gapminder_2007$gdpPercap, main = "Original")
+hist(sqrt(gapminder_2007$gdpPercap), main = "Square root")
+```
+
+This transformation appears to have reduced the skewness of the distribution. Calculating the square root of a variable will disproportionately reduce extreme values compared to less extreme values. This might be more clearly shown by looking at the change in the individual data points:
+
+```{r}
+# focusing on 5 countries to make it visually easier
+gapminder_sqrt <- data.frame(
+  country = gapminder_2007$country[1:5],
+  transformed = c(
+    rep("Original",5),
+    rep("Square Root",5)
+  ),
+  # gdp has been divided by 500 to make the comparisons more visible
+  gdp  = c(gapminder_2007$gdpPercap[1:5]/500, sqrt(gapminder_2007$gdpPercap[1:5]/500))
+)
+ggplot(gapminder_sqrt, aes(x=country, y = gdp, color = transformed)) +
+  geom_point(size=5) +
+  xlab("Country index") +
+  ylab("GDP (before and after transformation)") 
+  
+```
+
+As you can see above, the original values (pink) that are higher are much more heavily reduced by square root transforming them than lower original values.
 
 #### Logarithmic ($\log$)
 
+```{r}
+par(mfrow = c(1,2), 
+    mar = c(0,0,2,1))
+hist(gapminder_2007$gdpPercap, main = "Original")
+hist(log(gapminder_2007$gdpPercap), main = "Logarithmic")
+```
+
+This transformation seems very successful in changing the distribution shape to be less skewed. Let's see if the log transformation follows a similar pattern as the sqrt in disproportionately impacting larger values than smaller values.
+
+```{r}
+# focusing on 5 countries to make it visually easier
+gapminder_log <- data.frame(
+  country = gapminder_2007$country[1:5],
+  transformed = c(
+    rep("Original",5),
+    rep("Square Root",5)
+  ),
+  # gdp has been divided by 500 to make the comparisons more visible
+  gdp  = c(gapminder_2007$gdpPercap[1:5]/500, log(gapminder_2007$gdpPercap[1:5]/500))
+)
+ggplot(gapminder_log, aes(x=country, y = gdp, color = transformed)) +
+  geom_point(size=5) +
+  xlab("Country index") +
+  ylab("GDP (before and after transformation)") 
+```
+
+Yep, log also reduces skewness by disproportionately reducing higher values.
+
 ## Linear transformations will *not* change the association between variables
 
-You can transform a single variable by adding and multiplying it, but as these are **linear transformations** they won't change the shape of the distributions of the original variables, and thus won't change nature of the association between the variables. For example:
+You can transform a single variable by adding and multiplying it, but as these are **linear transformations** they do **not** change the shape of the distributions of the original variables, and thus do **not** change the association between variables. For example:
 
 ```{r}
 # correlation with original data
@@ -231,11 +290,11 @@ cor.test(
 )
 # grid comparing the 4 transformations
 par(mfrow = c(2,2), 
-    mar = c(0,0,2,1))
-plot(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
-plot(gapminder_2007$gdpPercap + 5, gapminder_2007$lifeExp)
-plot(gapminder_2007$gdpPercap - 10, gapminder_2007$lifeExp)
-plot(gapminder_2007$gdpPercap *5, gapminder_2007$lifeExp)
+    mar = c(2,2,2,1))
+plot(gapminder_2007$gdpPercap, gapminder_2007$lifeExp, main="original correlation")
+plot(gapminder_2007$gdpPercap + 5, gapminder_2007$lifeExp, main="added 5 to gdp")
+plot(gapminder_2007$gdpPercap - 10, gapminder_2007$lifeExp, main = "took 10 away from gdp")
+plot(gapminder_2007$gdpPercap *5, gapminder_2007$lifeExp, main = "multiplied gdp by 5")
 ```
 
 You can see that the transformations being linear haven't changed the nature of the associations.
@@ -270,11 +329,11 @@ cor.test(
 
 # grid comparing the 4 transformations
 par(mfrow = c(2,2), 
-    mar = c(0,0,2,1))
-plot(gapminder_2007$gdpPercap, gapminder_2007$lifeExp)
-plot(log(gapminder_2007$gdpPercap),log(gapminder_2007$lifeExp))
-plot(gapminder_2007$gdpPercap ^ 2,gapminder_2007$lifeExp ^ 2)
-plot(sqrt(gapminder_2007$gdpPercap),sqrt(gapminder_2007$lifeExp))
+    mar = c(2,2,2,1))
+plot(gapminder_2007$gdpPercap, gapminder_2007$lifeExp, main = "original correlation")
+plot(log(gapminder_2007$gdpPercap),log(gapminder_2007$lifeExp), main = "log applied")
+plot(gapminder_2007$gdpPercap ^ 2,gapminder_2007$lifeExp ^ 2, main = "data squared")
+plot(sqrt(gapminder_2007$gdpPercap),sqrt(gapminder_2007$lifeExp), main = "square root of data")
 ```
 
 ::: callout-warning
@@ -323,3 +382,5 @@ It now looks like Europeans have `r round(mean(gapminder_2007$gdpPercap[gapminde
 
 The above example hopefully is quite intuitive how problems arise if you apply transformations mindlessly. If you will be comparing differences in magnitudes between conditions, then it is important that transformations are applied equally to avoid bias. If you are correlating between conditions (or conducting a regression), then you do not have the same issue of bias.
 :::
+
+{{< include transformingQuestions.qmd >}}

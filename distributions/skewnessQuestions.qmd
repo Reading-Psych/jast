@@ -4,11 +4,13 @@ editor: visual
 ---
 
 ### Question 1
+
 ```{ojs}
 //| echo: false
 rand_skew_no = Math.round(Math.random() * 400)/100;
 ```
-Is a skewness z-score of ${rand_skew_no} indicative of a significant problem of skewness?
+
+Is a skewness z-score of \${rand_skew_no} indicative of a significant problem of skewness?
 
 ```{ojs}
 //| echo: false
@@ -33,4 +35,5 @@ this_result = {
 }
 
 ```
-Your answer is **${this_result}**
+
+Your answer is **\${this_result}**

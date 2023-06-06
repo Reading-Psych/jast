@@ -3,7 +3,10 @@ format: html
 editor: visual
 ---
 
+### Question 1
+
 Cronbach's Alpha is useful to check whether items in a measure are...
+
 ```{ojs}
 //| echo: false
 viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);
@@ -16,9 +19,13 @@ cronbach_alpha_1_result = {
   };
 }
 ```
-${cronbach_alpha_1_result}
+
+\${cronbach_alpha_1\_result}
+
+### Question 2
 
 Do you need to reverse code relevant items before conducting Cronbach's Alpha?
+
 ```{ojs}
 //| echo: false
 viewof cronbach_alpha_2_response = Inputs.radio(['Yes','No']);
@@ -31,4 +38,5 @@ cronbach_alpha_2_result = {
   };
 }
 ```
-${cronbach_alpha_2_result}
+
+\${cronbach_alpha_2\_result}

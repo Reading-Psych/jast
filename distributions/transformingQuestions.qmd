@@ -1,0 +1,36 @@
+---
+editor: visual
+---
+### Question 1
+
+Which types of transformations **might** make a distribution normal?
+```{ojs}
+//| echo: false
+viewof transformation_1_response = Inputs.radio(['linear','non-linear']);
+correct_transformation_1 = 'non-linear';
+transformation_1_result = {
+  if(transformation_1_response == correct_transformation_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.';
+  };
+}
+```
+${transformation_1_result}
+
+### Question 2
+
+Which of the following transformations is least likely to result in a normal distribution?
+```{ojs}
+//| echo: false
+viewof transformation_2_response = Inputs.radio(['log','square','square-root']);
+correct_transformation_2 = 'square';
+transformation_2_result = {
+  if(transformation_2_response == correct_transformation_2){
+    return 'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${transformation_2_result}

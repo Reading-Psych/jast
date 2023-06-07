@@ -32,18 +32,35 @@ ggplot(data = gapminder_by_year, aes(x = year, y = lifeExp)) + geom_point() + ge
 ```{python}
 #| eval: false
 
-# TBC
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import pearsonr
+from gapminder import gapminder
 
+gapminder_by_year = gapminder.groupby('year').agg({'lifeExp': 'mean', 'gdpPercap': 'mean'}).reset_index()
+print(gapminder_by_year)
+
+correlation, p_value = pearsonr(gapminder_by_year['year'], gapminder_by_year['lifeExp'])
+print("Correlation coefficient:", correlation)
+print("p-value:", p_value)
+
+sns.scatterplot(data=gapminder_by_year, x='year', y='lifeExp')
+sns.regplot(data=gapminder_by_year, x='year', y='lifeExp')
+plt.xlabel('Year')
+plt.ylabel('Life Expectancy')
+plt.show()
 ```
 
-## Julia
+<!-- ## Julia -->
 
-```{julia}
-#| eval: false
+<!-- ```{julia} -->
+<!-- #| eval: false -->
 
-# TBC
+<!-- # TBC -->
 
-```
+<!-- ``` -->
 :::
 
 So now that we've confirmed that there is a positive association between the year and life expectancy, the next question is why? What changes from year to year that could explain increased life expectancy? Let's investigate whether gdp per capita generally goes up each year, and whether it's associated with life expectancy. If both of these things are true, then perhaps the increase in gdp per year is an explanation of the association between year and life expectancy.
@@ -58,8 +75,25 @@ cor.test(gapminder_by_year$year, gapminder_by_year$gdpPercap)
 ggplot(data = gapminder_by_year, aes(x = year, y = gdpPercap)) + geom_point() + geom_smooth(method = lm)
 ```
 
-Whilst there are some outliers in earlier years, we seem to have found that gdp per capita has gone up.
+## Python
+
+```{python}
+#| eval: false
+
+correlation, p_value = pearsonr(gapminder_by_year['year'], gapminder_by_year['gdpPercap'])
+print("Correlation coefficient:", correlation)
+print("p-value:", p_value)
+
+sns.scatterplot(data=gapminder_by_year, x='year', y='gdpPercap')
+sns.regplot(data=gapminder_by_year, x='year', y='gdpPercap')
+plt.xlabel('Year')
+plt.ylabel('gdpPercap')
+plt.show()
+```
 :::
+
+Whilst there are some outliers in earlier years, we seem to have found that gdp per capita has gone up.
+
 
 ### Is gdp per capita and life expectancy associated?
 
@@ -69,6 +103,26 @@ Whilst there are some outliers in earlier years, we seem to have found that gdp 
 ```{r}
 cor.test(gapminder_by_year$gdpPercap, gapminder_by_year$lifeExp)
 ggplot(data = gapminder_by_year, aes(x = gdpPercap, y = lifeExp)) + geom_point() + geom_smooth(method = lm)
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+# Perform correlation test between gdpPercap and lifeExp
+correlation, p_value = stats.pearsonr(gapminder_by_year['gdpPercap'], gapminder_by_year['lifeExp'])
+
+# Print the correlation coefficient and p-value
+print("Correlation coefficient:", correlation)
+print("p-value:", p_value)
+
+# Create scatter plot with regression line
+sns.scatterplot(data=gapminder_by_year, x='gdpPercap', y='lifeExp')
+sns.regplot(data=gapminder_by_year, x='gdpPercap', y='lifeExp', scatter=False)
+plt.xlabel('GDP per capita')
+plt.ylabel('Life Expectancy')
+plt.show()
 ```
 :::
 
@@ -90,18 +144,15 @@ $$
 r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}} = \frac{originalCorrelation - varianceExplainedByCovariate}{varianceNotExplainedByCovariate}
 $$
 
-- $x$ = The Year
-- $y$ = Life expectancy
-- $z$ = GDP per capita 
-- $\sqrt{1- r^2_{xz}}$ = variance not explained by correlation between Year($x$) and GDP ($z$)
-- $\sqrt{1- r^2_{yz}}$ = variance not explained by correlation between Life Expectancy ($y$) and GDP ($z$)
+-   $x$ = The Year
+-   $y$ = Life expectancy
+-   $z$ = GDP per capita
+-   $\sqrt{1- r^2_{xz}}$ = variance not explained by correlation between Year($x$) and GDP ($z$)
+-   $\sqrt{1- r^2_{yz}}$ = variance not explained by correlation between Life Expectancy ($y$) and GDP ($z$)
 
-One way to think of the formula above is that:
-- the top-half represents how much variance is explained by overlap between the two main variables, subtracted by the variance of each variable with the confound
-- the bottom-half represents how much variance there is left to explain once you've removed associations between each main variable and the covariate.
+One way to think of the formula above is that: - the top-half represents how much variance is explained by overlap between the two main variables, subtracted by the variance of each variable with the confound - the bottom-half represents how much variance there is left to explain once you've removed associations between each main variable and the covariate.
 
 Let's see what the r value is after this partial correlation:
-
 
 $$
 r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}} = \frac{.986158 - .9832101 * .9619721 }{\sqrt{(1-.9832101^2)(1-.9619721^2)}} = \frac{.040354}{.04984321} = .8092841
@@ -109,12 +160,80 @@ $$
 
 Let's check if the manually calculated partial r-value is the same as what R gives us:
 
+::: panel-tabset
+## R
 
 ```{r}
 library(ppcor)
 pcor(gapminder_by_year)
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+import pingouin as pg
+
+# Calculate partial correlation with p-values, estimates, and statistics
+partial_corr1 = pg.partial_corr(data=gapminder_by_year, x="gdpPercap", y="lifeExp", covar="year", method='pearson')
+partial_corr2 = pg.partial_corr(data=gapminder_by_year, x="year", y="gdpPercap", covar="lifeExp", method='pearson')
+partial_corr3 = pg.partial_corr(data=gapminder_by_year, x="lifeExp", y="year", covar="gdpPercap", method='pearson')
+
+coef1 = partial_corr1['r'].values[0]
+coef2 = partial_corr2['r'].values[0]
+coef3 = partial_corr3['r'].values[0]
+
+p_value1 = partial_corr1['p-val'].values[0]
+p_value2 = partial_corr2['p-val'].values[0]
+p_value3 = partial_corr3['p-val'].values[0]
+
+# Create a matrix
+matrix1 = np.zeros((3, 3))
+
+# Assign the interaction values
+matrix1[0, 1] = coef3
+matrix1[1, 0] = coef3
+matrix1[0, 2] = coef2
+matrix1[2, 0] = coef2
+matrix1[1, 2] = coef1
+matrix1[2, 1] = coef1
+
+# Set the diagonal to 1
+np.fill_diagonal(matrix1, 1)
+
+# Create a DataFrame from the matrix
+matrix_coef = pd.DataFrame(matrix1, columns=['year', 'lifeExp', 'gdpPercap'], index=['year', 'lifeExp', 'gdpPercap'])
+
+# Create a matrix
+matrix2 = np.zeros((3, 3))
+
+# Assign the interaction values
+matrix2[0, 1] = p_value3
+matrix2[1, 0] = p_value3
+matrix2[0, 2] = p_value2
+matrix2[2, 0] = p_value2
+matrix2[1, 2] = p_value1
+matrix2[2, 1] = p_value1
+
+# Set the diagonal to 1
+np.fill_diagonal(matrix2, 1)
+
+# Create a DataFrame from the matrix
+matrix_p_val = pd.DataFrame(matrix2, columns=['year', 'lifeExp', 'gdpPercap'], index=['year', 'lifeExp', 'gdpPercap'])
+
+# Print the resulting matrix
+print(matrix_p_val)
+
+# Print the resulting matrix
+print(matrix_coef)
+```
+:::
+
 Yes, the pearson correlation between year and life expectancy is .8092844, so the difference of .0000003 is a rounding error from the manual calculations above. Just to confirm that this is a rounding error, here's what you get if you complete the same steps but with the estimate part of the correlation objects instead:
+
+::: panel-tabset
+## R
 
 ```{r}
 x.y.cor <- cor.test(gapminder_by_year$year, gapminder_by_year$lifeExp)
@@ -123,6 +242,27 @@ y.z.cor <- cor.test(gapminder_by_year$gdpPercap, gapminder_by_year$lifeExp)
 
 (x.y.cor$estimate - x.z.cor$estimate * y.z.cor$estimate)/sqrt((1-x.z.cor$estimate^2) * (1 - y.z.cor$estimate^2))
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+import scipy.stats as stats
+import numpy as np
+
+# Calculate correlation coefficients
+x_y_cor = stats.pearsonr(gapminder_by_year['year'], gapminder_by_year['lifeExp'])[0]
+x_z_cor = stats.pearsonr(gapminder_by_year['year'], gapminder_by_year['gdpPercap'])[0]
+y_z_cor = stats.pearsonr(gapminder_by_year['gdpPercap'], gapminder_by_year['lifeExp'])[0]
+
+# Calculate the desired value
+result = (x_y_cor - x_z_cor * y_z_cor) / np.sqrt((1 - x_z_cor**2) * (1 - y_z_cor**2))
+
+# Print the result
+print(result)
+```
+:::
 
 Confirming that the difference in the manual calculation is a rounding error. Note that the numbers you get from R may be rounded numbers, and so your calculations may reflect the rounding.
 

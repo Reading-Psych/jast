@@ -84,5 +84,5 @@ output_string = {
 
 ```
 
-#### Question code:
+##### Question code:
 <code class='javascript'>${output_string}</code>

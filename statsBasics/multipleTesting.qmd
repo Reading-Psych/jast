@@ -1,0 +1,37 @@
+---
+title: "Multiple Testing"
+editor: visual
+---
+
+As mentioned in [statistics basics](statsBasics.html), researchers generally accept a 5% risk of a study reporting a significant finding when the effect found in their sample is not representative of the population (i.e. an $\alpha$ value of .05). However, what happens if you conduct multiple tests within a study? Applying the same $\alpha$ value of .05 to each test within your study becomes a problem of multiple testing increasing the risk of a false positive (unless you happen to only be investigating real effects, which you cannot be sure you are doing). To illustrate the issue, let's create some random data in which you want to test whether a person's hair color and eye-color is predictive of their score on a mathematics test. There is no reason to think these are useful predictors (especially as this data will be random), but we'll see that when there are enough comparisons it's almost statistically certain a significant difference will be found if you don't correct for multiple comparisons.
+
+```{r}
+maths_scores <- data.frame(
+  eye = c(
+    rep("amber",each = ),
+    rep("blue"),
+    rep("brown"),
+    rep("green"),
+    rep("gray"),
+    rep("hazel")
+  ),
+  hair = rep(
+    c("auburn", "black", "blonde", "brown", "purple", "red")
+  )
+)
+
+height_maths <- data.frame(
+  height = rnorm(10000, mean = 125, sd = 25),
+  maths  = rnorm(10000, mean = 75, sd = 15)
+)
+hist(height_maths$height)
+hist(height_maths$maths)
+```
+
+To summarise the above, assuming that the comparisons you are making are meaningless , the risk of a false positive can be summarised as:
+
+$$
+falsePositive_{risk} = (1-\alpha)^{comparisons}
+$$
+
+{{< include multipleTestingQuestions.qmd >}}

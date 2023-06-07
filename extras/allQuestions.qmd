@@ -8,19 +8,40 @@ editor: visual
 
 ### E numbers
 
-{{< include ../statsBasics/eNumbersQuestions.qmd >}} \### Basics {{< include ../statsBasics/basicsQuestions.qmd >}}
+{{< include ../statsBasics/eNumbersQuestions.qmd >}}
 
-## Normal
+### General 
+
+{{< include ../statsBasics/basicsQuestions.qmd >}}
+
+### Multiple testing
+
+TBC
+
+
+## Describing Data
+
+### Central Tendency
+
+{{< include ../describingData/centralTendencyQuestions.qmd >}}
+
+## Distributions
+
+### Normal
 
 {{< include ../distributions/normal_questions.qmd >}}
 
-## Skewness
+### Skewness
 
 {{< include ../distributions/skewnessQuestions.qmd >}}
 
-## Transforming Data
+### Transforming Data
 
 {{< include ../distributions/transformingQuestions.qmd >}}
+
+## Correlations
+
+{{< include ../correlations/correlationsQuestions.qmd >}}
 
 ## Item Analysis
 

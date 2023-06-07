@@ -3,7 +3,7 @@ format: html
 editor: visual
 ---
 
-### Question 1
+#### Question 1
 
 ```{ojs}
 //| echo: false
@@ -30,7 +30,7 @@ normal_question_1_result = {
 
 Your answer is... **\${normal_question_1\_result}**.
 
-### Question 2
+#### Question 2
 
 Using the above value, which percentile group would you put Jamie's score into?
 

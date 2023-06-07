@@ -1,7 +1,7 @@
 ---
 editor: visual
 ---
-### Question 1
+#### Question 1
 
 Which types of transformations **might** make a distribution normal?
 ```{ojs}
@@ -18,7 +18,7 @@ transformation_1_result = {
 ```
 ${transformation_1_result}
 
-### Question 2
+#### Question 2
 
 Which of the following transformations is least likely to result in a normal distribution?
 ```{ojs}

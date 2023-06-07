@@ -1,0 +1,20 @@
+---
+editor: visual
+---
+
+#### Question 1
+
+An alpha value of .05 suggests that 5% of published studies are false-positives?
+```{ojs}
+//| echo: false
+viewof multiple_testing_1_response = Inputs.radio(['True','False']);
+correct_multiple_testing_1 = 'False';
+multiple_testing_1_result = {
+  if(multiple_testing_1_response == correct_multiple_testing_1){
+    return 'Correct! It suggests that 5% of studies that investigate effects that do not exist in the population will find them in the sample. However, if no studies are investigating effects that are real in the population then 100% of published studies would be false positives, even though 95% of studies conducted would be correct negatives.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${multiple_testing_1_result}

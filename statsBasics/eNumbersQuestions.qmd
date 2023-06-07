@@ -3,7 +3,7 @@ format: html
 editor: visual
 ---
 
-### Question 1
+#### Question 1
 
 Which is bigger?
 ```{ojs}
@@ -20,7 +20,7 @@ scientific_notation_1_result = {
 ```
 ${scientific_notation_1_result}
 
-### Question 2
+#### Question 2
 
 Which is bigger?
 ```{ojs}

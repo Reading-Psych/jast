@@ -3,7 +3,7 @@ format: html
 editor: visual
 ---
 
-### Question 1
+#### Question 1
 
 Cronbach's Alpha is useful to check whether items in a measure are...
 
@@ -22,7 +22,7 @@ cronbach_alpha_1_result = {
 
 \${cronbach_alpha_1\_result}
 
-### Question 2
+#### Question 2
 
 Do you need to reverse code relevant items before conducting Cronbach's Alpha?
 

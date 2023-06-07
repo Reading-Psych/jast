@@ -1,5 +1,5 @@
 ---
-title: "Central Tendency"
+title: "Central Tendency (R,Python)"
 format: 
   html:
       code-fold: false
@@ -65,11 +65,13 @@ n_life_expectancy    = gapminder_2007['lifeExp'].count()
 mean_life_expectancy = sum_life_expectancy/n_life_expectancy 
 mean_life_expectancy
 ```
-:::
 
 ![Table](centralTendency-Table1.png){fig-align="left"}
 
-    67.00742253521126
+```         
+67.00742253521126
+```
+:::
 
 For those of you who like to double check these things (which is a good instinct), lets see what number you get if you use the r function for mean:
 
@@ -86,9 +88,11 @@ mean(gapminder_2007$lifeExp)
 #| eval: false
 gapminder_2007['lifeExp'].mean()
 ```
-:::
 
-    67.00742253521126
+```         
+67.00742253521126
+```
+:::
 
 *Whew* - it's the same as the manual calculation above.
 
@@ -109,10 +113,12 @@ median(gapminder_2007$lifeExp)
 gapminder_2007['lifeExp'].mean()
 gapminder_2007['lifeExp'].median()
 ```
-:::
 
-    67.00742253521126
-    71.93549999999999
+```         
+67.00742253521126
+71.93549999999999
+```
+:::
 
 Finally, the **mode** is simply the most frequent number in your data. So lets now see if the mode is closer to the mean or median:
 
@@ -120,9 +126,6 @@ Finally, the **mode** is simply the most frequent number in your data. So lets n
 ## R
 
 ```{r}
-mean(gapminder_2007$lifeExp)
-median(gapminder_2007$lifeExp)
-
 # Solution for calculating mode found at https://stackoverflow.com/a/2547918 as there doesn't seem to be a native function:
 library(modeest)
 mlv(gapminder_2007$lifeExp, method = "mfv")
@@ -135,9 +138,9 @@ mlv(gapminder_2007$lifeExp, method = "mfv")
 #| eval: false
 gapminder_2007['lifeExp'].mode()
 ```
-:::
 
 ![Mode of 'lifeExp'](centralTendency-Table2.png){fig-align="left" height="300"}
+:::
 
 The mode for this data was actually **every** value **perhaps because** each value was unique! Lets double check that:
 
@@ -162,10 +165,12 @@ num_values = gapminder_2007['lifeExp'].unique()
 # get the lenght of the vector
 len(num_values)
 ```
-:::
 
-    142
-    142
+```         
+142
+142
+```
+:::
 
 The length of the whole **vector** and the unique values of the vector is the same, confirming that there's no repetition in this data (and so **no** number is the mode). Lets make up some data so that we can look at what the mode is:
 
@@ -192,8 +197,10 @@ mode_example_vector = pd.DataFrame(mode_example_vector)
 # get the mode
 mode_example_vector.mode()
 ```
-:::
 
 ![Example of Mode](centralTendency-Table3.png){fig-align="left" height="100"}
+:::
 
 In the above data, there are 2 modes, as the numbers 2 and 4 occur the most.
+
+{{< include centralTendencyQuestions.qmd >}}

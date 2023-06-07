@@ -3,7 +3,7 @@ format: html
 editor: visual
 ---
 
-### Question 1
+#### Question 1
 Assuming that you are investigating a real effect, which sample size is more likely to give you a significant result?
 ```{ojs}
 //| echo: false
@@ -19,7 +19,7 @@ stats_basics_1_result = {
 ```
 ${stats_basics_1_result}
 
-### Question 2
+#### Question 2
 
 Assuming that you are NOT investigating a real effect, which sample size is more likely to give you a significant result?
 ```{ojs}
@@ -36,7 +36,7 @@ stats_basics_2_result = {
 ```
 ${stats_basics_2_result}
 
-### Question 3
+#### Question 3
 Alpha values are...
 ```{ojs}
 //| echo: false

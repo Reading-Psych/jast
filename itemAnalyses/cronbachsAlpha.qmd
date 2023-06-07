@@ -15,6 +15,9 @@ Let's use some publicly available data to investigate this issue. The Empathy Qu
 
 Whilst this is a general measure of empathy, empathy is a multifacted concept, so let's focus on one of the types of empathy, *cognitive* empathy. This will involve focusing on just items associated with this facet. Note that the items for this are 14, 15, 29, 34 and 35. Let's see how much covariance (see [here](../correlations/correlations.html#shared-variance-between-x-and-y) for a reminder on covariance or shared variance) there is between the items:
 
+::: panel-tabset
+## R
+
 ```{r}
 eq <- read.csv("EQ_Data.csv")
 cog_eq <- eq[,c("Q14.processed", "Q15.processed", "Q29.processed", "Q34.processed", "Q35.processed")]
@@ -24,17 +27,70 @@ colnames(cog_eq) <-c("cog_1","cog_2","cog_3","cog_4","cog_5")
 knitr::kable(data.frame(cov(cog_eq)))
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import pandas as pd
+import numpy as np
+
+eq = pd.read_csv("EQ_Data.csv")
+cog_eq = eq[["Q14.processed", "Q15.processed", "Q29.processed", "Q34.processed", "Q35.processed"]]
+
+# To improve readability, relabel the variables
+cog_eq.columns = ["cog_1", "cog_2", "cog_3", "cog_4", "cog_5"]
+
+covariance_matrix = np.cov(cog_eq, rowvar=False)
+
+# Convert covariance matrix to a data frame for better display
+covariance_df = pd.DataFrame(covariance_matrix, columns=cog_eq.columns, index=cog_eq.columns)
+
+print(covariance_df)
+```
+:::
+
 Note that covariance of an item with itself is just **variance**, e.g. **cog_1** with itself:
+
+::: panel-tabset
+## R
 
 ```{r}
 var(cog_eq$cog_1)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+cog_eq['cog_1'].var()
+```
+:::
+
 The above covariance matrix suggests all the items have some overlap - all associations are positive. To get a sense of how strongly they overlap a **correlation** matrix could be more useful, so let's quickly look at that:
+
+::: panel-tabset
+## R
 
 ```{r}
 knitr::kable(data.frame(cor(cog_eq)))
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+cor_matrix = cog_eq.corr()
+cor_df = pd.DataFrame(cor_matrix)
+
+# Display the correlation matrix as a table
+cor_df_styled = cor_df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}, 
+                                               {'selector': 'td', 'props': [('text-align', 'center')]}])
+cor_df_styled
+```
+:::
 
 To create an aggregate of whether these all seem to reliably be measuring the same construct, we can calculate the **Cronbach's Alpha**, so let's do that next. Cronbach's Alpha can be calculated in a few ways. One way to conceptualise the cronbach's alpha is:
 
@@ -48,9 +104,21 @@ Using the table above: this is the average of all the cells that capture covaria
 
 (which captures how much the variables overlap) **divided by** the average of all variance of items with both with other items and with themselves
 
+::: panel-tabset
+## R
+
 ```{r, echo=FALSE}
 knitr::kable(data.frame(cov(cog_eq)))
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+print(covariance_df)
+```
+:::
 
 Which can be summarised as follows:
 
@@ -76,6 +144,9 @@ What's nice about this formula, is that it's quite easy to implement:
 
 -   $\bar{COV}$ is the mean for the above covariance matrix after removing comparisons of items with themselves, so the mean of:
 
+::: panel-tabset
+## R
+
 ```{r}
 # we know that a correlation matrix will have 1 where an item is correlating with itself, so we'll create an index to skip those items:
 cov_itself = cor(cog_eq) == 1
@@ -87,9 +158,36 @@ knitr::kable(cov_df)
 mean_cov_df = mean(cov(cog_eq)[!cov_itself])
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+cor_matrix = cog_eq.corr()
+cov_matrix = np.cov(cog_eq, rowvar=False)
+
+# Create a mask to exclude the diagonal elements (self-correlation)
+cov_itself = np.identity(len(cog_eq.columns), dtype=bool)
+
+# Apply the mask to the covariance matrix
+cov_matrix_masked = np.where(cov_itself, "", cov_matrix)
+
+# Create a DataFrame with the masked covariance values
+cov_df = pd.DataFrame(cov_matrix_masked, columns=cog_eq.columns, index=cog_eq.columns)
+
+# Display the masked covariance matrix as a table
+cov_df_styled = cov_df.style.set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}, 
+                                               {'selector': 'td', 'props': [('text-align', 'center')]}])
+cov_df_styled
+```
+:::
+
 which would make `r mean_cov_df`
 
 -   $\sum{s_i^2}$ is the sum of the variance of each item. In our case, we already have that information when we calculated the "covariance" of each item with itself:
+
+::: panel-tabset
+## R
 
 ```{r}
 mean_var_df <- data.frame(cov(cog_eq))
@@ -98,19 +196,65 @@ knitr::kable(mean_var_df)
 sum_var_df = mean(cov(cog_eq)[cov_itself])
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+cov_matrix = np.cov(cog_eq, rowvar=False)
+mean_var_df = pd.DataFrame(cov_matrix, columns=cog_eq.columns, index=cog_eq.columns)
+mean_var_df[~cov_itself] = ""
+
+print(mean_var_df)
+
+sum_var_df = np.mean(cov_matrix[cov_itself])
+print(sum_var_df)
+```
+:::
+
 -   $\sum{COV_i}$ is just the sum of the all the covariances, which actually are the same values we focus on for the mean:
+
+::: panel-tabset
+## R
 
 ```{r}
 knitr::kable(cov_df)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+cov_df_styled
+```
+:::
+
 This makes it quite simple to calculate the whole of the bottom row, as we can sum the entire covariance matrix (that includes the variances of each item with itself):
+
+::: panel-tabset
+## R
 
 ```{r}
 sum(cov(cog_eq))
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+cov_matrix = np.cov(cog_eq, rowvar=False)
+cov_sum = np.sum(cov_matrix)
+
+print(cov_sum)
+```
+:::
+
 Put together, we can calculate $alpha$:
+
+::: panel-tabset
+## R
 
 ```{r}
 mean(cov(cog_eq)[cor(cog_eq) != 1])/ # mean covariance
@@ -118,7 +262,22 @@ mean(cov(cog_eq))                    # mean of covariance and variance combined
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+mean_cov = np.mean(cov_matrix[cor_matrix != 1])
+mean_cov_all = np.mean(cov_matrix)
+
+print(mean_cov / mean_cov_all)
+```
+:::
+
 Let's compare this to the **psych** packages **alpha** function (note that it is likely that RStudio will have another **alpha** function active that is not cronbach's alpha if you haven't loaded the psych package!):
+
+::: panel-tabset
+## R
 
 ```{r}
 #| label: tbl-cronbach-alpha
@@ -127,6 +286,14 @@ Let's compare this to the **psych** packages **alpha** function (note that it is
 eq_alpha_output <- psych::alpha(cog_eq)
 knitr::kable(eq_alpha_output$total) # note that there other outputs available
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+```
+:::
 
 ## Standardised Alpha
 
@@ -148,24 +315,71 @@ Remember that r-values are comparisons of **covariates** to the **total variance
 
 This is dividing the mean of:
 
+::: panel-tabset
+## R
+
 ```{r}
 cor_df = data.frame(cor(cog_eq))
 cor_df[cov_itself] = NA
 knitr::kable(cor_df)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+cor_df = pd.DataFrame(np.corrcoef(cog_eq.T))
+cor_df[cov_itself] = np.nan
+
+print(cor_df)
+```
+:::
+
 by the mean of:
+
+::: panel-tabset
+## R
 
 ```{r}
 knitr::kable(data.frame(cor(cog_eq)))
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+cor_df = pd.DataFrame(np.corrcoef(cog_eq.T))
+print(cor_df)
+```
+:::
+
 This can be calculated quite elegantly:
+
+::: panel-tabset
+## R
 
 ```{r}
 mean(cor(cog_eq)[cor(cog_eq) != 1])/ # mean correlation between items
 mean(cor(cog_eq))                    # mean of all correlations
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+import numpy as np
+
+cor_matrix = np.corrcoef(cog_eq.T)
+mean_cor_items = np.mean(cor_matrix[cor_matrix != 1])
+mean_cor_all = np.mean(cor_matrix)
+
+print("Mean correlation between items:", mean_cor_items)
+print("Mean correlation of all items:", mean_cor_all)
+```
+:::
 
 Which matches the value of std.alpha in the output in @tbl-cronbach-alpha.
 
@@ -185,6 +399,9 @@ There are caveats to these benchmarks, and weird things that can happen with Cro
 
 More items in a measure ***generally*** means a higher CA, even if the associations between the items is consistent. For example, imagine we had the following correlation matrix:
 
+::: panel-tabset
+## R
+
 ```{r}
 example_1_small <- data.frame(
   item_1 = c(1,.1,.1,.1),
@@ -195,14 +412,49 @@ example_1_small <- data.frame(
 knitr::kable(example_1_small)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+example_1_small = pd.DataFrame({
+    'item_1': [1, 0.1, 0.1, 0.1],
+    'item_2': [0.1, 1, 0.1, 0.1],
+    'item_3': [0.1, 0.1, 1, 0.1],
+    'item_4': [0.1, 0.1, 0.1, 1]
+})
+
+print(example_1_small)
+```
+:::
+
 We would get the following standardised $\alpha$:
+
+::: panel-tabset
+## R
 
 ```{r}
 mean(example_1_small[example_1_small != 1])/ # mean correlation between items
 mean(as.matrix(example_1_small))             # mean of all correlations
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+mean_cor_items = np.mean(example_1_small[example_1_small != 1])
+mean_cor_all = np.mean(np.array(example_1_small))
+
+print("Mean correlation between items:", mean_cor_items)
+print("Mean correlation of all items:", mean_cor_all)
+```
+:::
+
 Let's throw in a few more items with exactly the same strength of association to everything else:
+
+::: panel-tabset
+## R
 
 ```{r}
 example_1_large <- data.frame(
@@ -218,14 +470,53 @@ example_1_large <- data.frame(
 example_1_large
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+example_1_large = pd.DataFrame({
+    'item_1': [1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+    'item_2': [0.1, 1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+    'item_3': [0.1, 0.1, 1, 0.1, 0.1, 0.1, 0.1, 0.1],
+    'item_4': [0.1, 0.1, 0.1, 1, 0.1, 0.1, 0.1, 0.1],
+    'item_5': [0.1, 0.1, 0.1, 0.1, 1, 0.1, 0.1, 0.1],
+    'item_6': [0.1, 0.1, 0.1, 0.1, 0.1, 1, 0.1, 0.1],
+    'item_7': [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 1, 0.1],
+    'item_8': [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 1]
+})
+
+print(example_1_large)
+```
+:::
+
+::: panel-tabset
+## R
+
 ```{r}
 mean(example_1_large[example_1_large != 1])/ # mean correlation between items
 mean(as.matrix(example_1_large))             # mean of all correlations
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+mean_cor_items = np.mean(example_1_large[example_1_large != 1])
+mean_cor_all = np.mean(np.array(example_1_large))
+
+print("Mean correlation between items:", mean_cor_items)
+print("Mean correlation of all items:", mean_cor_all)
+```
+:::
+
 ### Does this inflation of alpha get worse if the average associations between items are stronger or weaker?
 
 To visualise how rapidly the alpha values increase with the number of items, and if this is a bigger or smaller problems if the average association is stronger or weaker, let's calculate the alpha values you would get for a range of r-values (.1 to .9) and number of items (5 to 100):
+
+::: panel-tabset
+## R
 
 ```{r}
 #| label: fig-n-vs-r-alpha
@@ -260,6 +551,41 @@ ggplot(data=alpha_inflation, aes(x=item_n, y=alpha, group=r_value, color=factor(
   scale_color_discrete(name="Average \nr-value") + 
   geom_hline(yintercept = .7, color = "black") 
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+item_n = np.repeat(range(5, 101), 9)
+r_value = np.tile([0.025, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7], 96)
+alpha = np.nan * np.ones(len(item_n))
+
+for i in range(len(item_n)):
+    this_r_value = r_value[i]
+    this_item_n = item_n[i]
+    this_example_cor_matrix = np.full((this_item_n, this_item_n), this_r_value)
+    np.fill_diagonal(this_example_cor_matrix, 1)
+    alpha[i] = np.mean(this_example_cor_matrix[this_example_cor_matrix != 1]) / np.mean(this_example_cor_matrix)
+
+alpha_inflation = pd.DataFrame({'item_n': item_n, 'r_value': r_value, 'alpha': alpha})
+
+plt.figure(figsize=(8, 6))
+color_map = {0.025: 'blue', 0.05: 'green', 0.1: 'red', 0.2: 'cyan', 0.3: 'magenta', 0.4: 'yellow', 0.5: 'orange', 0.6: 'purple', 0.7: 'gray'}
+for r_val, group_data in alpha_inflation.groupby('r_value'):
+    plt.plot(group_data['item_n'], group_data['alpha'], marker='o', linestyle='-', color=color_map[r_val], label=f'r-value: {r_val}')
+plt.xlabel('Number of Items')
+plt.ylabel("Standardised Cronbach's Alpha")
+plt.title("Visualisation of Cronbach's Alpha Inflation")
+plt.legend(title='Average r-value')
+plt.axhline(y=0.7, color='black', linestyle='--')
+plt.show()
+```
+:::
 
 We can see above that the alpha value isn't inflated hugely when the average correlation is already high, which makes sense as there isn't much scope for it to be inflated. Measures with items with only weak associations are heavily influenced though. If you have a measure with 100 items, a Standardised Cronbach's Alpha of .7 will be achieved even if the average $r$ value is as low as .025. In this sort of situation, it might be more helpful to identify sub-factors within your measure using analysis like [Principle Components Analysis](pca.html) or [Confirmatory Factor Analysis](cfa.html).
 

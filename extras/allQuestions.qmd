@@ -25,6 +25,11 @@ TBC
 
 {{< include ../describingData/centralTendencyQuestions.qmd >}}
 
+### Dispersion
+
+{{< include ../describingData/dispersionQuestions.qmd >}}
+
+
 ## Distributions
 
 ### Normal

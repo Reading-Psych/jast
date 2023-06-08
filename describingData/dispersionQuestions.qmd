@@ -1,0 +1,37 @@
+---
+editor: visual
+---
+
+#### Question 1
+
+True or False: Using degrees of freedom (N-1) rather than N controls for bias
+```{ojs}
+//| echo: false
+viewof dispersion_1_response = Inputs.radio(['True','False']);
+correct_dispersion_1 = 'True';
+dispersion_1_result = {
+  if(dispersion_1_response == correct_dispersion_1){
+    return 'Correct! Note that bias does not apply to means, but applies to estimates of distribution like variance and SD.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${dispersion_1_result}
+
+#### Question 2
+
+Which of the following can be negative?
+```{ojs}
+//| echo: false
+viewof dispersion_2_response = Inputs.radio(['SD','Variance','Both']);
+correct_dispersion_2 = 'SD';
+dispersion_2_result = {
+  if(dispersion_2_response == correct_dispersion_2){
+    return 'Correct! Variance cannot be negative because it is SD^2, and squared values are always positive.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${dispersion_2_result}

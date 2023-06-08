@@ -223,9 +223,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  statsBasics/multipleTesting.qmd
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -263,12 +260,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency</a>
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion</a>
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -435,28 +432,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#statistics-basics" id="toc-statistics-basics" class="nav-link active" data-scroll-target="#statistics-basics">Statistics Basics</a>
   <ul class="collapse">
   <li><a href="#e-numbers" id="toc-e-numbers" class="nav-link" data-scroll-target="#e-numbers">E numbers</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#general" id="toc-general" class="nav-link" data-scroll-target="#general">General</a></li>
+  <li><a href="#multiple-testing" id="toc-multiple-testing" class="nav-link" data-scroll-target="#multiple-testing">Multiple testing</a></li>
   </ul></li>
-  <li><a href="#normal" id="toc-normal" class="nav-link" data-scroll-target="#normal">Normal</a>
+  <li><a href="#describing-data" id="toc-describing-data" class="nav-link" data-scroll-target="#describing-data">Describing Data</a>
   <ul class="collapse">
-  <li><a href="#question-1-1" id="toc-question-1-1" class="nav-link" data-scroll-target="#question-1-1">Question 1</a></li>
-  <li><a href="#question-2-1" id="toc-question-2-1" class="nav-link" data-scroll-target="#question-2-1">Question 2</a></li>
+  <li><a href="#central-tendency" id="toc-central-tendency" class="nav-link" data-scroll-target="#central-tendency">Central Tendency</a></li>
+  <li><a href="#dispersion" id="toc-dispersion" class="nav-link" data-scroll-target="#dispersion">Dispersion</a></li>
   </ul></li>
-  <li><a href="#skewness" id="toc-skewness" class="nav-link" data-scroll-target="#skewness">Skewness</a>
+  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">Distributions</a>
   <ul class="collapse">
-  <li><a href="#question-1-2" id="toc-question-1-2" class="nav-link" data-scroll-target="#question-1-2">Question 1</a></li>
+  <li><a href="#normal" id="toc-normal" class="nav-link" data-scroll-target="#normal">Normal</a></li>
+  <li><a href="#skewness" id="toc-skewness" class="nav-link" data-scroll-target="#skewness">Skewness</a></li>
+  <li><a href="#transforming-data" id="toc-transforming-data" class="nav-link" data-scroll-target="#transforming-data">Transforming Data</a></li>
   </ul></li>
-  <li><a href="#transforming-data" id="toc-transforming-data" class="nav-link" data-scroll-target="#transforming-data">Transforming Data</a>
-  <ul class="collapse">
-  <li><a href="#question-1-3" id="toc-question-1-3" class="nav-link" data-scroll-target="#question-1-3">Question 1</a></li>
-  <li><a href="#question-2-2" id="toc-question-2-2" class="nav-link" data-scroll-target="#question-2-2">Question 2</a></li>
-  </ul></li>
-  <li><a href="#item-analysis" id="toc-item-analysis" class="nav-link" data-scroll-target="#item-analysis">Item Analysis</a>
-  <ul class="collapse">
-  <li><a href="#question-1-4" id="toc-question-1-4" class="nav-link" data-scroll-target="#question-1-4">Question 1</a></li>
-  <li><a href="#question-2-3" id="toc-question-2-3" class="nav-link" data-scroll-target="#question-2-3">Question 2</a></li>
-  </ul></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a></li>
+  <li><a href="#item-analysis" id="toc-item-analysis" class="nav-link" data-scroll-target="#item-analysis">Item Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -484,9 +475,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="statistics-basics">Statistics Basics</h2>
 <section id="e-numbers" class="level3">
 <h3 class="anchored" data-anchor-id="e-numbers">E numbers</h3>
-</section>
-<section id="question-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<section id="question-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Which is bigger?</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>viewof scientific_notation_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'3.1e3'</span><span class="op">,</span><span class="st">'310'</span>])<span class="op">;</span></span>
@@ -522,8 +512,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><span><span id="ojs-element-id-1"></span></span></p>
 </section>
-<section id="question-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<section id="question-2" class="level4">
+<h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
 <p>Which is bigger?</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb2" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>viewof scientific_notation_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'2.5 * 10^-3'</span><span class="op">,</span><span class="st">' .00025'</span>])<span class="op">;</span></span>
@@ -560,14 +550,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span><span id="ojs-element-id-2"></span></span></p>
 </section>
 </section>
-<section id="normal" class="level2">
-<h2 class="anchored" data-anchor-id="normal">Normal</h2>
-<section id="question-1-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-1-1">Question 1</h3>
+<section id="general" class="level3">
+<h3 class="anchored" data-anchor-id="general">General</h3>
+<section id="question-1-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-1">Question 1</h4>
+<p>Assuming that you are investigating a real effect, which sample size is more likely to give you a significant result?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rand_maths_score <span class="op">=</span> <span class="dv">40</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">60</span>)<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mean_maths_score <span class="op">=</span> <span class="dv">70</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sd_maths_score   <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>viewof stats_basics_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'100'</span><span class="op">,</span><span class="st">'200'</span><span class="op">,</span><span class="st">'neither'</span>])<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>correct_stats_basics_1 <span class="op">=</span> <span class="st">'100'</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>stats_basics_1_result <span class="op">=</span> {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(stats_basics_1_response <span class="op">==</span> correct_stats_basics_1){</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -590,18 +587,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Jamie has just completed a mathematics test, where the maximum score is 100%. Their score was <span><span id="ojs-element-id-3"></span>,</span> the mean maths score was <span><span id="ojs-element-id-4"></span></span> and the SD was <span><span id="ojs-element-id-5"></span>.</span> What is their Z-score?</p>
+<p><span><span id="ojs-element-id-3"></span></span></p>
+</section>
+<section id="question-2-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-2-1">Question 2</h4>
+<p>Assuming that you are NOT investigating a real effect, which sample size is more likely to give you a significant result?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>viewof normal_question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>correct_z_score <span class="op">=</span> (rand_maths_score <span class="op">-</span> mean_maths_score)<span class="op">/</span>sd_maths_score<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>normal_question_1_result <span class="op">=</span> { </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_1_response <span class="op">==</span> correct_z_score){</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct! ("</span> <span class="op">+</span> rand_maths_score <span class="op">+</span> <span class="st">" - "</span> <span class="op">+</span> mean_maths_score <span class="op">+</span> <span class="st">")/"</span> <span class="op">+</span> sd_maths_score <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> correct_z_score<span class="op">;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>viewof stats_basics_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'100'</span><span class="op">,</span><span class="st">'200'</span><span class="op">,</span><span class="st">'neither'</span>])<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>correct_stats_basics_2 <span class="op">=</span> <span class="st">'neither'</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>stats_basics_2_result <span class="op">=</span> {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(stats_basics_2_response <span class="op">==</span> correct_stats_basics_2){</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -624,51 +624,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Your answer is… <strong><span><span id="ojs-element-id-6"></span></span></strong>.</p>
+<p><span><span id="ojs-element-id-4"></span></span></p>
 </section>
-<section id="question-2-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-2-1">Question 2</h3>
-<p>Using the above value, which percentile group would you put Jamie’s score into?</p>
+<section id="question-3" class="level4">
+<h4 class="anchored" data-anchor-id="question-3">Question 3</h4>
+<p>Alpha values are…</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb5-0"><a href="#cb5-0" aria-hidden="true" tabindex="-1"></a>normal_question_2_correct <span class="op">=</span> {</span>
-<span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>){</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 2.3%"</span><span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">1</span>){</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 15.9%"</span><span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 50%"</span><span class="op">;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">1</span>){</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 50%"</span><span class="op">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">2</span>){</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 15.9%"</span><span class="op">;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 2.3%"</span><span class="op">;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>viewof stats_basics_3_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'higher when the p-value is higher'</span><span class="op">,</span><span class="st">'lower when the p-value is lower'</span><span class="op">,</span><span class="st">'neither'</span>])<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>correct_stats_basics_3 <span class="op">=</span> <span class="st">'neither'</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>stats_basics_3_result <span class="op">=</span> {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(stats_basics_3_response <span class="op">==</span> correct_stats_basics_3){</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-5" data-nodetype="declaration">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-5"></span></span></p>
+</section>
+</section>
+<section id="multiple-testing" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-testing">Multiple testing</h3>
+<p>TBC</p>
+</section>
+</section>
+<section id="describing-data" class="level2">
+<h2 class="anchored" data-anchor-id="describing-data">Describing Data</h2>
+<section id="central-tendency" class="level3">
+<h3 class="anchored" data-anchor-id="central-tendency">Central Tendency</h3>
+<section id="question-1-2" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-2">Question 1</h4>
+<p>Which of the following is most influenced by outliers?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>viewof normal_question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 2.3%"</span><span class="op">,</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 15.9%"</span><span class="op">,</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 50%"</span><span class="op">,</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 50%"</span><span class="op">,</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 15.9%"</span><span class="op">,</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 2.3%"</span><span class="op">,</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>normal_question_2_result <span class="op">=</span> { </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"awaiting your response"</span><span class="op">;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(normal_question_2_correct <span class="op">==</span> normal_question_2_response){</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half."</span><span class="op">;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>viewof central_tendency_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Mean'</span><span class="op">,</span><span class="st">'Median'</span><span class="op">,</span><span class="st">'Mode'</span>])<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>correct_central_tendency_1 <span class="op">=</span> <span class="st">'Mean'</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>central_tendency_1_result <span class="op">=</span> {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(central_tendency_1_response <span class="op">==</span> correct_central_tendency_1){</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Mode and median are unlikely to be influenced by a single value, whereas an extreme value can drag the mean up or down.'</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-6-1" data-nodetype="declaration">
@@ -683,46 +700,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</div>
-<p>Your answer is… <strong><span><span id="ojs-element-id-7"></span></span></strong>.</p>
-<div style="color:#068">
-<p>If you want to practice with different numbers in these questions then please reload the page.</p>
-</div>
-</section>
-</section>
-<section id="skewness" class="level2">
-<h2 class="anchored" data-anchor-id="skewness">Skewness</h2>
-<section id="question-1-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-1-2">Question 1</h3>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb7-0"><a href="#cb7-0" aria-hidden="true" tabindex="-1"></a>rand_skew_no <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">400</span>)<span class="op">/</span><span class="dv">100</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-7" data-nodetype="declaration">
+<div>
+<div id="ojs-cell-6-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<p>Is a skewness z-score of <span><span id="ojs-element-id-8"></span></span> indicative of a significant problem of skewness?</p>
+</div>
+<p><span><span id="ojs-element-id-6"></span></span></p>
+</section>
+</section>
+<section id="dispersion" class="level3">
+<h3 class="anchored" data-anchor-id="dispersion">Dispersion</h3>
+<section id="question-1-3" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-3">Question 1</h4>
+</section>
+</section>
+</section>
+<section id="distributions" class="level2">
+<h2 class="anchored" data-anchor-id="distributions">Distributions</h2>
+<section id="normal" class="level3">
+<h3 class="anchored" data-anchor-id="normal">Normal</h3>
+<section id="question-1-4" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-4">Question 1</h4>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>viewof skewness_question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"Yes"</span><span class="op">,</span> <span class="st">"No"</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>this_result <span class="op">=</span> { </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> skewness_question_1_result <span class="op">=</span> <span class="st">"awaiting response"</span><span class="op">;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(rand_skew_no <span class="op">&gt;</span> <span class="fl">1.96</span>){</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> skewness_question_1_result<span class="op">;</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rand_maths_score <span class="op">=</span> <span class="dv">40</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">60</span>)<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_maths_score <span class="op">=</span> <span class="dv">70</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sd_maths_score   <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p>Jamie has just completed a mathematics test, where the maximum score is 100%. Their score was <span><span id="ojs-element-id-7"></span>,</span> the mean maths score was <span><span id="ojs-element-id-8"></span></span> and the SD was <span><span id="ojs-element-id-9"></span>.</span> What is their Z-score?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>viewof normal_question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="op">-</span><span class="dv">7</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Z-score"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:.</span><span class="dv">1</span>})<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>correct_z_score <span class="op">=</span> (rand_maths_score <span class="op">-</span> mean_maths_score)<span class="op">/</span>sd_maths_score<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>normal_question_1_result <span class="op">=</span> { </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_1_response <span class="op">==</span> correct_z_score){</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct! ("</span> <span class="op">+</span> rand_maths_score <span class="op">+</span> <span class="st">" - "</span> <span class="op">+</span> mean_maths_score <span class="op">+</span> <span class="st">")/"</span> <span class="op">+</span> sd_maths_score <span class="op">+</span> <span class="st">" = "</span> <span class="op">+</span> correct_z_score<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD."</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-8-1" data-nodetype="declaration">
@@ -737,62 +776,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-3" data-nodetype="declaration">
+
 </div>
-<p>Your answer is <strong><span><span id="ojs-element-id-9"></span></span></strong></p>
+</div>
+</div>
+</div>
+<p>Your answer is… <strong><span><span id="ojs-element-id-10"></span></span></strong>.</p>
 </section>
-</section>
-<section id="transforming-data" class="level2">
-<h2 class="anchored" data-anchor-id="transforming-data">Transforming Data</h2>
-<section id="question-1-3" class="level3">
-<h3 class="anchored" data-anchor-id="question-1-3">Question 1</h3>
-<p>Which types of transformations <strong>might</strong> make a distribution normal?</p>
+<section id="question-2-2" class="level4">
+<h4 class="anchored" data-anchor-id="question-2-2">Question 2</h4>
+<p>Using the above value, which percentile group would you put Jamie’s score into?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'linear'</span><span class="op">,</span><span class="st">'non-linear'</span>])<span class="op">;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_1 <span class="op">=</span> <span class="st">'non-linear'</span><span class="op">;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>transformation_1_result <span class="op">=</span> {</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_1_response <span class="op">==</span> correct_transformation_1){</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.'</span><span class="op">;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb9-0"><a href="#cb9-0" aria-hidden="true" tabindex="-1"></a>normal_question_2_correct <span class="op">=</span> {</span>
+<span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">2</span>){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 2.3%"</span><span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="op">-</span><span class="dv">1</span>){</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 15.9%"</span><span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"bottom 50%"</span><span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">1</span>){</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 50%"</span><span class="op">;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(correct_z_score <span class="op">&lt;</span> <span class="dv">2</span>){</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 15.9%"</span><span class="op">;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"top 2.3%"</span><span class="op">;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-9-1" data-nodetype="declaration">
+<div id="ojs-cell-9" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-9-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-9-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p><span><span id="ojs-element-id-10"></span></span></p>
-</section>
-<section id="question-2-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-2-2">Question 2</h3>
-<p>Which of the following transformations is least likely to result in a normal distribution?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'log'</span><span class="op">,</span><span class="st">'square'</span><span class="op">,</span><span class="st">'square-root'</span>])<span class="op">;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_2 <span class="op">=</span> <span class="st">'square'</span><span class="op">;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>transformation_2_result <span class="op">=</span> {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_2_response <span class="op">==</span> correct_transformation_2){</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.'</span><span class="op">;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>viewof normal_question_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 2.3%"</span><span class="op">,</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 15.9%"</span><span class="op">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bottom 50%"</span><span class="op">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 50%"</span><span class="op">,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 15.9%"</span><span class="op">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"top 2.3%"</span><span class="op">,</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>normal_question_2_result <span class="op">=</span> { </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(normal_question_2_response <span class="op">==</span> <span class="st">""</span>){</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"awaiting your response"</span><span class="op">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(normal_question_2_correct <span class="op">==</span> normal_question_2_response){</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Correct!"</span><span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half."</span><span class="op">;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-10-1" data-nodetype="declaration">
@@ -807,69 +843,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-10-3" data-nodetype="declaration">
-
 </div>
+<p>Your answer is… <strong><span><span id="ojs-element-id-11"></span></span></strong>.</p>
+<div style="color:#068">
+<p>If you want to practice with different numbers in these questions then please reload the page.</p>
 </div>
-</div>
-</div>
-<p><span><span id="ojs-element-id-11"></span></span></p>
 </section>
 </section>
-<section id="item-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="item-analysis">Item Analysis</h2>
-<section id="question-1-4" class="level3">
-<h3 class="anchored" data-anchor-id="question-1-4">Question 1</h3>
-<p>Cronbach’s Alpha is useful to check whether items in a measure are…</p>
+<section id="skewness" class="level3">
+<h3 class="anchored" data-anchor-id="skewness">Skewness</h3>
+<section id="question-1-5" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-5">Question 1</h4>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'valid'</span><span class="op">,</span><span class="st">'reliable'</span>])<span class="op">;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_1 <span class="op">=</span> <span class="st">'reliable'</span><span class="op">;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_1_result <span class="op">=</span> {</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_1_response <span class="op">==</span> correct_cronbach_alpha_1){</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Specifically, whether they reliably measure the same construct. However, weird things can happen if multiple similar constructs are captured in the measure, so it can be helpful to conduct Principle Component Analysis first.'</span><span class="op">;</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb11-0"><a href="#cb11-0" aria-hidden="true" tabindex="-1"></a>rand_skew_no <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">400</span>)<span class="op">/</span><span class="dv">100</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-11-1" data-nodetype="declaration">
+<div id="ojs-cell-11" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-11-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-11-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p><span><span id="ojs-element-id-12"></span></span></p>
-</section>
-<section id="question-2-3" class="level3">
-<h3 class="anchored" data-anchor-id="question-2-3">Question 2</h3>
-<p>Do you need to reverse code relevant items before conducting Cronbach’s Alpha?</p>
+<p>Is a skewness z-score of <span><span id="ojs-element-id-12"></span></span> indicative of a significant problem of skewness?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Yes'</span><span class="op">,</span><span class="st">'No'</span>])<span class="op">;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_2 <span class="op">=</span> <span class="st">'Yes'</span><span class="op">;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_2_result <span class="op">=</span> {</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_2_response <span class="op">==</span> correct_cronbach_alpha_2){</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Otherwise the item will reduce the alpha value even if the item is reliably associated with other items (just going in the opposite direction).'</span><span class="op">;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>viewof skewness_question_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"Yes"</span><span class="op">,</span> <span class="st">"No"</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"A"</span>})<span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>this_result <span class="op">=</span> { </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> skewness_question_1_result <span class="op">=</span> <span class="st">"awaiting response"</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(rand_skew_no <span class="op">&gt;</span> <span class="fl">1.96</span>){</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores above 1.96 suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"Yes"</span>){</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(skewness_question_1_response <span class="op">==</span> <span class="st">"No"</span>) {</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      skewness_question_1_result <span class="op">=</span> <span class="st">"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness"</span><span class="op">;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> skewness_question_1_result<span class="op">;</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-12-1" data-nodetype="declaration">
@@ -884,15 +897,237 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+</div>
+<p>Your answer is <strong><span><span id="ojs-element-id-13"></span></span></strong></p>
+</section>
+</section>
+<section id="transforming-data" class="level3">
+<h3 class="anchored" data-anchor-id="transforming-data">Transforming Data</h3>
+<section id="question-1-6" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-6">Question 1</h4>
+<p>Which types of transformations <strong>might</strong> make a distribution normal?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'linear'</span><span class="op">,</span><span class="st">'non-linear'</span>])<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_1 <span class="op">=</span> <span class="st">'non-linear'</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>transformation_1_result <span class="op">=</span> {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_1_response <span class="op">==</span> correct_transformation_1){</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.'</span><span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-12-3" data-nodetype="declaration">
+<div id="ojs-cell-13-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-13-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-13-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 </div>
-<p><span><span id="ojs-element-id-13"></span></span></p>
+<p><span><span id="ojs-element-id-14"></span></span></p>
+</section>
+<section id="question-2-3" class="level4">
+<h4 class="anchored" data-anchor-id="question-2-3">Question 2</h4>
+<p>Which of the following transformations is least likely to result in a normal distribution?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'log'</span><span class="op">,</span><span class="st">'square'</span><span class="op">,</span><span class="st">'square-root'</span>])<span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_2 <span class="op">=</span> <span class="st">'square'</span><span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>transformation_2_result <span class="op">=</span> {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_2_response <span class="op">==</span> correct_transformation_2){</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.'</span><span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-14-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-14-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-14-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-15"></span></span></p>
+</section>
+</section>
+</section>
+<section id="correlations" class="level2">
+<h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
+<section id="question-1-7" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-7">Question 1</h4>
+<p>Which test would be less influenced by skewed data?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>viewof correlations_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"Pearson's R"</span><span class="op">,</span><span class="st">"Spearman's Rho/Rank"</span>])<span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>correct_correlations_1 <span class="op">=</span> <span class="st">"Spearman's Rho/Rank"</span><span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>correlations_1_result <span class="op">=</span> {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correlations_1_response <span class="op">==</span> correct_correlations_1){</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Ranks are less influenced by outliers which can skew the data than raw data.'</span><span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-15-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-15-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-15-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-16"></span></span></p>
+<p>Can r values be greater than 1?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb16" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>viewof correlations_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Yes, if the association is super strong'</span><span class="op">,</span><span class="st">'No, never ever'</span>])<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>correct_correlations_2 <span class="op">=</span> <span class="st">'No'</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>correlations_2_result <span class="op">=</span> {</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(correlations_2_response <span class="op">==</span> correct_correlations_2){</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-16-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-16-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-16-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-17"></span></span></p>
+</section>
+</section>
+<section id="item-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="item-analysis">Item Analysis</h2>
+<section id="question-1-8" class="level4">
+<h4 class="anchored" data-anchor-id="question-1-8">Question 1</h4>
+<p>Cronbach’s Alpha is useful to check whether items in a measure are…</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb17" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'valid'</span><span class="op">,</span><span class="st">'reliable'</span>])<span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_1 <span class="op">=</span> <span class="st">'reliable'</span><span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_1_result <span class="op">=</span> {</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_1_response <span class="op">==</span> correct_cronbach_alpha_1){</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Specifically, whether they reliably measure the same construct. However, weird things can happen if multiple similar constructs are captured in the measure, so it can be helpful to conduct Principle Component Analysis first.'</span><span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-17-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-17-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-17-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-18"></span></span></p>
+</section>
+<section id="question-2-4" class="level4">
+<h4 class="anchored" data-anchor-id="question-2-4">Question 2</h4>
+<p>Do you need to reverse code relevant items before conducting Cronbach’s Alpha?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb18" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>viewof cronbach_alpha_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Yes'</span><span class="op">,</span><span class="st">'No'</span>])<span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>correct_cronbach_alpha_2 <span class="op">=</span> <span class="st">'Yes'</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cronbach_alpha_2_result <span class="op">=</span> {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cronbach_alpha_2_response <span class="op">==</span> correct_cronbach_alpha_2){</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Otherwise the item will reduce the alpha value even if the item is reliably associated with other items (just going in the opposite direction).'</span><span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-18-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-18-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-18-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-19"></span></span></p>
 
 
 <script type="ojs-module-contents">
@@ -901,27 +1136,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ,
   {"methodName":"interpret","inline":"true","source":"htl.html`<span>${scientific_notation_2_result}</span>`", "cellName":"ojs-element-id-2"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${rand_maths_score}</span>`", "cellName":"ojs-element-id-3"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${stats_basics_1_result}</span>`", "cellName":"ojs-element-id-3"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${mean_maths_score}</span>`", "cellName":"ojs-element-id-4"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${stats_basics_2_result}</span>`", "cellName":"ojs-element-id-4"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${sd_maths_score}</span>`", "cellName":"ojs-element-id-5"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${stats_basics_3_result}</span>`", "cellName":"ojs-element-id-5"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_1_result}</span>`", "cellName":"ojs-element-id-6"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${central_tendency_1_result}</span>`", "cellName":"ojs-element-id-6"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_2_result}</span>`", "cellName":"ojs-element-id-7"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${rand_maths_score}</span>`", "cellName":"ojs-element-id-7"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${rand_skew_no}</span>`", "cellName":"ojs-element-id-8"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${mean_maths_score}</span>`", "cellName":"ojs-element-id-8"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${this_result}</span>`", "cellName":"ojs-element-id-9"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${sd_maths_score}</span>`", "cellName":"ojs-element-id-9"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${transformation_1_result}</span>`", "cellName":"ojs-element-id-10"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_1_result}</span>`", "cellName":"ojs-element-id-10"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${transformation_2_result}</span>`", "cellName":"ojs-element-id-11"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${normal_question_2_result}</span>`", "cellName":"ojs-element-id-11"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_1_result}</span>`", "cellName":"ojs-element-id-12"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${rand_skew_no}</span>`", "cellName":"ojs-element-id-12"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_2_result}</span>`", "cellName":"ojs-element-id-13"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${this_result}</span>`", "cellName":"ojs-element-id-13"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${transformation_1_result}</span>`", "cellName":"ojs-element-id-14"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${transformation_2_result}</span>`", "cellName":"ojs-element-id-15"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${correlations_1_result}</span>`", "cellName":"ojs-element-id-16"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${correlations_2_result}</span>`", "cellName":"ojs-element-id-17"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_1_result}</span>`", "cellName":"ojs-element-id-18"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${cronbach_alpha_2_result}</span>`", "cellName":"ojs-element-id-19"}
 ]}
 </script>
 </section>
@@ -929,7 +1176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof scientific_notation_1_response = Inputs.radio(['3.1e3','310']);\ncorrect_scientific_notation_1 = '3.1e';\nscientific_notation_1_result = {\n  if(scientific_notation_1_response == correct_scientific_notation_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof scientific_notation_2_response = Inputs.radio(['2.5 * 10^-3',' .00025']);\ncorrect_scientific_notation_2 = '2.5 * 10^-3';\nscientific_notation_2_result = {\n  if(scientific_notation_2_response == correct_scientific_notation_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof normal_question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nnormal_question_1_result = { \n  if(normal_question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"normal_question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"viewof normal_question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nnormal_question_2_result = { \n  if(normal_question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(normal_question_2_correct == normal_question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"rand_skew_no = Math.round(Math.random() * 400)/100;\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"viewof skewness_question_1_response = Inputs.radio([\"Yes\", \"No\"], {label: \"\", value: \"A\"});\nthis_result = { \n  var skewness_question_1_result = \"awaiting response\";\n\n  if(rand_skew_no > 1.96){\n    if(skewness_question_1_response == \"Yes\"){\n      skewness_question_1_result = \"Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    } else if(skewness_question_1_response == \"No\") {\n      skewness_question_1_result = \"Not Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    }\n  } else {\n    if(skewness_question_1_response == \"Yes\"){\n      skewness_question_1_result = \"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    } else if(skewness_question_1_response == \"No\") {\n      skewness_question_1_result = \"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    }\n  }\n  return skewness_question_1_result;\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"viewof transformation_1_response = Inputs.radio(['linear','non-linear']);\ncorrect_transformation_1 = 'non-linear';\ntransformation_1_result = {\n  if(transformation_1_response == correct_transformation_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-10","inline":false,"source":"viewof transformation_2_response = Inputs.radio(['log','square','square-root']);\ncorrect_transformation_2 = 'square';\ntransformation_2_result = {\n  if(transformation_2_response == correct_transformation_2){\n    return 'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-11","inline":false,"source":"viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);\ncorrect_cronbach_alpha_1 = 'reliable';\ncronbach_alpha_1_result = {\n  if(cronbach_alpha_1_response == correct_cronbach_alpha_1){\n    return 'Correct! Specifically, whether they reliably measure the same construct. However, weird things can happen if multiple similar constructs are captured in the measure, so it can be helpful to conduct Principle Component Analysis first.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-12","inline":false,"source":"viewof cronbach_alpha_2_response = Inputs.radio(['Yes','No']);\ncorrect_cronbach_alpha_2 = 'Yes';\ncronbach_alpha_2_result = {\n  if(cronbach_alpha_2_response == correct_cronbach_alpha_2){\n    return 'Correct! Otherwise the item will reduce the alpha value even if the item is reliably associated with other items (just going in the opposite direction).';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('scientific_notation_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('scientific_notation_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('skewness_question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('transformation_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('transformation_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_2_response')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof scientific_notation_1_response = Inputs.radio(['3.1e3','310']);\ncorrect_scientific_notation_1 = '3.1e';\nscientific_notation_1_result = {\n  if(scientific_notation_1_response == correct_scientific_notation_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof scientific_notation_2_response = Inputs.radio(['2.5 * 10^-3',' .00025']);\ncorrect_scientific_notation_2 = '2.5 * 10^-3';\nscientific_notation_2_result = {\n  if(scientific_notation_2_response == correct_scientific_notation_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"viewof stats_basics_1_response = Inputs.radio(['100','200','neither']);\ncorrect_stats_basics_1 = '100';\nstats_basics_1_result = {\n  if(stats_basics_1_response == correct_stats_basics_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"viewof stats_basics_2_response = Inputs.radio(['100','200','neither']);\ncorrect_stats_basics_2 = 'neither';\nstats_basics_2_result = {\n  if(stats_basics_2_response == correct_stats_basics_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"viewof stats_basics_3_response = Inputs.radio(['higher when the p-value is higher','lower when the p-value is lower','neither']);\ncorrect_stats_basics_3 = 'neither';\nstats_basics_3_result = {\n  if(stats_basics_3_response == correct_stats_basics_3){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"viewof central_tendency_1_response = Inputs.radio(['Mean','Median','Mode']);\ncorrect_central_tendency_1 = 'Mean';\ncentral_tendency_1_result = {\n  if(central_tendency_1_response == correct_central_tendency_1){\n    return 'Correct! Mode and median are unlikely to be influenced by a single value, whereas an extreme value can drag the mean up or down.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"rand_maths_score = 40 + Math.round(Math.random() * 60);\nmean_maths_score = 70\nsd_maths_score   = 10\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"viewof normal_question_1_response = Inputs.number([-7,3], {label: \"Z-score\", step:.1});\ncorrect_z_score = (rand_maths_score - mean_maths_score)/sd_maths_score;\n\nnormal_question_1_result = { \n  if(normal_question_1_response == correct_z_score){\n    return \"Correct! (\" + rand_maths_score + \" - \" + mean_maths_score + \")/\" + sd_maths_score + \" = \" + correct_z_score;\n  } else {\n    return \"Missing or incorrect. Remember that how Z is calculated by dividing the difference between a value and the mean value by the SD.\"\n  } \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"normal_question_2_correct = {\n  if(correct_z_score < -2){\n    return \"bottom 2.3%\";\n  } else if(correct_z_score < -1){\n    return \"bottom 15.9%\";\n  } else if(correct_z_score < 0){\n    return \"bottom 50%\";\n  } else if(correct_z_score < 1){\n    return \"top 50%\";\n  } else if(correct_z_score < 2){\n    return \"top 15.9%\";\n  } else {\n    return \"top 2.3%\";\n  }\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-10","inline":false,"source":"viewof normal_question_2_response = Inputs.radio([\n  \"bottom 2.3%\", \n  \"bottom 15.9%\",\n  \"bottom 50%\",\n  \"top 50%\",\n  \"top 15.9%\",\n  \"top 2.3%\", \n  ], {label: \"\", value: \"A\"});\nnormal_question_2_result = { \n  if(normal_question_2_response == \"\"){\n    return \"awaiting your response\";\n  } else if(normal_question_2_correct == normal_question_2_response){\n    return \"Correct!\";\n  } else {\n    return \"Missing or Incorrect - have a look at the plots above to help you find the correct answer. Note, the distributions are symmetrical, so the pattern for the top half will mirror that for the bottom half.\";\n  }\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-11","inline":false,"source":"rand_skew_no = Math.round(Math.random() * 400)/100;\n"},{"methodName":"interpret","cellName":"ojs-cell-12","inline":false,"source":"viewof skewness_question_1_response = Inputs.radio([\"Yes\", \"No\"], {label: \"\", value: \"A\"});\nthis_result = { \n  var skewness_question_1_result = \"awaiting response\";\n\n  if(rand_skew_no > 1.96){\n    if(skewness_question_1_response == \"Yes\"){\n      skewness_question_1_result = \"Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    } else if(skewness_question_1_response == \"No\") {\n      skewness_question_1_result = \"Not Correct - Z scores above 1.96 suggest significant problems with skewness\";\n    }\n  } else {\n    if(skewness_question_1_response == \"Yes\"){\n      skewness_question_1_result = \"Not Correct - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    } else if(skewness_question_1_response == \"No\") {\n      skewness_question_1_result = \"Correct  - Z scores below 1.96 **do not** suggest significant problems with skewness\";\n    }\n  }\n  return skewness_question_1_result;\n}\n\n"},{"methodName":"interpret","cellName":"ojs-cell-13","inline":false,"source":"viewof transformation_1_response = Inputs.radio(['linear','non-linear']);\ncorrect_transformation_1 = 'non-linear';\ntransformation_1_result = {\n  if(transformation_1_response == correct_transformation_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-14","inline":false,"source":"viewof transformation_2_response = Inputs.radio(['log','square','square-root']);\ncorrect_transformation_2 = 'square';\ntransformation_2_result = {\n  if(transformation_2_response == correct_transformation_2){\n    return 'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-15","inline":false,"source":"viewof correlations_1_response = Inputs.radio([\"Pearson's R\",\"Spearman's Rho/Rank\"]);\ncorrect_correlations_1 = \"Spearman's Rho/Rank\";\ncorrelations_1_result = {\n  if(correlations_1_response == correct_correlations_1){\n    return 'Correct! Ranks are less influenced by outliers which can skew the data than raw data.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-16","inline":false,"source":"viewof correlations_2_response = Inputs.radio(['Yes, if the association is super strong','No, never ever']);\ncorrect_correlations_2 = 'No';\ncorrelations_2_result = {\n  if(correlations_2_response == correct_correlations_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-17","inline":false,"source":"viewof cronbach_alpha_1_response = Inputs.radio(['valid','reliable']);\ncorrect_cronbach_alpha_1 = 'reliable';\ncronbach_alpha_1_result = {\n  if(cronbach_alpha_1_response == correct_cronbach_alpha_1){\n    return 'Correct! Specifically, whether they reliably measure the same construct. However, weird things can happen if multiple similar constructs are captured in the measure, so it can be helpful to conduct Principle Component Analysis first.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-18","inline":false,"source":"viewof cronbach_alpha_2_response = Inputs.radio(['Yes','No']);\ncorrect_cronbach_alpha_2 = 'Yes';\ncronbach_alpha_2_result = {\n  if(cronbach_alpha_2_response == correct_cronbach_alpha_2){\n    return 'Correct! Otherwise the item will reduce the alpha value even if the item is reliably associated with other items (just going in the opposite direction).';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('scientific_notation_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('scientific_notation_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('stats_basics_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('stats_basics_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('stats_basics_3_response')"},{"methodName":"interpretQuiet","source":"shinyInput('central_tendency_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('normal_question_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('skewness_question_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('transformation_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('transformation_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('correlations_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('correlations_2_response')"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('cronbach_alpha_2_response')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../extras";

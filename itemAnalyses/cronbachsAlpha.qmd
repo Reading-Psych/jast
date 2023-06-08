@@ -48,6 +48,15 @@ covariance_df = pd.DataFrame(covariance_matrix, columns=cog_eq.columns, index=co
 
 print(covariance_df)
 ```
+
+```         
+          cog_1     cog_2     cog_3     cog_4     cog_5
+cog_1  0.368713  0.110614  0.097613  0.162830  0.101236
+cog_2  0.110614  0.278772  0.108696  0.081202  0.023018
+cog_3  0.097613  0.108696  0.306053  0.082907  0.096760
+cog_4  0.162830  0.081202  0.082907  0.368713  0.086530
+cog_5  0.101236  0.023018  0.096760  0.086530  0.367434
+```
 :::
 
 Note that covariance of an item with itself is just **variance**, e.g. **cog_1** with itself:
@@ -65,6 +74,10 @@ var(cog_eq$cog_1)
 #| eval: false
 
 cog_eq['cog_1'].var()
+```
+
+```         
+0.36871270247229326
 ```
 :::
 
@@ -280,11 +293,8 @@ Let's compare this to the **psych** packages **alpha** function (note that it is
 ## R
 
 ```{r}
-#| label: tbl-cronbach-alpha
-#| tbl-cap: "Psych Package's Cronbach Alpha calculations"
-
 eq_alpha_output <- psych::alpha(cog_eq)
-knitr::kable(eq_alpha_output$total) # note that there other outputs available
+eq_alpha_output$total$raw_alpha
 ```
 
 ## Python
@@ -297,20 +307,11 @@ import pingouin as pg
 # Cronbach's Alpha
 alpha = pg.cronbach_alpha(data=cog_eq)[0]
 
-# Compute the covariance matrix
-cov_matrix = cog_eq.cov()
-
-# Compute the variance of each variable
-variances = cog_eq.var()
-
-# Compute the number of variables
-num_vars = len(cog_eq.columns)
-
-# Compute standardized Cronbach's alpha
-standardized_alpha = (num_vars / (num_vars - 1)) * (1 - (sum(variances) / np.trace(cov_matrix)))
-
 print("Cronbach's Alpha:", alpha)
-print("Standardized Cronbach's Alpha:", standardized_alpha)
+```
+
+```         
+Cronbach's Alpha: 0.6620787850023729
 ```
 :::
 
@@ -400,7 +401,15 @@ print("Mean correlation of all items:", mean_cor_all)
 ```
 :::
 
-Which matches the value of std.alpha in the output in @tbl-cronbach-alpha.
+Which matches the R calculated value in the table below:
+
+```{r}
+#| label: tbl-cronbach-alpha
+#| tbl-cap: "Psych Package's Cronbach Alpha calculations"
+
+eq_alpha_output <- psych::alpha(cog_eq)
+knitr::kable(eq_alpha_output$total) # note that there other outputs available
+```
 
 ## [*General*]{.underline} benchmarks for Cronbach's alpha
 

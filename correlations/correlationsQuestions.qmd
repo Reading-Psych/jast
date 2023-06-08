@@ -3,3 +3,33 @@ editor: visual
 ---
 
 #### Question 1
+
+Which test would be less influenced by skewed data?
+```{ojs}
+//| echo: false
+viewof correlations_1_response = Inputs.radio(["Pearson's R","Spearman's Rho/Rank"]);
+correct_correlations_1 = "Spearman's Rho/Rank";
+correlations_1_result = {
+  if(correlations_1_response == correct_correlations_1){
+    return 'Correct! Ranks are less influenced by outliers which can skew the data than raw data.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${correlations_1_result}
+
+Can r values be greater than 1?
+```{ojs}
+//| echo: false
+viewof correlations_2_response = Inputs.radio(['Yes, if the association is super strong','No, never ever']);
+correct_correlations_2 = 'No';
+correlations_2_result = {
+  if(correlations_2_response == correct_correlations_2){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${correlations_2_result}

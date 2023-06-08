@@ -72,7 +72,7 @@ plt.show()
 ![Scatterplot of 'GDP per capita' and 'Life expectancy'](correlation-Figure1.png){fig-align="left" width="700" height="500"}
 :::
 
-*Note that in the figure above each dot represents an individual point from our data.Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).*
+*Note that in the figure above each dot represents an individual point from our data. Each dot represents an individual country (with the x-coordinte being the GDP per capita, and the y-coordinate being the Life Expectancy).*
 
 Generally speaking, a correlation tells you how much of the total variance is explained by how much the variables vary together. To understand this, lets start by clarifying how you understand the variance of individual variables.
 
@@ -90,21 +90,21 @@ $$
 
 Just a reminder of what each part of the formula is:
 
-$\sum$ is saying to add together everything
+-   $\sum$ is saying to add together everything (i.e. the sum of everything within the brackets for this formula)
 
-$x_i$ refers to each individual's x-score
+-   $x_i$ refers to each individual's x-score
 
-$y_i$ refers to each individual's y-score
+-   $y_i$ refers to each individual's y-score
 
-$\bar{x}$ refers to the mean x-score across all participants
+-   $\bar{x}$ refers to the mean x-score across all participants
 
-$\bar{y}$ refers to the mean y-score across all participants
+-   $\bar{y}$ refers to the mean y-score across all participants
 
-$N$ refers to the number of participants
+-   $N$ refers to the number of participants
 
-$N-1$ is **degrees of freedom**, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the [dispersion](../distributions/dispersion) section).
+-   $N-1$ is **degrees of freedom**, used for this calculation as you are calculating the variance within a sample, rather than variance within the whole population (which you would just use N for; this is explained further in the [dispersion](../distributions/dispersion) section).
 
-The $SD$ (Standard deviation; which is just the square root of variance) of how data is distributed around the mean $life$$expectancy$ (per capita) can be visualised as follows within the gapminder $gdp*lifeExpectancy$ in the light blue box:
+The variance for life expectancy can be visualised as the sum of the square of the following:
 
 ::: panel-tabset
 ## R
@@ -124,7 +124,7 @@ life_exp_resid <- ggplot(
     yintercept = mean(gapminder_2007$lifeExp), 
     linetype   = "dashed",  
     color      = "#006599", 
-    size       = 1
+    linewidth  = 1
   ) +
   coord_cartesian(ylim = c(30, 85)) +
   xlab("GDP per capita") +
@@ -176,7 +176,7 @@ plt.show()
 ![Scatterplot with residuals of 'Life expectancy'](correlation-Figure2.png){fig-align="left" width="700" height="500"}
 :::
 
-*Note that in the figure above the horizontal blue dotted line represent the mean of Life Expectancy. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
+*Note that in the figure above the horizontal blue dotted line represent the mean of Life Expectancy. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html#degrees-of-freedom).
 
 Lets look at the variance of GDP per capita:
 
@@ -207,6 +207,9 @@ gdp_resid <- ggplot(
       yend = lifeExp,
       color = "resid"
     )
+  ) + 
+  theme(
+    legend.position = "none"
   )
 ggsave("gdp_resid.png", gdp_resid)
 gdp_resid
@@ -244,11 +247,11 @@ plt.show()
 ![Scatterplot with residuals of 'GDP per capita'](correlation-Figure3.png){fig-align="left" width="700" height="500"}
 :::
 
-*Note that in the figure above the vertical blue dotted line represents the mean gdp per capita. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html).
+*Note that in the figure above the vertical blue dotted line represents the mean gdp per capita. Variance is the total after squaring all the residuals (pink lines) and dividing this total by the* [degrees of freedom](../describingData/dispersion.html#degrees-of-freedom).
 
 ## Total variance
 
-A correlation aims to explain how much of the $total$ $variance$ is explained by the overlapping variance between the x and y axes. So we need to capture the $total$ $variance$ separately for the x and y axes. We do this by multiplying the variance for $x$ by the variance for $y$ (and square rooting to control for the multiplication itself):
+A correlation captures how much of the **total variance** is explained by the overlapping variance between the x and y axes. So we first need to capture the **total variance**. We do this by multiplying the variance for $x$ by the variance for $y$ (and square rooting to control for the multiplication itself):
 
 $$
 totalVariance = \sqrt{\frac{\sum(x_i-\bar{x})^2}{N-1}}*\sqrt{\frac{\sum(y_i-\bar{y})^2}{N-1}}
@@ -261,12 +264,6 @@ totalVariance = \frac{\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2}}{N-1}
 $$
 
 )
-
-Or, to use the figures above:
-
-+---------------------+-------------------------------------------------------------+-----------+---------------------------------------------------------+
-| \$Total\$ \$Var\$ = | sqrt(![](life_exp_resid.png) \\\^2) \$\$ \\frac{}{N-1} \$\$ | \$\*\$    | sqrt(![](gdp_resid.png) \\\^ 2) \$\$ \\frac{}{N-1} \$\$ |
-+---------------------+-------------------------------------------------------------+-----------+---------------------------------------------------------+
 
 This is analogous to understanding the total area of a rectangle by multiplying the length of each side with each other.
 
@@ -375,7 +372,7 @@ plt.savefig('shared_resid.png')
 
 ### Comparing $shared$ $variance$ ($var_{xy}$) to $total$ $variance$
 
-To complete a **Pearson's** **R** correlation we need to compare the amount that x and y vary together to the total variance (in which you calculate how much x and y vary separately and multiply them) to calculate the **proportion** of $total$ $variance$ is explained by the $shared$ $variance$ ($var_{xy}$).
+To complete a **Pearson's** **R** correlation we need to compare the amount that $x$ and $y$ vary together to the **total variance** (in which you calculate how much x and y vary separately and multiply them) to calculate the **proportion** of $total$ $variance$ is explained by the $shared$ $variance$ ($var_{xy}$).
 
 $$
 \frac{var_{xy}}{totalVariance} = \frac{(\sum(x_i-\bar{x})(y_i-\bar{y}))/(N-1)}
@@ -456,29 +453,19 @@ scipy.stats.pearsonr(gapminder_2007["gdpPercap"], gapminder_2007["lifeExp"])
 ```
 :::
 
-To visualise what proportion of the variance is captured by $var_{xy}$:
+Again, a reminder of how shared variance could be visualised:
 
-+:------------------------------------------------------------------------:+
-| ![](shared_resid.png)                                                    |
-+--------------------------------------------------------------------------+
-| ------------------------------------------------------------------------ |
-+--------------------------------------------------------------------------+
-| sqrt(![](life_exp_resid.png) \\\^2                                       |
-+--------------------------------------------------------------------------+
+```{r echo=FALSE}
+shared_resid
+```
 
-A question you might have at this point, is whether the above figure seems consistent with 67.9% of $total$ $variance$ being explained by overlapping variance between $x$ and $y$?
+A question you might have at this point, is whether the above figure of shared variance seems consistent with 67.9% of $total$ $variance$ being explained by overlapping variance between $x$ and $y$?
 
 If $x$ and $y$ vary together, then you would expect either:
 
 -   a higher $x$ data point should be associated with a **higher** $y$ data point (positive association)
 
 -   a higher $x$ data point should be associated with a **lower** $y$ data point (negative association)
-
-The bottom half of the figure above doesn't give you that much insight into how consistently $x$ and $y$ are positive or negatively associated with each other, but the top half does;
-
-```{r}
-shared_resid
-```
 
 If there is a *positive association*, then you would expect there to be consistency in $x$ and $y$ both being above their own respective means, or both being below their respective means consistently, which is what we see above.
 
@@ -833,5 +820,13 @@ You may notice that the variance from the mean in X and Y is more aligned in thi
 ```{r}
 shared_resid
 ```
+
+::: callout-note
+## R values are standardised values
+
+As both Pearson's R and Spearman's Rank are calculations of the [***proportion***]{.underline} of **total variance** that can be explained by **covariance** between variabels, they will always be a value between -1 (all variance is explained for a negative association) to 1 (all variance is explained for a positive association). R values are thus **standardised,** unlike **variance** and **covariance values** which have no limit in their values.
+:::
+
+### Consolidation questions
 
 {{< include correlationsQuestions.qmd >}}

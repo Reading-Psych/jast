@@ -292,6 +292,25 @@ knitr::kable(eq_alpha_output$total) # note that there other outputs available
 ```{python}
 #| eval: false
 
+import pingouin as pg
+
+# Cronbach's Alpha
+alpha = pg.cronbach_alpha(data=cog_eq)[0]
+
+# Compute the covariance matrix
+cov_matrix = cog_eq.cov()
+
+# Compute the variance of each variable
+variances = cog_eq.var()
+
+# Compute the number of variables
+num_vars = len(cog_eq.columns)
+
+# Compute standardized Cronbach's alpha
+standardized_alpha = (num_vars / (num_vars - 1)) * (1 - (sum(variances) / np.trace(cov_matrix)))
+
+print("Cronbach's Alpha:", alpha)
+print("Standardized Cronbach's Alpha:", standardized_alpha)
 ```
 :::
 

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Just Another Statistics Textbook - R-squared vs.&nbsp;Adjusted R-squared</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../logo/logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo/logo.jpeg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Just Another Statistics Textbook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
+ <span class="menu-text">Report an error</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
+ <span class="menu-text">Request a clarification</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
+ <span class="menu-text">Suggest Content</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">R-squared vs.&nbsp;Adjusted R-squared</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Welcome</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Statistics Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">R Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Describing Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Distributions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">Binomial Distribution (R) - incomplete</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">General Linear Models</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests(incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Validity checks</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../validityChecks/multipleTesting.html" class="sidebar-item-text sidebar-link">Multiple Testing Corrections (R)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../validityChecks/fdr.html" class="sidebar-item-text sidebar-link">False Discovery Rate(incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">Count and countifs function</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">Sum and SumIf</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">Averageifs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">Anchoring</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">R-squared vs.&nbsp;Adjusted R-squared</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>When completing a regression, there’s always a risk of “overfitting” the data, i.e.&nbsp;creating a model that includes predictors that have no meaningful association with the outcome variable. One reason that overfitting the data is a problem is that it is almost impossible for a predictor to have no association with an outcome variable. For that to happen you would need any data points that suggested a positive association between the outcome and the predictor to be equally balanced out by data points that suggest a negative association:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>no_association_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">predictor =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome   =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(no_association_df, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> outcome)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">formula =</span> <span class="st">'y ~ x'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="rVsAdjustedRSquared_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#sample participants in pairs</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>no_association_df <span class="op">=</span> {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'predictor'</span>: [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'outcome'</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>no_association_df <span class="op">=</span> pd.DataFrame(no_association_df)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> np.polyfit(no_association_df[<span class="st">"predictor"</span>],no_association_df[<span class="st">"outcome"</span>],<span class="dv">1</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>poly1d_fn <span class="op">=</span> np.poly1d(coef) </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># poly1d_fn is now a function which takes in x and returns an estimate for y</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.plot(no_association_df[<span class="st">"predictor"</span>],no_association_df[<span class="st">"outcome"</span>], <span class="st">'ko'</span>, no_association_df[<span class="st">"predictor"</span>], poly1d_fn(no_association_df[<span class="st">"predictor"</span>]), <span class="st">'-b'</span>) <span class="co">#'--k'=black dashed line, 'yo' = yellow circle marker</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the x-axis</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"predictor"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># add title on the y-axis</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"outcome"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="rVsAdjustedRSquared-Figure1.png" width="700" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Unrealistic Data Distribution</figcaption><p></p>
+</figure>
+</div>
+<p><em>Fig. X.</em> An example of how unrealistically balanced your data needs to be to find no association. As this (almost) never happens in reality, samples are <em>biased</em> towards finding associations between predictor and outcome variables even when there aren’t any in the population. For example, let’s generate some random data, and see what R-Values we find. Remember, random data really shouldn’t have <em>any</em> association between predictor and outcome variables.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>random_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_1 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_2 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_iv_3 =</span> <span class="fu">runif</span>(<span class="dv">100</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">random_dv =</span> <span class="fu">runif</span>(<span class="dv">100</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(random_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["random_iv_1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["random_iv_2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["random_iv_3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["random_dv"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.114224601","2":"0.641731410","3":"0.86407325","4":"0.470828149"},{"1":"0.499960044","2":"0.589787419","3":"0.83799732","4":"0.299725260"},{"1":"0.721257982","2":"0.247444582","3":"0.06620710","4":"0.666735740"},{"1":"0.434366803","2":"0.188763769","3":"0.87042133","4":"0.441734687"},{"1":"0.196185018","2":"0.640583296","3":"0.12656862","4":"0.571970331"},{"1":"0.616530253","2":"0.526371204","3":"0.19598001","4":"0.484691861"},{"1":"0.139094931","2":"0.981891115","3":"0.74447151","4":"0.348084120"},{"1":"0.249320090","2":"0.235713493","3":"0.70738370","4":"0.922192830"},{"1":"0.501288515","2":"0.560105318","3":"0.43784033","4":"0.554875865"},{"1":"0.717683503","2":"0.449298807","3":"0.37008684","4":"0.028555702"},{"1":"0.274149070","2":"0.759801256","3":"0.62590175","4":"0.029053892"},{"1":"0.082360282","2":"0.302811575","3":"0.89248497","4":"0.189937207"},{"1":"0.105426761","2":"0.231138929","3":"0.97275170","4":"0.212333838"},{"1":"0.591390621","2":"0.647375799","3":"0.66005558","4":"0.094487758"},{"1":"0.699180420","2":"0.782799290","3":"0.29582594","4":"0.363581870"},{"1":"0.306838253","2":"0.808892489","3":"0.80709879","4":"0.414772837"},{"1":"0.168729051","2":"0.924901698","3":"0.43247890","4":"0.966842777"},{"1":"0.508322911","2":"0.039472367","3":"0.97195572","4":"0.519307893"},{"1":"0.643672414","2":"0.483530873","3":"0.54645572","4":"0.811111088"},{"1":"0.517207075","2":"0.901744716","3":"0.13473639","4":"0.811788672"},{"1":"0.944630034","2":"0.002551338","3":"0.84828577","4":"0.835000029"},{"1":"0.569621852","2":"0.390516284","3":"0.81634381","4":"0.067699737"},{"1":"0.186727775","2":"0.542027578","3":"0.96570435","4":"0.023108017"},{"1":"0.010617238","2":"0.985637959","3":"0.20559771","4":"0.246299633"},{"1":"0.265523910","2":"0.581210246","3":"0.35882748","4":"0.887835420"},{"1":"0.882745203","2":"0.335937338","3":"0.87679842","4":"0.744340089"},{"1":"0.639468244","2":"0.072887925","3":"0.76768143","4":"0.009707104"},{"1":"0.455343259","2":"0.417826469","3":"0.91202573","4":"0.176314398"},{"1":"0.619115193","2":"0.926548853","3":"0.44910281","4":"0.083374257"},{"1":"0.490405250","2":"0.462433197","3":"0.46277396","4":"0.828973717"},{"1":"0.603065283","2":"0.270677999","3":"0.42337390","4":"0.509438657"},{"1":"0.969001125","2":"0.159745184","3":"0.81234609","4":"0.032041090"},{"1":"0.962159442","2":"0.238365184","3":"0.99899844","4":"0.267160252"},{"1":"0.276394124","2":"0.079947027","3":"0.44690369","4":"0.849101171"},{"1":"0.286972645","2":"0.029902052","3":"0.03442586","4":"0.487569775"},{"1":"0.966764887","2":"0.608715723","3":"0.15418379","4":"0.719899068"},{"1":"0.001796704","2":"0.428314585","3":"0.09519432","4":"0.827489734"},{"1":"0.320420411","2":"0.154498381","3":"0.22598976","4":"0.452719921"},{"1":"0.229146113","2":"0.789303312","3":"0.17096536","4":"0.613695906"},{"1":"0.313128405","2":"0.193698490","3":"0.43176261","4":"0.587608706"},{"1":"0.067286046","2":"0.712191666","3":"0.25338929","4":"0.387002800"},{"1":"0.812895154","2":"0.219542569","3":"0.37444296","4":"0.678093347"},{"1":"0.659787656","2":"0.192932825","3":"0.28350089","4":"0.973611185"},{"1":"0.809462954","2":"0.603646257","3":"0.67784296","4":"0.879652871"},{"1":"0.444113689","2":"0.084724707","3":"0.54345317","4":"0.103651384"},{"1":"0.360568345","2":"0.884687666","3":"0.41392643","4":"0.629721509"},{"1":"0.935373012","2":"0.082805596","3":"0.95059631","4":"0.166979413"},{"1":"0.814567137","2":"0.629894582","3":"0.12310451","4":"0.448098329"},{"1":"0.195844438","2":"0.824038351","3":"0.99985803","4":"0.764297530"},{"1":"0.970811989","2":"0.565948970","3":"0.16442581","4":"0.622587079"},{"1":"0.096212938","2":"0.043114380","3":"0.01868355","4":"0.785119109"},{"1":"0.459417260","2":"0.307852439","3":"0.76532873","4":"0.258070137"},{"1":"0.400012555","2":"0.881690834","3":"0.63841825","4":"0.228537160"},{"1":"0.744853041","2":"0.867022607","3":"0.47420338","4":"0.106210750"},{"1":"0.718507514","2":"0.679577417","3":"0.38841909","4":"0.979504550"},{"1":"0.517193587","2":"0.270210793","3":"0.62702954","4":"0.600997854"},{"1":"0.029659360","2":"0.460393780","3":"0.67750616","4":"0.486652510"},{"1":"0.040781350","2":"0.399650530","3":"0.53397722","4":"0.431617121"},{"1":"0.747716185","2":"0.129189597","3":"0.96262135","4":"0.686012844"},{"1":"0.508515024","2":"0.012662208","3":"0.66032329","4":"0.282143637"},{"1":"0.619346978","2":"0.243149027","3":"0.50121332","4":"0.625666501"},{"1":"0.851599396","2":"0.436987806","3":"0.50714834","4":"0.740311655"},{"1":"0.535224283","2":"0.024103933","3":"0.48066687","4":"0.438161243"},{"1":"0.187026603","2":"0.340628802","3":"0.51677428","4":"0.804851059"},{"1":"0.414283625","2":"0.577633995","3":"0.73932230","4":"0.661766998"},{"1":"0.628928749","2":"0.601786723","3":"0.74418970","4":"0.003219353"},{"1":"0.510190307","2":"0.596905249","3":"0.09194208","4":"0.768112462"},{"1":"0.125484671","2":"0.856524957","3":"0.69014216","4":"0.823588978"},{"1":"0.747012924","2":"0.684252730","3":"0.97573636","4":"0.079684037"},{"1":"0.250669981","2":"0.487745532","3":"0.91998394","4":"0.883289199"},{"1":"0.357143834","2":"0.548120238","3":"0.17030303","4":"0.466116007"},{"1":"0.876478912","2":"0.347050722","3":"0.16545360","4":"0.348155437"},{"1":"0.154320167","2":"0.744699763","3":"0.10943394","4":"0.423263843"},{"1":"0.400240059","2":"0.866861912","3":"0.85725790","4":"0.410506666"},{"1":"0.444582453","2":"0.351861576","3":"0.78967161","4":"0.088419709"},{"1":"0.514530834","2":"0.688907737","3":"0.66217604","4":"0.433279939"},{"1":"0.834654270","2":"0.258095749","3":"0.29621682","4":"0.924299184"},{"1":"0.245850123","2":"0.879283030","3":"0.71539069","4":"0.850818810"},{"1":"0.990433163","2":"0.021817402","3":"0.45193144","4":"0.289917959"},{"1":"0.370718781","2":"0.787225907","3":"0.36058735","4":"0.785998987"},{"1":"0.590643047","2":"0.618629900","3":"0.86695411","4":"0.614612601"},{"1":"0.539612949","2":"0.075906103","3":"0.50752904","4":"0.593476875"},{"1":"0.938556864","2":"0.211653201","3":"0.74002167","4":"0.729589373"},{"1":"0.440654953","2":"0.224641286","3":"0.04327488","4":"0.497661127"},{"1":"0.437788304","2":"0.528613921","3":"0.57931894","4":"0.897629454"},{"1":"0.002308981","2":"0.344900844","3":"0.84005489","4":"0.917659422"},{"1":"0.879023263","2":"0.672766190","3":"0.71360424","4":"0.585825793"},{"1":"0.718908303","2":"0.798892047","3":"0.61625768","4":"0.438638978"},{"1":"0.647019819","2":"0.017448990","3":"0.27941140","4":"0.606179570"},{"1":"0.487733562","2":"0.219582249","3":"0.74011737","4":"0.625872039"},{"1":"0.198692932","2":"0.422443799","3":"0.52474316","4":"0.102951104"},{"1":"0.800684966","2":"0.533302859","3":"0.19518873","4":"0.813758082"},{"1":"0.236806610","2":"0.960610646","3":"0.37556247","4":"0.833713101"},{"1":"0.017282435","2":"0.981970086","3":"0.91903208","4":"0.460641438"},{"1":"0.373909557","2":"0.028314195","3":"0.58783921","4":"0.002070841"},{"1":"0.691307107","2":"0.715525383","3":"0.54509860","4":"0.995873271"},{"1":"0.884406287","2":"0.429729990","3":"0.04283697","4":"0.818815908"},{"1":"0.356849339","2":"0.299819000","3":"0.83649672","4":"0.878951051"},{"1":"0.524260371","2":"0.102745831","3":"0.38842034","4":"0.696387670"},{"1":"0.642574314","2":"0.743576263","3":"0.94989221","4":"0.492401673"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>random_df <span class="op">=</span> {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'random_iv_1'</span>: np.random.random_sample(size <span class="op">=</span> <span class="dv">100</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'random_iv_2'</span>: np.random.random_sample(size <span class="op">=</span> <span class="dv">100</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'random_iv_3'</span>: np.random.random_sample(size <span class="op">=</span> <span class="dv">100</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'random_dv'</span>: np.random.random_sample(size <span class="op">=</span> <span class="dv">100</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># convert it to a data frame</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>random_df <span class="op">=</span> pd.DataFrame(random_df)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(random_df[:<span class="dv">10</span>], headers<span class="op">=</span>random_df.head(), tablefmt<span class="op">=</span><span class="st">"fancy_grid"</span>,showindex<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="rVsAdjustedRSquared-Table1.png" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
+</figure>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>random_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(random_dv <span class="sc">~</span> random_iv_1, random_df)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>random_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(random_lm)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>random_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = random_dv ~ random_iv_1, data = random_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.52452 -0.22320  0.01342  0.25408  0.47637 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.53494    0.05880   9.098  1.1e-14 ***
+random_iv_1 -0.02233    0.10492  -0.213    0.832    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2876 on 98 degrees of freedom
+Multiple R-squared:  0.0004618, Adjusted R-squared:  -0.009738 
+F-statistic: 0.04528 on 1 and 98 DF,  p-value: 0.8319</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>random_lm <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'random_dv ~ random_iv_1'</span>, data<span class="op">=</span>random_df).fit()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>random_lm.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="rVsAdjustedRSquared-Table2.png" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
+</figure>
+</div>
+<p><strong>Note that the above output is generated each time this page is rendered (generated), and so <em>by chance</em> may happen to look like the random predictor is significant. If so, there’s a 95% chance that this predictor will not be significant next time the page is rendered</strong>.</p>
+<p>Looking at the output above, we can see that 0.0462% of the variance of random_dv was explained by <em>random_iv_1</em> before correction. Considering that these were randomly generated numbers, that’s 0.0462% too much. However, the <em>Adjusted R-squared</em> is only -0.0097. Note that <em>Adjusted R-squared</em> can be a negative number, and a negative number suggests that based on the sample, the predictor(s) has(/have) no association with the outcome variable in the population.</p>
+<p>A formula for the adjusted r-squared is:</p>
+<p><span class="math display">\[
+\bar{R^2} = 1-\frac{SS_{res}/df_{res}}{SS_{tot}/df_{tot}}
+\]</span> <span class="math inline">\(\bar{R^2}\)</span> is the <em>Adjusted R-Squared</em> <span class="math inline">\(SS_{total}\)</span> is the <em>Sum of Squares</em> of the <em>total</em> (i.e.&nbsp;how much total variance there is around the mean to explain) <span class="math inline">\(SS_{res}\)</span> is the <em>Sum of Squares</em> of the <em>residuals</em> (i.e.&nbsp;how much isn’t explained by the model) <span class="math inline">\(df_{total}\)</span> is the <em>Degrees of Freedom</em> of the <em>total</em>. This is the number of data points - 1, so is N - 1 <span class="math inline">\(df_{res}\)</span> is the <em>Degrees of Freedom</em> of the <em>residuals</em>. The degrees of freedom for the residuals takes into account the number of data points and the number of predictors, and so is N - 1 - 1</p>
+<p>Let’s use the above formula to manually calculate the <em>Adjusted R Squared</em></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ss_res <span class="ot">&lt;-</span> <span class="fu">sum</span>(random_lm<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    random_df<span class="sc">$</span>random_dv <span class="sc">-</span> <span class="fu">mean</span>(random_df<span class="sc">$</span>random_dv)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>random_r_square <span class="ot">=</span> ss_total <span class="sc">-</span> ss_res</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>df_total <span class="ot">&lt;-</span> <span class="fu">length</span>(random_lm<span class="sc">$</span>residuals) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>df_res <span class="ot">&lt;-</span> <span class="fu">length</span>(random_lm<span class="sc">$</span>residuals) <span class="sc">-</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">-</span> <span class="co"># remove 1 from the number of data points</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="co"># remove another 1 to reflect there being 1 predictor</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> (ss_res<span class="sc">/</span>df_res)<span class="sc">/</span>(ss_total<span class="sc">/</span>df_total)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.009737557</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ss_res <span class="op">=</span> <span class="bu">sum</span>(random_lm.resid<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ss_total <span class="op">=</span> <span class="bu">sum</span>((random_df[<span class="st">"random_dv"</span>] <span class="op">-</span> random_df[<span class="st">"random_dv"</span>].mean())<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>random_r_square <span class="op">=</span> ss_total<span class="op">-</span>ss_res</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_total <span class="op">=</span> <span class="bu">len</span>(random_lm.resid)<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>df_res <span class="op">=</span> <span class="bu">len</span>(random_lm.resid)<span class="op">-</span><span class="dv">1</span> <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>(ss_res<span class="op">/</span>df_res)<span class="op">/</span>(ss_total<span class="op">/</span>df_total)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>adjusted_random_r_square</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<pre><code>-0.009973456268681513</code></pre>
+<p>The number above should match the <em>Adjusted R-Squared</em> from the multiple regression above. Let’s explore what happens when we have multiple predictors:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>random_lm_multiple <span class="ot">&lt;-</span> <span class="fu">lm</span>(random_dv <span class="sc">~</span> random_iv_1 <span class="sc">+</span> random_iv_2 <span class="sc">+</span> random_iv_3, random_df)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>random_multiple_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(random_lm_multiple)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>random_multiple_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = random_dv ~ random_iv_1 + random_iv_2 + random_iv_3, 
+    data = random_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.53576 -0.21104  0.01043  0.20669  0.47170 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.67088    0.10118   6.631 1.96e-09 ***
+random_iv_1 -0.02506    0.10550  -0.238  0.81274    
+random_iv_2  0.02023    0.10144   0.199  0.84232    
+random_iv_3 -0.26391    0.09877  -2.672  0.00886 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2802 on 96 degrees of freedom
+Multiple R-squared:  0.07054,   Adjusted R-squared:  0.0415 
+F-statistic: 2.429 on 3 and 96 DF,  p-value: 0.07004</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>random_multiple_summary <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'random_dv ~ random_iv_1 + random_iv_2 + random_iv_3'</span>, data<span class="op">=</span>random_df).fit()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>random_multiple_summary.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="rVsAdjustedRSquared-Table3.png" height="500" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
+</figure>
+</div>
+<p>Two things to look for from the above: - The model with 3 predictors has higher <em>(Multiple) R-Squared</em> than the model with only 1 predictor. This reflects problems with over-fitting the model: the more predictors you include in your sample, the more variance in the outcome that will be explained by the predictors, even if those associations between the predictors are arbitrary (i.e.&nbsp;don’t reflect anything about the general population). - <em>Adjusted R-squared</em> values are less susceptible to this bias of overfitting the data (but is not completely invulnerable to it). All statistical tests are vulnerable to false positives and including <em>Adjusted R-squared</em> values.</p>
+<p>Remember, the adjusted r-square is necessary for us to make claims about the general population. If we just wanted to make a claim about our sample, we would just use the r-squared, as we don’t need to correct our estimate.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

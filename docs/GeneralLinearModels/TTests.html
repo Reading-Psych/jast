@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Just Another Statistics Textbook - T-Tests(incomplete)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../logo/logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo/logo.jpeg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Just Another Statistics Textbook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
+ <span class="menu-text">Report an error</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
+ <span class="menu-text">Request a clarification</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
+ <span class="menu-text">Suggest Content</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">T-Tests(incomplete)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Welcome</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Statistics Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">R Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Describing Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Distributions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">Binomial Distribution (R) - incomplete</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">General Linear Models</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link active">T-Tests(incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Validity checks</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../validityChecks/multipleTesting.html" class="sidebar-item-text sidebar-link">Multiple Testing Corrections (R)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../validityChecks/fdr.html" class="sidebar-item-text sidebar-link">False Discovery Rate(incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">Count and countifs function</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">Sum and SumIf</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">Averageifs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">Anchoring</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#one-sample-t-tests" id="toc-one-sample-t-tests" class="nav-link active" data-scroll-target="#one-sample-t-tests">One-Sample t-tests</a>
+  <ul class="collapse">
+  <li><a href="#glm-approach" id="toc-glm-approach" class="nav-link" data-scroll-target="#glm-approach">GLM approach</a></li>
+  </ul></li>
+  <li><a href="#paired-samples-t-tests" id="toc-paired-samples-t-tests" class="nav-link" data-scroll-target="#paired-samples-t-tests">Paired samples t-tests</a></li>
+  <li><a href="#independent-samples-t-tests" id="toc-independent-samples-t-tests" class="nav-link" data-scroll-target="#independent-samples-t-tests">Independent Samples t-tests</a>
+  <ul class="collapse">
+  <li><a href="#glm-approach-1" id="toc-glm-approach-1" class="nav-link" data-scroll-target="#glm-approach-1">GLM approach</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">T-Tests(incomplete)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In all general linear models you are trying to compare how much of the variance is explained by a model compared to what’s not being explained by a model. In short</p>
+<p><span class="math display">\[
+\frac{var_{explained}}{var_{unexplained}} = \frac{SS_{explained}}{SS_{unexplained}}
+\]</span></p>
+<p>For each type of t-test, the way we calculate this is slightly different:</p>
+<section id="one-sample-t-tests" class="level2">
+<h2 class="anchored" data-anchor-id="one-sample-t-tests">One-Sample t-tests</h2>
+<section id="glm-approach" class="level3">
+<h3 class="anchored" data-anchor-id="glm-approach">GLM approach</h3>
+<p>One sample t-tests try to explain whether variance of data is better explained around one specific value (sample mean) compared to another (previously assumed value). For example, imagine that you wanted to test whether life expectancy is higher than 55 across the world:</p>
+<ul>
+<li><p>Your <span class="math inline">\(\mu\)</span> would be 55. This can be thought of as the assumed population mean that we want to use our sample to test.</p></li>
+<li><p>Your <span class="math inline">\(\bar{x}\)</span> would be the sample mean.</p></li>
+</ul>
+<p>Let’s visualise these values using gapminder data from 2007:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_2007, <span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>lifeExp)) <span class="sc">+</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">2006.6</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">2007.4</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="dv">55</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="dv">55</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Mu"</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">2006.6</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">2007.4</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Sample Mean"</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TTests_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We want to create a model that explains any variance around the population mean (<span class="math inline">\(\mu\)</span>). The sample mean could be modeled as such:</p>
+<p><span class="math display">\[
+y = \bar{y} + e
+\]</span></p>
+<ul>
+<li><p>Y is the data point value you are trying to predict. Note that for this formula you will <strong>always</strong> have the same prediction.</p></li>
+<li><p><span class="math inline">\(\bar{y}\)</span> is mean of y. You are only interested in whether predicting y based on y’s mean captures a significant amount of the variance of the y-values around the <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p><span class="math inline">\(e\)</span> is the error, i.e.&nbsp;the residuals that the module do not predict effectively.</p></li>
+</ul>
+<p>If the sample mean is a useful model, then it will explain a large proportion of the variance around the “population” mean (and will also suggested that there is significant reason to reject the population mean). The total variance using sum of squares is thus:</p>
+<p><span class="math display">\[
+SS_{total} = \sum(x_i-\mu)^2
+\]</span></p>
+<p>Which for the above data would give us:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="dv">55</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 41025.16</code></pre>
+</div>
+</div>
+<p>So your explained variance by this model is any difference between the Mu (<span class="math inline">\(\mu\)</span>) and the sample mean (<span class="math inline">\(\bar{x}\)</span>). To summarise this using sum of squares, for each data point you subtract the two from each other and square them, as this difference is what we can explain of variance away from the MU:</p>
+<p><span class="math display">\[
+SS_{explained} = N * (\mu - \bar{x})^2
+\]</span></p>
+<p>Which for the above data would give us:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp) <span class="sc">*</span> (<span class="dv">55</span><span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20473.3</code></pre>
+</div>
+</div>
+<p>Unexplained variance would be the residuals around the sample mean, as this is variance that is not explained by the model. Conveniently, we can calculate the sum of squared around the sample mean quite elegantly:</p>
+<p><span class="math display">\[
+SS_{unexplained} = \sum(x_i-\bar{x})^2
+\]</span></p>
+<p>Which for the above data would give us</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20551.85</code></pre>
+</div>
+</div>
+<p>So the F-value should be:</p>
+<p><span class="math display">\[
+F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \frac{20473.3/(Predictors)}{20551.85/(N-1)} = \frac{20473.3/1}{20551.85/141}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f_value <span class="ot">=</span> (<span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp) <span class="sc">*</span> (<span class="dv">55</span><span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>(<span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>f_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 140.4611</code></pre>
+</div>
+</div>
+<p>F-values are squares of t-values, so let’s see if this is true here also:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(f_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.85163</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder_2007<span class="sc">$</span>lifeExp, <span class="at">mu=</span><span class="dv">55</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  gapminder_2007$lifeExp
+t = 11.852, df = 141, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 55
+95 percent confidence interval:
+ 65.00450 69.01034
+sample estimates:
+mean of x 
+ 67.00742 </code></pre>
+</div>
+</div>
+<p>Great. So now that we’ve highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:</p>
+<p><span class="math display">\[
+T = \sqrt{F} = \sqrt{\frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+\]</span> where:</p>
+<ul>
+<li>T is the t-value</li>
+<li>F is the f-value</li>
+<li><span class="math inline">\(SS_{explained}\)</span> is the sum of squares of the data explained by the model</li>
+<li><span class="math inline">\(SS_{unexplained}\)</span> is the sum of squares of the data not explained by the model (i.e.&nbsp;the residuals)</li>
+<li><span class="math inline">\(df_{explained}\)</span> is the degrees of freedom for the model. As there is only one predictor (the sample mean) and it’s only got 2 levels (1 or 0, however, in all cases the model is comparing the data to the mean, so it’s less intuitive that there are 2 levels).</li>
+</ul>
+</section>
+</section>
+<section id="paired-samples-t-tests" class="level2">
+<h2 class="anchored" data-anchor-id="paired-samples-t-tests">Paired samples t-tests</h2>
+<p>Paired samples t-tests can be approached like 1-sample t-tests, but you first of all need to collapse the data to have a single variable to compare to a <span class="math inline">\(\mu\)</span> of zero. Let’s do this for gapminder data, comparing life expectancies between 2002 and 2007:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gapminder_2002_2007_life_exp <span class="ot">&lt;-</span> gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2007</span>] <span class="sc">-</span> gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2002</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder_2002_2007_life_exp, <span class="at">mu =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  gapminder_2002_2007_life_exp
+t = 14.665, df = 141, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 1.135561 1.489439
+sample estimates:
+mean of x 
+   1.3125 </code></pre>
+</div>
+</div>
+<p>The above suggests that life expectancy was significanctly different. Let’s see if we get the exact same value when we use a paired t-test in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2007</span>],gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2002</span>], <span class="at">paired=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  gapminder$lifeExp[gapminder$year == 2007] and gapminder$lifeExp[gapminder$year == 2002]
+t = 14.665, df = 141, p-value &lt; 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 1.135561 1.489439
+sample estimates:
+mean difference 
+         1.3125 </code></pre>
+</div>
+</div>
+<p>Looks identical. Let’s compare formulas to see why this is:</p>
+<p><span class="math display">\[
+t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar{x_3}}{\sigma_{pooled}/\sqrt{N}}
+\]</span></p>
+<p>Where</p>
+<ul>
+<li><p><span class="math inline">\(\bar{x_1}\)</span> is the mean of condition 1</p></li>
+<li><p><span class="math inline">\(\bar{x_2}\)</span> is the mean of condition 2</p></li>
+<li><p><span class="math inline">\(\bar{x_3}\)</span> is the mean of the result you get when you subtract condition 2 from condition 1 for each participant, i.e.&nbsp;<span class="math inline">\(mean(x_1-x_2)\)</span>.</p></li>
+<li><p><span class="math display">\[
+\sigma_{pooled}  = \sqrt{\frac{\sigma_1^2 + \sigma_2^2}{2}} OR \frac{\sum(x_1 - x_2)^2}{N-1}
+\]</span> One way effectively gets the average of the standard deviations of condition and 1. The second way gets the standard deviation of the differences between conditions 1 and 2. Both give you the same outcome.</p></li>
+<li><p><span class="math inline">\(N\)</span> is the number of participants</p></li>
+</ul>
+<p>You can rewrite the above formula to compare <span class="math inline">\(\bar{x_3}\)</span> to <span class="math inline">\(\mu\)</span>, as we know <span class="math inline">\(\mu\)</span> is zero, which would make this formula (effectively) identical to the one above for one-sample t-tests:</p>
+<p><span class="math display">\[
+\frac{\bar{x_3} - \mu}{\sigma_{pooled}/\sqrt{N}}
+\]</span></p>
+</section>
+<section id="independent-samples-t-tests" class="level2">
+<h2 class="anchored" data-anchor-id="independent-samples-t-tests">Independent Samples t-tests</h2>
+<section id="glm-approach-1" class="level3">
+<h3 class="anchored" data-anchor-id="glm-approach-1">GLM approach</h3>
+<p>For an independent samples t-test we can create a simple model based on the means of the two groups. You can either <a href="generalLinearModels.html#dummy-vs.-effect-coding-for-categorical-variables-in-a-model" target="_blank">dummy or effect code</a> the groups, so we’ll do both to look at how the output is slightly different each way. We’ll use the gapminder data to see if there are differences in life expectancies between the Americas and Europe in 2007 to illustrate these:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Europe"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="dummy-coding" class="level4">
+<h4 class="anchored" data-anchor-id="dummy-coding">Dummy coding</h4>
+<p>One way to make a model for a t-test is to have a variable that is 1 for one level, and 0 for the other level (note that this gets more complicated if you are going an ANOVA with 3 or more levels). Let’s create a new variable for continent that is 1 if the country is in the Americas, and 0 if it’s not:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu<span class="sc">$</span>americas_dummy <span class="ot">=</span> <span class="fu">ifelse</span>(gapminder_2007_Am_Eu<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(gapminder_2007_Am_Eu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["americas_dummy"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Albania","2":"Europe","3":"2007","4":"76.423","5":"3600523","6":"5937.030","7":"0"},{"1":"Argentina","2":"Americas","3":"2007","4":"75.320","5":"40301927","6":"12779.380","7":"1"},{"1":"Austria","2":"Europe","3":"2007","4":"79.829","5":"8199783","6":"36126.493","7":"0"},{"1":"Belgium","2":"Europe","3":"2007","4":"79.441","5":"10392226","6":"33692.605","7":"0"},{"1":"Bolivia","2":"Americas","3":"2007","4":"65.554","5":"9119152","6":"3822.137","7":"1"},{"1":"Bosnia and Herzegovina","2":"Europe","3":"2007","4":"74.852","5":"4552198","6":"7446.299","7":"0"},{"1":"Brazil","2":"Americas","3":"2007","4":"72.390","5":"190010647","6":"9065.801","7":"1"},{"1":"Bulgaria","2":"Europe","3":"2007","4":"73.005","5":"7322858","6":"10680.793","7":"0"},{"1":"Canada","2":"Americas","3":"2007","4":"80.653","5":"33390141","6":"36319.235","7":"1"},{"1":"Chile","2":"Americas","3":"2007","4":"78.553","5":"16284741","6":"13171.639","7":"1"},{"1":"Colombia","2":"Americas","3":"2007","4":"72.889","5":"44227550","6":"7006.580","7":"1"},{"1":"Costa Rica","2":"Americas","3":"2007","4":"78.782","5":"4133884","6":"9645.061","7":"1"},{"1":"Croatia","2":"Europe","3":"2007","4":"75.748","5":"4493312","6":"14619.223","7":"0"},{"1":"Cuba","2":"Americas","3":"2007","4":"78.273","5":"11416987","6":"8948.103","7":"1"},{"1":"Czech Republic","2":"Europe","3":"2007","4":"76.486","5":"10228744","6":"22833.309","7":"0"},{"1":"Denmark","2":"Europe","3":"2007","4":"78.332","5":"5468120","6":"35278.419","7":"0"},{"1":"Dominican Republic","2":"Americas","3":"2007","4":"72.235","5":"9319622","6":"6025.375","7":"1"},{"1":"Ecuador","2":"Americas","3":"2007","4":"74.994","5":"13755680","6":"6873.262","7":"1"},{"1":"El Salvador","2":"Americas","3":"2007","4":"71.878","5":"6939688","6":"5728.354","7":"1"},{"1":"Finland","2":"Europe","3":"2007","4":"79.313","5":"5238460","6":"33207.084","7":"0"},{"1":"France","2":"Europe","3":"2007","4":"80.657","5":"61083916","6":"30470.017","7":"0"},{"1":"Germany","2":"Europe","3":"2007","4":"79.406","5":"82400996","6":"32170.374","7":"0"},{"1":"Greece","2":"Europe","3":"2007","4":"79.483","5":"10706290","6":"27538.412","7":"0"},{"1":"Guatemala","2":"Americas","3":"2007","4":"70.259","5":"12572928","6":"5186.050","7":"1"},{"1":"Haiti","2":"Americas","3":"2007","4":"60.916","5":"8502814","6":"1201.637","7":"1"},{"1":"Honduras","2":"Americas","3":"2007","4":"70.198","5":"7483763","6":"3548.331","7":"1"},{"1":"Hungary","2":"Europe","3":"2007","4":"73.338","5":"9956108","6":"18008.944","7":"0"},{"1":"Iceland","2":"Europe","3":"2007","4":"81.757","5":"301931","6":"36180.789","7":"0"},{"1":"Ireland","2":"Europe","3":"2007","4":"78.885","5":"4109086","6":"40675.996","7":"0"},{"1":"Italy","2":"Europe","3":"2007","4":"80.546","5":"58147733","6":"28569.720","7":"0"},{"1":"Jamaica","2":"Americas","3":"2007","4":"72.567","5":"2780132","6":"7320.880","7":"1"},{"1":"Mexico","2":"Americas","3":"2007","4":"76.195","5":"108700891","6":"11977.575","7":"1"},{"1":"Montenegro","2":"Europe","3":"2007","4":"74.543","5":"684736","6":"9253.896","7":"0"},{"1":"Netherlands","2":"Europe","3":"2007","4":"79.762","5":"16570613","6":"36797.933","7":"0"},{"1":"Nicaragua","2":"Americas","3":"2007","4":"72.899","5":"5675356","6":"2749.321","7":"1"},{"1":"Norway","2":"Europe","3":"2007","4":"80.196","5":"4627926","6":"49357.190","7":"0"},{"1":"Panama","2":"Americas","3":"2007","4":"75.537","5":"3242173","6":"9809.186","7":"1"},{"1":"Paraguay","2":"Americas","3":"2007","4":"71.752","5":"6667147","6":"4172.838","7":"1"},{"1":"Peru","2":"Americas","3":"2007","4":"71.421","5":"28674757","6":"7408.906","7":"1"},{"1":"Poland","2":"Europe","3":"2007","4":"75.563","5":"38518241","6":"15389.925","7":"0"},{"1":"Portugal","2":"Europe","3":"2007","4":"78.098","5":"10642836","6":"20509.648","7":"0"},{"1":"Puerto Rico","2":"Americas","3":"2007","4":"78.746","5":"3942491","6":"19328.709","7":"1"},{"1":"Romania","2":"Europe","3":"2007","4":"72.476","5":"22276056","6":"10808.476","7":"0"},{"1":"Serbia","2":"Europe","3":"2007","4":"74.002","5":"10150265","6":"9786.535","7":"0"},{"1":"Slovak Republic","2":"Europe","3":"2007","4":"74.663","5":"5447502","6":"18678.314","7":"0"},{"1":"Slovenia","2":"Europe","3":"2007","4":"77.926","5":"2009245","6":"25768.258","7":"0"},{"1":"Spain","2":"Europe","3":"2007","4":"80.941","5":"40448191","6":"28821.064","7":"0"},{"1":"Sweden","2":"Europe","3":"2007","4":"80.884","5":"9031088","6":"33859.748","7":"0"},{"1":"Switzerland","2":"Europe","3":"2007","4":"81.701","5":"7554661","6":"37506.419","7":"0"},{"1":"Trinidad and Tobago","2":"Americas","3":"2007","4":"69.819","5":"1056608","6":"18008.509","7":"1"},{"1":"Turkey","2":"Europe","3":"2007","4":"71.777","5":"71158647","6":"8458.276","7":"0"},{"1":"United Kingdom","2":"Europe","3":"2007","4":"79.425","5":"60776238","6":"33203.261","7":"0"},{"1":"United States","2":"Americas","3":"2007","4":"78.242","5":"301139947","6":"42951.653","7":"1"},{"1":"Uruguay","2":"Americas","3":"2007","4":"76.384","5":"3447496","6":"10611.463","7":"1"},{"1":"Venezuela","2":"Americas","3":"2007","4":"73.747","5":"26084662","6":"11415.806","7":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Now that we have added our dummy code, we can write a model for what we expect life expectancy to be for each country:</p>
+<p><span class="math display">\[
+lifeExp = \beta_{americas}*mean(lifeExp_{americas}) + \beta_{europe}*mean(lifeExp_{europe}) + e
+\]</span></p>
+</section>
+<section id="effect-coding" class="level4">
+<h4 class="anchored" data-anchor-id="effect-coding">Effect coding</h4>
+</section>
+<section id="section" class="level4">
+<h4 class="anchored" data-anchor-id="section"></h4>
+<iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=xDv6T_zswEiQgPXkP_kOX4iwBGRO5-NFl2OBto3gpIBURTVOMDRUSEgyS1NWOUVZQ0UxSjZQT0FaQy4u&amp;embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" msallowfullscreen="">
+</iframe>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Just Another Statistics Textbook - Probability</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../logo/logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo/logo.jpeg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Just Another Statistics Textbook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
+ <span class="menu-text">Report an error</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
+ <span class="menu-text">Request a clarification</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
+ <span class="menu-text">Suggest Content</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Probability</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Welcome</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Statistics Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link active">Probability</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">R Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Describing Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Distributions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">Binomial Distribution (R) - incomplete</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">General Linear Models</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests(incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Validity checks</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../validityChecks/multipleTesting.html" class="sidebar-item-text sidebar-link">Multiple Testing Corrections (R)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../validityChecks/fdr.html" class="sidebar-item-text sidebar-link">False Discovery Rate(incomplete)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">Count and countifs function</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">Sum and SumIf</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">Averageifs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">Anchoring</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#probability-of-single-outcomes" id="toc-probability-of-single-outcomes" class="nav-link active" data-scroll-target="#probability-of-single-outcomes"><strong>Probability of single outcomes</strong></a></li>
+  <li><a href="#probability-of-combinations-of-outcomes" id="toc-probability-of-combinations-of-outcomes" class="nav-link" data-scroll-target="#probability-of-combinations-of-outcomes"><strong>Probability of combinations of outcomes</strong></a>
+  <ul class="collapse">
+  <li><a href="#mutually-exclusive-outcomes" id="toc-mutually-exclusive-outcomes" class="nav-link" data-scroll-target="#mutually-exclusive-outcomes">Mutually exclusive outcomes</a></li>
+  </ul></li>
+  <li><a href="#the-likelihood-of-something-not-happening-is-often-a-useful-shortcut" id="toc-the-likelihood-of-something-not-happening-is-often-a-useful-shortcut" class="nav-link" data-scroll-target="#the-likelihood-of-something-not-happening-is-often-a-useful-shortcut">The likelihood of something <strong>NOT</strong> happening is often a useful shortcut</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Probability</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This concept is somewhat foundational to almost all the other content in this website, but is often overlooked in textbooks. An advantage about understanding it is that will give you a more complete understanding later when we go through concepts such as <strong>probability distributions</strong> such as <strong>binomial</strong> and <strong>normal distributions.</strong></p>
+<section id="probability-of-single-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="probability-of-single-outcomes"><strong>Probability of single outcomes</strong></h2>
+<p>In informal language we might talk about there being a 50% chance of something happening, such as a 50% chance of getting “heads” when flipping a coin. At the risk of telling you what you already know, if there’s a 50% chance of getting “heads”, then we assume there is a 50% chance of getting “tails”, because the likelihood of all outcomes put together must equal 100% or else it suggests there’s another outcome you haven’t considered. For example, if a flipped coin lands on heads 45% of the time, and on tails 45% of the time, then (45% + 45% =) 90% of the time it will land on heads or tails, which means 10% of the time it will do one or more other things (e.g.&nbsp;land on neither side). <strong>Going forward we will assume we’re using coins that can only land on heads or tails.</strong></p>
+<p>Within statistics we tend to use decimalised numbers rather than percentages, so a 10% chance is written as .1, a 50% chance is written as .5 and 100% chance is written as 1. <strong>This is important as when you have considered all possible outcomes you should be able to add their likelihoods up to make 1.</strong></p>
+</section>
+<section id="probability-of-combinations-of-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="probability-of-combinations-of-outcomes"><strong>Probability of combinations of outcomes</strong></h2>
+<p>Imagine that you want to predict the likelihood of flipping a coin on heads or tails a certain number of times in a row. The outcome of each coin flip is <strong>binary</strong>, i.e.&nbsp;there is only 1 possible outcome out of 2 options. If this isn’t a biased coin, we can calculate some basic expectations about what will happen after 2 flips of the coin:</p>
+<ul>
+<li><p>Each flip of the coin has a 0.5 chance of landing on Heads.</p></li>
+<li><p>If we wanted to calculate the likelihood of 2 flips of heads, there’s a 0.5 chance we get the first heads flip, and then another 0.5 chance we’ll get the second head flip. To summarise this, we can multiply both 0.5 chances together to get 0.25.</p></li>
+<li><p>To summarise the likelihood of all combinations we could make the following table:</p></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 35%">
+<col style="width: 27%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>First flip and likelihood</strong></td>
+<td><strong>Second flip and likelihood</strong></td>
+<td><strong>Overall likelihood</strong></td>
+</tr>
+<tr class="even">
+<td>Heads (.5)</td>
+<td>Heads (.5)</td>
+<td>0.5 * 0.5 = .25</td>
+</tr>
+<tr class="odd">
+<td>Heads (.5)</td>
+<td>Tails (.5)</td>
+<td>0.5 * 0.5 = .25</td>
+</tr>
+<tr class="even">
+<td>Tails (.5)</td>
+<td>Heads (.5)</td>
+<td>0.5 * 0.5 = .25</td>
+</tr>
+<tr class="odd">
+<td>Tails (.5)</td>
+<td>Tails (.5)</td>
+<td>0.5 * 0.5 = .25</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>Likelihood of any of the above happening</strong></td>
+<td>.25 + .25 + .25 + .25 = 1</td>
+</tr>
+</tbody>
+</table>
+<p>To achieve what you have above, you need to consider every combination of possible outcomes and calculate their likelihood. A useful quality check is to make sure that when you add the overall likelihoods together you get 1, otherwise…</p>
+<ul>
+<li><p>If you have less than 1 it suggests you have overlooked an outcome</p></li>
+<li><p>If you have more than 1 it suggests you have either</p>
+<ul>
+<li><p>Overestimated the likelihood of a specific outcome</p></li>
+<li><p>Treated overlapping outcomes as if they are <strong>mutually exclusive</strong></p></li>
+</ul></li>
+</ul>
+<section id="mutually-exclusive-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="mutually-exclusive-outcomes">Mutually exclusive outcomes</h3>
+<p>In the above example each of the four combinations are mutually exclusive, as they are specific and distinct. It is impossible that your flip of your coins was both:</p>
+<ul>
+<li><p>heads and then tails</p></li>
+<li><p>heads and then heads</p></li>
+</ul>
+<p>Even though the first flip is heads in both outcomes, the second flip is distinct and so the two flips could not be both outcomes as they are exclusive.</p>
+<p>However, there are some scenarios in which it’s less clear whether two outcomes are mutually exclusive. The chance of rolling any side of a die is 1 in 6. The chance of rolling a certain number and above can be calculated by counting the number of <strong>valid</strong> sides there are and then dividing by 6. For example, the chance of rolling 3 and above is 4 in 6 because there are 4 valid sides (3,4,5 and 6).</p>
+<p>Imagine that you are rolling dice twice in a row - what is the likelihood that one role will be at least 3 and the other will be at least 4? Let’s start with <strong>an incorrect</strong> answer:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dice_outcomes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  Description <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 3 or more, second is 4 or more"</span>, <span class="co"># valid outcome</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 4 or more, second is 3 or more"</span>, <span class="co"># valid outcome</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 3 or more, second is 3 or LESS"</span>, <span class="co"># invalid outcome</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 4 or more, second is 2 or LESS"</span>, <span class="co"># invalid outcome</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 3 or LESS, second is 4 or more"</span>, <span class="co"># invalid outcome</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 2 or LESS, second is 3 or more"</span>, <span class="co"># invalid outcome</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 2 or LESS, second is 2 or LESS"</span>  <span class="co"># invalid outcome</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">likelihood =</span> <span class="fu">c</span>(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 3 or more, second is 4 or more", # valid outcome</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 4 or more, second is 3 or more", # valid outcome</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 3 or more, second is 3 or LESS", # invalid outcome</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 4 or more, second is 2 or LESS", # invalid outcome</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 3 or LESS, second is 4 or more", # invalid outcome</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 2 or LESS, second is 3 or more", # invalid outcome</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>)  <span class="co"># "First is 2 or LESS, second is 2 or LESS"  # invalid outcome</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dice_outcomes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 90%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Description….c..First.is.3.or.more..second.is.4.or.more….First.is.4.or.more..second.is.3.or.more…</th>
+<th style="text-align: right;">likelihood</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">First is 3 or more, second is 4 or more</td>
+<td style="text-align: right;">0.3333333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">First is 4 or more, second is 3 or more</td>
+<td style="text-align: right;">0.3333333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">First is 3 or more, second is 3 or LESS</td>
+<td style="text-align: right;">0.2500000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">First is 4 or more, second is 2 or LESS</td>
+<td style="text-align: right;">0.1666667</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">First is 3 or LESS, second is 4 or more</td>
+<td style="text-align: right;">0.2500000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">First is 2 or LESS, second is 3 or more</td>
+<td style="text-align: right;">0.2222222</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">First is 2 or LESS, second is 2 or LESS</td>
+<td style="text-align: right;">0.1111111</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dice_outcomes<span class="sc">$</span>likelihood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.666667</code></pre>
+</div>
+</div>
+<p>When we add all the outcome likelihoods together we get more than 1 😒. This reflects us (or me, you didn’t ask me to make the above table) treating some outcomes as if they are exclusive when they are not. For example, the two <strong>valid</strong> outcomes have overlap as they both include the likelihoods that both dice are of 4 or more. This has inflated the likelihood of the <strong>valid outcomes</strong> when you add these outcomes together, as you have doubled up on the overlap. To visualise this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmin =</span> <span class="fl">2.5</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmax =</span> <span class="fl">6.5</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> <span class="fl">3.5</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> <span class="fl">6.5</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmin =</span> <span class="fl">3.5</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmax =</span> <span class="fl">6.5</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> <span class="fl">2.5</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> <span class="fl">6.5</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"red"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">#panel.grid.minor = element_line(color = "black", linewidth =  2),</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"First roll"</span>) <span class="sc">+</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Second roll"</span>) <span class="sc">+</span> </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">1.5</span>,<span class="fl">2.5</span>,<span class="fl">3.5</span>,<span class="fl">4.5</span>, <span class="fl">5.5</span>),</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"white"</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">1.5</span>,<span class="fl">2.5</span>,<span class="fl">3.5</span>,<span class="fl">4.5</span>, <span class="fl">5.5</span>),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"white"</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="probability_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the above visualisation of all possible dice role combinations, the proportion of the area covered reflects the likelihood of each valid combination highlighted: “First is 3 or more, second is 4 or more” in blue and “First is 4 or more, second is 3 or more” in red. As you can see, there is a lot of overlap (purple/pink), reflecting that these were not mutually exclusive possibilities, and so adding them together will inflate the estimated likelihood of either of them happening.</p>
+<p>An elegant solution is to subtract the likelihood associated with repetition from your original calculation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">+</span> <span class="co"># "First is 3 or more, second is 4 or more", # valid outcome</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">-</span> <span class="co"># "First is 4 or more, second is 3 or more", # valid outcome</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>     <span class="co"># overlap between the two valid outcomes above </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4166667</code></pre>
+</div>
+</div>
+<p>To confirm this is correct, we can use R to count how many times out of 36 the dice will be valid:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>valid_dice <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">FALSE</span>,<span class="at">nrow =</span> <span class="dv">6</span>,<span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">3</span> <span class="sc">&amp;</span> j <span class="sc">&gt;=</span> <span class="dv">4</span>){</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      valid_dice[i,j] <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">4</span> <span class="sc">&amp;</span> j <span class="sc">&gt;=</span> <span class="dv">3</span>){</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      valid_dice[i,j] <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(valid_dice)<span class="sc">/</span> <span class="co"># number of valid roll combinations</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dv">36</span>               <span class="co"># total number of roll combinations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4166667</code></pre>
+</div>
+</div>
+<p>We get the same output.</p>
+</section>
+</section>
+<section id="the-likelihood-of-something-not-happening-is-often-a-useful-shortcut" class="level2">
+<h2 class="anchored" data-anchor-id="the-likelihood-of-something-not-happening-is-often-a-useful-shortcut">The likelihood of something <strong>NOT</strong> happening is often a useful shortcut</h2>
+<p>As shown above, calculating of the probabilities can be done in more and less reliable and elegant ways. Generally speaking, an elegant calculation is less likely to result in error. One common example of how to be more elegant is how we address the chance of avoiding an undesirable outcome, such as a <a href="../statsBasics/statsBasics.html"><strong>false-positive</strong></a>. If we ran three tests on random data, and accepted an <span class="math inline">\(\alpha\)</span> threshold of .05 (i.e.&nbsp;a 5% chance that we would incorrectly identify an effect), then there are (at least) 2 ways you could calculate the likelihood of at least 1 false positive. The slower way:</p>
+<p><span class="math display">\[
+fp_1 + fp_2 + fp_3  + fp_{1,2} + fp_{1,3} + fp_{2,3} + fp_{1,2,3}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(fp_1\)</span> refers to a false positive <strong>only</strong> for test 1</p></li>
+<li><p><span class="math inline">\(fp_2\)</span> refers to a false positive <strong>only</strong> for test 2</p></li>
+<li><p><span class="math inline">\(fp_3\)</span> refers to a false positive <strong>only</strong> for test 3</p></li>
+<li><p><span class="math inline">\(fp_{1,2}\)</span> refers to a false positive <strong>only</strong> for tests 1 and 2</p></li>
+<li><p><span class="math inline">\(fp_{1,3}\)</span> refers to a false positive only for tests 1 and 3</p></li>
+<li><p><span class="math inline">\(fp_{2,3}\)</span> refers to a false positive only for tests 2 and 3</p></li>
+<li><p><span class="math inline">\(fp_{1,2,3}\)</span> refers to a false positive for all three tests</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>at_least_1_fp <span class="ot">=</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># false positive only for test 1</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># false positive only for test 2</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">+</span> <span class="co"># false positive only for test 3</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># false positive only for test 1 and 2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">+</span> <span class="co"># false positive only for test 1 and 3</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">+</span> <span class="co"># false positive only for test 2 and 3</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span>   <span class="co"># false positive only for test all tests</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>at_least_1_fp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.142625</code></pre>
+</div>
+</div>
+<p>To check this is correct, when we add the above number to the likelihood of 0 false-positives we should get 1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># zero false positives</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  at_least_1_fp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>But, we could simply subtract the likelihood of zero false positives from 1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.142625</code></pre>
+</div>
+</div>
+<p>and get the same result.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Inconsistent p-value thresholds
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that it’s easier to do simple calculations like above if the p-value thresholds are consistent (e.g.&nbsp;.05 in this case), whereas inconsistent p-value thresholds between outcomes can lead to false assumptions about <strong>mutual exclusivity</strong> as described above.</p>
+</div>
+</div>
+<section id="question-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
+<p>What is the likelihood of flipping a (non-biased) coin heads <strong>and then</strong> tails?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>viewof probability_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>()<span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>correct_probability_1 <span class="op">=</span> <span class="op">.</span><span class="bn">025</span><span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>probability_1_result <span class="op">=</span> {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(probability_1_response <span class="op">==</span> correct_probability_1){</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-1"></span></span></p>
+</section>
+<section id="question-2" class="level4">
+<h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
+<p>What is the likelihood of rolling 3 sixes in a row?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb16" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>viewof probability_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'(1/6)*3'</span><span class="op">,</span><span class="st">'(1/6)^3'</span><span class="op">,</span><span class="st">'(1/6)+3'</span>])<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>correct_probability_2 <span class="op">=</span> <span class="st">'(1/6)^3'</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>probability_2_result <span class="op">=</span> {</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(probability_2_response <span class="op">==</span> correct_probability_2){</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-2"></span></span></p>
+<iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=xDv6T_zswEiQgPXkP_kOX4iwBGRO5-NFl2OBto3gpIBURTVOMDRUSEgyS1NWOUVZQ0UxSjZQT0FaQy4u&amp;embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" msallowfullscreen="">
+</iframe>
+
+
+<script type="ojs-module-contents">
+{"contents":[
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${probability_1_result}</span>`", "cellName":"ojs-element-id-1"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${probability_2_result}</span>`", "cellName":"ojs-element-id-2"}
+]}
+</script>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof probability_1_response = Inputs.number();\ncorrect_probability_1 = .025;\nprobability_1_result = {\n  if(probability_1_response == correct_probability_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof probability_2_response = Inputs.radio(['(1/6)*3','(1/6)^3','(1/6)+3']);\ncorrect_probability_2 = '(1/6)^3';\nprobability_2_result = {\n  if(probability_2_response == correct_probability_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('probability_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('probability_2_response')"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../statsBasics";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -24,11 +24,11 @@ website:
         contents:
           - index.qmd
           - installing.qmd
-      - section: "Statistics Basics"
+      - section: "Statistics Foundations"
         contents:
           - statsBasics/statsBasics.qmd
           - statsBasics/eNumbers.qmd
-          - statsBasics/multipleTesting.qmd
+          - "statsBasics/probability.qmd"
       - section: "R Basics"
         contents:
           - rBasics/filetypes.qmd
@@ -40,6 +40,7 @@ website:
           - describingData/dispersion.qmd
       - section: "Distributions"
         contents:
+          - distributions/binomial.qmd
           - distributions/normal.qmd
           - distributions/skewness.qmd
       #     - distributions/kurtosis.qmd
@@ -55,18 +56,25 @@ website:
       #    - regressions/multipleRegressions.qmd
       - section: "General Linear Models"
         contents: 
-      #     - "GeneralLinearModels/generalLinearModels.qmd"
+          - "GeneralLinearModels/generalLinearModels.qmd"
       #     - "GeneralLinearModels/rVsAdjustedRSquared.qmd"
           - "GeneralLinearModels/TTests.qmd"
       #     - "GeneralLinearModels/One-Way Analysis of Variance"
       #     - "GeneralLinearModels/Two-Way (or more) Analysis of Variance"
       #     - "GeneralLinearModels/ANCOVA"
       # - section: "Permutation testing"
+      # - section: categorical data
+      #    contents:
+      #      - chi-square
       - section: "Item analyses"
         contents: 
           - "itemAnalyses/cronbachsAlpha.qmd"
       #    - "itemAnalyses/pca.qmd"
       #    - "itemAnalyses/cfa.qmd"
+      - section: "Validity checks"
+        contents:
+          - "validityChecks/multipleTesting.qmd"
+          - "validityChecks/fdr.qmd"
       # - section: "University of Reading advice?"
       #   contents:
       #     - "Psychology"

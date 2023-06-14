@@ -60,3 +60,5 @@ Use ***countif*** ***formulas*** to calculate the following. Your forumas should
 |---------|--------|-----------|-------|
 | Females | 3      | 2         | 5     |
 | Males   | 3      | 2         | 5     |
+
+{{< include ../feedback.qmd >}}

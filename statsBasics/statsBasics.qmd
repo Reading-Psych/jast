@@ -12,7 +12,7 @@ In **statistics**, a **variable** is any (measurable) attribute that describes a
 
 Within **coding**, a **variable** tends to refer to a particular **object** in your code, such as a specific value, list, dataset, etc. In R the terminology for a variable tends to be **object**.
 
-## **What is a hypothesis?** 
+## What is a hypothesis?
 
 A(n **experimental) hypothesis** is a possible outcome for the study you will run. Sometimes researchers think in terms of **null hypotheses**, which is what you would expect if your (experimental) hypothesis is incorrect.
 
@@ -29,6 +29,30 @@ To give a more concrete example:
 -   If the observed difference between two means is small, then there is a high probability that the data underlying this difference could have occurred if the null (there is no difference) is true, and so the resulting p-value would be large.
 
 -   In contrast, if the difference is huge, then the data underlying this difference is much less likely to have occurred if the null is true, and the subsequent p-value will be smaller to reflect the lower probability.
+
+::: callout-note
+In terms of whether your research conclusions are valid, there are 4 broad possible outcomes:
+
++--------------+------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+|              | **True**                                                                                                                                       | **False**                                                                                                                  |
++==============+================================================================================================================================================+============================================================================================================================+
+| **Positive** | You conclude there is an effect in your sample and this reflects the general population.                                                       | You conclude there is an effect in your sample, **but this does [*not*]{.underline} reflect the general population.**      |
+|              |                                                                                                                                                |                                                                                                                            |
+|              | (i.e. the effect you found was real)                                                                                                           | (i.e. the effect you found was **not** real)                                                                               |
+|              |                                                                                                                                                |                                                                                                                            |
+|              | e.g. You conclude that big dogs have more fur than small dogs (presumably this is true as there is more dog to put fur on in big dogs, right?) | e.g. You conclude that half-full glasses have **more** water than half-empty glasses                                       |
+|              |                                                                                                                                                |                                                                                                                            |
+|              |                                                                                                                                                | *This is a type 1 error*                                                                                                   |
++--------------+------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| **Negative** | You conclude that there is no effect in your sample, and this reflects the general population.                                                 | You conclude that there is no effect in your sample, **but this does [*not*]{.underline} reflect the general population.** |
+|              |                                                                                                                                                |                                                                                                                            |
+|              | (i.e. you are correct to say that there is no effect)                                                                                          | (i.e. you are **incorrect** to say that there is no effect)                                                                |
+|              |                                                                                                                                                |                                                                                                                            |
+|              | e.g. You conclude that half-full glasses have as much water as a half-empty glasses                                                            | e.g. You conclude that big dogs **do not** have more fur than small dogs                                                   |
+|              |                                                                                                                                                |                                                                                                                            |
+|              |                                                                                                                                                | *This is a type 2 error*                                                                                                   |
++--------------+------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+:::
 
 ## What is the alpha value?
 
@@ -53,3 +77,5 @@ To explore this, you might find the following interactive tool helpful to see wh
 [https://observablehq.com/\@patrickmineault/interactive-demo-in-pure-js](https://observablehq.com/@patrickmineault/interactive-demo-in-pure-js)
 
 {{< include basicsQuestions.qmd >}}
+
+{{< include ../feedback.qmd >}}

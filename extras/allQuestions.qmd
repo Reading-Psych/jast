@@ -14,9 +14,10 @@ editor: visual
 
 {{< include ../statsBasics/basicsQuestions.qmd >}}
 
-### Multiple testing
+### Probability
 
-TBC
+{{< include ../statsBasics/probabilityQuestions.qmd >}}
+
 
 
 ## Describing Data
@@ -50,4 +51,12 @@ TBC
 
 ## Item Analysis
 
+### Cronbach Alpha
+
 {{< include ../itemAnalyses/cronbachAlphaQuestions.qmd >}}
+
+## Validity checks
+### Multiple testing
+
+{{< include ../validityChecks/multipleTestingQuestions.qmd >}}
+

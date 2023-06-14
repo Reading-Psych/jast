@@ -37,3 +37,5 @@ You may have noticed 2 things:
 -   You just add an extra criteria column (in this case column D) and a new criteria to compare it to ("yes") to allow you to have an extra criteria to select your rows on
 
 -   This example compares column C to **I7** rather than the word "Females". Referring to a specific cell can help make your formulas more efficient, as you don't have to repeatedly type the same word again and again. In fact, arguably it would be better to have [anchored](anchoring.html) I\$7 so that you could copy the formula down.
+
+{{< include ../feedback.qmd >}}

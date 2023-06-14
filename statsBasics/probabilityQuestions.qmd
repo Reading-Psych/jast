@@ -1,0 +1,38 @@
+---
+editor: visual
+---
+
+#### Question 1
+
+What is the likelihood of flipping a (non-biased) coin heads **and then** tails?
+```{ojs}
+//| echo: false
+viewof probability_1_response = Inputs.number();
+correct_probability_1 = .025;
+probability_1_result = {
+  if(probability_1_response == correct_probability_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${probability_1_result}
+
+#### Question 2
+
+What is the likelihood of rolling 3 sixes in a row?
+```{ojs}
+//| echo: false
+viewof probability_2_response = Inputs.radio(['(1/6)*3','(1/6)^3','(1/6)+3']);
+correct_probability_2 = '(1/6)^3';
+probability_2_result = {
+  if(probability_2_response == correct_probability_2){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${probability_2_result}
+

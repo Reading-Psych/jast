@@ -30,3 +30,5 @@ options(scipen=999)
 ```
 
 {{< include eNumbersQuestions.qmd >}}
+
+{{< include ../feedback.qmd >}}

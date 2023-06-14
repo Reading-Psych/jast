@@ -211,3 +211,5 @@ $$
 #### Effect coding
 
 #### 
+
+{{< include ../feedback.qmd >}}

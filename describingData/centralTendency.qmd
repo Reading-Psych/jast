@@ -204,3 +204,5 @@ mode_example_vector.mode()
 In the above data, there are 2 modes, as the numbers 2 and 4 occur the most.
 
 {{< include centralTendencyQuestions.qmd >}}
+
+{{< include ../feedback.qmd >}}

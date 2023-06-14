@@ -830,3 +830,4 @@ As both Pearson's R and Spearman's Rank are calculations of the [***proportion**
 ### Consolidation questions
 
 {{< include correlationsQuestions.qmd >}}
+{{< include ../feedback.qmd >}}

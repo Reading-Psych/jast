@@ -90,18 +90,15 @@ $$
 r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}} = \frac{originalCorrelation - varianceExplainedByCovariate}{varianceNotExplainedByCovariate}
 $$
 
-- $x$ = The Year
-- $y$ = Life expectancy
-- $z$ = GDP per capita 
-- $\sqrt{1- r^2_{xz}}$ = variance not explained by correlation between Year($x$) and GDP ($z$)
-- $\sqrt{1- r^2_{yz}}$ = variance not explained by correlation between Life Expectancy ($y$) and GDP ($z$)
+-   $x$ = The Year
+-   $y$ = Life expectancy
+-   $z$ = GDP per capita
+-   $\sqrt{1- r^2_{xz}}$ = variance not explained by correlation between Year($x$) and GDP ($z$)
+-   $\sqrt{1- r^2_{yz}}$ = variance not explained by correlation between Life Expectancy ($y$) and GDP ($z$)
 
-One way to think of the formula above is that:
-- the top-half represents how much variance is explained by overlap between the two main variables, subtracted by the variance of each variable with the confound
-- the bottom-half represents how much variance there is left to explain once you've removed associations between each main variable and the covariate.
+One way to think of the formula above is that: - the top-half represents how much variance is explained by overlap between the two main variables, subtracted by the variance of each variable with the confound - the bottom-half represents how much variance there is left to explain once you've removed associations between each main variable and the covariate.
 
 Let's see what the r value is after this partial correlation:
-
 
 $$
 r_{xy*z} = \frac{r_{xy} - r_{xz} * r_{yz}}{\sqrt{(1-r^2_{xz})(1-r^2_{yz})}} = \frac{.986158 - .9832101 * .9619721 }{\sqrt{(1-.9832101^2)(1-.9619721^2)}} = \frac{.040354}{.04984321} = .8092841
@@ -109,11 +106,11 @@ $$
 
 Let's check if the manually calculated partial r-value is the same as what R gives us:
 
-
 ```{r}
 library(ppcor)
 pcor(gapminder_by_year)
 ```
+
 Yes, the pearson correlation between year and life expectancy is .8092844, so the difference of .0000003 is a rounding error from the manual calculations above. Just to confirm that this is a rounding error, here's what you get if you complete the same steps but with the estimate part of the correlation objects instead:
 
 ```{r}
@@ -127,3 +124,5 @@ y.z.cor <- cor.test(gapminder_by_year$gdpPercap, gapminder_by_year$lifeExp)
 Confirming that the difference in the manual calculation is a rounding error. Note that the numbers you get from R may be rounded numbers, and so your calculations may reflect the rounding.
 
 To conclude, as there is still an association between Year and Life Expectancy once controlling for GDP, this partial correlation is consistent with GDP not being the only explanation for why Life Expectancy goes up each year.
+
+{{< include ../feedback.qmd >}}

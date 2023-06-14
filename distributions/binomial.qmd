@@ -1,0 +1,146 @@
+---
+title: "Binomial Distribution (R) - incomplete"
+editor: visual
+---
+
+## What is a Binomial distribution?
+
+Imagine that you want to predict the likelihood of flipping a coin on heads or tails a certain number of times in a row. The outcome of each coin flip is **binary**, i.e. there is only 1 possible outcome out of 2 options. If this isn't a biased coin, we can calculate some basic expectations about what will happen after 2 flips of the coin:
+
+-   Each flip of the coin has a 50% or 0.5 chance of landing on Heads.
+
+-   If we wanted to calculate the likelihood of 2 flips of heads, there's a 0.5 chance we get the first heads flip, and then another 0.5 chance we'll get the second head flip. To summarise this, we can multiply both 0.5 chances together to get .025.
+
+-   To summarise the likelihood of all combinations we could make the following table:
+
+|                               |                                              |                           |
+|---------------------------|--------------------------|--------------------|
+| **First flip and likelihood** | **Second flip and likelihood**               | **Overall likelihood**    |
+| Heads (.5)                    | Heads (.5)                                   | 0.5 \* 0.5 = .25          |
+| Heads (.5)                    | Tails (.5)                                   | 0.5 \* 0.5 = .25          |
+| Tails (.5)                    | Heads (.5)                                   | 0.5 \* 0.5 = .25          |
+| Tails (.5)                    | Tails (.5)                                   | 0.5 \* 0.5 = .25          |
+|                               | **Likelihood of one of the above happening** | .25 + .25 + .25 + .25 = 1 |
+
+One way to visualise this is as follows
+
+# explain
+
+```{r}
+library(vcd)
+coin_flips <- data.frame(
+  first  = c("heads","heads","tails","tails"),
+  second = c("heads","tails","heads","tails"),
+  heads  = c(2,1,1,0),
+  likelihood = c(.25,.25,.25,.25)
+)
+mosaic(
+  xtabs(likelihood ~ first + second,data = coin_flips),
+  shade=T, 
+  colorize = T, 
+  gp = gpar(
+    fill=matrix(c("#005599","#774499","#774499", "#993300"), 2, 2)
+  ),
+)
+
+```
+
+Interactive plot that you can hover over to see???
+
+```{r}
+library(ggplot2)
+d=data.frame(
+  x1=c(0,  .5,0, .5), 
+  x2=c(0.5,1 ,.5,1), 
+  y1=c(0,  .5,.5,0), 
+  y2=c(0.5,1 ,1 ,.5), 
+ # t=c('Both heads','Both tails','Mixed','Mixed'), 
+  r=c('Both heads','Both tails','Mixed','Mixed'))
+ggplot() + 
+scale_x_continuous(name="Flip 1") + 
+scale_y_continuous(name="Flip 2") +
+geom_rect(data=d, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2, fill=r), color="black", alpha=0.5) +
+geom_text(data=d, aes(x=x1+(x2-x1)/2, y=y1+(y2-y1)/2, label=r), size=4) 
+```
+
+Out of these 4 combinations, the likelihood of each of them in their precise order is exactly .25 (or a 25% chance). However, we often don't care about order, so the odds of getting 1 head and 1 tail flip would be .25 + .25 = 50% chance. This allows us to create a very simple binomial distribution of head flips:
+
+```{r}
+library(ggplot2)
+
+coin_flips <- data.frame(
+  first  = c("heads","heads","tails","tails"),
+  second = c("heads","tails","heads","tails"),
+  heads  = c(2,1,1,0)
+)
+
+ggplot(coin_flips, aes(heads)) + geom_histogram(bins = 3)
+```
+
+We can calculate the likelihood of how many heads you will flip using the above distribution. Let's say that you wanted to know the likelihood of getting at least 1 flip of heads:
+
+```{r}
+ggplot(coin_flips, aes(heads, fill = heads >= 1)) + geom_histogram(bins = 3)
+```
+
+You can calculate the area under this distribution this is true for, and divide it by the total area of the distribution:
+
+```{r}
+sum(coin_flips$heads >= 1) / length(coin_flips$heads)
+```
+
+This suggests you have a 75% chance of flipping heads at least once. Looking at the table above will confirm that there is ony 1 out of 4 combinations in which you never flip heads, also supporting the fact that you will flip heads at least once the other 3 out of 4 times (i.e. 75% of the time).
+
+## What if the odds of each option are not equal to each other (e.g. you have a biased coin)
+
+Let's now imagine that we have a coin that will flip heads 75% of the time, and tails 25% of the time. It's a bit more complicated to draw a distribution that captures this as the likelihood of either side is no longer equal.
+
+```{r}
+biased_coin_flips <- data.frame(
+  first  = c("heads","heads","heads","heads","heads","heads","heads","heads","heads","heads","heads","heads","tails","tails","tails","tails"),
+  second = c("heads","heads","heads","tails","heads","heads","heads","tails","heads","heads","heads","tails","heads","heads","heads","tails")
+)
+
+biased_coin_flips$heads = apply(biased_coin_flips, 1, function(x) length(which(x=="heads")))
+
+knitr::kable(biased_coin_flips)
+
+ggplot(biased_coin_flips, aes(heads)) + geom_histogram(bins = 3)
+```
+
+How likely am I to get at least 1 head flip with this biased coin?
+
+```{r}
+sum(biased_coin_flips$heads >= 1) / length(biased_coin_flips$heads)
+```
+
+Which can be visualised as:
+
+```{r}
+ggplot(biased_coin_flips, aes(heads, fill = heads >= 1)) + geom_histogram(bins = 3)
+```
+
+With binomial distributions you can calculate the likelihood of each event happening with multiplications
+
+```{r}
+head.head <- .75 * .75
+head.tail <- .75 * .25
+tail.head <- .25 * .75
+tail.tail <- .25 * .25
+
+head.head + head.tail + tail.head + tail.tail
+```
+
+Does the above calculations confirm a .9375 chance of a flipping at least one heads
+
+```{r}
+head.head + head.tail + tail.head
+```
+
+Great!
+
+# Note that this principle is useful for how we calculate p-values for normal distributions (right?)
+
+# WHAT about biased coins?
+
+{{< include ../feedback.qmd >}}

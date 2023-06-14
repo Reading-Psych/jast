@@ -208,3 +208,5 @@ Regression builds on correlation by providing a more detailed view of your data 
 ```
 
 **The differences between regression and correlation**
+
+{{< include ../feedback.qmd >}}

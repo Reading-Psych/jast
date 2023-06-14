@@ -38,7 +38,7 @@ if_q1_result = {
 
 \${if_q1_result}
 
-Now let\'s do another formula to remove participants who were too fast. We don\'t think a participant can react quicker than 100ms in reality, so in the Too Fast column, write a formula for each row that will write \"TOO FAST\" if the response time is less than 100ms, or write the response time if it is not \"TOO FAST\".
+Now let's do another formula to remove participants who were too fast. We don't think a participant can react quicker than 100ms in reality, so in the Too Fast column, write a formula for each row that will write "TOO FAST" if the response time is less than 100ms, or write the response time if it is not "TOO FAST".
 
 After writing these formulas, complete the following statement:
 
@@ -55,4 +55,7 @@ if_q2_result = {
   };
 }
 ```
-${if_q2_result}
+
+\${if_q2_result}
+
+{{< include ../feedback.qmd >}}

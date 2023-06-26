@@ -33,6 +33,10 @@ editor: visual
 
 ## Distributions
 
+### Binomial
+
+{{< include ../distributions/binomialQuestions.qmd >}}
+
 ### Normal
 
 {{< include ../distributions/normal_questions.qmd >}}

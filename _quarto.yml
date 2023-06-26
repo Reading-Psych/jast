@@ -24,16 +24,16 @@ website:
         contents:
           - index.qmd
           - installing.qmd
-      - section: "Statistics Foundations"
-        contents:
-          - statsBasics/statsBasics.qmd
-          - statsBasics/eNumbers.qmd
-          - "statsBasics/probability.qmd"
       - section: "R Basics"
         contents:
           - rBasics/filetypes.qmd
           - rBasics/fundamentals.qmd
           - rBasics/logic.qmd
+      - section: "Statistics Foundations"
+        contents:
+          - statsBasics/statsBasics.qmd
+          - statsBasics/eNumbers.qmd
+          - "statsBasics/probability.qmd"
       - section: "Describing Data"
         contents:
           - describingData/centralTendency.qmd

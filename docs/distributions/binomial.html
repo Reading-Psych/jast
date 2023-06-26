@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Binomial Distribution (R) - incomplete</title>
+<title>Just Another Statistics Textbook - Binomial Distribution (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,6 +122,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -165,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Binomial Distribution (R) - incomplete</h1>
+      <h1 class="quarto-secondary-nav-title">Binomial Distribution (R)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -205,37 +207,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Statistics Foundations</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R Basics</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability</a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">R Basics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
@@ -249,6 +226,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistics Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability (R)</a>
   </div>
 </li>
       </ul>
@@ -283,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link active">Binomial Distribution (R) - incomplete</a>
+  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link active">Binomial Distribution (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -468,12 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#what-is-a-binomial-distribution" id="toc-what-is-a-binomial-distribution" class="nav-link active" data-scroll-target="#what-is-a-binomial-distribution">What is a Binomial distribution?</a></li>
-  <li><a href="#explain" id="toc-explain" class="nav-link" data-scroll-target="#explain">explain</a>
-  <ul class="collapse">
   <li><a href="#what-if-the-odds-of-each-option-are-not-equal-to-each-other-e.g.-you-have-a-biased-coin" id="toc-what-if-the-odds-of-each-option-are-not-equal-to-each-other-e.g.-you-have-a-biased-coin" class="nav-link" data-scroll-target="#what-if-the-odds-of-each-option-are-not-equal-to-each-other-e.g.-you-have-a-biased-coin">What if the odds of each option are not equal to each other (e.g.&nbsp;you have a biased coin)</a></li>
-  </ul></li>
-  <li><a href="#note-that-this-principle-is-useful-for-how-we-calculate-p-values-for-normal-distributions-right" id="toc-note-that-this-principle-is-useful-for-how-we-calculate-p-values-for-normal-distributions-right" class="nav-link" data-scroll-target="#note-that-this-principle-is-useful-for-how-we-calculate-p-values-for-normal-distributions-right">Note that this principle is useful for how we calculate p-values for normal distributions (right?)</a></li>
-  <li><a href="#what-about-biased-coins" id="toc-what-about-biased-coins" class="nav-link" data-scroll-target="#what-about-biased-coins">WHAT about biased coins?</a></li>
   </ul>
 </nav>
     </div>
@@ -482,7 +479,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Binomial Distribution (R) - incomplete</h1>
+<h1 class="title d-none d-lg-block">Binomial Distribution (R)</h1>
 </div>
 
 
@@ -497,6 +494,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+The following content builds on *Probabilities*
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Probabilities can be found on the left within <strong>Statistics Foundations</strong></p>
+<p>It is strongly advised that you make sure you understand that page before proceeding</p>
+</div>
+</div>
 <section id="what-is-a-binomial-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-binomial-distribution">What is a Binomial distribution?</h2>
 <p>Imagine that you want to predict the likelihood of flipping a coin on heads or tails a certain number of times in a row. The outcome of each coin flip is <strong>binary</strong>, i.e.&nbsp;there is only 1 possible outcome out of 2 options. If this isn’t a biased coin, we can calculate some basic expectations about what will happen after 2 flips of the coin:</p>
@@ -544,238 +555,290 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>One way to visualise this is as follows</p>
-</section>
-<section id="explain" class="level1">
-<h1>explain</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: grid</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>coin_flips <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">first  =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"tails"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">second =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">heads  =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">likelihood =</span> <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xtabs</span>(likelihood <span class="sc">~</span> first <span class="sc">+</span> second,<span class="at">data =</span> coin_flips),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">shade=</span>T, </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">colorize =</span> T, </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">gp =</span> <span class="fu">gpar</span>(</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">"#005599"</span>,<span class="st">"#774499"</span>,<span class="st">"#774499"</span>, <span class="st">"#993300"</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1=</span><span class="fu">c</span>(<span class="dv">0</span>,  .<span class="dv">5</span>,<span class="dv">0</span>, .<span class="dv">5</span>), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span> ,.<span class="dv">5</span>,<span class="dv">1</span>), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y1=</span><span class="fu">c</span>(<span class="dv">0</span>,  .<span class="dv">5</span>,.<span class="dv">5</span>,<span class="dv">0</span>), </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y2=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span> ,<span class="dv">1</span> ,.<span class="dv">5</span>), </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># t=c('Both heads','Both tails','Mixed','Mixed'), </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">r=</span><span class="fu">c</span>(<span class="st">'Both heads'</span>,<span class="st">'Both tails'</span>,<span class="st">'Mixed'</span>,<span class="st">'Mixed'</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">"Flip 1"</span>) <span class="sc">+</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">"Flip 2"</span>) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_rect</span>(<span class="at">data=</span>d, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>x1, <span class="at">xmax=</span>x2, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>r), <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">data=</span>d, <span class="fu">aes</span>(<span class="at">x=</span>x1<span class="sc">+</span>(x2<span class="sc">-</span>x1)<span class="sc">/</span><span class="dv">2</span>, <span class="at">y=</span>y1<span class="sc">+</span>(y2<span class="sc">-</span>y1)<span class="sc">/</span><span class="dv">2</span>, <span class="at">label=</span>r), <span class="at">size=</span><span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="binomial_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<div id="fig-binomial-coin-outcomes" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="binomial_files/figure-html/fig-binomial-coin-outcomes-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: a summary of the likelihood of all outcomes, with the propotion of area covered by an outcome reflecting its likelihood. For example, the likelihood of flipping coins heads is .5 * .5 reflecting a .25 (or 25%) chance of flipping heads twice.</figcaption><p></p>
+</figure>
 </div>
-</div>
-<p>Interactive plot that you can hover over to see???</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">data.frame</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x1=</span><span class="fu">c</span>(<span class="dv">0</span>,  .<span class="dv">5</span>,<span class="dv">0</span>, .<span class="dv">5</span>), </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x2=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span> ,.<span class="dv">5</span>,<span class="dv">1</span>), </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y1=</span><span class="fu">c</span>(<span class="dv">0</span>,  .<span class="dv">5</span>,.<span class="dv">5</span>,<span class="dv">0</span>), </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y2=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span> ,<span class="dv">1</span> ,.<span class="dv">5</span>), </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># t=c('Both heads','Both tails','Mixed','Mixed'), </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">r=</span><span class="fu">c</span>(<span class="st">'Both heads'</span>,<span class="st">'Both tails'</span>,<span class="st">'Mixed'</span>,<span class="st">'Mixed'</span>))</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">"Flip 1"</span>) <span class="sc">+</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">"Flip 2"</span>) <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_rect</span>(<span class="at">data=</span>d, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">xmin=</span>x1, <span class="at">xmax=</span>x2, <span class="at">ymin=</span>y1, <span class="at">ymax=</span>y2, <span class="at">fill=</span>r), <span class="at">color=</span><span class="st">"black"</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">data=</span>d, <span class="fu">aes</span>(<span class="at">x=</span>x1<span class="sc">+</span>(x2<span class="sc">-</span>x1)<span class="sc">/</span><span class="dv">2</span>, <span class="at">y=</span>y1<span class="sc">+</span>(y2<span class="sc">-</span>y1)<span class="sc">/</span><span class="dv">2</span>, <span class="at">label=</span>r), <span class="at">size=</span><span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="binomial_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Out of these 4 combinations, the likelihood of each of them in their precise order is exactly .25 (or a 25% chance). However, we often don’t care about order, so the odds of getting 1 head and 1 tail flip would be .25 + .25 = 50% chance. This allows us to create a very simple binomial distribution of head flips:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>coin_flips <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">first  =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"tails"</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">second =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">heads  =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(coin_flips, <span class="fu">aes</span>(heads)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>coin_flips <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">first  =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"tails"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">second =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">heads  =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(coin_flips, <span class="fu">aes</span>(heads)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="binomial_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div id="fig-binomial-coin-distribution" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="binomial_files/figure-html/fig-binomial-coin-distribution-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: a binomial distribution reflecting how frequently you should expect each number of head flips.</figcaption><p></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can calculate the likelihood of how many heads you will flip using the above distribution. Let’s say that you wanted to know the likelihood of getting at least 1 flip of heads:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(coin_flips, <span class="fu">aes</span>(heads, <span class="at">fill =</span> heads <span class="sc">&gt;=</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(coin_flips, <span class="fu">aes</span>(heads, <span class="at">fill =</span> heads <span class="sc">&gt;=</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="binomial_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div id="fig-binomial-coin-distribution-1-head-or-more" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="binomial_files/figure-html/fig-binomial-coin-distribution-1-head-or-more-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: a binomial distribution reflecting how frequently you should expect to flip heads at least once.</figcaption><p></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can calculate the area under this distribution this is true for, and divide it by the total area of the distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(coin_flips<span class="sc">$</span>heads <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">length</span>(coin_flips<span class="sc">$</span>heads)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(coin_flips<span class="sc">$</span>heads <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">length</span>(coin_flips<span class="sc">$</span>heads)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.75</code></pre>
 </div>
 </div>
 <p>This suggests you have a 75% chance of flipping heads at least once. Looking at the table above will confirm that there is ony 1 out of 4 combinations in which you never flip heads, also supporting the fact that you will flip heads at least once the other 3 out of 4 times (i.e.&nbsp;75% of the time).</p>
+</section>
 <section id="what-if-the-odds-of-each-option-are-not-equal-to-each-other-e.g.-you-have-a-biased-coin" class="level2">
 <h2 class="anchored" data-anchor-id="what-if-the-odds-of-each-option-are-not-equal-to-each-other-e.g.-you-have-a-biased-coin">What if the odds of each option are not equal to each other (e.g.&nbsp;you have a biased coin)</h2>
 <p>Let’s now imagine that we have a coin that will flip heads 75% of the time, and tails 25% of the time. It’s a bit more complicated to draw a distribution that captures this as the likelihood of either side is no longer equal.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>biased_coin_flips <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">first  =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"tails"</span>,<span class="st">"tails"</span>,<span class="st">"tails"</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">second =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>biased_coin_flips<span class="sc">$</span>heads <span class="ot">=</span> <span class="fu">apply</span>(biased_coin_flips, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(<span class="fu">which</span>(x<span class="sc">==</span><span class="st">"heads"</span>)))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(biased_coin_flips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>biased_coin_flips <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_flip =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"tails"</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_likelihood =</span> <span class="fu">c</span>(.<span class="dv">75</span>,.<span class="dv">75</span>,.<span class="dv">25</span>,.<span class="dv">25</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">second_flip =</span> <span class="fu">c</span>(<span class="st">"heads"</span>,<span class="st">"tails"</span>,<span class="st">"heads"</span>,<span class="st">"tails"</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">second_likelihood =</span> <span class="fu">c</span>(.<span class="dv">75</span>,.<span class="dv">25</span>,.<span class="dv">75</span>,.<span class="dv">25</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">heads =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>biased_coin_flips<span class="sc">$</span>outcome_likelihood <span class="ot">=</span> biased_coin_flips<span class="sc">$</span>first_likelihood <span class="sc">*</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  biased_coin_flips<span class="sc">$</span>second_likelihood</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking if all outcomes captured (should get 1) and no overlapping outcomes (should not get more than 1). See the page on *probabilities* for more information</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(biased_coin_flips<span class="sc">$</span>outcome_likelihood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(biased_coin_flips)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 20%">
+<col style="width: 14%">
+<col style="width: 21%">
+<col style="width: 7%">
+<col style="width: 22%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">first</th>
-<th style="text-align: left;">second</th>
+<th style="text-align: left;">first_flip</th>
+<th style="text-align: right;">first_likelihood</th>
+<th style="text-align: left;">second_flip</th>
+<th style="text-align: right;">second_likelihood</th>
 <th style="text-align: right;">heads</th>
+<th style="text-align: right;">outcome_likelihood</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">heads</td>
+<td style="text-align: right;">0.75</td>
 <td style="text-align: left;">heads</td>
+<td style="text-align: right;">0.75</td>
 <td style="text-align: right;">2</td>
+<td style="text-align: right;">0.5625</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">heads</td>
+<td style="text-align: right;">0.75</td>
 <td style="text-align: left;">tails</td>
+<td style="text-align: right;">0.25</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">0.1875</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">heads</td>
 <td style="text-align: left;">tails</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: left;">heads</td>
+<td style="text-align: right;">0.75</td>
 <td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">heads</td>
-<td style="text-align: left;">tails</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">tails</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.1875</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">tails</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
+<td style="text-align: right;">0.25</td>
 <td style="text-align: left;">tails</td>
-<td style="text-align: left;">heads</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">tails</td>
-<td style="text-align: left;">tails</td>
+<td style="text-align: right;">0.25</td>
 <td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0625</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biased_coin_flips, <span class="fu">aes</span>(heads)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we want a histogram, we can get a sum of the outcome_likelihood for each number of heads (thus ignoring the order):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>biased_heads <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">heads =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">freq  =</span> <span class="fu">c</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(biased_coin_flips<span class="sc">$</span>outcome_likelihood[biased_coin_flips<span class="sc">$</span>heads <span class="sc">==</span> <span class="dv">0</span>]),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(biased_coin_flips<span class="sc">$</span>outcome_likelihood[biased_coin_flips<span class="sc">$</span>heads <span class="sc">==</span> <span class="dv">1</span>]),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(biased_coin_flips<span class="sc">$</span>outcome_likelihood[biased_coin_flips<span class="sc">$</span>heads <span class="sc">==</span> <span class="dv">2</span>])</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biased_heads, <span class="fu">aes</span>(<span class="at">x=</span>heads,<span class="at">y=</span>freq)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Number of head flips"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="binomial_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div id="fig-binomial-biased-coin-distribution" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="binomial_files/figure-html/fig-binomial-biased-coin-distribution-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: a binomial distribution reflecting how frequently you should expect to flip heads with a coin that has a .75 bias for heads.</figcaption><p></p>
+</figure>
+</div>
 </div>
 </div>
 <p>How likely am I to get at least 1 head flip with this biased coin?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(biased_coin_flips<span class="sc">$</span>heads <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">length</span>(biased_coin_flips<span class="sc">$</span>heads)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(biased_heads<span class="sc">$</span>freq[biased_heads<span class="sc">$</span>heads <span class="sc">&gt;=</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9375</code></pre>
 </div>
 </div>
 <p>Which can be visualised as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biased_coin_flips, <span class="fu">aes</span>(heads, <span class="at">fill =</span> heads <span class="sc">&gt;=</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biased_heads, <span class="fu">aes</span>(<span class="at">x=</span>heads,<span class="at">y=</span>freq, <span class="at">fill =</span> heads <span class="sc">&gt;=</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Number of head flips"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="binomial_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div id="fig-binomial-biased-coin-distribution-one-plus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="binomial_files/figure-html/fig-binomial-biased-coin-distribution-one-plus-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: a binomial distribution reflecting how likely it you will flip head at least once when the coin has a .75 bias for heads.</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>With binomial distributions you can calculate the likelihood of each event happening with multiplications</p>
+</div>
+<p>Note that the above distributions we’ve calculated, and thus the p-values associated with certain outcomes (or greater or lesser), use the same principles for other distributions such as t-distributions.</p>
+<section id="question-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
+<p>Do binomial distributions only work if there is an equal likelihood of either outcome?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>head.head <span class="ot">&lt;-</span> .<span class="dv">75</span> <span class="sc">*</span> .<span class="dv">75</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>head.tail <span class="ot">&lt;-</span> .<span class="dv">75</span> <span class="sc">*</span> .<span class="dv">25</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tail.head <span class="ot">&lt;-</span> .<span class="dv">25</span> <span class="sc">*</span> .<span class="dv">75</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>tail.tail <span class="ot">&lt;-</span> .<span class="dv">25</span> <span class="sc">*</span> .<span class="dv">25</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>head.head <span class="sc">+</span> head.tail <span class="sc">+</span> tail.head <span class="sc">+</span> tail.tail</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>viewof binomial_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Yes'</span><span class="op">,</span><span class="st">'No'</span>])<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>correct_binomial_1 <span class="op">=</span> <span class="st">'No'</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>binomial_1_result <span class="op">=</span> {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(binomial_1_response <span class="op">==</span> correct_binomial_1){</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
 </div>
 </div>
-<p>Does the above calculations confirm a .9375 chance of a flipping at least one heads</p>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><strong><span><span id="ojs-element-id-1"></span></span></strong></p>
+</section>
+<section id="question-2" class="level4">
+<h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
+<p>What is the likelihood of flipping 2 heads in a row if your coin is .6 biased towards heads</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>head.head <span class="sc">+</span> head.tail <span class="sc">+</span> tail.head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9375</code></pre>
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>viewof binomial_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>()<span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>correct_binomial_2 <span class="op">=</span> <span class="st">'.36'</span><span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>binomial_2_result <span class="op">=</span> {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(binomial_2_response <span class="op">==</span> correct_binomial_2){</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
 </div>
 </div>
-<p>Great!</p>
-</section>
-</section>
-<section id="note-that-this-principle-is-useful-for-how-we-calculate-p-values-for-normal-distributions-right" class="level1">
-<h1>Note that this principle is useful for how we calculate p-values for normal distributions (right?)</h1>
-</section>
-<section id="what-about-biased-coins" class="level1">
-<h1>WHAT about biased coins?</h1>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><strong><span><span id="ojs-element-id-2"></span></span></strong></p>
 
 
+<script type="ojs-module-contents">
+{"contents":[
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${binomial_1_result}</span>`", "cellName":"ojs-element-id-1"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${binomial_2_result}</span>`", "cellName":"ojs-element-id-2"}
+]}
+</script>
+</section>
 </section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof binomial_1_response = Inputs.radio(['Yes','No']);\ncorrect_binomial_1 = 'No';\nbinomial_1_result = {\n  if(binomial_1_response == correct_binomial_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof binomial_2_response = Inputs.number();\ncorrect_binomial_2 = '.36';\nbinomial_2_result = {\n  if(binomial_2_response == correct_binomial_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('binomial_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('binomial_2_response')"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../distributions";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

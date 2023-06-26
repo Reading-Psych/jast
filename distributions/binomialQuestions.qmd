@@ -1,0 +1,34 @@
+---
+editor: visual
+---
+#### Question 1
+Do binomial distributions only work if there is an equal likelihood of either outcome?
+```{ojs}
+//| echo: false
+viewof binomial_1_response = Inputs.radio(['Yes','No']);
+correct_binomial_1 = 'No';
+binomial_1_result = {
+  if(binomial_1_response == correct_binomial_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${binomial_1_result}**
+
+#### Question 2
+What is the likelihood of flipping 2 heads in a row if your coin is .6 biased towards heads
+```{ojs}
+//| echo: false
+viewof binomial_2_response = Inputs.number();
+correct_binomial_2 = '.36';
+binomial_2_result = {
+  if(binomial_2_response == correct_binomial_2){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${binomial_2_result}**

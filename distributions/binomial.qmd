@@ -1,7 +1,13 @@
 ---
-title: "Binomial Distribution (R) - incomplete"
+title: "Binomial Distribution (R)"
 editor: visual
 ---
+
+::: callout-warning
+## The concepts in this page build on Probabilities
+
+Probabilities can be found on the left within **Statistics Foundations.** It is strongly advised that you make sure you understand the content in the **Probabilities** page before proceeding.
+:::
 
 ## What is a Binomial distribution?
 
@@ -22,32 +28,9 @@ Imagine that you want to predict the likelihood of flipping a coin on heads or t
 | Tails (.5)                    | Tails (.5)                                   | 0.5 \* 0.5 = .25          |
 |                               | **Likelihood of one of the above happening** | .25 + .25 + .25 + .25 = 1 |
 
-One way to visualise this is as follows
-
-# explain
-
 ```{r}
-library(vcd)
-coin_flips <- data.frame(
-  first  = c("heads","heads","tails","tails"),
-  second = c("heads","tails","heads","tails"),
-  heads  = c(2,1,1,0),
-  likelihood = c(.25,.25,.25,.25)
-)
-mosaic(
-  xtabs(likelihood ~ first + second,data = coin_flips),
-  shade=T, 
-  colorize = T, 
-  gp = gpar(
-    fill=matrix(c("#005599","#774499","#774499", "#993300"), 2, 2)
-  ),
-)
-
-```
-
-Interactive plot that you can hover over to see???
-
-```{r}
+#| label: fig-binomial-coin-outcomes
+#| fig-cap: a summary of the likelihood of all outcomes, with the propotion of area covered by an outcome reflecting its likelihood. For example, the likelihood of flipping coins heads is .5 * .5 reflecting a .25 (or 25%) chance of flipping heads twice.
 library(ggplot2)
 d=data.frame(
   x1=c(0,  .5,0, .5), 
@@ -66,6 +49,8 @@ geom_text(data=d, aes(x=x1+(x2-x1)/2, y=y1+(y2-y1)/2, label=r), size=4)
 Out of these 4 combinations, the likelihood of each of them in their precise order is exactly .25 (or a 25% chance). However, we often don't care about order, so the odds of getting 1 head and 1 tail flip would be .25 + .25 = 50% chance. This allows us to create a very simple binomial distribution of head flips:
 
 ```{r}
+#| label: fig-binomial-coin-distribution
+#| fig-cap: a binomial distribution reflecting how frequently you should expect each number of head flips.
 library(ggplot2)
 
 coin_flips <- data.frame(
@@ -80,6 +65,8 @@ ggplot(coin_flips, aes(heads)) + geom_histogram(bins = 3)
 We can calculate the likelihood of how many heads you will flip using the above distribution. Let's say that you wanted to know the likelihood of getting at least 1 flip of heads:
 
 ```{r}
+#| label: fig-binomial-coin-distribution-1-head-or-more
+#| fig-cap: a binomial distribution reflecting how frequently you should expect to flip heads at least once.
 ggplot(coin_flips, aes(heads, fill = heads >= 1)) + geom_histogram(bins = 3)
 ```
 
@@ -97,50 +84,58 @@ Let's now imagine that we have a coin that will flip heads 75% of the time, and 
 
 ```{r}
 biased_coin_flips <- data.frame(
-  first  = c("heads","heads","heads","heads","heads","heads","heads","heads","heads","heads","heads","heads","tails","tails","tails","tails"),
-  second = c("heads","heads","heads","tails","heads","heads","heads","tails","heads","heads","heads","tails","heads","heads","heads","tails")
+  first_flip = c("heads","heads","tails","tails"),
+  first_likelihood = c(.75,.75,.25,.25),
+  second_flip = c("heads","tails","heads","tails"),
+  second_likelihood = c(.75,.25,.75,.25),
+  heads = c(2,1,1,0)
 )
+biased_coin_flips$outcome_likelihood = biased_coin_flips$first_likelihood * 
+  biased_coin_flips$second_likelihood
+# Checking if all outcomes captured (should get 1) and no overlapping outcomes (should not get more than 1). See the page on *probabilities* for more information
+sum(biased_coin_flips$outcome_likelihood)
+```
 
-biased_coin_flips$heads = apply(biased_coin_flips, 1, function(x) length(which(x=="heads")))
-
+```{r}
 knitr::kable(biased_coin_flips)
+```
 
-ggplot(biased_coin_flips, aes(heads)) + geom_histogram(bins = 3)
+If we want a histogram, we can get a sum of the outcome_likelihood for each number of heads (thus ignoring the order):
+
+```{r}
+#| label: fig-binomial-biased-coin-distribution
+#| fig-cap: a binomial distribution reflecting how frequently you should expect to flip heads with a coin that has a .75 bias for heads.
+biased_heads <- data.frame(
+  heads = c(0,1,2),
+  freq  = c(
+    sum(biased_coin_flips$outcome_likelihood[biased_coin_flips$heads == 0]),
+    sum(biased_coin_flips$outcome_likelihood[biased_coin_flips$heads == 1]),
+    sum(biased_coin_flips$outcome_likelihood[biased_coin_flips$heads == 2])
+  )
+)
+ggplot(biased_heads, aes(x=heads,y=freq)) +
+  geom_col() + 
+  xlab("Number of head flips") +
+  ylab("Frequency")
 ```
 
 How likely am I to get at least 1 head flip with this biased coin?
 
 ```{r}
-sum(biased_coin_flips$heads >= 1) / length(biased_coin_flips$heads)
+sum(biased_heads$freq[biased_heads$heads >= 1])
 ```
 
 Which can be visualised as:
 
 ```{r}
-ggplot(biased_coin_flips, aes(heads, fill = heads >= 1)) + geom_histogram(bins = 3)
+#| label: fig-binomial-biased-coin-distribution-one-plus
+#| fig-cap: a binomial distribution reflecting how likely it you will flip head at least once when the coin has a .75 bias for heads.
+ggplot(biased_heads, aes(x=heads,y=freq, fill = heads >= 1)) +
+  geom_col() + 
+  xlab("Number of head flips") +
+  ylab("Frequency")
 ```
 
-With binomial distributions you can calculate the likelihood of each event happening with multiplications
+Note that the above distributions we've calculated, and thus the p-values associated with certain outcomes (or greater or lesser), use the same principles for other distributions such as t-distributions.
 
-```{r}
-head.head <- .75 * .75
-head.tail <- .75 * .25
-tail.head <- .25 * .75
-tail.tail <- .25 * .25
-
-head.head + head.tail + tail.head + tail.tail
-```
-
-Does the above calculations confirm a .9375 chance of a flipping at least one heads
-
-```{r}
-head.head + head.tail + tail.head
-```
-
-Great!
-
-# Note that this principle is useful for how we calculate p-values for normal distributions (right?)
-
-# WHAT about biased coins?
-
-
+{{< include binomialQuestions.qmd >}}

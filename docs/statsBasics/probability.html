@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Probability</title>
+<title>Just Another Statistics Textbook - Probability (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -168,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Probability</h1>
+      <h1 class="quarto-secondary-nav-title">Probability (R)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -208,37 +208,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Statistics Foundations</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R Basics</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link active">Probability</a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">R Basics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
@@ -252,6 +227,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistics Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link active">Probability (R)</a>
   </div>
 </li>
       </ul>
@@ -484,7 +484,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Probability</h1>
+<h1 class="title d-none d-lg-block">Probability (R)</h1>
 </div>
 
 
@@ -515,9 +515,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <table class="table">
 <colgroup>
-<col style="width: 36%">
-<col style="width: 35%">
-<col style="width: 27%">
+<col style="width: 30%">
+<col style="width: 43%">
+<col style="width: 26%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -642,7 +642,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 1.666667</code></pre>
 </div>
 </div>
-<p>When we add all the outcome likelihoods together we get more than 1 😒. This reflects us (or me, you didn’t ask me to make the above table) treating some outcomes as if they are exclusive when they are not. For example, the two <strong>valid</strong> outcomes have overlap as they both include the likelihoods that both dice are of 4 or more. This has inflated the likelihood of the <strong>valid outcomes</strong> when you add these outcomes together, as you have doubled up on the overlap. To visualise this:</p>
+<p>When we add all the outcome likelihoods together we get more than 1, which makes me (and maybe you) sad. This reflects us (or me, you didn’t ask me to make the above table) treating some outcomes as if they are exclusive when they are not. For example, the two <strong>valid</strong> outcomes have overlap as they both include the likelihoods that both dice are of 4 or more. This has inflated the likelihood of the <strong>valid outcomes</strong> when you add these outcomes together, as you have doubled up on the overlap. To visualise this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -689,7 +689,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="probability_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div id="fig-prob-dice-outcome-likelihoods" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="probability_files/figure-html/fig-prob-dice-outcome-likelihoods-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: a summary of the overlap between 2 outcomes. The likelihood of any particular dice roll is 1 out of 36 (see how there are 36 combinations in the above grid), and so you could calculate the likelihood of one dice being at least 3 and the other being at least 4 by making a grid like above and then calculating what <strong>proportion of the area</strong> is covered by valid rolls. If half of your rolls are valid, then half of the area would be covered. In our case, 15 out of 36 possible combinations is valid, and so 15/36 of the area in the above grid is your likelihood. <strong>However</strong>, this figure also visualises how mathematical shortcuts described above of the likelihood of getting an outcome can be incorrect if you make false assumptions about whether outcomes are mutually exclusive. As we can see above, the likelihood of dice 1 being 3 or above and dice 2 being 4 or above (blue) is NOT exclusive from the likelihood of dice 1 being 3 and above and dice being 3 and above (red), which is why the purple squares reflect the overlap between these outcomes.</figcaption><p></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In the above visualisation of all possible dice role combinations, the proportion of the area covered reflects the likelihood of each valid combination highlighted: “First is 3 or more, second is 4 or more” in blue and “First is 4 or more, second is 3 or more” in red. As you can see, there is a lot of overlap (purple/pink), reflecting that these were not mutually exclusive possibilities, and so adding them together will inflate the estimated likelihood of either of them happening.</p>
@@ -735,8 +740,8 @@ fp_1 + fp_2 + fp_3  + fp_{1,2} + fp_{1,3} + fp_{2,3} + fp_{1,2,3}
 <li><p><span class="math inline">\(fp_2\)</span> refers to a false positive <strong>only</strong> for test 2</p></li>
 <li><p><span class="math inline">\(fp_3\)</span> refers to a false positive <strong>only</strong> for test 3</p></li>
 <li><p><span class="math inline">\(fp_{1,2}\)</span> refers to a false positive <strong>only</strong> for tests 1 and 2</p></li>
-<li><p><span class="math inline">\(fp_{1,3}\)</span> refers to a false positive only for tests 1 and 3</p></li>
-<li><p><span class="math inline">\(fp_{2,3}\)</span> refers to a false positive only for tests 2 and 3</p></li>
+<li><p><span class="math inline">\(fp_{1,3}\)</span> refers to a false positive <strong>only</strong> for tests 1 and 3</p></li>
+<li><p><span class="math inline">\(fp_{2,3}\)</span> refers to a false positive <strong>only</strong> for tests 2 and 3</p></li>
 <li><p><span class="math inline">\(fp_{1,2,3}\)</span> refers to a false positive for all three tests</p></li>
 </ul>
 <div class="cell">

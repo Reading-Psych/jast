@@ -1,5 +1,5 @@
 ---
-title: "Probability"
+title: "Probability (R)"
 editor: visual
 ---
 
@@ -22,7 +22,7 @@ Imagine that you want to predict the likelihood of flipping a coin on heads or t
 -   To summarise the likelihood of all combinations we could make the following table:
 
 |                               |                                              |                           |
-|---------------------------|--------------------------|--------------------|
+|----------------------|-------------------------------|-------------------|
 | **First flip and likelihood** | **Second flip and likelihood**               | **Overall likelihood**    |
 | Heads (.5)                    | Heads (.5)                                   | 0.5 \* 0.5 = .25          |
 | Heads (.5)                    | Tails (.5)                                   | 0.5 \* 0.5 = .25          |
@@ -79,9 +79,12 @@ knitr::kable(dice_outcomes)
 sum(dice_outcomes$likelihood)
 ```
 
-When we add all the outcome likelihoods together we get more than 1 😒. This reflects us (or me, you didn't ask me to make the above table) treating some outcomes as if they are exclusive when they are not. For example, the two **valid** outcomes have overlap as they both include the likelihoods that both dice are of 4 or more. This has inflated the likelihood of the **valid outcomes** when you add these outcomes together, as you have doubled up on the overlap. To visualise this:
+When we add all the outcome likelihoods together we get more than 1, which makes me (and maybe you) sad. This reflects us (or me, you didn't ask me to make the above table) treating some outcomes as if they are exclusive when they are not. For example, the two **valid** outcomes have overlap as they both include the likelihoods that both dice are of 4 or more. This has inflated the likelihood of the **valid outcomes** when you add these outcomes together, as you have doubled up on the overlap. To visualise this:
 
 ```{r}
+#| label: fig-prob-dice-outcome-likelihoods
+#| fig-cap: a summary of the overlap between 2 outcomes. The likelihood of any particular dice roll is 1 out of 36 (see how there are 36 combinations in the above grid), and so you could calculate the likelihood of one dice being at least 3 and the other being at least 4 by making a grid like above and then calculating what **proportion of the area** is covered by valid rolls. If half of your rolls are valid, then half of the area would be covered. In our case, 15 out of 36 possible combinations is valid, and so 15/36 of the area in the above grid is your likelihood. **However**, this figure also visualises how mathematical shortcuts described above of the likelihood of getting an outcome can be incorrect if you make false assumptions about whether outcomes are mutually exclusive. As we can see above, the likelihood of dice 1 being 3 or above and dice 2 being 4 or above (blue) is NOT exclusive from the likelihood of dice 1 being 3 and above and dice being 3 and above (red), which is why the purple squares reflect the overlap between these outcomes. 
+
 library(ggplot2)
 
 ggplot() +
@@ -177,9 +180,9 @@ $$
 
 -   $fp_{1,2}$ refers to a false positive **only** for tests 1 and 2
 
--   $fp_{1,3}$ refers to a false positive only for tests 1 and 3
+-   $fp_{1,3}$ refers to a false positive **only** for tests 1 and 3
 
--   $fp_{2,3}$ refers to a false positive only for tests 2 and 3
+-   $fp_{2,3}$ refers to a false positive **only** for tests 2 and 3
 
 -   $fp_{1,2,3}$ refers to a false positive for all three tests
 
@@ -217,5 +220,3 @@ Note that it's easier to do simple calculations like above if the p-value thresh
 :::
 
 {{< include probabilityQuestions.qmd >}}
-
-

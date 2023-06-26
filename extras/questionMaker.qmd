@@ -11,18 +11,21 @@ If you have any questions you would like to contribute to any of the consolidati
 If you would like to generate the code, please complete the following inputs:
 
 **Give your question a unique name. It cannot have a space in it, so use underscores (e.g. "question_1" rather than "question 1")**
+
 ```{ojs}
 //| echo: false
 viewof question_name = Inputs.text();
 ```
 
 **Write the question itself here:**
+
 ```{ojs}
 //| echo: false
 viewof question_text = Inputs.text();
 ```
 
 **What type of question is it?**
+
 ```{ojs}
 //| echo: false
 viewof question_type = Inputs.radio([
@@ -32,13 +35,15 @@ viewof question_type = Inputs.radio([
 ]);
 ```
 
-**If you selected multiple choice, write the options you would like the user to choose from. Please put a | (known as a "pipe") character between each option**
+**If you selected multiple choice, write the options you would like the user to choose from. Please put a \| (known as a "pipe") character between each option**
+
 ```{ojs}
 //| echo: false
 viewof question_responses = Inputs.text();
 ```
 
 **What is the correct answer? Be precise in how it's written.**
+
 ```{ojs}
 //| echo: false
 viewof question_correct   = Inputs.text();
@@ -56,7 +61,7 @@ output_string = {
     "  };\n" +
     "}\n" +
     "```\n" +
-    "${" + question_name + "_result}";
+    "**${" + question_name + "_result}**";
   switch(question_type){
     case "Multiple choice":
       return question_text + "\n" +
@@ -85,4 +90,5 @@ output_string = {
 ```
 
 ##### Question code:
-<code class='javascript'>${output_string}</code>
+
+<code class='javascript'>\${output_string}</code>

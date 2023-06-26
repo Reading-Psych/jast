@@ -38,4 +38,4 @@ You may have noticed 2 things:
 
 -   This example compares column C to **I7** rather than the word "Females". Referring to a specific cell can help make your formulas more efficient, as you don't have to repeatedly type the same word again and again. In fact, arguably it would be better to have [anchored](anchoring.html) I\$7 so that you could copy the formula down.
 
-{{< include ../feedback.qmd >}}
+

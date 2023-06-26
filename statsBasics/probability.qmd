@@ -218,4 +218,4 @@ Note that it's easier to do simple calculations like above if the p-value thresh
 
 {{< include probabilityQuestions.qmd >}}
 
-{{< include ../feedback.qmd >}}
+

@@ -97,5 +97,3 @@ question_3_result = {
 ```
 
 Feel free to play around with these formulas a bit more. A really good way to learn excel is to play around with what you've learned to build up confidence with it.
-
-{{< include ../feedback.qmd >}}

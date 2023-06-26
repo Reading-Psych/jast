@@ -1,8 +1,0 @@
----
-title: "False Discovery Rate(incomplete)"
-editor: visual
----
-
-# The false discovery rate (FDR) is the expected proportion of false rejections out of all rejections.
-
-{{< include ../feedback.qmd >}}

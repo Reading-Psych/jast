@@ -1,0 +1,35 @@
+---
+editor: visual
+---
+
+#### Question 1
+
+Which of the following reflects false discovery rate:
+```{ojs}
+//| echo: false
+viewof fdr_1_response = Inputs.radio(['False Positives/Negatives in the population','False Positves/Positives in the population','False positives/(False Positives + True Positives)']);
+correct_fdr_1 = 'False positives/(False Positives + True Positives)';
+fdr_1_result = {
+  if(fdr_1_response == correct_fdr_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${fdr_1_result}
+
+After ranking all the p-values which of the following is true about the Benjamini-Hochberg procedure:
+```{ojs}
+//| echo: false
+viewof fdr_2_response = Inputs.radio(['You only accept p-values from the smallest to the largest until the first one that is above the corrected alpha value',"You accept all p-values that are smaller than the highest p-value below it's respective alpha threshold."]);
+correct_fdr_2 = "You accept all p-values that are smaller than the highest p-value below it's respective alpha threshold.";
+fdr_2_result = {
+  if(fdr_2_response == correct_fdr_2){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+${fdr_2_result}

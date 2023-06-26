@@ -1177,4 +1177,4 @@ ggplot(gapminder_americas_europe, aes(x = gdpPercap, y = lifeExp)) +
 ```
 :::
 
-{{< include ../feedback.qmd >}}
+

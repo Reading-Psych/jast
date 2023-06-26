@@ -363,5 +363,3 @@ One way to deal with skewed data is to <a href="transform.html" target="_blank">
 ## Consolidation questions
 
 {{< include skewnessQuestions.qmd >}}
-
-{{< include ../feedback.qmd >}}

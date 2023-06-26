@@ -57,5 +57,3 @@ if_q2_result = {
 ```
 
 \${if_q2_result}
-
-{{< include ../feedback.qmd >}}

@@ -1,0 +1,243 @@
+---
+title: "backup of fdr vs fwer code"
+editor: visual
+---
+## fwer section here?
+
+This is distinct from family-wise error-rate (FWER) because FWER's corrections are optimised to reduce the risk of any **negative** result being incorrectly accepted as **positive**, and thus doesn't need to consider the ratio of **positives** to **negatives** in the population.
+
+the rate of false positives compared to all tests that *should* find a **negative** result (because the effect is negative in the population).
+
+$$
+FWER = \frac{FalsePositives}{FalsePositives + \color{red}{TrueNegatives}}
+$$
+
+However, in practice we don't **know** which results are **positive** or **negative** in the population and thus how many of them are **true** or **false**. This is less of a problem for FWER because you are just comparing two types of results that **should** be negative to each other:
+
+$$
+FWER  = \frac{FalsePositives}{FalsePositives + \color{red}{TrueNegatives}} = \frac{m_{Incorrect Negatives As Positive}}{m_{Negatives}}
+$$
+
+-   $m_{Incorrect Negatives As Positive}$ is the number of findings in your study that should be negative based on the population, but are not negative in your sample (i.e. false positives)
+
+-   $m_{Negatives}$ is the number of findings in your study that should be negative based on the population
+
+As shown in [FWER corrections](fwer.html), there are ways to restrict the likelihood of **any** of your tests being a false positive to 5% or less (although it involves mathematically assuming all your results are negatives in the population, which could be seen as conservative). However, on this page we are thinking of FWER as the proportion of
+
+However, FDR is more complicated because you would need to know how many true and false findings there are in the population. Let us imagine some scenarios to see how the false discovery rate would change depending on the ratio of **positive** and **negative** findings in the population:
+
+```{r}
+fdr_df <- data.frame(
+  pop_pos  = c(700,500,200),
+  pop_neg  = c(300,500,800),
+  power    = c(.95,.95,.95),
+  alpha    = c(.05,.05,.05)
+)
+fdr_df$true_pos  = fdr_df$pop_pos * fdr_df$power
+fdr_df$true_neg  = fdr_df$pop_neg * (1- fdr_df$alpha)
+fdr_df$false_pos = fdr_df$pop_neg * fdr_df$alpha
+fdr_df$false_neg = fdr_df$pop_pos * (1-fdr_df$power)
+fdr_df$FDR       = fdr_df$false_pos/(fdr_df$false_pos + fdr_df$true_pos)
+fdr_df$FWER      = fdr_df$false_pos/(fdr_df$false_pos + fdr_df$true_neg)
+knitr::kable(fdr_df)
+```
+
+As the above table shows, the FDR is **not** influenced by the ratio of **positive** vs. **negative** effects in the population, whereas FDR is **strongly** influenced by these. These could be visualised as follows:
+
+::: {.callout-caution collapse="true"}
+## Expand to see calculation for the Venn Diagrams below
+
+```{r, echo=FALSE}
+library(eulerr)
+set.seed(7)
+
+# Overview
+pos_neg_1_plot <- plot(
+  euler(
+    pos_neg_1_vd <- list(
+      "Positive" = 301:1000,
+      "False Negative" = 301:335,
+      "Negative" = 1:300,
+      "False Positive" = 1:15
+    ),
+    shape = "ellipse"
+  ), 
+  fills = c(
+    "dark green", # Positive
+    "purple",      # False Negative
+    "light blue",  # Negative
+    "red"          # False positive
+  ),
+  labels = c(
+    700,
+    35,
+    300,
+    15
+  )
+)
+
+# FDR comparison
+fdr_1_plot <- plot(
+  euler(
+    list(
+      "True Positives" = 336:1000,
+      "False Positives" = 1:15
+    ), 
+    shape = "ellipse"
+  ), 
+  fills = c(
+    "green", # Positive
+    "red"          # False Positive
+  ),
+  labels = c(
+    685,
+    15
+  )
+)
+
+# FWER comparison
+fwer_1_plot <- plot(
+  euler(
+    pos_neg_1_vd <- list(
+      "Negative" = 1:300,
+      "False Positive" = 1:15
+    ),
+    shape = "ellipse"
+  ), 
+  fills = c(
+    "light blue",  # Negative
+    "red"          # False positive
+  ),
+  labels = c(
+    300,
+    15
+  )
+)
+
+# 500 positives vs. 500 negatives
+# Overview
+pos_neg_2_plot <- plot(
+  euler(
+    list(
+      "Positives" = 501:1000,
+      "False Negatives" = 501:525,
+      "Negatives" = 1:500,
+      "False Positives" = 1:25
+    ), 
+    shape = "ellipse"
+  ), 
+  fills = c("dark green","purple","light blue", "red"),
+  labels = c(
+    500,
+    25,
+    500,
+    25
+  )
+)
+
+#FDR
+fdr_2_plot <- plot(
+  euler(
+    list(
+      "True Positives" = 526:1000,
+      "False Positives" = 1:25
+    ), 
+    shape = "ellipse"
+  ), 
+  fills = c("green","red"),
+  labels = c(
+    475,
+    25
+  )
+) 
+
+#FWER
+fwer_2_plot <- plot(
+  euler(
+    list(
+      "Negatives" = 1:500,
+      "False Positives" = 1:25
+    ), 
+    shape = "ellipse"
+  ), 
+  fills = c("light blue", "red"),
+  labels = c(
+    500,
+    25
+  )
+)
+
+# 200 positives vs. 800 negatives
+pos_neg_3_plot <-plot(
+  euler(
+    list(
+      "Positives" = 801:1000,
+      "False Negatives" = 801:810,
+      "Negatives" = 1:800,
+      "False Positives" = 1:40
+    ), 
+    shape = "ellipse"
+  ), 
+  fills = c("dark green","purple","light blue", "red"),
+  labels = c(
+    200,
+    10,
+    800,
+    40
+  )
+)
+
+fdr_3_plot <- plot(
+  euler(
+    list(
+      "Positives" = 811:1000,
+      "False Positives" = 1:40
+    ), 
+    shape = "ellipse"
+  ), 
+  fills = c("green","red"),
+  labels = c(
+    190,
+    40
+  )
+)
+
+fwer_3_plot <- plot(
+  euler(
+    list(
+      "Negatives" = 1:800,
+      "False Positives" = 1:40
+    ), 
+    shape = "ellipse"
+  ), 
+  fills = c("light blue","red"),
+  labels = c(
+    800,
+    40
+  )
+)
+```
+:::
+
+```{r}
+library(ggplot2)
+library(ggpubr)
+ggarrange(
+  pos_neg_1_plot,
+  fdr_1_plot,
+  fwer_1_plot,
+  pos_neg_2_plot,
+  fdr_2_plot,
+  fwer_2_plot,
+  pos_neg_3_plot,
+  fdr_3_plot,
+  fwer_3_plot,
+  ncol = 3,
+  nrow = 3,
+  labels = c("Sample","FDR","FWER")
+)
+```
+
+In the above figure green represents [**positives**]{style="color:green"} (bright green represents [**true positives**]{style="color:lightgreen"}), blue represents [**negatives**]{style="color:lightblue"}, purple reflects [**false negatives**]{style="color:purple"} and red reflects [**false positives**]{style="color:red"}. Consistent with the table above, the ratio between [**false positives**]{style="color:red"} and [**true positives**]{style="color:lightgreen"} shifts depending on how many [**positives**]{style="color:darkgreen"} and [**negatives**]{style="color:lightblue"} there are in the population, thus changing the FDR. However, the ratio between [**negatives**]{style="color:lightblue"}and [**false positives**]{style="color:red"} is consistent regardless of how many [**positives**]{style="color:darkgreen"} and [**negatives**]{style="color:lightblue"} there are in the population, which is why the FWER is not influenced by this ratio between [**positives**]{style="color:darkgreen"} and [**negatives**]{style="color:lightblue"}.
+
+So is there a way to address this problem of the underlying ratio between positives and negatives?

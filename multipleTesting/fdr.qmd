@@ -1,0 +1,182 @@
+---
+title: "False Discovery Rate(R)"
+editor: visual
+---
+
+{{< include positiveNegative.qmd >}}
+
+## What is the False Discovery Rate?
+
+The false discovery rate (FDR) is the expected proportion of **false positives** out of all **positives** (both true and false). In simpler terms, out of all the findings you present as positive, FDR reflects how many of them are false. It can be formalised as:
+
+$$
+FDR = \frac{FalsePositives}{FalsePositives + TruePositives}
+$$
+
+We will investigate one procedure that aims to control the FDR and then do simulations to confirm whether it is successful.
+
+## Benjamini-Hochberg procedure
+
+Similar to Bonferroni-Holm corrections, you first rank all the p-values of all your tests, and then calculate the $\alpha$ threshold depending on the rank. This calculation will also include your estimation of the false discovery rate
+
+$$
+\alpha = (k/m)*Q
+$$
+
+-   $\alpha$ is the p-value significance threshold for the specific test
+
+-   $k$ is the rank of the current test's p-value. 1 represents the smallest p-value
+
+-   $m$ is the total number of tests
+
+-   $Q$ is the false discovery rate (chosen by the researcher)
+
+Let's see what $\alpha_{bh}$ values we get with this approach within a made-up experiment that had 10 tests
+
+```{r}
+library(kableExtra)
+bh_df <- data.frame(
+  p     = c(.001,.01,.025,.041,.045,.06,.08,.1,.12,.3),
+  rank  = 1:10,
+  tests = 10,
+  fdr   = .1
+)
+bh_df$alpha = (bh_df$rank/bh_df$tests) * bh_df$fdr
+bh_df$sig   = bh_df$alpha > bh_df$p
+
+bh_df %>% 
+  kable(booktabs = T) %>%
+  kable_styling() %>%
+  row_spec(which(bh_df$alpha > bh_df$p), bold = T, color = "white", background = "blue")
+```
+
+We can see that there's a slightly odd pattern, in which the fourth smallest p-value is not significant but the fifth is. For the Benjamini-Hochberg correction you take the lowest ranked p-value that is still significant and then accept all tests that have a smaller p-value than it as significant. So the rank 4 test above would be accepted as significant because of this rule.
+
+Let us now check how this correction relates to positives and negatives in the population using some simulations. For these simulations we will split the data into "positive" and "negative" population tests. For "positive" effects in the population we will use one-sample t-tests to generate expected p-values. For negative effects in the population we will generate a p-value between 0 and 1 as each p-value is equally likely for negative effects. We will also assume the proportion of positive effects being tested is .5, i.e. that half of our tests should get a significant result to reflect the population and the other half should be negative.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Optional: Click here to see the R code to generate the data for the figure below
+
+```{r}
+options(scipen = 999)
+library(tidyverse)
+
+# calculate how many participants are needed
+this_effect_size = 1
+sim_pwr   = pwr::pwr.t.test(
+  d = this_effect_size, 
+  sig.level = .05, 
+  power = .95
+)
+this_pp   = round(sim_pwr$n)
+q_values = c(.01,.025,.05,.075,.1)
+n_tests  = 100
+
+# preparing data frame for all the simulations
+fdr_sim_df <- data.frame(
+  q = c(
+    rep(q_values, each = n_tests)
+  ),
+  positive_prop = .5,
+  pop_pos = NA,
+  pop_neg = NA,
+  samp_pos = NA,
+  samp_neg = NA,
+  fdr = NA
+)
+
+tests_per_sim = 100
+  
+for(i in 1:length(fdr_sim_df$q)){
+  # prepare a data frame to compare positive and negatives within a sample compared to the population
+  this_subset = data.frame(
+    population = rep("",tests_per_sim),
+    sample     = "",
+    true_false = FALSE,
+    p.value    = NA
+  )
+  
+  this_pos_prop = fdr_sim_df$positive_prop[i]
+  for(k in 1:tests_per_sim){
+    # if the population is positive
+    if(k/tests_per_sim <= this_pos_prop){
+      this_subset$population[k] = "positive"
+      this_t_test <- t.test(
+        rnorm(
+          this_pp, 
+          mean = this_effect_size, 
+          sd = 1
+        ),
+        mu = 0
+      )
+      this_subset$p.value[k] <- this_t_test$p.value
+    }
+    
+    #if the population is negative
+    if(k/tests_per_sim > this_pos_prop){
+      this_subset$population[k] = "negative"
+      this_subset$p.value[k] = runif(1,min = 0,max = 1)
+    }
+  }
+  # sort the subset into appropriate ranks
+  this_subset %>% 
+    arrange(p.value) -> sorted_subset
+  sorted_subset$rank = rank(sorted_subset$p.value)
+
+  sorted_subset$alpha = (sorted_subset$rank/tests_per_sim) * fdr_sim_df$q[i]
+  sorted_subset$sig   = sorted_subset$p.value < sorted_subset$alpha
+  max_sig = max(sorted_subset$rank[sorted_subset$sig])
+  sorted_subset$sample = "negative"
+  sorted_subset$hb_sample = "negative"
+  
+  fdr_sim_df$bh_max_alpha[i] = sorted_subset$alpha[max_sig]
+  
+  if(max_sig >= 0){
+    sorted_subset$sample[1:max_sig] = "positive"
+    # false positives / (false positives + true positives)
+    fdr_sim_df$fdr[i] = sum(sorted_subset$population == "negative" & sorted_subset$sample == "positive")/
+      (
+        sum(sorted_subset$population == "positive" & sorted_subset$sample == "positive") +
+          sum(sorted_subset$population == "negative" & sorted_subset$sample == "positive")
+      )
+  } else {
+    fdr_sim_df$fdr[i] = NA
+    fdr_sim_df$fwer[i] = NA
+  }
+  
+  ## Quality check
+  fdr_sim_df$pop_pos[i] = sum(sorted_subset$population == "positive")
+  fdr_sim_df$pop_neg[i] = sum(sorted_subset$population == "negative")
+  fdr_sim_df$samp_pos[i] = sum(sorted_subset$sample == "positive")
+  fdr_sim_df$samp_neg[i] = sum(sorted_subset$sample == "negative")
+  
+  fdr_sim_df$false_pos[i] = sum(sorted_subset$sample == "positive" &
+                                  sorted_subset$population == "negative")
+  fdr_sim_df$false_neg[i] = sum(sorted_subset$sample == "negative" &
+                                  sorted_subset$population == "positive")
+  fdr_sim_df$true_pos[i] = sum(sorted_subset$sample == "positive" & 
+                                 sorted_subset$population == "positive")
+  fdr_sim_df$true_neg[i] = sum(sorted_subset$sample == "negative" & 
+                                 sorted_subset$population == "negative")
+}
+```
+:::
+
+```{r}
+#| label: fig-fdrbh.
+#| fig-cap: A simulation of FDR when using Benjamini-Hochberg procedure. The "Researcher estimated FDR" is the q-value that the researcher chooses.
+# Maximise the code above to generate the required data
+ggplot(fdr_sim_df, aes(x = q, y = fdr,color=as.factor(positive_prop))) + 
+  geom_smooth(method = "lm", formula = "y ~ x") +
+  xlab("Researcher estimated FDR") +
+  ylab("Actual FDR") + 
+  geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1, color="Expected FDR")) +
+  geom_jitter(width = .0025, height = 0.001) +
+  coord_cartesian(
+    xlim = (c(0,.1)),
+    ylim = (c(0,.15))
+  ) +
+  labs(color="Proportion Positive")
+```
+
+The above simulations show an association between the **false discovery rate** a researcher sets (known as $q$) and the actual **false discovery rate**. Whilst this page focuses on a scenario in which half of the effects being tested are positive, see [here](fwer_vs_fdr.html#simulations-of-fdr-with-different-underlying-positive-rates-in-the-populations) for the impact of having different positive rates on the FDR rate. The good news is that the Benjamani-Holchberg procedure generally keeps the FDR below the $q$ that the researcher sets.

@@ -1,0 +1,8 @@
+---
+editor: visual
+---
+::: {.callout-note collapse="true"}
+## Click here for a reminder about what positive and negative effects are in the population
+
+In the context of multiple testing we will refer to effects in the population that do exist as **positives**, and effects that don't exist in the population as **negatives**. This means that a test on a negative effect should ideally you give you a non-significant (negative) result in your sample so that your sample reflects the population (and gives you a **true negative**). Similarly, if an effect in the population exists, ideally your test on your sample will give you a significant result to reflect a **true positive**.
+:::

@@ -1,5 +1,5 @@
 ---
-title: "Simple regression (incomplete)"
+title: "Simple regression (R,incomplete)"
 format: 
   html:
     code-fold: false
@@ -8,7 +8,7 @@ editor: visual
 
 ## Prediction using regression
 
-**Simple regression**, also known as linear regression, builds on [correlation](../correlations/correlations.html){target="_blank"}. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), **simple regression** allows you to make **predictions** of an **outcome variable** based on a **predictor variable**.
+**Simple regression**, also known as linear regression, uses some overlapping concepts as [correlation](../correlations/correlations.html){target="_blank"}. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), **simple regression** allows you to make **predictions** of an **outcome variable** based on a **predictor variable**.
 
 For example, regression can be used to predict Life Expectancy in 2007 from GDP. Lets start by visualising the association between them:
 
@@ -208,5 +208,3 @@ Regression builds on correlation by providing a more detailed view of your data 
 ```
 
 **The differences between regression and correlation**
-
-{{< include ../feedback.qmd >}}

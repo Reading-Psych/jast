@@ -544,5 +544,3 @@ As we can see from the figure above, that puts her above 97.7% of the population
 ## Consolidation questions
 
 {{< include normal_questions.qmd >}}
-
-{{< include ../feedback.qmd >}}

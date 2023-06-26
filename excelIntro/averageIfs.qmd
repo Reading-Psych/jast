@@ -147,5 +147,3 @@ question_6_result = {
 ```
 
 Your answer is... **\${question_6\_result}**
-
-{{< include ../feedback.qmd >}}

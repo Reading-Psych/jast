@@ -55,8 +55,15 @@ editor: visual
 
 {{< include ../itemAnalyses/cronbachAlphaQuestions.qmd >}}
 
-## Validity checks
-### Multiple testing
+## Multiple testing
+### Family-Wise Error Rate
 
-{{< include ../validityChecks/multipleTestingQuestions.qmd >}}
+{{< include ../multipleTesting/fwerQuestions.qmd >}}
 
+### False Discovery Rate
+
+{{< include ../multipleTesting/fdrQuestions.qmd >}}
+
+### Family-wise Error Rate vs. False Discovery Rate
+
+{{< include ../multipleTesting/fwer_vs_fdrQuestions.qmd >}}

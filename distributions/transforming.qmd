@@ -384,5 +384,3 @@ The above example hopefully is quite intuitive how problems arise if you apply t
 :::
 
 {{< include transformingQuestions.qmd >}}
-
-{{< include ../feedback.qmd >}}

@@ -71,10 +71,11 @@ website:
           - "itemAnalyses/cronbachsAlpha.qmd"
       #    - "itemAnalyses/pca.qmd"
       #    - "itemAnalyses/cfa.qmd"
-      - section: "Validity checks"
+      - section: "Multiple testing"
         contents:
-          - "validityChecks/multipleTesting.qmd"
-          - "validityChecks/fdr.qmd"
+          - "multipleTesting/fwer.qmd"
+          - "multipleTesting/fdr.qmd"
+          - "multipleTesting/fwer_vs_fdr.qmd"
       # - section: "University of Reading advice?"
       #   contents:
       #     - "Psychology"

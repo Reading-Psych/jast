@@ -1,0 +1,35 @@
+---
+editor: visual
+---
+
+#### Question 1
+What association is there between the proportion of positive effects and FWER?
+```{ojs}
+//| echo: false
+viewof fwer_vs_fdr1_response = Inputs.radio(['Positive','Neutral','Negative']);
+correct_fwer_vs_fdr1 = 'Neutral';
+fwer_vs_fdr1_result = {
+  if(fwer_vs_fdr1_response == correct_fwer_vs_fdr1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${fwer_vs_fdr1_result}**
+
+#### Question 2
+What association is there between the proportion of positive effects and **FDR**?
+```{ojs}
+//| echo: false
+viewof fwer_vs_fdr2_response = Inputs.radio(['Positive','Neutral','Negative']);
+correct_fwer_vs_fdr2 = 'Negative';
+fwer_vs_fdr2_result = {
+  if(fwer_vs_fdr2_response == correct_fwer_vs_fdr2){
+    return 'Correct! There should be a lower rate of false positives compared to false positives and true positives in a study that is investigating mostly positive effects compared to a study that is investigating mostly negative effects.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${fwer_vs_fdr2_result}**

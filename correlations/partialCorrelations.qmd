@@ -56,6 +56,7 @@ plt.show()
 <!-- ## Julia -->
 
 <!-- ```{julia} -->
+
 <!-- #| eval: false -->
 
 <!-- # TBC -->
@@ -93,7 +94,6 @@ plt.show()
 :::
 
 Whilst there are some outliers in earlier years, we seem to have found that gdp per capita has gone up.
-
 
 ### Is gdp per capita and life expectancy associated?
 
@@ -268,4 +268,4 @@ Confirming that the difference in the manual calculation is a rounding error. No
 
 To conclude, as there is still an association between Year and Life Expectancy once controlling for GDP, this partial correlation is consistent with GDP not being the only explanation for why Life Expectancy goes up each year.
 
-{{< include ../feedback.qmd >}}
+

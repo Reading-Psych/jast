@@ -1,0 +1,19 @@
+---
+editor: visual
+---
+
+#### Question 1
+Is an r-value a standardised or unstandardised estimate of the association between a predictor and an outcome?
+```{ojs}
+//| echo: false
+viewof simple_regression_1_response = Inputs.radio(['Standardised','Unstandardised']);
+correct_simple_regression_1 = 'Standardised';
+simple_regression_1_result = {
+  if(simple_regression_1_response == correct_simple_regression_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${simple_regression_1_result}**

@@ -1,18 +1,25 @@
 ---
-title: "Simple regression (R,incomplete)"
+title: "Simple regression (R)"
 format: 
   html:
     code-fold: false
 editor: visual
 ---
 
+::: callout-warning
+## The concepts in this page build on [dispersion](../describingData/dispersion.html) and [correlation](../correlations/correlations.html)
+:::
+
 ## Prediction using regression
 
-**Simple regression**, also known as linear regression, uses some overlapping concepts as [correlation](../correlations/correlations.html){target="_blank"}. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), **simple regression** allows you to make **predictions** of an **outcome variable** based on a **predictor variable**.
+**Simple regression**, also known as linear regression, uses some overlapping concepts with [correlation](../correlations/correlations.html){target="_blank"}. However, unlike correlation (which quantifies the strength of the linear relationship between a pair of variables), **simple regression** allows you to make **predictions** of an **outcome variable** based on a **predictor variable**.
 
 For example, regression can be used to predict Life Expectancy in 2007 from GDP. Lets start by visualising the association between them:
 
 ```{r}
+#| label: fig-simple-regressions-gdp-life-expectancy.
+#| fig-cap: A scatterplot of the association between GDP and Life Expectancy in 2007 using Gapminder data. A line of best fit is included (blue).
+
 library(gapminder)
 library(ggplot2)
 
@@ -42,15 +49,15 @@ ggplot(
   ylab("Life expectancy")
 ```
 
-Linear regression analysis operates by drawing the **best fitting line (AKA the regression line; see the blue line above)** through the data points. But this [does not]{.underline} imply causation, as regression only models the data. Simple linear regression can't tell us exactly what is influencing what (i.e. whether GDP per capita increases life expectancy), this will depend on the design of your study or your broader theoretical understanding. But for now, we can investigate whether $gdp$ predicts $life$ $expectancy$. The formula for the above line could be written as:
+Linear regression analysis operates by drawing the **best fitting line (AKA the regression line; see the blue line above)** through the data points. But this [does not]{.underline} imply causation, as regression only models the data. Simple linear regression can't tell us exactly what is influencing what (i.e. whether GDP per capita increases life expectancy), this will depend on the design of your study or your broader theoretical understanding. But for now, we can investigate whether $gdp$ **predicts** $life$ $expectancy$. The formula for the above line could be written as:
 
 $$
 Life Expectancy = intercept + gradient * GDP
 $$
 
--   **Gradient** reflects how steep the line is
+-   **gradient** reflects how steep the line is. This is also known as a **beta** value or **estimate** (of the beta) by linear model functions.
 
--   **Intercept** is the point at which the regression line crosses the y-axis
+-   **intercept** is the point at which the regression line crosses the y-axis, i.e. what the y-value is when x = 0.
 
 Let's use coding magic to find out the intercept and the gradient (AKA slope):
 
@@ -68,17 +75,19 @@ life_expectancy_model <- lm(
 life_expectancy_model$coefficients
 ```
 
-The above shows that the intercept if 59.566, and that for every 1 unit (\$) of GDP there is .0006 units more of life expectancy (or, in more useful terms, for every extra \$10,000 dollars per person, the life expectancy goes up by 6 years).
+**Coefficients** are either the intercept ($y$-value when $x$ = 0) or the **beta/gradient** values for each predictor. The above shows that the intercept if 59.566, and that for every 1 unit (\$) of GDP there is .0006 units more of life expectancy (or, in more intuitive terms, for every extra \$10,000 dollars per person the GDP increases, the life expectancy goes up by 6 years).
 
-For the above equation we will always retrieve values from the graph, except residuals, which is the 'error' and so a more complete formula for the outcome can be represented by the following formula
+The above equation allows us to predict y-values from the graph, but not perfectly, leaving **residuals**. A more complete formula for the outcome can be represented as follows:
 
 $$
 outcome = intercept + gradient * predictor + residual
 $$
 
--   **Residual** reflects what's left over, and is not represented in the **line of best fit** formula because you can't predict what's left over. Residuals reflect the gap between each data point and the line of best fit:
+-   **residual** reflects what's left over, and is not represented in the **line of best fit** formula because you can't predict what's left over. Residuals reflect the gap between each data point and the line of best fit:
 
 ```{r}
+#| label: fig-simple-regressions-gdp-life-expectancy-residuals.
+#| fig-cap: A scatterplot of the association between GDP and Life Expectancy in 2007 using Gapminder data. A line of best fit is included (blue) and residuals are highlighted with pink lines between this line of best fit and each data point. These lines visualise how inaccurate the model was.
 gapminder_2007$fitted = life_expectancy_model$coefficients[1] + # intercept
   life_expectancy_model$coefficients[2]                       * # gradient
   gapminder_2007$gdpPercap
@@ -112,38 +121,23 @@ ggplot(
   )
 ```
 
-These residuals can be thought of the error, i.e. what the model **failed** to predict. In more mathematical terms, the model would be:
+These residuals can be thought of the error, i.e. what the model **failed** to predict. In more mathematical terminology, the model would be:
 
 $$
 Y = a + bX + e
 $$
 
-## Notes for Anthony
+-   $a$ is the intercept
 
-R2 = SSR/SSTO = 1 - SSE/SSTO
+-   $b$ is the gradient (AKA beta AKA estimate)
 
-```{r}
-sse  = sum((gapminder_2007$lifeExp - gapminder_2007$fitted)^2)
-ssto = sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
-rsqr = 1-(sse/ssto)
-```
+-   $e$ is the error (i.e. the residual of what the formula doesn't predict)
 
-If your model is minimising the error, then what happens if you have 2 predictors:
-
-$$
-Y = a + b_1X_1 + b_2X_2 + e
-$$
-
-Save the residuals after 1 correlation:
-
-```{r}
-res_gdp = gapminder_2007$lifeExp - gapminder_2007$fitted
-cor.test(gapminder_2007$pop, res_gdp)
-```
+Regressions capture how successful the prediction is compared to the error, by calculating the [total variance](correlations/correlations.html#total-variance), the variance explained by the model and thus the proportion of variance explained by the model.
 
 ## Proportion of variance explained
 
-In [correlations](../correlations/correlations.html){target="_blank"} we discussed how the strength of association is the proportion of variance of y explained by x. For simple regression, this is also the case:
+In [correlations](../correlations/correlations.html){target="_blank"} we discussed how the strength of association is the proportion of variance of y explained by x. For simple regression, in which there is only 1 predictor, this is also the case:
 
 $$
 r = \frac{var_{xy}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}
@@ -153,7 +147,7 @@ $$
 Lets apply the above formula to see what R is for $gdp$ and $life$ $expectancy$:
 
 ```{r}
-sum(
+gdp_life_expectancy_r <- sum(
   (gapminder_2007$lifeExp-mean(gapminder_2007$lifeExp)) * 
   (gapminder_2007$gdpPercap-mean(gapminder_2007$gdpPercap))
   )/
@@ -161,50 +155,66 @@ sum(
     sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2) *
     sum((gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))^2) 
   )
+gdp_life_expectancy_r
+```
+
+This is r. If this is the same as a correlation, then we can just use a correlational function to get the same value:
+
+```{r}
 cor(gapminder_2007$lifeExp, gapminder_2007$gdpPercap)
+```
+
+Great! Now in regressions we tend to report the $R^2$ rather than r.
+
+```{r}
 # r^2
-cor(gapminder_2007$lifeExp, gapminder_2007$gdpPercap)^2 
+gdp_life_expectancy_r^2 
 ```
 
-We can confirm that squaring R gives r\^2
+We can confirm that squaring $r$ gives $R^2$ as from a linear model function:
 
 ```{r}
-summary(life_expectancy_model)
+summary(lm(
+  data = gapminder_2007,
+  formula = lifeExp ~ gdpPercap # predict life expectancy from GDP
+))$r.squared
 ```
 
-Now lets see if the same logic works when there are 2 or more predictors that interact to predict each other:
+## How to get gradient/beta/estimate values
+
+You may be wondering how the gradient/beta/estimate is calculated in the above figures. The formula for calculating the gradient is:
 
 $$
-r = \frac{var_{xyz}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})(z_i-\bar{z})}
-                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2 * \sum(z_i-\bar{z})^2}}
+gradient = r * \frac{sd(outcome)}{sd(predictor)}
 $$
 
-```{r}
-sum(
-  (gapminder_2007$lifeExp-mean(gapminder_2007$lifeExp)) * 
-  (gapminder_2007$gdpPercap-mean(gapminder_2007$gdpPercap)) *
-  (gapminder_2007$pop-mean(gapminder_2007$pop))  
-  )/
-  sqrt(
-    sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2) *
-    sum((gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))^2) * 
-    sum((gapminder_2007$pop - mean(gapminder_2007$pop))^2) 
-  )
-```
+Which can be thought of as:
+
+$$
+gradient = association * scale
+$$
+
+Your r-value is a standardised value showing the strength of the association that **ignores scale**; i.e. it is a number between -1 and 1 regardless of what units and range of numbers are typical for the variables. The scale for the above correlation is **years** (life expectancy) per **dollar** (gdp), so by dividing the SD of life expectancy by the SD of gdp we get a measure of how these variables scale to each other. In terms of how life expectancy scales against gdp:
+
+$$
+\frac{sd(lifeExp)}{sd(gdp)} = \frac{12.07302}{12859.94} = .0009388084
+$$
+
+...and then apply the strength of the association to get your gradient/beta:
+
+$$
+gradient = r * \frac{sd(lifeExp)}{sd(gdp)} = .6786624 * .0009388084 = .000637134
+$$
+
+Is this the same as the **estimate** of **gradient/beta** we get using a linear model function?
 
 ```{r}
-summary(lm(lifeExp ~  gdpPercap + pop, data = gapminder_2007))
+summary(lm(
+  data = gapminder_2007,
+  formula = lifeExp ~ gdpPercap # predict life expectancy from GDP
+))
 ```
 
-#### **Why use regression?**
+Yes (see **estimate** for gdpPercap).
 
-Regression builds on correlation by providing a more detailed view of your data and with this provides an equation that can be used for any future predicting and optimizing of your data.
-
-```{r differences between regression and correlation}
-#| echo: false
-
-#compute table of regression and correlation#
-2 * 2
-```
-
-**The differences between regression and correlation**
+{{< include simpleRegressionsQuestions.qmd >}}

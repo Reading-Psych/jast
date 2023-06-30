@@ -1,0 +1,20 @@
+---
+editor: visual
+---
+
+#### Question 1
+
+What does a variable need to correlate with to be a viable candidate as a covariate?
+```{ojs}
+//| echo: false
+viewof partial_correlations_1_response = Inputs.radio(['Both other variables','At least one other variable','No other variables']);
+correct_partial_correlations_1 = 'Both other variables';
+partial_correlations_1_result = {
+  if(partial_correlations_1_response == correct_partial_correlations_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${partial_correlations_1_result}**

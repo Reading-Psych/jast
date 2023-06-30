@@ -5,3 +5,54 @@ editor: visual
 ---
 
 ## Will be released by October 20th
+
+## Notes for Anthony
+
+R2 = SSR/SSTO = 1 - SSE/SSTO
+
+```{r}
+sse  = sum((gapminder_2007$lifeExp - gapminder_2007$fitted)^2)
+ssto = sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
+rsqr = 1-(sse/ssto)
+```
+
+If your model is minimising the error, then what happens if you have 2 predictors:
+
+$$
+Y = a + b_1X_1 + b_2X_2 + e
+$$
+
+Save the residuals after 1 correlation:
+
+```{r}
+res_gdp = gapminder_2007$lifeExp - gapminder_2007$fitted
+cor.test(gapminder_2007$pop, res_gdp)
+```
+
+## 
+
+Now lets see if the same logic works when there are 2 or more predictors that interact to predict each other:
+
+$$
+r = \frac{var_{xyz}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})(z_i-\bar{z})}
+                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2 * \sum(z_i-\bar{z})^2}}
+$$
+
+```{r}
+sum(
+  (gapminder_2007$lifeExp-mean(gapminder_2007$lifeExp)) * 
+  (gapminder_2007$gdpPercap-mean(gapminder_2007$gdpPercap)) *
+  (gapminder_2007$pop-mean(gapminder_2007$pop))  
+  )/
+  sqrt(
+    sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2) *
+    sum((gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))^2) * 
+    sum((gapminder_2007$pop - mean(gapminder_2007$pop))^2) 
+  )
+```
+
+```{r}
+summary(lm(lifeExp ~  gdpPercap + pop, data = gapminder_2007))
+```
+
+#### 

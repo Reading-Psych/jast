@@ -50,8 +50,20 @@ editor: visual
 {{< include ../distributions/transformingQuestions.qmd >}}
 
 ## Correlations
+### Correlations
 
 {{< include ../correlations/correlationsQuestions.qmd >}}
+
+### Partial Correlations
+
+{{< include ../correlations/partialCorrelationsQuestions.qmd >}}
+
+## Regressions
+### Simple Regressions
+
+{{< include ../regressions/simpleRegressionsQuestions.qmd >}}
+
+### Multiple Regressions
 
 ## Item Analysis
 

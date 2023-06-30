@@ -63,7 +63,12 @@ for(height in heights){
 # setting yes and no colors 
 yes_no_colors <- c("red", "#005599")
 yes_no_colors <- setNames(yes_no_colors, c("no", "yes"))
+```
 
+
+```{r}
+#| label: fig-fwer-uncorrected-prop-false-pos
+#| fig-cap: Visualisation of an analysis on whether height and shoe size predict mathematic scores. Note that all data is randomly generated. The participants have been grouped based on heights and show sizes and then compared to all other participants using t-tests to see if their maths score is significantly higher or lower than all other participants. Groups represented by the blue dots performed significantly worse or better when compared to all other participants. Groups in red dots did not perform significantly better or worse compared to all other participants. Note that some higher groups did not perform significantly better than all others because they had a wider range of scores within their group, thus increasing their standard error.
 library(plotly)
 plot_ly(
   data = maths_summarised, 
@@ -81,7 +86,7 @@ plot_ly(
 
 ```
 
-*This figure is based on data that is randomly generated, and participants in conditions represented by the blue dots performed significantly worse or better when compared to all other participants. Participants in green dots did not perform significantly better or worse compared to all other participants. Note that some participants in higher groups did not perform **significantly** better than all others because they had a wider range of scores within their group.*
+
 
 The above figure shows that with an analysis on **randomised data** there were multiple combinations of foot-size and height that were associated with significantly better or worse performance in the maths task. As this is randomised data, it should illustrate the risk of **multiple testing** **without** **correction.** You may be wondering how likely was it that we would get a false-positive. Assuming that the comparisons you are making are meaningless, the risk of a false positive can be summarised as:
 
@@ -110,7 +115,6 @@ In some ways, this does the job of correcting for false-positives well, as your 
 ```{r}
 # reset the "sig" column
 maths_summarised$sig = "no"
-maths_summarised$color = "green"
 
 comparisons = length(heights) * length(shoe_size)
 for(height in heights){
@@ -122,11 +126,14 @@ for(height in heights){
     # here is where the new alpha threshold is applied
     if(this_t.test$p.value < .05/comparisons){
       maths_summarised$sig[maths_summarised$height == height & maths_summarised$shoe == shoe_size] = "yes"
-      maths_summarised$color[maths_summarised$height == height & maths_summarised$shoe == shoe_size] = "blue"
     }
   }
 }
+```
 
+```{r}
+#| label: fig-fwer-bonferroni-corrected-prop-false-pos
+#| fig-cap: Same visualisation as above, but this time the alpha threshold has a bonferroni correction.
 plot_ly(
   data = maths_summarised, 
   x=~height, 
@@ -262,7 +269,6 @@ Now let's apply Šidák's corrected $\alpha$ to the above maths test data.
 ```{r}
 # reset the "sig" column
 maths_summarised$sig = "no"
-maths_summarised$color = "green"
 sidak_alpha =  1 - (1 - .05)^(1/144)
 
 comparisons = length(heights) * length(shoe_size)
@@ -275,11 +281,15 @@ for(height in heights){
     # here is where the new alpha threshold is applied
     if(this_t.test$p.value < sidak_alpha){
       maths_summarised$sig[maths_summarised$height == height & maths_summarised$shoe == shoe_size] = "yes"
-      maths_summarised$color[maths_summarised$height == height & maths_summarised$shoe == shoe_size] = "blue"
     }
   }
 }
+```
 
+
+```{r}
+#| label: fig-fwer-Šidák-corrected-prop-false-pos
+#| fig-cap: Same visualisation as above, but this time the alpha threshold has a Šidák correction.
 plot_ly(
   data = maths_summarised, 
   x=~height, 
@@ -291,7 +301,7 @@ plot_ly(
   mode = "markers",
   size = 1,
   colors = yes_no_colors
-) 
+)
 ```
 
 Good news - no false positives 😺. However, the $\alpha$ threshold is simarly conservative as a **Bonferroni** correction:

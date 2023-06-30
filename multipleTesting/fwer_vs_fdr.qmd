@@ -63,7 +63,7 @@ knitr::kable(fdr_df)
 The false discovery rate is highest when only 20% of the effects in the population are positive, and lowest when 70% of the effects in the population are positive. Let's visualise this with some Venn Diagrams:
 
 ::: {.callout-caution collapse="true"}
-## Expand to see calculation for this simulation
+## Expand to see code for the below Venn diagrams
 
 ```{r}
 

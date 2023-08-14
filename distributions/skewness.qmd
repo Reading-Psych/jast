@@ -6,6 +6,8 @@ format:
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 **Parametric** analyses are based on the assumption that the data you are analysing is normally distributed (see below):
 
 ::: panel-tabset

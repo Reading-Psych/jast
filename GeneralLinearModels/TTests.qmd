@@ -3,6 +3,8 @@ title: "T-Tests(incomplete)"
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 In all general linear models you are trying to compare how much of the variance is explained by a model compared to what's not being explained by a model. In short
 
 $$
@@ -211,5 +213,3 @@ $$
 #### Effect coding
 
 #### 
-
-

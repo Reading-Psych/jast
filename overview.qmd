@@ -1,0 +1,210 @@
+---
+editor: visual
+---
+
+::: {.callout-note collapse="false"}
+## Course Overview
+
+```{dot}
+//| fig-height: 5
+//| fig-width: 10
+digraph "Course Overview" {
+  rankdir=TB;
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif"]
+	graph [
+		newrank = true,
+		nodesep = 0.5,
+		ranksep = .5,
+		overlap = false,
+		splines = curve,
+	]
+	node [
+		fixedsize = false,
+		fillcolor = "white",
+		fontsize = 24,
+		height = 1,
+		shape = box,
+		style = "filled,setlinewidth(5)",
+		width = 4
+	]
+	edge [
+		arrowhead = none,
+		arrowsize = 0.5,
+		labelfontname = "Ubuntu",
+		weight = 10,
+		style = "filled,setlinewidth(5)"
+	]
+	
+	subgraph system {
+	  
+		node [color = "#006688"]
+		edge [color = "#006688"]
+		
+		ancova[
+      label = "ANCOVA",
+      fillcolor = "red",
+      URL = ""
+    ]
+		binomial [
+			URL = "../distributions/binomial.html",
+			fixedsize = true,
+			# fillcolor = "#d9e7ee",
+			label = "Binomial Distribution",
+			row = usr,
+		]
+		central_tendency[
+		  URL = "../describingData/centralTendency.html",
+			fillcolor = white,
+			fixedsize = true,
+			row = func,
+			label= "Central Tendency"
+		]
+		chisquare[
+		  label = "Chi Square",
+		  URL = "",
+		  fillcolor = red
+		]
+		correlations[
+		  URL = "../distributions/correlations.html",
+			fixedsize = true,
+			row = func,
+			label= "Correlations"
+		]
+		dispersion[
+		  URL = "../describingData/dispersion.html",
+			label= "Dispersion"
+		]
+		fdr[
+      URL = "../multipleTesting/fdr.html",
+      label = "False Discovery Rate"
+    ]
+	  fwer[
+		  URL = "../multipleTesting/fwer.html",
+		  label = "Family-Wise Error Rate"
+    ]
+    fwer_vs_fdr[
+      label = "FWER vs. FDR",
+      URL = "../multipleTesting/fwer_vs_fdr.html"
+    ]
+    glm[
+      URL = "../GeneralLinearModels/generalLinearModels.html",
+      label = "General Linear Models"
+    ]
+		normal[
+		  URL = "../distributions/normal.html",
+			fillcolor = white,
+			fixedsize = true,
+			row = func,
+			label= "Normal Distribution"
+		]
+		multiple_regression[
+		  label     = "Multiple Regression",
+		  URL       = "../regressions/multipleRegressions.html",
+		  fillcolor = "orange"
+		]
+    onewayanova[
+      label = "One Way ANOVA",
+      fillcolor = "red",
+      URL = ""
+    ]
+		partial_correlations[
+		    label ="Partial Correlations",
+		    URL = "../correlations/partialCorrelations.html",
+		]
+		permutation[
+		  label = "Permutations",
+		  fillcolor = "red",
+		  URL = "",
+		  pos = 10
+		]
+		probability [
+			label = "Probability",
+			URL = "../statsBasics/probability.html",
+      #fillcolor = "#d9e7ee",
+			fixedsize = true,
+			row = func,
+		]
+		simple_regression[
+		  label="Simple Regression",
+		  URL = "../regressions/simpleRegressions.html",
+		]
+		skewness[
+		  label = "Skewness",
+		  URL   = "../distributions/skewness.html"
+		]
+		stats_basics[
+		  label = "Statistics Basics",
+		  URL   = "../statsBasics/statsBasics.html"
+		]
+		transforming [
+			fillcolor = "white",
+			label     = "Transforming Data",
+			URL       = "../distributions/transforming.html"
+			width = 4
+		]
+		ttests [
+		  label     = "T-Tests",
+		  URL       = "../GeneralLinearModels/TTests.html",
+		  fillcolor = "orange"
+		]
+		twowayanova[
+      label = "Two Way ANOVA",
+      fillcolor = "red",
+      URL = ""
+    ]
+		
+		
+		
+	  binomial -> normal[
+		    #style = "dashed",
+		    row = func
+		]
+		dispersion -> normal
+		central_tendency -> dispersion
+		normal -> skewness[
+		    #style = "dashed",
+		    row = func
+		]
+		
+	}
+	/* connections */
+	probability -> binomial
+	skewness -> transforming
+	normal -> correlations
+	correlations -> partial_correlations
+	correlations -> simple_regression
+	transforming -> correlations
+	simple_regression -> multiple_regression
+	normal -> glm
+	glm -> ttests
+	binomial -> chisquare
+	fwer -> fwer_vs_fdr
+	fdr -> fwer_vs_fdr
+	probability-> fwer
+	probability-> fdr
+	stats_basics -> probability
+	stats_basics -> central_tendency
+	# correlations -> permutation
+	# simple_regression -> permutation
+	# multiple_regression -> permutation
+	# ttests -> permutation
+	# onewayanova -> permutation
+	# twowayanova -> permutation
+	# ancova -> permutation
+	ttests -> onewayanova
+	ttests -> ancova
+	ttests -> twowayanova
+  partial_correlations -> permutation
+  multiple_regression -> permutation
+  ancova -> permutation
+  onewayanova -> permutation
+  twowayanova -> permutation
+}
+```
+
+[**Red**]{style="color:red"} means that the page does not exist yet
+
+[**Orange**]{style="color:orange"} means that the page is started
+:::

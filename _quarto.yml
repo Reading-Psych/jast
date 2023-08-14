@@ -49,11 +49,11 @@ website:
         contents:
           - correlations/correlations.qmd
           - correlations/partialCorrelations.qmd
-      #     - correlations/cooksd.qmd
+          - correlations/cooksd.qmd
       - section: "Regressions"
         contents:
           - regressions/simpleRegressions.qmd
-      #    - regressions/multipleRegressions.qmd
+          - regressions/multipleRegressions.qmd
       - section: "General Linear Models"
         contents: 
           - "GeneralLinearModels/generalLinearModels.qmd"

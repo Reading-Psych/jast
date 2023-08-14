@@ -3,11 +3,7 @@ title: "Binomial Distribution (R)"
 editor: visual
 ---
 
-::: callout-warning
-## The concepts in this page build on Probabilities
-
-Probabilities can be found on the left within **Statistics Foundations.** It is strongly advised that you make sure you understand the content in the **Probabilities** page before proceeding.
-:::
+{{< include ../overview.qmd >}}
 
 ## What is a Binomial distribution?
 

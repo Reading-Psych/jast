@@ -5,6 +5,7 @@ format:
     code-fold: false
 editor: visual
 ---
+{{< include ../overview.qmd >}}
 
 Please make sure you've read about variance within the <a href="../describingData/dispersion.html" target="_blank">dispersion section</a> before proceeding with this page.
 

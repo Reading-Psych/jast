@@ -3,6 +3,7 @@ title: "Family-Wise Error (R)"
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
 {{< include positiveNegative.qmd >}}
 
 ::: callout-warning
@@ -65,7 +66,6 @@ yes_no_colors <- c("red", "#005599")
 yes_no_colors <- setNames(yes_no_colors, c("no", "yes"))
 ```
 
-
 ```{r}
 #| label: fig-fwer-uncorrected-prop-false-pos
 #| fig-cap: Visualisation of an analysis on whether height and shoe size predict mathematic scores. Note that all data is randomly generated. The participants have been grouped based on heights and show sizes and then compared to all other participants using t-tests to see if their maths score is significantly higher or lower than all other participants. Groups represented by the blue dots performed significantly worse or better when compared to all other participants. Groups in red dots did not perform significantly better or worse compared to all other participants. Note that some higher groups did not perform significantly better than all others because they had a wider range of scores within their group, thus increasing their standard error.
@@ -85,8 +85,6 @@ plot_ly(
 
 
 ```
-
-
 
 The above figure shows that with an analysis on **randomised data** there were multiple combinations of foot-size and height that were associated with significantly better or worse performance in the maths task. As this is randomised data, it should illustrate the risk of **multiple testing** **without** **correction.** You may be wondering how likely was it that we would get a false-positive. Assuming that the comparisons you are making are meaningless, the risk of a false positive can be summarised as:
 
@@ -285,7 +283,6 @@ for(height in heights){
   }
 }
 ```
-
 
 ```{r}
 #| label: fig-fwer-Šidák-corrected-prop-false-pos

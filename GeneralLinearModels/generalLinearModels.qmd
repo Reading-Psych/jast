@@ -6,6 +6,8 @@ format:
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 ## What are general linear models?
 
 General linear models allow you to analyse data in which the **dependent** variable is continuous. For example, if you are analysing the height of a group of individuals, you might use one of the following analyses:
@@ -1123,58 +1125,5 @@ sum(three_way_summary['betweenSS'])
 fit2 = ols('lifeExp ~ C(year) + C(continent) + C(pop_split)', data=gapminder_2_by_2).fit() 
 
 fit2.summary()
-
 ```
 :::
-
-# Is there a difference between a within-subject 4 level ANOVA vs. a 2 x 2 for the interaction?
-
-# plotting for the slides
-
-::: panel-tabset
-## R
-
-```{r}
-
-lifeExp_gdp <- lm(lifeExp ~ gdpPercap, gapminder_americas_europe)
-
-summary(lifeExp_gdp)
-
-gapminder_americas_europe$gdp_fit = lifeExp_gdp$coefficients[1] + # intercept
-  lifeExp_gdp$coefficients[2]                       * # gradient
-  gapminder_americas_europe$gdpPercap
-
-
-ggplot(gapminder_americas_europe, aes(x = gdpPercap, y = lifeExp)) +
-  geom_smooth(method = "glm", se = F) +
-  geom_segment(
-    position = "jitter",
-    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
-    aes(
-      xend = gdpPercap,
-      yend = gdp_fit,
-      color = "residual"
-    )
-  ) + 
-  geom_segment(
-    aes(
-      x = 0.55,
-      xend = 50000,
-      y = mean(gapminder_americas_europe$lifeExp),
-      yend = mean(gapminder_americas_europe$lifeExp),
-      color = "Overall Mean"
-    ),
-    size = 1,
-    color = "dark green"
-  )
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-```
-:::
-
-

@@ -1,0 +1,167 @@
+---
+title: "Cook's Distance (R, incomplete)"
+editor: visual
+---
+
+## What is Cook's Distance (Cook's D)?
+
+Cook's Distance (AKA Cook's D) summarises whether there are data points that are disproportionately influencing a correlation or simple regression.
+
+```{r}
+library(ggplot2)
+library(gapminder)
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007
+)
+
+gapminder_2007$corr.outlier <- cooks.distance(model = lm(lifeExp ~ gdpPercap, gapminder_2007)) > 4/142
+
+ggplot(
+  data=gapminder_2007,
+  aes(
+    x = gdpPercap,
+    y = lifeExp
+  )
+) +
+  geom_point(aes(color = corr.outlier)) + 
+  geom_smooth(method = lm, formula = "y ~ x")
+
+
+
+```
+
+is cook's distance the difference in residuals between a model with and without a data point?
+
+0.02069620738 - score for first item
+
+```{r}
+this_model <- lm(lifeExp ~ gdpPercap, gapminder_2007)
+this_model$residuals[2:142]
+
+next_model <- lm(lifeExp ~ gdpPercap, gapminder_2007[2:142,])
+next_model$residuals
+
+new_resid = (next_model$coefficients[2] * gapminder_2007$gdpPercap[1] + next_model$coefficients[1] - gapminder_2007$lifeExp[1])
+
+((-new_resid - this_model$residuals[1])^2)/(2*mean(next_model$residuals^2))
+
+((-new_resid - this_model$residuals[1])^2)/(2*mean(next_model$residuals^2)) + (sum((this_model$residuals[2:142] - next_model$residuals)^2)/(2*mean(next_model$residuals^2)))
+
+#y_this_pred = gapminder_2007$gdpPercap * 
+
+
+  
+Hmat = hatvalues(this_model)
+
+Leverage = Hmat/(1 - Hmat)
+
+mse = (this_model$residuals)^2/var(this_model$residuals)
+
+CooksD <- (1/2)*(mse)*Leverage
+  
+
+# 0.02069620738
+(sum((weighted.residuals(this_model[2:142]) - next_model$residuals)^2)/(2*sum(this_model$residuals^2)/141))
+(sum((this_model$residuals[2:142] - next_model$residuals)^2)/(2*sum(this_model$residuals^2)/141))
+
+ + 
+  ((-new_resid - this_model$residuals[1])^2)/(2*sum(next_model$residuals^2)/140)
+
+plot(gapminder_2007$gdpPercap,this_model$fitted.values)
+mean(next_model$fitted.values - this_model$fitted.values[2:142])
+
+cooks.distance
+
+```
+
+0.02069620738
+
+$$
+D_i = \frac{e^2_i}{(k+1) * MS_E} * \frac{h_i}{(1-h_i)^2}
+$$
+
+$$
+h_i = \frac{1}{n} + \frac{(x_i-\bar{x})^2}{SS_x}
+$$
+
+```{r}
+example_data <- data.frame(
+  x = c(1,2,10,7),
+  y = c(2,3,5,5)
+)
+
+orig_model <- lm(y ~ x, example_data)
+cooks.distance(orig_model)
+
+point_1_removed <- lm(y ~ x, example_data[c(2,3,4),])
+point_2_removed <- lm(y ~ x, example_data[c(1,3,4),])
+point_3_removed <- lm(y ~ x, example_data[c(1,2,4),])
+point_4_removed <- lm(y ~ x, example_data[c(1,2,3),])
+
+sum((orig_model$residuals[c(2,3,4)] - point_1_removed$residuals)^2)/(2*sum(orig_model$residuals^2)/3)
+sum((orig_model$residuals[c(1,3,4)] - point_2_removed$residuals)^2)/(2*sum(orig_model$residuals^2)/3)
+sum((orig_model$residuals[c(1,2,4)] - point_3_removed$residuals)^2)/(2*sum(orig_model$residuals^2)/3)
+sum((orig_model$residuals[c(1,2,3)] - point_4_removed$residuals)^2)/(2*sum(orig_model$residuals^2)/3)
+
+```
+
+cooks.distance(model, \\dots)
+
+\\method{cooks.distance}{lm}(model, infl = lm.influence(model, do.coef = FALSE),
+
+res = weighted.residuals(model),
+
+sd = sqrt(deviance(model)/df.residual(model)),
+
+hat = infl\$hat, \\dots)
+
+```{r}
+this_model$residuals
+weighted.residuals(this_model) #this_res = 
+```
+
+$$
+D_i = \frac{\sum_{j}{(\hat{y_j}}-\hat{y}_{j(i)})^2}{(k+1)*MS_E}
+$$
+
+```{r}
+
+# this_infl = lm.influence(this_model, do.coef=FALSE)
+# this_res = weighted.residuals(this_model)
+# this_sd = sqrt(deviance(this_model)/df.residual(this_model))
+# this_hat = this_infl$hat
+# 
+# p <- this_model$rank
+# p
+# 
+# res_2 <- ((this_res/(this_sd * (1 - this_hat)))^2 * this_hat)/p
+# 
+# this_infl$hat
+# this_model$residuals[2:142] - next_model$residuals
+# 
+# deviance(this_model)
+# sum(this_model$residuals^2)
+# 
+# 
+# 
+# df.residual(this_model)
+# 
+# res <- ((res/(sd * (1 - hat)))^2 * hat)/p
+# res[is.infinite(res)] <- NaN
+#     res
+```
+
+```{r}
+# should be 0.00928455311
+sum((this_model$residuals[c(1,3:142)] - lm(lifeExp ~ gdpPercap, gapminder_2007[c(1,3:142),])$residuals)^2)/(2*sqrt(sum(this_model$residuals^2)/140))
+```
+
+```{r}
+# glm_example = glm()
+# cooks.distance()
+```
+
+$$
+D_i = \frac{\sum^2_{j=1}{(\hat{y_j}}-\hat{y}_{j(i)})^2}{(k+1)*MS_E}
+$$

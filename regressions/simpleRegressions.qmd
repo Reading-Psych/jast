@@ -6,9 +6,7 @@ format:
 editor: visual
 ---
 
-::: callout-warning
-## The concepts in this page build on [dispersion](../describingData/dispersion.html) and [correlation](../correlations/correlations.html)
-:::
+{{< include ../overview.qmd >}}
 
 ## Prediction using regression
 

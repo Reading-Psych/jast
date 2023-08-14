@@ -6,6 +6,8 @@ format:
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 A lot of analyses is dependent on data being <a href="normal">normally distributed</a>. One problem with your data might be that it is <a href="skewness.html" target="_blank">skewed</a>. Lets focus on the **gapminder** data from 2007 to see if the **gdp** and **life expectancy** data is skewed, and how this could be addressed.
 
 ```{r}

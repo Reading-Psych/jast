@@ -6,6 +6,8 @@ format:
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 ## What is a variable?
 
 In **statistics**, a **variable** is any (measurable) attribute that describes any organism or object. It's called a variable because they **vary** from organism to organism or object to object. Height is a good example of a variable within humans, as height changes from person to person.
@@ -77,5 +79,3 @@ To explore this, you might find the following interactive tool helpful to see wh
 [https://observablehq.com/\@patrickmineault/interactive-demo-in-pure-js](https://observablehq.com/@patrickmineault/interactive-demo-in-pure-js)
 
 {{< include basicsQuestions.qmd >}}
-
-

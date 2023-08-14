@@ -1,16 +1,27 @@
 ---
-title: "Multiple Regressions"
+title: "Multiple Regressions (R, incomplete)"
 format: html
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 ## Will be released by October 20th
+
+```{r}
+library(gapminder)
+gapminder_2007 <- subset(
+  gapminder, 
+  year==2007
+)
+```
 
 ## Notes for Anthony
 
 R2 = SSR/SSTO = 1 - SSE/SSTO
 
 ```{r}
+
 sse  = sum((gapminder_2007$lifeExp - gapminder_2007$fitted)^2)
 ssto = sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
 rsqr = 1-(sse/ssto)
@@ -25,8 +36,8 @@ $$
 Save the residuals after 1 correlation:
 
 ```{r}
-res_gdp = gapminder_2007$lifeExp - gapminder_2007$fitted
-cor.test(gapminder_2007$pop, res_gdp)
+# res_gdp = gapminder_2007$lifeExp - gapminder_2007$fitted
+# cor.test(gapminder_2007$pop, res_gdp)
 ```
 
 ## 

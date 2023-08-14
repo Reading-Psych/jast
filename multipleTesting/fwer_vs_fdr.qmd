@@ -3,6 +3,7 @@ title: "FWER, FDR, Positive and Negative effects(R)"
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
 {{< include positiveNegative.qmd >}}
 
 ## False Discovery Rate and Positive vs. Negative effects
@@ -527,6 +528,7 @@ A Holm-Šidák procedure will be applied to try to keep the FWER to .05:
 
 ::: {.callout-caution collapse="true"}
 ## Expand to see calculation for this simulation
+
 ```{r}
 options(scipen = 999)
 
@@ -624,6 +626,7 @@ for(i in 1:length(fwer_sim_df$positive_prop)){
 }
 ```
 :::
+
 ```{r}
 # identifying if any simulation had at least one false positive to identify FWER as 1 or 0
 fwer_sim_df$hb_fwer = ifelse(fwer_sim_df$hb_fp > 0, 1 , 0)
@@ -645,7 +648,6 @@ fwer_summary_mean_se <- fwer_summary %>%
     fwer_sd = sd(fwer)
   )
 ```
-
 
 ```{r}
 #| label: fig-fwer-prop-pos

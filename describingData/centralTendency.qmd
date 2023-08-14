@@ -6,6 +6,8 @@ format:
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 Central tendancy describes typical values of a variable, such as it's mean and median.
 
 ### Mean vs. Median vs. Mode
@@ -204,5 +206,3 @@ mode_example_vector.mode()
 In the above data, there are 2 modes, as the numbers 2 and 4 occur the most.
 
 {{< include centralTendencyQuestions.qmd >}}
-
-

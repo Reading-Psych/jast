@@ -3,6 +3,8 @@ title: "Probability (R)"
 editor: visual
 ---
 
+{{< include ../overview.qmd >}}
+
 This concept is somewhat foundational to almost all the other content in this website, but is often overlooked in textbooks. An advantage about understanding it is that will give you a more complete understanding later when we go through concepts such as **probability distributions** such as **binomial** and **normal distributions.**
 
 ## **Probability of single outcomes**

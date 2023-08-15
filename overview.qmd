@@ -10,12 +10,12 @@ editor: visual
 //| fig-width: 10
 digraph "Course Overview" {
   rankdir=TB;
-	fontname="Helvetica,Arial,sans-serif"
+  fontname="Helvetica,Arial,sans-serif"
 	node [fontname="Helvetica,Arial,sans-serif"]
 	edge [fontname="Helvetica,Arial,sans-serif"]
 	graph [
 		newrank = true,
-		nodesep = 0.5,
+		nodesep = 0.25,
 		ranksep = .5,
 		overlap = false,
 		splines = curve,
@@ -27,7 +27,7 @@ digraph "Course Overview" {
 		height = 1,
 		shape = box,
 		style = "filled,setlinewidth(5)",
-		width = 4
+		width = 3.75
 	]
 	edge [
 		arrowhead = none,
@@ -47,12 +47,23 @@ digraph "Course Overview" {
       fillcolor = "red",
       URL = ""
     ]
+    between_anova[
+      label = "Between Subject ANOVA",
+      fillcolor = "red",
+      URL = ""
+    ]
 		binomial [
 			URL = "../distributions/binomial.html",
 			fixedsize = true,
 			# fillcolor = "#d9e7ee",
 			label = "Binomial Distribution",
 			row = usr,
+		]
+		contingency[
+		  URL = "../categorical/contingency.html",
+			fixedsize = true,
+			fillcolor = "orange",
+			label = "Contingency"
 		]
 		central_tendency[
 		  URL = "../describingData/centralTendency.html",
@@ -62,8 +73,13 @@ digraph "Course Overview" {
 			label= "Central Tendency"
 		]
 		chisquare[
-		  label = "Chi Square",
-		  URL = "",
+		  label     = "Chi Square",
+		  URL       = "",
+		  fillcolor = red
+		]
+		cooksd[
+		  label     = "Cook's D",
+		  URL       = "",
 		  fillcolor = red
 		]
 		correlations[
@@ -73,8 +89,9 @@ digraph "Course Overview" {
 			label= "Correlations"
 		]
 		dispersion[
-		  URL = "../describingData/dispersion.html",
-			label= "Dispersion"
+		  URL       = "../describingData/dispersion.html",
+			label     = "Dispersion",
+			# fillcolor = "orange"
 		]
 		fdr[
       URL = "../multipleTesting/fdr.html",
@@ -89,9 +106,25 @@ digraph "Course Overview" {
       URL = "../multipleTesting/fwer_vs_fdr.html"
     ]
     glm[
-      URL = "../GeneralLinearModels/generalLinearModels.html",
-      label = "General Linear Models"
+      URL       = "../GeneralLinearModels/generalLinearModels.html",
+      label     = "General Linear Models",
+      fillcolor = "orange"
     ]
+    kurtosis[
+      URL       = "",
+      label     = "Kurtosis",
+      fillcolor = "red"
+    ]
+    mediation[
+      URL = "",
+      fillcolor = "red",
+      label = "Mediation"
+    ]
+		multiple_regression[
+		  label     = "Multiple Regression",
+		  URL       = "../regressions/multipleRegressions.html",
+		  fillcolor = "orange"
+		]
 		normal[
 		  URL = "../distributions/normal.html",
 			fillcolor = white,
@@ -99,16 +132,6 @@ digraph "Course Overview" {
 			row = func,
 			label= "Normal Distribution"
 		]
-		multiple_regression[
-		  label     = "Multiple Regression",
-		  URL       = "../regressions/multipleRegressions.html",
-		  fillcolor = "orange"
-		]
-    onewayanova[
-      label = "One Way ANOVA",
-      fillcolor = "red",
-      URL = ""
-    ]
 		partial_correlations[
 		    label ="Partial Correlations",
 		    URL = "../correlations/partialCorrelations.html",
@@ -117,7 +140,7 @@ digraph "Course Overview" {
 		  label = "Permutations",
 		  fillcolor = "red",
 		  URL = "",
-		  pos = 10
+		  #width = 15,
 		]
 		probability [
 			label = "Probability",
@@ -125,6 +148,11 @@ digraph "Course Overview" {
       #fillcolor = "#d9e7ee",
 			fixedsize = true,
 			row = func,
+		]
+		repeated_measures_anova[
+		  label = "Within Subject ANOVA",
+		  fillcolor = "red",
+		  URL = "",
 		]
 		simple_regression[
 		  label="Simple Regression",
@@ -149,58 +177,50 @@ digraph "Course Overview" {
 		  URL       = "../GeneralLinearModels/TTests.html",
 		  fillcolor = "orange"
 		]
-		twowayanova[
-      label = "Two Way ANOVA",
-      fillcolor = "red",
-      URL = ""
-    ]
-		
-		
-		
-	  binomial -> normal[
-		    #style = "dashed",
-		    row = func
-		]
-		dispersion -> normal
-		central_tendency -> dispersion
-		normal -> skewness[
-		    #style = "dashed",
-		    row = func
-		]
-		
 	}
 	/* connections */
-	probability -> binomial
-	skewness -> transforming
-	normal -> correlations
+	binomial -> contingency
+	binomial -> normal[
+    #style = "dashed",
+    row = func
+	]
+	contingency -> chisquare
+	central_tendency -> dispersion
+	correlations -> cooksd
 	correlations -> partial_correlations
 	correlations -> simple_regression
-	transforming -> correlations
-	simple_regression -> multiple_regression
-	normal -> glm
-	glm -> ttests
-	binomial -> chisquare
-	fwer -> fwer_vs_fdr
+	dispersion -> normal
 	fdr -> fwer_vs_fdr
-	probability-> fwer
-	probability-> fdr
-	stats_basics -> probability
+	fwer -> fwer_vs_fdr
+	glm -> ttests
+  multiple_regression -> mediation
+	normal -> correlations
+	normal -> glm
+	normal -> kurtosis
+	normal -> skewness[
+    #style = "dashed",
+    row = func
+	]
+	simple_regression -> multiple_regression
+	skewness -> transforming
+	transforming -> correlations
+	probability -> fwer
+	probability -> fdr
+	probability -> nonparametric
 	stats_basics -> central_tendency
-	# correlations -> permutation
-	# simple_regression -> permutation
-	# multiple_regression -> permutation
-	# ttests -> permutation
-	# onewayanova -> permutation
-	# twowayanova -> permutation
-	# ancova -> permutation
-	ttests -> onewayanova
+	stats_basics -> probability
 	ttests -> ancova
-	ttests -> twowayanova
-  partial_correlations -> permutation
-  multiple_regression -> permutation
-  ancova -> permutation
-  onewayanova -> permutation
-  twowayanova -> permutation
+	ttests -> between_anova
+	ttests -> repeated_measures_anova
+	
+  edge[ style = invis ];
+  # ancova -> permutation
+  # correlations -> permutation
+  # mediation -> permutation
+  # multiple_regression -> permutation
+  # # partial_correlations -> permutation
+  # simple_regression -> permutation
+  # ttests -> permutation
 }
 ```
 

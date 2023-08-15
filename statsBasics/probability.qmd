@@ -24,7 +24,7 @@ Imagine that you want to predict the likelihood of flipping a coin on heads or t
 -   To summarise the likelihood of all combinations we could make the following table:
 
 |                               |                                              |                           |
-|----------------------|-------------------------------|-------------------|
+|-------------------------------|----------------------------------------------|---------------------------|
 | **First flip and likelihood** | **Second flip and likelihood**               | **Overall likelihood**    |
 | Heads (.5)                    | Heads (.5)                                   | 0.5 \* 0.5 = .25          |
 | Heads (.5)                    | Tails (.5)                                   | 0.5 \* 0.5 = .25          |

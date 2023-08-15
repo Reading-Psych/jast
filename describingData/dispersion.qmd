@@ -4,6 +4,7 @@ format:
   html:
     code-fold: false
 editor: visual
+bibliography: ../references.bib 
 ---
 
 {{< include ../overview.qmd >}}
@@ -395,17 +396,93 @@ If you would like to understand how degrees of freedom are determined, and what 
 
 **Standard deviation** is the **square root** of the variance. This takes into account that that the variance includes the **square** of the difference between the individual values and the mean:
 
-|              |                                                                      Population                                                                       |                                                                                                                                                                                                                                                                                              Sample                                                                                                                                                                                                                                                                                               |
-|-------------|:-----------:|:--------------------------------------------:|
-| **Variance** |                    $$                                                                                                                                 
-                                                                                      \sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}       
-                                                                                                                                                               $$      |                                                                                                                                     $$                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          S^2 = \frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}       
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   $$      |
-| **SD**       |                    $$                                                                                                                                 
-                                                                                     \sigma = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}     
-                                                                                                                                                               $$      |                                                                                                                                     $$                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         S = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   $$      |
+|              |                                                                               Population                                                                                |                                                                                                                                                                                                                                                                                                                                                                                   Sample                                                                                                                                                                                                                                                                                                                                                                                    |
+|---------------|:-------------:|:----------------------------------------:|
+| **Variance** |                   $$                                                                                                                                                    
+                                                                                                       \sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}        
+                                                                                                                                                                                  $$     |                                                                                                                                                        $$                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     S^2 = \frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $$     |
+| **SD**       |                   $$                                                                                                                                                    
+                                                                                                      \sigma = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}      
+                                                                                                                                                                                  $$     |                                                                                                                                                        $$                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    S = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}      
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $$     |
+
+## Effect size
+
+Effect size is basically what it sounds like, it is a measure of how big the effect you are investigating is. You may find a difference between participants or conditions, but effect size calculations give you a sense of whether these are big or small effects. We will use Cohen's D as an example of an effect size calculation to illustrate this issue.
+
+Cohen's $d$ is used to capture the effect size in three situations:
+
+-   Comparing a set of data against a single value
+
+-   Comparing two conditions (within-subject)
+
+-   Comparing two groups of participants (between-subject)
+
+Let's do a within-subject comparison of life expectancy between 2002 and 2007 across the world to illustrate the above.
+
+The general formula for Cohen's D when you are comparing within subject is:
+
+$$
+d = \frac{M_{difference}}{SD_{difference}}
+$$
+
+The general benchmarks for how big or small a Cohen's $d$ value are as follows:
+
+-   .01 is very small [@sawilowsky2009new]
+
+-   .2 and below is small [@cohen2013statistical]
+
+-   .5 is medium [@cohen2013statistical]
+
+-   .8 is large [@cohen2013statistical]
+
+-    1.2 is very large [@sawilowsky2009new]
+
+-   2 is huge [@sawilowsky2009new]
+
+::: panel-tabset
+## R
+
+```{r}
+# Manual calculation
+life_exp_diff = gapminder$lifeExp[gapminder$year == 2007] - gapminder$lifeExp[gapminder$year == 2002]
+mean(life_exp_diff)/sd(life_exp_diff)
+# Function to confirm
+library(lsr)
+cohensD(gapminder$lifeExp[gapminder$year == 2007],gapminder$lifeExp[gapminder$year == 2002],method = "paired")
+```
+
+## Python
+
+```{python}
+#| eval: false
+# Manually calculated
+gapminder_2002 = gapminder.loc[gapminder['year'] == 2002]
+life_exp_diff = np.array(gapminder_2007['lifeExp']) - np.array(gapminder_2002['lifeExp'])
+life_exp_diff.mean()
+life_exp_diff.std(ddof=1)
+life_exp_diff.mean()/life_exp_diff.std(ddof=1)
+```
+
+```         
+1.3124999999999996
+1.0665367479612573
+1.230618637856515
+```
+:::
+
+Now, you may be thinking that we already had insight into the effect size simply by comparing means, in which we can see that life expectancy has gone up by 1.31 years between 2002 and 2007. That's true, and depending on your research question you may want to acknowledge whether the change is meaningful (i.e. is one year's higher life expectancy a big deal?). However, you might not say an average increase of 1.31 years in life expectancy is a large effect if the change of life expectancy is very inconsistent between countries (e.g. some countries life expectancy decreased). *Effect size* calculation takes into consideration the how consistent the data is (e.g. how small the SD is), and so gives you further insight than a simple mean difference. The large effect size (1.23) confirms that there is a large effect of time on life expectancy, that there is a big difference relative to the general variation in the data.
+
+Note that many tests described later have their own effect size calculations associated with them:
+
+| Test         | Effect Size Unit/Test |
+|--------------|-----------------------|
+| T-tests      | Cohen's $d$           |
+| Correlations | $r$                   |
+| Regression   | $R^2$                 |
+| ANOVAs       | $\eta$                |
 
 {{< include dispersionQuestions.qmd >}}

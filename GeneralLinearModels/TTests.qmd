@@ -27,6 +27,7 @@ Let's visualise these values using gapminder data from 2007:
 
 ::: panel-tabset
 ## R
+
 ```{r}
 library(ggplot2)
 library(gapminder)
@@ -65,9 +66,6 @@ ggplot(gapminder_2007, aes(x=year,y=lifeExp)) +
 #| eval: false
 # load the gapminder module and import the gapminder dataset
 from gapminder import gapminder
-
-# import the tabulate
-from tabulate import tabulate
 
 # import matplotlib
 import matplotlib.pyplot as plt
@@ -128,6 +126,7 @@ Which for the above data would give us:
 
 ::: panel-tabset
 ## R
+
 ```{r}
 sum((gapminder_2007$lifeExp - 55)^2)
 ```
@@ -144,7 +143,7 @@ import numpy as np
 np.sum((gapminder_2007['lifeExp'] - 55) ** 2)
 ```
 
-```
+```         
 41025.157014
 ```
 :::
@@ -159,6 +158,7 @@ Which for the above data would give us:
 
 ::: panel-tabset
 ## R
+
 ```{r}
 length(gapminder_2007$lifeExp) * (55- mean(gapminder_2007$lifeExp))^2
 ```
@@ -171,10 +171,9 @@ length(gapminder_2007$lifeExp) * (55- mean(gapminder_2007$lifeExp))^2
 len(gapminder_2007['lifeExp']) *( 55 - gapminder_2007['lifeExp'].mean())**2
 ```
 
-```
+```         
 20473.303823352093
 ```
-
 :::
 
 Unexplained variance would be the residuals around the sample mean, as this is variance that is not explained by the model. Conveniently, we can calculate the sum of squared around the sample mean quite elegantly:
@@ -187,6 +186,7 @@ Which for the above data would give us
 
 ::: panel-tabset
 ## R
+
 ```{r}
 sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
 ```
@@ -199,7 +199,7 @@ sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
 np.sum((gapminder_2007['lifeExp'] - gapminder_2007['lifeExp'].mean()) ** 2)
 ```
 
-```
+```         
 20551.853190647882
 ```
 :::
@@ -212,6 +212,7 @@ $$
 
 ::: panel-tabset
 ## R
+
 ```{r}
 f_value = (length(gapminder_2007$lifeExp) * (55- mean(gapminder_2007$lifeExp))^2) / (
   (sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2))/(length(gapminder_2007$lifeExp)-1)
@@ -241,7 +242,7 @@ f_value = (ss_between / df_between) / (ss_within / df_within)
 print(f_value)
 ```
 
-```
+```         
 140.46109673488004
 ```
 :::
@@ -250,6 +251,7 @@ F-values are squares of t-values, so let's see if this is true here also:
 
 ::: panel-tabset
 ## R
+
 ```{r}
 sqrt(f_value)
 
@@ -273,11 +275,11 @@ print("t-statistic:", t_statistic)
 print("p-value:", p_value)
 ```
 
-```
+```         
 11.851628442323022
 ```
 
-```
+```         
 t-statistic: 11.851628442323024
 p-value: 6.463174215427706e-23
 ```
@@ -301,6 +303,7 @@ Paired samples t-tests can be approached like 1-sample t-tests, but you first of
 
 ::: panel-tabset
 ## R
+
 ```{r}
 gapminder_2002_2007_life_exp <- gapminder$lifeExp[gapminder$year == 2007] - gapminder$lifeExp[gapminder$year == 2002]
 t.test(gapminder_2002_2007_life_exp, mu = 0)
@@ -319,7 +322,7 @@ print("t-statistic:", t_statistic)
 print("p-value:", p_value)
 ```
 
-```
+```         
 t-statistic: 14.664513524875451
 p-value: 3.738316746290281e-30
 ```
@@ -329,6 +332,7 @@ The above suggests that life expectancy was significanctly different. Let's see 
 
 ::: panel-tabset
 ## R
+
 ```{r}
 t.test(gapminder$lifeExp[gapminder$year == 2007],gapminder$lifeExp[gapminder$year == 2002], paired=T)
 ```
@@ -351,7 +355,7 @@ print("T-statistic:", t_statistic)
 print("P-value:", p_value)
 ```
 
-```
+```         
 t-statistic: 14.664513524875451
 p-value: 3.738316746290281e-30
 ```
@@ -377,8 +381,7 @@ Where
 
 -   $N$ is the number of participants
 
-You can rewrite the above formula to compare $\bar{x_3}$ to $\mu$, as we know $\mu$ is zero, which would make this formula (effectively) identical to the one above for one-sample t-tests:
-$$
+You can rewrite the above formula to compare $\bar{x_3}$ to $\mu$, as we know $\mu$ is zero, which would make this formula (effectively) identical to the one above for one-sample t-tests: \$\$
 
 $$
 \frac{\bar{x_3} - \mu}{\sigma_{pooled}/\sqrt{N}}
@@ -392,6 +395,7 @@ For an independent samples t-test we can create a simple model based on the mean
 
 ::: panel-tabset
 ## R
+
 ```{r}
 gapminder_2007_Am_Eu <- subset(
   gapminder,   # the data set
@@ -399,6 +403,7 @@ gapminder_2007_Am_Eu <- subset(
   year == 2007 & continent == "Europe"
 )
 ```
+
 ## Python
 
 ```{python}
@@ -414,10 +419,12 @@ One way to make a model for a t-test is to have a variable that is 1 for one lev
 
 ::: panel-tabset
 ## R
+
 ```{r}
 gapminder_2007_Am_Eu$americas_dummy = ifelse(gapminder_2007_Am_Eu$continent == "Americas", 1,0)
 rmarkdown::paged_table(gapminder_2007_Am_Eu)
 ```
+
 ## Python
 
 ```{python}
@@ -430,11 +437,8 @@ gapminder_2007_Am_Eu['americas_dummy'] = np.where(gapminder_2007_Am_Eu['continen
 print(gapminder_2007_Am_Eu.to_string())
 ```
 
-![Table with  gapminder_2007_Am_Eu](TTests_Table1.png){fig-align="left" width="600" }
-
+![Table with gapminder_2007_Am_Eu](TTests_Table1.png){fig-align="left" width="600"}
 :::
-
-
 
 Now that we have added our dummy code, we can write a model for what we expect life expectancy to be for each country:
 

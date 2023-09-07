@@ -10,6 +10,9 @@ editor: visual
 
 A lot of analyses is dependent on data being <a href="normal">normally distributed</a>. One problem with your data might be that it is <a href="skewness.html" target="_blank">skewed</a>. Lets focus on the **gapminder** data from 2007 to see if the **gdp** and **life expectancy** data is skewed, and how this could be addressed.
 
+::: panel-tabset
+## R
+
 ```{r}
 library(gapminder)
 library(ggplot2)
@@ -53,7 +56,62 @@ spssSkewKurtosis(gapminder_2007$gdpPercap)
 spssSkewKurtosis(gapminder_2007$lifeExp)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+import pandas as pd
+import numpy as np
+from gapminder import gapminder
+
+# Filter data for the year 2007
+gapminder_2007 = gapminder.loc[gapminder['year'] == 2007]
+
+# Define a function to calculate skewness and kurtosis with their standard errors
+def spssSkewKurtosis(x):
+    w = len(x)
+    m1 = np.mean(x)
+    m2 = np.sum((x - m1) ** 2)
+    m3 = np.sum((x - m1) ** 3)
+    m4 = np.sum((x - m1) ** 4)
+    s1 = np.std(x)
+    skew = (w * m3 / ((w - 1) * (w - 2)) / s1 ** 3)
+    sdskew = np.sqrt(6 * w * (w - 1) / ((w - 2) * (w + 1) * (w + 3)))
+    kurtosis = (w * (w + 1) * m4 - 3 * m2 ** 2 * (w - 1)) / ((w - 1) * (w - 2) * (w - 3) * s1 ** 4)
+    sdkurtosis = np.sqrt(4 * (w ** 2 - 1) * sdskew ** 2 / ((w - 3) * (w + 5)))
+
+    # Calculate z-scores
+    zskew = skew / sdskew
+    zkurtosis = kurtosis / sdkurtosis
+
+    # Create a DataFrame for the results
+    result_df = pd.DataFrame({
+        "estimate": [skew, kurtosis],
+        "se": [sdskew, sdkurtosis],
+        "zScore": [zskew, zkurtosis]
+    }, index=["skew", "kurtosis"])
+
+    return result_df
+
+# Calculate skewness and kurtosis for 'gdpPercap' and 'lifeExp' in 2007
+gdpPercap_results = spssSkewKurtosis(gapminder_2007['gdpPercap'])
+lifeExp_results = spssSkewKurtosis(gapminder_2007['lifeExp'])
+
+print("Skewness and Kurtosis for 'gdpPercap' in 2007:")
+print(gdpPercap_results)
+
+print("\nSkewness and Kurtosis for 'lifeExp' in 2007:")
+print(lifeExp_results)
+```
+
+![Table with skweness and kurtosis for 'gdpPercap' and 'lifeExp'](transforming_Table1.png){fig-align="left" width="600"}
+:::
+
+
 So it looks like both the **gdp** and **life expectancy** are skewed (as their z-scores are greater than 1.96). Lets double check with a quick plot:
+
+::: panel-tabset
+## R
 
 ```{r}
 plot(
@@ -62,9 +120,35 @@ plot(
 )
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import matplotlib.pyplot as plt
+
+# Create a scatter plot
+plt.figure(figsize=(10, 6))
+plt.scatter(gapminder_2007['gdpPercap'], gapminder_2007['lifeExp'], alpha=0.6)
+plt.title('Scatter Plot of GDP per Capita vs. Life Expectancy (2007)')
+plt.xlabel('GDP per Capita')
+plt.ylabel('Life Expectancy')
+plt.grid(True)
+
+# Show the plot
+plt.show()
+```
+
+![Scatterplot of 'Life expectancy' and 'GDP per Capita'](transforming_Figure1.png){fig-align="left" width="650"}
+:::
+
+
 It's relatively easy to see the skewness of **gdp**, but **life expectancy** is a bit more subtle. As the data is skewed, we may want to **transform** it to make it less skewed.
 
 We can complete a logarithmic transformation to reduce the skewness, so lets do that to both variables and then replot the data:
+
+::: panel-tabset
+## R
 
 ```{r}
 gapminder_2007$gdpPercap_log <- log(gapminder_2007$gdpPercap)
@@ -75,7 +159,34 @@ plot(
 )
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# Calculate the logarithms of 'gdpPercap' and 'lifeExp'
+gapminder_2007['gdpPercap_log'] = np.log(gapminder_2007['gdpPercap'])
+gapminder_2007['lifeExp_log'] = np.log(gapminder_2007['lifeExp'])
+
+# Create a scatter plot of the log-transformed variables
+plt.figure(figsize=(10, 6))
+plt.scatter(gapminder_2007['gdpPercap_log'], gapminder_2007['lifeExp_log'], alpha=0.6)
+plt.title('Scatter Plot of Log(GDP per Capita) vs. Log(Life Expectancy) (2007)')
+plt.xlabel('Log(GDP per Capita)')
+plt.ylabel('Log(Life Expectancy)')
+plt.grid(True)
+
+# Show the plot
+plt.show()
+```
+![Scatterplot after log transformation of 'Life expectancy' and 'GDP per Capita'](transforming_Figure2.png){fig-align="left" width="650"}
+:::
+
+
 Lets check if the skewness has changed for the **gdp**:
+
+::: panel-tabset
+## R
 
 ```{r}
 # original gdp
@@ -84,18 +195,58 @@ spssSkewKurtosis(gapminder_2007$gdpPercap)
 spssSkewKurtosis(gapminder_2007$gdpPercap_log)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# original gdp
+spssSkewKurtosis(gapminder_2007['gdpPercap'])
+# transformed gdp (log)
+spssSkewKurtosis(gapminder_2007['gdpPercap_log'])
+```
+![Table with skweness for 'gdpPercap' ](transforming_Table2.png){fig-align="left" width="600"}
+
+![Table with skweness for 'gdpPercap' after log transformation](transforming_Table3.png){fig-align="left" width="600"}
+:::
+
+
 So, transforming the **gdp** did reduce skewness but increased **kurtsosis**, so beware that applying a transformation may cause other problems! Lets check whether the log transformation reduced skewness for **life expectancy**:
+
+::: panel-tabset
+## R
 
 ```{r}
 # original life expectancy
 spssSkewKurtosis(gapminder_2007$lifeExp)
-# transformed life expectancy
+# transformed life expectancy (log)
 spssSkewKurtosis(gapminder_2007$lifeExp_log)
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+# original life expectancy
+spssSkewKurtosis(gapminder_2007['lifeExp'])
+
+# transformed life expectancy (log)
+spssSkewKurtosis(gapminder_2007['lifeExp_log'])
+```
+![Table with skweness for 'lifeExp' ](transforming_Table4.png){fig-align="left" width="600"}
+
+![Table with skweness for 'lifeExp' after log transformation](transforming_Table5.png){fig-align="left" width="600"}
+
+:::
+
 
 Seems like the answer is **no**.
 
 An important question is whether the associations between your variables change after transformation, so let's check that next:
+
+::: panel-tabset
+## R
 
 ```{r}
 # correlation on original data
@@ -111,6 +262,34 @@ cor.test(
 )
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+from scipy import stats
+
+# Perform a correlation test on the original data
+correlation_original = stats.pearsonr(gapminder_2007['gdpPercap'], gapminder_2007['lifeExp'])
+
+# Perform a correlation test on the transformed data
+correlation_transformed = stats.pearsonr(gapminder_2007['gdpPercap_log'], gapminder_2007['lifeExp_log'])
+
+# Print the correlation results
+print("Correlation on Original Data:")
+print("Pearson correlation coefficient:", correlation_original[0])
+print("p-value:", correlation_original[1])
+
+print("\nCorrelation on Transformed Data:")
+print("Pearson correlation coefficient:", correlation_transformed[0])
+print("p-value:", correlation_transformed[1])
+```
+![Correlation between 'gdpPercap' and 'lifeExp' ](transforming_Table6.png){fig-align="left" width="600"}
+
+![Correlation between 'gdpPercap' and 'lifeExp' after both have been log transformed](transforming_Table7.png){fig-align="left" width="600"}
+:::
+
+
 The log transformed data is more strongly associated with each other than the original data. However, not all transformations will change associations between variables.
 
 ## Linear vs. non-linear transformations
@@ -121,6 +300,9 @@ Linear transformation includes adding, subtracting from, multiplying or dividing
 
 If you added 100 to the life expectancy for all countries, you would change the **absolute value:**
 
+::: panel-tabset
+## R
+
 ```{r}
 # before transformation
 mean(gapminder_2007$lifeExp)
@@ -129,7 +311,32 @@ mean(gapminder_2007$lifeExp)
 mean(gapminder_2007$lifeExp + 100)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# before transformation
+gapminder_2007['lifeExp'].mean()
+
+# after transformation
+np.mean(gapminder_2007['lifeExp'] + 100)
+```
+
+```
+67.00742253521126
+```
+
+```
+167.00742253521128
+```
+:::
+
+
 There's a big difference between the means, but all we've done is shift the distribution up 100, we haven't made it wider or thinner:
+
+::: panel-tabset
+## R
 
 ```{r}
 # before transformation
@@ -139,7 +346,32 @@ sd(gapminder_2007$lifeExp)
 sd(gapminder_2007$lifeExp + 100)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# before transformation [use ddof =1 for sample sd, and ddof=0 for population sd]
+np.std(gapminder_2007['lifeExp'], ddof=1) 
+
+# after transformation [use ddof =1 for sample sd, and ddof=0 for population sd]
+np.std(gapminder_2007['lifeExp'] + 100, ddof=1)
+```
+
+```
+12.07302050222512
+```
+
+```
+12.07302050222512
+```
+:::
+
+
 If we were to visualise this transformation
+
+::: panel-tabset
+## R
 
 ```{r}
 life_exp_before_after <- data.frame(
@@ -152,11 +384,42 @@ ggplot(life_exp_before_after, aes(x=life_exp, fill=tranformed)) +
   ggtitle("Before vs. after additive transformation") 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# Create a DataFrame for 'lifeExp' before and after the transformation
+life_exp_before_after = pd.DataFrame({
+    'life_exp': np.concatenate([gapminder_2007['lifeExp'], gapminder_2007['lifeExp'] + 100]),
+    'transformed': np.concatenate([np.repeat('before', len(gapminder_2007)), np.repeat('after', len(gapminder_2007))])
+})
+
+# Create a histogram
+plt.figure(figsize=(10, 6))
+plt.hist(life_exp_before_after[life_exp_before_after['transformed'] == 'before']['life_exp'],
+         bins=range(0, 120, 2), alpha=0.5, label='Before Transformation', color='blue')
+plt.hist(life_exp_before_after[life_exp_before_after['transformed'] == 'after']['life_exp'],
+         bins=range(0, 220, 2), alpha=0.5, label='After Transformation', color='green')
+plt.title("Before vs. After Additive Transformation")
+plt.xlabel("Life Expectancy")
+plt.legend()
+
+# Show the histogram
+plt.show()
+```
+![Histogram before and after additive transformation of 'Life expectancy'](transforming_Figure3.png){fig-align="left" width="650"}
+:::
+
+
 We can see above that there is no difference in the shape of the distributions, but a shift. You would get the same pattern shifted also if you had subtracted from the original data. As a result, any **association** between the transformed variable and another variable will be the same as it was before the transformation as the shapes of the distributions are still the same.
 
 ### Multiplicative transformations
 
 If you multiplied the life expectancy by 1.5 then you would change both the mean
+
+::: panel-tabset
+## R
 
 ```{r}
 # before transformation
@@ -166,7 +429,32 @@ mean(gapminder_2007$lifeExp)
 mean(gapminder_2007$lifeExp * 1.5)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# before transformation
+gapminder_2007['lifeExp'].mean()
+
+# after transformation
+np.mean(gapminder_2007['lifeExp'] * 1.5)
+```
+
+```
+67.00742253521126
+```
+
+```
+100.51113380281689
+```
+:::
+
+
 and SD of life expectancy
+
+::: panel-tabset
+## R
 
 ```{r}
 # before transformation
@@ -176,7 +464,32 @@ sd(gapminder_2007$lifeExp)
 sd(gapminder_2007$lifeExp * 1.5)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# before transformation [use ddof =1 for sample sd, and ddof=0 for population sd]
+np.std(gapminder_2007['lifeExp'], ddof=1) 
+
+# after transformation [use ddof =1 for sample sd, and ddof=0 for population sd]
+np.std(gapminder_2007['lifeExp'] * 1.5, ddof=1)
+```
+
+```
+12.07302050222512
+```
+
+```
+18.109530753337683
+```
+:::
+
+
 We established above that changing the mean isn't sufficient to change the shape of a distribution, but would changing the standard deviation change the shape of the distribution. Let's put two histograms of each distribution side by side to evaluate this:
+
+::: panel-tabset
+## R
 
 ```{r}
 par(mfrow = c(1,2), 
@@ -184,6 +497,36 @@ par(mfrow = c(1,2),
 hist(gapminder_2007$lifeExp, breaks = seq(min(gapminder_2007$lifeExp), max(gapminder_2007$lifeExp), length.out = 11), main = "Original")
 hist(gapminder_2007$lifeExp*1.5, breaks = seq(min(gapminder_2007$lifeExp*1.5), max(gapminder_2007$lifeExp*1.5), length.out = 11), main = "Original * 1.5")
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+# Create subplots with two histograms
+fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot the original 'lifeExp' histogram
+axs[0].hist(gapminder_2007['lifeExp'],bins=range(0, 120, 2), alpha=0.5, label='Before Transformation', color='blue')
+axs[0].set_title("Original")
+axs[0].set_xlabel("Life Expectancy")
+axs[0].set_ylabel("Frequency")
+
+# Plot the 'lifeExp' * 1.5 histogram
+axs[1].hist(gapminder_2007['lifeExp'] * 1.5, bins=range(0, 120, 2), color='green', alpha=0.5)
+axs[1].set_title("Original * 1.5")
+axs[1].set_xlabel("Life Expectancy")
+axs[1].set_ylabel("Frequency")
+
+# Adjust layout
+plt.tight_layout()
+
+# Show the histograms
+plt.show()
+```
+![Histogram before and after multiplicative transformation of 'Life expectancy'](transforming_Figure4.png){fig-align="left" width="650"}
+:::
+
 
 We can see that the **shape/pattern** of the distribution is the same, and so the **association** between the transformed variable and other variables will stay the same after transformation. This is because associations between variables ignore the scale of either variable.
 
@@ -193,6 +536,9 @@ Unlike linear transformations, non-linear transformations change the shape of di
 
 #### Square ($^2$)
 
+::: panel-tabset
+## R
+
 ```{r}
 par(mfrow = c(1,2), 
     mar = c(0,0,2,1))
@@ -200,9 +546,42 @@ hist(gapminder_2007$gdpPercap, main = "Original")
 hist(gapminder_2007$gdpPercap^2, main = "Squared")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# Create subplots with two histograms
+fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot the original 'gdpPercap' histogram
+axs[0].hist(gapminder_2007['gdpPercap'], alpha=0.5, label='Before Transformation', color='blue')
+axs[0].set_title("Original")
+axs[0].set_xlabel("Life Expectancy")
+axs[0].set_ylabel("Frequency")
+
+# Plot the squared 'gdpPercap' histogram
+axs[1].hist(gapminder_2007['gdpPercap'] ** 2, color='green', alpha=0.5)
+axs[1].set_title("Squared")
+axs[1].set_xlabel("Life Expectancy")
+axs[1].set_ylabel("Frequency")
+
+# Adjust layout
+plt.tight_layout()
+
+# Show the histograms
+plt.show()
+```
+![Histogram before and after squared transformation of 'GDP per Capita'](transforming_Figure5.png){fig-align="left" width="650"}
+:::
+
+
 Squaring data is likely to make the distributions more extreme, and so isn't often a pragmatic solution to try to make your data less skewed.
 
 #### Square root ($\sqrt{}$)
+
+::: panel-tabset
+## R
 
 ```{r}
 par(mfrow = c(1,2), 
@@ -211,7 +590,40 @@ hist(gapminder_2007$gdpPercap, main = "Original")
 hist(sqrt(gapminder_2007$gdpPercap), main = "Square root")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# Create subplots with two histograms
+fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot the original 'gdpPercap' histogram
+axs[0].hist(gapminder_2007['gdpPercap'], alpha=0.5, label='Before Transformation', color='blue')
+axs[0].set_title("Original")
+axs[0].set_xlabel("GDP per Capita")
+axs[0].set_ylabel("Frequency")
+
+# Plot the square root 'gdpPercap' histogram
+axs[1].hist(gapminder_2007['gdpPercap'] ** 0.5, color='green', alpha=0.5)
+axs[1].set_title("Square root")
+axs[1].set_xlabel("GDP per Capita")
+axs[1].set_ylabel("Frequency")
+
+# Adjust layout
+plt.tight_layout()
+
+# Show the histograms
+plt.show()
+```
+![Histogram before and after square root transformation of 'GDP per Capita'](transforming_Figure6.png){fig-align="left" width="650"}
+:::
+
+
 This transformation appears to have reduced the skewness of the distribution. Calculating the square root of a variable will disproportionately reduce extreme values compared to less extreme values. This might be more clearly shown by looking at the change in the individual data points:
+
+::: panel-tabset
+## R
 
 ```{r}
 # focusing on 5 countries to make it visually easier
@@ -231,9 +643,45 @@ ggplot(gapminder_sqrt, aes(x=country, y = gdp, color = transformed)) +
   
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# Sample data for 5 countries
+data = pd.DataFrame({
+    'Country': gapminder_2007['country'].iloc[:5].tolist() * 2,
+    'Transformation': ['Original'] * 5 + ['Square Root'] * 5,
+    'GDP': (gapminder_2007['gdpPercap'].iloc[:5] / 500).tolist() + (np.sqrt(gapminder_2007['gdpPercap'].iloc[:5] / 500)).tolist()
+})
+
+# Create a scatter plot
+plt.figure(figsize=(12, 5))
+colors = ['blue', 'green']
+markers = ['o', 's']
+for i, transformation in enumerate(['Original', 'Square Root']):
+    subset = data[data['Transformation'] == transformation]
+    plt.scatter(subset['Country'], subset['GDP'], label=transformation, color=colors[i], s=100)
+
+plt.title("Comparison of GDP (Original vs. Square Root Transformation)")
+plt.xlabel("Country Index")
+plt.ylabel("GDP (before and after transformation)")
+plt.legend(title='Transformation')
+plt.grid(True)
+
+# Show the plot
+plt.show()
+```
+![Comparison of GDP (Original vs. Square Root Transformation)](transforming_Figure7.png){fig-align="left" width="650"}
+:::
+
+
 As you can see above, the original values (pink) that are higher are much more heavily reduced by square root transforming them than lower original values.
 
 #### Logarithmic ($\log$)
+
+::: panel-tabset
+## R
 
 ```{r}
 par(mfrow = c(1,2), 
@@ -242,7 +690,39 @@ hist(gapminder_2007$gdpPercap, main = "Original")
 hist(log(gapminder_2007$gdpPercap), main = "Logarithmic")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# Create subplots with two histograms
+fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot the original 'gdpPercap' histogram
+axs[0].hist(gapminder_2007['gdpPercap'], alpha=0.5, label='Before Transformation', color='blue')
+axs[0].set_title("Original")
+axs[0].set_xlabel("GDP per Capita")
+axs[0].set_ylabel("Frequency")
+
+# Plot the 'gdpPercap' * 1.5 histogram
+axs[1].hist(np.log(gapminder_2007['gdpPercap']), color='green', alpha=0.5)
+axs[1].set_title("Logarithmic")
+axs[1].set_xlabel("GDP per Capita")
+axs[1].set_ylabel("Frequency")
+
+# Adjust layout
+plt.tight_layout()
+
+# Show the histograms
+plt.show()
+```
+![Histogram before and after log transformation of 'GDP per Capita'](transforming_Figure8.png){fig-align="left" width="650"}
+:::
+
 This transformation seems very successful in changing the distribution shape to be less skewed. Let's see if the log transformation follows a similar pattern as the sqrt in disproportionately impacting larger values than smaller values.
+
+::: panel-tabset
+## R
 
 ```{r}
 # focusing on 5 countries to make it visually easier
@@ -261,11 +741,46 @@ ggplot(gapminder_log, aes(x=country, y = gdp, color = transformed)) +
   ylab("GDP (before and after transformation)") 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+# Sample data for 5 countries
+data = pd.DataFrame({
+    'Country': gapminder_2007['country'].iloc[:5].tolist() * 2,
+    'Transformation': ['Original'] * 5 + ['Log Transformation'] * 5,
+    'GDP': (gapminder_2007['gdpPercap'].iloc[:5] / 500).tolist() + (np.log(gapminder_2007['gdpPercap'].iloc[:5] / 500)).tolist()
+})
+
+# Create a scatter plot
+plt.figure(figsize=(12, 5))
+colors = ['blue', 'green']
+markers = ['o', 's']
+for i, transformation in enumerate(['Original', 'Log Transformation']):
+    subset = data[data['Transformation'] == transformation]
+    plt.scatter(subset['Country'], subset['GDP'], label=transformation, color=colors[i], s=100)
+
+plt.title("Comparison of GDP (Original vs. Log Transformation)")
+plt.xlabel("Country Index")
+plt.ylabel("GDP (before and after transformation)")
+plt.legend(title='Transformation')
+plt.grid(True)
+
+# Show the plot
+plt.show()
+```
+![Comparison of GDP (Original vs. Log Transformation)](transforming_Figure9.png){fig-align="left" width="650"}
+:::
+
 Yep, log also reduces skewness by disproportionately reducing higher values.
 
 ## Linear transformations will *not* change the association between variables
 
 You can transform a single variable by adding and multiplying it, but as these are **linear transformations** they do **not** change the shape of the distributions of the original variables, and thus do **not** change the association between variables. For example:
+
+::: panel-tabset
+## R
 
 ```{r}
 # correlation with original data
@@ -299,11 +814,24 @@ plot(gapminder_2007$gdpPercap - 10, gapminder_2007$lifeExp, main = "took 10 away
 plot(gapminder_2007$gdpPercap *5, gapminder_2007$lifeExp, main = "multiplied gdp by 5")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+:::
+
+
 You can see that the transformations being linear haven't changed the nature of the associations.
 
 ## Non-linear transformations ***do*** change associations
 
 If you apply **non-linear** transformations to one or both variables this will change the direction and strength of the associations. Below are some examples when you transform both variables:
+
+::: panel-tabset
+## R
 
 ```{r}
 # correlation with original data
@@ -338,6 +866,16 @@ plot(gapminder_2007$gdpPercap ^ 2,gapminder_2007$lifeExp ^ 2, main = "data squar
 plot(sqrt(gapminder_2007$gdpPercap),sqrt(gapminder_2007$lifeExp), main = "square root of data")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+:::
+
+
 ::: callout-warning
 ## Transforming is not universally accepted
 
@@ -346,6 +884,9 @@ Whilst this page describes ways to transform the data and how they impact the di
 -   If it becomes a form of fishing for data through [multiple comparisons](../statsBasics/multipleComparisons.qmd).
 
 -   Treating your data unevenly to create meaningless differences between conditions. For example, if you ran a t-test between 2 conditions, but one of them wasn't normally distributed, then transforming only one of the conditions could make your comparison less meaningful. Let's use the gapminder data to illustrate this by comparing **gdp per capita** between Europe and Africa:
+
+::: panel-tabset
+## R
 
 ```{r}
 gapminder_2007_us_europe <- gapminder_2007[
@@ -359,26 +900,75 @@ spssSkewKurtosis((gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Africa"
 
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+:::
+
+
 So We can see that there's a significant problem with skewness for countries from Africa (zScore \> 1.96) but not from Europe. The correct thing to do is to apply any transformation (to address skewness) to Africa to Europe also to avoid differences between the groups reflecting bias from the distortions. Logarithmic transformations can help reduce skewness, so let's see how the means compare after applying the log transformation to both groups:
+
+::: panel-tabset
+## R
 
 ```{r}
 mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Europe"])
 mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+:::
+
+
 There's a difference, in which Europe had a higher GDP per capita in 2007. Let's check if both Europe and Africa are less skewed in their distributions after log-transforming their data:
+
+::: panel-tabset
+## R
 
 ```{r}
 spssSkewKurtosis(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Europe"])
 spssSkewKurtosis(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+:::
+
+
 Looking good. Now, what **would have happened** if we had only log-transformed Africa's data as it had the skewed distribution:
+
+::: panel-tabset
+## R
 
 ```{r}
 mean(gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Europe"])
 mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+:::
+
 
 It now looks like Europeans have `r round(mean(gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Europe"])/mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"]),3)` times as much GDP per capita as Africa!?
 

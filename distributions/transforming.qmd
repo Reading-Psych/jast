@@ -819,8 +819,63 @@ plot(gapminder_2007$gdpPercap *5, gapminder_2007$lifeExp, main = "multiplied gdp
 ```{python}
 #| eval: false
 
+from scipy.stats import pearsonr
+
+# Define the transformations
+gdp_plus_5 = gapminder_2007['gdpPercap'] + 5
+gdp_minus_10 = gapminder_2007['gdpPercap']
+life_minus_10 = gapminder_2007['lifeExp'] - 10
+gdp_times_5 = gapminder_2007['gdpPercap'] * 5
+
+# correlation with original data
+correlation_original, pvalue_original = pearsonr(gapminder_2007['gdpPercap'], gapminder_2007['lifeExp'])
+print("Correlation with original data:", correlation_original)
+print("p-value of correlation with original data:", pvalue_original)
+
+# correlation with original data + 5 to one variable (an additive change)
+correlation_gdp_plus_5, pvalue__plus_5 = pearsonr(gdp_plus_5, gapminder_2007['lifeExp'])
+print("Correlation with original data + 5:", correlation_gdp_plus_5)
+print("p-value of correlation with original data +5:", pvalue__plus_5)
+
+# correlation with original data - 10 to one variable (an additive change)
+correlation_gdp_minus_10, pvalue__minus_10 = pearsonr(gdp_minus_10, life_minus_10)
+print("Correlation with original data - 10:", correlation_gdp_minus_10)
+print("p-value of correlation with original data -10:", pvalue__minus_10)
+
+# correlation with multiplication of 5 to one variable (multiplicative)
+correlation_gdp_times_5, pvalue_times_5 = pearsonr(gdp_times_5, gapminder_2007['lifeExp'])
+print("Correlation with multiplication of 5:", correlation_gdp_times_5)
+print("p-value of correlation with multiplication of 5:", pvalue_times_5)
+
+# Create a grid of scatter plots
+plt.figure(figsize=(12, 6))
+plt.subplot(2, 2, 1)
+plt.scatter(gapminder_2007['gdpPercap'], gapminder_2007['lifeExp'])
+plt.title("Original Correlation")
+
+plt.subplot(2, 2, 2)
+plt.scatter(gdp_plus_5, gapminder_2007['lifeExp'])
+plt.title("Added 5 to GDP")
+
+plt.subplot(2, 2, 3)
+plt.scatter(gdp_minus_10, life_minus_10)
+plt.title("Took 10 Away from GDP")
+
+plt.subplot(2, 2, 4)
+plt.scatter(gdp_times_5, gapminder_2007['lifeExp'])
+plt.title("Multiplied GDP by 5")
+
+plt.tight_layout()
+plt.show()
 
 ```
+![Correlation between 'gdpPercap' and 'lifeExp' ](transforming_Table8.png){fig-align="left" width="600"}
+![Correlation with original data + 5 to one variable (an additive change)](transforming_Table9.png){fig-align="left" width="600"}
+
+![Correlation with original data - 10 to one variable (an additive change)](transforming_Table10.png){fig-align="left" width="600"}
+
+![Correlation with multiplication of 5 to one variable (multiplicative) ](transforming_Table11.png){fig-align="left" width="600"}
+![Grid comparing the 4 transformations](transforming_Figure10.png){fig-align="left" width="650"}
 :::
 
 

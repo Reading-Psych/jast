@@ -802,6 +802,10 @@ ttests-&gt;repeated_measures_anova
 <li><p>Your <span class="math inline">\(\bar{x}\)</span> would be the sample mean.</p></li>
 </ul>
 <p>Let’s visualise these values using gapminder data from 2007:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
@@ -836,6 +840,56 @@ ttests-&gt;repeated_measures_anova
 <p><img src="TTests_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the gapminder module and import the gapminder dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gapminder <span class="im">import</span> gapminder</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import the tabulate</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new data frame that only focuses on data from 2007</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="op">=</span> gapminder.loc[gapminder[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2007</span>]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># create the scatterplot with some jitter</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>sns.stripplot(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, data<span class="op">=</span>gapminder_2007, dodge<span class="op">=</span><span class="va">True</span>, jitter<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># add an horizontal line for Mu</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">55</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">'Mu'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># add an horizontal line for the mean of 'lifeExp'</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>gapminder_2007[<span class="st">'lifeExp'</span>].mean(), color<span class="op">=</span><span class="st">'g'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">'Sample Mean'</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the label on the x-axis</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">""</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the tick on the x-axis</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>plt.xticks([])</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># add the legend </span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># show the plot</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="TTests_Figure1.png" class="img-fluid figure-img" width="650"></p>
+<figcaption class="figure-caption">Scatterplot with Mu and Sample Mean of ‘Life expectancy’</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p>We want to create a model that explains any variance around the population mean (<span class="math inline">\(\mu\)</span>). The sample mean could be modeled as such:</p>
 <p><span class="math display">\[
 y = \bar{y} + e
@@ -850,10 +904,27 @@ y = \bar{y} + e
 SS_{total} = \sum(x_i-\mu)^2
 \]</span></p>
 <p>Which for the above data would give us:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="dv">55</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="dv">55</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 41025.16</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import numpy </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the squared dfference</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>((gapminder_2007[<span class="st">'lifeExp'</span>] <span class="op">-</span> <span class="dv">55</span>) <span class="op">**</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>41025.157014</code></pre>
+</div>
 </div>
 </div>
 <p>So your explained variance by this model is any difference between the Mu (<span class="math inline">\(\mu\)</span>) and the sample mean (<span class="math inline">\(\bar{x}\)</span>). To summarise this using sum of squares, for each data point you subtract the two from each other and square them, as this difference is what we can explain of variance away from the MU:</p>
@@ -861,10 +932,23 @@ SS_{total} = \sum(x_i-\mu)^2
 SS_{explained} = N * (\mu - \bar{x})^2
 \]</span></p>
 <p>Which for the above data would give us:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp) <span class="sc">*</span> (<span class="dv">55</span><span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp) <span class="sc">*</span> (<span class="dv">55</span><span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 20473.3</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(gapminder_2007[<span class="st">'lifeExp'</span>]) <span class="op">*</span>( <span class="dv">55</span> <span class="op">-</span> gapminder_2007[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>20473.303823352093</code></pre>
+</div>
 </div>
 </div>
 <p>Unexplained variance would be the residuals around the sample mean, as this is variance that is not explained by the model. Conveniently, we can calculate the sum of squared around the sample mean quite elegantly:</p>
@@ -872,33 +956,76 @@ SS_{explained} = N * (\mu - \bar{x})^2
 SS_{unexplained} = \sum(x_i-\bar{x})^2
 \]</span></p>
 <p>Which for the above data would give us</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 20551.85</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>((gapminder_2007[<span class="st">'lifeExp'</span>] <span class="op">-</span> gapminder_2007[<span class="st">'lifeExp'</span>].mean()) <span class="op">**</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>20551.853190647882</code></pre>
+</div>
 </div>
 </div>
 <p>So the F-value should be:</p>
 <p><span class="math display">\[
 F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \frac{20473.3/(Predictors)}{20551.85/(N-1)} = \frac{20473.3/1}{20551.85/141}
 \]</span></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f_value <span class="ot">=</span> (<span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp) <span class="sc">*</span> (<span class="dv">55</span><span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>(<span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>f_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f_value <span class="ot">=</span> (<span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp) <span class="sc">*</span> (<span class="dv">55</span><span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">sum</span>((gapminder_2007<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span>(<span class="fu">length</span>(gapminder_2007<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>f_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 140.4611</code></pre>
 </div>
 </div>
-<p>F-values are squares of t-values, so let’s see if this is true here also:</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(f_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sum of squared differences between each value in 'lifeExp' and the mean</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ss_between <span class="op">=</span> <span class="bu">len</span>(gapminder_2007[<span class="st">'lifeExp'</span>]) <span class="op">*</span> (<span class="dv">55</span> <span class="op">-</span> gapminder_2007[<span class="st">'lifeExp'</span>].mean()) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the sum of squared differences within groups</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>ss_within <span class="op">=</span> np.<span class="bu">sum</span>((gapminder_2007[<span class="st">'lifeExp'</span>] <span class="op">-</span> gapminder_2007[<span class="st">'lifeExp'</span>].mean()) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the degrees of freedom for between groups and within groups</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>df_between <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>df_within <span class="op">=</span> <span class="bu">len</span>(gapminder_2007[<span class="st">'lifeExp'</span>]) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the F-statistic</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>f_value <span class="op">=</span> (ss_between <span class="op">/</span> df_between) <span class="op">/</span> (ss_within <span class="op">/</span> df_within)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>140.46109673488004</code></pre>
+</div>
+</div>
+</div>
+<p>F-values are squares of t-values, so let’s see if this is true here also:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(f_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11.85163</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder_2007<span class="sc">$</span>lifeExp, <span class="at">mu=</span><span class="dv">55</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder_2007<span class="sc">$</span>lifeExp, <span class="at">mu=</span><span class="dv">55</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -911,6 +1038,26 @@ alternative hypothesis: true mean is not equal to 55
 sample estimates:
 mean of x 
  67.00742 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the square root of the F-value</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>np.sqrt(f_value)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a t-test</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>t_statistic, p_value <span class="op">=</span> stats.ttest_1samp(gapminder_2007[<span class="st">'lifeExp'</span>], popmean<span class="op">=</span><span class="dv">55</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t-statistic:"</span>, t_statistic)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value:"</span>, p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>11.851628442323022</code></pre>
+<pre><code>t-statistic: 11.851628442323024
+p-value: 6.463174215427706e-23</code></pre>
+</div>
 </div>
 </div>
 <p>Great. So now that we’ve highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:</p>
@@ -929,9 +1076,13 @@ T = \sqrt{F} = \sqrt{\frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{u
 <section id="paired-samples-t-tests" class="level2">
 <h2 class="anchored" data-anchor-id="paired-samples-t-tests">Paired samples t-tests</h2>
 <p>Paired samples t-tests can be approached like 1-sample t-tests, but you first of all need to collapse the data to have a single variable to compare to a <span class="math inline">\(\mu\)</span> of zero. Let’s do this for gapminder data, comparing life expectancies between 2002 and 2007:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gapminder_2002_2007_life_exp <span class="ot">&lt;-</span> gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2007</span>] <span class="sc">-</span> gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2002</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder_2002_2007_life_exp, <span class="at">mu =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>gapminder_2002_2007_life_exp <span class="ot">&lt;-</span> gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2007</span>] <span class="sc">-</span> gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2002</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder_2002_2007_life_exp, <span class="at">mu =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -946,9 +1097,27 @@ mean of x
    1.3125 </code></pre>
 </div>
 </div>
-<p>The above suggests that life expectancy was significanctly different. Let’s see if we get the exact same value when we use a paired t-test in R:</p>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2007</span>],gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2002</span>], <span class="at">paired=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>gapminder_2002_2007_life_exp <span class="op">=</span> life_exp_2007.reset_index(drop<span class="op">=</span><span class="va">True</span>) <span class="op">-</span> life_exp_2002.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>t_statistic, p_value <span class="op">=</span> stats.ttest_1samp(gapminder_2002_2007_life_exp, popmean<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t-statistic:"</span>, t_statistic)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value:"</span>, p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>t-statistic: 14.664513524875451
+p-value: 3.738316746290281e-30</code></pre>
+</div>
+</div>
+</div>
+<p>The above suggests that life expectancy was significanctly different. Let’s see if we get the exact same value when we use a paired t-test in R:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2007</span>],gapminder<span class="sc">$</span>lifeExp[gapminder<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2002</span>], <span class="at">paired=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -961,6 +1130,26 @@ alternative hypothesis: true mean difference is not equal to 0
 sample estimates:
 mean difference 
          1.3125 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for the year 2007</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>life_exp_2007 <span class="op">=</span> gapminder[gapminder[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2007</span>][<span class="st">'lifeExp'</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for the year 2002</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>life_exp_2002 <span class="op">=</span> gapminder[gapminder[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2002</span>][<span class="st">'lifeExp'</span>]</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a paired t-test</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>t_statistic, p_value <span class="op">=</span> stats.ttest_rel(life_exp_2007, life_exp_2002)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"T-statistic:"</span>, t_statistic)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"P-value:"</span>, p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>t-statistic: 14.664513524875451
+p-value: 3.738316746290281e-30</code></pre>
+</div>
 </div>
 </div>
 <p>Looks identical. Let’s compare formulas to see why this is:</p>
@@ -977,7 +1166,7 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 \]</span> One way effectively gets the average of the standard deviations of condition and 1. The second way gets the standard deviation of the differences between conditions 1 and 2. Both give you the same outcome.</p></li>
 <li><p><span class="math inline">\(N\)</span> is the number of participants</p></li>
 </ul>
-<p>You can rewrite the above formula to compare <span class="math inline">\(\bar{x_3}\)</span> to <span class="math inline">\(\mu\)</span>, as we know <span class="math inline">\(\mu\)</span> is zero, which would make this formula (effectively) identical to the one above for one-sample t-tests:</p>
+<p>You can rewrite the above formula to compare <span class="math inline">\(\bar{x_3}\)</span> to <span class="math inline">\(\mu\)</span>, as we know <span class="math inline">\(\mu\)</span> is zero, which would make this formula (effectively) identical to the one above for one-sample t-tests: $$</p>
 <p><span class="math display">\[
 \frac{\bar{x_3} - \mu}{\sigma_{pooled}/\sqrt{N}}
 \]</span></p>
@@ -987,25 +1176,59 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 <section id="glm-approach-1" class="level3">
 <h3 class="anchored" data-anchor-id="glm-approach-1">GLM approach</h3>
 <p>For an independent samples t-test we can create a simple model based on the means of the two groups. You can either <a href="generalLinearModels.html#dummy-vs.-effect-coding-for-categorical-variables-in-a-model" target="_blank">dummy or effect code</a> the groups, so we’ll do both to look at how the output is slightly different each way. We’ll use the gapminder data to see if there are differences in life expectancies between the Americas and Europe in 2007 to illustrate these:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Europe"</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Europe"</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu <span class="op">=</span> gapminder[(gapminder[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2007</span>) <span class="op">&amp;</span> ((gapminder[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">"Americas"</span>) <span class="op">|</span> (gapminder[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">"Europe"</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <section id="dummy-coding" class="level4">
 <h4 class="anchored" data-anchor-id="dummy-coding">Dummy coding</h4>
 <p>One way to make a model for a t-test is to have a variable that is 1 for one level, and 0 for the other level (note that this gets more complicated if you are going an ANOVA with 3 or more levels). Let’s create a new variable for continent that is 1 if the country is in the Americas, and 0 if it’s not:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu<span class="sc">$</span>americas_dummy <span class="ot">=</span> <span class="fu">ifelse</span>(gapminder_2007_Am_Eu<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(gapminder_2007_Am_Eu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu<span class="sc">$</span>americas_dummy <span class="ot">=</span> <span class="fu">ifelse</span>(gapminder_2007_Am_Eu<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(gapminder_2007_Am_Eu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["americas_dummy"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Albania","2":"Europe","3":"2007","4":"76.423","5":"3600523","6":"5937.030","7":"0"},{"1":"Argentina","2":"Americas","3":"2007","4":"75.320","5":"40301927","6":"12779.380","7":"1"},{"1":"Austria","2":"Europe","3":"2007","4":"79.829","5":"8199783","6":"36126.493","7":"0"},{"1":"Belgium","2":"Europe","3":"2007","4":"79.441","5":"10392226","6":"33692.605","7":"0"},{"1":"Bolivia","2":"Americas","3":"2007","4":"65.554","5":"9119152","6":"3822.137","7":"1"},{"1":"Bosnia and Herzegovina","2":"Europe","3":"2007","4":"74.852","5":"4552198","6":"7446.299","7":"0"},{"1":"Brazil","2":"Americas","3":"2007","4":"72.390","5":"190010647","6":"9065.801","7":"1"},{"1":"Bulgaria","2":"Europe","3":"2007","4":"73.005","5":"7322858","6":"10680.793","7":"0"},{"1":"Canada","2":"Americas","3":"2007","4":"80.653","5":"33390141","6":"36319.235","7":"1"},{"1":"Chile","2":"Americas","3":"2007","4":"78.553","5":"16284741","6":"13171.639","7":"1"},{"1":"Colombia","2":"Americas","3":"2007","4":"72.889","5":"44227550","6":"7006.580","7":"1"},{"1":"Costa Rica","2":"Americas","3":"2007","4":"78.782","5":"4133884","6":"9645.061","7":"1"},{"1":"Croatia","2":"Europe","3":"2007","4":"75.748","5":"4493312","6":"14619.223","7":"0"},{"1":"Cuba","2":"Americas","3":"2007","4":"78.273","5":"11416987","6":"8948.103","7":"1"},{"1":"Czech Republic","2":"Europe","3":"2007","4":"76.486","5":"10228744","6":"22833.309","7":"0"},{"1":"Denmark","2":"Europe","3":"2007","4":"78.332","5":"5468120","6":"35278.419","7":"0"},{"1":"Dominican Republic","2":"Americas","3":"2007","4":"72.235","5":"9319622","6":"6025.375","7":"1"},{"1":"Ecuador","2":"Americas","3":"2007","4":"74.994","5":"13755680","6":"6873.262","7":"1"},{"1":"El Salvador","2":"Americas","3":"2007","4":"71.878","5":"6939688","6":"5728.354","7":"1"},{"1":"Finland","2":"Europe","3":"2007","4":"79.313","5":"5238460","6":"33207.084","7":"0"},{"1":"France","2":"Europe","3":"2007","4":"80.657","5":"61083916","6":"30470.017","7":"0"},{"1":"Germany","2":"Europe","3":"2007","4":"79.406","5":"82400996","6":"32170.374","7":"0"},{"1":"Greece","2":"Europe","3":"2007","4":"79.483","5":"10706290","6":"27538.412","7":"0"},{"1":"Guatemala","2":"Americas","3":"2007","4":"70.259","5":"12572928","6":"5186.050","7":"1"},{"1":"Haiti","2":"Americas","3":"2007","4":"60.916","5":"8502814","6":"1201.637","7":"1"},{"1":"Honduras","2":"Americas","3":"2007","4":"70.198","5":"7483763","6":"3548.331","7":"1"},{"1":"Hungary","2":"Europe","3":"2007","4":"73.338","5":"9956108","6":"18008.944","7":"0"},{"1":"Iceland","2":"Europe","3":"2007","4":"81.757","5":"301931","6":"36180.789","7":"0"},{"1":"Ireland","2":"Europe","3":"2007","4":"78.885","5":"4109086","6":"40675.996","7":"0"},{"1":"Italy","2":"Europe","3":"2007","4":"80.546","5":"58147733","6":"28569.720","7":"0"},{"1":"Jamaica","2":"Americas","3":"2007","4":"72.567","5":"2780132","6":"7320.880","7":"1"},{"1":"Mexico","2":"Americas","3":"2007","4":"76.195","5":"108700891","6":"11977.575","7":"1"},{"1":"Montenegro","2":"Europe","3":"2007","4":"74.543","5":"684736","6":"9253.896","7":"0"},{"1":"Netherlands","2":"Europe","3":"2007","4":"79.762","5":"16570613","6":"36797.933","7":"0"},{"1":"Nicaragua","2":"Americas","3":"2007","4":"72.899","5":"5675356","6":"2749.321","7":"1"},{"1":"Norway","2":"Europe","3":"2007","4":"80.196","5":"4627926","6":"49357.190","7":"0"},{"1":"Panama","2":"Americas","3":"2007","4":"75.537","5":"3242173","6":"9809.186","7":"1"},{"1":"Paraguay","2":"Americas","3":"2007","4":"71.752","5":"6667147","6":"4172.838","7":"1"},{"1":"Peru","2":"Americas","3":"2007","4":"71.421","5":"28674757","6":"7408.906","7":"1"},{"1":"Poland","2":"Europe","3":"2007","4":"75.563","5":"38518241","6":"15389.925","7":"0"},{"1":"Portugal","2":"Europe","3":"2007","4":"78.098","5":"10642836","6":"20509.648","7":"0"},{"1":"Puerto Rico","2":"Americas","3":"2007","4":"78.746","5":"3942491","6":"19328.709","7":"1"},{"1":"Romania","2":"Europe","3":"2007","4":"72.476","5":"22276056","6":"10808.476","7":"0"},{"1":"Serbia","2":"Europe","3":"2007","4":"74.002","5":"10150265","6":"9786.535","7":"0"},{"1":"Slovak Republic","2":"Europe","3":"2007","4":"74.663","5":"5447502","6":"18678.314","7":"0"},{"1":"Slovenia","2":"Europe","3":"2007","4":"77.926","5":"2009245","6":"25768.258","7":"0"},{"1":"Spain","2":"Europe","3":"2007","4":"80.941","5":"40448191","6":"28821.064","7":"0"},{"1":"Sweden","2":"Europe","3":"2007","4":"80.884","5":"9031088","6":"33859.748","7":"0"},{"1":"Switzerland","2":"Europe","3":"2007","4":"81.701","5":"7554661","6":"37506.419","7":"0"},{"1":"Trinidad and Tobago","2":"Americas","3":"2007","4":"69.819","5":"1056608","6":"18008.509","7":"1"},{"1":"Turkey","2":"Europe","3":"2007","4":"71.777","5":"71158647","6":"8458.276","7":"0"},{"1":"United Kingdom","2":"Europe","3":"2007","4":"79.425","5":"60776238","6":"33203.261","7":"0"},{"1":"United States","2":"Americas","3":"2007","4":"78.242","5":"301139947","6":"42951.653","7":"1"},{"1":"Uruguay","2":"Americas","3":"2007","4":"76.384","5":"3447496","6":"10611.463","7":"1"},{"1":"Venezuela","2":"Americas","3":"2007","4":"73.747","5":"26084662","6":"11415.806","7":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy variable for Americas </span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu[<span class="st">'americas_dummy'</span>] <span class="op">=</span> np.where(gapminder_2007_Am_Eu[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Americas'</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table </span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gapminder_2007_Am_Eu.to_string())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="TTests_Table1.png" class="img-fluid figure-img" width="600"></p>
+<figcaption class="figure-caption">Table with gapminder_2007_Am_Eu</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </div>

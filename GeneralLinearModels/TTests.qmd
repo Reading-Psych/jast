@@ -24,7 +24,8 @@ One sample t-tests try to explain whether variance of data is better explained a
 -   Your $\bar{x}$ would be the sample mean.
 
 Let's visualise these values using gapminder data from 2007:
-
+::: panel-tabset
+## R
 ```{r}
 library(ggplot2)
 library(gapminder)
@@ -111,6 +112,8 @@ $$
 F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \frac{20473.3/(Predictors)}{20551.85/(N-1)} = \frac{20473.3/1}{20551.85/141} 
 $$
 
+::: panel-tabset
+## R
 ```{r}
 f_value = (length(gapminder_2007$lifeExp) * (55- mean(gapminder_2007$lifeExp))^2) / (
   (sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2))/(length(gapminder_2007$lifeExp)-1)
@@ -121,6 +124,8 @@ f_value
 
 F-values are squares of t-values, so let's see if this is true here also:
 
+::: panel-tabset
+## R
 ```{r}
 sqrt(f_value)
 
@@ -143,6 +148,8 @@ $$ where:
 
 Paired samples t-tests can be approached like 1-sample t-tests, but you first of all need to collapse the data to have a single variable to compare to a $\mu$ of zero. Let's do this for gapminder data, comparing life expectancies between 2002 and 2007:
 
+::: panel-tabset
+## R
 ```{r}
 gapminder_2002_2007_life_exp <- gapminder$lifeExp[gapminder$year == 2007] - gapminder$lifeExp[gapminder$year == 2002]
 t.test(gapminder_2002_2007_life_exp, mu = 0)
@@ -151,6 +158,8 @@ t.test(gapminder_2002_2007_life_exp, mu = 0)
 
 The above suggests that life expectancy was significanctly different. Let's see if we get the exact same value when we use a paired t-test in R:
 
+::: panel-tabset
+## R
 ```{r}
 t.test(gapminder$lifeExp[gapminder$year == 2007],gapminder$lifeExp[gapminder$year == 2002], paired=T)
 ```
@@ -187,6 +196,8 @@ $$
 
 For an independent samples t-test we can create a simple model based on the means of the two groups. You can either [dummy or effect code](generalLinearModels.html#dummy-vs.-effect-coding-for-categorical-variables-in-a-model){target="_blank"} the groups, so we'll do both to look at how the output is slightly different each way. We'll use the gapminder data to see if there are differences in life expectancies between the Americas and Europe in 2007 to illustrate these:
 
+::: panel-tabset
+## R
 ```{r}
 gapminder_2007_Am_Eu <- subset(
   gapminder,   # the data set

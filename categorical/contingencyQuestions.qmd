@@ -1,0 +1,38 @@
+---
+format: html
+editor: visual
+---
+
+#### Question 1
+
+Will Cramer's V give the same value as Phi?
+```{ojs}
+//| echo: false
+viewof contingency_1_response = Inputs.radio(['Yes','No']);
+correct_contingency_1 = 'Yes';
+contingency_1_result = {
+  if(contingency_1_response == correct_contingency_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${contingency_1_result}**
+
+#### Question 2
+
+Chi Square tests tell you...
+```{ojs}
+//| echo: false
+viewof contingency_2_response = Inputs.radio(['Effect size','Significance']);
+correct_contingency_2 = 'Significance';
+contingency_2_result = {
+  if(contingency_2_response == correct_contingency_2){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${contingency_2_result}**

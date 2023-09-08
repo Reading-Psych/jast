@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook – transformingquestions</title>
+<title>Just Another Statistics Textbook – contingencyquestions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -494,17 +494,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="question-1" class="level4">
 <h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
-<p>Which types of transformations <strong>might</strong> make a distribution normal?</p>
+<p>Will Cramer’s V give the same value as Phi?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="9" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 8;"><span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>viewof transformation_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'linear'</span><span class="op">,</span><span class="st">'non-linear'</span>])<span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>correct_transformation_1 <span class="op">=</span> <span class="st">'non-linear'</span><span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>transformation_1_result <span class="op">=</span> {</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_1_response <span class="op">==</span> correct_transformation_1){</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.'</span><span class="op">;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="11" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 10;"><span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>viewof contingency_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Yes'</span><span class="op">,</span><span class="st">'No'</span>])<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>correct_contingency_1 <span class="op">=</span> <span class="st">'Yes'</span><span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>contingency_1_result <span class="op">=</span> {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(contingency_1_response <span class="op">==</span> correct_contingency_1){</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -527,21 +527,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p><span><span id="ojs-element-id-1"></span></span></p>
+<p><strong><span><span id="ojs-element-id-1"></span></span></strong></p>
 </section>
 <section id="question-2" class="level4">
 <h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
-<p>Which of the following transformations is least likely to result in a normal distribution?</p>
+<p>Chi Square tests tell you…</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="26" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 25;"><span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>viewof transformation_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'log'</span><span class="op">,</span><span class="st">'square'</span><span class="op">,</span><span class="st">'square-root'</span>])<span class="op">;</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>correct_transformation_2 <span class="op">=</span> <span class="st">'square'</span><span class="op">;</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>transformation_2_result <span class="op">=</span> {</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_2_response <span class="op">==</span> correct_transformation_2){</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.'</span><span class="op">;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="28" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 27;"><span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>viewof contingency_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Effect size'</span><span class="op">,</span><span class="st">'Significance'</span>])<span class="op">;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>correct_contingency_2 <span class="op">=</span> <span class="st">'Significance'</span><span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>contingency_2_result <span class="op">=</span> {</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(contingency_2_response <span class="op">==</span> correct_contingency_2){</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -564,24 +564,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p><span><span id="ojs-element-id-2"></span></span></p>
+<p><strong><span><span id="ojs-element-id-2"></span></span></strong></p>
 
 
 <script type="ojs-module-contents">
 {"contents":[
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${transformation_1_result}</span>`", "cellName":"ojs-element-id-1"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${contingency_1_result}</span>`", "cellName":"ojs-element-id-1"}
 ,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${transformation_2_result}</span>`", "cellName":"ojs-element-id-2"}
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${contingency_2_result}</span>`", "cellName":"ojs-element-id-2"}
 ]}
 </script>
 </section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof transformation_1_response = Inputs.radio(['linear','non-linear']);\ncorrect_transformation_1 = 'non-linear';\ntransformation_1_result = {\n  if(transformation_1_response == correct_transformation_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof transformation_2_response = Inputs.radio(['log','square','square-root']);\ncorrect_transformation_2 = 'square';\ntransformation_2_result = {\n  if(transformation_2_response == correct_transformation_2){\n    return 'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('transformation_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('transformation_2_response')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof contingency_1_response = Inputs.radio(['Yes','No']);\ncorrect_contingency_1 = 'Yes';\ncontingency_1_result = {\n  if(contingency_1_response == correct_contingency_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof contingency_2_response = Inputs.radio(['Effect size','Significance']);\ncorrect_contingency_2 = 'Significance';\ncontingency_2_result = {\n  if(contingency_2_response == correct_contingency_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('contingency_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('contingency_2_response')"}]}
 </script>
 <script type="module">
-window._ojs.paths.runtimeToDoc = "../../distributions";
+window._ojs.paths.runtimeToDoc = "../../categorical";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;

@@ -57,7 +57,6 @@ digraph "Course Overview" {
 			fixedsize = true,
 			# fillcolor = "#d9e7ee",
 			label = "Binomial Distribution",
-			row = usr,
 		]
 		contingency[
 		  URL = "../categorical/contingency.html",
@@ -69,23 +68,18 @@ digraph "Course Overview" {
 		  URL = "../describingData/centralTendency.html",
 			fillcolor = white,
 			fixedsize = true,
-			row = func,
+			#row = func,
 			label= "Central Tendency"
 		]
-		chisquare[
-		  label     = "Chi Square",
-		  URL       = "",
-		  fillcolor = red
-		]
-		cooksd[
-		  label     = "Cook's D",
-		  URL       = "",
-		  fillcolor = red
-		]
+		#cooksd[
+		#  label     = "Cook's D",
+		#  URL       = "",
+		#  fillcolor = red
+		#]
 		correlations[
 		  URL = "../distributions/correlations.html",
 			fixedsize = true,
-			row = func,
+			#row = func,
 			label= "Correlations"
 		]
 		dispersion[
@@ -110,11 +104,11 @@ digraph "Course Overview" {
       label     = "General Linear Models",
       fillcolor = "orange"
     ]
-    kurtosis[
-      URL       = "",
-      label     = "Kurtosis",
-      fillcolor = "red"
-    ]
+    #kurtosis[
+    #  URL       = "",
+    #  label     = "Kurtosis",
+    #  fillcolor = "red"
+    #]
     mediation[
       URL = "",
       fillcolor = "red",
@@ -129,7 +123,7 @@ digraph "Course Overview" {
 		  URL = "../distributions/normal.html",
 			fillcolor = white,
 			fixedsize = true,
-			row = func,
+			#row = func,
 			label= "Normal Distribution"
 		]
 		partial_correlations[
@@ -147,7 +141,7 @@ digraph "Course Overview" {
 			URL = "../statsBasics/probability.html",
       #fillcolor = "#d9e7ee",
 			fixedsize = true,
-			row = func,
+			# row = func,
 		]
 		repeated_measures_anova[
 		  label = "Within Subject ANOVA",
@@ -182,11 +176,10 @@ digraph "Course Overview" {
 	binomial -> contingency
 	binomial -> normal[
     #style = "dashed",
-    row = func
+    #row = func
 	]
-	contingency -> chisquare
 	central_tendency -> dispersion
-	correlations -> cooksd
+	#correlations -> cooksd
 	correlations -> partial_correlations
 	correlations -> simple_regression
 	dispersion -> normal
@@ -195,18 +188,18 @@ digraph "Course Overview" {
 	glm -> ttests
   multiple_regression -> mediation
 	normal -> correlations
+	normal -> contingency
 	normal -> glm
-	normal -> kurtosis
+	#normal -> kurtosis
 	normal -> skewness[
     #style = "dashed",
-    row = func
+    #row = func
 	]
 	simple_regression -> multiple_regression
 	skewness -> transforming
 	transforming -> correlations
 	probability -> fwer
 	probability -> fdr
-	probability -> nonparametric
 	stats_basics -> central_tendency
 	stats_basics -> probability
 	ttests -> ancova

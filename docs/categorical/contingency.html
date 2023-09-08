@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Contingency(incomplete)</title>
+<title>Just Another Statistics Textbook - Contingency</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,6 +83,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -122,7 +141,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -165,7 +187,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Contingency(incomplete)</h1>
+      <h1 class="quarto-secondary-nav-title">Contingency</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -321,11 +343,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations (R,Python)</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../correlations/cooksd.html" class="sidebar-item-text sidebar-link">Cook’s Distance (R, incomplete)</a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -370,12 +387,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Item analyses</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Categorical</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link active">Contingency</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
@@ -385,12 +417,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Multiple testing</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Multiple testing</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../multipleTesting/fwer.html" class="sidebar-item-text sidebar-link">Family-Wise Error (R)</a>
@@ -410,12 +442,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Excel tutorial</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
@@ -450,12 +482,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Test yourself</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
@@ -472,15 +504,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#phi-phi" id="toc-phi-phi" class="nav-link active" data-scroll-target="#phi-phi">Phi <span class="math inline">\(\phi\)</span></a></li>
+  <li><a href="#chi-squared-chi2" id="toc-chi-squared-chi2" class="nav-link" data-scroll-target="#chi-squared-chi2">Chi-squared <span class="math inline">\(\chi^2\)</span></a></li>
+  <li><a href="#cramers-v" id="toc-cramers-v" class="nav-link" data-scroll-target="#cramers-v">Cramer’s V</a></li>
+  <li><a href="#other-metrics-for-2-x-2-contingency-data" id="toc-other-metrics-for-2-x-2-contingency-data" class="nav-link" data-scroll-target="#other-metrics-for-2-x-2-contingency-data">Other metrics for 2 x 2 contingency data</a>
+  <ul class="collapse">
+  <li><a href="#odds-ratio" id="toc-odds-ratio" class="nav-link" data-scroll-target="#odds-ratio">Odds Ratio</a></li>
+  <li><a href="#risk-ratio" id="toc-risk-ratio" class="nav-link" data-scroll-target="#risk-ratio">Risk Ratio</a></li>
+  </ul></li>
+  <li><a href="#what-to-do-if-you-have-5-or-less-in-one-of-your-cells" id="toc-what-to-do-if-you-have-5-or-less-in-one-of-your-cells" class="nav-link" data-scroll-target="#what-to-do-if-you-have-5-or-less-in-one-of-your-cells">What to do if you have 5 or less in one of your cells</a>
+  <ul class="collapse">
+  <li><a href="#yates-continuity-correction" id="toc-yates-continuity-correction" class="nav-link" data-scroll-target="#yates-continuity-correction">Yates Continuity Correction</a></li>
+  <li><a href="#fishers-exact-test" id="toc-fishers-exact-test" class="nav-link" data-scroll-target="#fishers-exact-test">Fisher’s Exact Test</a></li>
+  </ul></li>
+  <li><a href="#g-test" id="toc-g-test" class="nav-link" data-scroll-target="#g-test">G-test</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Contingency(incomplete)</h1>
+<h1 class="title d-none d-lg-block">Contingency</h1>
 </div>
 
 
@@ -495,48 +547,1282 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Course Overview
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="cell" data-fig-height="5" data-fig-width="10">
+<div class="cell-output-display">
+<div>
+<p>
+<svg width="960" height="480" viewbox="0.00 0.00 1305.00 1052.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1048)">
+<title>
+Course Overview
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1048 1301,-1048 1301,4 -4,4"></polygon> <!-- ancova --> <g id="node1" class="node">
+<title>
+ancova
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="721,-396 451,-396 451,-324 721,-324 721,-396"></polygon> <text text-anchor="middle" x="586" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">ANCOVA</text> </g> <!-- between_anova --> <g id="node2" class="node">
+<title>
+between_anova
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="1009.11,-396 738.89,-396 738.89,-324 1009.11,-324 1009.11,-396"></polygon> <text text-anchor="middle" x="874" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Between Subject ANOVA</text> </g> <!-- binomial --> <g id="node3" class="node">
+<title>
+binomial
+</title>
+<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="270,-828 0,-828 0,-756 270,-756 270,-828"></polygon> <text text-anchor="middle" x="135" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node4" class="node">
+<title>
+contingency
+</title>
+<g id="a_node4"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="270,-612 0,-612 0,-540 270,-540 270,-612"></polygon> <text text-anchor="middle" x="135" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge1" class="edge">
+<title>
+binomial-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M135,-755.66C135,-715.89 135,-651.68 135,-612.03"></path> </g> <!-- normal --> <g id="node14" class="node">
+<title>
+normal
+</title>
+<g id="a_node14"><a href="../distributions/normal.html" title="Normal Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="495,-720 225,-720 225,-648 495,-648 495,-720"></polygon> <text text-anchor="middle" x="360" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Normal Distribution</text> </a> </g> </g> <!-- binomial&#45;&gt;normal --> <g id="edge2" class="edge">
+<title>
+binomial-&gt;normal
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M209.3,-756C233.75,-744.48 260.93,-731.68 285.4,-720.15"></path> </g> <!-- central_tendency --> <g id="node5" class="node">
+<title>
+central_tendency
+</title>
+<g id="a_node5"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-936 288,-936 288,-864 558,-864 558,-936"></polygon> <text text-anchor="middle" x="423" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node7" class="node">
+<title>
+dispersion
+</title>
+<g id="a_node7"><a href="../describingData/dispersion.html" title="Dispersion"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-828 288,-828 288,-756 558,-756 558,-828"></polygon> <text text-anchor="middle" x="423" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dispersion</text> </a> </g> </g> <!-- central_tendency&#45;&gt;dispersion --> <g id="edge3" class="edge">
+<title>
+central_tendency-&gt;dispersion
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M423,-864C423,-852.54 423,-839.81 423,-828.33"></path> </g> <!-- correlations --> <g id="node6" class="node">
+<title>
+correlations
+</title>
+<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="433,-396 163,-396 163,-324 433,-324 433,-396"></polygon> <text text-anchor="middle" x="298" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node15" class="node">
+<title>
+partial_correlations
+</title>
+<g id="a_node15"><a href="../correlations/partialCorrelations.html" title="Partial Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="289,-288 19,-288 19,-216 289,-216 289,-288"></polygon> <text text-anchor="middle" x="154" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Partial Correlations</text> </a> </g> </g> <!-- correlations&#45;&gt;partial_correlations --> <g id="edge4" class="edge">
+<title>
+correlations-&gt;partial_correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M250.45,-324C234.88,-312.54 217.59,-299.81 201.99,-288.33"></path> </g> <!-- simple_regression --> <g id="node19" class="node">
+<title>
+simple_regression
+</title>
+<g id="a_node19"><a href="../regressions/simpleRegressions.html" title="Simple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="577,-288 307,-288 307,-216 577,-216 577,-288"></polygon> <text text-anchor="middle" x="442" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Simple Regression</text> </a> </g> </g> <!-- correlations&#45;&gt;simple_regression --> <g id="edge5" class="edge">
+<title>
+correlations-&gt;simple_regression
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M345.55,-324C361.12,-312.54 378.41,-299.81 394.01,-288.33"></path> </g> <!-- dispersion&#45;&gt;normal --> <g id="edge6" class="edge">
+<title>
+dispersion-&gt;normal
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M402.2,-756C395.39,-744.54 387.82,-731.81 381,-720.33"></path> </g> <!-- fdr --> <g id="node8" class="node">
+<title>
+fdr
+</title>
+<g id="a_node8"><a href="../multipleTesting/fdr.html" title="False Discovery Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="846,-828 576,-828 576,-756 846,-756 846,-828"></polygon> <text text-anchor="middle" x="711" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">False Discovery Rate</text> </a> </g> </g> <!-- fwer_vs_fdr --> <g id="node10" class="node">
+<title>
+fwer_vs_fdr
+</title>
+<g id="a_node10"><a href="../multipleTesting/fwer_vs_fdr.html" title="FWER vs. FDR"> <polygon fill="white" stroke="#006688" stroke-width="5" points="990,-720 720,-720 720,-648 990,-648 990,-720"></polygon> <text text-anchor="middle" x="855" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">FWER vs.&nbsp;FDR</text> </a> </g> </g> <!-- fdr&#45;&gt;fwer_vs_fdr --> <g id="edge7" class="edge">
+<title>
+fdr-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M758.55,-756C774.12,-744.54 791.41,-731.81 807.01,-720.33"></path> </g> <!-- fwer --> <g id="node9" class="node">
+<title>
+fwer
+</title>
+<g id="a_node9"><a href="../multipleTesting/fwer.html" title="Family-Wise Error Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1134,-828 864,-828 864,-756 1134,-756 1134,-828"></polygon> <text text-anchor="middle" x="999" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Family-Wise Error Rate</text> </a> </g> </g> <!-- fwer&#45;&gt;fwer_vs_fdr --> <g id="edge8" class="edge">
+<title>
+fwer-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M951.45,-756C935.88,-744.54 918.59,-731.81 902.99,-720.33"></path> </g> <!-- glm --> <g id="node11" class="node">
+<title>
+glm
+</title>
+<g id="a_node11"><a href="../GeneralLinearModels/generalLinearModels.html" title="General Linear Models"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="922,-612 652,-612 652,-540 922,-540 922,-612"></polygon> <text text-anchor="middle" x="787" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">General Linear Models</text> </a> </g> </g> <!-- ttests --> <g id="node23" class="node">
+<title>
+ttests
+</title>
+<g id="a_node23"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="955,-504 685,-504 685,-432 955,-432 955,-504"></polygon> <text text-anchor="middle" x="820" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- glm&#45;&gt;ttests --> <g id="edge9" class="edge">
+<title>
+glm-&gt;ttests
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M797.9,-540C801.46,-528.54 805.43,-515.81 809,-504.33"></path> </g> <!-- mediation --> <g id="node12" class="node">
+<title>
+mediation
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="577,-72 307,-72 307,0 577,0 577,-72"></polygon> <text text-anchor="middle" x="442" y="-28.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mediation</text> </g> <!-- multiple_regression --> <g id="node13" class="node">
+<title>
+multiple_regression
+</title>
+<g id="a_node13"><a href="../regressions/multipleRegressions.html" title="Multiple Regression"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="577,-180 307,-180 307,-108 577,-108 577,-180"></polygon> <text text-anchor="middle" x="442" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Multiple Regression</text> </a> </g> </g> <!-- multiple_regression&#45;&gt;mediation --> <g id="edge10" class="edge">
+<title>
+multiple_regression-&gt;mediation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M442,-108C442,-96.54 442,-83.81 442,-72.33"></path> </g> <!-- normal&#45;&gt;contingency --> <g id="edge12" class="edge">
+<title>
+normal-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M285.7,-648C261.25,-636.48 234.07,-623.68 209.6,-612.15"></path> </g> <!-- normal&#45;&gt;correlations --> <g id="edge11" class="edge">
+<title>
+normal-&gt;correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M337.58,-647.71C331.54,-636.67 325.68,-624.18 322,-612 299.53,-537.62 296.68,-445.72 297.05,-396.35"></path> </g> <!-- normal&#45;&gt;glm --> <g id="edge13" class="edge">
+<title>
+normal-&gt;glm
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M495.11,-649.46C545.07,-637.06 601.69,-623 651.67,-610.59"></path> </g> <!-- skewness --> <g id="node20" class="node">
+<title>
+skewness
+</title>
+<g id="a_node20"><a href="../distributions/skewness.html" title="Skewness"> <polygon fill="white" stroke="#006688" stroke-width="5" points="601,-612 331,-612 331,-540 601,-540 601,-612"></polygon> <text text-anchor="middle" x="466" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Skewness</text> </a> </g> </g> <!-- normal&#45;&gt;skewness --> <g id="edge14" class="edge">
+<title>
+normal-&gt;skewness
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M395,-648C406.46,-636.54 419.19,-623.81 430.67,-612.33"></path> </g> <!-- permutation --> <g id="node16" class="node">
+<title>
+permutation
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="990,-1044 720,-1044 720,-972 990,-972 990,-1044"></polygon> <text text-anchor="middle" x="855" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Permutations</text> </g> <!-- probability --> <g id="node17" class="node">
+<title>
+probability
+</title>
+<g id="a_node17"><a href="../statsBasics/probability.html" title="Probability"> <polygon fill="white" stroke="#006688" stroke-width="5" points="846,-936 576,-936 576,-864 846,-864 846,-936"></polygon> <text text-anchor="middle" x="711" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Probability</text> </a> </g> </g> <!-- probability&#45;&gt;fdr --> <g id="edge19" class="edge">
+<title>
+probability-&gt;fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M711,-864C711,-852.54 711,-839.81 711,-828.33"></path> </g> <!-- probability&#45;&gt;fwer --> <g id="edge18" class="edge">
+<title>
+probability-&gt;fwer
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M806.1,-864C837.39,-852.48 872.18,-839.68 903.51,-828.15"></path> </g> <!-- repeated_measures_anova --> <g id="node18" class="node">
+<title>
+repeated_measures_anova
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="1297,-396 1027,-396 1027,-324 1297,-324 1297,-396"></polygon> <text text-anchor="middle" x="1162" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Within Subject ANOVA</text> </g> <!-- simple_regression&#45;&gt;multiple_regression --> <g id="edge15" class="edge">
+<title>
+simple_regression-&gt;multiple_regression
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M442,-216C442,-204.54 442,-191.81 442,-180.33"></path> </g> <!-- transforming --> <g id="node22" class="node">
+<title>
+transforming
+</title>
+<g id="a_node22"><a href="../distributions/transforming.html" title="Transforming Data"> <polygon fill="white" stroke="#006688" stroke-width="5" points="614,-504 326,-504 326,-432 614,-432 614,-504"></polygon> <text text-anchor="middle" x="470" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Transforming Data</text> </a> </g> </g> <!-- skewness&#45;&gt;transforming --> <g id="edge16" class="edge">
+<title>
+skewness-&gt;transforming
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M467.32,-540C467.75,-528.54 468.23,-515.81 468.67,-504.33"></path> </g> <!-- stats_basics --> <g id="node21" class="node">
+<title>
+stats_basics
+</title>
+<g id="a_node21"><a href="../statsBasics/statsBasics.html" title="Statistics Basics"> <polygon fill="white" stroke="#006688" stroke-width="5" points="702,-1044 432,-1044 432,-972 702,-972 702,-1044"></polygon> <text text-anchor="middle" x="567" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Statistics Basics</text> </a> </g> </g> <!-- stats_basics&#45;&gt;central_tendency --> <g id="edge20" class="edge">
+<title>
+stats_basics-&gt;central_tendency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M519.45,-972C503.88,-960.54 486.59,-947.81 470.99,-936.33"></path> </g> <!-- stats_basics&#45;&gt;probability --> <g id="edge21" class="edge">
+<title>
+stats_basics-&gt;probability
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M614.55,-972C630.12,-960.54 647.41,-947.81 663.01,-936.33"></path> </g> <!-- transforming&#45;&gt;correlations --> <g id="edge17" class="edge">
+<title>
+transforming-&gt;correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M413.2,-432C394.51,-420.48 373.74,-407.68 355.03,-396.15"></path> </g> <!-- ttests&#45;&gt;ancova --> <g id="edge22" class="edge">
+<title>
+ttests-&gt;ancova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M742.73,-432C717.3,-420.48 689.04,-407.68 663.59,-396.15"></path> </g> <!-- ttests&#45;&gt;between_anova --> <g id="edge23" class="edge">
+<title>
+ttests-&gt;between_anova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M837.83,-432C843.67,-420.54 850.15,-407.81 856,-396.33"></path> </g> <!-- ttests&#45;&gt;repeated_measures_anova --> <g id="edge24" class="edge">
+<title>
+ttests-&gt;repeated_measures_anova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M932.93,-432C970.19,-420.45 1011.62,-407.61 1048.9,-396.06"></path> </g> </g>
+</svg>
+</p>
+</div>
+</div>
+</div>
+<p><span style="color:red"><strong>Red</strong></span> means that the page does not exist yet</p>
+<p><span style="color:orange"><strong>Orange</strong></span> means that the page is started</p>
+</div>
+</div>
+</div>
+<p>Imagine you want to estimate if males or females are more likely to go into certain professions. We could start by looking at a psychology department and analysing the number of female and male lecturers (i.e.&nbsp;frequency). Let’s imagine a department from the 1953, in which there were 5 female and 50 male lecturers, which now in 2023 has 50 female and 50 male lecturers. Whilst we can see that the ratio is more even now than it was in the 1953, but can we quantify how strong the effect of time is, and how significant the result is (and thus whether we are inclined to assume that the change in this department is representative of a general change in all departments).</p>
+<p>To summarise the data, we can create a <strong>contingency</strong> table:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>5 (a)</td>
+<td>50 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>50 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155</td>
+</tr>
+</tbody>
+</table>
+<p><em>(a), (b), (c) and (d) are references for specific cells and will be used for calculations below</em>.</p>
+<p>The above table visualises how <strong>contingent</strong> the ratio of female to male staff numbers are on the year.</p>
+<p>There are a few statistics we can use to capture the size and/or significance of contingency effects:</p>
+<ul>
+<li><p>Phi <span class="math inline">\(\phi\)</span> can be used to summarise the <strong>strength of association</strong> between variables <strong><em>if you have</em></strong> <strong><em>only 2</em></strong> levels in each condition. It gives you a value between 0 (no association) and 1 (perfect association), i.e.&nbsp;is the year a perfect predictor of female to male ratio</p></li>
+<li><p>Chi-Squared <span class="math inline">\(\chi^2\)</span> analyses capture how <strong>significant</strong> the contingency is, e.g.&nbsp;is there significant evidence that the male to female ratio</p></li>
+<li><p>Cramer’s <span class="math inline">\(V\)</span> can be used to summarise the <strong>strength of</strong> <strong>association</strong> <strong><em>even if you have more than 2</em></strong> levels in each condition. It gives you a value between 0 (no association) and 1 (perfect association). <span class="math inline">\(V\)</span> will be the same as <span class="math inline">\(\phi\)</span> (e.g.&nbsp;when analysing 2 X 2 data), and is based on <span class="math inline">\(\chi^2\)</span>.</p></li>
+</ul>
+<p>Note that Phi <span class="math inline">\(\phi\)</span> and Cramer’s <span class="math inline">\(V\)</span> are similar to Pearson/Spearman <span class="math inline">\(r\)</span> correlation coefficients, in that they convey the strength of an association. However, whilst <span class="math inline">\(r\)</span> tells you both the direction of an association and the strength of it, the direction of <span class="math inline">\(\phi\)</span> is difficult to interpret (see below) and <span class="math inline">\(V\)</span> is not directional.</p>
+<p>Let’s now use the above example to go through the calculations for <span class="math inline">\(\phi\)</span>, <span class="math inline">\(\chi^2\)</span> and <span class="math inline">\(V\)</span></p>
+<section id="phi-phi" class="level2">
+<h2 class="anchored" data-anchor-id="phi-phi">Phi <span class="math inline">\(\phi\)</span></h2>
+<p>To capture the strength of the association between 2 categorical variables that have 2 levels each we can use the following formula:</p>
+<p><span class="math display">\[
+\phi = \frac{a * d - b * c}{\sqrt{(e * f * g * h)}}
+\]</span></p>
+<p>For our example above, we get:</p>
+<p><span class="math display">\[
+\frac{females_{1953} * males_{2023} - females_{2023} * males_{1953}}{\sqrt{females * males * staff_{1953} * staff_{2023}}}
+\]</span></p>
+<p>The top half of our formula allows us to capture how much of an interaction there is between sex and year by multiplying opposites and then comparing the difference. If there is not much difference between these opposites, it suggests there isn’t an interaction. If you think there is <strong>no</strong> association between your categorical variables, then you would expect that there would be a similar ratio of females to males between 1953 and 2023, perhaps something like:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>5 (a)</td>
+<td>10 (b)</td>
+<td>15 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>100 (d)</td>
+<td>150 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>110 (h)</td>
+<td>165</td>
+</tr>
+</tbody>
+</table>
+<p>When multiplying females in 1953 with males in 2023 we get <span class="math inline">\(5 * 100 = 500\)</span></p>
+<p>When multiplying females in 2023 with males in 1953 we get <span class="math inline">\(10*50 = 500\)</span></p>
+<p>So as these opposites aren’t very different, there’s no interaction (<span class="math inline">\(500 - 500 = 0\)</span>).</p>
+<p>Let’s try to crystalise how this comparison of opposites looks when the ratios are reversed, so that 0% of staff are female in 1953, and 0% of staff are male in 2023:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>0 (a)</td>
+<td>100 (b)</td>
+<td>100 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>0 (d)</td>
+<td>50 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>50 (g)</td>
+<td>100 (h)</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<p>When multiplying females in 1953 with males in 2023 we get <span class="math inline">\(0 * 0 = 0\)</span></p>
+<p>When multiplying females in 2023 with males in 1953 we get <span class="math inline">\(100*50 = 5000\)</span></p>
+<p>These opposites seem very different as <span class="math inline">\(5000 - 0 = 5000\)</span>, but we need to capture the scale of what a value would be if there is a perfect association:</p>
+<p><span class="math display">\[
+\sqrt{females * males * staff_{1953} * staff_{2023}} = \sqrt{100 * 50 * 50* 100} = \sqrt{25000000} = 5000
+\]</span></p>
+<p>As <span class="math inline">\(5000/5000 = 1\)</span> we can say that there’s a perfect association between time and sex in staff numbers.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Optional clarification about perfect associations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that it’s only possible to get a <span class="math inline">\(\phi\)</span> of 1 or -1 if you have 2 diagonal cells with zero in them. This is because a perfect association between your variables would require that data points are always associated with one combination or its opposite (i.e.&nbsp;being male in 1953 or female in 2023), otherwise that data point is not explained by the association.</p>
+</div>
+</div>
+<p>Now that we’ve gone through the extreme examples, let’s have a look at how strong the association is between sex and time in the original example data</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>5 (a)</td>
+<td>50 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>50 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155</td>
+</tr>
+</tbody>
+</table>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>contingency_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>,<span class="dv">120</span>,<span class="dv">80</span>),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>contingency_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># table above in a matrix</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>contingency_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">50</span>,<span class="dv">50</span>,<span class="dv">50</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># manual calculation using the formula above</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a * d</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  contingency_data[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">*</span> contingency_data[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">-</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># b * c</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  contingency_data[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">*</span> contingency_data[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)<span class="sc">/</span><span class="fu">sqrt</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># e * f * g * h</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(contingency_data[<span class="dv">1</span>,]) <span class="sc">*</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(contingency_data[<span class="dv">2</span>,]) <span class="sc">*</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(contingency_data[,<span class="dv">1</span>]) <span class="sc">*</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(contingency_data[,<span class="dv">2</span>])</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2]
-[1,]   45  120
-[2,]   55   80</code></pre>
+<pre><code>[1] -0.4090909</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>manual_phi <span class="ot">=</span> (</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  contingency_data[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">*</span> contingency_data[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">-</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    contingency_data[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">*</span> contingency_data[<span class="dv">2</span>,<span class="dv">1</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">/</span><span class="fu">sqrt</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(contingency_data[<span class="dv">1</span>,]) <span class="sc">*</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(contingency_data[<span class="dv">2</span>,]) <span class="sc">*</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(contingency_data[,<span class="dv">1</span>]) <span class="sc">*</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(contingency_data[,<span class="dv">2</span>])</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">phi</span>(contingency_data, <span class="at">digits =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using psych package</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">phi</span>(contingency_data, <span class="at">digits =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.1421338</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>manual_phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.1421338</code></pre>
+<pre><code>[1] -0.4090909</code></pre>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+<p>So we now have captured the size of the effect, let’s look at whether we can capture how <strong>significant</strong> the effect is by using Chi-squared <span class="math inline">\(\chi^2\)</span> analyses:</p>
+</section>
+<section id="chi-squared-chi2" class="level2">
+<h2 class="anchored" data-anchor-id="chi-squared-chi2">Chi-squared <span class="math inline">\(\chi^2\)</span></h2>
+<p>Chi-squared tests allow us to compare our <strong>observed</strong> frequencies to what frequencies you would <strong>expect</strong> if the null hypothesis is true, i.e.&nbsp;if there is no association between your categorical variables. We already have our observed data:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th><span style="color:blue"><strong>Observed</strong></span></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>5 (a)</td>
+<td>50 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>50 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155 (i)</td>
+</tr>
+</tbody>
+</table>
+<p>But now we need to calculate the expected data if the null hypothesis is true. We would <strong>expect</strong> that the number of females in 1953 is</p>
+<p><span class="math display">\[
+females1953_{expected} = \frac{females * Staff_{1953}}{Total}
+\]</span></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Optional - why does the above formula make sense?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In case you’re not convinced, we can restructure the above formula to make it a bit clearer</p>
+<p>If you know how many females there are total, then you want to work out what proportion you should expect in 1953 compared to 2023. If the null hypothesis is correct, that the ratio of females to males should not change between years, then the number of females in 1953 vs.&nbsp;2023 should reflect the ratio of 1953 to 2023 generally:</p>
+<p><span class="math display">\[
+staffProportion = \frac{Staff_{1953}}{Staff_{1953} + Staff_{2023}}
+\]</span></p>
+<p>Then you apply this proportion to females to estimate how many you expect in 1953:</p>
+<p><span class="math display">\[
+females1953_{expected} = females * staffProportion
+\]</span></p>
+<p>Bringing everything above together (<span class="math inline">\(fem\)</span> = <span class="math inline">\(females\)</span>):</p>
+<p><span class="math display">\[
+fem1953_{exp} = fem * staffProp = fem * \frac{Staff_{1953}}{Staff_{1953} + Staff_{2023}} = females * \frac{Staff_{1953}}{Total} = \frac{fem * Staff_{1953}}{Total}
+\]</span></p>
+</div>
+</div>
+<p>Using the above formula, let’s estimate all four cells</p>
+<ul>
+<li><p>Females in 1953 = <span class="math inline">\(\frac{females * Staff_{1953}}{Total} = \frac{55 * 55}{155} = 19.51613\)</span></p></li>
+<li><p>Males in 1953 = <span class="math inline">\(\frac{males * Staff_{1953}}{Total} = \frac{100 * 55}{155} = 35.48387\)</span></p></li>
+<li><p>Females in 2023 = <span class="math inline">\(\frac{females * Staff_{2023}}{Total} = \frac{55 * 100}{155} = 35.48387\)</span></p></li>
+<li><p>Males in 2023 = <span class="math inline">\(\frac{males * Staff_{2023}}{Total} = \frac{100 * 100}{155} = 64.51613\)</span></p></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span style="color:red"><strong>Expected</strong></span></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>19.51613 (a)</td>
+<td>35.48387 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>35.48387 (c)</td>
+<td>64.51613 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155 (i)</td>
+</tr>
+</tbody>
+</table>
+<p>Now that we’ve calculated the expected values for each cell, we can compare our observed values against the expected values and square the difference:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span style="color:blue"><strong>Observed</strong></span> <strong>vs.&nbsp;<span style="color:red">Expected</span></strong></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td><span class="math inline">\((5 - 19.51613)^2\)</span> = 210.7180302</td>
+<td><span class="math inline">\((50 - 35.48387)^2 =\)</span> 210.7180302</td>
+<td>55</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td><span class="math inline">\((50 -35.48387)^2\)</span> = 210.7180302</td>
+<td><span class="math inline">\((50 - 64.51613)^2 =\)</span> 210.7180302</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55</td>
+<td>100</td>
+<td>155</td>
+</tr>
+</tbody>
+</table>
+<p>The <span class="math inline">\(\chi^2\)</span> value is the sum of these squared divided by the expected frequency:</p>
+<p><span class="math display">\[
+\chi^2 = \sum\frac{(O_i - E_i)^2}{E_i}
+\]</span></p>
+<p>which in our case is</p>
+<p><span class="math display">\[
+\frac{210.7180302}{19.51613}  + \frac{210.7180302}{35.48387} + \frac{210.7180302}{35.48387} + \frac{210.7180302}{64.51613} = 25.94009
+\]</span></p>
+<p>Now that we have a score, we need to calculate a p-value from it using an appropriate chi-square distribution. The distribution we draw will depend on <a href="../describingData/dispersion.html#degrees-of-freedom">degrees of freedom</a> (this link explains the concept, but not how it changes the distribution shape). Whilst greater degrees of freedom normally results in a narrower distribution in which test statistics become more significant (see t-distributions for an example), <span class="math inline">\(\chi^2\)</span> distribution <strong>shapes</strong> change depending on the degrees of freedom. For example, if there’s only 1 degree of freedom, the <span class="math inline">\(\chi^2\)</span> distribution is one sided:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">5</span>,<span class="at">xlab =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="contingency_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>However, if there are 3 (or more) degrees of freedom it becomes a curve:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">3</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">40</span>,<span class="at">xlab =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="contingency_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ultimately, you are still trying to work out the likelihood of achieving your chi-square score or higher by calculating the area under the curve. The degrees of freedom of freedom are calculated as follows:</p>
+<p><span class="math display">\[
+df = (rows - 1) * (columns - 1)
+\]</span></p>
+<p>So in our case the degrees of freedom are:</p>
+<p><span class="math display">\[
+df = (rows - 1) * (columns - 1) = (2 - 1) * (2 - 1) = 1
+\]</span></p>
+<p>We calculated the <span class="math inline">\(\chi^2\)</span> as 25.94, so to estimate how significant the result is, we use area under the curve to capture how likely it is to get a <span class="math inline">\(\chi^2\)</span> value of 25.94 and above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>this_chi_2 <span class="ot">=</span> <span class="fl">25.94</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#create density curve</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">30</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">'Chi-Square Distribution (df = 1)'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">'Density'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">xlab =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#create vector of x values</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>x_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(this_chi_2, <span class="dv">30</span>,.<span class="dv">01</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#create vector of chi-square density values</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>p_vector <span class="ot">&lt;-</span> <span class="fu">dchisq</span>(x_vector, <span class="at">df =</span> <span class="dv">1</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#fill in portion of the density plot from 0 to 40</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(x_vector, <span class="fu">rev</span>(x_vector)), <span class="fu">c</span>(p_vector, <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(p_vector))),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">adjustcolor</span>(<span class="st">'red'</span>, <span class="at">alpha=</span><span class="fl">0.3</span>), <span class="at">border =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="contingency_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The area under the curve is <strong>imperceptible</strong> because it is so small. Let’s zoom in to the 20-30 range on the x-axis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>this_chi_2 <span class="ot">=</span> <span class="fl">25.94</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#create density curve</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">20</span>, <span class="at">to =</span> <span class="dv">30</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">'Chi-Square Distribution (df = 1)'</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">'Density'</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">xlab =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#create vector of x values</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>x_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(this_chi_2, <span class="dv">30</span>,.<span class="dv">01</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#create vector of chi-square density values</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>p_vector <span class="ot">&lt;-</span> <span class="fu">dchisq</span>(x_vector, <span class="at">df =</span> <span class="dv">1</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#fill in portion of the density plot from 0 to 40</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(x_vector, <span class="fu">rev</span>(x_vector)), <span class="fu">c</span>(p_vector, <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(p_vector))),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">adjustcolor</span>(<span class="st">'red'</span>, <span class="at">alpha=</span><span class="fl">0.3</span>), <span class="at">border =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="contingency_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now we can see that the possibility of getting a <span class="math inline">\(\chi^2\)</span> of 25.94 or above is <em>very</em> unlikely, and so our result is significant. How significant? Let’s take a shortcut and use a function to confirm we calculated the <span class="math inline">\(\chi^2\)</span> correctly and what area under the curve is reflected above (and thus what the p-value is):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sex_year_table <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">50</span>), <span class="fu">c</span>(<span class="dv">50</span> ,<span class="dv">50</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(sex_year_table) <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">"Female"</span>,<span class="st">"Male"</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">1953</span>, <span class="dv">2023</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># turning off correction</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(sex_year_table,<span class="at">correct =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  sex_year_table
+X-squared = 25.94, df = 1, p-value = 0.0000003522</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<p>The p-value is 0.0000004, indicating that <span class="math inline">\(\chi^2\)</span> values of 25.94 and above take 0.0000004 of the area under the curve. This provides very significant evidence that there’s an association between time and the ratio of females:males.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Probability density vs.&nbsp;cumulative distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When looking up <span class="math inline">\(\chi^2\)</span> distributions, be aware that there there’s a difference between a <strong>probability density function</strong> like we used above, and a <strong>cumulative distribution function</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">5</span>,<span class="at">xlab =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="contingency_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A <strong>cumulative distribution</strong> visualises the likelihood of a <span class="math inline">\(\chi^2\)</span> value and below <strong>as the y-axis for any individual</strong> <span class="math inline">\(\chi^2\)</span> <strong>value</strong>. It has already added up the cumulative probabilities for the lower <span class="math inline">\(\chi^2\)</span> values.</p>
+<p>To illustrate this concept, let’s evaluate the likelihood of getting a <span class="math inline">\(\chi^2\)</span> of 1 or less. Let’s use the <strong>probability density function</strong> to visualise area under the curve for this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>this_chi_2 <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#create density curve</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">5</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">main =</span> <span class="st">'Chi-Square Distribution (df = 1)'</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">ylab =</span> <span class="st">'Density'</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">xlab =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#create vector of x values</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>x_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, this_chi_2,.<span class="dv">01</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#create vector of chi-square density values</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>p_vector <span class="ot">&lt;-</span> <span class="fu">dchisq</span>(x_vector, <span class="at">df =</span> <span class="dv">1</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#fill in portion of the density plot from 0 to 40</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(x_vector, <span class="fu">rev</span>(x_vector)), <span class="fu">c</span>(p_vector, <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(p_vector))),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">adjustcolor</span>(<span class="st">'red'</span>, <span class="at">alpha=</span><span class="fl">0.3</span>), <span class="at">border =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="contingency_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that this range of 0 to 1 covers a large proportion of the area under the curve. We can see exactly how much within the following cumulative probability function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">5</span>,<span class="at">xlab =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">pchisq</span>(<span class="dv">1</span>, <span class="at">df=</span><span class="dv">1</span>), <span class="at">v =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="contingency_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>So now you can see that the area under the curve from 0 to 1 for the <strong>probability density function</strong> is 0.6826895 of the total area under the curve. The probability of getting a <span class="math inline">\(\chi^2\)</span> greater than 1 is thus 1 - 0.6826895 which is 0.3173105.</p>
+</div>
+</div>
+</section>
+<section id="cramers-v" class="level2">
+<h2 class="anchored" data-anchor-id="cramers-v">Cramer’s V</h2>
+<p>As mentioned earler, Cramer’s <span class="math inline">\(V\)</span> gives you the same results as <span class="math inline">\(\phi\)</span>, but can also be used to summarise the strength of association for designs more complicated than 2 x 2. Cramer’s <span class="math inline">\(V\)</span> can be calculated as follows:</p>
+<p><span class="math display">\[
+V^2 = \sqrt{\frac{\chi^2/n}{min(cols-1,rows-1)}}
+\]</span></p>
+<p>Let’s confirm that it gives the same value as <span class="math inline">\(\phi\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># phi calcultion from above</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">phi</span>(contingency_data, <span class="at">digits =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.4090909</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manual calculation of Cramer</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>((<span class="fl">25.94009</span><span class="sc">/</span><span class="dv">155</span>)<span class="sc">/</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.409091</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cramer function</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(confintr)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cramersv</span>(contingency_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4090909</code></pre>
+</div>
+</div>
+<p>You may notice that <span class="math inline">\(\phi\)</span> was negative whereas Cramer’s V is positive. This is because <span class="math inline">\(\chi^2\)</span> values are always positive (as they are calculated based off squared values), and so Cramer’s <span class="math inline">\(V\)</span> is positive because it’s based on <span class="math inline">\(\chi^2\)</span> values. It’s not intuitive to identify the direction of a finding based on it being a positive or negative <span class="math inline">\(\phi\)</span>, so it can be helpful to also include other summaries of the findings direction as described below.</p>
+</section>
+<section id="other-metrics-for-2-x-2-contingency-data" class="level2">
+<h2 class="anchored" data-anchor-id="other-metrics-for-2-x-2-contingency-data">Other metrics for 2 x 2 contingency data</h2>
+<p>We would like to capture the direction of our findings for the following data:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>5 (a)</td>
+<td>50 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>50 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155</td>
+</tr>
+</tbody>
+</table>
+<section id="odds-ratio" class="level3">
+<h3 class="anchored" data-anchor-id="odds-ratio">Odds Ratio</h3>
+<p>If we want to summarise how much the female:male ratio has shifted between years, we can use an odds ratio</p>
+<p><span class="math display">\[
+\frac{a/c}{b/d} = \frac{female_{1953}/male_{1953}}{female_{2023}/male_{2023}}
+\]</span></p>
+<p>A value of 1 would reflect no association between sex and year. A number above 1 would reflect a relatively higher number of females to males in 1953 compared to 2023. A number below would reflect a relatively higher number of females to males in 2023 compared to 1953. We can see from the above table that the ratio of females to males is higher in 2023 than 1953, so let’s see if the odds-ratio reflects this:</p>
+<p><span class="math display">\[
+\frac{a/c}{b/d} = \frac{female_{1953}/male_{1953}}{female_{2023}/male_{2023}} = \frac{5/50}{50/50} = .1
+\]</span></p>
+<p>Groovy, the odds ratio gives a relatively intuitive gauge of how big the differences in ratios is between years.</p>
+</section>
+<section id="risk-ratio" class="level3">
+<h3 class="anchored" data-anchor-id="risk-ratio">Risk Ratio</h3>
+<p>The risk ratio is similar conceptually to odds ratio, but compares proportions. In our case, it would look at the proportion of females within each year group and then compare them:</p>
+<p><span class="math display">\[
+\frac{a/(a+c)}{b/(b+c)} = \frac{female_{1953}/(male_{1953} + female_{1953})}{female_{2023}/(male_{2023} + female_{2023})} = \frac{propFemale_{1953}}{propFemale_{2023}} = \frac{5/55}{50/100} = \frac{10}{55} = .182
+\]</span></p>
+<p>As with the odds ratio above, a risk ratio below 1 would suggest that the proportion of females is lower in 1953 than 2023, and a risk ratio above 1 would suggest that the proportion of females is higher in 1953 than 2023.</p>
+</section>
+</section>
+<section id="what-to-do-if-you-have-5-or-less-in-one-of-your-cells" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-do-if-you-have-5-or-less-in-one-of-your-cells">What to do if you have 5 or less in one of your cells</h2>
+<p>There is an argument that if there is 5 or less in any cell in a contingency table you should not use Chi-Square without a correction as there’s a concern of an inflated risk of false-positives without this correction (we won’t be going into the maths behind this risk). We will go through the options of using a Yates Continuity Correction or a Fisher’s Exact test to deal with this situation.</p>
+<section id="yates-continuity-correction" class="level3">
+<h3 class="anchored" data-anchor-id="yates-continuity-correction">Yates Continuity Correction</h3>
+<p>In Yates Continuity Correction you subtract .5 from each cell to reduce the final <span class="math inline">\(\chi^2\)</span> value:</p>
+<p><span class="math display">\[
+\chi^2_{Yates} = \sum\frac{(abs(O_i - E_i)-.5)^2}{E_i}
+\]</span></p>
+<p>Let’s compare a manual calculation of a Yates corrected <span class="math inline">\(\chi^2\)</span> value to one using a function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manual calculation</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>(((<span class="fu">abs</span>(<span class="dv">5</span> <span class="sc">-</span> <span class="fl">19.51613</span>)<span class="sc">-</span>.<span class="dv">5</span>)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fl">19.51613</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>(((<span class="fu">abs</span>(<span class="dv">50</span> <span class="sc">-</span> <span class="fl">35.48387</span>)<span class="sc">-</span>.<span class="dv">5</span>)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fl">35.48387</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>(((<span class="fu">abs</span>(<span class="dv">50</span> <span class="sc">-</span> <span class="fl">35.48387</span>)<span class="sc">-</span>.<span class="dv">5</span>)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fl">35.48387</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>(((<span class="fu">abs</span>(<span class="dv">50</span> <span class="sc">-</span> <span class="fl">64.51613</span>)<span class="sc">-</span>.<span class="dv">5</span>)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fl">64.51613</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24.18388</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using function</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sex_year_table <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">50</span>), <span class="fu">c</span>(<span class="dv">50</span> ,<span class="dv">50</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(sex_year_table) <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">"Female"</span>,<span class="st">"Male"</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">1953</span>, <span class="dv">2023</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># turning off correction</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(sex_year_table,<span class="at">correct =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  sex_year_table
+X-squared = 24.184, df = 1, p-value = 0.0000008756</code></pre>
+</div>
+</div>
+<p>You may have noticed that we have turned <strong>correct</strong> (i.e.&nbsp;apply Yates Correction) to T for TRUE. Functions will sometimes automatically apply this correction, so it’s worth checking your output carefully to see if this has happened.</p>
+</section>
+<section id="fishers-exact-test" class="level3">
+<h3 class="anchored" data-anchor-id="fishers-exact-test">Fisher’s Exact Test</h3>
+<p>Whilst <span class="math inline">\(\chi^2\)</span> analysis p-values are based on an approximation based on a probability density function distribution of <span class="math inline">\(\chi^2\)</span> values, <strong>Fisher’s Exact Test</strong> calculates exactly how likely it is to get an outcome for each permutation:</p>
+<p><span class="math display">\[
+\frac{(a+b)!*(c+d)!*(a+c)!*(b+d)!}{a!*b!*c!*d!*n!}
+\]</span></p>
+<p><strong>Importantly, you must repeat this calculation for each more extreme value, and add together all outcomes to get the p-value that reflects the likelihood of getting this contingency or a more extreme one.</strong> To get a more extreme outcome look at cell (a) and judge whether increasing or reducing its value by 1 is more extreme. If you remove 1 from (a) you need to adjust all the other columns to maintain the row and column totals, for example:</p>
+<p><em>Original table</em></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>5 (a)</td>
+<td>50 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>50 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155 (n)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Slightly more extreme table</em></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>4 (a)</td>
+<td>51 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>51 (c)</td>
+<td>49 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155 (n)</td>
+</tr>
+</tbody>
+</table>
+<p>Then run the calculation again and add it to your previous p-value, and continue until you reach the maximum possible value in a (i.e.&nbsp;it’s no lower than 0 or no higher than (e) or (g)). Note that this will be a <strong>1-tailed hypothesis</strong> and you will need to reflect whether it is going against your hypothesis or not. In our case, it is consistent with our hypothesis that females are under-represented in 1953, so calculating all cases with less representation of females in 1953 is testing the significance of this hypothesis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># due to massive numbers using Brobdingnag package to avoid numbers becoming infinite</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Brobdingnag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Matrix</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'Brobdingnag'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:Matrix':
+
+    diag, t</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    diag, t</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>)) <span class="sc">*</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">/</span> (</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">5</span>)) <span class="sc">*</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">50</span>)) <span class="sc">*</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">50</span>)) <span class="sc">*</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">50</span>)) <span class="sc">*</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">155</span>))</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>)) <span class="sc">*</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>))</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">/</span> (</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">4</span>)) <span class="sc">*</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">51</span>)) <span class="sc">*</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">51</span>)) <span class="sc">*</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">49</span>)) <span class="sc">*</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">155</span>))</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>)) <span class="sc">*</span></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>))</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">/</span> (</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">3</span>)) <span class="sc">*</span></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">52</span>)) <span class="sc">*</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">52</span>)) <span class="sc">*</span></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">48</span>)) <span class="sc">*</span></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">155</span>))</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>)) <span class="sc">*</span></span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>))</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">/</span> (</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">2</span>)) <span class="sc">*</span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">53</span>)) <span class="sc">*</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">53</span>)) <span class="sc">*</span></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">47</span>)) <span class="sc">*</span></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">155</span>))</span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(</span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>)) <span class="sc">*</span></span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>))</span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">/</span> (</span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">1</span>)) <span class="sc">*</span></span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">54</span>)) <span class="sc">*</span></span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">54</span>)) <span class="sc">*</span></span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">46</span>)) <span class="sc">*</span></span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">155</span>))</span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(</span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>)) <span class="sc">*</span></span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>))</span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">/</span> (</span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">0</span>)) <span class="sc">*</span></span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">45</span>)) <span class="sc">*</span></span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">155</span>))</span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00000009582059</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.00000009582</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with package:</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(sex_year_table, <span class="at">alternative =</span> <span class="st">'less'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data
+
+data:  sex_year_table
+p-value = 0.00000009582
+alternative hypothesis: true odds ratio is less than 1
+95 percent confidence interval:
+ 0.0000000 0.2471546
+sample estimates:
+odds ratio 
+ 0.1013897 </code></pre>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Rabbit Hole 🐰 🕳️
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most psychology textbooks don’t address the following, so you can proceed to later pages without it.</p>
+<section id="whyhow-fishers-exact-test-works" class="level3">
+<h3 class="anchored" data-anchor-id="whyhow-fishers-exact-test-works">Why/How Fisher’s Exact Test works</h3>
+<p>The above formula is a bit dense, so let’s focus on a simpler example to explain the mathematics behind it.</p>
+<p><a href="../statsBasics/probability.html#permutation-analyses">Permutations on the probability page</a> describes ways of calculating how many unique permutations there are in situations like this. Let’s apply an explanation of Fisher’s test from Chapter 13 of <span class="citation" data-cites="hoffman2015biostatistics">(<a href="#ref-hoffman2015biostatistics" role="doc-biblioref">Hoffman 2015</a>)</span> to explain how the maths works for our current example.</p>
+<p>To start with, let’s work out how many unique permutations of females vs.&nbsp;males we could have within 1953. Using the general formula:</p>
+<p><span class="math display">\[
+\frac{(females_{1953} + males_{1953})!}{females_{1953}! * males_{1953}!} = \frac{55!}{5! * 50!} = 3478761
+\]</span></p>
+<p>Now let’s work out the same for 2023:</p>
+<p><span class="math display">\[
+\frac{(females_{2023} + males_{2023})!}{females_{2023}! * males_{2023}!} = \frac{100!}{50! * 50!} = 100891344545564518731063754752
+\]</span></p>
+<p>Now we can multiply the combinations from 1953 to those from 2023, as we can apply each combination from one year to any combination from the other year, to get 350976874642672723890193854162272256.</p>
+<p>Now that we’ve counted every possible valid permutation with our data (i.e.&nbsp;with the correct number of males and females in their respective years), we need to divide it by the total number of permutations that could exist regardless of year (as we have so far been focusing within years). With 55 females and 100 males we get the following:</p>
+<p><span class="math display">\[
+\frac{(females + males)!}{females! * males!} = \frac{(55+100)!}{55! * 100!} = 4041787069361244292202808568245231453995008
+\]</span></p>
+<p>So the likelihood of this specific outcome is:</p>
+<p><span class="math display">\[
+\frac{350976874642672723890193854162272256}{4041787069361244292202808568245231453995008} = 0.00000008683705
+\]</span></p>
+<p>Not super likely. Let’s compare this conceptual calculation with the above formula, and then use algebra to show that they are the same. Let’s check if we get the same value first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  (</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>)) <span class="sc">*</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">55</span>)) <span class="sc">*</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">100</span>))</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">/</span> (</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">5</span>)) <span class="sc">*</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">50</span>)) <span class="sc">*</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">50</span>)) <span class="sc">*</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">50</span>)) <span class="sc">*</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.brob</span>(<span class="fu">factorial</span>(<span class="dv">155</span>))</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00000008683705</code></pre>
+</div>
+</div>
+<p>… and now use algebra to show why, with reference to the table</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>1953</th>
+<th>2023</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>5 (a)</td>
+<td>50 (b)</td>
+<td>55 (e)</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>50 (c)</td>
+<td>50 (d)</td>
+<td>100 (f)</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>55 (g)</td>
+<td>100 (h)</td>
+<td>155 (n)</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\frac{perms_{1953}*perms_{2023}}{permsAcrossYears} = \frac{(\frac{g!}{a!*c!})*(\frac{h!}{b!*d!})}{\frac{n!}{e!*f!}} = \frac{(\frac{g! * h!}{a! * b! * c! * d!})}{(\frac{n!}{e! * f!})} = \frac{(\frac{e!*f!*g!*h!}{a!*b!*c!*d})}{n!}= \frac{(a+b)!*(c+d)!*(a+c)!*(b+d)!}{a!*b!*c!*d!*n!}
+\]</span></p>
+</section>
+</div>
+</div>
+</section>
+</section>
+<section id="g-test" class="level2">
+<h2 class="anchored" data-anchor-id="g-test">G-test</h2>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Optional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>There’s growing use of G-tests in place of <span class="math inline">\(\chi^2\)</span> tests, as they are more robust when the observed numbers are 2 times greater than the expected number. Otherwise they generally come to the same conclusion as <span class="math inline">\(\chi^2\)</span> tests. The formula for g-tests is:</p>
+<p><span class="math display">\[
+G = 2 * \sum O_i * ln(\frac{O_i}{E_i})
+\]</span></p>
+<p>Lets compare the outputs for a g-test on our data to a <span class="math inline">\(\chi^2\)</span> test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AMR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'AMR'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:confintr':
+
+    kurtosis, skewness</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:psych':
+
+    pca</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">g.test</span>(contingency_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in g.test(contingency_data): `fisher.test()` is always more reliable for
+2x2 tables and although much slower, often only takes seconds.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    G-test of independence
+
+data:  contingency_data
+X-squared = 29.482, p-value = 0.00000005645</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(contingency_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  contingency_data
+X-squared = 24.184, df = 1, p-value = 0.0000008756</code></pre>
+</div>
+</div>
+<section id="question-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
+<p>Will Cramer’s V give the same value as Phi?</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb44" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>viewof contingency_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Yes'</span><span class="op">,</span><span class="st">'No'</span>])<span class="op">;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>correct_contingency_1 <span class="op">=</span> <span class="st">'Yes'</span><span class="op">;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>contingency_1_result <span class="op">=</span> {</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(contingency_1_response <span class="op">==</span> correct_contingency_1){</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><strong><span><span id="ojs-element-id-1"></span></span></strong></p>
+</section>
+<section id="question-2" class="level4">
+<h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
+<p>Chi Square tests tell you…</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb45" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>viewof contingency_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'Effect size'</span><span class="op">,</span><span class="st">'Significance'</span>])<span class="op">;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>correct_contingency_2 <span class="op">=</span> <span class="st">'Significance'</span><span class="op">;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>contingency_2_result <span class="op">=</span> {</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(contingency_2_response <span class="op">==</span> correct_contingency_2){</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><strong><span><span id="ojs-element-id-2"></span></span></strong></p>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 
 
+<script type="ojs-module-contents">
+{"contents":[
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${contingency_1_result}</span>`", "cellName":"ojs-element-id-1"}
+,
+  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${contingency_2_result}</span>`", "cellName":"ojs-element-id-2"}
+]}
+</script>
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-hoffman2015biostatistics" class="csl-entry" role="doc-biblioentry">
+Hoffman, Julien IE. 2015. <em>Biostatistics for Medical and Biomedical Practitioners</em>. Academic press.
+</div>
+</div></section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof contingency_1_response = Inputs.radio(['Yes','No']);\ncorrect_contingency_1 = 'Yes';\ncontingency_1_result = {\n  if(contingency_1_response == correct_contingency_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof contingency_2_response = Inputs.radio(['Effect size','Significance']);\ncorrect_contingency_2 = 'Significance';\ncontingency_2_result = {\n  if(contingency_2_response == correct_contingency_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('contingency_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('contingency_2_response')"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../categorical";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

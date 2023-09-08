@@ -65,6 +65,12 @@ editor: visual
 
 ### Multiple Regressions
 
+## Categorical
+
+### Contingency
+
+{{< include ../categorical/contingencyQuestions.qmd >}}
+
 ## Item Analysis
 
 ### Cronbach Alpha

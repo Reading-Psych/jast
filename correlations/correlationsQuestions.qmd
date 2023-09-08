@@ -5,6 +5,7 @@ editor: visual
 #### Question 1
 
 Which test would be less influenced by skewed data?
+
 ```{ojs}
 //| echo: false
 viewof correlations_1_response = Inputs.radio(["Pearson's R","Spearman's Rho/Rank"]);
@@ -17,9 +18,13 @@ correlations_1_result = {
   };
 }
 ```
-${correlations_1_result}
+
+\${correlations_1_result}
+
+#### Question 2
 
 Can r values be greater than 1?
+
 ```{ojs}
 //| echo: false
 viewof correlations_2_response = Inputs.radio(['Yes, if the association is super strong','No, never ever']);
@@ -32,4 +37,5 @@ correlations_2_result = {
   };
 }
 ```
-${correlations_2_result}
+
+\${correlations_2_result}

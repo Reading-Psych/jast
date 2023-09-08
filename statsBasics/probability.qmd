@@ -24,7 +24,7 @@ Imagine that you want to predict the likelihood of flipping a coin on heads or t
 -   To summarise the likelihood of all combinations we could make the following table:
 
 |                               |                                              |                           |
-|-------------------------------|----------------------------------------------|---------------------------|
+|----------------------|--------------------------------|-------------------|
 | **First flip and likelihood** | **Second flip and likelihood**               | **Overall likelihood**    |
 | Heads (.5)                    | Heads (.5)                                   | 0.5 \* 0.5 = .25          |
 | Heads (.5)                    | Tails (.5)                                   | 0.5 \* 0.5 = .25          |
@@ -220,5 +220,108 @@ and get the same result.
 
 Note that it's easier to do simple calculations like above if the p-value thresholds are consistent (e.g. .05 in this case), whereas inconsistent p-value thresholds between outcomes can lead to false assumptions about **mutual exclusivity** as described above.
 :::
+
+## Permutation analyses
+
+::: callout-note
+## Rabbit Hole 🐰 🕳️
+
+Most psychology statistics books do not address this topic, so if you do not need to understand it to proceed with later pages.
+:::
+
+**Permutations** refer to specific combinations of outcomes. To calculate the likelihood of permutations you need to calculate the number of valid outcomes that matches it (e.g. how many ways can you flip a coin to make 2 heads and 1 tails) and divided by the number of all possible permutations. Thus we need to calculate 2 things:
+
+-   $validPerms$: How many combinations are there in which heads was flipped 2 times and tails 1 times
+
+-   $allPerms$: How many unique combinations/permutations can you get when flipping a coin 3 times (not restricted to 2 heads and 1 tails)
+
+We then divide $validPerms$ by $allOutcomes$ to calculate the likelihood of getting 2 out of 3 coins flipped as heads:
+
+$$
+\frac{validPerms}{allOutcomes} = \frac{nCr}{2^n}
+$$
+
+### Valid permutations
+
+::: callout-important
+## ! means factorial 
+
+We start using the ! sign for **factorial** below. Factorial means that you multiply a number by every integer that is smaller than it before you reach 0. Some examples:
+
+5! = 5 \* 4 \* 3 \* 2 \* 1 = 120
+
+3! = 3 \* 2 \* 1 = 6
+
+1! = 1
+
+Note that languages like R use ! to indicate NOT, so make sure to use the appropriate function (e.g. "factorial" in R)
+:::
+
+The formula for calculating how many valid permutations can be thought of as a mathematical shortcut to calculate how many permutations of all coins there are, and then a filter to only focus on unique permutations of heads and tails combinations:
+
+$$
+\frac{allPermutations}{uniqueValidCombinations} = \frac{n!}{heads!tails!}
+$$
+
+-   $n$ is the number of flips total
+
+-   $heads$ is the number of heads flips
+
+-   $tails$ is the number of tail flips
+
+One way to understand the formula (in admittedly broad terms), is that the top half of the equation needs to capture all the ways coins can be combined, and the bottom half controls for the fact that some coins are identical as heads or tails. To illustrate the first half, lets give each coin an identity, coin 1, 2 and 3:
+
+| Flip 1 | Flip 2 | Flip 3 |
+|--------|--------|--------|
+| Coin 1 | Coin 2 | Coin 3 |
+| Coin 1 | Coin 3 | Coin 2 |
+| Coin 2 | Coin 1 | Coin 3 |
+| Coin 2 | Coin 3 | Coin 1 |
+| Coin 3 | Coin 1 | Coin 2 |
+| Coin 3 | Coin 2 | Coin 1 |
+
+So there are 6 permutations. Fortunately, we don't need to draw out all permutations each time, we can calculate this through a simple iterative process:
+
+-   The first coin will have 3 positions it can be in
+
+-   The second coin will have 2 positions it can be in
+
+-   The third coin will only have 1 position it can be in
+
+This means you can multiply these together to get the total possible combinations of coin positions: 3 \* 2 \* 1, or more elegantly written as 3! (see factorials above).
+
+Now that we've used this technique to get every permutation of coins, we can now allocate heads and tails to the coins we have, even though this will end with repetition (which we will deal with later). In this example, let's say coins 1 and 2 are heads, and coin 3 is tails. Our grid will now look as follows:
+
+| Flip 1 | Flip 2 | Flip 3 |
+|--------|--------|--------|
+| Heads  | Heads  | Tails  |
+| Heads  | Tails  | Heads  |
+| Heads  | Heads  | Tails  |
+| Heads  | Tails  | Heads  |
+| Tails  | Heads  | Heads  |
+| Tails  | Heads  | Heads  |
+
+Whilst this is somewhat helpful, there's some redundant rows which are identical to each other. One way to calculate this is to calculate the permutations of coins within heads and tails separately, as the number of permutations there are within each of these captures how many repetitions there are driven by multiple instances of each type of coinflip. If that's not clear, perhaps the following will help:
+
+Coins 1 and 2 are heads, so we can see that 2! (2 \* 1 = 2) reflects the only 2 permutations:
+
+| Flip 1 | Flip 2 |
+|--------|--------|
+| Coin 1 | Coin 2 |
+| Coin 2 | Coin 1 |
+
+These 2 permutations will be "heads" in the table above, and so we know that we can divide the total number of permutations by 2 as half the sequences have coin 1 first and coin 2 later, and the other half have coin 2 first and coin 1 later. As there is only 1 tail coin you would only divide the permutations by 1! which is 1 anyway. So back to the formula:
+
+$$
+\frac{n!}{heads!*tails} = \frac{3!}{2! * 1!} = \frac{3*2*1}{2*1 * 1} = \frac{6}{2} = 3
+$$
+
+3 permutations of 2 heads and 1 tail. Going back to the formula above:
+
+$$
+\frac{validPerms}{allOutcomes} = \frac{3}{2^n} = \frac{3}{8}
+$$
+
+So there's a 3 in 8 chance of flipping 2 heads and 1 tails.
 
 {{< include probabilityQuestions.qmd >}}

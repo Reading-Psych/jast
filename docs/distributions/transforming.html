@@ -1411,7 +1411,7 @@ sample estimates:
 <span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
 <span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the squared 'gdpPercap' histogram</span></span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].hist(gapminder_2007[<span class="st">'gdpPercap'</span>] <span class="op">**</span> <span class="dv">2</span>, color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].hist(np.square(gapminder_2007[<span class="st">'gdpPercap'</span>]), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Squared"</span>)</span>
 <span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">"Life Expectancy"</span>)</span>
 <span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
@@ -1461,7 +1461,7 @@ sample estimates:
 <span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
 <span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the square root 'gdpPercap' histogram</span></span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].hist(gapminder_2007[<span class="st">'gdpPercap'</span>] <span class="op">**</span> <span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].hist(np.sqrt(gapminder_2007[<span class="st">'gdpPercap'</span>]), color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Square root"</span>)</span>
 <span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">"GDP per Capita"</span>)</span>
 <span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">"Frequency"</span>)</span>
@@ -1765,19 +1765,19 @@ sample estimates:
 <span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with original data:"</span>, correlation_original)</span>
 <span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with original data:"</span>, pvalue_original)</span>
 <span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with original data + 5 to one variable (an additive change)</span></span>
-<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a>correlation_gdp_plus_5, pvalue__plus_5 <span class="op">=</span> pearsonr(gdp_plus_5, life_plus_5)</span>
-<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with original data + 5:"</span>, correlation_gdp_plus_5)</span>
-<span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with original data +5:"</span>, pvalue__plus_5)</span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with original data + 5 to both variables (an additive change)</span></span>
+<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a>correlation_plus_5, pvalue_plus_5 <span class="op">=</span> pearsonr(gdp_plus_5, life_plus_5)</span>
+<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with original data + 5:"</span>, correlation_plus_5)</span>
+<span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with original data +5:"</span>, pvalue_plus_5)</span>
 <span id="cb76-21"><a href="#cb76-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-22"><a href="#cb76-22" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with original data - 10 to one variable (an additive change)</span></span>
-<span id="cb76-23"><a href="#cb76-23" aria-hidden="true" tabindex="-1"></a>correlation_gdp_minus_10, pvalue__minus_10 <span class="op">=</span> pearsonr(gdp_minus_10, life_minus_10)</span>
-<span id="cb76-24"><a href="#cb76-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with original data - 10:"</span>, correlation_gdp_minus_10)</span>
-<span id="cb76-25"><a href="#cb76-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with original data -10:"</span>, pvalue__minus_10)</span>
+<span id="cb76-22"><a href="#cb76-22" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with original data - 10 to both variables (an additive change)</span></span>
+<span id="cb76-23"><a href="#cb76-23" aria-hidden="true" tabindex="-1"></a>correlation_minus_10, pvalue_minus_10 <span class="op">=</span> pearsonr(gdp_minus_10, life_minus_10)</span>
+<span id="cb76-24"><a href="#cb76-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with original data - 10:"</span>, correlation_minus_10)</span>
+<span id="cb76-25"><a href="#cb76-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with original data -10:"</span>, pvalue_minus_10)</span>
 <span id="cb76-26"><a href="#cb76-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-27"><a href="#cb76-27" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with multiplication of 5 to one variable (multiplicative)</span></span>
-<span id="cb76-28"><a href="#cb76-28" aria-hidden="true" tabindex="-1"></a>correlation_gdp_times_5, pvalue_times_5 <span class="op">=</span> pearsonr(gdp_times_5, life_times_5)</span>
-<span id="cb76-29"><a href="#cb76-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with multiplication of 5:"</span>, correlation_gdp_times_5)</span>
+<span id="cb76-27"><a href="#cb76-27" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with multiplication of 5 to both variables (multiplicative)</span></span>
+<span id="cb76-28"><a href="#cb76-28" aria-hidden="true" tabindex="-1"></a>correlation_times_5, pvalue_times_5 <span class="op">=</span> pearsonr(gdp_times_5, life_times_5)</span>
+<span id="cb76-29"><a href="#cb76-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with multiplication of 5:"</span>, correlation_times_5)</span>
 <span id="cb76-30"><a href="#cb76-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with multiplication of 5:"</span>, pvalue_times_5)</span>
 <span id="cb76-31"><a href="#cb76-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb76-32"><a href="#cb76-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid of scatter plots</span></span>
@@ -1801,14 +1801,14 @@ sample estimates:
 <span id="cb76-50"><a href="#cb76-50" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb76-51"><a href="#cb76-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="transforming_Table8.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation between ‘gdpPercap’ and ‘lifeExp’"> <img src="transforming_Table9.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation with original data + 5 to one variable (an additive change)"></p>
+<p><img src="transforming_Table8.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation between ‘gdpPercap’ and ‘lifeExp’"> <img src="transforming_Table9.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation with original data + 5 to both variables (an additive change)"></p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="transforming_Table10.png" class="img-fluid figure-img" width="600"></p>
-<figcaption class="figure-caption">Correlation with original data - 10 to one variable (an additive change)</figcaption>
+<figcaption class="figure-caption">Correlation with original data - 10 to both variables (an additive change)</figcaption>
 </figure>
 </div>
-<p><img src="transforming_Table11.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation with multiplication of 5 to one variable (multiplicative)"> <img src="transforming_Figure10.png" class="img-fluid" data-fig-align="left" width="650" alt="Grid comparing the 4 transformations"></p>
+<p><img src="transforming_Table11.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation with multiplication of 5 to both variables (multiplicative)"> <img src="transforming_Figure10.png" class="img-fluid" data-fig-align="left" width="650" alt="Grid comparing the 4 transformations"></p>
 </div>
 </div>
 </div>
@@ -1840,7 +1840,7 @@ sample estimates:
       cor 
 0.6786624 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with log of variables squared</span></span>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with log of variables</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(gapminder_2007<span class="sc">$</span>gdpPercap),</span>
 <span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
@@ -1876,10 +1876,11 @@ sample estimates:
       cor 
 0.5898894 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(gapminder_2007<span class="sc">$</span>gdpPercap),</span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with square root of both variable</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(gapminder_2007<span class="sc">$</span>gdpPercap),</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(gapminder_2007<span class="sc">$</span>lifeExp)</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -1906,7 +1907,60 @@ sample estimates:
 </div>
 </div>
 <div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the transformations</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>gdp_log <span class="op">=</span> np.log(gapminder_2007[<span class="st">'gdpPercap'</span>])</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>gdp_sqrt <span class="op">=</span> np.sqrt(gapminder_2007[<span class="st">'gdpPercap'</span>])</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>gdp_squared <span class="op">=</span> np.square(gapminder_2007[<span class="st">'gdpPercap'</span>])</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>life_log <span class="op">=</span> np.log(gapminder_2007[<span class="st">'lifeExp'</span>])</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>life_sqrt <span class="op">=</span> np.sqrt(gapminder_2007[<span class="st">'lifeExp'</span>])</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>life_squared <span class="op">=</span> np.square(gapminder_2007[<span class="st">'lifeExp'</span>])</span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with original data</span></span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>correlation_original, pvalue_original <span class="op">=</span> pearsonr(gapminder_2007[<span class="st">'gdpPercap'</span>], gapminder_2007[<span class="st">'lifeExp'</span>])</span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with original data:"</span>, correlation_original)</span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with original data:"</span>, pvalue_original)</span>
+<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with both variables log transformed</span></span>
+<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>correlation_log, pvalue_log <span class="op">=</span> pearsonr(gdp_log, life_log)</span>
+<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with both variables log transformed:"</span>, correlation_log)</span>
+<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with both variables log transformed:"</span>, pvalue_log)</span>
+<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with both variables square rooted</span></span>
+<span id="cb86-23"><a href="#cb86-23" aria-hidden="true" tabindex="-1"></a>correlation_sqrt, pvalue_sqrt <span class="op">=</span> pearsonr(gdp_sqrt, life_sqrt)</span>
+<span id="cb86-24"><a href="#cb86-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with both variables square rooted:"</span>, correlation_sqrt)</span>
+<span id="cb86-25"><a href="#cb86-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with both variables square rooted:"</span>, pvalue_sqrt)</span>
+<span id="cb86-26"><a href="#cb86-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-27"><a href="#cb86-27" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation with both variables squared</span></span>
+<span id="cb86-28"><a href="#cb86-28" aria-hidden="true" tabindex="-1"></a>correlation_squared, pvalue_squared <span class="op">=</span> pearsonr(gdp_squared, life_squared)</span>
+<span id="cb86-29"><a href="#cb86-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation with both variables squared:"</span>, correlation_squared)</span>
+<span id="cb86-30"><a href="#cb86-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p-value of correlation with multiplication of 5:"</span>, pvalue_squared)</span>
+<span id="cb86-31"><a href="#cb86-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-32"><a href="#cb86-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a grid of scatter plots</span></span>
+<span id="cb86-33"><a href="#cb86-33" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb86-34"><a href="#cb86-34" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb86-35"><a href="#cb86-35" aria-hidden="true" tabindex="-1"></a>plt.scatter(gapminder_2007[<span class="st">'gdpPercap'</span>], gapminder_2007[<span class="st">'lifeExp'</span>])</span>
+<span id="cb86-36"><a href="#cb86-36" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Original Correlation"</span>)</span>
+<span id="cb86-37"><a href="#cb86-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-38"><a href="#cb86-38" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb86-39"><a href="#cb86-39" aria-hidden="true" tabindex="-1"></a>plt.scatter(gdp_log, life_log)</span>
+<span id="cb86-40"><a href="#cb86-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Log Transformation"</span>)</span>
+<span id="cb86-41"><a href="#cb86-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-42"><a href="#cb86-42" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb86-43"><a href="#cb86-43" aria-hidden="true" tabindex="-1"></a>plt.scatter(gdp_sqrt, life_sqrt)</span>
+<span id="cb86-44"><a href="#cb86-44" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Square Root Transformation"</span>)</span>
+<span id="cb86-45"><a href="#cb86-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-46"><a href="#cb86-46" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb86-47"><a href="#cb86-47" aria-hidden="true" tabindex="-1"></a>plt.scatter(gdp_squared, life_squared)</span>
+<span id="cb86-48"><a href="#cb86-48" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Squared Transformation"</span>)</span>
+<span id="cb86-49"><a href="#cb86-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-50"><a href="#cb86-50" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb86-51"><a href="#cb86-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="transforming_Table8.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation between ‘gdpPercap’ and ‘lifeExp’"> <img src="transforming_Table12.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation between ‘gdpPercap’ and ‘lifeExp’ after log transformation"> <img src="transforming_Table13.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation between ‘gdpPercap’ and ‘lifeExp’ after square root transformation"> <img src="transforming_Table14.png" class="img-fluid" data-fig-align="left" width="600" alt="Correlation between ‘gdpPercap’ and ‘lifeExp’ after squared transformation"> <img src="transforming_Figure11.png" class="img-fluid" data-fig-align="left" width="650" alt="Grid comparing the 4 transformations"></p>
 </div>
 </div>
 </div>
@@ -1930,18 +1984,13 @@ Transforming is not universally accepted
 <div class="tab-content">
 <div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_us_europe <span class="ot">&lt;-</span> gapminder_2007[</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span><span class="sc">|</span> </span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  gapminder_2007<span class="sc">$</span>year <span class="sc">==</span> <span class="st">"Americas"</span>,</span>
-<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           estimate        se     zScore
 skew     -0.1028377 0.4268924 -0.2408985
 kurtosis -1.0441533 0.8327456 -1.2538683</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>((gapminder_2007<span class="sc">$</span>gdpPercap[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>((gapminder_2007<span class="sc">$</span>gdpPercap[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         estimate        se   zScore
 skew     1.707376 0.3304137 5.167389
@@ -1950,7 +1999,11 @@ kurtosis 1.793325 0.6500932 2.758566</code></pre>
 </div>
 </div>
 <div id="tabset-20-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-20-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Europe"</span>])</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="transforming_Table15.png" class="img-fluid" data-fig-align="left" width="600" alt="Table with skweness and kurtosis for ‘gdpPercap’ for Europe"> <img src="transforming_Table16.png" class="img-fluid" data-fig-align="left" width="600" alt="Table with skweness and kurtosis for ‘gdpPercap’ for Africa"></p>
 </div>
 </div>
 </div>
@@ -1960,18 +2013,23 @@ kurtosis 1.793325 0.6500932 2.758566</code></pre>
 <div class="tab-content">
 <div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.985978</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.486539</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-21-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-21-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>np.log(gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Europe"</span>]).mean()</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>np.log(gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Africa"</span>]).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>9.985978130053216</code></pre>
+<pre><code>7.486539235254513</code></pre>
 </div>
 </div>
 </div>
@@ -1981,13 +2039,13 @@ kurtosis 1.793325 0.6500932 2.758566</code></pre>
 <div class="tab-content">
 <div id="tabset-22-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-22-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           estimate        se     zScore
 skew     -0.7604293 0.4268924 -1.7813138
 kurtosis -0.6776747 0.8327456 -0.8137835</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spssSkewKurtosis</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           estimate        se    zScore
 skew      0.5431380 0.3304137  1.643812
@@ -1996,7 +2054,11 @@ kurtosis -0.6719277 0.6500932 -1.033587</code></pre>
 </div>
 </div>
 <div id="tabset-22-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-22-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(np.log(gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Europe"</span>]))</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>spssSkewKurtosis(np.log(gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Africa"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="transforming_Table17.png" class="img-fluid" data-fig-align="left" width="600" alt="Table with skweness and kurtosis for ‘gdpPercap’ for Europe after log transformation"> <img src="transforming_Table18.png" class="img-fluid" data-fig-align="left" width="600" alt="Table with skweness and kurtosis for ‘gdpPercap’ for Africa after log transformation"></p>
 </div>
 </div>
 </div>
@@ -2006,18 +2068,23 @@ kurtosis -0.6719277 0.6500932 -1.033587</code></pre>
 <div class="tab-content">
 <div id="tabset-23-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-23-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 25054.48</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_2007<span class="sc">$</span>gdpPercap_log[gapminder_2007<span class="sc">$</span>continent <span class="sc">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.486539</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-23-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-23-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Europe"</span>].mean()</span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>np.log(gapminder_2007[<span class="st">'gdpPercap'</span>].loc[gapminder_2007[<span class="st">'continent'</span>] <span class="op">==</span>  <span class="st">"Africa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>25054.481635933338</code></pre>
+<pre><code>7.486539235254513</code></pre>
 </div>
 </div>
 </div>
@@ -2029,15 +2096,15 @@ kurtosis -0.6719277 0.6500932 -1.033587</code></pre>
 <h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Which types of transformations <strong>might</strong> make a distribution normal?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb102" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'linear'</span><span class="op">,</span><span class="st">'non-linear'</span>])<span class="op">;</span></span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_1 <span class="op">=</span> <span class="st">'non-linear'</span><span class="op">;</span></span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>transformation_1_result <span class="op">=</span> {</span>
-<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_1_response <span class="op">==</span> correct_transformation_1){</span>
-<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
-<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.'</span><span class="op">;</span></span>
-<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb111" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'linear'</span><span class="op">,</span><span class="st">'non-linear'</span>])<span class="op">;</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_1 <span class="op">=</span> <span class="st">'non-linear'</span><span class="op">;</span></span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>transformation_1_result <span class="op">=</span> {</span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_1_response <span class="op">==</span> correct_transformation_1){</span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
+<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete. The pattern of a distribution does not change after linear transformations.'</span><span class="op">;</span></span>
+<span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb111-9"><a href="#cb111-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -2066,15 +2133,15 @@ kurtosis -0.6719277 0.6500932 -1.033587</code></pre>
 <h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
 <p>Which of the following transformations is least likely to result in a normal distribution?</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb103" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'log'</span><span class="op">,</span><span class="st">'square'</span><span class="op">,</span><span class="st">'square-root'</span>])<span class="op">;</span></span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_2 <span class="op">=</span> <span class="st">'square'</span><span class="op">;</span></span>
-<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>transformation_2_result <span class="op">=</span> {</span>
-<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_2_response <span class="op">==</span> correct_transformation_2){</span>
-<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.'</span><span class="op">;</span></span>
-<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb103-8"><a href="#cb103-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb103-9"><a href="#cb103-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb112" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>viewof transformation_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'log'</span><span class="op">,</span><span class="st">'square'</span><span class="op">,</span><span class="st">'square-root'</span>])<span class="op">;</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>correct_transformation_2 <span class="op">=</span> <span class="st">'square'</span><span class="op">;</span></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>transformation_2_result <span class="op">=</span> {</span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(transformation_2_response <span class="op">==</span> correct_transformation_2){</span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct! Squaring your distribution will exagerate even relative differences between your data points, and thus likely to skew your distribution.'</span><span class="op">;</span></span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">

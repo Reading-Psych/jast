@@ -555,7 +555,7 @@ axs[0].set_xlabel("Life Expectancy")
 axs[0].set_ylabel("Frequency")
 
 # Plot the squared 'gdpPercap' histogram
-axs[1].hist(gapminder_2007['gdpPercap'] ** 2, color='green', alpha=0.5)
+axs[1].hist(np.square(gapminder_2007['gdpPercap']), color='green', alpha=0.5)
 axs[1].set_title("Squared")
 axs[1].set_xlabel("Life Expectancy")
 axs[1].set_ylabel("Frequency")
@@ -599,7 +599,7 @@ axs[0].set_xlabel("GDP per Capita")
 axs[0].set_ylabel("Frequency")
 
 # Plot the square root 'gdpPercap' histogram
-axs[1].hist(gapminder_2007['gdpPercap'] ** 0.5, color='green', alpha=0.5)
+axs[1].hist(np.sqrt(gapminder_2007['gdpPercap']), color='green', alpha=0.5)
 axs[1].set_title("Square root")
 axs[1].set_xlabel("GDP per Capita")
 axs[1].set_ylabel("Frequency")
@@ -831,19 +831,19 @@ correlation_original, pvalue_original = pearsonr(gapminder_2007['gdpPercap'], ga
 print("Correlation with original data:", correlation_original)
 print("p-value of correlation with original data:", pvalue_original)
 
-# correlation with original data + 5 to one variable (an additive change)
-correlation_gdp_plus_5, pvalue__plus_5 = pearsonr(gdp_plus_5, life_plus_5)
-print("Correlation with original data + 5:", correlation_gdp_plus_5)
-print("p-value of correlation with original data +5:", pvalue__plus_5)
+# correlation with original data + 5 to both variables (an additive change)
+correlation_plus_5, pvalue_plus_5 = pearsonr(gdp_plus_5, life_plus_5)
+print("Correlation with original data + 5:", correlation_plus_5)
+print("p-value of correlation with original data +5:", pvalue_plus_5)
 
-# correlation with original data - 10 to one variable (an additive change)
-correlation_gdp_minus_10, pvalue__minus_10 = pearsonr(gdp_minus_10, life_minus_10)
-print("Correlation with original data - 10:", correlation_gdp_minus_10)
-print("p-value of correlation with original data -10:", pvalue__minus_10)
+# correlation with original data - 10 to both variables (an additive change)
+correlation_minus_10, pvalue_minus_10 = pearsonr(gdp_minus_10, life_minus_10)
+print("Correlation with original data - 10:", correlation_minus_10)
+print("p-value of correlation with original data -10:", pvalue_minus_10)
 
-# correlation with multiplication of 5 to one variable (multiplicative)
-correlation_gdp_times_5, pvalue_times_5 = pearsonr(gdp_times_5, life_times_5)
-print("Correlation with multiplication of 5:", correlation_gdp_times_5)
+# correlation with multiplication of 5 to both variables (multiplicative)
+correlation_times_5, pvalue_times_5 = pearsonr(gdp_times_5, life_times_5)
+print("Correlation with multiplication of 5:", correlation_times_5)
 print("p-value of correlation with multiplication of 5:", pvalue_times_5)
 
 # Create a grid of scatter plots
@@ -869,11 +869,12 @@ plt.show()
 
 ```
 
-![Correlation between 'gdpPercap' and 'lifeExp'](transforming_Table8.png){fig-align="left" width="600"} ![Correlation with original data + 5 to one variable (an additive change)](transforming_Table9.png){fig-align="left" width="600"}
+![Correlation between 'gdpPercap' and 'lifeExp'](transforming_Table8.png){fig-align="left" width="600"} ![Correlation with original data + 5 to both variables (an additive change)](transforming_Table9.png){fig-align="left" width="600"}
 
-![Correlation with original data - 10 to one variable (an additive change)](transforming_Table10.png){fig-align="left" width="600"}
+![Correlation with original data - 10 to both variables (an additive change)](transforming_Table10.png){fig-align="left" width="600"}
 
-![Correlation with multiplication of 5 to one variable (multiplicative)](transforming_Table11.png){fig-align="left" width="600"} ![Grid comparing the 4 transformations](transforming_Figure10.png){fig-align="left" width="650"}
+![Correlation with multiplication of 5 to both variables (multiplicative)](transforming_Table11.png){fig-align="left" width="600"} 
+![Grid comparing the 4 transformations](transforming_Figure10.png){fig-align="left" width="650"}
 :::
 
 You can see that the transformations being linear haven't changed the nature of the associations.
@@ -892,7 +893,7 @@ cor.test(
   gapminder_2007$lifeExp
 )
 
-# correlation with log of variables squared
+# correlation with log of variables
 cor.test(
   log(gapminder_2007$gdpPercap),
   log(gapminder_2007$lifeExp)
@@ -904,6 +905,7 @@ cor.test(
   gapminder_2007$lifeExp ^ 2
 )
 
+# correlation with square root of both variable
 cor.test(
   sqrt(gapminder_2007$gdpPercap),
   sqrt(gapminder_2007$lifeExp)
@@ -923,8 +925,64 @@ plot(sqrt(gapminder_2007$gdpPercap),sqrt(gapminder_2007$lifeExp), main = "square
 ```{python}
 #| eval: false
 
+from scipy.stats import pearsonr
 
+# Define the transformations
+gdp_log = np.log(gapminder_2007['gdpPercap'])
+gdp_sqrt = np.sqrt(gapminder_2007['gdpPercap'])
+gdp_squared = np.square(gapminder_2007['gdpPercap'])
+
+life_log = np.log(gapminder_2007['lifeExp'])
+life_sqrt = np.sqrt(gapminder_2007['lifeExp'])
+life_squared = np.square(gapminder_2007['lifeExp'])
+
+# correlation with original data
+correlation_original, pvalue_original = pearsonr(gapminder_2007['gdpPercap'], gapminder_2007['lifeExp'])
+print("Correlation with original data:", correlation_original)
+print("p-value of correlation with original data:", pvalue_original)
+
+# correlation with both variables log transformed
+correlation_log, pvalue_log = pearsonr(gdp_log, life_log)
+print("Correlation with both variables log transformed:", correlation_log)
+print("p-value of correlation with both variables log transformed:", pvalue_log)
+
+# correlation with both variables square rooted
+correlation_sqrt, pvalue_sqrt = pearsonr(gdp_sqrt, life_sqrt)
+print("Correlation with both variables square rooted:", correlation_sqrt)
+print("p-value of correlation with both variables square rooted:", pvalue_sqrt)
+
+# correlation with both variables squared
+correlation_squared, pvalue_squared = pearsonr(gdp_squared, life_squared)
+print("Correlation with both variables squared:", correlation_squared)
+print("p-value of correlation with multiplication of 5:", pvalue_squared)
+
+# Create a grid of scatter plots
+plt.figure(figsize=(12, 6))
+plt.subplot(2, 2, 1)
+plt.scatter(gapminder_2007['gdpPercap'], gapminder_2007['lifeExp'])
+plt.title("Original Correlation")
+
+plt.subplot(2, 2, 2)
+plt.scatter(gdp_log, life_log)
+plt.title("Log Transformation")
+
+plt.subplot(2, 2, 3)
+plt.scatter(gdp_sqrt, life_sqrt)
+plt.title("Square Root Transformation")
+
+plt.subplot(2, 2, 4)
+plt.scatter(gdp_squared, life_squared)
+plt.title("Squared Transformation")
+
+plt.tight_layout()
+plt.show()
 ```
+
+![Correlation between 'gdpPercap' and 'lifeExp'](transforming_Table8.png){fig-align="left" width="600"}
+![Correlation between 'gdpPercap' and 'lifeExp' after log transformation](transforming_Table12.png){fig-align="left" width="600"}
+![Correlation between 'gdpPercap' and 'lifeExp' after square root transformation](transforming_Table13.png){fig-align="left" width="600"}
+![Correlation between 'gdpPercap' and 'lifeExp' after squared transformation](transforming_Table14.png){fig-align="left" width="600"}
+![Grid comparing the 4 transformations](transforming_Figure11.png){fig-align="left" width="650"}
 :::
 
 ::: callout-warning
@@ -940,15 +998,8 @@ Whilst this page describes ways to transform the data and how they impact the di
 ## R
 
 ```{r}
-gapminder_2007_us_europe <- gapminder_2007[
-  gapminder_2007$continent ==  "Europe"| 
-  gapminder_2007$year == "Americas",
-]
-
 spssSkewKurtosis(gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Europe"])
 spssSkewKurtosis((gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Africa"]))
-
-
 ```
 
 ## Python
@@ -956,8 +1007,11 @@ spssSkewKurtosis((gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Africa"
 ```{python}
 #| eval: false
 
-
+spssSkewKurtosis(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"])
+spssSkewKurtosis(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"])
 ```
+![Table with skweness and kurtosis for 'gdpPercap' for Europe](transforming_Table15.png){fig-align="left" width="600"}
+![Table with skweness and kurtosis for 'gdpPercap' for Africa](transforming_Table16.png){fig-align="left" width="600"}
 :::
 
 So We can see that there's a significant problem with skewness for countries from Africa (zScore \> 1.96) but not from Europe. The correct thing to do is to apply any transformation (to address skewness) to Africa to Europe also to avoid differences between the groups reflecting bias from the distortions. Logarithmic transformations can help reduce skewness, so let's see how the means compare after applying the log transformation to both groups:
@@ -975,7 +1029,15 @@ mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
 ```{python}
 #| eval: false
 
+np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"]).mean()
+np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"]).mean()
+```
+```
+9.985978130053216
+```
 
+```
+7.486539235254513
 ```
 :::
 
@@ -994,8 +1056,11 @@ spssSkewKurtosis(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Afri
 ```{python}
 #| eval: false
 
-
+spssSkewKurtosis(np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"]))
+spssSkewKurtosis(np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"]))
 ```
+![Table with skweness and kurtosis for 'gdpPercap' for Europe after log transformation](transforming_Table17.png){fig-align="left" width="600"}
+![Table with skweness and kurtosis for 'gdpPercap' for Africa after log transformation](transforming_Table18.png){fig-align="left" width="600"}
 :::
 
 Looking good. Now, what **would have happened** if we had only log-transformed Africa's data as it had the skewed distribution:
@@ -1013,7 +1078,14 @@ mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
 ```{python}
 #| eval: false
 
-
+gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"].mean()
+np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"])
+```
+```
+25054.481635933338
+```
+```
+7.486539235254513
 ```
 :::
 

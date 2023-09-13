@@ -1,5 +1,5 @@
 ---
-title: "General Linear Models and Sum of Squares"
+title: "General Linear Models and Sum of Squares (R, Python)"
 format: 
   html:  
     code-fold: false
@@ -28,7 +28,11 @@ $$
 Data = Model + Error
 $$
 
-Data: The dependent variable in your analysis Model: A model which predicts a phenomenon. This could be multiple independent variables. Error: What data isn't explained by the model.
+Data: The dependent variable in your analysis
+
+Model: A model which predicts a phenomenon. This could be multiple independent variables.
+
+Error: What data isn't explained by the model.
 
 ## Dummy vs. effect coding for categorical variables in a model
 
@@ -75,11 +79,11 @@ gapminder_2007 = gapminder.loc[gapminder['year'] == 2007]
 
 gapminder_2007['lifeExp'].mean()
 ```
-:::
-
 ```         
 67.00742253521126
 ```
+:::
+
 
 $$
 estimatedLifeExpectancy = 67.01 + Error
@@ -91,6 +95,8 @@ Which could be visualised as:
 ## R
 
 ```{r}
+#| label: fig-mean-life-exp-resid
+#| fig-cap: "Plot of mean lifeExp and residuals"
 library(ggplot2)
 ggplot(
   gapminder_2007, aes(x=rank(lifeExp), y=lifeExp)
@@ -131,11 +137,11 @@ plt.xlabel("rank(lifeExp)")
 plt.ylabel("Life Expectancy")
 plt.show()
 ```
+![*Fig. 1.* Plot of mean lifeExp and residuals](generalLinearModels-Figure1.png){fig-align="left" width="700" height="500"}
+
 :::
 
-![Plot of Mean rank(lifeExp) and residuals](generalLinearModels-Figure1.png){fig-align="left" width="700" height="500"}
 
-*Fig. 1.*
 
 In English, the above model and figure allow you to predict that anyone's life expectancy will be 67 years. However, as you can also see, there's a huge amount of error, i.e. variance in life expectancy that is not explained by the model. These errors can be squared and summed to give the **sum of squares**, a statistic of how much error there is around the model:
 
@@ -149,6 +155,8 @@ Which can be visualised as follows:
 ## R
 
 ```{r}
+#| label: fig-mean-life-exp-resid-squared
+#| fig-cap: "Plot of squared residuals"
 ggplot(
   gapminder_2007, 
   aes(
@@ -190,13 +198,10 @@ plt.ylabel("(Life Expectancy - mean(Life Expectancy))^2")
 # show plot
 plt.show()
 ```
+![*Fig. 2.* Plot of squared residuals](generalLinearModels-Figure2.png){fig-align="left" width="700" height="500"}
 :::
 
-![Plot of squared residuals](generalLinearModels-Figure2.png){fig-align="left" width="700" height="500"}
-
-*Fig. 2.*
-
-You can directly compare **fig. 1. and fig. 2.** to see how much error is associated with each data point compared to the model. Fig. 2. is positive because it is the distance of the data-point from the mean squared. If you added together all the **squares (pink lines)** in fig. 2. that would give you the **sum of squares.**
+You can inspect **fig. 1. and fig. 2.** to see how much error is associated with each data point compared to the model (mean). Fig. 2. is positive because it is the distance of the data-point from the mean squared. If you added together all the **squares (pink lines)** in fig. 2. that would give you the **sum of squares.**
 
 As you may have guessed, it is possible to have more precise models that have less error, and thus a smaller **sum of squares**. The sum of squares around the mean is also the **total sum of squares,** and the **total variance**. When we calculate the proportion of the variance that a model explains, we are comparing it to this **variance around the mean.**
 
@@ -210,6 +215,8 @@ T-tests are restricted to comparisons between 2 conditions/groups, so we will re
 ## R
 
 ```{r}
+#| label: fig-mean-life-exp-resid-2-continents
+#| fig-cap: "The errors around the mean of life expectancy across Europe and American countries"
 gapminder_americas_europe <- subset(
   gapminder_2007,   # the data set
   continent == "Europe" | continent == "Americas"
@@ -258,11 +265,11 @@ plt.ylabel("lifeExp")
 plt.show()
 
 ```
+![*Fig. 3.* The errors around the mean of life expectancy across Europe and American countries.](generalLinearModels-Figure3.png){fig-align="left" width="700" height="500"}
+
 :::
 
-*Fig. 3.* The errors around the mean of life expectancy across Europe and American countries.
 
-![Plot with the errors around the mean of life expectancy across Europe and American countries](generalLinearModels-Figure3.png){fig-align="left" width="700" height="500"}
 
 Once we square the errors in the pink lines above, we'll get the **squares:**
 
@@ -270,6 +277,8 @@ Once we square the errors in the pink lines above, we'll get the **squares:**
 ## R
 
 ```{r}
+#| label: fig-mean-life-exp-resid-squared-2-continents
+#| fig-cap: "The squared errors around the mean of life expectancy across Europe and American countries"
 ggplot(
   gapminder_americas_europe, 
   aes(
@@ -313,13 +322,13 @@ plt.show()
 
 sum((gapminder_americas_europe["lifeExp"]-gapminder_americas_europe["lifeExp"].mean())**2)
 ```
-:::
-
-![Plot with the errors around the mean of life expectancy across Europe and American countries](generalLinearModels-Figure4.png){fig-align="left" width="700" height="500"}
-
+![The squared errors around the mean of life expectancy across Europe and American countries](generalLinearModels-Figure4.png){fig-align="left" width="700" height="500"}
 ```         
 953.4477649818183
 ```
+:::
+
+
 
 And when you add all of these together:
 
@@ -327,7 +336,7 @@ $$
 SumOfSquares = \sum(Y_i-\bar{Y})^2 = 953.4478
 $$
 
-So if the model we create for a t-test would result in a smaller **sum of squares** then that suggests it's a more precise model for estimating life expectancy than simply using the **mean** as a model. This is because this would mean there's less **error** in this model. Let's model this using a t-test. For this we will need to dummy code country:
+So if the model we create for a t-test would result in a smaller **sum of squares** then that suggests it's a more precise model for estimating life expectancy than simply using the **mean** as a model. This is because this would mean there's less **error** in this model. Let's model this using a t-test. For this we will need to effect code continent:
 
 ::: panel-tabset
 ## R
@@ -356,16 +365,16 @@ cols = cols[len(cols)-1:len(cols):1]+cols[0:-1:1]
 gapminder_americas_europe = gapminder_americas_europe[cols]
 print(tabulate(gapminder_americas_europe[:6], headers=gapminder_americas_europe.head(), tablefmt="fancy_grid",showindex=False))
 ```
+![Table](generalLinearModels-Table1.png){fig-align="left" height="300"}
 :::
 
-![Table](generalLinearModels-Table1.png){fig-align="left" height="300"}
 
-Now that we have dummy coded the continent, we can create a new model to try to predict an individual's life expectancy based on which continent they are from
+Now that we have effect coded the continent, we can create a new model to try to predict an individual's life expectancy based on which continent they are from
 
 $$
-Y = intercept + \beta * dummyVariable + Error
+Y = intercept + \beta * effectVariable + Error
 $$
-
+Which in our case means:
 $$
 lifeExp = mean(lifeExp) + \beta * contEffect + Error
 $$
@@ -380,12 +389,15 @@ $$
 
 -   $Error$ being any error in the prediction not captured by the model
 
-To get the $intercept$ and $\beta$ for the above formula let's use the lm function in R:
+To get the $intercept$ and $\beta$ for the above formula let's use linear model functions:
 
 ::: panel-tabset
 ## R
 
 ```{r}
+#| label: fig-model-life-exp-mean-2-continents
+#| fig-cap: "Plot with the errors around the mean of life expectancy across Europe and American countries."
+
 continent_ttest <- lm(lifeExp ~ contEffect, gapminder_americas_europe)
 
 continent_ttest$coefficients[1] 
@@ -427,8 +439,8 @@ ggplot(gapminder_americas_europe, aes(x = contEffect, y = lifeExp)) +
     aes(
       x = - 1.9,
       xend = 1.9,
-      y = mean(gapminder_americas_europe$lifeExp),
-      yend = mean(gapminder_americas_europe$lifeExp)
+      y = mean(lifeExp),
+      yend = mean(lifeExp)
     ),
     color = "dark green"
   )
@@ -449,7 +461,12 @@ continent_ttest = stats.linregress(gapminder_americas_europe['contEffect'],gapmi
 
 # show results of lm
 continent_ttest
-
+```
+```         
+LinregressResult(slope=2.020240000000001, intercept=75.62836, rvalue=0.4832076439158285, pvalue=0.00018637488941351192, stderr=0.502794193121279, intercept_stderr=0.5027941931212789)
+```
+```{python}
+#| eval: false
 gapminder_americas_europe["contEffect"]=0
 gapminder_americas_europe["contEffect"].loc[(gapminder_americas_europe['continent'] == "Europe")]=1
 gapminder_americas_europe["contEffect"].loc[(gapminder_americas_europe['continent'] == "Americas")]=-1
@@ -493,15 +510,13 @@ plt.ylabel("lifeExp")
 
 plt.show()
 ```
-:::
 
-```         
-LinregressResult(slope=2.020240000000001, intercept=75.62836, rvalue=0.4832076439158285, pvalue=0.00018637488941351192, stderr=0.502794193121279, intercept_stderr=0.5027941931212789)
-```
 
 ![Plot with the errors around the mean of life expectancy across Europe and American countries](generalLinearModels-Figure5.png){fig-align="left" width="700" height="500"}
+:::
 
-*Fig. X. Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a* $contEffect$ score of -1, even if the jittering above makes it look like participants from Europe had slightly different $contEffect$ values to each other.
+
+Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a $contEffect$ score of -1, even if the jittering above makes it look like participants from Europe had slightly different $contEffect$ values to each other.
 
 So now that we've visualised the predictions and the error, lets summarise these errors with their sum of squares:
 
@@ -580,8 +595,6 @@ t_test = ttest_ind(gapminder_americas_europe['lifeExp'][gapminder_americas_europ
 t_test
 t_test.statistic **2
 ```
-:::
-
 ![Table](generalLinearModels-Table2.png){fig-align="left" height="100"}
 
 ```         
@@ -589,6 +602,8 @@ Ttest_indResult(statistic=4.018025720342183, pvalue=0.00018637488941352037)
 
 16.144530689331322
 ```
+:::
+
 
 So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478) which also summarises the **total variance** (around the mean). In fact, we can use these 2 numbers to calculate the $r^2$ value (i.e. what proportion of the variance around the mean is explained by the model). The amount of variance explained by the model can be calculated by:
 
@@ -661,11 +676,11 @@ t_test
 aov_table
 222.62 /(222.62 +13.79)
 ```
-:::
-
 ```         
 0.941669134131382
 ```
+:::
+
 
 ::: panel-tabset
 ## R
@@ -698,13 +713,13 @@ import statsmodels.formula.api as smf
 model2 = smf.ols(formula='height ~ sex_dummy', data=male_female_height).fit()
 model2.summary()
 ```
-:::
-
 ```         
 2.35
 
 1.4000000000000001
 ```
+:::
+
 
 ![Tale](generalLinearModels-Table3.png){fig-align="left" height="500" width="500"}
 
@@ -746,6 +761,8 @@ There are some advantages of conducting a t-test using the "lm" functionality:
 -   You have more flexibility to make more complex models
 
 Let's now see how we can proceed if we have a more complex design, i.e. 3 or more levels and/or more than 1 factor, using ANOVAs.
+
+## One Way ANOVA
 
 ::: panel-tabset
 ## R
@@ -809,11 +826,11 @@ ss_within_long = within1 + within2 + within3
 (ss_between/2)/(ss_within_long/(len(gapminder_3_continents['lifeExp'])-3))
 
 ```
-:::
-
 ```         
 114.42116407168957
 ```
+:::
+
 
 To visualise this
 

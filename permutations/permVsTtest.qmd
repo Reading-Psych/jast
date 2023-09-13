@@ -8,7 +8,7 @@ editor: visual
 
 As you may have noticed above, sometimes the p-value was higher or lower for the permutation analysis than it was for the original analysis. Let's use some simulations to capture what you can generally expect when using permutation analysis on data you can run a t-test on.
 
-As most studies are on 30 participants or more, and we've established it is computationally unrealistic to compute all permutations of 30+ participants, we will use Monte Carlo simulations. We will conduct 50 simulations for Cohen's *d* effect sizes of .1,.3,.5 of 1000 permutations for between-subject t-tests on 100 participants per group.
+As most studies are on 30 participants or more, and we've established it is computationally unrealistic to compute all permutations of 30+ participants, we will use Monte Carlo simulations. We will conduct 50 simulations for Cohen's *d* effect sizes of .1,.3,.5 of 1000 permutations for between-subject t-tests on 100 participants per group. All tests will be 2-tailed.
 
 ```{r}
 library(tidyverse)
@@ -178,4 +178,4 @@ ggplot(simulations_plot_df, aes(x=effect_size, y=mean, fill=test)) +
   ylab("P-value") 
 ```
 
-It does seem that with effect sizes greater than .1 you lose a little power in your analyses using permutation tests. Note that all the simulations involved sample sizes of 100 participants per group.
+It does seem that with effect sizes greater than .1 you lose a little power in your analyses using permutation tests.

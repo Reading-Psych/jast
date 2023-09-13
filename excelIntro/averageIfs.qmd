@@ -45,7 +45,7 @@ question_1_result = {
 }
 ```
 
-Your answer is... **\${question_1\_result}**
+Your answer is... **\${question_1_result}**
 
 ```{ojs}
 //| echo: false
@@ -62,7 +62,7 @@ question_2_result = {
 }
 ```
 
-Your answer is... **\${question_2\_result}**
+Your answer is... **\${question_2_result}**
 
 Now that you have calculated the average score based on one criterion, we can calculate it based on two criterion! It's like the original formula, but we add another range of cells, and another value to compare the cells to.
 
@@ -95,7 +95,7 @@ question_3_result = {
 }
 ```
 
-Your answer is... **\${question_3\_result}**
+Your answer is... **\${question_3_result}**
 
 ```{ojs}
 //| echo: false
@@ -112,7 +112,7 @@ question_4_result = {
 }
 ```
 
-Your answer is... **\${question_4\_result}**
+Your answer is... **\${question_4_result}**
 
 ```{ojs}
 //| echo: false
@@ -129,7 +129,7 @@ question_5_result = {
 }
 ```
 
-Your answer is... **\${question_5\_result}**
+Your answer is... **\${question_5_result}**
 
 ```{ojs}
 //| echo: false
@@ -146,4 +146,4 @@ question_6_result = {
 }
 ```
 
-Your answer is... **\${question_6\_result}**
+Your answer is... **\${question_6_result}**

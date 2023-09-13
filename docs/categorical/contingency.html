@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Contingency</title>
+<title>Just Another Statistics Textbook - Contingency (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -187,7 +187,7 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Contingency</h1>
+      <h1 class="quarto-secondary-nav-title">Contingency (R)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -395,7 +395,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link active">Contingency</a>
+  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link active">Contingency (R)</a>
   </div>
 </li>
       </ul>
@@ -440,6 +440,11 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../permutations.html" class="sidebar-item-text sidebar-link">Permutations (incomplete)</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Excel tutorial</a>
@@ -532,7 +537,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Contingency</h1>
+<h1 class="title d-none d-lg-block">Contingency (R)</h1>
 </div>
 
 
@@ -563,200 +568,232 @@ Course Overview
 <div class="cell-output-display">
 <div>
 <p>
-<svg width="960" height="480" viewbox="0.00 0.00 1305.00 1052.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1048)">
+<svg width="960" height="480" viewbox="0.00 0.00 1985.00 1160.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1156)">
 <title>
 Course Overview
 </title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-1048 1301,-1048 1301,4 -4,4"></polygon> <!-- ancova --> <g id="node1" class="node">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1156 1981,-1156 1981,4 -4,4"></polygon> <!-- ancova --> <g id="node1" class="node">
 <title>
 ancova
 </title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="721,-396 451,-396 451,-324 721,-324 721,-396"></polygon> <text text-anchor="middle" x="586" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">ANCOVA</text> </g> <!-- between_anova --> <g id="node2" class="node">
-<title>
-between_anova
-</title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="1009.11,-396 738.89,-396 738.89,-324 1009.11,-324 1009.11,-396"></polygon> <text text-anchor="middle" x="874" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Between Subject ANOVA</text> </g> <!-- binomial --> <g id="node3" class="node">
-<title>
-binomial
-</title>
-<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="270,-828 0,-828 0,-756 270,-756 270,-828"></polygon> <text text-anchor="middle" x="135" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node4" class="node">
-<title>
-contingency
-</title>
-<g id="a_node4"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="270,-612 0,-612 0,-540 270,-540 270,-612"></polygon> <text text-anchor="middle" x="135" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge1" class="edge">
-<title>
-binomial-&gt;contingency
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M135,-755.66C135,-715.89 135,-651.68 135,-612.03"></path> </g> <!-- normal --> <g id="node14" class="node">
-<title>
-normal
-</title>
-<g id="a_node14"><a href="../distributions/normal.html" title="Normal Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="495,-720 225,-720 225,-648 495,-648 495,-720"></polygon> <text text-anchor="middle" x="360" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Normal Distribution</text> </a> </g> </g> <!-- binomial&#45;&gt;normal --> <g id="edge2" class="edge">
-<title>
-binomial-&gt;normal
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M209.3,-756C233.75,-744.48 260.93,-731.68 285.4,-720.15"></path> </g> <!-- central_tendency --> <g id="node5" class="node">
-<title>
-central_tendency
-</title>
-<g id="a_node5"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-936 288,-936 288,-864 558,-864 558,-936"></polygon> <text text-anchor="middle" x="423" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node7" class="node">
-<title>
-dispersion
-</title>
-<g id="a_node7"><a href="../describingData/dispersion.html" title="Dispersion"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-828 288,-828 288,-756 558,-756 558,-828"></polygon> <text text-anchor="middle" x="423" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dispersion</text> </a> </g> </g> <!-- central_tendency&#45;&gt;dispersion --> <g id="edge3" class="edge">
-<title>
-central_tendency-&gt;dispersion
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M423,-864C423,-852.54 423,-839.81 423,-828.33"></path> </g> <!-- correlations --> <g id="node6" class="node">
-<title>
-correlations
-</title>
-<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="433,-396 163,-396 163,-324 433,-324 433,-396"></polygon> <text text-anchor="middle" x="298" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node15" class="node">
-<title>
-partial_correlations
-</title>
-<g id="a_node15"><a href="../correlations/partialCorrelations.html" title="Partial Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="289,-288 19,-288 19,-216 289,-216 289,-288"></polygon> <text text-anchor="middle" x="154" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Partial Correlations</text> </a> </g> </g> <!-- correlations&#45;&gt;partial_correlations --> <g id="edge4" class="edge">
-<title>
-correlations-&gt;partial_correlations
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M250.45,-324C234.88,-312.54 217.59,-299.81 201.99,-288.33"></path> </g> <!-- simple_regression --> <g id="node19" class="node">
-<title>
-simple_regression
-</title>
-<g id="a_node19"><a href="../regressions/simpleRegressions.html" title="Simple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="577,-288 307,-288 307,-216 577,-216 577,-288"></polygon> <text text-anchor="middle" x="442" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Simple Regression</text> </a> </g> </g> <!-- correlations&#45;&gt;simple_regression --> <g id="edge5" class="edge">
-<title>
-correlations-&gt;simple_regression
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M345.55,-324C361.12,-312.54 378.41,-299.81 394.01,-288.33"></path> </g> <!-- dispersion&#45;&gt;normal --> <g id="edge6" class="edge">
-<title>
-dispersion-&gt;normal
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M402.2,-756C395.39,-744.54 387.82,-731.81 381,-720.33"></path> </g> <!-- fdr --> <g id="node8" class="node">
-<title>
-fdr
-</title>
-<g id="a_node8"><a href="../multipleTesting/fdr.html" title="False Discovery Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="846,-828 576,-828 576,-756 846,-756 846,-828"></polygon> <text text-anchor="middle" x="711" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">False Discovery Rate</text> </a> </g> </g> <!-- fwer_vs_fdr --> <g id="node10" class="node">
-<title>
-fwer_vs_fdr
-</title>
-<g id="a_node10"><a href="../multipleTesting/fwer_vs_fdr.html" title="FWER vs. FDR"> <polygon fill="white" stroke="#006688" stroke-width="5" points="990,-720 720,-720 720,-648 990,-648 990,-720"></polygon> <text text-anchor="middle" x="855" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">FWER vs.&nbsp;FDR</text> </a> </g> </g> <!-- fdr&#45;&gt;fwer_vs_fdr --> <g id="edge7" class="edge">
-<title>
-fdr-&gt;fwer_vs_fdr
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M758.55,-756C774.12,-744.54 791.41,-731.81 807.01,-720.33"></path> </g> <!-- fwer --> <g id="node9" class="node">
-<title>
-fwer
-</title>
-<g id="a_node9"><a href="../multipleTesting/fwer.html" title="Family-Wise Error Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1134,-828 864,-828 864,-756 1134,-756 1134,-828"></polygon> <text text-anchor="middle" x="999" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Family-Wise Error Rate</text> </a> </g> </g> <!-- fwer&#45;&gt;fwer_vs_fdr --> <g id="edge8" class="edge">
-<title>
-fwer-&gt;fwer_vs_fdr
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M951.45,-756C935.88,-744.54 918.59,-731.81 902.99,-720.33"></path> </g> <!-- glm --> <g id="node11" class="node">
-<title>
-glm
-</title>
-<g id="a_node11"><a href="../GeneralLinearModels/generalLinearModels.html" title="General Linear Models"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="922,-612 652,-612 652,-540 922,-540 922,-612"></polygon> <text text-anchor="middle" x="787" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">General Linear Models</text> </a> </g> </g> <!-- ttests --> <g id="node23" class="node">
-<title>
-ttests
-</title>
-<g id="a_node23"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="955,-504 685,-504 685,-432 955,-432 955,-504"></polygon> <text text-anchor="middle" x="820" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- glm&#45;&gt;ttests --> <g id="edge9" class="edge">
-<title>
-glm-&gt;ttests
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M797.9,-540C801.46,-528.54 805.43,-515.81 809,-504.33"></path> </g> <!-- mediation --> <g id="node12" class="node">
-<title>
-mediation
-</title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="577,-72 307,-72 307,0 577,0 577,-72"></polygon> <text text-anchor="middle" x="442" y="-28.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mediation</text> </g> <!-- multiple_regression --> <g id="node13" class="node">
-<title>
-multiple_regression
-</title>
-<g id="a_node13"><a href="../regressions/multipleRegressions.html" title="Multiple Regression"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="577,-180 307,-180 307,-108 577,-108 577,-180"></polygon> <text text-anchor="middle" x="442" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Multiple Regression</text> </a> </g> </g> <!-- multiple_regression&#45;&gt;mediation --> <g id="edge10" class="edge">
-<title>
-multiple_regression-&gt;mediation
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M442,-108C442,-96.54 442,-83.81 442,-72.33"></path> </g> <!-- normal&#45;&gt;contingency --> <g id="edge12" class="edge">
-<title>
-normal-&gt;contingency
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M285.7,-648C261.25,-636.48 234.07,-623.68 209.6,-612.15"></path> </g> <!-- normal&#45;&gt;correlations --> <g id="edge11" class="edge">
-<title>
-normal-&gt;correlations
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M337.58,-647.71C331.54,-636.67 325.68,-624.18 322,-612 299.53,-537.62 296.68,-445.72 297.05,-396.35"></path> </g> <!-- normal&#45;&gt;glm --> <g id="edge13" class="edge">
-<title>
-normal-&gt;glm
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M495.11,-649.46C545.07,-637.06 601.69,-623 651.67,-610.59"></path> </g> <!-- skewness --> <g id="node20" class="node">
-<title>
-skewness
-</title>
-<g id="a_node20"><a href="../distributions/skewness.html" title="Skewness"> <polygon fill="white" stroke="#006688" stroke-width="5" points="601,-612 331,-612 331,-540 601,-540 601,-612"></polygon> <text text-anchor="middle" x="466" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Skewness</text> </a> </g> </g> <!-- normal&#45;&gt;skewness --> <g id="edge14" class="edge">
-<title>
-normal-&gt;skewness
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M395,-648C406.46,-636.54 419.19,-623.81 430.67,-612.33"></path> </g> <!-- permutation --> <g id="node16" class="node">
+<polygon fill="red" stroke="#006688" stroke-width="5" points="270,-180 0,-180 0,-108 270,-108 270,-180"></polygon> <text text-anchor="middle" x="135" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">ANCOVA</text> </g> <!-- permutation --> <g id="node16" class="node">
 <title>
 permutation
 </title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="990,-1044 720,-1044 720,-972 990,-972 990,-1044"></polygon> <text text-anchor="middle" x="855" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Permutations</text> </g> <!-- probability --> <g id="node17" class="node">
+<g id="a_node16"><a href="permutations.html" title="Permutations"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="1009,-72 739,-72 739,0 1009,0 1009,-72"></polygon> <text text-anchor="middle" x="874" y="-28.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Permutations</text> </a> </g> </g> <!-- ancova&#45;&gt;permutation --> <g id="edge26" class="edge">
+<title>
+ancova-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M270.19,-109.64C273.15,-109.07 276.09,-108.53 279,-108 435.76,-79.7 617.87,-59.85 738.92,-48.47"></path> </g> <!-- between_anova --> <g id="node2" class="node">
+<title>
+between_anova
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="558.11,-180 287.89,-180 287.89,-108 558.11,-108 558.11,-180"></polygon> <text text-anchor="middle" x="423" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Between Subject ANOVA</text> </g> <!-- between_anova&#45;&gt;permutation --> <g id="edge28" class="edge">
+<title>
+between_anova-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M558.28,-110.07C561.21,-109.37 564.12,-108.68 567,-108 623.16,-94.68 685.17,-80.28 738.67,-67.96"></path> </g> <!-- binomial --> <g id="node3" class="node">
+<title>
+binomial
+</title>
+<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1363,-936 1093,-936 1093,-864 1363,-864 1363,-936"></polygon> <text text-anchor="middle" x="1228" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node4" class="node">
+<title>
+contingency
+</title>
+<g id="a_node4"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1485,-720 1215,-720 1215,-648 1485,-648 1485,-720"></polygon> <text text-anchor="middle" x="1350" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge1" class="edge">
+<title>
+binomial-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1248.15,-863.66C1270.82,-823.89 1307.43,-759.68 1330.03,-720.03"></path> </g> <!-- normal --> <g id="node14" class="node">
+<title>
+normal
+</title>
+<g id="a_node14"><a href="../distributions/normal.html" title="Normal Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1156,-828 886,-828 886,-756 1156,-756 1156,-828"></polygon> <text text-anchor="middle" x="1021" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Normal Distribution</text> </a> </g> </g> <!-- binomial&#45;&gt;normal --> <g id="edge2" class="edge">
+<title>
+binomial-&gt;normal
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1159.65,-864C1137.15,-852.48 1112.15,-839.68 1089.63,-828.15"></path> </g> <!-- central_tendency --> <g id="node5" class="node">
+<title>
+central_tendency
+</title>
+<g id="a_node5"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1238,-1044 968,-1044 968,-972 1238,-972 1238,-1044"></polygon> <text text-anchor="middle" x="1103" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node7" class="node">
+<title>
+dispersion
+</title>
+<g id="a_node7"><a href="../describingData/dispersion.html" title="Dispersion"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1075,-936 805,-936 805,-864 1075,-864 1075,-936"></polygon> <text text-anchor="middle" x="940" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dispersion</text> </a> </g> </g> <!-- central_tendency&#45;&gt;dispersion --> <g id="edge3" class="edge">
+<title>
+central_tendency-&gt;dispersion
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1049.18,-972C1031.46,-960.48 1011.77,-947.68 994.05,-936.15"></path> </g> <!-- correlations --> <g id="node6" class="node">
+<title>
+correlations
+</title>
+<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1206,-504 936,-504 936,-432 1206,-432 1206,-504"></polygon> <text text-anchor="middle" x="1071" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node15" class="node">
+<title>
+partial_correlations
+</title>
+<g id="a_node15"><a href="../correlations/partialCorrelations.html" title="Partial Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1494,-396 1224,-396 1224,-324 1494,-324 1494,-396"></polygon> <text text-anchor="middle" x="1359" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Partial Correlations</text> </a> </g> </g> <!-- correlations&#45;&gt;partial_correlations --> <g id="edge4" class="edge">
+<title>
+correlations-&gt;partial_correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1166.1,-432C1197.39,-420.48 1232.18,-407.68 1263.51,-396.15"></path> </g> <!-- simple_regression --> <g id="node19" class="node">
+<title>
+simple_regression
+</title>
+<g id="a_node19"><a href="../regressions/simpleRegressions.html" title="Simple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1206,-396 936,-396 936,-324 1206,-324 1206,-396"></polygon> <text text-anchor="middle" x="1071" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Simple Regression</text> </a> </g> </g> <!-- correlations&#45;&gt;simple_regression --> <g id="edge5" class="edge">
+<title>
+correlations-&gt;simple_regression
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1071,-432C1071,-420.54 1071,-407.81 1071,-396.33"></path> </g> <!-- dispersion&#45;&gt;normal --> <g id="edge6" class="edge">
+<title>
+dispersion-&gt;normal
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M966.75,-864C975.5,-852.54 985.23,-839.81 994,-828.33"></path> </g> <!-- fdr --> <g id="node8" class="node">
+<title>
+fdr
+</title>
+<g id="a_node8"><a href="../multipleTesting/fdr.html" title="False Discovery Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1689,-936 1419,-936 1419,-864 1689,-864 1689,-936"></polygon> <text text-anchor="middle" x="1554" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">False Discovery Rate</text> </a> </g> </g> <!-- fwer_vs_fdr --> <g id="node10" class="node">
+<title>
+fwer_vs_fdr
+</title>
+<g id="a_node10"><a href="../multipleTesting/fwer_vs_fdr.html" title="FWER vs. FDR"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1833,-828 1563,-828 1563,-756 1833,-756 1833,-828"></polygon> <text text-anchor="middle" x="1698" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">FWER vs.&nbsp;FDR</text> </a> </g> </g> <!-- fdr&#45;&gt;fwer_vs_fdr --> <g id="edge7" class="edge">
+<title>
+fdr-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1601.55,-864C1617.12,-852.54 1634.41,-839.81 1650.01,-828.33"></path> </g> <!-- fwer --> <g id="node9" class="node">
+<title>
+fwer
+</title>
+<g id="a_node9"><a href="../multipleTesting/fwer.html" title="Family-Wise Error Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1977,-936 1707,-936 1707,-864 1977,-864 1977,-936"></polygon> <text text-anchor="middle" x="1842" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Family-Wise Error Rate</text> </a> </g> </g> <!-- fwer&#45;&gt;fwer_vs_fdr --> <g id="edge8" class="edge">
+<title>
+fwer-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1794.45,-864C1778.88,-852.54 1761.59,-839.81 1745.99,-828.33"></path> </g> <!-- glm --> <g id="node11" class="node">
+<title>
+glm
+</title>
+<g id="a_node11"><a href="../GeneralLinearModels/generalLinearModels.html" title="General Linear Models"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="867,-612 597,-612 597,-540 867,-540 867,-612"></polygon> <text text-anchor="middle" x="732" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">General Linear Models</text> </a> </g> </g> <!-- ttests --> <g id="node23" class="node">
+<title>
+ttests
+</title>
+<g id="a_node23"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="846,-288 576,-288 576,-216 846,-216 846,-288"></polygon> <text text-anchor="middle" x="711" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- glm&#45;&gt;ttests --> <g id="edge9" class="edge">
+<title>
+glm-&gt;ttests
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M729.71,-539.93C725.67,-477.99 717.32,-349.94 713.28,-288.03"></path> </g> <!-- mediation --> <g id="node12" class="node">
+<title>
+mediation
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="1172,-180 902,-180 902,-108 1172,-108 1172,-180"></polygon> <text text-anchor="middle" x="1037" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mediation</text> </g> <!-- mediation&#45;&gt;permutation --> <g id="edge29" class="edge">
+<title>
+mediation-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M983.18,-108C965.46,-96.48 945.77,-83.68 928.05,-72.15"></path> </g> <!-- multiple_regression --> <g id="node13" class="node">
+<title>
+multiple_regression
+</title>
+<g id="a_node13"><a href="../regressions/multipleRegressions.html" title="Multiple Regression"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="1206,-288 936,-288 936,-216 1206,-216 1206,-288"></polygon> <text text-anchor="middle" x="1071" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Multiple Regression</text> </a> </g> </g> <!-- multiple_regression&#45;&gt;mediation --> <g id="edge10" class="edge">
+<title>
+multiple_regression-&gt;mediation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1059.77,-216C1056.1,-204.54 1052.01,-191.81 1048.33,-180.33"></path> </g> <!-- multiple_regression&#45;&gt;permutation --> <g id="edge30" class="edge">
+<title>
+multiple_regression-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1147.66,-215.96C1161.04,-206.28 1173.17,-194.37 1181,-180 1196.31,-151.9 1200.92,-133.05 1181,-108 1159,-80.33 1080.96,-62.5 1009.07,-51.63"></path> </g> <!-- normal&#45;&gt;contingency --> <g id="edge12" class="edge">
+<title>
+normal-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1129.64,-756C1165.48,-744.45 1205.34,-731.61 1241.19,-720.06"></path> </g> <!-- normal&#45;&gt;correlations --> <g id="edge11" class="edge">
+<title>
+normal-&gt;correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M950.18,-755.94C937.23,-746.16 925.47,-734.23 918,-720 880.8,-649.18 874.95,-607.43 918,-540 927.45,-525.19 940.88,-513.42 955.9,-504.08"></path> </g> <!-- normal&#45;&gt;glm --> <g id="edge13" class="edge">
+<title>
+normal-&gt;glm
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M945.11,-755.99C924.92,-745.46 903.58,-733.16 885,-720 839.61,-687.84 793.82,-643.04 764.33,-612.2"></path> </g> <!-- skewness --> <g id="node20" class="node">
+<title>
+skewness
+</title>
+<g id="a_node20"><a href="../distributions/skewness.html" title="Skewness"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1197,-720 927,-720 927,-648 1197,-648 1197,-720"></polygon> <text text-anchor="middle" x="1062" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Skewness</text> </a> </g> </g> <!-- normal&#45;&gt;skewness --> <g id="edge14" class="edge">
+<title>
+normal-&gt;skewness
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1034.54,-756C1038.97,-744.54 1043.89,-731.81 1048.34,-720.33"></path> </g> <!-- probability --> <g id="node17" class="node">
 <title>
 probability
 </title>
-<g id="a_node17"><a href="../statsBasics/probability.html" title="Probability"> <polygon fill="white" stroke="#006688" stroke-width="5" points="846,-936 576,-936 576,-864 846,-864 846,-936"></polygon> <text text-anchor="middle" x="711" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Probability</text> </a> </g> </g> <!-- probability&#45;&gt;fdr --> <g id="edge19" class="edge">
+<g id="a_node17"><a href="../statsBasics/probability.html" title="Probability"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1607,-1044 1337,-1044 1337,-972 1607,-972 1607,-1044"></polygon> <text text-anchor="middle" x="1472" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Probability</text> </a> </g> </g> <!-- probability&#45;&gt;contingency --> <g id="edge18" class="edge">
+<title>
+probability-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1435.47,-971.94C1425.99,-961.19 1416.6,-948.8 1410,-936 1373.23,-864.72 1358.55,-770.41 1353.04,-720.12"></path> </g> <!-- probability&#45;&gt;fdr --> <g id="edge20" class="edge">
 <title>
 probability-&gt;fdr
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M711,-864C711,-852.54 711,-839.81 711,-828.33"></path> </g> <!-- probability&#45;&gt;fwer --> <g id="edge18" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1499.08,-972C1507.94,-960.54 1517.79,-947.81 1526.67,-936.33"></path> </g> <!-- probability&#45;&gt;fwer --> <g id="edge19" class="edge">
 <title>
 probability-&gt;fwer
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M806.1,-864C837.39,-852.48 872.18,-839.68 903.51,-828.15"></path> </g> <!-- repeated_measures_anova --> <g id="node18" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1594.18,-972C1634.49,-960.45 1679.31,-947.61 1719.64,-936.06"></path> </g> <!-- repeated_measures_anova --> <g id="node18" class="node">
 <title>
 repeated_measures_anova
 </title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="1297,-396 1027,-396 1027,-324 1297,-324 1297,-396"></polygon> <text text-anchor="middle" x="1162" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Within Subject ANOVA</text> </g> <!-- simple_regression&#45;&gt;multiple_regression --> <g id="edge15" class="edge">
+<polygon fill="red" stroke="#006688" stroke-width="5" points="846,-180 576,-180 576,-108 846,-108 846,-180"></polygon> <text text-anchor="middle" x="711" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Within Subject ANOVA</text> </g> <!-- repeated_measures_anova&#45;&gt;permutation --> <g id="edge27" class="edge">
+<title>
+repeated_measures_anova-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M764.82,-108C782.54,-96.48 802.23,-83.68 819.95,-72.15"></path> </g> <!-- simple_regression&#45;&gt;multiple_regression --> <g id="edge15" class="edge">
 <title>
 simple_regression-&gt;multiple_regression
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M442,-216C442,-204.54 442,-191.81 442,-180.33"></path> </g> <!-- transforming --> <g id="node22" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1071,-324C1071,-312.54 1071,-299.81 1071,-288.33"></path> </g> <!-- simple_regression&#45;&gt;permutation --> <g id="edge31" class="edge">
+<title>
+simple_regression-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1177.67,-323.99C1192.51,-314.6 1205.8,-302.79 1215,-288 1231.54,-261.4 1203.24,-110.44 1201,-108 1174.82,-79.49 1087.3,-61.43 1009.39,-50.66"></path> </g> <!-- transforming --> <g id="node22" class="node">
 <title>
 transforming
 </title>
-<g id="a_node22"><a href="../distributions/transforming.html" title="Transforming Data"> <polygon fill="white" stroke="#006688" stroke-width="5" points="614,-504 326,-504 326,-432 614,-432 614,-504"></polygon> <text text-anchor="middle" x="470" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Transforming Data</text> </a> </g> </g> <!-- skewness&#45;&gt;transforming --> <g id="edge16" class="edge">
+<g id="a_node22"><a href="../distributions/transforming.html" title="Transforming Data"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1215,-612 927,-612 927,-540 1215,-540 1215,-612"></polygon> <text text-anchor="middle" x="1071" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Transforming Data</text> </a> </g> </g> <!-- skewness&#45;&gt;transforming --> <g id="edge16" class="edge">
 <title>
 skewness-&gt;transforming
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M467.32,-540C467.75,-528.54 468.23,-515.81 468.67,-504.33"></path> </g> <!-- stats_basics --> <g id="node21" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1064.97,-648C1065.94,-636.54 1067.03,-623.81 1068,-612.33"></path> </g> <!-- stats_basics --> <g id="node21" class="node">
 <title>
 stats_basics
 </title>
-<g id="a_node21"><a href="../statsBasics/statsBasics.html" title="Statistics Basics"> <polygon fill="white" stroke="#006688" stroke-width="5" points="702,-1044 432,-1044 432,-972 702,-972 702,-1044"></polygon> <text text-anchor="middle" x="567" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Statistics Basics</text> </a> </g> </g> <!-- stats_basics&#45;&gt;central_tendency --> <g id="edge20" class="edge">
+<g id="a_node21"><a href="../statsBasics/statsBasics.html" title="Statistics Basics"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1382,-1152 1112,-1152 1112,-1080 1382,-1080 1382,-1152"></polygon> <text text-anchor="middle" x="1247" y="-1108.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Statistics Basics</text> </a> </g> </g> <!-- stats_basics&#45;&gt;central_tendency --> <g id="edge21" class="edge">
 <title>
 stats_basics-&gt;central_tendency
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M519.45,-972C503.88,-960.54 486.59,-947.81 470.99,-936.33"></path> </g> <!-- stats_basics&#45;&gt;probability --> <g id="edge21" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1199.45,-1080C1183.88,-1068.54 1166.59,-1055.81 1150.99,-1044.33"></path> </g> <!-- stats_basics&#45;&gt;probability --> <g id="edge22" class="edge">
 <title>
 stats_basics-&gt;probability
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M614.55,-972C630.12,-960.54 647.41,-947.81 663.01,-936.33"></path> </g> <!-- transforming&#45;&gt;correlations --> <g id="edge17" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1321.3,-1080C1345.75,-1068.48 1372.93,-1055.68 1397.4,-1044.15"></path> </g> <!-- transforming&#45;&gt;correlations --> <g id="edge17" class="edge">
 <title>
 transforming-&gt;correlations
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M413.2,-432C394.51,-420.48 373.74,-407.68 355.03,-396.15"></path> </g> <!-- ttests&#45;&gt;ancova --> <g id="edge22" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1071,-540C1071,-528.54 1071,-515.81 1071,-504.33"></path> </g> <!-- ttests&#45;&gt;ancova --> <g id="edge23" class="edge">
 <title>
 ttests-&gt;ancova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M742.73,-432C717.3,-420.48 689.04,-407.68 663.59,-396.15"></path> </g> <!-- ttests&#45;&gt;between_anova --> <g id="edge23" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M575.77,-231.46C490.37,-218.46 377.87,-200.11 279,-180 276.1,-179.41 273.17,-178.8 270.22,-178.18"></path> </g> <!-- ttests&#45;&gt;between_anova --> <g id="edge24" class="edge">
 <title>
 ttests-&gt;between_anova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M837.83,-432C843.67,-420.54 850.15,-407.81 856,-396.33"></path> </g> <!-- ttests&#45;&gt;repeated_measures_anova --> <g id="edge24" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M615.9,-216C584.61,-204.48 549.82,-191.68 518.49,-180.15"></path> </g> <!-- ttests&#45;&gt;permutation --> <g id="edge32" class="edge">
+<title>
+ttests-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M814.22,-215.99C829.96,-206.54 844.44,-194.72 855,-180 877.49,-148.66 879.79,-103.28 878.06,-72.09"></path> </g> <!-- ttests&#45;&gt;repeated_measures_anova --> <g id="edge25" class="edge">
 <title>
 ttests-&gt;repeated_measures_anova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M932.93,-432C970.19,-420.45 1011.62,-407.61 1048.9,-396.06"></path> </g> </g>
+<path fill="none" stroke="black" stroke-width="5" d="M711,-216C711,-204.54 711,-191.81 711,-180.33"></path> </g> </g>
 </svg>
 </p>
 </div>
@@ -764,6 +801,7 @@ ttests-&gt;repeated_measures_anova
 </div>
 <p><span style="color:red"><strong>Red</strong></span> means that the page does not exist yet</p>
 <p><span style="color:orange"><strong>Orange</strong></span> means that the page is started</p>
+<p>… dotted lines reflect possible links that are not explained (yet?)</p>
 </div>
 </div>
 </div>
@@ -1076,10 +1114,10 @@ fem1953_{exp} = fem * staffProp = fem * \frac{Staff_{1953}}{Staff_{1953} + Staff
 <p>Now that we’ve calculated the expected values for each cell, we can compare our observed values against the expected values and square the difference:</p>
 <table class="table">
 <colgroup>
+<col style="width: 43%">
 <col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 26%">
+<col style="width: 4%">
 </colgroup>
 <thead>
 <tr class="header">

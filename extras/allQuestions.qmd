@@ -89,3 +89,6 @@ editor: visual
 ### Family-wise Error Rate vs. False Discovery Rate
 
 {{< include ../multipleTesting/fwer_vs_fdrQuestions.qmd >}}
+
+## Permutations
+{{< include ../permutations/permutationsQuestions.qmd >}}

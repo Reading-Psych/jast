@@ -40,7 +40,7 @@ question_0_result = {
 }
 ```
 
-**\${question_0\_result}**
+**\${question_0_result}**
 
 Now let's use this logic to work out some other values on that sheet:
 
@@ -60,7 +60,7 @@ question_1_result = {
 }
 ```
 
-**\${question_1\_result}**
+**\${question_1_result}**
 
 Elaine ran...
 
@@ -78,7 +78,7 @@ question_2_result = {
 }
 ```
 
-**\${question_2\_result}**
+**\${question_2_result}**
 
 The total distance run by Dianna was...
 

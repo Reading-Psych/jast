@@ -1,5 +1,5 @@
 ---
-title: "Contingency"
+title: "Contingency (R)"
 format:    
   html:     
     code-fold: false
@@ -184,7 +184,7 @@ Using the above formula, let's estimate all four cells
 Now that we've calculated the expected values for each cell, we can compare our observed values against the expected values and square the difference:
 
 | [**Observed**]{style="color:blue"} **vs. [Expected]{style="color:red"}** | 1953                                      | 2023                                        | Total |
-|------------------|------------------|------------------|------------------|
+|--------------------------------------------------------------------------|-------------------------------------------|---------------------------------------------|-------|
 | Female                                                                   | $(5 - 19.51613)^2$ = `r (5 - 19.51613)^2` | $(50 - 35.48387)^2 =$ `r (50 - 35.48387)^2` | 55    |
 | Male                                                                     | $(50 -35.48387)^2$ = `r (50 -35.48387)^2` | $(50 - 64.51613)^2 =$ `r (50 - 64.51613)^2` | 100   |
 | Total                                                                    | 55                                        | 100                                         | 155   |

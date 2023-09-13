@@ -1,0 +1,37 @@
+---
+format: html
+editor: visual
+---
+
+#### Question 1
+
+Permutation analysis can only be used on non-parametric data
+```{ojs}
+//| echo: false
+viewof permutatations_1_response = Inputs.radio(['True','False']);
+correct_permutatations_1 = 'False';
+permutatations_1_result = {
+  if(permutatations_1_response == correct_permutatations_1){
+    return 'Correct! Whilst it is useful for analysis of non-parametric data, it is not restricted to use in these contexts. It would be valid to double check the conclusion of your parametric analysis, or for alternative analyses such compare how significant the difference is between two correlations.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${permutatations_1_result}**
+
+#### Question 2
+Permutation analysis can only be done when comparing 2 groups?
+```{ojs}
+//| echo: false
+viewof permutatations_2_response = Inputs.radio(['True','False']);
+correct_permutatations_2 = 'False';
+permutatations_2_result = {
+  if(permutatations_2_response == correct_permutatations_2){
+    return 'Correct! It can be used on any analysis that generates a single output value (even if that single output value is a combination of other values). F-values from ANOVAs are an example of how you can compare between more than 2 groups. You can also compare between conditions within participants, but you would need to be mindful that you only permute swaps within participants for within-subject factors.';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${permutatations_2_result}**

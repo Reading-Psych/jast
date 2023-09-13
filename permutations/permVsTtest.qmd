@@ -1,0 +1,181 @@
+---
+title: "Permutation vs. t tests (incomplete)"
+format: html
+editor: visual
+---
+
+## P-values for t-tests vs. permutations of them?
+
+As you may have noticed above, sometimes the p-value was higher or lower for the permutation analysis than it was for the original analysis. Let's use some simulations to capture what you can generally expect when using permutation analysis on data you can run a t-test on.
+
+As most studies are on 30 participants or more, and we've established it is computationally unrealistic to compute all permutations of 30+ participants, we will use Monte Carlo simulations. We will conduct 50 simulations for Cohen's *d* effect sizes of .1,.3,.5 of 1000 permutations for between-subject t-tests on 100 participants per group.
+
+```{r}
+library(tidyverse)
+simulations = 50
+permutations_n = 10000
+sample_size = 100
+these_effect_sizes = c(.1,.2,.3,.4,.5)
+simulations_df <- data.frame(
+  effect_size = rep(rep(these_effect_sizes, simulations)),
+  simulation  = rep(rep(c(1:simulations)),length(these_effect_sizes)),
+  # permutation = rep(c(1:permutations_n), length(these_effect_sizes) * simulations),
+  ttest = NA,
+  perm_test = NA
+)
+
+# could take a while, here's a progess bar
+pb = txtProgressBar(min = 0, max = dim(simulations_df)[1], initial = 0) 
+for(i in 1:dim(simulations_df)[1]){
+  setTxtProgressBar(pb,i)
+  this_effect_size = simulations_df$effect_size[i]
+  group_1_data = rnorm(sample_size)
+  group_2_data = rnorm(sample_size)+ this_effect_size
+  simulations_df$ttest[i] = t.test(group_1_data, group_2_data, var.equal = T)$p.value
+  
+  # permutation analysis
+  perm_vector = numeric(permutations_n)
+  
+  for(j in 1:permutations_n){
+    all_sample = c(group_1_data,group_2_data)
+    group_1_sample = sample(all_sample, sample_size, replace = FALSE)
+    
+    # select opposite data for group 2
+    group_2_index  = !(all_sample %in% group_1_sample)
+    group_2_sample = all_sample[group_2_index]
+
+    # compare the medians
+    perm_vector[j] = t.test(group_1_sample, group_2_sample, var.equal = T)$p.value
+  }
+  simulations_df$perm_test[i] = mean(abs(simulations_df$ttest[i]) > abs(perm_vector))
+}
+
+simulations_df %>% 
+  group_by(effect_size) %>% 
+  summarise(
+    ttest_mean = mean(ttest),
+    ttest_sd   = sd(ttest),
+    perm_mean  = mean(perm_test),
+    perm_sd    = sd(perm_test),
+  ) -> simulations_summary
+
+simulations_plot_df = data.frame(
+  test = rep(c("t-test","permutation"),each = 5),
+  effect_size = rep(as.character(these_effect_sizes), 2),
+  mean = c(
+    mean(simulations_df$ttest[simulations_df$effect_size == .1]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .2]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .3]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .4]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .5]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .1]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .2]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .3]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .4]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .5])
+  ),
+  sd   = c(
+    sd(simulations_df$ttest[simulations_df$effect_size == .1]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .2]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .3]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .4]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .5]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .1]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .2]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .3]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .4]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .5])
+  )
+)
+
+ggplot(simulations_plot_df, aes(x=effect_size, y=mean, fill=test)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2,position=position_dodge(.9)) +
+  xlab("Effect Size") +
+  ylab("P-value") 
+```
+
+As shown above, you get almost identical p-values from a single t-test on the original data to those from permutation analyses. However, arguably it's redundant to do a permutation analysis of t-tests if the data is normal. The next question is whether a permutation analysis of median comparisons is equally powerful as t-tests on normal data? If so, then you could arguably just use permutation analyses of medians all times without having to worry about whether your data is parametric. Let's see now how the p-values compare:
+
+```{r}
+simulations_df <- data.frame(
+  effect_size = rep(rep(these_effect_sizes, simulations)),
+  simulation  = rep(rep(c(1:simulations)),length(these_effect_sizes)),
+  # permutation = rep(c(1:permutations_n), length(these_effect_sizes) * simulations),
+  ttest = NA,
+  perm_test = NA
+)
+
+# could take a while, here's a progess bar
+pb = txtProgressBar(min = 0, max = dim(simulations_df)[1], initial = 0) 
+for(i in 1:dim(simulations_df)[1]){
+  setTxtProgressBar(pb,i)
+  this_effect_size = simulations_df$effect_size[i]
+  group_1_data = rnorm(sample_size)
+  group_2_data = rnorm(sample_size)+ this_effect_size
+  simulations_df$ttest[i] = t.test(group_1_data, group_2_data, var.equal = T)$p.value
+  
+  # permutation analysis
+  perm_vector = numeric(permutations_n)
+  
+  median_diff = median(group_1_data) - median(group_2_data)
+  for(j in 1:permutations_n){
+    all_sample = c(group_1_data,group_2_data)
+    group_1_sample = sample(all_sample, sample_size, replace = FALSE)
+    
+    # select opposite data for group 2
+    group_2_index  = !(all_sample %in% group_1_sample)
+    group_2_sample = all_sample[group_2_index]
+
+    # compare the medians
+    perm_vector[j] = median(group_1_sample) - median(group_2_sample)
+  }
+  simulations_df$perm_test[i] = mean(abs(perm_vector) > abs(median_diff))
+}
+
+simulations_df %>% 
+  group_by(effect_size) %>% 
+  summarise(
+    ttest_mean = mean(ttest),
+    ttest_sd   = sd(ttest),
+    perm_mean  = mean(perm_test),
+    perm_sd    = sd(perm_test),
+  ) -> simulations_summary
+
+simulations_plot_df = data.frame(
+  test = rep(c("t-test","permutation"),each = 5),
+  effect_size = rep(as.character(these_effect_sizes), 2),
+  mean = c(
+    mean(simulations_df$ttest[simulations_df$effect_size == .1]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .2]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .3]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .4]),
+    mean(simulations_df$ttest[simulations_df$effect_size == .5]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .1]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .2]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .3]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .4]),
+    mean(simulations_df$perm_test[simulations_df$effect_size == .5])
+  ),
+  sd   = c(
+    sd(simulations_df$ttest[simulations_df$effect_size == .1]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .2]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .3]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .4]),
+    sd(simulations_df$ttest[simulations_df$effect_size == .5]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .1]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .2]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .3]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .4]),
+    sd(simulations_df$perm_test[simulations_df$effect_size == .5])
+  )
+)
+
+ggplot(simulations_plot_df, aes(x=effect_size, y=mean, fill=test)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2,position=position_dodge(.9)) +
+  xlab("Effect Size") +
+  ylab("P-value") 
+```
+
+It does seem that with effect sizes greater than .1 you lose a little power in your analyses using permutation tests. Note that all the simulations involved sample sizes of 100 participants per group.

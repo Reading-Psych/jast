@@ -76,6 +76,10 @@ website:
           - "multipleTesting/fwer.qmd"
           - "multipleTesting/fdr.qmd"
           - "multipleTesting/fwer_vs_fdr.qmd"
+      - section: "Permutations"
+        contents:
+          - "permutations/permutations.qmd"
+          - "permutations/permVsTtest.qmd"
       # - section: "University of Reading advice?"
       #   contents:
       #     - "Psychology"

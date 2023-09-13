@@ -61,7 +61,7 @@ digraph "Course Overview" {
 		contingency[
 		  URL = "../categorical/contingency.html",
 			fixedsize = true,
-			fillcolor = "orange",
+		#	fillcolor = "orange",
 			label = "Contingency"
 		]
 		central_tendency[
@@ -132,8 +132,8 @@ digraph "Course Overview" {
 		]
 		permutation[
 		  label = "Permutations",
-		  fillcolor = "red",
-		  URL = "",
+		  fillcolor = "white",
+		  URL = "permutations.html",
 		  #width = 15,
 		]
 		probability [
@@ -198,6 +198,7 @@ digraph "Course Overview" {
 	simple_regression -> multiple_regression
 	skewness -> transforming
 	transforming -> correlations
+	probability -> contingency
 	probability -> fwer
 	probability -> fdr
 	stats_basics -> central_tendency
@@ -206,18 +207,31 @@ digraph "Course Overview" {
 	ttests -> between_anova
 	ttests -> repeated_measures_anova
 	
-  edge[ style = invis ];
-  # ancova -> permutation
+  # edge[ style = invis ];
+  ancova -> permutation
+  repeated_measures_anova -> permutation
+  between_anova -> permutation
   # correlations -> permutation
-  # mediation -> permutation
-  # multiple_regression -> permutation
-  # # partial_correlations -> permutation
-  # simple_regression -> permutation
-  # ttests -> permutation
+  mediation -> permutation  [
+    style = "dashed",
+    #row = func
+	] 
+  multiple_regression -> permutation  [
+    style = "dashed",
+    #row = func
+	] 
+  # partial_correlations -> permutation
+  simple_regression -> permutation  [
+    style = "dashed",
+    #row = func
+	] 
+  ttests -> permutation
 }
 ```
 
 [**Red**]{style="color:red"} means that the page does not exist yet
 
 [**Orange**]{style="color:orange"} means that the page is started
+
+... dotted lines reflect possible links that are not explained (yet?)
 :::

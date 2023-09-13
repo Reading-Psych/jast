@@ -1,0 +1,242 @@
+---
+title: "Mixed ANOVA (incomplete)"
+format: html
+editor: visual
+---
+
+## 2 x 2 ANOVA
+
+Let's create data to allow us to compare between 2 years, and between Europe and Americas
+
+::: panel-tabset
+## R
+
+```{r}
+# create a new data frame that only focuses on data from 2007
+gapminder_2_by_2 <- subset(
+  gapminder,   # the data set
+  year == 2002 & continent == "Africa" |
+  year == 2007 & continent == "Africa" |
+  year == 2002 & continent == "Europe" |
+  year == 2007 & continent == "Europe"
+)
+
+summary(lm(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
+summary(aov(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
+
+
+
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+# create a new data frame that only focuses on data from 2007
+gapminder_2_by_2 = gapminder.loc[(gapminder['year'] == 2002) & (gapminder['continent'] == "Africa") | (gapminder['year'] == 2007) & (gapminder['continent'] == "Africa") | (gapminder['year'] == 2002) & (gapminder['continent'] == "Europe") | (gapminder['year'] == 2007) & (gapminder['continent'] == "Europe") ]
+
+from statsmodels.formula.api import ols
+
+fit = ols('lifeExp ~ C(year) + C(continent)', data=gapminder_2_by_2).fit() 
+
+fit.summary()
+
+lm_4_continents_aov_table = sm.stats.anova_lm(fit, typ=2)
+lm_4_continents_aov_table
+
+```
+:::
+
+manual calculation of f-value for 2 x 2
+
+::: panel-tabset
+## R
+
+```{r}
+library(tidyverse)
+
+overallMeanLifeExp = mean(gapminder_2_by_2$lifeExp)
+totalVar = sum((gapminder_2_by_2$lifeExp - mean(gapminder_2_by_2$lifeExp))^2)
+gapminder_2_by_2 %>%
+  group_by(continent, year) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  ) -> year_continent_means
+
+year_continent_means
+
+sum(year_continent_means$betweenSS)
+totalVar
+
+sum(year_continent_means$betweenSS)/totalVar
+(sum(year_continent_means$betweenSS))/totalVar
+
+df_total <- length(gapminder_2_by_2$country) - 1
+df_res <- length(gapminder_2_by_2$country) - 
+  1 - #data points
+  3   # predictors
+
+ss_res = totalVar - sum(year_continent_means$betweenSS)
+
+1 - (ss_res/df_res)/(totalVar/df_total)
+
+##
+# break down of types of variance
+##
+continent_df <- gapminder_2_by_2 %>%
+  group_by(continent) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  )
+
+sum(continent_df$betweenSS)
+
+
+year_df <- gapminder_2_by_2 %>%
+  group_by(year) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  )
+
+sum(year_df$betweenSS)
+
+##
+# interaction
+##
+sum(year_continent_means$betweenSS) - sum(continent_df$betweenSS) - sum(year_df$betweenSS)
+
+
+gapminder
+20319 +
+68 +
+3
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+from siuba import group_by, summarize, _
+
+overallMeanLifeExp = gapminder_2_by_2['lifeExp'].mean()
+
+totalVar = sum((gapminder_2_by_2['lifeExp'] - gapminder_2_by_2['lifeExp'].mean())**2)
+
+
+year_continent_means=(gapminder_2_by_2
+  >> group_by(_.continent, _.year)
+  >> summarize(mean_lifeExp = _.lifeExp.mean(),
+              countries = _.lifeExp.count())
+              )
+year_continent_means['betweenSS'] = year_continent_means['countries'] * ((overallMeanLifeExp - year_continent_means['mean_lifeExp'])**2)
+
+print(tabulate(year_continent_means, headers=year_continent_means.head(), tablefmt="fancy_grid",showindex=False))
+
+sum(year_continent_means['betweenSS'])
+
+totalVar
+
+sum(year_continent_means['betweenSS'])/totalVar
+
+df_total = len(gapminder_2_by_2['country']) - 1
+df_res = len(gapminder_2_by_2['country']) - 1 - 3
+ss_res = totalVar - sum(year_continent_means['betweenSS'])
+1 - (ss_res/df_res)/(totalVar/df_total)
+
+continent_df=(gapminder_2_by_2
+  >> group_by(_.continent)
+  >> summarize(mean_lifeExp = _.lifeExp.mean(),
+              countries = _.lifeExp.count())
+              )
+continent_df['betweenSS'] = continent_df['countries'] * ((overallMeanLifeExp - continent_df['mean_lifeExp'])**2)
+sum(continent_df['betweenSS'])
+
+year_df=(gapminder_2_by_2
+  >> group_by(_.year)
+  >> summarize(mean_lifeExp = _.lifeExp.mean(),
+              countries = _.lifeExp.count())
+              )
+year_df['betweenSS'] = year_df['countries'] * ((overallMeanLifeExp - year_df['mean_lifeExp'])**2)
+sum(year_df['betweenSS'])
+
+sum(year_continent_means['betweenSS']) - sum(continent_df['betweenSS']) - sum(year_df['betweenSS'])
+
+print(tabulate(gapminder[:10], headers=gapminder.head(), tablefmt="fancy_grid",showindex=False))
+
+20319 +68 +3
+
+
+```
+:::
+
+
+
+## 3 way ANOVA
+
+::: panel-tabset
+## R
+
+```{r}
+
+gapminder_2_by_2$pop_split = "high"
+gapminder_2_by_2$pop_split[gapminder_2_by_2$pop < median(gapminder_2_by_2$pop)] = "low"
+
+gapminder_2_by_2 %>%
+  group_by(continent, year, pop_split) %>%
+  summarise(
+    mean_lifeExp = mean(lifeExp),
+    countries    = length(lifeExp),
+    betweenSS    = countries * ((overallMeanLifeExp - mean_lifeExp)^2)
+  ) -> three_way_summary
+
+
+sum(three_way_summary$betweenSS)
+
+summary(lm(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
+summary(aov(lifeExp ~ factor(year) * factor(continent), gapminder_2_by_2))
+
+summary(aov(lifeExp ~ factor(year) * factor(continent) * factor(pop_split), gapminder_2_by_2))
+summary(lm(lifeExp ~ factor(year) * factor(continent) * factor(pop_split), gapminder_2_by_2))
+
+
+20319 +
+68 +
+3 + 
+  13
+
+
+20403.63
+```
+
+## Python
+
+```{python}
+#| eval: false
+gapminder_2_by_2['pop_split']=0
+
+gapminder_2_by_2['pop_split'].loc[gapminder_2_by_2['pop']<np.median(gapminder_2_by_2['pop'])]="low"
+gapminder_2_by_2['pop_split'].loc[gapminder_2_by_2['pop']>=np.median(gapminder_2_by_2['pop'])]="high"
+
+three_way_summary = (gapminder_2_by_2
+  >> group_by(_.continent, _.year, _.pop_split)
+  >> summarize(mean_lifeExp = _.lifeExp.mean(),
+              countries = _.lifeExp.count())
+              )
+three_way_summary['betweenSS'] = three_way_summary['countries'] * ((overallMeanLifeExp - three_way_summary['mean_lifeExp'])**2)
+sum(three_way_summary['betweenSS'])
+
+
+
+fit2 = ols('lifeExp ~ C(year) + C(continent) + C(pop_split)', data=gapminder_2_by_2).fit() 
+
+fit2.summary()
+```
+:::

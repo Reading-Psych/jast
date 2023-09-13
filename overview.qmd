@@ -45,12 +45,12 @@ digraph "Course Overview" {
 		ancova[
       label = "ANCOVA",
       fillcolor = "red",
-      URL = ""
+      URL = "../GeneralLinearModels/ancova.html"
     ]
     between_anova[
-      label = "Between Subject ANOVA",
-      fillcolor = "red",
-      URL = ""
+      label = "One-way ANOVA",
+      fillcolor = "orange",
+      URL = "../GeneralLinearModels/oneWayAnova.html"
     ]
 		binomial [
 			URL = "../distributions/binomial.html",
@@ -102,7 +102,7 @@ digraph "Course Overview" {
     glm[
       URL       = "../GeneralLinearModels/generalLinearModels.html",
       label     = "General Linear Models",
-      fillcolor = "orange"
+      fillcolor = "white"
     ]
     #kurtosis[
     #  URL       = "",
@@ -114,6 +114,11 @@ digraph "Course Overview" {
       fillcolor = "red",
       label = "Mediation"
     ]
+    mixed_anova[
+		  label = "Mixed ANOVA",
+		  fillcolor = "orange",
+		  URL = "../GeneralLinearModels/mixedAnova.html",
+		]
 		multiple_regression[
 		  label     = "Multiple Regression",
 		  URL       = "../regressions/multipleRegressions.html",
@@ -144,9 +149,9 @@ digraph "Course Overview" {
 			# row = func,
 		]
 		repeated_measures_anova[
-		  label = "Within Subject ANOVA",
+		  label = "Repeated Measures",
 		  fillcolor = "red",
-		  URL = "",
+		  URL = "../GeneralLinearModels/repeatedAnova.html",
 		]
 		simple_regression[
 		  label="Simple Regression",
@@ -173,6 +178,7 @@ digraph "Course Overview" {
 		]
 	}
 	/* connections */
+	between_anova -> ancova
 	binomial -> contingency
 	binomial -> normal[
     #style = "dashed",
@@ -186,7 +192,8 @@ digraph "Course Overview" {
 	fdr -> fwer_vs_fdr
 	fwer -> fwer_vs_fdr
 	glm -> ttests
-  multiple_regression -> mediation
+  mixed_anova -> ancova
+	multiple_regression -> mediation
 	normal -> correlations
 	normal -> contingency
 	normal -> glm
@@ -201,30 +208,33 @@ digraph "Course Overview" {
 	probability -> contingency
 	probability -> fwer
 	probability -> fdr
+	repeated_measures_anova -> ancova
 	stats_basics -> central_tendency
 	stats_basics -> probability
-	ttests -> ancova
+	ttests -> mixed_anova
 	ttests -> between_anova
 	ttests -> repeated_measures_anova
+	
+	
 	
   # edge[ style = invis ];
   ancova -> permutation
   repeated_measures_anova -> permutation
   between_anova -> permutation
-  # correlations -> permutation
-  mediation -> permutation  [
-    style = "dashed",
+  correlations -> permutation
+  #mediation -> permutation  [
+  #  style = "dashed",
     #row = func
-	] 
-  multiple_regression -> permutation  [
-    style = "dashed",
-    #row = func
-	] 
-  # partial_correlations -> permutation
-  simple_regression -> permutation  [
-    style = "dashed",
-    #row = func
-	] 
+	#] 
+  #multiple_regression -> permutation  [
+  #  style = "dashed",
+  #  #row = func
+	#] 
+  #partial_correlations -> permutation
+  #simple_regression -> permutation  [
+  #  style = "dashed",
+  #  #row = func
+	#] 
   ttests -> permutation
 }
 ```

@@ -1,0 +1,153 @@
+---
+title: "One Way ANOVA (incomplete)"
+format: html
+editor: visual
+---
+{{< include ../overview.qmd >}}
+## One Way ANOVA
+
+::: panel-tabset
+## R
+
+```{r}
+## Automatic calculation
+gapminder_3_continents <- subset(
+  gapminder_2007, 
+  continent == "Europe" | continent == "Americas" | continent == "Africa"
+)
+
+summary(aov(lifeExp ~ factor(continent), data = gapminder_3_continents))
+
+
+
+## Manual calculation
+ss_between = (
+  ((mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"])-mean(gapminder_3_continents$lifeExp))^2) * sum(gapminder_3_continents$continent=="Europe") +
+  ((mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Americas"])-mean(gapminder_3_continents$lifeExp))^2) * sum(gapminder_3_continents$continent=="Americas") +
+  ((mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Africa"])-mean(gapminder_3_continents$lifeExp))^2) * sum(gapminder_3_continents$continent=="Africa") 
+)
+
+totalSS = sum((gapminder_3_continents$lifeExp - mean(gapminder_3_continents$lifeExp))^2)
+
+shortcut_ss_within = totalSS - ss_between
+
+ss_within_long = sum(
+  (gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"]-mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"]))^2,
+  (gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Americas"]-mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Americas"]))^2,
+  (gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Africa"]-mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Africa"]))^2
+)
+
+(ss_between/2)/(ss_within_long/(length(gapminder_3_continents$lifeExp)-3))
+
+```
+
+## Python
+
+```{python}
+#| eval: false
+gapminder_3_continents['continent'] = gapminder_3_continents['continent'].astype('category')
+model3 = ols('lifeExp ~ continent', data = gapminder_3_continents).fit()
+aov_table3 = sm.stats.anova_lm(model3, typ=2)
+aov_table3
+
+ss_between = (gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Europe"].mean() - gapminder_3_continents['lifeExp'].mean())**2 * sum(gapminder_3_continents['continent']=="Europe")+(gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Americas"].mean() - gapminder_3_continents['lifeExp'].mean())**2 * sum(gapminder_3_continents['continent']=="Americas")+(gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Africa"].mean() - gapminder_3_continents['lifeExp'].mean())**2 * sum(gapminder_3_continents['continent']=="Africa")
+
+totalSS = sum((gapminder_3_continents['lifeExp'] - gapminder_3_continents['lifeExp'].mean())**2)
+
+within1_all=(gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Europe"]-gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Europe"].mean())**2
+within1= sum(within1_all)
+
+within2_all=(gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Americas"]-gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Americas"].mean())**2
+within2= sum(within2_all)
+
+within3_all=(gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Africa"]-gapminder_3_continents['lifeExp'][gapminder_3_continents['continent']=="Africa"].mean())**2
+within3= sum(within3_all)
+
+ss_within_long = within1 + within2 + within3
+
+(ss_between/2)/(ss_within_long/(len(gapminder_3_continents['lifeExp'])-3))
+
+```
+```         
+114.42116407168957
+```
+:::
+
+
+To visualise this
+
+::: panel-tabset
+## R
+
+```{r}
+lm_3_continents <- summary(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
+lm_3_continents$coefficients
+mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"])
+
+gapminder_3_continents$continent_mean = lm_3_continents$coefficients[1,1] # intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.
+gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Americas"] = gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Americas"] + lm_3_continents$coefficients[2,1]
+
+gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Europe"] = gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Europe"] + lm_3_continents$coefficients[3,1]
+
+
+
+ggplot(gapminder_3_continents, aes(x = continent, y = lifeExp)) +
+  geom_segment(
+    position = "jitter",
+    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    aes(
+      xend = continent,
+      yend = continent_mean,
+      color = "resid"
+    )
+  ) + 
+  geom_segment(aes(
+    x = 0.55, 
+    xend = 1.45, 
+    y = lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) + 
+  geom_segment(aes(
+    x = 1.55, 
+    xend = 2.45, 
+    y = lm_3_continents$coefficients[2,1] + lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[2,1] + lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) + 
+  geom_segment(aes(
+    x = 2.55, 
+    xend = 3.45, 
+    y = lm_3_continents$coefficients[3,1] + lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[3,1] + lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) +
+  geom_segment(
+    aes(
+      x = 0.55,
+      xend = 3.45,
+      y = mean(gapminder_3_continents$lifeExp),
+      yend = mean(gapminder_3_continents$lifeExp),
+      color = "Overall Mean"
+    )
+  )
+
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+import seaborn as sns
+
+spec = dict(x="continent", y="lifeExp", data=gapminder_3_continents)
+fig, ax = plt.subplots(figsize =(7, 5))
+sns.stripplot(**spec, size=4, palette="deep")
+sns.pointplot(**spec, join=False, ci=0, capsize=.7, scale=0, palette="deep")
+plt.axhline(y=gapminder_3_continents["lifeExp"].mean(), color='red', ls='-')
+plt.show()
+```
+:::
+
+*Fig. XXX.* Our model in the figure above considers the distance from each of the continent's mean to the overall mean as part of the explained variance. For each data point, the squared distance from the the mean line to the overall mean line is part of the sum of squares at the top of the formula.

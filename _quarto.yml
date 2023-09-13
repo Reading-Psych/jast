@@ -59,9 +59,10 @@ website:
           - "GeneralLinearModels/generalLinearModels.qmd"
       #     - "GeneralLinearModels/rVsAdjustedRSquared.qmd"
           - "GeneralLinearModels/TTests.qmd"
-      #     - "GeneralLinearModels/One-Way Analysis of Variance"
-      #     - "GeneralLinearModels/Two-Way (or more) Analysis of Variance"
-      #     - "GeneralLinearModels/ANCOVA"
+          - "GeneralLinearModels/oneWayAnova.qmd"
+          - "GeneralLinearModels/repeatedAnova.qmd"
+          - "GeneralLinearModels/mixedAnova.qmd"
+          - "GeneralLinearModels/ancova.qmd"
       # - section: "Permutation testing"
       - section: Categorical
         contents:

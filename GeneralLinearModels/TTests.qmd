@@ -687,7 +687,7 @@ x2 = np.arange(0.05, 1.98, 0.065)
 
 
 fig, ax = plt.subplots(figsize =(10, 7))
-ax.set_ylim([60, 80])
+ax.set_ylim([60, 85])
 plt.axhline(y=gapminder_americas_europe["lifeExp"].mean(), color='green', ls='-')
 plt.hlines(y=m1,xmin=-1.99, xmax=-.04, colors='blue', lw=0.5)
 plt.hlines(y=m2,xmin=1.99, xmax=.04, colors='blue', lw=0.5)

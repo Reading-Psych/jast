@@ -10,6 +10,11 @@ editor: visual
 ## R
 
 ```{r}
+library(gapminder)
+gapminder_2007 <- subset(
+  gapminder,   # the data set
+  year == 2007
+)
 ## Automatic calculation
 gapminder_3_continents <- subset(
   gapminder_2007, 
@@ -80,6 +85,7 @@ To visualise this
 ## R
 
 ```{r}
+library(ggplot2)
 lm_3_continents <- summary(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
 lm_3_continents$coefficients
 mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"])

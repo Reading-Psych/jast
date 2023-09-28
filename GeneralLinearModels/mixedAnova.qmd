@@ -12,6 +12,7 @@ Let's create data to allow us to compare between 2 years, and between Europe and
 ## R
 
 ```{r}
+library(gapminder)
 # create a new data frame that only focuses on data from 2007
 gapminder_2_by_2 <- subset(
   gapminder,   # the data set

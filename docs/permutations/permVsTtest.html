@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Permutation vs.&nbsp;t tests</title>
+<title>Just Another Statistics Textbook - Permutation vs.&nbsp;t tests (incomplete)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -165,7 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Permutation vs.&nbsp;t tests</h1>
+      <h1 class="quarto-secondary-nav-title">Permutation vs.&nbsp;t tests (incomplete)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -353,12 +353,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares</a>
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares (R, Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests(incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link">One Way ANOVA (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/repeatedAnova.html" class="sidebar-item-text sidebar-link">Repeated Measures ANOVAs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/mixedAnova.html" class="sidebar-item-text sidebar-link">Mixed ANOVA (incomplete)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/ancova.html" class="sidebar-item-text sidebar-link">ANCOVA (incomplete)</a>
   </div>
 </li>
       </ul>
@@ -433,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../permutations/permVsTtest.html" class="sidebar-item-text sidebar-link active">Permutation vs.&nbsp;t tests</a>
+  <a href="../permutations/permVsTtest.html" class="sidebar-item-text sidebar-link active">Permutation vs.&nbsp;t tests (incomplete)</a>
   </div>
 </li>
       </ul>
@@ -516,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Permutation vs.&nbsp;t tests</h1>
+<h1 class="title d-none d-lg-block">Permutation vs.&nbsp;t tests (incomplete)</h1>
 </div>
 
 
@@ -534,7 +554,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="p-values-for-t-tests-vs.-permutations-of-them" class="level2">
 <h2 class="anchored" data-anchor-id="p-values-for-t-tests-vs.-permutations-of-them">P-values for t-tests vs.&nbsp;permutations of them?</h2>
 <p>As you may have noticed above, sometimes the p-value was higher or lower for the permutation analysis than it was for the original analysis. Let’s use some simulations to capture what you can generally expect when using permutation analysis on data you can run a t-test on.</p>
-<p>As most studies are on 30 participants or more, and we’ve established it is computationally unrealistic to compute all permutations of 30+ participants, we will use Monte Carlo simulations. We will conduct 50 simulations for Cohen’s <em>d</em> effect sizes of .1,.3,.5 of 10000 permutations for between-subject t-tests on 100 participants per group.</p>
+<p>As most studies are on 30 participants or more, and we’ve established it is computationally unrealistic to compute all permutations of 30+ participants, we will use Monte Carlo simulations. We will conduct 50 simulations for Cohen’s <em>d</em> effect sizes of .1,.3,.5 of 1000 permutations for between-subject t-tests on 100 participants per group. All tests will be 2-tailed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -549,239 +569,178 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>simulations <span class="ot">=</span> <span class="dv">50</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>permutations_n <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>these_effect_sizes <span class="ot">=</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">3</span>,.<span class="dv">5</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>simulations_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect_size =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(these_effect_sizes, simulations)),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulation  =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>simulations)),<span class="fu">length</span>(these_effect_sizes)),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permutation = rep(c(1:permutations_n), length(these_effect_sizes) * simulations),</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ttest =</span> <span class="cn">NA</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">perm_test =</span> <span class="cn">NA</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># could take a while, here's a progess bar</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">=</span> <span class="fu">txtProgressBar</span>(<span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="fu">dim</span>(simulations_df)[<span class="dv">1</span>], <span class="at">initial =</span> <span class="dv">0</span>) </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(simulations_df)[<span class="dv">1</span>]){</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setTxtProgressBar</span>(pb,i)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  this_effect_size <span class="ot">=</span> simulations_df<span class="sc">$</span>effect_size[i]</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  group_1_data <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  group_2_data <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)<span class="sc">+</span> this_effect_size</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  simulations_df<span class="sc">$</span>ttest[i] <span class="ot">=</span> <span class="fu">t.test</span>(group_1_data, group_2_data, <span class="at">var.equal =</span> T)<span class="sc">$</span>p.value</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permutation analysis</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  perm_vector <span class="ot">=</span> <span class="fu">numeric</span>(permutations_n)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>permutations_n){</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    all_sample <span class="ot">=</span> <span class="fu">c</span>(group_1_data,group_2_data)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    group_1_sample <span class="ot">=</span> <span class="fu">sample</span>(all_sample, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># select opposite data for group 2</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    group_2_index  <span class="ot">=</span> <span class="sc">!</span>(all_sample <span class="sc">%in%</span> group_1_sample)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    group_2_sample <span class="ot">=</span> all_sample[group_2_index]</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compare the medians</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    perm_vector[j] <span class="ot">=</span> <span class="fu">t.test</span>(group_1_sample, group_2_sample, <span class="at">var.equal =</span> T)<span class="sc">$</span>p.value</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  simulations_df<span class="sc">$</span>perm_test[i] <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(simulations_df<span class="sc">$</span>ttest[i]) <span class="sc">&gt;</span> <span class="fu">abs</span>(perm_vector))</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>these_effect_sizes <span class="ot">=</span> <span class="fu">c</span>(.<span class="dv">1</span>,.<span class="dv">2</span>,.<span class="dv">3</span>,.<span class="dv">4</span>,.<span class="dv">5</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>simulations_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect_size =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(these_effect_sizes, simulations)),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulation  =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>simulations)),<span class="fu">length</span>(these_effect_sizes)),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permutation = rep(c(1:permutations_n), length(these_effect_sizes) * simulations),</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ttest =</span> <span class="cn">NA</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">perm_test =</span> <span class="cn">NA</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># could take a while, here's a progess bar</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">=</span> <span class="fu">txtProgressBar</span>(<span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="fu">dim</span>(simulations_df)[<span class="dv">1</span>], <span class="at">initial =</span> <span class="dv">0</span>) </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(simulations_df)[<span class="dv">1</span>]){</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setTxtProgressBar</span>(pb,i)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  this_effect_size <span class="ot">=</span> simulations_df<span class="sc">$</span>effect_size[i]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  group_1_data <span class="ot">=</span> <span class="fu">rnorm</span>(sample_size)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  group_2_data <span class="ot">=</span> <span class="fu">rnorm</span>(sample_size)<span class="sc">+</span> this_effect_size</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  simulations_df<span class="sc">$</span>ttest[i] <span class="ot">=</span> <span class="fu">t.test</span>(group_1_data, group_2_data, <span class="at">var.equal =</span> T)<span class="sc">$</span>p.value</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permutation analysis</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  perm_vector <span class="ot">=</span> <span class="fu">numeric</span>(permutations_n)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>permutations_n){</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    all_sample <span class="ot">=</span> <span class="fu">c</span>(group_1_data,group_2_data)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    group_1_sample <span class="ot">=</span> <span class="fu">sample</span>(all_sample, sample_size, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># select opposite data for group 2</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    group_2_index  <span class="ot">=</span> <span class="sc">!</span>(all_sample <span class="sc">%in%</span> group_1_sample)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    group_2_sample <span class="ot">=</span> all_sample[group_2_index]</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compare the medians</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    perm_vector[j] <span class="ot">=</span> <span class="fu">t.test</span>(group_1_sample, group_2_sample, <span class="at">var.equal =</span> T)<span class="sc">$</span>p.value</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  simulations_df<span class="sc">$</span>perm_test[i] <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(simulations_df<span class="sc">$</span>ttest[i]) <span class="sc">&gt;</span> <span class="fu">abs</span>(perm_vector))</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simulations_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    effect_size simulation        ttest perm_test
-1           0.1          1 8.834650e-01    0.8810
-2           0.3          2 5.969516e-01    0.5948
-3           0.5          3 3.751978e-04    0.0004
-4           0.1          4 7.936948e-01    0.7904
-5           0.3          5 5.500661e-02    0.0530
-6           0.5          6 6.215436e-04    0.0005
-7           0.1          7 1.096192e-01    0.1095
-8           0.3          8 1.329864e-02    0.0127
-9           0.5          9 9.981716e-02    0.1014
-10          0.1         10 7.162600e-01    0.7109
-11          0.3         11 6.067956e-05    0.0000
-12          0.5         12 2.152680e-01    0.2150
-13          0.1         13 7.578102e-01    0.7559
-14          0.3         14 1.401961e-03    0.0019
-15          0.5         15 1.056480e-04    0.0001
-16          0.1         16 1.177689e-02    0.0143
-17          0.3         17 1.604098e-03    0.0012
-18          0.5         18 5.386964e-04    0.0004
-19          0.1         19 8.760591e-01    0.8755
-20          0.3         20 1.594166e-02    0.0181
-21          0.5         21 1.866586e-03    0.0018
-22          0.1         22 3.908016e-01    0.3923
-23          0.3         23 2.038806e-02    0.0209
-24          0.5         24 3.376440e-04    0.0002
-25          0.1         25 1.764169e-01    0.1795
-26          0.3         26 4.934763e-02    0.0456
-27          0.5         27 2.532395e-05    0.0002
-28          0.1         28 5.999397e-01    0.6030
-29          0.3         29 1.875266e-01    0.1879
-30          0.5         30 1.602511e-04    0.0000
-31          0.1         31 1.961351e-02    0.0199
-32          0.3         32 1.765313e-02    0.0186
-33          0.5         33 7.664758e-04    0.0009
-34          0.1         34 3.725523e-01    0.3764
-35          0.3         35 1.016980e-01    0.1002
-36          0.5         36 7.563694e-04    0.0006
-37          0.1         37 8.988302e-01    0.8982
-38          0.3         38 5.931632e-01    0.5927
-39          0.5         39 3.091062e-05    0.0000
-40          0.1         40 4.448423e-01    0.4481
-41          0.3         41 4.797400e-02    0.0510
-42          0.5         42 7.297966e-03    0.0087
-43          0.1         43 6.298506e-01    0.6306
-44          0.3         44 2.360305e-03    0.0023
-45          0.5         45 1.188910e-03    0.0018
-46          0.1         46 2.427504e-01    0.2428
-47          0.3         47 5.440034e-02    0.0542
-48          0.5         48 1.720537e-03    0.0024
-49          0.1         49 1.458504e-01    0.1471
-50          0.3         50 1.203623e-03    0.0013
-51          0.5          1 3.868320e-05    0.0000
-52          0.1          2 1.412830e-03    0.0011
-53          0.3          3 5.016393e-02    0.0527
-54          0.5          4 3.391269e-03    0.0023
-55          0.1          5 9.906338e-01    0.9891
-56          0.3          6 2.078524e-01    0.2057
-57          0.5          7 2.931453e-05    0.0000
-58          0.1          8 3.384478e-02    0.0334
-59          0.3          9 3.943023e-01    0.3905
-60          0.5         10 3.274468e-06    0.0000
-61          0.1         11 1.162437e-01    0.1178
-62          0.3         12 1.515131e-01    0.1529
-63          0.5         13 1.045115e-06    0.0000
-64          0.1         14 4.593911e-01    0.4542
-65          0.3         15 9.259099e-04    0.0006
-66          0.5         16 3.450564e-04    0.0000
-67          0.1         17 4.168459e-01    0.4189
-68          0.3         18 9.988082e-02    0.0990
-69          0.5         19 7.210718e-04    0.0008
-70          0.1         20 6.486971e-01    0.6529
-71          0.3         21 2.965812e-03    0.0030
-72          0.5         22 7.476344e-04    0.0005
-73          0.1         23 3.363961e-01    0.3312
-74          0.3         24 2.623368e-02    0.0242
-75          0.5         25 6.118969e-04    0.0009
-76          0.1         26 9.528167e-03    0.0087
-77          0.3         27 5.485523e-02    0.0568
-78          0.5         28 6.123964e-02    0.0587
-79          0.1         29 1.297181e-01    0.1296
-80          0.3         30 1.551831e-02    0.0161
-81          0.5         31 4.735910e-05    0.0001
-82          0.1         32 1.120304e-02    0.0107
-83          0.3         33 2.875838e-03    0.0026
-84          0.5         34 7.429179e-05    0.0001
-85          0.1         35 4.170847e-01    0.4159
-86          0.3         36 5.140195e-02    0.0527
-87          0.5         37 2.967110e-04    0.0006
-88          0.1         38 9.860863e-01    0.9843
-89          0.3         39 8.280504e-03    0.0077
-90          0.5         40 4.659402e-02    0.0438
-91          0.1         41 8.368031e-01    0.8379
-92          0.3         42 4.447074e-01    0.4433
-93          0.5         43 1.554942e-05    0.0000
-94          0.1         44 4.063467e-01    0.4118
-95          0.3         45 5.597655e-04    0.0004
-96          0.5         46 1.087148e-02    0.0117
-97          0.1         47 8.594907e-01    0.8592
-98          0.3         48 3.218813e-03    0.0027
-99          0.5         49 9.797488e-04    0.0002
-100         0.1         50 8.511229e-01    0.8539
-101         0.3          1 3.023231e-03    0.0040
-102         0.5          2 1.025514e-03    0.0019
-103         0.1          3 2.276626e-01    0.2271
-104         0.3          4 1.064061e-02    0.0113
-105         0.5          5 3.680463e-04    0.0002
-106         0.1          6 3.424647e-01    0.3442
-107         0.3          7 4.862835e-04    0.0007
-108         0.5          8 1.436772e-02    0.0151
-109         0.1          9 1.276581e-01    0.1255
-110         0.3         10 4.245284e-01    0.4305
-111         0.5         11 1.653651e-02    0.0154
-112         0.1         12 9.611996e-01    0.9615
-113         0.3         13 1.275785e-01    0.1236
-114         0.5         14 1.986440e-05    0.0000
-115         0.1         15 3.960881e-01    0.3950
-116         0.3         16 6.144756e-01    0.6170
-117         0.5         17 2.920041e-03    0.0041
-118         0.1         18 1.405516e-01    0.1412
-119         0.3         19 2.299735e-01    0.2298
-120         0.5         20 4.029527e-03    0.0035
-121         0.1         21 5.150305e-01    0.5152
-122         0.3         22 1.512469e-02    0.0166
-123         0.5         23 5.883684e-04    0.0005
-124         0.1         24 5.661201e-01    0.5674
-125         0.3         25 3.494773e-03    0.0041
-126         0.5         26 5.229648e-03    0.0058
-127         0.1         27 7.370942e-01    0.7305
-128         0.3         28 9.524651e-03    0.0089
-129         0.5         29 1.455409e-04    0.0003
-130         0.1         30 6.285135e-01    0.6294
-131         0.3         31 1.128954e-02    0.0117
-132         0.5         32 1.062053e-02    0.0111
-133         0.1         33 6.992277e-01    0.6893
-134         0.3         34 9.076248e-04    0.0010
-135         0.5         35 1.594409e-04    0.0002
-136         0.1         36 6.766917e-01    0.6770
-137         0.3         37 4.141083e-04    0.0007
-138         0.5         38 1.648297e-02    0.0156
-139         0.1         39 9.780258e-01    0.9780
-140         0.3         40 3.070441e-03    0.0027
-141         0.5         41 5.213541e-03    0.0058
-142         0.1         42 5.664905e-01    0.5608
-143         0.3         43 2.193269e-04    0.0002
-144         0.5         44 1.679231e-05    0.0000
-145         0.1         45 3.081237e-01    0.3086
-146         0.3         46 3.884696e-03    0.0038
-147         0.5         47 2.346478e-04    0.0002
-148         0.1         48 2.290936e-01    0.2240
-149         0.3         49 4.529190e-02    0.0441
-150         0.5         50 4.558535e-02    0.0493</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simulations_df <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(effect_size) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ttest_mean =</span> <span class="fu">mean</span>(ttest),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ttest_sd   =</span> <span class="fu">sd</span>(ttest),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">perm_mean  =</span> <span class="fu">mean</span>(perm_test),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">perm_sd    =</span> <span class="fu">sd</span>(perm_test),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> simulations_summary</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>simulations_plot_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"t-test"</span>,<span class="st">"permutation"</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect_size =</span> <span class="fu">rep</span>(<span class="fu">as.character</span>(these_effect_sizes), <span class="dv">2</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> <span class="fu">c</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>]),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>])</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd   =</span> <span class="fu">c</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>]),</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>])</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simulations_plot_df, <span class="fu">aes</span>(<span class="at">x=</span>effect_size, <span class="at">y=</span>mean, <span class="at">fill=</span>test)) <span class="sc">+</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean<span class="sc">-</span>sd, <span class="at">ymax=</span>mean<span class="sc">+</span>sd), <span class="at">width=</span>.<span class="dv">2</span>,<span class="at">position=</span><span class="fu">position_dodge</span>(.<span class="dv">9</span>)) <span class="sc">+</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Effect Size"</span>) <span class="sc">+</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"P-value"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="permVsTtest_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>As shown above, you get almost identical p-values from a single t-test on the original data to those from permutation analyses. However, arguably it’s redundant to do a permutation analysis of t-tests if the data is normal. The next question is whether a permutation analysis of median comparisons is equally powerful as t-tests on normal data? If so, then you could arguably just use permutation analyses of medians all times without having to worry about whether your data is parametric. Let’s see now how the p-values compare:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>simulations_df <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(effect_size) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ttest_mean =</span> <span class="fu">mean</span>(ttest),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ttest_sd   =</span> <span class="fu">sd</span>(ttest),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">perm_mean  =</span> <span class="fu">mean</span>(perm_test),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">perm_sd    =</span> <span class="fu">sd</span>(perm_test),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> simulations_summary</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>simulations_plot_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"t-test"</span>,<span class="st">"permutation"</span>),<span class="at">each =</span> <span class="dv">3</span>),</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect_size =</span> <span class="fu">rep</span>(<span class="fu">as.character</span>(these_effect_sizes), <span class="dv">2</span>),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> <span class="fu">c</span>(</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>]),</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>])</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd   =</span> <span class="fu">c</span>(</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>]),</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>])</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simulations_plot_df, <span class="fu">aes</span>(<span class="at">x=</span>effect_size, <span class="at">y=</span>mean, <span class="at">fill=</span>test)) <span class="sc">+</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean<span class="sc">-</span>sd, <span class="at">ymax=</span>mean<span class="sc">+</span>sd), <span class="at">width=</span>.<span class="dv">2</span>,<span class="at">position=</span><span class="fu">position_dodge</span>(.<span class="dv">9</span>)) <span class="sc">+</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Effect Size"</span>) <span class="sc">+</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"P-value"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simulations_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect_size =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(these_effect_sizes, simulations)),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulation  =</span> <span class="fu">rep</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>simulations)),<span class="fu">length</span>(these_effect_sizes)),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permutation = rep(c(1:permutations_n), length(these_effect_sizes) * simulations),</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ttest =</span> <span class="cn">NA</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">perm_test =</span> <span class="cn">NA</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># could take a while, here's a progess bar</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>pb <span class="ot">=</span> <span class="fu">txtProgressBar</span>(<span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="fu">dim</span>(simulations_df)[<span class="dv">1</span>], <span class="at">initial =</span> <span class="dv">0</span>) </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(simulations_df)[<span class="dv">1</span>]){</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setTxtProgressBar</span>(pb,i)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  this_effect_size <span class="ot">=</span> simulations_df<span class="sc">$</span>effect_size[i]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  group_1_data <span class="ot">=</span> <span class="fu">rnorm</span>(sample_size)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  group_2_data <span class="ot">=</span> <span class="fu">rnorm</span>(sample_size)<span class="sc">+</span> this_effect_size</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  simulations_df<span class="sc">$</span>ttest[i] <span class="ot">=</span> <span class="fu">t.test</span>(group_1_data, group_2_data, <span class="at">var.equal =</span> T)<span class="sc">$</span>p.value</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># permutation analysis</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  perm_vector <span class="ot">=</span> <span class="fu">numeric</span>(permutations_n)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  median_diff <span class="ot">=</span> <span class="fu">median</span>(group_1_data) <span class="sc">-</span> <span class="fu">median</span>(group_2_data)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>permutations_n){</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    all_sample <span class="ot">=</span> <span class="fu">c</span>(group_1_data,group_2_data)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    group_1_sample <span class="ot">=</span> <span class="fu">sample</span>(all_sample, sample_size, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># select opposite data for group 2</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    group_2_index  <span class="ot">=</span> <span class="sc">!</span>(all_sample <span class="sc">%in%</span> group_1_sample)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    group_2_sample <span class="ot">=</span> all_sample[group_2_index]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compare the medians</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    perm_vector[j] <span class="ot">=</span> <span class="fu">median</span>(group_1_sample) <span class="sc">-</span> <span class="fu">median</span>(group_2_sample)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  simulations_df<span class="sc">$</span>perm_test[i] <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perm_vector) <span class="sc">&gt;</span> <span class="fu">abs</span>(median_diff))</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>simulations_df <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(effect_size) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ttest_mean =</span> <span class="fu">mean</span>(ttest),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ttest_sd   =</span> <span class="fu">sd</span>(ttest),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">perm_mean  =</span> <span class="fu">mean</span>(perm_test),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">perm_sd    =</span> <span class="fu">sd</span>(perm_test),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> simulations_summary</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>simulations_plot_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"t-test"</span>,<span class="st">"permutation"</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect_size =</span> <span class="fu">rep</span>(<span class="fu">as.character</span>(these_effect_sizes), <span class="dv">2</span>),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean =</span> <span class="fu">c</span>(</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>]),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>])</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd   =</span> <span class="fu">c</span>(</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>ttest[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>]),</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">1</span>]),</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">2</span>]),</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">3</span>]),</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">4</span>]),</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulations_df<span class="sc">$</span>perm_test[simulations_df<span class="sc">$</span>effect_size <span class="sc">==</span> .<span class="dv">5</span>])</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(simulations_plot_df, <span class="fu">aes</span>(<span class="at">x=</span>effect_size, <span class="at">y=</span>mean, <span class="at">fill=</span>test)) <span class="sc">+</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position=</span><span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean<span class="sc">-</span>sd, <span class="at">ymax=</span>mean<span class="sc">+</span>sd), <span class="at">width=</span>.<span class="dv">2</span>,<span class="at">position=</span><span class="fu">position_dodge</span>(.<span class="dv">9</span>)) <span class="sc">+</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Effect Size"</span>) <span class="sc">+</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"P-value"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="permVsTtest_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>As shown above, you get almost identical p-values when using</p>
+<p>It does seem that with effect sizes greater than .1 you lose a little power in your analyses using permutation tests.</p>
 
 
 </section>

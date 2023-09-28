@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - Probability (R)</title>
+<title>Just Another Statistics Textbook - One Way ANOVA (incomplete)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,10 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -168,7 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Probability (R)</h1>
+      <h1 class="quarto-secondary-nav-title">One Way ANOVA (incomplete)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -251,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link active">Probability (R)</a>
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability (R)</a>
   </div>
 </li>
       </ul>
@@ -366,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link">One Way ANOVA (incomplete)</a>
+  <a href="../GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link active">One Way ANOVA (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -530,16 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#probability-of-single-outcomes" id="toc-probability-of-single-outcomes" class="nav-link active" data-scroll-target="#probability-of-single-outcomes"><strong>Probability of single outcomes</strong></a></li>
-  <li><a href="#probability-of-combinations-of-outcomes" id="toc-probability-of-combinations-of-outcomes" class="nav-link" data-scroll-target="#probability-of-combinations-of-outcomes"><strong>Probability of combinations of outcomes</strong></a>
-  <ul class="collapse">
-  <li><a href="#mutually-exclusive-outcomes" id="toc-mutually-exclusive-outcomes" class="nav-link" data-scroll-target="#mutually-exclusive-outcomes">Mutually exclusive outcomes</a></li>
-  </ul></li>
-  <li><a href="#the-likelihood-of-something-not-happening-is-often-a-useful-shortcut" id="toc-the-likelihood-of-something-not-happening-is-often-a-useful-shortcut" class="nav-link" data-scroll-target="#the-likelihood-of-something-not-happening-is-often-a-useful-shortcut">The likelihood of something <strong>NOT</strong> happening is often a useful shortcut</a></li>
-  <li><a href="#permutation-analyses" id="toc-permutation-analyses" class="nav-link" data-scroll-target="#permutation-analyses">Permutation analyses</a>
-  <ul class="collapse">
-  <li><a href="#valid-permutations" id="toc-valid-permutations" class="nav-link" data-scroll-target="#valid-permutations">Valid permutations</a></li>
-  </ul></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link active" data-scroll-target="#one-way-anova">One Way ANOVA</a></li>
   </ul>
 </nav>
     </div>
@@ -548,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Probability (R)</h1>
+<h1 class="title d-none d-lg-block">One Way ANOVA (incomplete)</h1>
 </div>
 
 
@@ -823,564 +811,180 @@ ttests-&gt;repeated_measures_anova
 </div>
 </div>
 </div>
-<p>This concept is somewhat foundational to almost all the other content in this website, but is often overlooked in textbooks. An advantage about understanding it is that will give you a more complete understanding later when we go through concepts such as <strong>probability distributions</strong> such as <strong>binomial</strong> and <strong>normal distributions.</strong></p>
-<section id="probability-of-single-outcomes" class="level2">
-<h2 class="anchored" data-anchor-id="probability-of-single-outcomes"><strong>Probability of single outcomes</strong></h2>
-<p>In informal language we might talk about there being a 50% chance of something happening, such as a 50% chance of getting “heads” when flipping a coin. At the risk of telling you what you already know, if there’s a 50% chance of getting “heads”, then we assume there is a 50% chance of getting “tails”, because the likelihood of all outcomes put together must equal 100% or else it suggests there’s another outcome you haven’t considered. For example, if a flipped coin lands on heads 45% of the time, and on tails 45% of the time, then (45% + 45% =) 90% of the time it will land on heads or tails, which means 10% of the time it will do one or more other things (e.g.&nbsp;land on neither side). <strong>Going forward we will assume we’re using coins that can only land on heads or tails.</strong></p>
-<p>Within statistics we tend to use decimalised numbers rather than percentages, so a 10% chance is written as .1, a 50% chance is written as .5 and 100% chance is written as 1. <strong>This is important as when you have considered all possible outcomes you should be able to add their likelihoods up to make 1.</strong></p>
-</section>
-<section id="probability-of-combinations-of-outcomes" class="level2">
-<h2 class="anchored" data-anchor-id="probability-of-combinations-of-outcomes"><strong>Probability of combinations of outcomes</strong></h2>
-<p>Imagine that you want to predict the likelihood of flipping a coin on heads or tails a certain number of times in a row. The outcome of each coin flip is <strong>binary</strong>, i.e.&nbsp;there is only 1 possible outcome out of 2 options. If this isn’t a biased coin, we can calculate some basic expectations about what will happen after 2 flips of the coin:</p>
-<ul>
-<li><p>Each flip of the coin has a 0.5 chance of landing on Heads.</p></li>
-<li><p>If we wanted to calculate the likelihood of 2 flips of heads, there’s a 0.5 chance we get the first heads flip, and then another 0.5 chance we’ll get the second head flip. To summarise this, we can multiply both 0.5 chances together to get 0.25.</p></li>
-<li><p>To summarise the likelihood of all combinations we could make the following table:</p></li>
-</ul>
-<table class="table">
-<colgroup>
-<col style="width: 29%">
-<col style="width: 44%">
-<col style="width: 25%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>First flip and likelihood</strong></td>
-<td><strong>Second flip and likelihood</strong></td>
-<td><strong>Overall likelihood</strong></td>
-</tr>
-<tr class="even">
-<td>Heads (.5)</td>
-<td>Heads (.5)</td>
-<td>0.5 * 0.5 = .25</td>
-</tr>
-<tr class="odd">
-<td>Heads (.5)</td>
-<td>Tails (.5)</td>
-<td>0.5 * 0.5 = .25</td>
-</tr>
-<tr class="even">
-<td>Tails (.5)</td>
-<td>Heads (.5)</td>
-<td>0.5 * 0.5 = .25</td>
-</tr>
-<tr class="odd">
-<td>Tails (.5)</td>
-<td>Tails (.5)</td>
-<td>0.5 * 0.5 = .25</td>
-</tr>
-<tr class="even">
-<td></td>
-<td><strong>Likelihood of any of the above happening</strong></td>
-<td>.25 + .25 + .25 + .25 = 1</td>
-</tr>
-</tbody>
-</table>
-<p>To achieve what you have above, you need to consider every combination of possible outcomes and calculate their likelihood. A useful quality check is to make sure that when you add the overall likelihoods together you get 1, otherwise…</p>
-<ul>
-<li><p>If you have less than 1 it suggests you have overlooked an outcome</p></li>
-<li><p>If you have more than 1 it suggests you have either</p>
-<ul>
-<li><p>Overestimated the likelihood of a specific outcome</p></li>
-<li><p>Treated overlapping outcomes as if they are <strong>mutually exclusive</strong></p></li>
-</ul></li>
-</ul>
-<section id="mutually-exclusive-outcomes" class="level3">
-<h3 class="anchored" data-anchor-id="mutually-exclusive-outcomes">Mutually exclusive outcomes</h3>
-<p>In the above example each of the four combinations are mutually exclusive, as they are specific and distinct. It is impossible that your flip of your coins was both:</p>
-<ul>
-<li><p>heads and then tails</p></li>
-<li><p>heads and then heads</p></li>
-</ul>
-<p>Even though the first flip is heads in both outcomes, the second flip is distinct and so the two flips could not be both outcomes as they are exclusive.</p>
-<p>However, there are some scenarios in which it’s less clear whether two outcomes are mutually exclusive. The chance of rolling any side of a die is 1 in 6. The chance of rolling a certain number and above can be calculated by counting the number of <strong>valid</strong> sides there are and then dividing by 6. For example, the chance of rolling 3 and above is 4 in 6 because there are 4 valid sides (3,4,5 and 6).</p>
-<p>Imagine that you are rolling dice twice in a row - what is the likelihood that one role will be at least 3 and the other will be at least 4? Let’s start with <strong>an incorrect</strong> answer:</p>
+<section id="one-way-anova" class="level2">
+<h2 class="anchored" data-anchor-id="one-way-anova">One Way ANOVA</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dice_outcomes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  Description <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 3 or more, second is 4 or more"</span>, <span class="co"># valid outcome</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 4 or more, second is 3 or more"</span>, <span class="co"># valid outcome</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 3 or more, second is 3 or LESS"</span>, <span class="co"># invalid outcome</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 4 or more, second is 2 or LESS"</span>, <span class="co"># invalid outcome</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 3 or LESS, second is 4 or more"</span>, <span class="co"># invalid outcome</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 2 or LESS, second is 3 or more"</span>, <span class="co"># invalid outcome</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"First is 2 or LESS, second is 2 or LESS"</span>  <span class="co"># invalid outcome</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">likelihood =</span> <span class="fu">c</span>(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 3 or more, second is 4 or more", # valid outcome</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 4 or more, second is 3 or more", # valid outcome</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 3 or more, second is 3 or LESS", # invalid outcome</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 4 or more, second is 2 or LESS", # invalid outcome</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 3 or LESS, second is 4 or more", # invalid outcome</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>), <span class="co"># "First is 2 or LESS, second is 3 or more", # invalid outcome</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">2</span><span class="sc">/</span><span class="dv">6</span>)  <span class="co"># "First is 2 or LESS, second is 2 or LESS"  # invalid outcome</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dice_outcomes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gapminder_2007 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Automatic calculation</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  gapminder_2007, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  continent <span class="sc">==</span> <span class="st">"Europe"</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">"Africa"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Df Sum Sq Mean Sq F value Pr(&gt;F)    
+factor(continent)   2  12017    6008   114.4 &lt;2e-16 ***
+Residuals         104   5461      53                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Manual calculation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ss_between <span class="ot">=</span> (</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>) </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>totalSS <span class="ot">=</span> <span class="fu">sum</span>((gapminder_3_continents<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>shortcut_ss_within <span class="ot">=</span> totalSS <span class="sc">-</span> ss_between</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ss_within_long <span class="ot">=</span> <span class="fu">sum</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>]))<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>]))<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>]))<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>(ss_between<span class="sc">/</span><span class="dv">2</span>)<span class="sc">/</span>(ss_within_long<span class="sc">/</span>(<span class="fu">length</span>(gapminder_3_continents<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 114.4212</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents[<span class="st">'continent'</span>] <span class="op">=</span> gapminder_3_continents[<span class="st">'continent'</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> ols(<span class="st">'lifeExp ~ continent'</span>, data <span class="op">=</span> gapminder_3_continents).fit()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>aov_table3 <span class="op">=</span> sm.stats.anova_lm(model3, typ<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>aov_table3</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ss_between <span class="op">=</span> (gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>)<span class="op">+</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>)<span class="op">+</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>totalSS <span class="op">=</span> <span class="bu">sum</span>((gapminder_3_continents[<span class="st">'lifeExp'</span>] <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>within1_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>within1<span class="op">=</span> <span class="bu">sum</span>(within1_all)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>within2_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>within2<span class="op">=</span> <span class="bu">sum</span>(within2_all)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>within3_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>within3<span class="op">=</span> <span class="bu">sum</span>(within3_all)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>ss_within_long <span class="op">=</span> within1 <span class="op">+</span> within2 <span class="op">+</span> within3</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>(ss_between<span class="op">/</span><span class="dv">2</span>)<span class="op">/</span>(ss_within_long<span class="op">/</span>(<span class="bu">len</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>])<span class="op">-</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>114.42116407168957</code></pre>
+</div>
+</div>
+</div>
+<p>To visualise this</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lm_3_continents <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>lm_3_continents<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          Estimate Std. Error  t value     Pr(&gt;|t|)
+(Intercept)               54.80604   1.004904 54.53856 2.466786e-78
+factor(continent)Americas 18.80208   1.763600 10.66119 2.243512e-18
+factor(continent)Europe   22.84256   1.661388 13.74908 3.900175e-25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77.6486</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean <span class="ot">=</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_3_continents, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> continent,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> continent_mean,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.55</span>, </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">1.45</span>, </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1.55</span>, </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">2.45</span>, </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">2.55</span>, </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">3.45</span>, </span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>,</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">3.45</span>,</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Overall Mean"</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of `gapminder_3_continents$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.
+Use of `gapminder_3_continents$lifeExp` is discouraged.
+ℹ Use `lifeExp` instead.</code></pre>
+</div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 90%">
-<col style="width: 9%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Description….c..First.is.3.or.more..second.is.4.or.more….First.is.4.or.more..second.is.3.or.more…</th>
-<th style="text-align: right;">likelihood</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">First is 3 or more, second is 4 or more</td>
-<td style="text-align: right;">0.3333333</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">First is 4 or more, second is 3 or more</td>
-<td style="text-align: right;">0.3333333</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">First is 3 or more, second is 3 or LESS</td>
-<td style="text-align: right;">0.2500000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">First is 4 or more, second is 2 or LESS</td>
-<td style="text-align: right;">0.1666667</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">First is 3 or LESS, second is 4 or more</td>
-<td style="text-align: right;">0.2500000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">First is 2 or LESS, second is 3 or more</td>
-<td style="text-align: right;">0.2222222</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">First is 2 or LESS, second is 2 or LESS</td>
-<td style="text-align: right;">0.1111111</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(dice_outcomes<span class="sc">$</span>likelihood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.666667</code></pre>
+<p><img src="oneWayAnova_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>When we add all the outcome likelihoods together we get more than 1, which makes me (and maybe you) sad. This reflects us (or me, you didn’t ask me to make the above table) treating some outcomes as if they are exclusive when they are not. For example, the two <strong>valid</strong> outcomes have overlap as they both include the likelihoods that both dice are of 4 or more. This has inflated the likelihood of the <strong>valid outcomes</strong> when you add these outcomes together, as you have doubled up on the overlap. To visualise this:</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmin =</span> <span class="fl">2.5</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmax =</span> <span class="fl">6.5</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> <span class="fl">3.5</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> <span class="fl">6.5</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"blue"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmin =</span> <span class="fl">3.5</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmax =</span> <span class="fl">6.5</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> <span class="fl">2.5</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> <span class="fl">6.5</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"red"</span>,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">#panel.grid.minor = element_line(color = "black", linewidth =  2),</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"First roll"</span>) <span class="sc">+</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Second roll"</span>) <span class="sc">+</span> </span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">1.5</span>,<span class="fl">2.5</span>,<span class="fl">3.5</span>,<span class="fl">4.5</span>, <span class="fl">5.5</span>),</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"white"</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">1.5</span>,<span class="fl">2.5</span>,<span class="fl">3.5</span>,<span class="fl">4.5</span>, <span class="fl">5.5</span>),</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"white"</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-prob-dice-outcome-likelihoods" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="probability_files/figure-html/fig-prob-dice-outcome-likelihoods-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: a summary of the overlap between 2 outcomes. The likelihood of any particular dice roll is 1 out of 36 (see how there are 36 combinations in the above grid), and so you could calculate the likelihood of one dice being at least 3 and the other being at least 4 by making a grid like above and then calculating what <strong>proportion of the area</strong> is covered by valid rolls. If half of your rolls are valid, then half of the area would be covered. In our case, 15 out of 36 possible combinations is valid, and so 15/36 of the area in the above grid is your likelihood. <strong>However</strong>, this figure also visualises how mathematical shortcuts described above of the likelihood of getting an outcome can be incorrect if you make false assumptions about whether outcomes are mutually exclusive. As we can see above, the likelihood of dice 1 being 3 or above and dice 2 being 4 or above (blue) is NOT exclusive from the likelihood of dice 1 being 3 and above and dice being 3 and above (red), which is why the purple squares reflect the overlap between these outcomes.</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In the above visualisation of all possible dice role combinations, the proportion of the area covered reflects the likelihood of each valid combination highlighted: “First is 3 or more, second is 4 or more” in blue and “First is 4 or more, second is 3 or more” in red. As you can see, there is a lot of overlap (purple/pink), reflecting that these were not mutually exclusive possibilities, and so adding them together will inflate the estimated likelihood of either of them happening.</p>
-<p>An elegant solution is to subtract the likelihood associated with repetition from your original calculation:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">+</span> <span class="co"># "First is 3 or more, second is 4 or more", # valid outcome</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> (<span class="dv">4</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">-</span> <span class="co"># "First is 4 or more, second is 3 or more", # valid outcome</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">*</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">6</span>     <span class="co"># overlap between the two valid outcomes above </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4166667</code></pre>
-</div>
-</div>
-<p>To confirm this is correct, we can use R to count how many times out of 36 the dice will be valid:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>valid_dice <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">FALSE</span>,<span class="at">nrow =</span> <span class="dv">6</span>,<span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">3</span> <span class="sc">&amp;</span> j <span class="sc">&gt;=</span> <span class="dv">4</span>){</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      valid_dice[i,j] <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(i <span class="sc">&gt;=</span> <span class="dv">4</span> <span class="sc">&amp;</span> j <span class="sc">&gt;=</span> <span class="dv">3</span>){</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      valid_dice[i,j] <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(valid_dice)<span class="sc">/</span> <span class="co"># number of valid roll combinations</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dv">36</span>               <span class="co"># total number of roll combinations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4166667</code></pre>
-</div>
-</div>
-<p>We get the same output.</p>
-</section>
-</section>
-<section id="the-likelihood-of-something-not-happening-is-often-a-useful-shortcut" class="level2">
-<h2 class="anchored" data-anchor-id="the-likelihood-of-something-not-happening-is-often-a-useful-shortcut">The likelihood of something <strong>NOT</strong> happening is often a useful shortcut</h2>
-<p>As shown above, calculating of the probabilities can be done in more and less reliable and elegant ways. Generally speaking, an elegant calculation is less likely to result in error. One common example of how to be more elegant is how we address the chance of avoiding an undesirable outcome, such as a <a href="../statsBasics/statsBasics.html"><strong>false-positive</strong></a>. If we ran three tests on random data, and accepted an <span class="math inline">\(\alpha\)</span> threshold of .05 (i.e.&nbsp;a 5% chance that we would incorrectly identify an effect), then there are (at least) 2 ways you could calculate the likelihood of at least 1 false positive. The slower way:</p>
-<p><span class="math display">\[
-fp_1 + fp_2 + fp_3  + fp_{1,2} + fp_{1,3} + fp_{2,3} + fp_{1,2,3}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(fp_1\)</span> refers to a false positive <strong>only</strong> for test 1</p></li>
-<li><p><span class="math inline">\(fp_2\)</span> refers to a false positive <strong>only</strong> for test 2</p></li>
-<li><p><span class="math inline">\(fp_3\)</span> refers to a false positive <strong>only</strong> for test 3</p></li>
-<li><p><span class="math inline">\(fp_{1,2}\)</span> refers to a false positive <strong>only</strong> for tests 1 and 2</p></li>
-<li><p><span class="math inline">\(fp_{1,3}\)</span> refers to a false positive <strong>only</strong> for tests 1 and 3</p></li>
-<li><p><span class="math inline">\(fp_{2,3}\)</span> refers to a false positive <strong>only</strong> for tests 2 and 3</p></li>
-<li><p><span class="math inline">\(fp_{1,2,3}\)</span> refers to a false positive for all three tests</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>at_least_1_fp <span class="ot">=</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># false positive only for test 1</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># false positive only for test 2</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">+</span> <span class="co"># false positive only for test 3</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># false positive only for test 1 and 2</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">+</span> <span class="co"># false positive only for test 1 and 3</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">+</span> <span class="co"># false positive only for test 2 and 3</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>.<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span> <span class="sc">*</span> .<span class="dv">05</span>   <span class="co"># false positive only for test all tests</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>at_least_1_fp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.142625</code></pre>
-</div>
-</div>
-<p>To check this is correct, when we add the above number to the likelihood of 0 false-positives we should get 1:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">+</span> <span class="co"># zero false positives</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  at_least_1_fp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
-</div>
-</div>
-<p>But, we could simply subtract the likelihood of zero false positives from 1:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (.<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span> <span class="sc">*</span> .<span class="dv">95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.142625</code></pre>
-</div>
-</div>
-<p>and get the same result.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Inconsistent p-value thresholds
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that it’s easier to do simple calculations like above if the p-value thresholds are consistent (e.g.&nbsp;.05 in this case), whereas inconsistent p-value thresholds between outcomes can lead to false assumptions about <strong>mutual exclusivity</strong> as described above.</p>
-</div>
-</div>
-</section>
-<section id="permutation-analyses" class="level2">
-<h2 class="anchored" data-anchor-id="permutation-analyses">Permutation analyses</h2>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Rabbit Hole 🐰 🕳️
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Most psychology statistics books do not address this topic, so if you do not need to understand it to proceed with later pages.</p>
-</div>
-</div>
-<p><strong>Permutations</strong> refer to specific combinations of outcomes. To calculate the likelihood of permutations you need to calculate the number of valid outcomes that matches it (e.g.&nbsp;how many ways can you flip a coin to make 2 heads and 1 tails) and divided by the number of all possible permutations. Thus we need to calculate 2 things:</p>
-<ul>
-<li><p><span class="math inline">\(validPerms\)</span>: How many combinations are there in which heads was flipped 2 times and tails 1 times</p></li>
-<li><p><span class="math inline">\(allPerms\)</span>: How many unique combinations/permutations can you get when flipping a coin 3 times (not restricted to 2 heads and 1 tails)</p></li>
-</ul>
-<p>We then divide <span class="math inline">\(validPerms\)</span> by <span class="math inline">\(allOutcomes\)</span> to calculate the likelihood of getting 2 out of 3 coins flipped as heads:</p>
-<p><span class="math display">\[
-\frac{validPerms}{allOutcomes} = \frac{nCr}{2^n}
-\]</span></p>
-<section id="valid-permutations" class="level3">
-<h3 class="anchored" data-anchor-id="valid-permutations">Valid permutations</h3>
-<div class="callout-important callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-! means factorial
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We start using the ! sign for <strong>factorial</strong> below. Factorial means that you multiply a number by every integer that is smaller than it before you reach 0. Some examples:</p>
-<p>5! = 5 * 4 * 3 * 2 * 1 = 120</p>
-<p>3! = 3 * 2 * 1 = 6</p>
-<p>1! = 1</p>
-<p>Note that languages like R use ! to indicate NOT, so make sure to use the appropriate function (e.g.&nbsp;“factorial” in R)</p>
-</div>
-</div>
-<p>The formula for calculating how many valid permutations can be thought of as a mathematical shortcut to calculate how many permutations of all coins there are, and then a filter to only focus on unique permutations of heads and tails combinations:</p>
-<p><span class="math display">\[
-\frac{allPermutations}{uniqueValidCombinations} = \frac{n!}{heads!tails!}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(n\)</span> is the number of flips total</p></li>
-<li><p><span class="math inline">\(heads\)</span> is the number of heads flips</p></li>
-<li><p><span class="math inline">\(tails\)</span> is the number of tail flips</p></li>
-</ul>
-<p>One way to understand the formula (in admittedly broad terms), is that the top half of the equation needs to capture all the ways coins can be combined, and the bottom half controls for the fact that some coins are identical as heads or tails. To illustrate the first half, lets give each coin an identity, coin 1, 2 and 3:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Flip 1</th>
-<th>Flip 2</th>
-<th>Flip 3</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Coin 1</td>
-<td>Coin 2</td>
-<td>Coin 3</td>
-</tr>
-<tr class="even">
-<td>Coin 1</td>
-<td>Coin 3</td>
-<td>Coin 2</td>
-</tr>
-<tr class="odd">
-<td>Coin 2</td>
-<td>Coin 1</td>
-<td>Coin 3</td>
-</tr>
-<tr class="even">
-<td>Coin 2</td>
-<td>Coin 3</td>
-<td>Coin 1</td>
-</tr>
-<tr class="odd">
-<td>Coin 3</td>
-<td>Coin 1</td>
-<td>Coin 2</td>
-</tr>
-<tr class="even">
-<td>Coin 3</td>
-<td>Coin 2</td>
-<td>Coin 1</td>
-</tr>
-</tbody>
-</table>
-<p>So there are 6 permutations. Fortunately, we don’t need to draw out all permutations each time, we can calculate this through a simple iterative process:</p>
-<ul>
-<li><p>The first coin will have 3 positions it can be in</p></li>
-<li><p>The second coin will have 2 positions it can be in</p></li>
-<li><p>The third coin will only have 1 position it can be in</p></li>
-</ul>
-<p>This means you can multiply these together to get the total possible combinations of coin positions: 3 * 2 * 1, or more elegantly written as 3! (see factorials above).</p>
-<p>Now that we’ve used this technique to get every permutation of coins, we can now allocate heads and tails to the coins we have, even though this will end with repetition (which we will deal with later). In this example, let’s say coins 1 and 2 are heads, and coin 3 is tails. Our grid will now look as follows:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Flip 1</th>
-<th>Flip 2</th>
-<th>Flip 3</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Heads</td>
-<td>Heads</td>
-<td>Tails</td>
-</tr>
-<tr class="even">
-<td>Heads</td>
-<td>Tails</td>
-<td>Heads</td>
-</tr>
-<tr class="odd">
-<td>Heads</td>
-<td>Heads</td>
-<td>Tails</td>
-</tr>
-<tr class="even">
-<td>Heads</td>
-<td>Tails</td>
-<td>Heads</td>
-</tr>
-<tr class="odd">
-<td>Tails</td>
-<td>Heads</td>
-<td>Heads</td>
-</tr>
-<tr class="even">
-<td>Tails</td>
-<td>Heads</td>
-<td>Heads</td>
-</tr>
-</tbody>
-</table>
-<p>Whilst this is somewhat helpful, there’s some redundant rows which are identical to each other. One way to calculate this is to calculate the permutations of coins within heads and tails separately, as the number of permutations there are within each of these captures how many repetitions there are driven by multiple instances of each type of coinflip. If that’s not clear, perhaps the following will help:</p>
-<p>Coins 1 and 2 are heads, so we can see that 2! (2 * 1 = 2) reflects the only 2 permutations:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Flip 1</th>
-<th>Flip 2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Coin 1</td>
-<td>Coin 2</td>
-</tr>
-<tr class="even">
-<td>Coin 2</td>
-<td>Coin 1</td>
-</tr>
-</tbody>
-</table>
-<p>These 2 permutations will be “heads” in the table above, and so we know that we can divide the total number of permutations by 2 as half the sequences have coin 1 first and coin 2 later, and the other half have coin 2 first and coin 1 later. As there is only 1 tail coin you would only divide the permutations by 1! which is 1 anyway. So back to the formula:</p>
-<p><span class="math display">\[
-\frac{n!}{heads!*tails} = \frac{3!}{2! * 1!} = \frac{3*2*1}{2*1 * 1} = \frac{6}{2} = 3
-\]</span></p>
-<p>3 permutations of 2 heads and 1 tail. Going back to the formula above:</p>
-<p><span class="math display">\[
-\frac{validPerms}{allOutcomes} = \frac{3}{2^n} = \frac{3}{8}
-\]</span></p>
-<p>So there’s a 3 in 8 chance of flipping 2 heads and 1 tails.</p>
-<section id="question-1" class="level4">
-<h4 class="anchored" data-anchor-id="question-1">Question 1</h4>
-<p>What is the likelihood of flipping a (non-biased) coin heads <strong>and then</strong> tails?</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>viewof probability_1_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>()<span class="op">;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>correct_probability_1 <span class="op">=</span> <span class="op">.</span><span class="bn">025</span><span class="op">;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>probability_1_result <span class="op">=</span> {</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(probability_1_response <span class="op">==</span> correct_probability_1){</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-3" data-nodetype="declaration">
-
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> <span class="bu">dict</span>(x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, data<span class="op">=</span>gapminder_3_continents)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>sns.stripplot(<span class="op">**</span>spec, size<span class="op">=</span><span class="dv">4</span>, palette<span class="op">=</span><span class="st">"deep"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>sns.pointplot(<span class="op">**</span>spec, join<span class="op">=</span><span class="va">False</span>, ci<span class="op">=</span><span class="dv">0</span>, capsize<span class="op">=</span><span class="fl">.7</span>, scale<span class="op">=</span><span class="dv">0</span>, palette<span class="op">=</span><span class="st">"deep"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>gapminder_3_continents[<span class="st">"lifeExp"</span>].mean(), color<span class="op">=</span><span class="st">'red'</span>, ls<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<p><span><span id="ojs-element-id-1"></span></span></p>
-</section>
-<section id="question-2" class="level4">
-<h4 class="anchored" data-anchor-id="question-2">Question 2</h4>
-<p>What is the likelihood of rolling 3 sixes in a row?</p>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb16" data-startfrom="1" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>viewof probability_2_response <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">'(1/6)*3'</span><span class="op">,</span><span class="st">'(1/6)^3'</span><span class="op">,</span><span class="st">'(1/6)+3'</span>])<span class="op">;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>correct_probability_2 <span class="op">=</span> <span class="st">'(1/6)^3'</span><span class="op">;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>probability_2_result <span class="op">=</span> {</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(probability_2_response <span class="op">==</span> correct_probability_2){</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Correct!'</span><span class="op">;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Incorrect or incomplete.'</span><span class="op">;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</div>
-<p><span><span id="ojs-element-id-2"></span></span></p>
+<p><em>Fig. XXX.</em> Our model in the figure above considers the distance from each of the continent’s mean to the overall mean as part of the explained variance. For each data point, the squared distance from the the mean line to the overall mean line is part of the sum of squares at the top of the formula.</p>
 
 
-<script type="ojs-module-contents">
-{"contents":[
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${probability_1_result}</span>`", "cellName":"ojs-element-id-1"}
-,
-  {"methodName":"interpret","inline":"true","source":"htl.html`<span>${probability_2_result}</span>`", "cellName":"ojs-element-id-2"}
-]}
-</script>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof probability_1_response = Inputs.number();\ncorrect_probability_1 = .025;\nprobability_1_result = {\n  if(probability_1_response == correct_probability_1){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof probability_2_response = Inputs.radio(['(1/6)*3','(1/6)^3','(1/6)+3']);\ncorrect_probability_2 = '(1/6)^3';\nprobability_2_result = {\n  if(probability_2_response == correct_probability_2){\n    return 'Correct!';\n  } else {\n    return 'Incorrect or incomplete.';\n  };\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('probability_1_response')"},{"methodName":"interpretQuiet","source":"shinyInput('probability_2_response')"}]}
-</script>
-<script type="module">
-window._ojs.paths.runtimeToDoc = "../../statsBasics";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

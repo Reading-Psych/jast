@@ -242,6 +242,4 @@ digraph "Course Overview" {
 [**Red**]{style="color:red"} means that the page does not exist yet
 
 [**Orange**]{style="color:orange"} means that the page is started
-
-... dotted lines reflect possible links that are not explained (yet?)
 :::

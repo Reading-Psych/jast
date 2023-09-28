@@ -104,15 +104,15 @@ plt.show()
 ![Scatterplot with Mu and Sample Mean of 'Life expectancy'](TTests_Figure1.png){fig-align="left" width="650"}
 :::
 
-We want to create a model that explains any variance around the population mean ($\mu$). The sample mean could be modeled as such:
+We want to create a model that explains any variance around the population mean (mu or $\mu$). The sample mean could be modeled as such:
 
 $$
 y = \bar{y} + e
 $$
 
--   Y is the data point value you are trying to predict. Note that for this formula you will **always** have the same prediction.
+-   Y is the data point value you are trying to predict. Note that for this formula you will **always** have the same predicted outcome (the mean).
 
--   $\bar{y}$ is mean of y. You are only interested in whether predicting y based on y's mean captures a significant amount of the variance of the y-values around the $\mu$.
+-   $\bar{y}$ is mean of all y data points. You are only interested in whether predicting y based on y's mean captures a significant amount of the variance of the y-values around the $\mu$.
 
 -   $e$ is the error, i.e. the residuals that the module do not predict effectively.
 
@@ -204,6 +204,8 @@ np.sum((gapminder_2007['lifeExp'] - gapminder_2007['lifeExp'].mean()) ** 2)
 ```
 :::
 
+In general linear models we calculate $F$-values as a statistic of how effective a model is at explaining the variance. These $F$-values use degrees of freedom (see [here](../describingData/dispersion.html#degrees-of-freedom) for a reminder) to adjust for
+
 So the F-value should be:
 
 $$
@@ -267,16 +269,20 @@ from scipy import stats
 
 # Calculate the square root of the F-value
 np.sqrt(f_value)
+```
+
+```         
+11.851628442323022
+```
+
+```{python}
+#| eval: false
 
 # Perform a t-test
 t_statistic, p_value = stats.ttest_1samp(gapminder_2007['lifeExp'], popmean=55)
 
 print("t-statistic:", t_statistic)
 print("p-value:", p_value)
-```
-
-```         
-11.851628442323022
 ```
 
 ```         
@@ -290,7 +296,7 @@ p-value: 6.463174215427706e-23
 Great. So now that we've highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:
 
 $$
-T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} = \\ \sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
 $$ where:
 
 -   T is the t-value
@@ -391,7 +397,9 @@ $$
 
 ## Independent Samples t-tests
 
-T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let's first check what the sum of squares is when you just use the **mean** as the model of life expectancy across these contents:
+### GLM approach
+
+T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let's first check what the sum of squares is when you just use the **mean** as the model of life expectancy **across** these contents (so we're **not** separating by continent yet):
 
 ::: panel-tabset
 ## R
@@ -943,6 +951,14 @@ There are some advantages of conducting a t-test using the "lm" functionality:
 -   You have more flexibility to make more complex models
 
 Let's now see how we can proceed if we have a more complex design, i.e. 3 or more levels and/or more than 1 factor, using ANOVAs.
+
+### GLM approach vs conventional formula
+
+[EXPLANATION HERE]{style="color:red"}
+
+# Using distributions to calculate p-values
+
+[(explained below) to compare to F distributions. You might remember that when discussing [normal distribution](../distributions/normal.html) we could calculate what proportion of the population would have a specific z-score or higher. We use a similar logic frequently in statistics in which we calculate a statistic value that we can compare to a distribution to calculate the likelihood of getting that statistic or a more extreme one.]{style="color:red"}
 
 # backup
 

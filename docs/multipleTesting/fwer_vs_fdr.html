@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -119,13 +90,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
@@ -145,33 +118,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Just Another Statistics Textbook</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document" rel="" target="">
  <span class="menu-text">Report an error</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications" rel="" target="">
  <span class="menu-text">Request a clarification</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content" rel="" target="">
  <span class="menu-text">Suggest Content</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">FWER, FDR, Positive and Negative effects(R)</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../multipleTesting/fwer.html">Multiple testing</a></li><li class="breadcrumb-item"><a href="../multipleTesting/fwer_vs_fdr.html">FWER, FDR, Positive and Negative effects(R)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -179,305 +159,398 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Welcome</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Welcome</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
+  <a href="../installing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing R(Studio)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R Basics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">R Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of Scripts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Fundamentals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Logic</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistics Foundations</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Statistics Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Scientific Notation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability (R)</a>
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability (R)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Describing Data</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Describing Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Central Tendency (R,Python)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dispersion (R,Python)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Distributions</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">Binomial Distribution (R)</a>
+  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Binomial Distribution (R)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normal Distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Skewness (R,Python)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R)</a>
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transforming Data (R)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Correlation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Correlations (R,Python)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations (R,Python)</a>
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Partial Correlations (R,Python)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Regressions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (R)</a>
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simple regression (R)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R, incomplete)</a>
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Regressions (R, incomplete)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">General Linear Models</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">General Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares</a>
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Linear Models and Sum of Squares (R, Python)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests(incomplete)</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">T-Tests(incomplete)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">One Way ANOVA (incomplete)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/repeatedAnova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repeated Measures ANOVAs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/mixedAnova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixed ANOVA (incomplete)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GeneralLinearModels/ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ANCOVA (incomplete)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Categorical</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text">Categorical</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link">Contingency (R)</a>
+  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contingency (R)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Item analyses</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+ <span class="menu-text">Item analyses</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cronbach’s Alpha (R)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Multiple testing</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
+ <span class="menu-text">Multiple testing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../multipleTesting/fwer.html" class="sidebar-item-text sidebar-link">Family-Wise Error (R)</a>
+  <a href="../multipleTesting/fwer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Family-Wise Error (R)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../multipleTesting/fdr.html" class="sidebar-item-text sidebar-link">False Discovery Rate(R)</a>
+  <a href="../multipleTesting/fdr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">False Discovery Rate(R)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../multipleTesting/fwer_vs_fdr.html" class="sidebar-item-text sidebar-link active">FWER, FDR, Positive and Negative effects(R)</a>
+  <a href="../multipleTesting/fwer_vs_fdr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">FWER, FDR, Positive and Negative effects(R)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Excel tutorial</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
+ <span class="menu-text">Permutations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
+  <a href="../permutations/permutations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Permutations (R)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">Count and countifs function</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">Sum and SumIf</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">Averageifs</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">Anchoring</a>
+  <a href="../permutations/permVsTtest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Permutation vs.&nbsp;t tests (incomplete)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">Test yourself</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">
+ <span class="menu-text">Excel tutorial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
+  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Formulas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
+  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">If function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Count and countifs function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sum and SumIf</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Averageifs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anchoring</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="true">
+ <span class="menu-text">Test yourself</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">All questions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Question Maker</span></a>
   </div>
 </li>
       </ul>
@@ -485,6 +558,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -503,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">FWER, FDR, Positive and Negative effects(R)</h1>
+<h1 class="title">FWER, FDR, Positive and Negative effects(R)</h1>
 </div>
 
 
@@ -518,12 +592,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Course Overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -533,203 +607,243 @@ Course Overview
 <div class="cell" data-fig-height="5" data-fig-width="10">
 <div class="cell-output-display">
 <div>
-<p>
-<svg width="960" height="480" viewbox="0.00 0.00 1305.00 1052.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 1654.00 1052.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1048)">
 <title>
 Course Overview
 </title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-1048 1301,-1048 1301,4 -4,4"></polygon> <!-- ancova --> <g id="node1" class="node">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1048 1650,-1048 1650,4 -4,4"></polygon> <!-- ancova --> <g id="node1" class="node">
 <title>
 ancova
 </title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="721,-396 451,-396 451,-324 721,-324 721,-396"></polygon> <text text-anchor="middle" x="586" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">ANCOVA</text> </g> <!-- between_anova --> <g id="node2" class="node">
-<title>
-between_anova
-</title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="1009.11,-396 738.89,-396 738.89,-324 1009.11,-324 1009.11,-396"></polygon> <text text-anchor="middle" x="874" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Between Subject ANOVA</text> </g> <!-- binomial --> <g id="node3" class="node">
-<title>
-binomial
-</title>
-<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="270,-828 0,-828 0,-756 270,-756 270,-828"></polygon> <text text-anchor="middle" x="135" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node4" class="node">
-<title>
-contingency
-</title>
-<g id="a_node4"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="270,-612 0,-612 0,-540 270,-540 270,-612"></polygon> <text text-anchor="middle" x="135" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge1" class="edge">
-<title>
-binomial-&gt;contingency
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M135,-755.66C135,-715.89 135,-651.68 135,-612.03"></path> </g> <!-- normal --> <g id="node14" class="node">
-<title>
-normal
-</title>
-<g id="a_node14"><a href="../distributions/normal.html" title="Normal Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="495,-720 225,-720 225,-648 495,-648 495,-720"></polygon> <text text-anchor="middle" x="360" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Normal Distribution</text> </a> </g> </g> <!-- binomial&#45;&gt;normal --> <g id="edge2" class="edge">
-<title>
-binomial-&gt;normal
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M209.3,-756C233.75,-744.48 260.93,-731.68 285.4,-720.15"></path> </g> <!-- central_tendency --> <g id="node5" class="node">
-<title>
-central_tendency
-</title>
-<g id="a_node5"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-936 288,-936 288,-864 558,-864 558,-936"></polygon> <text text-anchor="middle" x="423" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node7" class="node">
-<title>
-dispersion
-</title>
-<g id="a_node7"><a href="../describingData/dispersion.html" title="Dispersion"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-828 288,-828 288,-756 558,-756 558,-828"></polygon> <text text-anchor="middle" x="423" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dispersion</text> </a> </g> </g> <!-- central_tendency&#45;&gt;dispersion --> <g id="edge3" class="edge">
-<title>
-central_tendency-&gt;dispersion
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M423,-864C423,-852.54 423,-839.81 423,-828.33"></path> </g> <!-- correlations --> <g id="node6" class="node">
-<title>
-correlations
-</title>
-<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="433,-396 163,-396 163,-324 433,-324 433,-396"></polygon> <text text-anchor="middle" x="298" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node15" class="node">
-<title>
-partial_correlations
-</title>
-<g id="a_node15"><a href="../correlations/partialCorrelations.html" title="Partial Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="289,-288 19,-288 19,-216 289,-216 289,-288"></polygon> <text text-anchor="middle" x="154" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Partial Correlations</text> </a> </g> </g> <!-- correlations&#45;&gt;partial_correlations --> <g id="edge4" class="edge">
-<title>
-correlations-&gt;partial_correlations
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M250.45,-324C234.88,-312.54 217.59,-299.81 201.99,-288.33"></path> </g> <!-- simple_regression --> <g id="node19" class="node">
-<title>
-simple_regression
-</title>
-<g id="a_node19"><a href="../regressions/simpleRegressions.html" title="Simple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="577,-288 307,-288 307,-216 577,-216 577,-288"></polygon> <text text-anchor="middle" x="442" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Simple Regression</text> </a> </g> </g> <!-- correlations&#45;&gt;simple_regression --> <g id="edge5" class="edge">
-<title>
-correlations-&gt;simple_regression
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M345.55,-324C361.12,-312.54 378.41,-299.81 394.01,-288.33"></path> </g> <!-- dispersion&#45;&gt;normal --> <g id="edge6" class="edge">
-<title>
-dispersion-&gt;normal
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M402.2,-756C395.39,-744.54 387.82,-731.81 381,-720.33"></path> </g> <!-- fdr --> <g id="node8" class="node">
-<title>
-fdr
-</title>
-<g id="a_node8"><a href="../multipleTesting/fdr.html" title="False Discovery Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="846,-828 576,-828 576,-756 846,-756 846,-828"></polygon> <text text-anchor="middle" x="711" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">False Discovery Rate</text> </a> </g> </g> <!-- fwer_vs_fdr --> <g id="node10" class="node">
-<title>
-fwer_vs_fdr
-</title>
-<g id="a_node10"><a href="../multipleTesting/fwer_vs_fdr.html" title="FWER vs. FDR"> <polygon fill="white" stroke="#006688" stroke-width="5" points="990,-720 720,-720 720,-648 990,-648 990,-720"></polygon> <text text-anchor="middle" x="855" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">FWER vs.&nbsp;FDR</text> </a> </g> </g> <!-- fdr&#45;&gt;fwer_vs_fdr --> <g id="edge7" class="edge">
-<title>
-fdr-&gt;fwer_vs_fdr
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M758.55,-756C774.12,-744.54 791.41,-731.81 807.01,-720.33"></path> </g> <!-- fwer --> <g id="node9" class="node">
-<title>
-fwer
-</title>
-<g id="a_node9"><a href="../multipleTesting/fwer.html" title="Family-Wise Error Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1134,-828 864,-828 864,-756 1134,-756 1134,-828"></polygon> <text text-anchor="middle" x="999" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Family-Wise Error Rate</text> </a> </g> </g> <!-- fwer&#45;&gt;fwer_vs_fdr --> <g id="edge8" class="edge">
-<title>
-fwer-&gt;fwer_vs_fdr
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M951.45,-756C935.88,-744.54 918.59,-731.81 902.99,-720.33"></path> </g> <!-- glm --> <g id="node11" class="node">
-<title>
-glm
-</title>
-<g id="a_node11"><a href="../GeneralLinearModels/generalLinearModels.html" title="General Linear Models"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="922,-612 652,-612 652,-540 922,-540 922,-612"></polygon> <text text-anchor="middle" x="787" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">General Linear Models</text> </a> </g> </g> <!-- ttests --> <g id="node23" class="node">
-<title>
-ttests
-</title>
-<g id="a_node23"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="955,-504 685,-504 685,-432 955,-432 955,-504"></polygon> <text text-anchor="middle" x="820" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- glm&#45;&gt;ttests --> <g id="edge9" class="edge">
-<title>
-glm-&gt;ttests
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M797.9,-540C801.46,-528.54 805.43,-515.81 809,-504.33"></path> </g> <!-- mediation --> <g id="node12" class="node">
-<title>
-mediation
-</title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="577,-72 307,-72 307,0 577,0 577,-72"></polygon> <text text-anchor="middle" x="442" y="-28.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mediation</text> </g> <!-- multiple_regression --> <g id="node13" class="node">
-<title>
-multiple_regression
-</title>
-<g id="a_node13"><a href="../regressions/multipleRegressions.html" title="Multiple Regression"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="577,-180 307,-180 307,-108 577,-108 577,-180"></polygon> <text text-anchor="middle" x="442" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Multiple Regression</text> </a> </g> </g> <!-- multiple_regression&#45;&gt;mediation --> <g id="edge10" class="edge">
-<title>
-multiple_regression-&gt;mediation
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M442,-108C442,-96.54 442,-83.81 442,-72.33"></path> </g> <!-- normal&#45;&gt;contingency --> <g id="edge12" class="edge">
-<title>
-normal-&gt;contingency
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M285.7,-648C261.25,-636.48 234.07,-623.68 209.6,-612.15"></path> </g> <!-- normal&#45;&gt;correlations --> <g id="edge11" class="edge">
-<title>
-normal-&gt;correlations
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M337.58,-647.71C331.54,-636.67 325.68,-624.18 322,-612 299.53,-537.62 296.68,-445.72 297.05,-396.35"></path> </g> <!-- normal&#45;&gt;glm --> <g id="edge13" class="edge">
-<title>
-normal-&gt;glm
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M495.11,-649.46C545.07,-637.06 601.69,-623 651.67,-610.59"></path> </g> <!-- skewness --> <g id="node20" class="node">
-<title>
-skewness
-</title>
-<g id="a_node20"><a href="../distributions/skewness.html" title="Skewness"> <polygon fill="white" stroke="#006688" stroke-width="5" points="601,-612 331,-612 331,-540 601,-540 601,-612"></polygon> <text text-anchor="middle" x="466" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Skewness</text> </a> </g> </g> <!-- normal&#45;&gt;skewness --> <g id="edge14" class="edge">
-<title>
-normal-&gt;skewness
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M395,-648C406.46,-636.54 419.19,-623.81 430.67,-612.33"></path> </g> <!-- permutation --> <g id="node16" class="node">
+<g id="a_node1"><a href="../GeneralLinearModels/ancova.html" title="ANCOVA"> <polygon fill="red" stroke="#006688" stroke-width="5" points="1107,-288 837,-288 837,-216 1107,-216 1107,-288"></polygon> <text text-anchor="middle" x="972" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">ANCOVA</text> </a> </g> </g> <!-- permutation --> <g id="node17" class="node">
 <title>
 permutation
 </title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="990,-1044 720,-1044 720,-972 990,-972 990,-1044"></polygon> <text text-anchor="middle" x="855" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Permutations</text> </g> <!-- probability --> <g id="node17" class="node">
+<g id="a_node17"><a href="permutations.html" title="Permutations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1107,-180 837,-180 837,-108 1107,-108 1107,-180"></polygon> <text text-anchor="middle" x="972" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Permutations</text> </a> </g> </g> <!-- ancova&#45;&gt;permutation --> <g id="edge29" class="edge">
+<title>
+ancova-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M972,-216C972,-204.54 972,-191.81 972,-180.33"></path> </g> <!-- between_anova --> <g id="node2" class="node">
+<title>
+between_anova
+</title>
+<g id="a_node2"><a href="../GeneralLinearModels/oneWayAnova.html" title="One-way ANOVA"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="1395,-396 1125,-396 1125,-324 1395,-324 1395,-396"></polygon> <text text-anchor="middle" x="1260" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">One-way ANOVA</text> </a> </g> </g> <!-- between_anova&#45;&gt;ancova --> <g id="edge1" class="edge">
+<title>
+between_anova-&gt;ancova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1164.9,-324C1133.61,-312.48 1098.82,-299.68 1067.49,-288.15"></path> </g> <!-- between_anova&#45;&gt;permutation --> <g id="edge31" class="edge">
+<title>
+between_anova-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1230.67,-324C1203.3,-292.87 1160.16,-247.53 1116,-216 1097.17,-202.56 1075.41,-190.37 1054.61,-180.03"></path> </g> <!-- binomial --> <g id="node3" class="node">
+<title>
+binomial
+</title>
+<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1032,-828 762,-828 762,-756 1032,-756 1032,-828"></polygon> <text text-anchor="middle" x="897" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node4" class="node">
+<title>
+contingency
+</title>
+<g id="a_node4"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1154,-612 884,-612 884,-540 1154,-540 1154,-612"></polygon> <text text-anchor="middle" x="1019" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge2" class="edge">
+<title>
+binomial-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M917.15,-755.66C939.82,-715.89 976.43,-651.68 999.03,-612.03"></path> </g> <!-- normal --> <g id="node15" class="node">
+<title>
+normal
+</title>
+<g id="a_node15"><a href="../distributions/normal.html" title="Normal Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="825,-720 555,-720 555,-648 825,-648 825,-720"></polygon> <text text-anchor="middle" x="690" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Normal Distribution</text> </a> </g> </g> <!-- binomial&#45;&gt;normal --> <g id="edge3" class="edge">
+<title>
+binomial-&gt;normal
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M828.65,-756C806.15,-744.48 781.15,-731.68 758.63,-720.15"></path> </g> <!-- central_tendency --> <g id="node5" class="node">
+<title>
+central_tendency
+</title>
+<g id="a_node5"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="907,-936 637,-936 637,-864 907,-864 907,-936"></polygon> <text text-anchor="middle" x="772" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node7" class="node">
+<title>
+dispersion
+</title>
+<g id="a_node7"><a href="../describingData/dispersion.html" title="Dispersion"> <polygon fill="white" stroke="#006688" stroke-width="5" points="744,-828 474,-828 474,-756 744,-756 744,-828"></polygon> <text text-anchor="middle" x="609" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dispersion</text> </a> </g> </g> <!-- central_tendency&#45;&gt;dispersion --> <g id="edge4" class="edge">
+<title>
+central_tendency-&gt;dispersion
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M718.18,-864C700.46,-852.48 680.77,-839.68 663.05,-828.15"></path> </g> <!-- correlations --> <g id="node6" class="node">
+<title>
+correlations
+</title>
+<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="531,-396 261,-396 261,-324 531,-324 531,-396"></polygon> <text text-anchor="middle" x="396" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node16" class="node">
+<title>
+partial_correlations
+</title>
+<g id="a_node16"><a href="../correlations/partialCorrelations.html" title="Partial Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-288 288,-288 288,-216 558,-216 558,-288"></polygon> <text text-anchor="middle" x="423" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Partial Correlations</text> </a> </g> </g> <!-- correlations&#45;&gt;partial_correlations --> <g id="edge5" class="edge">
+<title>
+correlations-&gt;partial_correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M404.92,-324C407.83,-312.54 411.08,-299.81 414,-288.33"></path> </g> <!-- correlations&#45;&gt;permutation --> <g id="edge32" class="edge">
+<title>
+correlations-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M480.51,-323.93C575.21,-284.7 718.97,-225.38 745,-216 779.86,-203.43 818.18,-190.95 853.25,-180.04"></path> </g> <!-- simple_regression --> <g id="node20" class="node">
+<title>
+simple_regression
+</title>
+<g id="a_node20"><a href="../regressions/simpleRegressions.html" title="Simple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="270,-288 0,-288 0,-216 270,-216 270,-288"></polygon> <text text-anchor="middle" x="135" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Simple Regression</text> </a> </g> </g> <!-- correlations&#45;&gt;simple_regression --> <g id="edge6" class="edge">
+<title>
+correlations-&gt;simple_regression
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M309.82,-324C281.46,-312.48 249.93,-299.68 221.54,-288.15"></path> </g> <!-- dispersion&#45;&gt;normal --> <g id="edge7" class="edge">
+<title>
+dispersion-&gt;normal
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M635.75,-756C644.5,-744.54 654.23,-731.81 663,-720.33"></path> </g> <!-- fdr --> <g id="node8" class="node">
+<title>
+fdr
+</title>
+<g id="a_node8"><a href="../multipleTesting/fdr.html" title="False Discovery Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1358,-828 1088,-828 1088,-756 1358,-756 1358,-828"></polygon> <text text-anchor="middle" x="1223" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">False Discovery Rate</text> </a> </g> </g> <!-- fwer_vs_fdr --> <g id="node10" class="node">
+<title>
+fwer_vs_fdr
+</title>
+<g id="a_node10"><a href="../multipleTesting/fwer_vs_fdr.html" title="FWER vs. FDR"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1502,-720 1232,-720 1232,-648 1502,-648 1502,-720"></polygon> <text text-anchor="middle" x="1367" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">FWER vs.&nbsp;FDR</text> </a> </g> </g> <!-- fdr&#45;&gt;fwer_vs_fdr --> <g id="edge8" class="edge">
+<title>
+fdr-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1270.55,-756C1286.12,-744.54 1303.41,-731.81 1319.01,-720.33"></path> </g> <!-- fwer --> <g id="node9" class="node">
+<title>
+fwer
+</title>
+<g id="a_node9"><a href="../multipleTesting/fwer.html" title="Family-Wise Error Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1646,-828 1376,-828 1376,-756 1646,-756 1646,-828"></polygon> <text text-anchor="middle" x="1511" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Family-Wise Error Rate</text> </a> </g> </g> <!-- fwer&#45;&gt;fwer_vs_fdr --> <g id="edge9" class="edge">
+<title>
+fwer-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1463.45,-756C1447.88,-744.54 1430.59,-731.81 1414.99,-720.33"></path> </g> <!-- glm --> <g id="node11" class="node">
+<title>
+glm
+</title>
+<g id="a_node11"><a href="../GeneralLinearModels/generalLinearModels.html" title="General Linear Models"> <polygon fill="white" stroke="#006688" stroke-width="5" points="866,-612 596,-612 596,-540 866,-540 866,-612"></polygon> <text text-anchor="middle" x="731" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">General Linear Models</text> </a> </g> </g> <!-- ttests --> <g id="node24" class="node">
+<title>
+ttests
+</title>
+<g id="a_node24"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="1107,-504 837,-504 837,-432 1107,-432 1107,-504"></polygon> <text text-anchor="middle" x="972" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- glm&#45;&gt;ttests --> <g id="edge10" class="edge">
+<title>
+glm-&gt;ttests
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M810.58,-540C836.77,-528.48 865.88,-515.68 892.09,-504.15"></path> </g> <!-- mediation --> <g id="node12" class="node">
+<title>
+mediation
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="270,-72 0,-72 0,0 270,0 270,-72"></polygon> <text text-anchor="middle" x="135" y="-28.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mediation</text> </g> <!-- mixed_anova --> <g id="node13" class="node">
+<title>
+mixed_anova
+</title>
+<g id="a_node13"><a href="../GeneralLinearModels/mixedAnova.html" title="Mixed ANOVA"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="1107,-396 837,-396 837,-324 1107,-324 1107,-396"></polygon> <text text-anchor="middle" x="972" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mixed ANOVA</text> </a> </g> </g> <!-- mixed_anova&#45;&gt;ancova --> <g id="edge11" class="edge">
+<title>
+mixed_anova-&gt;ancova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M972,-324C972,-312.54 972,-299.81 972,-288.33"></path> </g> <!-- multiple_regression --> <g id="node14" class="node">
+<title>
+multiple_regression
+</title>
+<g id="a_node14"><a href="../regressions/multipleRegressions.html" title="Multiple Regression"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="270,-180 0,-180 0,-108 270,-108 270,-180"></polygon> <text text-anchor="middle" x="135" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Multiple Regression</text> </a> </g> </g> <!-- multiple_regression&#45;&gt;mediation --> <g id="edge12" class="edge">
+<title>
+multiple_regression-&gt;mediation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M135,-108C135,-96.54 135,-83.81 135,-72.33"></path> </g> <!-- normal&#45;&gt;contingency --> <g id="edge14" class="edge">
+<title>
+normal-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M798.64,-648C834.48,-636.45 874.34,-623.61 910.19,-612.06"></path> </g> <!-- normal&#45;&gt;correlations --> <g id="edge13" class="edge">
+<title>
+normal-&gt;correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M622.95,-647.82C609.28,-637.89 596.27,-625.92 587,-612 541.67,-543.95 599.91,-495.98 549,-432 537.33,-417.34 521.93,-405.57 505.4,-396.16"></path> </g> <!-- normal&#45;&gt;glm --> <g id="edge15" class="edge">
+<title>
+normal-&gt;glm
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M703.54,-648C707.97,-636.54 712.89,-623.81 717.34,-612.33"></path> </g> <!-- skewness --> <g id="node21" class="node">
+<title>
+skewness
+</title>
+<g id="a_node21"><a href="../distributions/skewness.html" title="Skewness"> <polygon fill="white" stroke="#006688" stroke-width="5" points="536,-612 266,-612 266,-540 536,-540 536,-612"></polygon> <text text-anchor="middle" x="401" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Skewness</text> </a> </g> </g> <!-- normal&#45;&gt;skewness --> <g id="edge16" class="edge">
+<title>
+normal-&gt;skewness
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M594.57,-648C563.17,-636.48 528.26,-623.68 496.82,-612.15"></path> </g> <!-- probability --> <g id="node18" class="node">
 <title>
 probability
 </title>
-<g id="a_node17"><a href="../statsBasics/probability.html" title="Probability"> <polygon fill="white" stroke="#006688" stroke-width="5" points="846,-936 576,-936 576,-864 846,-864 846,-936"></polygon> <text text-anchor="middle" x="711" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Probability</text> </a> </g> </g> <!-- probability&#45;&gt;fdr --> <g id="edge19" class="edge">
+<g id="a_node18"><a href="../statsBasics/probability.html" title="Probability"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1276,-936 1006,-936 1006,-864 1276,-864 1276,-936"></polygon> <text text-anchor="middle" x="1141" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Probability</text> </a> </g> </g> <!-- probability&#45;&gt;contingency --> <g id="edge20" class="edge">
+<title>
+probability-&gt;contingency
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1104.47,-863.94C1094.99,-853.19 1085.6,-840.8 1079,-828 1042.23,-756.72 1027.55,-662.41 1022.04,-612.12"></path> </g> <!-- probability&#45;&gt;fdr --> <g id="edge22" class="edge">
 <title>
 probability-&gt;fdr
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M711,-864C711,-852.54 711,-839.81 711,-828.33"></path> </g> <!-- probability&#45;&gt;fwer --> <g id="edge18" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1168.08,-864C1176.94,-852.54 1186.79,-839.81 1195.67,-828.33"></path> </g> <!-- probability&#45;&gt;fwer --> <g id="edge21" class="edge">
 <title>
 probability-&gt;fwer
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M806.1,-864C837.39,-852.48 872.18,-839.68 903.51,-828.15"></path> </g> <!-- repeated_measures_anova --> <g id="node18" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1263.18,-864C1303.49,-852.45 1348.31,-839.61 1388.64,-828.06"></path> </g> <!-- repeated_measures_anova --> <g id="node19" class="node">
 <title>
 repeated_measures_anova
 </title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="1297,-396 1027,-396 1027,-324 1297,-324 1297,-396"></polygon> <text text-anchor="middle" x="1162" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Within Subject ANOVA</text> </g> <!-- simple_regression&#45;&gt;multiple_regression --> <g id="edge15" class="edge">
+<g id="a_node19"><a href="../GeneralLinearModels/repeatedAnova.html" title="Repeated Measures"> <polygon fill="red" stroke="#006688" stroke-width="5" points="819,-396 549,-396 549,-324 819,-324 819,-396"></polygon> <text text-anchor="middle" x="684" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Repeated Measures</text> </a> </g> </g> <!-- repeated_measures_anova&#45;&gt;ancova --> <g id="edge23" class="edge">
+<title>
+repeated_measures_anova-&gt;ancova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M779.1,-324C810.39,-312.48 845.18,-299.68 876.51,-288.15"></path> </g> <!-- repeated_measures_anova&#45;&gt;permutation --> <g id="edge30" class="edge">
+<title>
+repeated_measures_anova-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M713.33,-324C740.7,-292.87 783.84,-247.53 828,-216 846.83,-202.56 868.59,-190.37 889.39,-180.03"></path> </g> <!-- simple_regression&#45;&gt;multiple_regression --> <g id="edge17" class="edge">
 <title>
 simple_regression-&gt;multiple_regression
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M442,-216C442,-204.54 442,-191.81 442,-180.33"></path> </g> <!-- transforming --> <g id="node22" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M135,-216C135,-204.54 135,-191.81 135,-180.33"></path> </g> <!-- transforming --> <g id="node23" class="node">
 <title>
 transforming
 </title>
-<g id="a_node22"><a href="../distributions/transforming.html" title="Transforming Data"> <polygon fill="white" stroke="#006688" stroke-width="5" points="614,-504 326,-504 326,-432 614,-432 614,-504"></polygon> <text text-anchor="middle" x="470" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Transforming Data</text> </a> </g> </g> <!-- skewness&#45;&gt;transforming --> <g id="edge16" class="edge">
+<g id="a_node23"><a href="../distributions/transforming.html" title="Transforming Data"> <polygon fill="white" stroke="#006688" stroke-width="5" points="540,-504 252,-504 252,-432 540,-432 540,-504"></polygon> <text text-anchor="middle" x="396" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Transforming Data</text> </a> </g> </g> <!-- skewness&#45;&gt;transforming --> <g id="edge18" class="edge">
 <title>
 skewness-&gt;transforming
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M467.32,-540C467.75,-528.54 468.23,-515.81 468.67,-504.33"></path> </g> <!-- stats_basics --> <g id="node21" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M399.35,-540C398.81,-528.54 398.21,-515.81 397.67,-504.33"></path> </g> <!-- stats_basics --> <g id="node22" class="node">
 <title>
 stats_basics
 </title>
-<g id="a_node21"><a href="../statsBasics/statsBasics.html" title="Statistics Basics"> <polygon fill="white" stroke="#006688" stroke-width="5" points="702,-1044 432,-1044 432,-972 702,-972 702,-1044"></polygon> <text text-anchor="middle" x="567" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Statistics Basics</text> </a> </g> </g> <!-- stats_basics&#45;&gt;central_tendency --> <g id="edge20" class="edge">
+<g id="a_node22"><a href="../statsBasics/statsBasics.html" title="Statistics Basics"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1051,-1044 781,-1044 781,-972 1051,-972 1051,-1044"></polygon> <text text-anchor="middle" x="916" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Statistics Basics</text> </a> </g> </g> <!-- stats_basics&#45;&gt;central_tendency --> <g id="edge24" class="edge">
 <title>
 stats_basics-&gt;central_tendency
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M519.45,-972C503.88,-960.54 486.59,-947.81 470.99,-936.33"></path> </g> <!-- stats_basics&#45;&gt;probability --> <g id="edge21" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M868.45,-972C852.88,-960.54 835.59,-947.81 819.99,-936.33"></path> </g> <!-- stats_basics&#45;&gt;probability --> <g id="edge25" class="edge">
 <title>
 stats_basics-&gt;probability
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M614.55,-972C630.12,-960.54 647.41,-947.81 663.01,-936.33"></path> </g> <!-- transforming&#45;&gt;correlations --> <g id="edge17" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M990.3,-972C1014.75,-960.48 1041.93,-947.68 1066.4,-936.15"></path> </g> <!-- transforming&#45;&gt;correlations --> <g id="edge19" class="edge">
 <title>
 transforming-&gt;correlations
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M413.2,-432C394.51,-420.48 373.74,-407.68 355.03,-396.15"></path> </g> <!-- ttests&#45;&gt;ancova --> <g id="edge22" class="edge">
-<title>
-ttests-&gt;ancova
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M742.73,-432C717.3,-420.48 689.04,-407.68 663.59,-396.15"></path> </g> <!-- ttests&#45;&gt;between_anova --> <g id="edge23" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M396,-432C396,-420.54 396,-407.81 396,-396.33"></path> </g> <!-- ttests&#45;&gt;between_anova --> <g id="edge27" class="edge">
 <title>
 ttests-&gt;between_anova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M837.83,-432C843.67,-420.54 850.15,-407.81 856,-396.33"></path> </g> <!-- ttests&#45;&gt;repeated_measures_anova --> <g id="edge24" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1067.1,-432C1098.39,-420.48 1133.18,-407.68 1164.51,-396.15"></path> </g> <!-- ttests&#45;&gt;mixed_anova --> <g id="edge26" class="edge">
+<title>
+ttests-&gt;mixed_anova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M972,-432C972,-420.54 972,-407.81 972,-396.33"></path> </g> <!-- ttests&#45;&gt;permutation --> <g id="edge33" class="edge">
+<title>
+ttests-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1107.25,-463.29C1219.41,-457.03 1366.37,-440.32 1404,-396 1501.55,-281.11 1267.68,-206.55 1107.33,-170.5"></path> </g> <!-- ttests&#45;&gt;repeated_measures_anova --> <g id="edge28" class="edge">
 <title>
 ttests-&gt;repeated_measures_anova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M932.93,-432C970.19,-420.45 1011.62,-407.61 1048.9,-396.06"></path> </g> </g>
+<path fill="none" stroke="black" stroke-width="5" d="M876.9,-432C845.61,-420.48 810.82,-407.68 779.49,-396.15"></path> </g> </g>
 </svg>
-</p>
+</div>
 </div>
 </div>
 </div>
@@ -738,12 +852,12 @@ ttests-&gt;repeated_measures_anova
 </div>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Click here for a reminder about what positive and negative effects are in the population
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -765,14 +879,16 @@ FDR = \frac{\color{red}{FalsePositives}}{\color{red}{FalsePositives} + \color{gr
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eulerr)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
@@ -798,7 +914,7 @@ FDR = \frac{\color{red}{FalsePositives}}{\color{red}{FalsePositives} + \color{gr
 <div id="fig-vd-overview." class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fwer_vs_fdr_files/figure-html/fig-vd-overview.-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: A venn diagram showing how false-negatives are a subset of <strong>positive</strong> effects in the population, and false-positives are a subset of <strong>negatives</strong> in the population.</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;1: A venn diagram showing how false-negatives are a subset of <strong>positive</strong> effects in the population, and false-positives are a subset of <strong>negatives</strong> in the population.</figcaption>
 </figure>
 </div>
 </div>
@@ -818,7 +934,7 @@ FDR = \frac{\color{red}{FalsePositives}}{\color{red}{FalsePositives} + \color{gr
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>fdr_df<span class="sc">$</span>FDR       <span class="ot">=</span> fdr_df<span class="sc">$</span>false_pos<span class="sc">/</span>(fdr_df<span class="sc">$</span>false_pos <span class="sc">+</span> fdr_df<span class="sc">$</span>true_pos)</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(fdr_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 10%">
@@ -882,12 +998,12 @@ FDR = \frac{\color{red}{FalsePositives}}{\color{red}{FalsePositives} + \color{gr
 </div>
 </div>
 <p>The false discovery rate is highest when only 20% of the effects in the population are positive, and lowest when 70% of the effects in the population are positive. Let’s visualise this with some Venn Diagrams:</p>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see code for the below Venn diagrams
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -1052,7 +1168,7 @@ Expand to see code for the below Venn diagrams
 <div id="fig-vd-grid." class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fwer_vs_fdr_files/figure-html/fig-vd-grid.-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Venn diagrams showing how the ratio of Positives to Negatives in the population will impact the FDR even if you keep consistent thresholds for false positives (alpha = .05) and maintain a power value of .95</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Venn diagrams showing how the ratio of Positives to Negatives in the population will impact the FDR even if you keep consistent thresholds for false positives (alpha = .05) and maintain a power value of .95</figcaption>
 </figure>
 </div>
 </div>
@@ -1072,12 +1188,12 @@ Expand to see code for the below Venn diagrams
 <li><p>Power (<span class="math inline">\(1-\beta\)</span>) is .95</p></li>
 </ul>
 <p>A Benjamini-Hochberg procedure will be applied to try to attain the FDR required for each simulation:</p>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see calculation for this simulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -1185,18 +1301,18 @@ Expand to see calculation for this simulation
 <div id="fig-fdr-by-prop-pos." class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fwer_vs_fdr_files/figure-html/fig-fdr-by-prop-pos.-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: A visualisation of simulations of what false discovery rates achieved depending on the proportion of Positive effects in the population.</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;3: A visualisation of simulations of what false discovery rates achieved depending on the proportion of Positive effects in the population.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The above simulations show an interaction between the <strong>false discovery rate</strong> a researcher sets (known as <span class="math inline">\(q\)</span>) and the actual <strong>false discovery rate</strong> depending on the proportion of positive and negative findings in the population. Whilst it might seem problematic that the underlying number of positives and negatives in the population impacts the <strong>actual</strong> false discovery rate, the good news is that even if only 10% of your tests should be positive (Proportion Positive = .1) based on the population, the Benjamini-Hochberg will <strong>on average</strong> keep the FDR below the researcher specified FDR.</p>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Optional: expand to see likelihood of a negative becoming a false-positive
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -1221,7 +1337,7 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 <div id="fig-fp-vs-neg" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fwer_vs_fdr_files/figure-html/fig-fp-vs-neg-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: A visualisation of simulations that show the effect of the proportion of positive effects in the population on what proportion of negative findings that will become false-positives.</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;4: A visualisation of simulations that show the effect of the proportion of positive effects in the population on what proportion of negative findings that will become false-positives.</figcaption>
 </figure>
 </div>
 </div>
@@ -1260,49 +1376,49 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">background =</span> <span class="st">"blue"</span></span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table class="table" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> population </th>
-   <th style="text-align:right;"> rank </th>
-   <th style="text-align:right;"> p.value </th>
-   <th style="text-align:right;"> alpha </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rank</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">alpha</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 1 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.001 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.01 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 2 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.015 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.02 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 3 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.028 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.03 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Negative </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 4 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.041 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.04 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 5 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.049 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.05 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">1</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.001</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">2</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.015</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">3</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.028</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Negative</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">4</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.041</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">5</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.049</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.05</td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1336,49 +1452,49 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">background =</span> <span class="st">"blue"</span></span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table class="table" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> population </th>
-   <th style="text-align:right;"> rank </th>
-   <th style="text-align:right;"> p.value </th>
-   <th style="text-align:right;"> alpha </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rank</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">alpha</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 1 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.001 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.01 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 2 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.015 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.02 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 3 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.028 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.03 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Negative </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0.041 </td>
-   <td style="text-align:right;"> 0.04 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Negative </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.05 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">1</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.001</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">2</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.015</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">3</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.028</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Negative</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Negative</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.05</td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1414,49 +1530,49 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">background =</span> <span class="st">"blue"</span></span>
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table class="table" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> population </th>
-   <th style="text-align:right;"> rank </th>
-   <th style="text-align:right;"> p.value </th>
-   <th style="text-align:right;"> alpha </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rank</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">alpha</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 1 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.001 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0100000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 2 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.010 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0125000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 3 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.015 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0166667 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 4 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.024 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0250000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Negative </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 5 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.049 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0500000 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">1</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.001</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0100000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">2</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.010</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0125000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">3</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.015</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0166667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">4</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.024</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0250000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Negative</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">5</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.049</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0500000</td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1490,49 +1606,49 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">background =</span> <span class="st">"blue"</span></span>
 <span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table class="table" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> population </th>
-   <th style="text-align:right;"> rank </th>
-   <th style="text-align:right;"> p.value </th>
-   <th style="text-align:right;"> alpha </th>
-  </tr>
- </thead>
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rank</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">alpha</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 1 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.001 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0100000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 2 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.010 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0125000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;"> Positive </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 3 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.015 </td>
-   <td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;"> 0.0166667 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Negative </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0.049 </td>
-   <td style="text-align:right;"> 0.0250000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Negative </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.0500000 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">1</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.001</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0100000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">2</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.010</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0125000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold; color: white !important; background-color: blue !important;">Positive</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">3</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.015</td>
+<td style="text-align: right; font-weight: bold; color: white !important; background-color: blue !important;">0.0166667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Negative</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.049</td>
+<td style="text-align: right;">0.0250000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Negative</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.0500000</td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1551,12 +1667,12 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 <li><p>Power (<span class="math inline">\(1-\beta\)</span>) is .95</p></li>
 </ul>
 <p>A Holm-Šidák procedure will be applied to try to keep the FWER to .05:</p>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Expand to see calculation for this simulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -1699,7 +1815,7 @@ Expand to see calculation for this simulation
 <div id="fig-fwer-prop-pos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="fwer_vs_fdr_files/figure-html/fig-fwer-prop-pos-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: A visualisation of simulations that demonstrate that the proportion of positive effects in the population does not impact the family-wise error rate when using a Holm-Šidák procedure.</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;5: A visualisation of simulations that demonstrate that the proportion of positive effects in the population does not impact the family-wise error rate when using a Holm-Šidák procedure.</figcaption>
 </figure>
 </div>
 </div>
@@ -1737,9 +1853,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1804,6 +1934,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

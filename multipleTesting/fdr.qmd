@@ -35,6 +35,10 @@ $$
 
 Let's see what $\alpha_{bh}$ values we get with this approach within a made-up experiment that had 10 tests
 
+::: panel-tabset
+## R
+
+
 ```{r}
 library(kableExtra)
 bh_df <- data.frame(
@@ -52,12 +56,54 @@ bh_df %>%
   row_spec(which(bh_df$alpha > bh_df$p), bold = T, color = "white", background = "blue")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import pandas as pd
+
+# Create a DataFrame
+bh_df = pd.DataFrame({
+    'p': [.001, .01, .025, .041, .045, .06, .08, .1, .12, .3],
+    'rank': list(range(1, 11)),
+    'tests': 10,
+    'fdr': 0.1
+})
+
+# Calculate alpha and significance
+bh_df['alpha'] = (bh_df['rank'] / bh_df['tests']) * bh_df['fdr']
+bh_df['sig'] = bh_df['alpha'] > bh_df['p']
+
+# Create a custom styling function to highlight rows
+def highlight_greaterthan(s, threshold, column):
+    is_max = pd.Series(data=False, index=s.index)
+    is_max[column] = s.loc[column] >= threshold
+    
+    # Create a style object with blue background and white color for the text
+    style = ['background-color: blue;color: white' if is_max.any() else '' for v in is_max]
+    
+    # Set white text for the entire row
+    return style
+
+
+bh_df.style.apply(highlight_greaterthan, threshold=1.0, column=['sig'], axis=1)
+```
+
+![](fdr-Table1.png){fig-align="left" width="550"}
+
+:::
+
 We can see that there's a slightly odd pattern, in which the fourth smallest p-value is not significant but the fifth is. For the Benjamini-Hochberg correction you take the lowest ranked p-value that is still significant and then accept all tests that have a smaller p-value than it as significant. So the rank 4 test above would be accepted as significant because of this rule.
 
 Let us now check how this correction relates to positives and negatives in the population using some simulations. For these simulations we will split the data into "positive" and "negative" population tests. For "positive" effects in the population we will use one-sample t-tests to generate expected p-values. For negative effects in the population we will generate a p-value between 0 and 1 as each p-value is equally likely for negative effects. We will also assume the proportion of positive effects being tested is .5, i.e. that half of our tests should get a significant result to reflect the population and the other half should be negative.
 
 ::: {.callout-note collapse="true" appearance="minimal"}
 ## Optional: Click here to see the R code to generate the data for the figure below
+
+::: panel-tabset
+## R
+
 
 ```{r}
 options(scipen = 999)
@@ -162,7 +208,22 @@ for(i in 1:length(fdr_sim_df$q)){
                                  sorted_subset$population == "negative")
 }
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+
 :::
+
+:::
+
+::: panel-tabset
+## R
+
 
 ```{r}
 #| label: fig-fdrbh.
@@ -180,5 +241,15 @@ ggplot(fdr_sim_df, aes(x = q, y = fdr,color=as.factor(positive_prop))) +
   ) +
   labs(color="Proportion Positive")
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+
+```
+
+:::
 
 The above simulations show an association between the **false discovery rate** a researcher sets (known as $q$) and the actual **false discovery rate**. Whilst this page focuses on a scenario in which half of the effects being tested are positive, see [here](fwer_vs_fdr.html#simulations-of-fdr-with-different-underlying-positive-rates-in-the-populations) for the impact of having different positive rates on the FDR rate. The good news is that the Benjamani-Holchberg procedure generally keeps the FDR below the $q$ that the researcher sets.

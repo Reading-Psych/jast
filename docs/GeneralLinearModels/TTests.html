@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - T-Tests(incomplete)</title>
+<title>Just Another Statistics Textbook - T-Tests</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,10 +17,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,13 +46,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -90,15 +119,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
 <link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
@@ -118,40 +145,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">Just Another Statistics Textbook</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document" rel="" target="">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/possible-errors-in-the-document">
  <span class="menu-text">Report an error</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications" rel="" target="">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/requests-for-clarifications">
  <span class="menu-text">Request a clarification</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content" rel="" target="">
+    <a class="nav-link" href="https://github.com/Reading-Psych/jast/discussions/categories/suggest-content">
  <span class="menu-text">Suggest Content</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
+              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../GeneralLinearModels/generalLinearModels.html">General Linear Models</a></li><li class="breadcrumb-item"><a href="../GeneralLinearModels/TTests.html">T-Tests(incomplete)</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">T-Tests</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -159,398 +179,345 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Welcome</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Welcome</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">About</span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../installing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installing R(Studio)</span></a>
+  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">R Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Types of Scripts</span></a>
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R Fundamentals</span></a>
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R Logic</span></a>
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Statistics Foundations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistics Foundations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistics Basics</span></a>
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Scientific Notation</span></a>
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability (R)</span></a>
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability (R)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Describing Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Describing Data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Central Tendency (R,Python)</span></a>
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dispersion (R,Python)</span></a>
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Distributions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Distributions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Binomial Distribution (R)</span></a>
+  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">Binomial Distribution (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Normal Distribution</span></a>
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Skewness (R,Python)</span></a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Transforming Data (R)</span></a>
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Correlation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Correlation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Correlations (R,Python)</span></a>
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Partial Correlations (R,Python)</span></a>
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations (R,Python)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Regressions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Regressions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simple regression (R)</span></a>
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Regressions (R, incomplete)</span></a>
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R, incomplete)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text">General Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">General Linear Models</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">General Linear Models and Sum of Squares (R, Python)</span></a>
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares (R, Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">T-Tests(incomplete)</span></a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link active">T-Tests</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">One Way ANOVA (incomplete)</span></a>
+  <a href="../GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link">One Way ANOVA (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/repeatedAnova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Repeated Measures ANOVAs</span></a>
+  <a href="../GeneralLinearModels/repeatedAnova.html" class="sidebar-item-text sidebar-link">Repeated Measures ANOVAs</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/mixedAnova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixed ANOVA (incomplete)</span></a>
+  <a href="../GeneralLinearModels/mixedAnova.html" class="sidebar-item-text sidebar-link">Mixed ANOVA (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ANCOVA (incomplete)</span></a>
+  <a href="../GeneralLinearModels/ancova.html" class="sidebar-item-text sidebar-link">ANCOVA (incomplete)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
- <span class="menu-text">Categorical</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Categorical</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Contingency (R)</span></a>
+  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link">Contingency (R)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
- <span class="menu-text">Item analyses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Item analyses</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cronbach’s Alpha (R)</span></a>
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
- <span class="menu-text">Multiple testing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">Multiple testing</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../multipleTesting/fwer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Family-Wise Error (R)</span></a>
+  <a href="../multipleTesting/fwer.html" class="sidebar-item-text sidebar-link">Family-Wise Error (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../multipleTesting/fdr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">False Discovery Rate(R)</span></a>
+  <a href="../multipleTesting/fdr.html" class="sidebar-item-text sidebar-link">False Discovery Rate(R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../multipleTesting/fwer_vs_fdr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FWER, FDR, Positive and Negative effects(R)</span></a>
+  <a href="../multipleTesting/fwer_vs_fdr.html" class="sidebar-item-text sidebar-link">FWER, FDR, Positive and Negative effects(R)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
- <span class="menu-text">Permutations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">Permutations</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../permutations/permutations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Permutations (R)</span></a>
+  <a href="../permutations/permutations.html" class="sidebar-item-text sidebar-link">Permutations (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../permutations/permVsTtest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Permutation vs.&nbsp;t tests (incomplete)</span></a>
+  <a href="../permutations/permVsTtest.html" class="sidebar-item-text sidebar-link">Permutation vs.&nbsp;t tests (incomplete)</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">
- <span class="menu-text">Excel tutorial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">Excel tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Formulas</span></a>
+  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">If function</span></a>
+  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Count and countifs function</span></a>
+  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">Count and countifs function</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sum and SumIf</span></a>
+  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">Sum and SumIf</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Averageifs</span></a>
+  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">Averageifs</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Anchoring</span></a>
+  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">Anchoring</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="true">
- <span class="menu-text">Test yourself</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="true">Test yourself</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">All questions</span></a>
+  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Question Maker</span></a>
+  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
   </div>
 </li>
       </ul>
@@ -558,7 +525,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -574,13 +540,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#independent-samples-t-tests" id="toc-independent-samples-t-tests" class="nav-link" data-scroll-target="#independent-samples-t-tests">Independent Samples t-tests</a>
   <ul class="collapse">
   <li><a href="#glm-approach-1" id="toc-glm-approach-1" class="nav-link" data-scroll-target="#glm-approach-1">GLM approach</a></li>
-  <li><a href="#effect-sizes-eta-squared-and-partial-eta-squared" id="toc-effect-sizes-eta-squared-and-partial-eta-squared" class="nav-link" data-scroll-target="#effect-sizes-eta-squared-and-partial-eta-squared">Effect sizes (eta-squared and partial eta-squared)</a></li>
   <li><a href="#glm-approach-vs-conventional-formula" id="toc-glm-approach-vs-conventional-formula" class="nav-link" data-scroll-target="#glm-approach-vs-conventional-formula">GLM approach vs conventional formula</a></li>
   </ul></li>
-  <li><a href="#using-distributions-to-calculate-p-values" id="toc-using-distributions-to-calculate-p-values" class="nav-link" data-scroll-target="#using-distributions-to-calculate-p-values">Using distributions to calculate p-values</a></li>
-  <li><a href="#backup" id="toc-backup" class="nav-link" data-scroll-target="#backup">backup</a>
+  <li><a href="#calculating-p-values-from-t-distributions" id="toc-calculating-p-values-from-t-distributions" class="nav-link" data-scroll-target="#calculating-p-values-from-t-distributions">Calculating p-values from t-distributions</a></li>
+  <li><a href="#calculating-p-values-from-f-distributions" id="toc-calculating-p-values-from-f-distributions" class="nav-link" data-scroll-target="#calculating-p-values-from-f-distributions">Calculating p-values from f-distributions</a></li>
+  <li><a href="#effect-sizes" id="toc-effect-sizes" class="nav-link" data-scroll-target="#effect-sizes">Effect sizes</a>
   <ul class="collapse">
-  <li><a href="#glm-approach-2" id="toc-glm-approach-2" class="nav-link" data-scroll-target="#glm-approach-2">GLM approach</a></li>
+  <li><a href="#t-tests" id="toc-t-tests" class="nav-link" data-scroll-target="#t-tests">T-tests</a>
+  <ul class="collapse">
+  <li><a href="#one-sample-t-tests-1" id="toc-one-sample-t-tests-1" class="nav-link" data-scroll-target="#one-sample-t-tests-1">One Sample T-tests</a></li>
+  <li><a href="#paired-sample-t-tests" id="toc-paired-sample-t-tests" class="nav-link" data-scroll-target="#paired-sample-t-tests">Paired sample T-tests</a></li>
+  <li><a href="#independent-sample-t-tests" id="toc-independent-sample-t-tests" class="nav-link" data-scroll-target="#independent-sample-t-tests">Independent Sample T-tests</a></li>
+  </ul></li>
+  <li><a href="#f-tests" id="toc-f-tests" class="nav-link" data-scroll-target="#f-tests">F-tests</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -590,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">T-Tests(incomplete)</h1>
+<h1 class="title d-none d-lg-block">T-Tests</h1>
 </div>
 
 
@@ -605,12 +577,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
+<div class="callout-caption-container flex-fill">
 Course Overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -620,8 +592,8 @@ Course Overview
 <div class="cell" data-fig-height="5" data-fig-width="10">
 <div class="cell-output-display">
 <div>
-<div>
-<svg width="960" height="480" viewbox="0.00 0.00 1654.00 1052.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<p>
+<svg width="960" height="480" viewbox="0.00 0.00 1654.00 1052.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1048)">
 <title>
 Course Overview
@@ -686,7 +658,7 @@ central_tendency-&gt;dispersion
 <title>
 correlations
 </title>
-<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="531,-396 261,-396 261,-324 531,-324 531,-396"></polygon> <text text-anchor="middle" x="396" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node16" class="node">
+<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="531,-396 261,-396 261,-324 531,-324 531,-396"></polygon> <text text-anchor="middle" x="396" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node16" class="node">
 <title>
 partial_correlations
 </title>
@@ -856,13 +828,27 @@ ttests-&gt;repeated_measures_anova
 </title>
 <path fill="none" stroke="black" stroke-width="5" d="M876.9,-432C845.61,-420.48 810.82,-407.68 779.49,-396.15"></path> </g> </g>
 </svg>
-</div>
+</p>
 </div>
 </div>
 </div>
 <p><span style="color:red"><strong>Red</strong></span> means that the page does not exist yet</p>
 <p><span style="color:orange"><strong>Orange</strong></span> means that the page is started</p>
 </div>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+T-values and F-Values
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As you’ll see below, we’ll discuss t-values and F-values you can calculate. T-values are from t-tests, in which there are only 2 conditions or 2 groups of participants you are comparing between. F-values are from a variety of tests and are not restricted to comparisons between 2 conditions or 2 groups. For example, you can run ANOVAs to get F-Values on 2 or more conditions. The underlying statistics between calculating T and F-Values is similar when comparing 2 conditions/groups, which is why <span class="math inline">\(t = \sqrt{F}\)</span> and <span class="math inline">\(F = t^2\)</span> .</p>
+<p>When describing a GLM approach, this is more aligned with how you would calculate an F-value.</p>
 </div>
 </div>
 <p>In all general linear models you are trying to compare how much of the variance is explained by a model compared to what’s not being explained by a model. In short</p>
@@ -880,7 +866,7 @@ ttests-&gt;repeated_measures_anova
 <li><p>Your <span class="math inline">\(\bar{x}\)</span> would be the sample mean.</p></li>
 </ul>
 <p>Let’s visualise these values using gapminder data from 2007:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
@@ -959,7 +945,7 @@ ttests-&gt;repeated_measures_anova
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="TTests_Figure1.png" class="img-fluid figure-img" width="650"></p>
-<figcaption class="figure-caption">Scatterplot with Mu and Sample Mean of ‘Life expectancy’</figcaption>
+<p></p><figcaption class="figure-caption">Scatterplot with Mu and Sample Mean of ‘Life expectancy’</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -979,7 +965,7 @@ y = \bar{y} + e
 SS_{total} = \sum(x_i-\mu)^2
 \]</span></p>
 <p>Which for the above data would give us:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
@@ -1007,7 +993,7 @@ SS_{total} = \sum(x_i-\mu)^2
 SS_{explained} = N * (\mu - \bar{x})^2
 \]</span></p>
 <p>Which for the above data would give us:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
@@ -1031,7 +1017,7 @@ SS_{explained} = N * (\mu - \bar{x})^2
 SS_{unexplained} = \sum(x_i-\bar{x})^2
 \]</span></p>
 <p>Which for the above data would give us</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
@@ -1055,7 +1041,7 @@ SS_{unexplained} = \sum(x_i-\bar{x})^2
 <p><span class="math display">\[
 F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \frac{20473.3/(Predictors)}{20551.85/(N-1)} = \frac{20473.3/1}{20551.85/141}
 \]</span></p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
@@ -1092,7 +1078,7 @@ F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \f
 </div>
 </div>
 <p>F-values are squares of t-values, so let’s see if this is true here also:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
@@ -1142,7 +1128,10 @@ p-value: 6.463174215427706e-23</code></pre>
 <h3 class="anchored" data-anchor-id="glm-vs.-conventional-formula">GLM vs.&nbsp;conventional formula</h3>
 <p>Great. So now that we’ve highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:</p>
 <p><span class="math display">\[
-T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} = \\ \sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} =
+\]</span></p>
+<p><span class="math display">\[
+\sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
 \]</span> where:</p>
 <ul>
 <li>T is the t-value</li>
@@ -1151,12 +1140,16 @@ T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\f
 <li><span class="math inline">\(SS_{unexp}\)</span> is the sum of squares of the data not explained by the model (i.e.&nbsp;the residuals)</li>
 <li><span class="math inline">\(df_{exp}\)</span> is the degrees of freedom for the model. As there is only one predictor (the sample mean) and it’s only got 2 levels (1 or 0, however, in all cases the model is comparing the data to the mean, so it’s less intuitive that there are 2 levels).</li>
 </ul>
+<p>To confirm, the formula for a one-sample t-test is just:</p>
+<p><span class="math display">\[
+T = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+\]</span></p>
 </section>
 </section>
 <section id="paired-samples-t-tests" class="level2">
 <h2 class="anchored" data-anchor-id="paired-samples-t-tests">Paired samples t-tests</h2>
 <p>Paired samples t-tests can be approached like 1-sample t-tests, but you first of all need to collapse the data to have a single variable to compare to a <span class="math inline">\(\mu\)</span> of zero. Let’s do this for gapminder data, comparing life expectancies between 2002 and 2007:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
@@ -1192,7 +1185,7 @@ p-value: 3.738316746290281e-30</code></pre>
 </div>
 </div>
 <p>The above suggests that life expectancy was significanctly different. Let’s see if we get the exact same value when we use a paired t-test in R:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
@@ -1232,7 +1225,7 @@ p-value: 3.738316746290281e-30</code></pre>
 </div>
 </div>
 </div>
-<p>Looks identical. Let’s compare formulas to see why this is:</p>
+<p>Looks identical. Let’s compare formulas to see why this is ( <span class="math inline">\(\mu\)</span> = 0 , and so it isn’t written) :</p>
 <p><span class="math display">\[
 t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar{x_3}}{\sigma_{pooled}/\sqrt{N}}
 \]</span></p>
@@ -1256,7 +1249,7 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 <section id="glm-approach-1" class="level3">
 <h3 class="anchored" data-anchor-id="glm-approach-1">GLM approach</h3>
 <p>T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let’s first check what the sum of squares is when you just use the <strong>mean</strong> as the model of life expectancy <strong>across</strong> these contents (so we’re <strong>not</strong> separating by continent yet):</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
@@ -1283,7 +1276,7 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 <div id="fig-mean-life-exp-resid-2-continents" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="TTests_files/figure-html/fig-mean-life-exp-resid-2-continents-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: The errors around the mean of life expectancy across Europe and American countries</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: The errors around the mean of life expectancy across Europe and American countries</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -1315,14 +1308,14 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="generalLinearModels-Figure3.png" width="700" height="500" class="figure-img"></p>
-<figcaption class="figure-caption"><em>Fig. 3.</em> The errors around the mean of life expectancy across Europe and American countries.</figcaption>
+<p></p><figcaption class="figure-caption"><em>Fig. 3.</em> The errors around the mean of life expectancy across Europe and American countries.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <p>Once we square the errors in the pink lines above, we’ll get the <strong>squares:</strong></p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
@@ -1353,7 +1346,7 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 <div id="fig-mean-life-exp-resid-squared-2-continents" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="TTests_files/figure-html/fig-mean-life-exp-resid-squared-2-continents-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: The squared errors around the mean of life expectancy across Europe and American countries</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: The squared errors around the mean of life expectancy across Europe and American countries</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -1381,7 +1374,7 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="generalLinearModels-Figure4.png" width="700" height="500" class="figure-img"></p>
-<figcaption class="figure-caption">The squared errors around the mean of life expectancy across Europe and American countries</figcaption>
+<p></p><figcaption class="figure-caption">The squared errors around the mean of life expectancy across Europe and American countries</figcaption><p></p>
 </figure>
 </div>
 <pre><code>953.4477649818183</code></pre>
@@ -1393,7 +1386,7 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 SumOfSquares = \sum(Y_i-\bar{Y})^2 = 953.4478
 \]</span></p>
 <p>So if the model we create for a t-test would result in a smaller <strong>sum of squares</strong> then that suggests it’s a more precise model for estimating life expectancy than simply using the <strong>mean</strong> as a model. This is because this would mean there’s less <strong>error</strong> in this model. Let’s model this using a t-test. For this we will need to effect code continent:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
@@ -1429,7 +1422,7 @@ SumOfSquares = \sum(Y_i-\bar{Y})^2 = 953.4478
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="generalLinearModels-Table1.png" height="300" class="figure-img"></p>
-<figcaption class="figure-caption">Table</figcaption>
+<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -1451,7 +1444,7 @@ lifeExp = mean(lifeExp) + \beta * contEffect + Error
 <li><p><span class="math inline">\(Error\)</span> being any error in the prediction not captured by the model</p></li>
 </ul>
 <p>To get the <span class="math inline">\(intercept\)</span> and <span class="math inline">\(\beta\)</span> for the above formula let’s use linear model functions:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
@@ -1512,7 +1505,7 @@ lifeExp = mean(lifeExp) + \beta * contEffect + Error
 <div id="fig-model-life-exp-mean-2-continents" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="TTests_files/figure-html/fig-model-life-exp-mean-2-continents-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Plot with the errors around the mean of life expectancy across Europe and American countries.</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Plot with the errors around the mean of life expectancy across Europe and American countries.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -1579,7 +1572,7 @@ lifeExp = mean(lifeExp) + \beta * contEffect + Error
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="generalLinearModels-Figure5.png" width="700" height="500" class="figure-img"></p>
-<figcaption class="figure-caption">Plot with the errors around the mean of life expectancy across Europe and American countries</figcaption>
+<p></p><figcaption class="figure-caption">Plot with the errors around the mean of life expectancy across Europe and American countries</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -1587,7 +1580,7 @@ lifeExp = mean(lifeExp) + \beta * contEffect + Error
 </div>
 <p>Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a <span class="math inline">\(contEffect\)</span> score of -1, even if the jittering above makes it look like participants from Europe had slightly different <span class="math inline">\(contEffect\)</span> values to each other.</p>
 <p>So now that we’ve visualised the predictions and the error, lets summarise these errors with their sum of squares:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
+<div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false">Python</a></li></ul>
 <div class="tab-content">
 <div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
@@ -1684,7 +1677,7 @@ mean of x mean of y
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="generalLinearModels-Table2.png" height="100" class="figure-img"></p>
-<figcaption class="figure-caption">Table</figcaption>
+<p></p><figcaption class="figure-caption">Table</figcaption><p></p>
 </figure>
 </div>
 <pre><code>Ttest_indResult(statistic=4.018025720342183, pvalue=0.00018637488941352037)
@@ -1693,93 +1686,203 @@ mean of x mean of y
 </div>
 </div>
 </div>
-<p>So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478) which also summarises the <strong>total variance</strong> (around the mean). In fact, we can use these 2 numbers to calculate the <span class="math inline">\(r^2\)</span> value (i.e.&nbsp;what proportion of the variance around the mean is explained by the model). The amount of variance explained by the model can be calculated by:</p>
+<p>So the new unexplained variance (AKA residual) is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478; 935.4478 is also the <strong>total variance</strong> around the mean).</p>
+<p>The sum of squares for the effect of continent can be calculated by subtracting the residuals from the total sum of squares (SS):</p>
 <p><span class="math display">\[
-totalSumOfSquares - modelSumOfSquares = totalError - modelError
+effect_{SS} = total_{SS} - residual_{SS} = 953.4478 - 730.8276 = 222.6202
 \]</span></p>
-<p>This allows us to calculate an r-value and thus a p-value:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<p>The <span class="math inline">\(effect_{SS}\)</span> can also be thought of our explained variance! So we can actually calculate how much of the model is explained by the model (<span class="math inline">\(r^2\)</span>):</p>
+<p><span class="math display">\[
+r^2 = \frac{SS_{explained}}{SS_{total}} = \frac{222.6202}{953.4478} = 0.2335
+\]</span></p>
+<p>Let’s confirm that this is correct by comparing a manual calculation and a function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>this_r2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(gapminder_americas_europe<span class="sc">$</span>t_res_squared)<span class="sc">/</span><span class="fu">sum</span>((gapminder_americas_europe<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_americas_europe<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>this_r <span class="ot">=</span> <span class="fu">sqrt</span>(this_r2)</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>this_r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fl">222.6202</span><span class="sc">/</span><span class="fl">953.4478</span> <span class="co"># should be  0.2335 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
+<pre><code>[1] 0.2334897</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contEffect <span class="sc">==</span> <span class="dv">1</span>],</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contEffect <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>],</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal =</span> T</span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contEffect, gapminder_americas_europe))<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-    Two Sample t-test
-
-data:  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1] and gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1]
-t = 4.018, df = 53, p-value = 0.0001864
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- 2.023525 6.057435
-sample estimates:
-mean of x mean of y 
- 77.64860  73.60812 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> contEffect, gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-contEffect   1  222.6  222.62   16.14 0.000186 ***
-Residuals   53  730.8   13.79                     
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>this_r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
+<pre><code>[1] 0.2334896</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.formula.api <span class="im">import</span> ols</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>this_r2 <span class="op">=</span> <span class="dv">1</span><span class="op">-</span> <span class="bu">sum</span>(gapminder_americas_europe[<span class="st">'t_res_square'</span>])<span class="op">/</span> (<span class="bu">sum</span>((gapminder_americas_europe[<span class="st">'lifeExp'</span>] <span class="op">-</span> gapminder_americas_europe[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>this_r<span class="op">=</span>math.sqrt(this_r2)</span>
-<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>this_r</span>
-<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>t_test <span class="op">=</span> ttest_ind(gapminder_americas_europe[<span class="st">'lifeExp'</span>][gapminder_americas_europe[<span class="st">'contEffect'</span>] <span class="op">==</span> <span class="dv">1</span>],gapminder_americas_europe[<span class="st">'lifeExp'</span>][gapminder_americas_europe[<span class="st">'contEffect'</span>] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>t_test</span>
-<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ols(<span class="st">'lifeExp ~ contEffect'</span>, data <span class="op">=</span> gapminder_americas_europe).fit()</span>
-<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>aov_table <span class="op">=</span> sm.stats.anova_lm(model, typ<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a>aov_table</span>
-<span id="cb70-14"><a href="#cb70-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-15"><a href="#cb70-15" aria-hidden="true" tabindex="-1"></a>this_r2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<p>You may notice above that the manually calculated <span class="math inline">\(r^2\)</span> value is identical to the “Multiple R-Squared”, rather than the “Adjusted R-squared”. So what’s the difference between r-squared and adjusted r-squared?</p>
+<p>Great, the difference reflects a rounding error.</p>
+<p>Note that the above formula is similar to the formula for <span class="math inline">\(r\)</span> from <a href="../regressions/simpleRegressions.html#proportion-of-variance-explained">simple regressions</a>. Variance is the square root of the Sum of Squares (or Sum of Squares is the <strong>square</strong> of variance!):</p>
+<p><span class="math display">\[
+r = \sqrt{\frac{SS_{explained}}{SS_{total}}} = \frac{\sqrt{SS_{explained}}}{\sqrt{SS_{total}}} =\frac{var_{explained}}{var_{total}}
+\]</span></p>
 </section>
-<section id="effect-sizes-eta-squared-and-partial-eta-squared" class="level3">
-<h3 class="anchored" data-anchor-id="effect-sizes-eta-squared-and-partial-eta-squared">Effect sizes (eta-squared and partial eta-squared)</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<section id="glm-approach-vs-conventional-formula" class="level3">
+<h3 class="anchored" data-anchor-id="glm-approach-vs-conventional-formula">GLM approach vs conventional formula</h3>
+<p>The main formula for an independent samples t-test is:</p>
+<p><span class="math display">\[
+t =  \frac{\bar{X_1} - \bar{X_2}}{SE}
+\]</span></p>
+<p>However, this is a simplification of the GLM mathematics we’ve been doing above (although <span class="math inline">\(df\)</span> is the same for the denominator and numerator, so we ignored them as they cancelled out)</p>
+<p><span class="math display">\[
+t= \sqrt{f} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \frac{(\sum{\bar{X_1} - \mu)/(N_1-1) - (\sum{\bar{X_2} - \mu)}/(N_2-1)}}{
+((\sum{X_{1i} - \bar{X_1}}) +  (\sum{X_{2i} - \bar{X_2}}) )/(N-1)}= \frac{\sum{\bar{X_1}/N_1 - \sum{\bar{X_2}}/N_2}}{SE} =  \frac{\bar{X_1} - \bar{X_2}}{SE}
+\]</span></p>
+</section>
+</section>
+<section id="calculating-p-values-from-t-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-p-values-from-t-distributions">Calculating p-values from t-distributions</h2>
+<p>Similar to the <a href="../distributions/normal.html#z-scores-and-the-z-distribution">normal distribution</a>, we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution. A t-distribution is like a normal distribution (it’s a bell curve), but also takes into account the number of participants using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> contEffect, gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-contEffect   1  222.6  222.62   16.14 0.000186 ***
-Residuals   53  730.8   13.79                     
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">100</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col=</span><span class="st">'green'</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">20</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, <span class="at">df=</span><span class="dv">5</span>), <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">add =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co">#add legend</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">4</span>, .<span class="dv">3</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"df=5"</span>, <span class="st">"df=20"</span>, <span class="st">"df=100"</span>),</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>), <span class="at">lty=</span><span class="dv">1</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TTests_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contEffect, gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see that the slopes get steeper the higher the <span class="math inline">\(df\)</span> is (i.e.&nbsp;the more participants you have). This means that the results become more significant even with the same t-value. Not convinced? Let’s use a t-value of 2 to illustrate this. In the following figure you can see that the area under the curve for a t-value of 2 or more gets visually smaller the more participants/the higher the <span class="math inline">\(df\)</span> value is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dt,   <span class="at">args =</span><span class="fu">list</span>(<span class="at">df =</span><span class="dv">5</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="at">geom =</span> <span class="st">"area"</span>) <span class="sc">+</span> </span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dt, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df =</span><span class="dv">5</span>), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dt, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df =</span><span class="dv">20</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dt, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df =</span><span class="dv">100</span>), <span class="at">color =</span> <span class="st">"green"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TTests_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Remember, area under the curve <strong>IS</strong> the p-value, so the area under the curve for a t-value of 2 or above for each degrees of freedom is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># area under the curve for 2 and above</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># t-value</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">q=</span><span class="dv">2</span>, </span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># degrees of freedom</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">df=</span><span class="dv">5</span>, </span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># is the test of the t-value and below (TRUE) or the t-value and above (FALSE)</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower.tail =</span> <span class="cn">FALSE</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05096974</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># t-value</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">q=</span><span class="dv">2</span>, </span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># degrees of freedom</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">df=</span><span class="dv">20</span>, </span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># is the test of the t-value and below (TRUE) or the t-value and above (FALSE)</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower.tail =</span> <span class="cn">FALSE</span></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02963277</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># t-value</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">q=</span><span class="dv">2</span>, </span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># degrees of freedom</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">df=</span><span class="dv">100</span>, </span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># is the test of the t-value and below (TRUE) or the t-value and above (FALSE)</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower.tail =</span> <span class="cn">FALSE</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02410609</code></pre>
+</div>
+</div>
+<p>Note that if you wanted a 2-tailed test (i.e.&nbsp;you didn’t have an expected direction of your finding) you would double the area under the curve/p-value.</p>
+<p>Similar principles apply for an F-distribution, described next.</p>
+</section>
+<section id="calculating-p-values-from-f-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-p-values-from-f-distributions">Calculating p-values from f-distributions</h2>
+<p>As F-values are based on the <strong>sum of squares</strong>, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions, such as comparisons of more than 2 levels. This means that they can have a variety of shapes. First, let’s look at some distributions for designs with 2 conditions but differing numbers of participants:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + </span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> df, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df1 =</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">1</span>), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> df, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df1 =</span><span class="dv">20</span>, <span class="at">df2=</span><span class="dv">1</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> df, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df1 =</span><span class="dv">100</span>, <span class="at">df2=</span><span class="dv">1</span>), <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> .<span class="dv">4</span>, <span class="at">label =</span> <span class="st">"df1 = 5, df2=1"</span>, <span class="at">colour=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> .<span class="dv">35</span>, <span class="at">label =</span> <span class="st">"df1 = 20, df2=1"</span>, <span class="at">colour=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> .<span class="dv">3</span>, <span class="at">label =</span> <span class="st">"df1 = 100, df2=1"</span>, <span class="at">colour=</span><span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"F-Value"</span>) <span class="sc">+</span></span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TTests_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The shape is roughly the same, but shifts slightly as you get more people. What happens if we look at distributions where there are about 100 people but 2 or more conditions (df2 = 2 or more).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + </span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> df, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df1 =</span><span class="dv">100</span>, <span class="at">df2=</span><span class="dv">1</span>), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> df, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df1 =</span><span class="dv">100</span>, <span class="at">df2=</span><span class="dv">2</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> df, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df1 =</span><span class="dv">100</span>, <span class="at">df2=</span><span class="dv">3</span>), <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> .<span class="dv">4</span>, <span class="at">label  =</span> <span class="st">"df1 = 100, df2=1"</span>, <span class="at">colour=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> .<span class="dv">35</span>, <span class="at">label =</span> <span class="st">"df1 = 100, df2=2"</span>, <span class="at">colour=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"label"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> .<span class="dv">3</span>, <span class="at">label  =</span> <span class="st">"df1 = 100, df2=3"</span>, <span class="at">colour=</span><span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"F-Value"</span>) <span class="sc">+</span></span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TTests_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In all cases, you get your p-value from calculating the area under the curve for that F-value or above.</p>
+</section>
+<section id="effect-sizes" class="level1">
+<h1>Effect sizes</h1>
+<section id="t-tests" class="level2">
+<h2 class="anchored" data-anchor-id="t-tests">T-tests</h2>
+<p>To capture how large the effect is, there are slightly different calculations when doing a within subject design (1 or 2 conditions that all participants complete) vs.&nbsp;a between subject design. In all cases these are Cohen <span class="math inline">\(d\)</span> calculations.</p>
+<section id="one-sample-t-tests-1" class="level3">
+<h3 class="anchored" data-anchor-id="one-sample-t-tests-1">One Sample T-tests</h3>
+<p>The size of an effect is how big the difference is between the mean and the <span class="math inline">\(\mu\)</span> that you are comparing it to, compared to the standard deviation:</p>
+<p><span class="math display">\[
+d = \frac{\bar{x} - \mu}{SD(x)}
+\]</span></p>
+<p>The general benchmarks for how big or small a Cohen's <span class="math inline">\(d\)</span> value are as follows:</p>
+<ul>
+<li><p>.01 and below is very small (<a href="http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new">Sawilowsky 2009</a>)</p></li>
+<li><p>.2 and below is small (<a href="http://localhost:7754/describingData/dispersion.html#ref-cohen2013statistical">Cohen 2013</a>)</p></li>
+<li><p>.5 is medium (<a href="http://localhost:7754/describingData/dispersion.html#ref-cohen2013statistical">Cohen 2013</a>)</p></li>
+<li><p>.8 is large (<a href="http://localhost:7754/describingData/dispersion.html#ref-cohen2013statistical">Cohen 2013</a>)</p></li>
+<li><p>1.2 is very large (<a href="http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new">Sawilowsky 2009</a>)</p></li>
+<li><p>2 is huge (<a href="http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new">Sawilowsky 2009</a>)</p></li>
+</ul>
+</section>
+<section id="paired-sample-t-tests" class="level3">
+<h3 class="anchored" data-anchor-id="paired-sample-t-tests">Paired sample T-tests</h3>
+<p>The size of an effect is how big the difference is between the conditions, compared to the standard deviation:</p>
+<p><span class="math display">\[
+d = \frac{\bar{x_1} - \bar{x_2}}{SD(x_1-x_2)}
+\]</span></p>
+<p>This actually can be thought of the same as one-sample t-tests after you take the step to calculate the difference between each value in <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> to make <span class="math inline">\(x_3\)</span> to compare to a <span class="math inline">\(\mu\)</span> of 0:</p>
+<p><span class="math display">\[
+x_3 = x_1 - x_2
+\]</span> <span class="math display">\[
+\mu = 0
+\]</span> <span class="math display">\[
+d = \frac{\bar{x_1}-\bar{x_2}}{SD(\bar{x_1}-\bar{x_2})} = \frac{\bar{x_3}}{SD(x_3)} = \frac{\bar{x_3}-\mu}{SD(x_3)}
+\]</span></p>
+</section>
+<section id="independent-sample-t-tests" class="level3">
+<h3 class="anchored" data-anchor-id="independent-sample-t-tests">Independent Sample T-tests</h3>
+<p>The formula for this is somewhat similar to that for a paired samples t-test, but because you are comparing between groups of participants you can’t collapse the values between conditions because there are no pairings. So, you need to calculate the <em>pooled</em> standard deviation.</p>
+<p><span class="math display">\[
+SD_{pooled} = \sqrt{(SD(x_1)^2 + SD(x_1)^2)/2}
+\]</span></p>
+<p><span class="math display">\[
+d = \frac{\bar{x_1}-\bar{x_2}}{SD_{pooled}}
+\]</span></p>
+</section>
+</section>
+<section id="f-tests" class="level2">
+<h2 class="anchored" data-anchor-id="f-tests">F-tests</h2>
+<p>The effect sizes for F-tests are based on how much variance is explained by the model, which sometimes is exactly the same as <span class="math inline">\(r^2\)</span>. Let’s review some of the calculations above to confirm this:<br>
+<span class="math display">\[
+r^2 = \frac{SS_{explained}}{SS_{total}} = \frac{222.6202}{953.4478} = 0.2335
+\]</span></p>
+<p>If we run a linear model on the data we should also confirm the <span class="math inline">\(r^2\)</span> is .2335:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contEffect, gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1800,214 +1903,19 @@ Residual standard error: 3.713 on 53 degrees of freedom
 Multiple R-squared:  0.2335,    Adjusted R-squared:  0.219 
 F-statistic: 16.14 on 1 and 53 DF,  p-value: 0.0001864</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fl">222.62</span> <span class="sc">/</span>(<span class="fl">222.62</span> <span class="sc">+</span><span class="fl">13.79</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’ll use a function to confirm that this is the same for eta squared also:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">etaSquared</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contEffect, gapminder_americas_europe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9416691</code></pre>
+<pre><code>              eta.sq eta.sq.part
+contEffect 0.2334896   0.2334896</code></pre>
 </div>
 </div>
-</div>
-<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>t_test</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>aov_table</span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fl">222.62</span> <span class="op">/</span>(<span class="fl">222.62</span> <span class="op">+</span><span class="fl">13.79</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>0.941669134131382</code></pre>
-</div>
-</div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>male_female_height <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="st">"male"</span>,<span class="st">"male"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>),</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">2.2</span>,<span class="fl">1.5</span>,<span class="fl">1.5</span>,<span class="fl">1.4</span>,<span class="fl">1.4</span>,<span class="fl">1.3</span>,<span class="fl">1.3</span>),</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex_dummy =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(male_female_height<span class="sc">$</span>height[male_female_height<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"male"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.35</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(male_female_height<span class="sc">$</span>height[male_female_height<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"female"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.4</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(height <span class="sc">~</span> sex_dummy, <span class="at">data =</span> male_female_height))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = height ~ sex_dummy, data = male_female_height)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
- -0.15  -0.10   0.00   0.10   0.15 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  1.87500    0.04859  38.587 2.02e-08 ***
-sex_dummy   -0.47500    0.04859  -9.775 6.59e-05 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.119 on 6 degrees of freedom
-Multiple R-squared:  0.9409,    Adjusted R-squared:  0.9311 
-F-statistic: 95.56 on 1 and 6 DF,  p-value: 6.592e-05</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>male_female_height <span class="op">=</span> {</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sex'</span>: [<span class="st">"male"</span>,<span class="st">"male"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>,<span class="st">"female"</span>],</span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'height'</span>: [<span class="fl">2.5</span>,<span class="fl">2.2</span>,<span class="fl">1.5</span>,<span class="fl">1.5</span>,<span class="fl">1.4</span>,<span class="fl">1.4</span>,<span class="fl">1.3</span>,<span class="fl">1.3</span>],</span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sex_dummy'</span>: [<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]</span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>male_female_height <span class="op">=</span> pd.DataFrame(male_female_height)</span>
-<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>male_female_height[<span class="st">'height'</span>][male_female_height[<span class="st">'sex'</span>] <span class="op">==</span> <span class="st">"male"</span>].mean()</span>
-<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>male_female_height[<span class="st">'height'</span>][male_female_height[<span class="st">'sex'</span>] <span class="op">==</span> <span class="st">"female"</span>].mean()</span>
-<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'height ~ sex_dummy'</span>, data<span class="op">=</span>male_female_height).fit()</span>
-<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a>model2.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<pre><code>2.35
-
-1.4000000000000001</code></pre>
-</div>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="generalLinearModels-Table3.png" width="500" height="500" class="figure-img"></p>
-<figcaption class="figure-caption">Tale</figcaption>
-</figure>
-</div>
-<p>To show that we’ve achieved the same as a t-test, let’s run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#953.4478/730.8276</span></span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>continent_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contEffect <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>],</span>
-<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  gapminder_americas_europe<span class="sc">$</span>lifeExp[gapminder_americas_europe<span class="sc">$</span>contEffect <span class="sc">==</span> <span class="dv">1</span>],</span>
-<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># general linear models assume the variance between conditions is equal</span></span>
-<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var.equal =</span> T</span>
-<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>continent_model <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> contEffect, gapminder_americas_europe))</span>
-<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a>continent_ttest<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0001863749</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>continent_model<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">4</span>] <span class="co"># p-value for the continent as a predictor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0001863749</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>continent_ttest <span class="op">=</span> t_test <span class="op">=</span> ttest_ind(gapminder_americas_europe[<span class="st">'lifeExp'</span>][gapminder_americas_europe[<span class="st">'contEffect'</span>] <span class="op">==</span> <span class="dv">1</span>],gapminder_americas_europe[<span class="st">'lifeExp'</span>][gapminder_americas_europe[<span class="st">'contEffect'</span>] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>continent_ttest.pvalue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<p>There are some advantages of conducting a t-test using the “lm” functionality:</p>
-<ul>
-<li><p>You can capture residuals</p></li>
-<li><p>You have more flexibility to make more complex models</p></li>
-</ul>
-<p>Let’s now see how we can proceed if we have a more complex design, i.e.&nbsp;3 or more levels and/or more than 1 factor, using ANOVAs.</p>
-</section>
-<section id="glm-approach-vs-conventional-formula" class="level3">
-<h3 class="anchored" data-anchor-id="glm-approach-vs-conventional-formula">GLM approach vs conventional formula</h3>
-<p><span style="color:red">EXPLANATION HERE</span></p>
-</section>
-</section>
-<section id="using-distributions-to-calculate-p-values" class="level1">
-<h1>Using distributions to calculate p-values</h1>
-<p><span style="color:red">(explained below) to compare to F distributions. You might remember that when discussing <a href="../distributions/normal.html">normal distribution</a> we could calculate what proportion of the population would have a specific z-score or higher. We use a similar logic frequently in statistics in which we calculate a statistic value that we can compare to a distribution to calculate the likelihood of getting that statistic or a more extreme one.</span></p>
-</section>
-<section id="backup" class="level1">
-<h1>backup</h1>
-<section id="glm-approach-2" class="level3">
-<h3 class="anchored" data-anchor-id="glm-approach-2">GLM approach</h3>
-<p>For an independent samples t-test we can create a simple model based on the means of the two groups. You can either <a href="generalLinearModels.html#dummy-vs.-effect-coding-for-categorical-variables-in-a-model" target="_blank">dummy or effect code</a> the groups, so we’ll do both to look at how the output is slightly different each way. We’ll use the gapminder data to see if there are differences in life expectancies between the Americas and Europe in 2007 to illustrate these:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>  gapminder,   <span class="co"># the data set</span></span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> </span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">&amp;</span> continent <span class="sc">==</span> <span class="st">"Europe"</span></span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu <span class="op">=</span> gapminder[(gapminder[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2007</span>) <span class="op">&amp;</span> ((gapminder[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">"Americas"</span>) <span class="op">|</span> (gapminder[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">"Europe"</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<section id="dummy-coding" class="level4">
-<h4 class="anchored" data-anchor-id="dummy-coding">Dummy coding</h4>
-<p>One way to make a model for a t-test is to have a variable that is 1 for one level, and 0 for the other level (note that this gets more complicated if you are going an ANOVA with 3 or more levels). Let’s create a new variable for continent that is 1 if the country is in the Americas, and 0 if it’s not:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu<span class="sc">$</span>americas_dummy <span class="ot">=</span> <span class="fu">ifelse</span>(gapminder_2007_Am_Eu<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">paged_table</span>(gapminder_2007_Am_Eu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["fct"],"align":["left"]},{"label":["continent"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["lifeExp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pop"],"name":[5],"type":["int"],"align":["right"]},{"label":["gdpPercap"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["americas_dummy"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Albania","2":"Europe","3":"2007","4":"76.423","5":"3600523","6":"5937.030","7":"0"},{"1":"Argentina","2":"Americas","3":"2007","4":"75.320","5":"40301927","6":"12779.380","7":"1"},{"1":"Austria","2":"Europe","3":"2007","4":"79.829","5":"8199783","6":"36126.493","7":"0"},{"1":"Belgium","2":"Europe","3":"2007","4":"79.441","5":"10392226","6":"33692.605","7":"0"},{"1":"Bolivia","2":"Americas","3":"2007","4":"65.554","5":"9119152","6":"3822.137","7":"1"},{"1":"Bosnia and Herzegovina","2":"Europe","3":"2007","4":"74.852","5":"4552198","6":"7446.299","7":"0"},{"1":"Brazil","2":"Americas","3":"2007","4":"72.390","5":"190010647","6":"9065.801","7":"1"},{"1":"Bulgaria","2":"Europe","3":"2007","4":"73.005","5":"7322858","6":"10680.793","7":"0"},{"1":"Canada","2":"Americas","3":"2007","4":"80.653","5":"33390141","6":"36319.235","7":"1"},{"1":"Chile","2":"Americas","3":"2007","4":"78.553","5":"16284741","6":"13171.639","7":"1"},{"1":"Colombia","2":"Americas","3":"2007","4":"72.889","5":"44227550","6":"7006.580","7":"1"},{"1":"Costa Rica","2":"Americas","3":"2007","4":"78.782","5":"4133884","6":"9645.061","7":"1"},{"1":"Croatia","2":"Europe","3":"2007","4":"75.748","5":"4493312","6":"14619.223","7":"0"},{"1":"Cuba","2":"Americas","3":"2007","4":"78.273","5":"11416987","6":"8948.103","7":"1"},{"1":"Czech Republic","2":"Europe","3":"2007","4":"76.486","5":"10228744","6":"22833.309","7":"0"},{"1":"Denmark","2":"Europe","3":"2007","4":"78.332","5":"5468120","6":"35278.419","7":"0"},{"1":"Dominican Republic","2":"Americas","3":"2007","4":"72.235","5":"9319622","6":"6025.375","7":"1"},{"1":"Ecuador","2":"Americas","3":"2007","4":"74.994","5":"13755680","6":"6873.262","7":"1"},{"1":"El Salvador","2":"Americas","3":"2007","4":"71.878","5":"6939688","6":"5728.354","7":"1"},{"1":"Finland","2":"Europe","3":"2007","4":"79.313","5":"5238460","6":"33207.084","7":"0"},{"1":"France","2":"Europe","3":"2007","4":"80.657","5":"61083916","6":"30470.017","7":"0"},{"1":"Germany","2":"Europe","3":"2007","4":"79.406","5":"82400996","6":"32170.374","7":"0"},{"1":"Greece","2":"Europe","3":"2007","4":"79.483","5":"10706290","6":"27538.412","7":"0"},{"1":"Guatemala","2":"Americas","3":"2007","4":"70.259","5":"12572928","6":"5186.050","7":"1"},{"1":"Haiti","2":"Americas","3":"2007","4":"60.916","5":"8502814","6":"1201.637","7":"1"},{"1":"Honduras","2":"Americas","3":"2007","4":"70.198","5":"7483763","6":"3548.331","7":"1"},{"1":"Hungary","2":"Europe","3":"2007","4":"73.338","5":"9956108","6":"18008.944","7":"0"},{"1":"Iceland","2":"Europe","3":"2007","4":"81.757","5":"301931","6":"36180.789","7":"0"},{"1":"Ireland","2":"Europe","3":"2007","4":"78.885","5":"4109086","6":"40675.996","7":"0"},{"1":"Italy","2":"Europe","3":"2007","4":"80.546","5":"58147733","6":"28569.720","7":"0"},{"1":"Jamaica","2":"Americas","3":"2007","4":"72.567","5":"2780132","6":"7320.880","7":"1"},{"1":"Mexico","2":"Americas","3":"2007","4":"76.195","5":"108700891","6":"11977.575","7":"1"},{"1":"Montenegro","2":"Europe","3":"2007","4":"74.543","5":"684736","6":"9253.896","7":"0"},{"1":"Netherlands","2":"Europe","3":"2007","4":"79.762","5":"16570613","6":"36797.933","7":"0"},{"1":"Nicaragua","2":"Americas","3":"2007","4":"72.899","5":"5675356","6":"2749.321","7":"1"},{"1":"Norway","2":"Europe","3":"2007","4":"80.196","5":"4627926","6":"49357.190","7":"0"},{"1":"Panama","2":"Americas","3":"2007","4":"75.537","5":"3242173","6":"9809.186","7":"1"},{"1":"Paraguay","2":"Americas","3":"2007","4":"71.752","5":"6667147","6":"4172.838","7":"1"},{"1":"Peru","2":"Americas","3":"2007","4":"71.421","5":"28674757","6":"7408.906","7":"1"},{"1":"Poland","2":"Europe","3":"2007","4":"75.563","5":"38518241","6":"15389.925","7":"0"},{"1":"Portugal","2":"Europe","3":"2007","4":"78.098","5":"10642836","6":"20509.648","7":"0"},{"1":"Puerto Rico","2":"Americas","3":"2007","4":"78.746","5":"3942491","6":"19328.709","7":"1"},{"1":"Romania","2":"Europe","3":"2007","4":"72.476","5":"22276056","6":"10808.476","7":"0"},{"1":"Serbia","2":"Europe","3":"2007","4":"74.002","5":"10150265","6":"9786.535","7":"0"},{"1":"Slovak Republic","2":"Europe","3":"2007","4":"74.663","5":"5447502","6":"18678.314","7":"0"},{"1":"Slovenia","2":"Europe","3":"2007","4":"77.926","5":"2009245","6":"25768.258","7":"0"},{"1":"Spain","2":"Europe","3":"2007","4":"80.941","5":"40448191","6":"28821.064","7":"0"},{"1":"Sweden","2":"Europe","3":"2007","4":"80.884","5":"9031088","6":"33859.748","7":"0"},{"1":"Switzerland","2":"Europe","3":"2007","4":"81.701","5":"7554661","6":"37506.419","7":"0"},{"1":"Trinidad and Tobago","2":"Americas","3":"2007","4":"69.819","5":"1056608","6":"18008.509","7":"1"},{"1":"Turkey","2":"Europe","3":"2007","4":"71.777","5":"71158647","6":"8458.276","7":"0"},{"1":"United Kingdom","2":"Europe","3":"2007","4":"79.425","5":"60776238","6":"33203.261","7":"0"},{"1":"United States","2":"Americas","3":"2007","4":"78.242","5":"301139947","6":"42951.653","7":"1"},{"1":"Uruguay","2":"Americas","3":"2007","4":"76.384","5":"3447496","6":"10611.463","7":"1"},{"1":"Venezuela","2":"Americas","3":"2007","4":"73.747","5":"26084662","6":"11415.806","7":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy variable for Americas </span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>gapminder_2007_Am_Eu[<span class="st">'americas_dummy'</span>] <span class="op">=</span> np.where(gapminder_2007_Am_Eu[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Americas'</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table </span></span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gapminder_2007_Am_Eu.to_string())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="TTests_Table1.png" class="img-fluid figure-img" width="600"></p>
-<figcaption class="figure-caption">Table with gapminder_2007_Am_Eu</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Now that we have added our dummy code, we can write a model for what we expect life expectancy to be for each country:</p>
-<p><span class="math display">\[
-lifeExp = \beta_{americas}*mean(lifeExp_{americas}) + \beta_{europe}*mean(lifeExp_{europe}) + e
-\]</span></p>
-</section>
-<section id="effect-coding" class="level4">
-<h4 class="anchored" data-anchor-id="effect-coding">Effect coding</h4>
-</section>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section"></h4>
+<p>Boom, you got effect sizes for F-tests like ANOVAs.</p>
+<p>If you have understood this page it will set you up for the pages on each type of ANOVA as it uses the same concepts again and again.</p>
 
 
-</section>
 </section>
 </section>
 
@@ -2039,23 +1947,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -2120,92 +2014,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

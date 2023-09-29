@@ -13,7 +13,7 @@ As most studies are on 30 participants or more, and we've established it is comp
 ```{r}
 library(tidyverse)
 simulations = 50
-permutations_n = 10000
+permutations_n = 1000
 sample_size = 100
 these_effect_sizes = c(.1,.2,.3,.4,.5)
 simulations_df <- data.frame(

@@ -79,7 +79,7 @@ digraph "Course Overview" {
 		correlations[
 		  URL = "../distributions/correlations.html",
 			fixedsize = true,
-			#row = func,
+			fillcolor = "orange",
 			label= "Correlations"
 		]
 		dispersion[

@@ -1,9 +1,17 @@
 ---
-title: "T-Tests(incomplete)"
+title: "T-Tests"
 editor: visual
 ---
 
 {{< include ../overview.qmd >}}
+
+::: callout-note
+## T-values and F-Values
+
+As you'll see below, we'll discuss t-values and F-values you can calculate. T-values are from t-tests, in which there are only 2 conditions or 2 groups of participants you are comparing between. F-values are from a variety of tests and are not restricted to comparisons between 2 conditions or 2 groups. For example, you can run ANOVAs to get F-Values on 2 or more conditions. The underlying statistics between calculating T and F-Values is similar when comparing 2 conditions/groups, which is why $t = \sqrt{F}$ and $F = t^2$ .
+
+When describing a GLM approach, this is more aligned with how you would calculate an F-value.
+:::
 
 In all general linear models you are trying to compare how much of the variance is explained by a model compared to what's not being explained by a model. In short
 
@@ -296,7 +304,11 @@ p-value: 6.463174215427706e-23
 Great. So now that we've highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:
 
 $$
-T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} = \\ \sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} =
+$$
+
+$$
+\sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
 $$ where:
 
 -   T is the t-value
@@ -304,6 +316,12 @@ $$ where:
 -   $SS_{exp}$ is the sum of squares of the data explained by the model
 -   $SS_{unexp}$ is the sum of squares of the data not explained by the model (i.e. the residuals)
 -   $df_{exp}$ is the degrees of freedom for the model. As there is only one predictor (the sample mean) and it's only got 2 levels (1 or 0, however, in all cases the model is comparing the data to the mean, so it's less intuitive that there are 2 levels).
+
+To confirm, the formula for a one-sample t-test is just:
+
+$$
+T = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+$$
 
 ## Paired samples t-tests
 
@@ -369,7 +387,7 @@ p-value: 3.738316746290281e-30
 ```
 :::
 
-Looks identical. Let's compare formulas to see why this is:
+Looks identical. Let's compare formulas to see why this is ( $\mu$ = 0 , and so it isn't written) :
 
 $$
  t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar{x_3}}{\sigma_{pooled}/\sqrt{N}}
@@ -795,230 +813,222 @@ Ttest_indResult(statistic=4.018025720342183, pvalue=0.00018637488941352037)
 ```
 :::
 
-So the new sum of squares is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478) which also summarises the **total variance** (around the mean). In fact, we can use these 2 numbers to calculate the $r^2$ value (i.e. what proportion of the variance around the mean is explained by the model). The amount of variance explained by the model can be calculated by:
+So the new unexplained variance (AKA residual) is 730.8276, which is smaller than it was when we just used the mean regardless of continent (953.4478; 935.4478 is also the **total variance** around the mean).
+
+The sum of squares for the effect of continent can be calculated by subtracting the residuals from the total sum of squares (SS):
 
 $$
-totalSumOfSquares - modelSumOfSquares = totalError - modelError
+effect_{SS} = total_{SS} - residual_{SS} = 953.4478 - 730.8276 = 222.6202
 $$
 
-This allows us to calculate an r-value and thus a p-value:
+The $effect_{SS}$ can also be thought of our explained variance! So we can actually calculate how much of the model is explained by the model ($r^2$):
 
-::: panel-tabset
-## R
+$$
+r^2 = \frac{SS_{explained}}{SS_{total}} = \frac{222.6202}{953.4478} = 0.2335
+$$
 
-```{r}
-this_r2 = 1 - sum(gapminder_americas_europe$t_res_squared)/sum((gapminder_americas_europe$lifeExp - mean(gapminder_americas_europe$lifeExp))^2)
-this_r = sqrt(this_r2)
-this_r
-t.test(
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1],
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1],
-  var.equal = T
-)
-summary(aov(lifeExp ~ contEffect, gapminder_americas_europe))
-this_r2
-```
-
-## Python
-
-```{python}
-#| eval: false
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-import math
-
-this_r2 = 1- sum(gapminder_americas_europe['t_res_square'])/ (sum((gapminder_americas_europe['lifeExp'] - gapminder_americas_europe['lifeExp'].mean())**2))
-this_r=math.sqrt(this_r2)
-this_r
-t_test = ttest_ind(gapminder_americas_europe['lifeExp'][gapminder_americas_europe['contEffect'] == 1],gapminder_americas_europe['lifeExp'][gapminder_americas_europe['contEffect'] == -1])
-t_test
-
-model = ols('lifeExp ~ contEffect', data = gapminder_americas_europe).fit()
-aov_table = sm.stats.anova_lm(model, typ=2)
-aov_table
-
-this_r2
-```
-:::
-
-You may notice above that the manually calculated $r^2$ value is identical to the "Multiple R-Squared", rather than the "Adjusted R-squared". So what's the difference between r-squared and adjusted r-squared?
-
-### Effect sizes (eta-squared and partial eta-squared)
-
-::: panel-tabset
-## R
+Let's confirm that this is correct by comparing a manual calculation and a function:
 
 ```{r}
-summary(aov(lifeExp ~ contEffect, gapminder_americas_europe))
-summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))
-
-222.62 /(222.62 +13.79)
-
-
+222.6202/953.4478 # should be  0.2335 
+summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))$r.squared
 ```
 
-## Python
+Great, the difference reflects a rounding error.
 
-```{python}
-#| eval: false
+Note that the above formula is similar to the formula for $r$ from [simple regressions](../regressions/simpleRegressions.html#proportion-of-variance-explained). Variance is the square root of the Sum of Squares (or Sum of Squares is the **square** of variance!):
 
-t_test
-aov_table
-222.62 /(222.62 +13.79)
-```
-
-```         
-0.941669134131382
-```
-:::
-
-::: panel-tabset
-## R
-
-```{r}
-male_female_height <- data.frame(
-  sex = c("male","male","female","female","female","female","female","female"),
-  height = c(2.5,2.2,1.5,1.5,1.4,1.4,1.3,1.3),
-  sex_dummy = c(-1,-1,1,1,1,1,1,1)
-)
-mean(male_female_height$height[male_female_height$sex == "male"])
-mean(male_female_height$height[male_female_height$sex == "female"])
-summary(lm(height ~ sex_dummy, data = male_female_height))
-```
-
-## Python
-
-```{python}
-#| eval: false
-male_female_height = {
-    'sex': ["male","male","female","female","female","female","female","female"],
-    'height': [2.5,2.2,1.5,1.5,1.4,1.4,1.3,1.3],
-    'sex_dummy': [-1,-1,1,1,1,1,1,1]
-}
-male_female_height = pd.DataFrame(male_female_height)
-male_female_height['height'][male_female_height['sex'] == "male"].mean()
-male_female_height['height'][male_female_height['sex'] == "female"].mean()
-
-import statsmodels.formula.api as smf
-model2 = smf.ols(formula='height ~ sex_dummy', data=male_female_height).fit()
-model2.summary()
-```
-
-```         
-2.35
-
-1.4000000000000001
-```
-:::
-
-![Tale](generalLinearModels-Table3.png){fig-align="left" height="500" width="500"}
-
-To show that we've achieved the same as a t-test, let's run a between subjects t-test that assumes the variance is equal between the groups (which is an assumption of a general linear model), and see if the p-values are the same:
-
-::: panel-tabset
-## R
-
-```{r}
-#953.4478/730.8276
-continent_ttest <- t.test(
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == -1],
-  gapminder_americas_europe$lifeExp[gapminder_americas_europe$contEffect == 1],
-  # general linear models assume the variance between conditions is equal
-  var.equal = T
-)
-continent_model <- summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))
-
-continent_ttest$p.value
-continent_model$coefficients[2,4] # p-value for the continent as a predictor
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-continent_ttest = t_test = ttest_ind(gapminder_americas_europe['lifeExp'][gapminder_americas_europe['contEffect'] == 1],gapminder_americas_europe['lifeExp'][gapminder_americas_europe['contEffect'] == -1])
-
-continent_ttest.pvalue
-
-```
-:::
-
-There are some advantages of conducting a t-test using the "lm" functionality:
-
--   You can capture residuals
-
--   You have more flexibility to make more complex models
-
-Let's now see how we can proceed if we have a more complex design, i.e. 3 or more levels and/or more than 1 factor, using ANOVAs.
+$$
+r = \sqrt{\frac{SS_{explained}}{SS_{total}}} = \frac{\sqrt{SS_{explained}}}{\sqrt{SS_{total}}} =\frac{var_{explained}}{var_{total}}
+$$
 
 ### GLM approach vs conventional formula
 
-[EXPLANATION HERE]{style="color:red"}
+The main formula for an independent samples t-test is:
 
-# Using distributions to calculate p-values
+$$
+t =  \frac{\bar{X_1} - \bar{X_2}}{SE}
+$$
 
-[(explained below) to compare to F distributions. You might remember that when discussing [normal distribution](../distributions/normal.html) we could calculate what proportion of the population would have a specific z-score or higher. We use a similar logic frequently in statistics in which we calculate a statistic value that we can compare to a distribution to calculate the likelihood of getting that statistic or a more extreme one.]{style="color:red"}
+However, this is a simplification of the GLM mathematics we've been doing above (although $df$ is the same for the denominator and numerator, so we ignored them as they cancelled out)
 
-# backup
+$$
+t= \sqrt{f} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \frac{(\sum{\bar{X_1} - \mu)/(N_1-1) - (\sum{\bar{X_2} - \mu)}/(N_2-1)}}{
+((\sum{X_{1i} - \bar{X_1}}) +  (\sum{X_{2i} - \bar{X_2}}) )/(N-1)}= \frac{\sum{\bar{X_1}/N_1 - \sum{\bar{X_2}}/N_2}}{SE} =  \frac{\bar{X_1} - \bar{X_2}}{SE}
+$$
 
-### GLM approach
+## Calculating p-values from t-distributions
 
-For an independent samples t-test we can create a simple model based on the means of the two groups. You can either [dummy or effect code](generalLinearModels.html#dummy-vs.-effect-coding-for-categorical-variables-in-a-model){target="_blank"} the groups, so we'll do both to look at how the output is slightly different each way. We'll use the gapminder data to see if there are differences in life expectancies between the Americas and Europe in 2007 to illustrate these:
-
-::: panel-tabset
-## R
+Similar to the [normal distribution](../distributions/normal.html#z-scores-and-the-z-distribution), we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution. A t-distribution is like a normal distribution (it's a bell curve), but also takes into account the number of participants using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:
 
 ```{r}
-gapminder_2007_Am_Eu <- subset(
-  gapminder,   # the data set
-  year == 2007 & continent == "Americas" | 
-  year == 2007 & continent == "Europe"
+curve(dt(x, df=100), from=-4, to=4, col='green')
+curve(dt(x, df=20), from=-4, to=4, col='red', add=TRUE)
+curve(dt(x, df=5), from=-4, to=4, col='blue', add = TRUE) 
+
+#add legend
+legend(-4, .3, legend=c("df=5", "df=20", "df=100"),
+       col=c("blue", "red", "green"), lty=1, cex=1.2)
+```
+
+We can see that the slopes get steeper the higher the $df$ is (i.e. the more participants you have). This means that the results become more significant even with the same t-value. Not convinced? Let's use a t-value of 2 to illustrate this. In the following figure you can see that the area under the curve for a t-value of 2 or more gets visually smaller the more participants/the higher the $df$ value is:
+
+```{r}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dt,   args =list(df =5), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = dt, args =list(df =5), color = "blue") +
+  stat_function(fun = dt, args =list(df =20), color = "red") +
+  stat_function(fun = dt, args =list(df =100), color = "green") 
+  
+```
+
+Remember, area under the curve **IS** the p-value, so the area under the curve for a t-value of 2 or above for each degrees of freedom is:
+
+```{r}
+# area under the curve for 2 and above
+pt(
+  # t-value
+  q=2, 
+  # degrees of freedom
+  df=5, 
+  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
+  lower.tail = FALSE
+)
+pt(
+  # t-value
+  q=2, 
+  # degrees of freedom
+  df=20, 
+  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
+  lower.tail = FALSE
+)
+pt(
+  # t-value
+  q=2, 
+  # degrees of freedom
+  df=100, 
+  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
+  lower.tail = FALSE
 )
 ```
 
-## Python
+Note that if you wanted a 2-tailed test (i.e. you didn't have an expected direction of your finding) you would double the area under the curve/p-value.
 
-```{python}
-#| eval: false
+Similar principles apply for an F-distribution, described next.
 
-gapminder_2007_Am_Eu = gapminder[(gapminder['year'] == 2007) & ((gapminder['continent'] == "Americas") | (gapminder['continent'] == "Europe"))]
-```
-:::
+## Calculating p-values from f-distributions
 
-#### Dummy coding
-
-One way to make a model for a t-test is to have a variable that is 1 for one level, and 0 for the other level (note that this gets more complicated if you are going an ANOVA with 3 or more levels). Let's create a new variable for continent that is 1 if the country is in the Americas, and 0 if it's not:
-
-::: panel-tabset
-## R
+As F-values are based on the **sum of squares**, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions, such as comparisons of more than 2 levels. This means that they can have a variety of shapes. First, let's look at some distributions for designs with 2 conditions but differing numbers of participants:
 
 ```{r}
-gapminder_2007_Am_Eu$americas_dummy = ifelse(gapminder_2007_Am_Eu$continent == "Americas", 1,0)
-rmarkdown::paged_table(gapminder_2007_Am_Eu)
+ggplot(data.frame(x = c(0, 4)), aes(x)) +
+  # stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = df, args =list(df1 =5, df2=1), color = "blue") +
+  stat_function(fun = df, args =list(df1 =20, df2=1), color = "red") +
+  stat_function(fun = df, args =list(df1 =100, df2=1), color = "green") +
+  annotate("label", x = 2, y = .4, label = "df1 = 5, df2=1", colour="blue") +
+  annotate("label", x = 2, y = .35, label = "df1 = 20, df2=1", colour="red") +
+  annotate("label", x = 2, y = .3, label = "df1 = 100, df2=1", colour="green") +
+  xlab("F-Value") +
+  ylab("Density")
 ```
 
-## Python
+The shape is roughly the same, but shifts slightly as you get more people. What happens if we look at distributions where there are about 100 people but 2 or more conditions (df2 = 2 or more).
 
-```{python}
-#| eval: false
-
-# Create dummy variable for Americas 
-gapminder_2007_Am_Eu['americas_dummy'] = np.where(gapminder_2007_Am_Eu['continent'] == 'Americas', 1, 0)
-
-# Print table 
-print(gapminder_2007_Am_Eu.to_string())
+```{r}
+ggplot(data.frame(x = c(0, 4)), aes(x)) +
+  # stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = df, args =list(df1 =100, df2=1), color = "blue") +
+  stat_function(fun = df, args =list(df1 =100, df2=2), color = "red") +
+  stat_function(fun = df, args =list(df1 =100, df2=3), color = "green") +
+  annotate("label", x = 2, y = .4, label  = "df1 = 100, df2=1", colour="blue") +
+  annotate("label", x = 2, y = .35, label = "df1 = 100, df2=2", colour="red") +
+  annotate("label", x = 2, y = .3, label  = "df1 = 100, df2=3", colour="green") +
+  xlab("F-Value") +
+  ylab("Density")
 ```
 
-![Table with gapminder_2007_Am_Eu](TTests_Table1.png){fig-align="left" width="600"}
-:::
+In all cases, you get your p-value from calculating the area under the curve for that F-value or above.
 
-Now that we have added our dummy code, we can write a model for what we expect life expectancy to be for each country:
+# Effect sizes
+
+## T-tests
+
+To capture how large the effect is, there are slightly different calculations when doing a within subject design (1 or 2 conditions that all participants complete) vs. a between subject design. In all cases these are Cohen $d$ calculations.
+
+### One Sample T-tests
+
+The size of an effect is how big the difference is between the mean and the $\mu$ that you are comparing it to, compared to the standard deviation:
 
 $$
-lifeExp = \beta_{americas}*mean(lifeExp_{americas}) + \beta_{europe}*mean(lifeExp_{europe}) + e
+d = \frac{\bar{x} - \mu}{SD(x)}
 $$
 
-#### Effect coding
+The general benchmarks for how big or small a Cohen\'s $d$ value are as follows:
 
-#### 
+-   .01 and below is very small ([Sawilowsky 2009](http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new))
+
+-   .2 and below is small ([Cohen 2013](http://localhost:7754/describingData/dispersion.html#ref-cohen2013statistical))
+
+-   .5 is medium ([Cohen 2013](http://localhost:7754/describingData/dispersion.html#ref-cohen2013statistical))
+
+-   .8 is large ([Cohen 2013](http://localhost:7754/describingData/dispersion.html#ref-cohen2013statistical))
+
+-   1.2 is very large ([Sawilowsky 2009](http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new))
+
+-   2 is huge ([Sawilowsky 2009](http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new))
+
+### Paired sample T-tests 
+
+The size of an effect is how big the difference is between the conditions, compared to the standard deviation:
+
+$$
+d = \frac{\bar{x_1} - \bar{x_2}}{SD(x_1-x_2)}
+$$
+
+This actually can be thought of the same as one-sample t-tests after you take the step to calculate the difference between each value in $x_1$ and $x_2$ to make $x_3$ to compare to a $\mu$ of 0:
+
+$$
+x_3 = x_1 - x_2
+$$
+$$
+\mu = 0
+$$
+$$
+d = \frac{\bar{x_1}-\bar{x_2}}{SD(\bar{x_1}-\bar{x_2})} = \frac{\bar{x_3}}{SD(x_3)} = \frac{\bar{x_3}-\mu}{SD(x_3)}
+$$
+
+### Independent Sample T-tests
+
+The formula for this is somewhat similar to that for a paired samples t-test, but because you are comparing between groups of participants you can't collapse the values between conditions because there are no pairings. So, you need to calculate the *pooled* standard deviation.
+
+$$
+SD_{pooled} = \sqrt{(SD(x_1)^2 + SD(x_1)^2)/2}
+$$
+
+$$
+d = \frac{\bar{x_1}-\bar{x_2}}{SD_{pooled}}
+$$
+
+## F-tests
+
+The effect sizes for F-tests are based on how much variance is explained by the model, which sometimes is exactly the same as $r^2$. Let's review some of the calculations above to confirm this:\
+$$
+r^2 = \frac{SS_{explained}}{SS_{total}} = \frac{222.6202}{953.4478} = 0.2335
+$$
+
+If we run a linear model on the data we should also confirm the $r^2$ is .2335:
+
+```{r}
+summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))
+```
+
+We'll use a function to confirm that this is the same for eta squared also:
+
+```{r}
+lsr::etaSquared(lm(lifeExp ~ contEffect, gapminder_americas_europe))
+```
+
+Boom, you got effect sizes for F-tests like ANOVAs.
+
+If you have understood this page it will set you up for the pages on each type of ANOVA as it uses the same concepts again and again.

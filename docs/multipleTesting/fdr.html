@@ -1179,7 +1179,77 @@ Optional: Click here to see the R code to generate the data for the figure below
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress the RuntimeWarning</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, category<span class="op">=</span><span class="pp">RuntimeWarning</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Disable the SettingWithCopyWarning</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>pd.options.mode.chained_assignment <span class="op">=</span> <span class="va">None</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate the data</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(fdr_sim_df[<span class="st">'q'</span>])):</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># prepare a data frame to compare positive and negatives within a sample compared to the population</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    this_subset <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'population'</span>: [<span class="st">''</span>] <span class="op">*</span> n_tests,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'sample'</span>: <span class="st">''</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'true_false'</span>: <span class="va">False</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'p.value'</span>: np.nan</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    this_pos_prop <span class="op">=</span> fdr_sim_df[<span class="st">'positive_prop'</span>][i]</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,n_tests<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> k <span class="op">/</span> tests_per_sim <span class="op">&lt;=</span> this_pos_prop:</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># if the population is positive</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            this_subset[<span class="st">'population'</span>][k<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="st">"positive"</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> np.random.normal(this_effect_size, <span class="dv">1</span>, this_pp)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            t_test_result <span class="op">=</span> stats.ttest_1samp(data, <span class="dv">0</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            this_subset[<span class="st">'p.value'</span>][k<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> t_test_result.pvalue</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> k <span class="op">/</span> tests_per_sim <span class="op">&gt;</span> this_pos_prop:</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            <span class="co"># if the population is negative</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            this_subset[<span class="st">'population'</span>][k<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="st">"negative"</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            this_subset[<span class="st">'p.value'</span>][k<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> random.uniform(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sort the subset into appropriate ranks</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    sorted_subset <span class="op">=</span> this_subset.sort_values(by<span class="op">=</span><span class="st">'p.value'</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    sorted_subset[<span class="st">'rank'</span>] <span class="op">=</span> sorted_subset[<span class="st">'p.value'</span>].rank()</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    sorted_subset[<span class="st">'alpha'</span>] <span class="op">=</span> (sorted_subset[<span class="st">'rank'</span>] <span class="op">/</span> tests_per_sim) <span class="op">*</span> fdr_sim_df[<span class="st">'q'</span>][i]</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    sorted_subset[<span class="st">'sig'</span>] <span class="op">=</span> sorted_subset[<span class="st">'p.value'</span>] <span class="op">&lt;</span> sorted_subset[<span class="st">'alpha'</span>]</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    max_sig <span class="op">=</span> sorted_subset.loc[sorted_subset[<span class="st">'sig'</span>], <span class="st">'rank'</span>].<span class="bu">max</span>()</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    sorted_subset[<span class="st">'sample'</span>] <span class="op">=</span> <span class="st">"negative"</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    sorted_subset[<span class="st">'hb_sample'</span>] <span class="op">=</span> <span class="st">"negative"</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'bh_max_alpha'</span>] <span class="op">=</span> sorted_subset.at[max_sig, <span class="st">'alpha'</span>]</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> max_sig <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>        sorted_subset.loc[<span class="dv">0</span>:max_sig <span class="op">-</span> <span class="dv">1</span>, <span class="st">'sample'</span>] <span class="op">=</span> <span class="st">"positive"</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>        false_positives <span class="op">=</span> (</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>            (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"negative"</span>) <span class="op">&amp;</span> (sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"positive"</span>)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>        ).<span class="bu">sum</span>()</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>        true_positives <span class="op">=</span> (</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>            (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"positive"</span>) <span class="op">&amp;</span> (sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"positive"</span>)</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>        ).<span class="bu">sum</span>()</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>        fdr_sim_df.at[i, <span class="st">'fdr'</span>] <span class="op">=</span> false_positives <span class="op">/</span> (false_positives <span class="op">+</span> true_positives)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>        fdr_sim_df.at[i, <span class="st">'fdr'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>        fdr_sim_df.at[i, <span class="st">'fwer'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Quality check</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'pop_pos'</span>] <span class="op">=</span> (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"positive"</span>).<span class="bu">sum</span>()</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'pop_neg'</span>] <span class="op">=</span> (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"negative"</span>).<span class="bu">sum</span>()</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'samp_pos'</span>] <span class="op">=</span> (sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"positive"</span>).<span class="bu">sum</span>()</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'samp_neg'</span>] <span class="op">=</span> (sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"negative"</span>).<span class="bu">sum</span>()</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'false_pos'</span>] <span class="op">=</span> ((sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"positive"</span>) <span class="op">&amp;</span> (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"negative"</span>)).<span class="bu">sum</span>()</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'false_neg'</span>] <span class="op">=</span> ((sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"negative"</span>) <span class="op">&amp;</span> (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"positive"</span>)).<span class="bu">sum</span>()</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'true_pos'</span>] <span class="op">=</span> ((sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"positive"</span>) <span class="op">&amp;</span> (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"positive"</span>)).<span class="bu">sum</span>()</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>    fdr_sim_df.at[i, <span class="st">'true_neg'</span>] <span class="op">=</span> ((sorted_subset[<span class="st">'sample'</span>] <span class="op">==</span> <span class="st">"negative"</span>) <span class="op">&amp;</span> (sorted_subset[<span class="st">'population'</span>] <span class="op">==</span> <span class="st">"negative"</span>)).<span class="bu">sum</span>()    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1191,18 +1261,18 @@ Optional: Click here to see the R code to generate the data for the figure below
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximise the code above to generate the required data</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fdr_sim_df, <span class="fu">aes</span>(<span class="at">x =</span> q, <span class="at">y =</span> fdr,<span class="at">color=</span><span class="fu">as.factor</span>(positive_prop))) <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Researcher estimated FDR"</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Actual FDR"</span>) <span class="sc">+</span> </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">1</span>, <span class="at">yend =</span> <span class="dv">1</span>, <span class="at">color=</span><span class="st">"Expected FDR"</span>)) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">0025</span>, <span class="at">height =</span> <span class="fl">0.001</span>) <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> (<span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">1</span>)),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> (<span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">15</span>))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">"Proportion Positive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximise the code above to generate the required data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fdr_sim_df, <span class="fu">aes</span>(<span class="at">x =</span> q, <span class="at">y =</span> fdr,<span class="at">color=</span><span class="fu">as.factor</span>(positive_prop))) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Researcher estimated FDR"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Actual FDR"</span>) <span class="sc">+</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">1</span>, <span class="at">yend =</span> <span class="dv">1</span>, <span class="at">color=</span><span class="st">"Expected FDR"</span>)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">0025</span>, <span class="at">height =</span> <span class="fl">0.001</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> (<span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">1</span>)),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> (<span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">15</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color=</span><span class="st">"Proportion Positive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-fdrbh." class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -1214,7 +1284,26 @@ Optional: Click here to see the R code to generate the data for the figure below
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, aes, geom_smooth, geom_jitter, coord_cartesian, labs, geom_segment</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>gg <span class="op">=</span> ggplot(fdr_sim_df, aes(x<span class="op">=</span><span class="st">'q'</span>, y<span class="op">=</span><span class="st">'fdr'</span>, color<span class="op">=</span><span class="st">'factor(positive_prop)'</span>)) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    geom_smooth(method<span class="op">=</span><span class="st">'lm'</span>, formula<span class="op">=</span><span class="st">'y ~ x'</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    geom_jitter(width<span class="op">=</span><span class="fl">0.0025</span>, height<span class="op">=</span><span class="fl">0.001</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    coord_cartesian(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.1</span>), ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.15</span>)) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    labs(x<span class="op">=</span><span class="st">'Researcher estimated FDR'</span>, y<span class="op">=</span><span class="st">'Actual FDR'</span>, color<span class="op">=</span><span class="st">'Proportion Positive'</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    geom_segment(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=</span><span class="dv">0</span>, xend<span class="op">=</span><span class="dv">1</span>, yend<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the plot</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="fdr_Figure1.png" class="img-fluid figure-img" width="650"></p>
+<figcaption class="figure-caption">Figure 1: A simulation of FDR when using Benjamini-Hochberg procedure. The “Researcher estimated FDR” is the q-value that the researcher chooses.</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </div>

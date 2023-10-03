@@ -38,7 +38,6 @@ Let's see what $\alpha_{bh}$ values we get with this approach within a made-up e
 ::: panel-tabset
 ## R
 
-
 ```{r}
 library(kableExtra)
 bh_df <- data.frame(
@@ -91,7 +90,6 @@ bh_df.style.apply(highlight_greaterthan, threshold=1.0, column=['sig'], axis=1)
 ```
 
 ![](fdr-Table1.png){fig-align="left" width="550"}
-
 :::
 
 We can see that there's a slightly odd pattern, in which the fourth smallest p-value is not significant but the fifth is. For the Benjamini-Hochberg correction you take the lowest ranked p-value that is still significant and then accept all tests that have a smaller p-value than it as significant. So the rank 4 test above would be accepted as significant because of this rule.
@@ -103,7 +101,6 @@ Let us now check how this correction relates to positives and negatives in the p
 
 ::: panel-tabset
 ## R
-
 
 ```{r}
 options(scipen = 999)
@@ -214,16 +211,81 @@ for(i in 1:length(fdr_sim_df$q)){
 ```{python}
 #| eval: false
 
+import pandas as pd
+import numpy as np
+import scipy.stats as stats
+import random
+import warnings
 
+# Suppress the RuntimeWarning
+warnings.filterwarnings("ignore", category=RuntimeWarning)
+
+# Disable the SettingWithCopyWarning
+pd.options.mode.chained_assignment = None 
+
+# Simulate the data
+for i in range(0,len(fdr_sim_df['q'])):
+    
+    # prepare a data frame to compare positive and negatives within a sample compared to the population
+    this_subset = pd.DataFrame({
+        'population': [''] * n_tests,
+        'sample': '',
+        'true_false': False,
+        'p.value': np.nan
+    })
+    
+    this_pos_prop = fdr_sim_df['positive_prop'][i]
+    for k in range(1,n_tests+1):
+        if k / tests_per_sim <= this_pos_prop:
+            # if the population is positive
+            this_subset['population'][k-1] = "positive"
+            data = np.random.normal(this_effect_size, 1, this_pp)
+            t_test_result = stats.ttest_1samp(data, 0)
+            this_subset['p.value'][k-1] = t_test_result.pvalue
+        
+        if k / tests_per_sim > this_pos_prop:
+            # if the population is negative
+            this_subset['population'][k-1] = "negative"
+            this_subset['p.value'][k-1] = random.uniform(0, 1)
+    
+    # sort the subset into appropriate ranks
+    sorted_subset = this_subset.sort_values(by='p.value')
+    sorted_subset['rank'] = sorted_subset['p.value'].rank()
+    sorted_subset['alpha'] = (sorted_subset['rank'] / tests_per_sim) * fdr_sim_df['q'][i]
+    sorted_subset['sig'] = sorted_subset['p.value'] < sorted_subset['alpha']
+    max_sig = sorted_subset.loc[sorted_subset['sig'], 'rank'].max()
+    sorted_subset['sample'] = "negative"
+    sorted_subset['hb_sample'] = "negative"
+    fdr_sim_df.at[i, 'bh_max_alpha'] = sorted_subset.at[max_sig, 'alpha']
+    
+    if max_sig >= 0:
+        sorted_subset.loc[0:max_sig - 1, 'sample'] = "positive"
+        false_positives = (
+            (sorted_subset['population'] == "negative") & (sorted_subset['sample'] == "positive")
+        ).sum()
+        true_positives = (
+            (sorted_subset['population'] == "positive") & (sorted_subset['sample'] == "positive")
+        ).sum()
+        fdr_sim_df.at[i, 'fdr'] = false_positives / (false_positives + true_positives)
+    else:
+        fdr_sim_df.at[i, 'fdr'] = None
+        fdr_sim_df.at[i, 'fwer'] = None
+    
+    # Quality check
+    fdr_sim_df.at[i, 'pop_pos'] = (sorted_subset['population'] == "positive").sum()
+    fdr_sim_df.at[i, 'pop_neg'] = (sorted_subset['population'] == "negative").sum()
+    fdr_sim_df.at[i, 'samp_pos'] = (sorted_subset['sample'] == "positive").sum()
+    fdr_sim_df.at[i, 'samp_neg'] = (sorted_subset['sample'] == "negative").sum()
+    fdr_sim_df.at[i, 'false_pos'] = ((sorted_subset['sample'] == "positive") & (sorted_subset['population'] == "negative")).sum()
+    fdr_sim_df.at[i, 'false_neg'] = ((sorted_subset['sample'] == "negative") & (sorted_subset['population'] == "positive")).sum()
+    fdr_sim_df.at[i, 'true_pos'] = ((sorted_subset['sample'] == "positive") & (sorted_subset['population'] == "positive")).sum()
+    fdr_sim_df.at[i, 'true_neg'] = ((sorted_subset['sample'] == "negative") & (sorted_subset['population'] == "negative")).sum()    
 ```
-
 :::
-
 :::
 
 ::: panel-tabset
 ## R
-
 
 ```{r}
 #| label: fig-fdrbh.
@@ -247,8 +309,20 @@ ggplot(fdr_sim_df, aes(x = q, y = fdr,color=as.factor(positive_prop))) +
 ```{python}
 #| eval: false
 
+from plotnine import ggplot, aes, geom_smooth, geom_jitter, coord_cartesian, labs, geom_segment
 
+# Create the plot
+gg = ggplot(fdr_sim_df, aes(x='q', y='fdr', color='factor(positive_prop)')) + \
+    geom_smooth(method='lm', formula='y ~ x') + \
+    geom_jitter(width=0.0025, height=0.001) + \
+    coord_cartesian(xlim=(0, 0.1), ylim=(0, 0.15)) + \
+    labs(x='Researcher estimated FDR', y='Actual FDR', color='Proportion Positive') + \
+    geom_segment(x=0, y=0, xend=1, yend=1, color="blue")
+
+# Print the plot
+print(gg)
 ```
+![Figure 1: A simulation of FDR when using Benjamini-Hochberg procedure. The “Researcher estimated FDR” is the q-value that the researcher chooses.](fdr_Figure1.png){fig-align="left" width="650"}
 
 :::
 

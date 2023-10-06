@@ -474,7 +474,7 @@ plt.show()
 
 ```
 
-![*Fig. 3.* The errors around the mean of life expectancy across Europe and American countries.](generalLinearModels-Figure3.png){fig-align="left" width="700" height="500"}
+![*Fig. 3.* The errors around the mean of life expectancy across Europe and American countries.](TTests_Figure2.png){fig-align="left" width="700" height="500"}
 :::
 
 Once we square the errors in the pink lines above, we'll get the **squares:**
@@ -529,7 +529,7 @@ plt.show()
 sum((gapminder_americas_europe["lifeExp"]-gapminder_americas_europe["lifeExp"].mean())**2)
 ```
 
-![The squared errors around the mean of life expectancy across Europe and American countries](generalLinearModels-Figure4.png){fig-align="left" width="700" height="500"}
+![The squared errors around the mean of life expectancy across Europe and American countries](TTests_Figure3.png){fig-align="left" width="700" height="500"}
 
 ```         
 953.4477649818183
@@ -572,7 +572,7 @@ gapminder_americas_europe = gapminder_americas_europe[cols]
 print(tabulate(gapminder_americas_europe[:6], headers=gapminder_americas_europe.head(), tablefmt="fancy_grid",showindex=False))
 ```
 
-![Table](generalLinearModels-Table1.png){fig-align="left" height="300"}
+![Table](TTests_Table2.png){fig-align="left" height="300"}
 :::
 
 Now that we have effect coded the continent, we can create a new model to try to predict an individual's life expectancy based on which continent they are from
@@ -721,7 +721,7 @@ plt.ylabel("lifeExp")
 plt.show()
 ```
 
-![Plot with the errors around the mean of life expectancy across Europe and American countries](generalLinearModels-Figure5.png){fig-align="left" width="700" height="500"}
+![Plot with the errors around the mean of life expectancy across Europe and American countries](TTests_Figure4.png){fig-align="left" width="700" height="500"}
 :::
 
 Countries in the americas are dummy coded as -1 and countries in Europe are dummy coded as 1. Note that jittering has been used to help visualise variation within continents, and so all countries in Americas had a $contEffect$ score of -1, even if the jittering above makes it look like participants from Europe had slightly different $contEffect$ values to each other.
@@ -776,10 +776,21 @@ t.test(
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
+# create the model
 model = ols('lifeExp ~ contEffect', data = gapminder_americas_europe).fit()
-aov_table = sm.stats.anova_lm(model, typ=2)
-aov_table
 
+# create a table for the model
+aov_table = sm.stats.anova_lm(model, typ=2)
+
+# display the table
+aov_table
+```
+
+![Table](TTests_Table3.png){fig-align="left" height="100"}
+
+```{python}
+#| eval: false
+#| 
 # between
 overall_mean = gapminder_americas_europe['lifeExp'].mean()
 europe_mean = gapminder_americas_europe['lifeExp'][gapminder_americas_europe['contEffect'] == 1].mean()
@@ -795,20 +806,31 @@ ss_within = (sum((gapminder_americas_europe['lifeExp'][gapminder_americas_europe
 bottom_half = (ss_within/(len(gapminder_americas_europe['lifeExp']) - 2))
 
 top_half/bottom_half
+```
+```
+16.14453
+```
+
+```{python}
+#| eval: false
 
 # Compare with a t-test
 from scipy.stats import ttest_ind
 
 t_test = ttest_ind(gapminder_americas_europe['lifeExp'][gapminder_americas_europe['contEffect'] == 1],gapminder_americas_europe['lifeExp'][gapminder_americas_europe['contEffect'] == -1])
 t_test
-t_test.statistic **2
 ```
-
-![Table](generalLinearModels-Table2.png){fig-align="left" height="100"}
 
 ```         
 Ttest_indResult(statistic=4.018025720342183, pvalue=0.00018637488941352037)
+```
 
+```{python}
+#| eval: false
+
+4.018 ** 2
+```
+```
 16.144530689331322
 ```
 :::
@@ -829,10 +851,41 @@ $$
 
 Let's confirm that this is correct by comparing a manual calculation and a function:
 
+::: panel-tabset
+## R
+
 ```{r}
 222.6202/953.4478 # should be  0.2335 
 summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))$r.squared
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+222.6202/953.4478
+```
+```
+0.23348965722087775
+```
+
+```{python}
+#| eval: false
+
+# create the model
+model = ols('lifeExp ~ contEffect', data = gapminder_americas_europe).fit()
+
+# get the r squared from the model
+r_squared = model.rsquared
+
+# Print the R-squared value
+print("R-squared:", r_squared)
+```
+```
+0.2334896271386857
+```
+:::
 
 Great, the difference reflects a rounding error.
 
@@ -861,6 +914,9 @@ $$
 
 Similar to the [normal distribution](../distributions/normal.html#z-scores-and-the-z-distribution), we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution. A t-distribution is like a normal distribution (it's a bell curve), but also takes into account the number of participants using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:
 
+::: panel-tabset
+## R
+
 ```{r}
 curve(dt(x, df=100), from=-4, to=4, col='green')
 curve(dt(x, df=20), from=-4, to=4, col='red', add=TRUE)
@@ -871,7 +927,41 @@ legend(-4, .3, legend=c("df=5", "df=20", "df=100"),
        col=c("blue", "red", "green"), lty=1, cex=1.2)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import t
+
+# Define the x values
+x = np.linspace(-4, 4, 1000)
+
+# Create density curves for different degrees of freedom
+plt.plot(x, t.pdf(x, df=100), color='green', label='df=100')
+plt.plot(x, t.pdf(x, df=20), color='red', label='df=20')
+plt.plot(x, t.pdf(x, df=5), color='blue', label='df=5')
+
+# Add a legend
+plt.legend(loc='upper left')
+
+# Set axis labels and plot title
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.title('T-Distribution Density Curves')
+
+# Show the plot
+plt.show()
+```
+![T-Distribution Density Curves'](TTests_Figure5.png){fig-align="left" width="650"}
+:::
+
 We can see that the slopes get steeper the higher the $df$ is (i.e. the more participants you have). This means that the results become more significant even with the same t-value. Not convinced? Let's use a t-value of 2 to illustrate this. In the following figure you can see that the area under the curve for a t-value of 2 or more gets visually smaller the more participants/the higher the $df$ value is:
+
+::: panel-tabset
+## R
 
 ```{r}
 ggplot(data.frame(x = c(-4, 4)), aes(x)) +
@@ -882,7 +972,35 @@ ggplot(data.frame(x = c(-4, 4)), aes(x)) +
   
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+from plotnine import ggplot, aes, stat_function, xlim, geom_area, geom_line
+from scipy.stats import t
+
+import pandas as pd
+
+# Define the data frame with x values
+df = pd.DataFrame({'x': [-4, 4]})
+
+# Create the  plot
+(
+    ggplot(df, aes(x='x'))
+    + stat_function(fun=lambda x: t.pdf(x, df=5), geom="area", xlim=(2, 4), fill="blue")
+    + stat_function(fun=lambda x: t.pdf(x, df=5), color="blue")
+    + stat_function(fun=lambda x: t.pdf(x, df=20), color="red")
+    + stat_function(fun=lambda x: t.pdf(x, df=100), color="green")
+)
+```
+![Figure with the area under the curve for a t-value of 2'](TTests_Figure6.png){fig-align="left" width="650"}
+:::
+
 Remember, area under the curve **IS** the p-value, so the area under the curve for a t-value of 2 or above for each degrees of freedom is:
+
+::: panel-tabset
+## R
 
 ```{r}
 # area under the curve for 2 and above
@@ -912,6 +1030,62 @@ pt(
 )
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+from scipy.stats import t
+
+# t-value
+t_value = 2
+
+# Degrees of freedom
+df = 5
+
+# Calculate the area under the curve for t >= 2
+area_above_2 = 1 - t.cdf(t_value, df=df)
+area_above_2
+```
+```
+0.050969739414929105
+```
+
+```{python}
+#| eval: false
+
+# t-value
+t_value = 2
+
+# Degrees of freedom
+df = 20
+
+# Calculate the area under the curve for t >= 2
+area_above_2 = 1 - t.cdf(t_value, df=df)
+area_above_2
+```
+```
+0.02963276772328527
+```
+
+```{python}
+#| eval: false
+
+# t-value
+t_value = 2
+
+# Degrees of freedom
+df = 100
+
+# Calculate the area under the curve for t >= 2
+area_above_2 = 1 - t.cdf(t_value, df=df)
+area_above_2
+```
+```
+0.024106089365566796
+```
+:::
+
 Note that if you wanted a 2-tailed test (i.e. you didn't have an expected direction of your finding) you would double the area under the curve/p-value.
 
 Similar principles apply for an F-distribution, described next.
@@ -919,6 +1093,9 @@ Similar principles apply for an F-distribution, described next.
 ## Calculating p-values from f-distributions
 
 As F-values are based on the **sum of squares**, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions, such as comparisons of more than 2 levels. This means that they can have a variety of shapes. First, let's look at some distributions for designs with 2 conditions but differing numbers of participants:
+
+::: panel-tabset
+## R
 
 ```{r}
 ggplot(data.frame(x = c(0, 4)), aes(x)) +
@@ -933,7 +1110,52 @@ ggplot(data.frame(x = c(0, 4)), aes(x)) +
   ylab("Density")
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import pandas as pd
+from plotnine import ggplot, aes, stat_function, annotate, labs
+from scipy.stats import f
+
+# Create a DataFrame with x values
+df = pd.DataFrame({'x': [0, 4]})
+
+# Create the plot
+(
+    ggplot(df, aes(x='x'))
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=5, dfd=1),
+        color='blue'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=20, dfd=1),
+        color='red'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=1),
+        color='green'
+    )
+    + annotate(
+        "label", x=2, y=0.4, label="df1=5, df2=1", color="blue"
+    )
+    + annotate(
+        "label", x=2, y=0.35, label="df1=20, df2=1", color="red"
+    )
+    + annotate(
+        "label", x=2, y=0.3, label="df1=100, df2=1", color="green"
+    )
+    + labs(x="F-Value", y="Density")
+)
+```
+![F-Distribution Density Curves'](TTests_Figure7.png){fig-align="left" width="650"}
+:::
+
 The shape is roughly the same, but shifts slightly as you get more people. What happens if we look at distributions where there are about 100 people but 2 or more conditions (df2 = 2 or more).
+
+::: panel-tabset
+## R
 
 ```{r}
 ggplot(data.frame(x = c(0, 4)), aes(x)) +
@@ -947,6 +1169,46 @@ ggplot(data.frame(x = c(0, 4)), aes(x)) +
   xlab("F-Value") +
   ylab("Density")
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+from plotnine import ggplot, aes, stat_function, annotate, labs
+
+# Create a DataFrame with x values
+df = pd.DataFrame({'x': [0, 4]})
+
+# Create the plot
+(
+    ggplot(df, aes(x='x'))
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=1),
+        color='blue'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=2),
+        color='red'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=3),
+        color='green'
+    )
+    + annotate(
+        "label", x=2, y=0.4, label="df1=100, df2=1", color="blue"
+    )
+    + annotate(
+        "label", x=2, y=0.35, label="df1=100, df2=2", color="red"
+    )
+    + annotate(
+        "label", x=2, y=0.3, label="df1=100, df2=3", color="green"
+    )
+    + labs(x="F-Value", y="Density")
+)
+```
+![F-Distribution Density Curves'](TTests_Figure8.png){fig-align="left" width="650"}
+:::
 
 In all cases, you get your p-value from calculating the area under the curve for that F-value or above.
 
@@ -1023,15 +1285,65 @@ $$
 
 If we run a linear model on the data we should also confirm the $r^2$ is .2335:
 
+::: panel-tabset
+## R
+
 ```{r}
 summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))
 ```
 
+## Python
+
+```{python}
+#| eval: false
+
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# Create the model
+model = smf.ols('lifeExp ~ contEffect', data=gapminder_americas_europe)
+results = model.fit()
+
+# Print the summary
+print(results.summary())
+```
+
+![Table](TTests_Table4.png){fig-align="left" height="300"}
+:::
+
 We'll use a function to confirm that this is the same for eta squared also:
+
+::: panel-tabset
+## R
 
 ```{r}
 lsr::etaSquared(lm(lifeExp ~ contEffect, gapminder_americas_europe))
 ```
+
+## Python
+
+```{python}
+#| eval: false
+
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.stats.anova import anova_lm
+
+# Create the model
+model = smf.ols('lifeExp ~ contEffect', data=gapminder_americas_europe)
+results = model.fit()
+
+# Calculate eta-squared
+anova_table = anova_lm(results)
+eta_squared = anova_table['sum_sq'][0] / (anova_table['sum_sq'][0] + anova_table['sum_sq'][1])
+
+print("Eta-squared (η²):", eta_squared)
+```
+```
+Eta-squared (η²): 0.2334896271386854
+```
+
+:::
 
 Boom, you got effect sizes for F-tests like ANOVAs.
 

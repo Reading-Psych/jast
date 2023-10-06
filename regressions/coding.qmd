@@ -1,0 +1,107 @@
+---
+title: "Coding (R)"
+format: html
+editor: visual
+---
+
+{{< include ../overview.qmd >}}
+
+When running a linear model, such as a simple regression or multiple regression, it can be helpful to include categorical variables. However, these categorical variables will not (usually?) have sensible numbers that can be associated with them, and predictors in regressions need to be numeric. We can address this by using **dummy** or **effect** coding. We'll start by addressing this for binary categorical variables.
+
+# Binary variables
+
+## Dummy coding
+
+For categorical variables, you can give them a value of 0 or 1 if they are binary to reflect which of the two options applies to a data point. For example, if you had female and male participants (we'll deal with having more than 2 genders later), you could give 0 to females, and 1 to males. This would make females the default or baseline gender, and so your model would tell you how you expect height to increase (or decrease) for a male compared to a female.
+
+```{r}
+coding_df = data.frame(
+  height = c(100,115,120,105),
+  gender = c("female","male","male","female"),
+  gender_dummy = c(0,1,1,0)
+)
+knitr::kable(coding_df)
+```
+
+So if we wanted to predict height of an individual by their gender, then we could generate a linear model with the dummy coded gender as a predictor:
+
+```{r}
+dummy_lm = lm(height ~ gender_dummy, coding_df)
+summary(dummy_lm)
+```
+
+The Intercept is the mean height of females (as females are the default gender here). The **estimate** for gender dummy tells you how height increases by 15cm if you go from 0 (female) to 1 (male). This gives you similar insights into a t-test (see below). If you were to plot it, females would be at 0, and males at 1:
+
+```{r}
+plot(height ~ gender_dummy, coding_df)
+abline(lm(height ~ gender_dummy, coding_df))
+```
+
+You'll be happy to know that you get the same p-values for this linear model (look at the Pr(\>\|t\|) value for gender_dummy)...
+
+```{r}
+this_summary = summary(dummy_lm)
+this_summary$coefficients
+```
+
+... as you do for a t-test:
+
+```{r}
+t.test(height ~ gender_dummy, coding_df, var.equal = TRUE)
+```
+
+### Effect coding
+
+Effect coding is similar to dummy coding except that instead of giving 0 to one group you give -1 to it. This effect coded variable will act as a binary contrast between both levels, with neither level being the default/baseline (Some advantages/disadvantages of effect/dummy coding are addressed within the [multiple regressions](../regressions/multipleRegressions.html#interactions-aka-moderation) page). Effect coding gives you the same p-value as dummy coding:
+
+```{r}
+coding_df$gender_effect = ifelse(coding_df$gender == "female", -1, 1)
+effect_lm = lm(height ~ gender_effect, coding_df)
+summary(effect_lm)
+```
+
+Note though that because there is no baseline level, the baseline is half way between females and males. The **Intercept** is now half way between the mean for females and males, and the **estimate** for gender effect is half the difference. This is because the contrast between females (-1) and males (1) is twice that for effect coding than dummy coding:
+
+```{r}
+plot(height ~ gender_effect, coding_df)
+abline(lm(height ~ gender_effect, coding_df))
+```
+
+# Variables with more than 2 levels
+
+You might have a categorical variable that has more than 2 levels, and then you can no longer address everything within a single variable because you can't make a **binary** contrast between more than 2 levels, so you can't use effect coding (or at least, it's awkward to interpret). You can use **dummy** coding though to have a predictor that has a value of 1 for a level, and 0 for all other levels. Let's stick with height and gender above, but now include "non-binary" as a third level. Here's how we could code this.
+
+```{r}
+coding_df = data.frame(
+  height = c(100,115,120,105,110,112),
+  gender = c("female","male","male","female","non-binary","non-binary"),
+  male_dummy = c(0,1,1,0,0,0),
+  female_dummy = c(1,0,0,1,0,0),
+  non_binary_dummy = c(0,0,0,0,1,1)
+)
+knitr::kable(coding_df)
+```
+
+**However,** regressions need a baseline condition to compare against, so we can't put in all three of these. Let's see what happens if we try to put them all in:
+
+```{r}
+summary(lm(height ~  female_dummy + male_dummy + non_binary_dummy, coding_df))
+```
+
+You can see that non_binary_dummy has NAs, because R has chosen it to be the baseline condition that the model is built on. Looking at the estimates: height is expected to be 8.5 cm lower for females than non-binary individuals, and 6.5cm higher for males than non-binary.
+
+Interestingly, some software like R will attempt to do the above for you automatically if you ask it to
+
+```{r}
+summary(lm(height ~ gender, coding_df))
+```
+
+The problem (as you may have noticed), is that it may make a different decision about what the default level should be. In this case, R chose female as the default gender. Let's see if our output is the same if we only load in the dummy coding for males and non-binary, thus making female the default gender:
+
+```{r}
+summary(lm(height ~ male_dummy + non_binary_dummy, coding_df))
+```
+
+The outputs are the same, just the labeling of the coefficients is different. You could visualize the above model as follows:
+
+![](coding_figure/Slide1.png){fig-align="center" width="499"}

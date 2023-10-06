@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook – overview</title>
+<title>Just Another Statistics Textbook - Coding (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,89 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./logo/logo.jpeg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../logo/logo.jpeg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -71,10 +134,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logo/logo.jpeg" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo/logo.jpeg" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Just Another Statistics Textbook</span>
     </a>
   </div>
@@ -102,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"></h1>
+      <h1 class="quarto-secondary-nav-title">Coding (R)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -130,12 +193,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
+  <a href="../installing.html" class="sidebar-item-text sidebar-link">Installing R(Studio)</a>
   </div>
 </li>
       </ul>
@@ -150,17 +213,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
+  <a href="../rBasics/filetypes.html" class="sidebar-item-text sidebar-link">Types of Scripts</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
+  <a href="../rBasics/fundamentals.html" class="sidebar-item-text sidebar-link">R Fundamentals</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
+  <a href="../rBasics/logic.html" class="sidebar-item-text sidebar-link">R Logic</a>
   </div>
 </li>
       </ul>
@@ -175,17 +238,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
+  <a href="../statsBasics/statsBasics.html" class="sidebar-item-text sidebar-link">Statistics Basics</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
+  <a href="../statsBasics/eNumbers.html" class="sidebar-item-text sidebar-link">Scientific Notation</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability (R)</a>
+  <a href="../statsBasics/probability.html" class="sidebar-item-text sidebar-link">Probability (R)</a>
   </div>
 </li>
       </ul>
@@ -200,12 +263,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -220,22 +283,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./distributions/binomial.html" class="sidebar-item-text sidebar-link">Binomial Distribution (R)</a>
+  <a href="../distributions/binomial.html" class="sidebar-item-text sidebar-link">Binomial Distribution (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
+  <a href="../distributions/normal.html" class="sidebar-item-text sidebar-link">Normal Distribution</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
+  <a href="../distributions/skewness.html" class="sidebar-item-text sidebar-link">Skewness (R,Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R)</a>
+  <a href="../distributions/transforming.html" class="sidebar-item-text sidebar-link">Transforming Data (R)</a>
   </div>
 </li>
       </ul>
@@ -250,12 +313,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
+  <a href="../correlations/correlations.html" class="sidebar-item-text sidebar-link">Correlations (R,Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations (R,Python)</a>
+  <a href="../correlations/partialCorrelations.html" class="sidebar-item-text sidebar-link">Partial Correlations (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -270,12 +333,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (R)</a>
+  <a href="../regressions/simpleRegressions.html" class="sidebar-item-text sidebar-link">Simple regression (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R, incomplete)</a>
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R, incomplete)</a>
   </div>
 </li>
       </ul>
@@ -290,32 +353,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares (R, Python)</a>
+  <a href="../GeneralLinearModels/generalLinearModels.html" class="sidebar-item-text sidebar-link">General Linear Models and Sum of Squares (R, Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests (R, Python)</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests (R, Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link">One Way ANOVA (incomplete)</a>
+  <a href="../GeneralLinearModels/oneWayAnova.html" class="sidebar-item-text sidebar-link">One Way ANOVA (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GeneralLinearModels/repeatedAnova.html" class="sidebar-item-text sidebar-link">Repeated Measures ANOVAs</a>
+  <a href="../GeneralLinearModels/repeatedAnova.html" class="sidebar-item-text sidebar-link">Repeated Measures ANOVAs</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GeneralLinearModels/mixedAnova.html" class="sidebar-item-text sidebar-link">Mixed ANOVA (incomplete)</a>
+  <a href="../GeneralLinearModels/mixedAnova.html" class="sidebar-item-text sidebar-link">Mixed ANOVA (incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GeneralLinearModels/ancova.html" class="sidebar-item-text sidebar-link">ANCOVA (incomplete)</a>
+  <a href="../GeneralLinearModels/ancova.html" class="sidebar-item-text sidebar-link">ANCOVA (incomplete)</a>
   </div>
 </li>
       </ul>
@@ -330,7 +393,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./categorical/contingency.html" class="sidebar-item-text sidebar-link">Contingency (R)</a>
+  <a href="../categorical/contingency.html" class="sidebar-item-text sidebar-link">Contingency (R)</a>
   </div>
 </li>
       </ul>
@@ -345,7 +408,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R,Python)</a>
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -360,17 +423,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./multipleTesting/fwer.html" class="sidebar-item-text sidebar-link">Family-Wise Error (R)</a>
+  <a href="../multipleTesting/fwer.html" class="sidebar-item-text sidebar-link">Family-Wise Error (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./multipleTesting/fdr.html" class="sidebar-item-text sidebar-link">False Discovery Rate(R)</a>
+  <a href="../multipleTesting/fdr.html" class="sidebar-item-text sidebar-link">False Discovery Rate(R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./multipleTesting/fwer_vs_fdr.html" class="sidebar-item-text sidebar-link">FWER, FDR, Positive and Negative effects(R)</a>
+  <a href="../multipleTesting/fwer_vs_fdr.html" class="sidebar-item-text sidebar-link">FWER, FDR, Positive and Negative effects(R)</a>
   </div>
 </li>
       </ul>
@@ -385,12 +448,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./permutations/permutations.html" class="sidebar-item-text sidebar-link">Permutations (R)</a>
+  <a href="../permutations/permutations.html" class="sidebar-item-text sidebar-link">Permutations (R)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./permutations/permVsTtest.html" class="sidebar-item-text sidebar-link">Permutation vs.&nbsp;t tests (incomplete)</a>
+  <a href="../permutations/permVsTtest.html" class="sidebar-item-text sidebar-link">Permutation vs.&nbsp;t tests (incomplete)</a>
   </div>
 </li>
       </ul>
@@ -405,32 +468,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
+  <a href="../excelIntro/formulas.html" class="sidebar-item-text sidebar-link">Formulas</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
+  <a href="../excelIntro/if.html" class="sidebar-item-text sidebar-link">If function</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./excelIntro/count.html" class="sidebar-item-text sidebar-link">Count and countifs function</a>
+  <a href="../excelIntro/count.html" class="sidebar-item-text sidebar-link">Count and countifs function</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./excelIntro/sum.html" class="sidebar-item-text sidebar-link">Sum and SumIf</a>
+  <a href="../excelIntro/sum.html" class="sidebar-item-text sidebar-link">Sum and SumIf</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">Averageifs</a>
+  <a href="../excelIntro/averageIfs.html" class="sidebar-item-text sidebar-link">Averageifs</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">Anchoring</a>
+  <a href="../excelIntro/anchoring.html" class="sidebar-item-text sidebar-link">Anchoring</a>
   </div>
 </li>
       </ul>
@@ -445,12 +508,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
+  <a href="../extras/allQuestions.html" class="sidebar-item-text sidebar-link">All questions</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
+  <a href="../extras/questionMaker.html" class="sidebar-item-text sidebar-link">Question Maker</a>
   </div>
 </li>
       </ul>
@@ -459,13 +522,41 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#binary-variables" id="toc-binary-variables" class="nav-link active" data-scroll-target="#binary-variables">Binary variables</a>
+  <ul class="collapse">
+  <li><a href="#dummy-coding" id="toc-dummy-coding" class="nav-link" data-scroll-target="#dummy-coding">Dummy coding</a>
+  <ul class="collapse">
+  <li><a href="#effect-coding" id="toc-effect-coding" class="nav-link" data-scroll-target="#effect-coding">Effect coding</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#variables-with-more-than-2-levels" id="toc-variables-with-more-than-2-levels" class="nav-link" data-scroll-target="#variables-with-more-than-2-levels">Variables with more than 2 levels</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Coding (R)</h1>
+</div>
 
 
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
 
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
@@ -516,11 +607,11 @@ between_anova-&gt;permutation
 <title>
 binomial
 </title>
-<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1444,-1152 1156,-1152 1156,-1080 1444,-1080 1444,-1152"></polygon> <text text-anchor="middle" x="1300" y="-1108.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node6" class="node">
+<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1444,-1152 1156,-1152 1156,-1080 1444,-1080 1444,-1152"></polygon> <text text-anchor="middle" x="1300" y="-1108.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node4" class="node">
 <title>
 contingency
 </title>
-<g id="a_node6"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1573,-936 1285,-936 1285,-864 1573,-864 1573,-936"></polygon> <text text-anchor="middle" x="1429" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge2" class="edge">
+<g id="a_node4"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1573,-936 1285,-936 1285,-864 1573,-864 1573,-936"></polygon> <text text-anchor="middle" x="1429" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge2" class="edge">
 <title>
 binomial-&gt;contingency
 </title>
@@ -532,11 +623,11 @@ normal
 <title>
 binomial-&gt;normal
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1227.35,-1080C1203.45,-1068.48 1176.87,-1055.68 1152.95,-1044.15"></path> </g> <!-- central_tendency --> <g id="node4" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1227.35,-1080C1203.45,-1068.48 1176.87,-1055.68 1152.95,-1044.15"></path> </g> <!-- central_tendency --> <g id="node5" class="node">
 <title>
 central_tendency
 </title>
-<g id="a_node4"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1310,-1260 1022,-1260 1022,-1188 1310,-1188 1310,-1260"></polygon> <text text-anchor="middle" x="1166" y="-1216.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node8" class="node">
+<g id="a_node5"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1310,-1260 1022,-1260 1022,-1188 1310,-1188 1310,-1260"></polygon> <text text-anchor="middle" x="1166" y="-1216.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node8" class="node">
 <title>
 dispersion
 </title>
@@ -544,11 +635,11 @@ dispersion
 <title>
 central_tendency-&gt;dispersion
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1109.2,-1188C1090.51,-1176.48 1069.74,-1163.68 1051.03,-1152.15"></path> </g> <!-- coding --> <g id="node5" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1109.2,-1188C1090.51,-1176.48 1069.74,-1163.68 1051.03,-1152.15"></path> </g> <!-- coding --> <g id="node6" class="node">
 <title>
 coding
 </title>
-<g id="a_node5"><a href="../regressions/coding.html" title="Dummy and effect coding"> <polygon fill="white" stroke="#006688" stroke-width="5" points="995,-504 707,-504 707,-432 995,-432 995,-504"></polygon> <text text-anchor="middle" x="851" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dummy and effect coding</text> </a> </g> </g> <!-- multiple_regression --> <g id="node15" class="node">
+<g id="a_node6"><a href="../regressions/coding.html" title="Dummy and effect coding"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="995,-504 707,-504 707,-432 995,-432 995,-504"></polygon> <text text-anchor="middle" x="851" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dummy and effect coding</text> </a> </g> </g> <!-- multiple_regression --> <g id="node15" class="node">
 <title>
 multiple_regression
 </title>
@@ -743,8 +834,309 @@ ttests-&gt;repeated_measures_anova
 </div>
 </div>
 </div>
+<p>When running a linear model, such as a simple regression or multiple regression, it can be helpful to include categorical variables. However, these categorical variables will not (usually?) have sensible numbers that can be associated with them, and predictors in regressions need to be numeric. We can address this by using <strong>dummy</strong> or <strong>effect</strong> coding. We’ll start by addressing this for binary categorical variables.</p>
+<section id="binary-variables" class="level1">
+<h1>Binary variables</h1>
+<section id="dummy-coding" class="level2">
+<h2 class="anchored" data-anchor-id="dummy-coding">Dummy coding</h2>
+<p>For categorical variables, you can give them a value of 0 or 1 if they are binary to reflect which of the two options applies to a data point. For example, if you had female and male participants (we’ll deal with having more than 2 genders later), you could give 0 to females, and 1 to males. This would make females the default or baseline gender, and so your model would tell you how you expect height to increase (or decrease) for a male compared to a female.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>coding_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">115</span>,<span class="dv">120</span>,<span class="dv">105</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">"female"</span>,<span class="st">"male"</span>,<span class="st">"male"</span>,<span class="st">"female"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender_dummy =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(coding_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: right;">height</th>
+<th style="text-align: left;">gender</th>
+<th style="text-align: right;">gender_dummy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">115</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">105</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>So if we wanted to predict height of an individual by their gender, then we could generate a linear model with the dummy coded gender as a predictor:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dummy_lm <span class="ot">=</span> <span class="fu">lm</span>(height <span class="sc">~</span> gender_dummy, coding_df)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dummy_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = height ~ gender_dummy, data = coding_df)
+
+Residuals:
+   1    2    3    4 
+-2.5 -2.5  2.5  2.5 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   102.500      2.500  41.000 0.000594 ***
+gender_dummy   15.000      3.536   4.243 0.051317 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.536 on 2 degrees of freedom
+Multiple R-squared:    0.9, Adjusted R-squared:   0.85 
+F-statistic:    18 on 1 and 2 DF,  p-value: 0.05132</code></pre>
+</div>
+</div>
+<p>The Intercept is the mean height of females (as females are the default gender here). The <strong>estimate</strong> for gender dummy tells you how height increases by 15cm if you go from 0 (female) to 1 (male). This gives you similar insights into a t-test (see below). If you were to plot it, females would be at 0, and males at 1:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(height <span class="sc">~</span> gender_dummy, coding_df)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(height <span class="sc">~</span> gender_dummy, coding_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="coding_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>You’ll be happy to know that you get the same p-values for this linear model (look at the Pr(&gt;|t|) value for gender_dummy)…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>this_summary <span class="ot">=</span> <span class="fu">summary</span>(dummy_lm)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>this_summary<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Estimate Std. Error   t value     Pr(&gt;|t|)
+(Intercept)     102.5   2.500000 41.000000 0.0005943537
+gender_dummy     15.0   3.535534  4.242641 0.0513167019</code></pre>
+</div>
+</div>
+<p>… as you do for a t-test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(height <span class="sc">~</span> gender_dummy, coding_df, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  height by gender_dummy
+t = -4.2426, df = 2, p-value = 0.05132
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ -30.2121746   0.2121746
+sample estimates:
+mean in group 0 mean in group 1 
+          102.5           117.5 </code></pre>
+</div>
+</div>
+<section id="effect-coding" class="level3">
+<h3 class="anchored" data-anchor-id="effect-coding">Effect coding</h3>
+<p>Effect coding is similar to dummy coding except that instead of giving 0 to one group you give -1 to it. This effect coded variable will act as a binary contrast between both levels, with neither level being the default/baseline (Some advantages/disadvantages of effect/dummy coding are addressed within the <a href="../regressions/multipleRegressions.html#interactions-aka-moderation">multiple regressions</a> page). Effect coding gives you the same p-value as dummy coding:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>coding_df<span class="sc">$</span>gender_effect <span class="ot">=</span> <span class="fu">ifelse</span>(coding_df<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"female"</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>effect_lm <span class="ot">=</span> <span class="fu">lm</span>(height <span class="sc">~</span> gender_effect, coding_df)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(effect_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = height ~ gender_effect, data = coding_df)
+
+Residuals:
+   1    2    3    4 
+-2.5 -2.5  2.5  2.5 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    110.000      1.768  62.225 0.000258 ***
+gender_effect    7.500      1.768   4.243 0.051317 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.536 on 2 degrees of freedom
+Multiple R-squared:    0.9, Adjusted R-squared:   0.85 
+F-statistic:    18 on 1 and 2 DF,  p-value: 0.05132</code></pre>
+</div>
+</div>
+<p>Note though that because there is no baseline level, the baseline is half way between females and males. The <strong>Intercept</strong> is now half way between the mean for females and males, and the <strong>estimate</strong> for gender effect is half the difference. This is because the contrast between females (-1) and males (1) is twice that for effect coding than dummy coding:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(height <span class="sc">~</span> gender_effect, coding_df)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(height <span class="sc">~</span> gender_effect, coding_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="coding_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="variables-with-more-than-2-levels" class="level1">
+<h1>Variables with more than 2 levels</h1>
+<p>You might have a categorical variable that has more than 2 levels, and then you can no longer address everything within a single variable because you can’t make a <strong>binary</strong> contrast between more than 2 levels, so you can’t use effect coding (or at least, it’s awkward to interpret). You can use <strong>dummy</strong> coding though to have a predictor that has a value of 1 for a level, and 0 for all other levels. Let’s stick with height and gender above, but now include “non-binary” as a third level. Here’s how we could code this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>coding_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">115</span>,<span class="dv">120</span>,<span class="dv">105</span>,<span class="dv">110</span>,<span class="dv">112</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">"female"</span>,<span class="st">"male"</span>,<span class="st">"male"</span>,<span class="st">"female"</span>,<span class="st">"non-binary"</span>,<span class="st">"non-binary"</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">male_dummy =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">female_dummy =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">non_binary_dummy =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(coding_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: right;">height</th>
+<th style="text-align: left;">gender</th>
+<th style="text-align: right;">male_dummy</th>
+<th style="text-align: right;">female_dummy</th>
+<th style="text-align: right;">non_binary_dummy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">115</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">105</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">110</td>
+<td style="text-align: left;">non-binary</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">112</td>
+<td style="text-align: left;">non-binary</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>However,</strong> regressions need a baseline condition to compare against, so we can’t put in all three of these. Let’s see what happens if we try to put them all in:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(height <span class="sc">~</span>  female_dummy <span class="sc">+</span> male_dummy <span class="sc">+</span> non_binary_dummy, coding_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = height ~ female_dummy + male_dummy + non_binary_dummy, 
+    data = coding_df)
+
+Residuals:
+   1    2    3    4    5    6 
+-2.5 -2.5  2.5  2.5 -1.0  1.0 
+
+Coefficients: (1 not defined because of singularities)
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       111.000      2.121  52.326 1.54e-05 ***
+female_dummy       -8.500      3.000  -2.833    0.066 .  
+male_dummy          6.500      3.000   2.167    0.119    
+non_binary_dummy       NA         NA      NA       NA    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3 on 3 degrees of freedom
+Multiple R-squared:  0.8934,    Adjusted R-squared:  0.8224 
+F-statistic: 12.57 on 2 and 3 DF,  p-value: 0.03479</code></pre>
+</div>
+</div>
+<p>You can see that non_binary_dummy has NAs, because R has chosen it to be the baseline condition that the model is built on. Looking at the estimates: height is expected to be 8.5 cm lower for females than non-binary individuals, and 6.5cm higher for males than non-binary.</p>
+<p>Interestingly, some software like R will attempt to do the above for you automatically if you ask it to</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(height <span class="sc">~</span> gender, coding_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = height ~ gender, data = coding_df)
+
+Residuals:
+   1    2    3    4    5    6 
+-2.5 -2.5  2.5  2.5 -1.0  1.0 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       102.500      2.121  48.319 1.95e-05 ***
+gendermale         15.000      3.000   5.000   0.0154 *  
+gendernon-binary    8.500      3.000   2.833   0.0660 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3 on 3 degrees of freedom
+Multiple R-squared:  0.8934,    Adjusted R-squared:  0.8224 
+F-statistic: 12.57 on 2 and 3 DF,  p-value: 0.03479</code></pre>
+</div>
+</div>
+<p>The problem (as you may have noticed), is that it may make a different decision about what the default level should be. In this case, R chose female as the default gender. Let’s see if our output is the same if we only load in the dummy coding for males and non-binary, thus making female the default gender:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(height <span class="sc">~</span> male_dummy <span class="sc">+</span> non_binary_dummy, coding_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = height ~ male_dummy + non_binary_dummy, data = coding_df)
+
+Residuals:
+   1    2    3    4    5    6 
+-2.5 -2.5  2.5  2.5 -1.0  1.0 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       102.500      2.121  48.319 1.95e-05 ***
+male_dummy         15.000      3.000   5.000   0.0154 *  
+non_binary_dummy    8.500      3.000   2.833   0.0660 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3 on 3 degrees of freedom
+Multiple R-squared:  0.8934,    Adjusted R-squared:  0.8224 
+F-statistic: 12.57 on 2 and 3 DF,  p-value: 0.03479</code></pre>
+</div>
+</div>
+<p>The outputs are the same, just the labeling of the coefficients is different. You could visualize the above model as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="coding_figure/Slide1.png" class="img-fluid figure-img" width="499"></p>
+</figure>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

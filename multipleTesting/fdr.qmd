@@ -38,7 +38,6 @@ Let's see what $\alpha_{bh}$ values we get with this approach within a made-up e
 ::: panel-tabset
 ## R
 
-
 ```{r}
 library(kableExtra)
 bh_df <- data.frame(
@@ -91,7 +90,6 @@ bh_df.style.apply(highlight_greaterthan, threshold=1.0, column=['sig'], axis=1)
 ```
 
 ![](fdr-Table1.png){fig-align="left" width="550"}
-
 :::
 
 We can see that there's a slightly odd pattern, in which the fourth smallest p-value is not significant but the fifth is. For the Benjamini-Hochberg correction you take the lowest ranked p-value that is still significant and then accept all tests that have a smaller p-value than it as significant. So the rank 4 test above would be accepted as significant because of this rule.
@@ -104,7 +102,6 @@ Let us now check how this correction relates to positives and negatives in the p
 ::: panel-tabset
 ## R
 
-
 ```{r}
 options(scipen = 999)
 library(tidyverse)
@@ -114,7 +111,8 @@ this_effect_size = 1
 sim_pwr   = pwr::pwr.t.test(
   d = this_effect_size, 
   sig.level = .05, 
-  power = .95
+  power = .95, 
+  type = "one.sample"
 )
 this_pp   = round(sim_pwr$n)
 q_values = c(.01,.025,.05,.075,.1)
@@ -216,14 +214,11 @@ for(i in 1:length(fdr_sim_df$q)){
 
 
 ```
-
 :::
-
 :::
 
 ::: panel-tabset
 ## R
-
 
 ```{r}
 #| label: fig-fdrbh.
@@ -249,7 +244,6 @@ ggplot(fdr_sim_df, aes(x = q, y = fdr,color=as.factor(positive_prop))) +
 
 
 ```
-
 :::
 
 The above simulations show an association between the **false discovery rate** a researcher sets (known as $q$) and the actual **false discovery rate**. Whilst this page focuses on a scenario in which half of the effects being tested are positive, see [here](fwer_vs_fdr.html#simulations-of-fdr-with-different-underlying-positive-rates-in-the-populations) for the impact of having different positive rates on the FDR rate. The good news is that the Benjamani-Holchberg procedure generally keeps the FDR below the $q$ that the researcher sets.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Just Another Statistics Textbook - T-Tests</title>
+<title>Just Another Statistics Textbook - T-Tests (R, Python)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">T-Tests</h1>
+      <h1 class="quarto-secondary-nav-title">T-Tests (R, Python)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -362,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link active">T-Tests</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link active">T-Tests (R, Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -412,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -534,16 +534,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#one-sample-t-tests" id="toc-one-sample-t-tests" class="nav-link active" data-scroll-target="#one-sample-t-tests">One-Sample t-tests</a>
   <ul class="collapse">
   <li><a href="#glm-approach" id="toc-glm-approach" class="nav-link" data-scroll-target="#glm-approach">GLM approach</a></li>
-  <li><a href="#glm-vs.-conventional-formula" id="toc-glm-vs.-conventional-formula" class="nav-link" data-scroll-target="#glm-vs.-conventional-formula">GLM vs.&nbsp;conventional formula</a></li>
+  <li><a href="#anvoa-vs.-t-test-formula" id="toc-anvoa-vs.-t-test-formula" class="nav-link" data-scroll-target="#anvoa-vs.-t-test-formula">ANVOA vs.&nbsp;T-test formula</a></li>
   </ul></li>
   <li><a href="#paired-samples-t-tests" id="toc-paired-samples-t-tests" class="nav-link" data-scroll-target="#paired-samples-t-tests">Paired samples t-tests</a></li>
   <li><a href="#independent-samples-t-tests" id="toc-independent-samples-t-tests" class="nav-link" data-scroll-target="#independent-samples-t-tests">Independent Samples t-tests</a>
   <ul class="collapse">
-  <li><a href="#glm-approach-1" id="toc-glm-approach-1" class="nav-link" data-scroll-target="#glm-approach-1">GLM approach</a></li>
-  <li><a href="#glm-approach-vs-conventional-formula" id="toc-glm-approach-vs-conventional-formula" class="nav-link" data-scroll-target="#glm-approach-vs-conventional-formula">GLM approach vs conventional formula</a></li>
+  <li><a href="#anova-approach" id="toc-anova-approach" class="nav-link" data-scroll-target="#anova-approach">ANOVA approach</a></li>
+  <li><a href="#anova-approach-vs-conventional-formula" id="toc-anova-approach-vs-conventional-formula" class="nav-link" data-scroll-target="#anova-approach-vs-conventional-formula">ANOVA approach vs conventional formula</a></li>
   </ul></li>
   <li><a href="#calculating-p-values-from-t-distributions" id="toc-calculating-p-values-from-t-distributions" class="nav-link" data-scroll-target="#calculating-p-values-from-t-distributions">Calculating p-values from t-distributions</a></li>
   <li><a href="#calculating-p-values-from-f-distributions" id="toc-calculating-p-values-from-f-distributions" class="nav-link" data-scroll-target="#calculating-p-values-from-f-distributions">Calculating p-values from f-distributions</a></li>
+  <li><a href="#glm-approach-optional" id="toc-glm-approach-optional" class="nav-link" data-scroll-target="#glm-approach-optional">GLM approach (optional)</a></li>
+  <li><a href="#finish-here" id="toc-finish-here" class="nav-link" data-scroll-target="#finish-here">FINISH HERE</a></li>
   <li><a href="#effect-sizes" id="toc-effect-sizes" class="nav-link" data-scroll-target="#effect-sizes">Effect sizes</a>
   <ul class="collapse">
   <li><a href="#t-tests" id="toc-t-tests" class="nav-link" data-scroll-target="#t-tests">T-tests</a>
@@ -562,7 +564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">T-Tests</h1>
+<h1 class="title d-none d-lg-block">T-Tests (R, Python)</h1>
 </div>
 
 
@@ -1124,8 +1126,8 @@ p-value: 6.463174215427706e-23</code></pre>
 </div>
 </div>
 </section>
-<section id="glm-vs.-conventional-formula" class="level3">
-<h3 class="anchored" data-anchor-id="glm-vs.-conventional-formula">GLM vs.&nbsp;conventional formula</h3>
+<section id="anvoa-vs.-t-test-formula" class="level3">
+<h3 class="anchored" data-anchor-id="anvoa-vs.-t-test-formula">ANVOA vs.&nbsp;T-test formula</h3>
 <p>Great. So now that we’ve highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:</p>
 <p><span class="math display">\[
 T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} =
@@ -1246,8 +1248,8 @@ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}} = \frac{\bar
 </section>
 <section id="independent-samples-t-tests" class="level2">
 <h2 class="anchored" data-anchor-id="independent-samples-t-tests">Independent Samples t-tests</h2>
-<section id="glm-approach-1" class="level3">
-<h3 class="anchored" data-anchor-id="glm-approach-1">GLM approach</h3>
+<section id="anova-approach" class="level3">
+<h3 class="anchored" data-anchor-id="anova-approach">ANOVA approach</h3>
 <p>T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let’s first check what the sum of squares is when you just use the <strong>mean</strong> as the model of life expectancy <strong>across</strong> these contents (so we’re <strong>not</strong> separating by continent yet):</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Python</a></li></ul>
@@ -1712,8 +1714,8 @@ r^2 = \frac{SS_{explained}}{SS_{total}} = \frac{222.6202}{953.4478} = 0.2335
 r = \sqrt{\frac{SS_{explained}}{SS_{total}}} = \frac{\sqrt{SS_{explained}}}{\sqrt{SS_{total}}} =\frac{var_{explained}}{var_{total}}
 \]</span></p>
 </section>
-<section id="glm-approach-vs-conventional-formula" class="level3">
-<h3 class="anchored" data-anchor-id="glm-approach-vs-conventional-formula">GLM approach vs conventional formula</h3>
+<section id="anova-approach-vs-conventional-formula" class="level3">
+<h3 class="anchored" data-anchor-id="anova-approach-vs-conventional-formula">ANOVA approach vs conventional formula</h3>
 <p>The main formula for an independent samples t-test is:</p>
 <p><span class="math display">\[
 t =  \frac{\bar{X_1} - \bar{X_2}}{SE}
@@ -1827,6 +1829,13 @@ t= \sqrt{f} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \frac{(\s
 </div>
 <p>In all cases, you get your p-value from calculating the area under the curve for that F-value or above.</p>
 </section>
+<section id="glm-approach-optional" class="level2">
+<h2 class="anchored" data-anchor-id="glm-approach-optional">GLM approach (optional)</h2>
+<p>If we were to more strictly conceptualise this as a linear model, then we need to create a model that predicts the life expectancy based on the continent. As continent is a categorical variable, we need to allocate numbers for each continent. This can either be dummy coding (1 for 0 for each continent) or effect coding (1 or -1 for each continent). Let’s go through both approaches.</p>
+</section>
+<section id="finish-here" class="level1">
+<h1>FINISH HERE</h1>
+</section>
 <section id="effect-sizes" class="level1">
 <h1>Effect sizes</h1>
 <section id="t-tests" class="level2">
@@ -1838,7 +1847,7 @@ t= \sqrt{f} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \frac{(\s
 <p><span class="math display">\[
 d = \frac{\bar{x} - \mu}{SD(x)}
 \]</span></p>
-<p>The general benchmarks for how big or small a Cohen's <span class="math inline">\(d\)</span> value are as follows:</p>
+<p>The general benchmarks for how big or small a Cohen’s <span class="math inline">\(d\)</span> value are as follows:</p>
 <ul>
 <li><p>.01 and below is very small (<a href="http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new">Sawilowsky 2009</a>)</p></li>
 <li><p>.2 and below is small (<a href="http://localhost:7754/describingData/dispersion.html#ref-cohen2013statistical">Cohen 2013</a>)</p></li>

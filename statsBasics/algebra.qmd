@@ -1,0 +1,11 @@
+---
+title: "Algebra"
+format: html
+editor: visual
+---
+
+{{< include ../overview.qmd >}}
+
+## Why are we discussing algebra?
+
+In many of the pages on this website there is algebra used to explain how the formulas work. So we'll go through what algebra is here.

@@ -27,7 +27,7 @@ digraph "Course Overview" {
 		height = 1,
 		shape = box,
 		style = "filled,setlinewidth(5)",
-		width = 3.75
+		width = 4
 	]
 	edge [
 		arrowhead = none,
@@ -58,12 +58,6 @@ digraph "Course Overview" {
 			# fillcolor = "#d9e7ee",
 			label = "Binomial Distribution",
 		]
-		contingency[
-		  URL = "../categorical/contingency.html",
-			fixedsize = true,
-		#	fillcolor = "orange",
-			label = "Contingency"
-		]
 		central_tendency[
 		  URL = "../describingData/centralTendency.html",
 			fillcolor = white,
@@ -76,6 +70,18 @@ digraph "Course Overview" {
 		#  URL       = "",
 		#  fillcolor = red
 		#]
+	  coding[
+		  URL = "../regressions/coding.html",
+			fixedsize = true,
+			fillcolor = "white",
+			label= "Dummy and effect coding"
+		]
+		contingency[
+		  URL = "../categorical/contingency.html",
+			fixedsize = true,
+		#	fillcolor = "orange",
+			label = "Contingency"
+		]
 		correlations[
 		  URL = "../distributions/correlations.html",
 			fixedsize = true,
@@ -185,6 +191,8 @@ digraph "Course Overview" {
     #row = func
 	]
 	central_tendency -> dispersion
+	coding -> multiple_regression
+	coding -> ttests
 	#correlations -> cooksd
 	correlations -> partial_correlations
 	correlations -> simple_regression
@@ -203,6 +211,7 @@ digraph "Course Overview" {
     #row = func
 	]
 	simple_regression -> multiple_regression
+	simple_regression -> coding
 	skewness -> transforming
 	transforming -> correlations
 	probability -> contingency

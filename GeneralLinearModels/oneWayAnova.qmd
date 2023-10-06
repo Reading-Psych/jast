@@ -3,11 +3,10 @@ title: "One Way ANOVA (incomplete)"
 format: html
 editor: visual
 ---
-{{< include ../overview.qmd >}}
-## One Way ANOVA
 
-::: panel-tabset
-## R
+{{< include ../overview.qmd >}}
+
+The mathematics behind a one-way ANOVA is actually just an extension of the GLM approach to independent samples t-tests. To illustrate this, we will investigate if there are significant differences in life expectancy between Africa, the Americas and Europe using gapminder data. Let's first focus on the relevant contents in this dataset and then capture the sum of squares around the mean (i.e. the total sum of squares):
 
 ```{r}
 library(gapminder)
@@ -20,31 +19,341 @@ gapminder_3_continents <- subset(
   gapminder_2007, 
   continent == "Europe" | continent == "Americas" | continent == "Africa"
 )
+```
 
-summary(aov(lifeExp ~ factor(continent), data = gapminder_3_continents))
+Before we start, lets visualise the three types of variance/sum of squares we will want to capture for our ANOVAs: **Total, Between Subject** and **Error.**
 
+### Total 
 
+In ANOVAs we are trying to explain variance around the mean. The total variance around the mean can be visualised as follows:
 
+```{r}
+library(ggplot2)
+gapminder_3_continents$lifeExpMean = mean(gapminder_3_continents$lifeExp)
+gapminder_3_continents$continent_mean = mean(gapminder_3_continents$lifeExp)
+
+ggplot(gapminder_3_continents, aes(x = continent, y = lifeExp)) +
+  geom_segment(
+    position = "jitter",
+    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    aes(
+      xend = continent,
+      yend = lifeExpMean,
+      color = "resid"
+    )
+  ) + 
+  geom_segment(
+    aes(
+      x = 0.55, 
+      xend = 3.45, 
+      y = lifeExpMean,
+      yend = lifeExpMean
+    ),
+    color = "blue"
+  )
+```
+
+The sum of squares is the **sum of the** **square** of all of these residuals, to give you the **total sum of squares**.
+
+### Between
+
+The variance for **Between** is the variance that is explained by each group. In this case it's the difference between the grand mean and each group's mean:
+
+```{r}
+lm_3_continents <- summary(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
+# lm_3_continents$coefficients
+# mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"])
+
+gapminder_3_continents$continent_mean = lm_3_continents$coefficients[1,1] # intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.
+gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Americas"] = gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Americas"] + lm_3_continents$coefficients[2,1]
+
+gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Europe"] = gapminder_3_continents$continent_mean[gapminder_3_continents$continent == "Europe"] + lm_3_continents$coefficients[3,1]
+
+ggplot(gapminder_3_continents, aes(x = continent, y = continent_mean)) +
+  geom_segment(
+    #position = "jitter",
+    position = position_jitter(height=0),
+    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    aes(
+      xend = continent,
+      yend = lifeExpMean,
+      color = "Between Var"
+    )
+  ) + 
+  geom_segment(
+    aes(
+      x = 0.55, 
+      xend = 3.45, 
+      y = lifeExpMean,
+      yend = lifeExpMean
+    ),
+    color = "blue"
+  ) +
+  ylab("Life Expectancy")
+```
+
+The **sum** of **squares** for **between** is the **sum** of the square of these variances.
+
+### Error
+
+Variance that is not explained by the model (in this case the between subjects factor) is the error. In this case, it's the residuals around the means for each continent:
+
+```{r}
+ggplot(gapminder_3_continents, aes(x = continent, y = lifeExp)) +
+  geom_segment(
+    position = "jitter",
+    #arrow = arrow(length = unit(0.01, "npc"),ends = "first"),
+    aes(
+      xend = continent,
+      yend = continent_mean,
+      color = "resid"
+    )
+  ) + 
+  geom_segment(aes(
+    x = 0.55, 
+    xend = 1.45, 
+    y = lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) + 
+  geom_segment(aes(
+    x = 1.55, 
+    xend = 2.45, 
+    y = lm_3_continents$coefficients[2,1] + lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[2,1] + lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) + 
+  geom_segment(aes(
+    x = 2.55, 
+    xend = 3.45, 
+    y = lm_3_continents$coefficients[3,1] + lm_3_continents$coefficients[1,1],
+    yend = lm_3_continents$coefficients[3,1] + lm_3_continents$coefficients[1,1]),
+    color = "blue"
+  ) +
+  geom_segment(
+    aes(
+      x = 0.55,
+      xend = 3.45,
+      y = mean(lifeExp),
+      yend = mean(lifeExp),
+      color = "Overall Mean"
+    )
+  )
+```
+
+The sum square of the error is the sum of the square of these residuals (error).
+
+Now that we've visualised the types of variance we address in a one-way ANOVA, lets start discussing how to calculate the variance for each variable.
+
+## One Way ANOVA
+
+As highlighted above, ANOVAs aim to calculate what proportion of the total variance around the mean can be explained by your factors. So let's start by calculating the total sum of squares:
+
+$$
+SS_{total} = \sum{(x_i - \mu)^2}
+$$
+
+```{r}
+total_ss = sum((gapminder_3_continents$lifeExp - mean(gapminder_3_continents$lifeExp))^2)
+total_ss
+```
+
+So `r total_ss` is the all the variance around the mean to be explained. The general linear model we will run is to see how much variance is explained by the mean of each continent. The formula for this is:
+
+$$
+SS_{between} = \sum_{group}{(\sum_{item}(\bar{x}_{group} - \mu)^2})
+$$
+
+Or, applied to our current data:
+
+$$
+SS_{between} = \sum_{continent}{(\sum_{country}(\bar{x}_{continent} - \mu)^2)}
+$$
+
+-   $\mu$ represents the mean across all countries
+
+-   $\bar{x}_{group}$ represents the mean of the group
+
+-   Similarly, $\bar{x}_{continent}$ is the mean across all countries in a continent
+
+In English, for each country the model predicts that the value will be the mean life expectancy in its continent. So for Algeria, Angola and Botswana, the model predicts that the life expectancy will be `r mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Africa"])`. To capture all the variance that this model captures, we need to compare the predicted values to the group mean. We square these differences to make all the numbers positive so that when we sum then we don't get (close to) zero after all the values above the mean balance out those below the mean. In terms of how this looks manually in R:
+
+```{r}
 ## Manual calculation
 ss_between = (
+  # SS for mean of Europe compared to the grand mean across all countries
   ((mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"])-mean(gapminder_3_continents$lifeExp))^2) * sum(gapminder_3_continents$continent=="Europe") +
+  # SS for mean of Americas compared to the grand mean across all countries
   ((mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Americas"])-mean(gapminder_3_continents$lifeExp))^2) * sum(gapminder_3_continents$continent=="Americas") +
+  # SS for mean of Africa compared to the grand mean across all countries
   ((mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Africa"])-mean(gapminder_3_continents$lifeExp))^2) * sum(gapminder_3_continents$continent=="Africa") 
 )
-
-totalSS = sum((gapminder_3_continents$lifeExp - mean(gapminder_3_continents$lifeExp))^2)
-
-shortcut_ss_within = totalSS - ss_between
-
-ss_within_long = sum(
-  (gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"]-mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"]))^2,
-  (gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Americas"]-mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Americas"]))^2,
-  (gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Africa"]-mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Africa"]))^2
-)
-
-(ss_between/2)/(ss_within_long/(length(gapminder_3_continents$lifeExp)-3))
-
+ss_between
 ```
+
+So, let's just confirm that our manual calculation is the same as what a package will give us:
+
+```{r}
+summary(aov(lifeExp ~ factor(continent), data = gapminder_3_continents))[[1]][["Sum Sq"]][1]
+```
+
+Looks good. Let's confirm what the effect size for this is next.
+
+##  $R^2$ and $R^2_{adj}$  
+
+The variance explained by the model is the $R^2$ value, which is:
+
+$$
+R^2 = \frac{SS_{between}}{SS_{total}}
+$$
+
+If we manually calculate it we get:
+
+```{r}
+ss_between/total_ss
+```
+
+Let's double check this with a function based calculation:
+
+```{r}
+summary(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
+```
+
+Lovely. You may have noticed that there is also an **adjusted** **R-Squared** reported. There is a concern that an unadjusted R-Squared doesn't take into account inflation in effect size calculations that happens in samples compared to populations (see [degrees of freedom](../describingData/dispersion.html#degrees-of-freedom) for an explanation of this). To apply degrees of freedom to address this bias, we actually need to reconceptualise the previous formula to focus on the unexplained variance (i.e. error):
+
+$$
+SS_{between} = SS_{total}-SS_{error}
+$$
+
+This means that we can reconstruct the above formula:
+
+$$
+R^2 = \frac{SS_{between}}{SS_{total}} = \frac{SS_{total}-SS_{error}}{SS_{total}} = 1 - \frac{SS_{error}}{SS_{total}}
+$$
+
+This is helpful because we need to adjust our calculation to increase the weighting of error to counterbalance bias. We do this by applying degrees of freedom to both $SS_{error}$ and $SS_{total}$ , but the adjustment will result in new value for error being proportionately higher than for total:
+
+$$
+R^2_{adj} = 1 - \frac{SS_{error}/df_{error}}{SS_{total}/df_{total}}
+$$
+
+$$
+df_{error} = N - 1 - (levels-1)
+$$
+
+$$
+df_{total} = N-1
+$$
+
+In fact, the above includes the **Mean Square Error (MSE)** and the **Mean Square Total (MST)**
+
+$$
+MSE = \frac{SS_{error}}{df_{error}} = \frac{SS_{error}}{N-1-(levels-1)}
+$$
+
+$$
+MST = \frac{SS_{total}}{df_{total}} = \frac{SS_{total}}{N-1}
+$$
+
+So another way you can think of this is:
+
+$$
+R^2_{adj} = 1 - \frac{SS_{error}/df_{error}}{SS_{total}/df_{total}} = \frac{MSE}{MST}
+$$
+
+Let's see what we get when we calculate this manually
+
+```{r}
+error_ss = total_ss-ss_between
+mse =  error_ss/(
+  dim(gapminder_3_continents)[1] - # N
+    (3-1)                        - # levels - 1
+    1
+)
+mst = total_ss/(
+  dim(gapminder_3_continents)[1] - # N
+    1
+ )
+
+1-(mse/mst)
+```
+
+Let's check if this value the same as you get when using a function:
+
+```{r}
+this_summary = summary(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
+this_summary$adj.r.squared
+```
+
+##  Eta-Squared ($\eta^2$) 
+
+Eta-squared ( $\eta^2$ ) is actually the same as $R^2$, but is the terminology associated with ANOVAs rather than linear models. Let's confirm with a function:
+
+```{r}
+lsr::etaSquared(lm(lifeExp ~ factor(continent), data = gapminder_3_continents))
+```
+
+## P-value calculation
+
+To calculate the p-value we need to calculate the F-value and then compare it to an f-distribution. The F-value is basically the sum of squares of what can be explained divided by the sum of squares of what cannot be explained, when controlling for degrees of freedom:
+
+$$
+F = \frac{SS_{between}/df_{between}}{SS_{error}/df_{error}}
+$$
+
+$$
+df_{between} = (levels - 1)
+$$
+
+$$
+df_{error} = (N - (levels-1) - 1)
+$$
+
+In our case, this is:
+
+```{r}
+(ss_between/2)/(sse/(107 - (3-1) - 1))
+```
+
+Let's confirm using a function
+
+```{r}
+this_summary = summary(aov(lifeExp ~ factor(continent), data = gapminder_3_continents))
+this_summary[[1]][["F value"]][1]
+```
+
+How significant is this? Let's draw our F-distribution
+
+```{r}
+ggplot(data.frame(x = c(0, 120)), aes(x)) +
+  # stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = df, args =list(df1 =104, df2=2), color = "blue") +
+  geom_vline(xintercept = 114.4) +
+  # stat_function(fun = df, args =list(df1 =100, df2=2), color = "red") +
+  # stat_function(fun = df, args =list(df1 =100, df2=3), color = "green") +
+  # annotate("label", x = 2, y = .4, label  = "df1 = 100, df2=1", colour="blue") +
+  # annotate("label", x = 2, y = .35, label = "df1 = 100, df2=2", colour="red") +
+  # annotate("label", x = 2, y = .3, label  = "df1 = 100, df2=3", colour="green") +
+  xlab("F-Value") +
+  ylab("Density")
+```
+
+As we can see above, there is almost nothing under the curve (it's imperceptible) for F of 114.4 and above. That means that the p-value will be tiny to reflect this very minimal area under the curve. Let's check:
+
+```{r}
+this_summary[[1]][["Pr(>F)"]][1]
+```
+
+That looks right.
+
+
+
+# note that advantages of an ANOVA approach compared to GLM (or vice-versa)
+
+# Nico - can you please relocate below and complete gaps I've created above?
+
+::: panel-tabset
+## 
 
 ## Python
 
@@ -73,11 +382,11 @@ ss_within_long = within1 + within2 + within3
 (ss_between/2)/(ss_within_long/(len(gapminder_3_continents['lifeExp'])-3))
 
 ```
+
 ```         
 114.42116407168957
 ```
 :::
-
 
 To visualise this
 

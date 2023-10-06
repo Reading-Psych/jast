@@ -67,3 +67,5 @@ summary(lm(lifeExp ~  gdpPercap + pop, data = gapminder_2007))
 ```
 
 #### 
+
+# Interactions (AKA Moderation)

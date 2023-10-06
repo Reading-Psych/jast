@@ -1,5 +1,5 @@
 ---
-title: "T-Tests"
+title: "T-Tests (R, Python)"
 editor: visual
 ---
 
@@ -299,7 +299,7 @@ p-value: 6.463174215427706e-23
 ```
 :::
 
-### GLM vs. conventional formula
+### ANVOA vs. T-test formula
 
 Great. So now that we've highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:
 
@@ -415,7 +415,7 @@ $$
 
 ## Independent Samples t-tests
 
-### GLM approach
+### ANOVA approach
 
 T-tests are restricted to comparisons between 2 conditions/groups, so we will restrict the Gapminder data to allow a comparison between 2 continents. To see if life expectancy was different if you are born in Europe compared to the Americas, let's first check what the sum of squares is when you just use the **mean** as the model of life expectancy **across** these contents (so we're **not** separating by continent yet):
 
@@ -842,7 +842,7 @@ $$
 r = \sqrt{\frac{SS_{explained}}{SS_{total}}} = \frac{\sqrt{SS_{explained}}}{\sqrt{SS_{total}}} =\frac{var_{explained}}{var_{total}}
 $$
 
-### GLM approach vs conventional formula
+### ANOVA approach vs conventional formula
 
 The main formula for an independent samples t-test is:
 
@@ -950,6 +950,12 @@ ggplot(data.frame(x = c(0, 4)), aes(x)) +
 
 In all cases, you get your p-value from calculating the area under the curve for that F-value or above.
 
+## GLM approach (optional)
+
+If we were to more strictly conceptualise this as a linear model, then we need to create a model that predicts the life expectancy based on the continent. As continent is a categorical variable, we need to allocate numbers for each continent. This can either be dummy coding (1 for 0 for each continent) or effect coding (1 or -1 for each continent). Let's go through both approaches.
+
+# FINISH HERE
+
 # Effect sizes
 
 ## T-tests
@@ -964,7 +970,7 @@ $$
 d = \frac{\bar{x} - \mu}{SD(x)}
 $$
 
-The general benchmarks for how big or small a Cohen\'s $d$ value are as follows:
+The general benchmarks for how big or small a Cohen's $d$ value are as follows:
 
 -   .01 and below is very small ([Sawilowsky 2009](http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new))
 
@@ -978,7 +984,7 @@ The general benchmarks for how big or small a Cohen\'s $d$ value are as follows:
 
 -   2 is huge ([Sawilowsky 2009](http://localhost:7754/describingData/dispersion.html#ref-sawilowsky2009new))
 
-### Paired sample T-tests 
+### Paired sample T-tests
 
 The size of an effect is how big the difference is between the conditions, compared to the standard deviation:
 
@@ -990,11 +996,9 @@ This actually can be thought of the same as one-sample t-tests after you take th
 
 $$
 x_3 = x_1 - x_2
-$$
-$$
+$$ $$
 \mu = 0
-$$
-$$
+$$ $$
 d = \frac{\bar{x_1}-\bar{x_2}}{SD(\bar{x_1}-\bar{x_2})} = \frac{\bar{x_3}}{SD(x_3)} = \frac{\bar{x_3}-\mu}{SD(x_3)}
 $$
 

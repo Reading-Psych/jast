@@ -1,0 +1,20 @@
+---
+editor: visual
+---
+
+#### Question 1
+
+A multiple regression allows you to control for overlap between predictors in how they predict an outcome variable
+```{ojs}
+//| echo: false
+viewof multiple_regressions_1_response = Inputs.radio(['True','False']);
+correct_multiple_regressions_1 = 'True';
+multiple_regressions_1_result = {
+  if(multiple_regressions_1_response == correct_multiple_regressions_1){
+    return 'Correct!';
+  } else {
+    return 'Incorrect or incomplete.';
+  };
+}
+```
+**${multiple_regressions_1_result}**

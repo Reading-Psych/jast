@@ -339,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R, incomplete)</a>
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R)</a>
   </div>
 </li>
       </ul>
@@ -528,10 +528,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link active" data-scroll-target="#one-way-anova">One Way ANOVA</a></li>
+  <li><a href="#total" id="toc-total" class="nav-link active" data-scroll-target="#total">Total</a></li>
+  <li><a href="#between" id="toc-between" class="nav-link" data-scroll-target="#between">Between</a></li>
+  <li><a href="#error" id="toc-error" class="nav-link" data-scroll-target="#error">Error</a></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova">One Way ANOVA</a></li>
   <li><a href="#r2-and-r2_adj" id="toc-r2-and-r2_adj" class="nav-link" data-scroll-target="#r2-and-r2_adj"><span class="math inline">\(R^2\)</span> and <span class="math inline">\(R^2_{adj}\)</span></a></li>
   <li><a href="#eta-squared-eta2" id="toc-eta-squared-eta2" class="nav-link" data-scroll-target="#eta-squared-eta2">Eta-Squared (<span class="math inline">\(\eta^2\)</span>)</a></li>
   <li><a href="#p-value-calculation" id="toc-p-value-calculation" class="nav-link" data-scroll-target="#p-value-calculation">P-value calculation</a></li>
+  <li><a href="#glm-approach" id="toc-glm-approach" class="nav-link" data-scroll-target="#glm-approach">GLM approach</a></li>
+  <li><a href="#note-that-advantages-of-an-anova-approach-compared-to-glm-or-vice-versa" id="toc-note-that-advantages-of-an-anova-approach-compared-to-glm-or-vice-versa" class="nav-link" data-scroll-target="#note-that-advantages-of-an-anova-approach-compared-to-glm-or-vice-versa">note that advantages of an ANOVA approach compared to GLM (or vice-versa)</a></li>
+  <li><a href="#nico---can-you-please-relocate-below-and-complete-gaps-ive-created-above" id="toc-nico---can-you-please-relocate-below-and-complete-gaps-ive-created-above" class="nav-link" data-scroll-target="#nico---can-you-please-relocate-below-and-complete-gaps-ive-created-above">Nico - can you please relocate below and complete gaps I’ve created above?</a></li>
   </ul>
 </nav>
     </div>
@@ -571,240 +577,256 @@ Course Overview
 <div class="cell-output-display">
 <div>
 <p>
-<svg width="960" height="480" viewbox="0.00 0.00 1654.00 1052.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1048)">
+<svg width="960" height="480" viewbox="0.00 0.00 2102.00 1376.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1372)">
 <title>
 Course Overview
 </title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-1048 1650,-1048 1650,4 -4,4"></polygon> <!-- ancova --> <g id="node1" class="node">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1372 2098,-1372 2098,4 -4,4"></polygon> <!-- ancova --> <g id="node1" class="node">
 <title>
 ancova
 </title>
-<g id="a_node1"><a href="../GeneralLinearModels/ancova.html" title="ANCOVA"> <polygon fill="red" stroke="#006688" stroke-width="5" points="1107,-288 837,-288 837,-216 1107,-216 1107,-288"></polygon> <text text-anchor="middle" x="972" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">ANCOVA</text> </a> </g> </g> <!-- permutation --> <g id="node17" class="node">
+<g id="a_node1"><a href="../GeneralLinearModels/ancova.html" title="ANCOVA"> <polygon fill="red" stroke="#006688" stroke-width="5" points="661,-180 373,-180 373,-108 661,-108 661,-180"></polygon> <text text-anchor="middle" x="517" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">ANCOVA</text> </a> </g> </g> <!-- permutation --> <g id="node18" class="node">
 <title>
 permutation
 </title>
-<g id="a_node17"><a href="permutations.html" title="Permutations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1107,-180 837,-180 837,-108 1107,-108 1107,-180"></polygon> <text text-anchor="middle" x="972" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Permutations</text> </a> </g> </g> <!-- ancova&#45;&gt;permutation --> <g id="edge29" class="edge">
+<g id="a_node18"><a href="permutations.html" title="Permutations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="900,-72 612,-72 612,0 900,0 900,-72"></polygon> <text text-anchor="middle" x="756" y="-28.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Permutations</text> </a> </g> </g> <!-- ancova&#45;&gt;permutation --> <g id="edge32" class="edge">
 <title>
 ancova-&gt;permutation
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M972,-216C972,-204.54 972,-191.81 972,-180.33"></path> </g> <!-- between_anova --> <g id="node2" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M595.92,-108C621.89,-96.48 650.76,-83.68 676.75,-72.15"></path> </g> <!-- between_anova --> <g id="node2" class="node">
 <title>
 between_anova
 </title>
-<g id="a_node2"><a href="../GeneralLinearModels/oneWayAnova.html" title="One-way ANOVA"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="1395,-396 1125,-396 1125,-324 1395,-324 1395,-396"></polygon> <text text-anchor="middle" x="1260" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">One-way ANOVA</text> </a> </g> </g> <!-- between_anova&#45;&gt;ancova --> <g id="edge1" class="edge">
+<g id="a_node2"><a href="../GeneralLinearModels/oneWayAnova.html" title="One-way ANOVA"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="900,-288 612,-288 612,-216 900,-216 900,-288"></polygon> <text text-anchor="middle" x="756" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">One-way ANOVA</text> </a> </g> </g> <!-- between_anova&#45;&gt;ancova --> <g id="edge1" class="edge">
 <title>
 between_anova-&gt;ancova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1164.9,-324C1133.61,-312.48 1098.82,-299.68 1067.49,-288.15"></path> </g> <!-- between_anova&#45;&gt;permutation --> <g id="edge31" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M677.08,-216C651.11,-204.48 622.24,-191.68 596.25,-180.15"></path> </g> <!-- between_anova&#45;&gt;permutation --> <g id="edge34" class="edge">
 <title>
 between_anova-&gt;permutation
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1230.67,-324C1203.3,-292.87 1160.16,-247.53 1116,-216 1097.17,-202.56 1075.41,-190.37 1054.61,-180.03"></path> </g> <!-- binomial --> <g id="node3" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M756,-215.66C756,-175.89 756,-111.68 756,-72.03"></path> </g> <!-- binomial --> <g id="node3" class="node">
 <title>
 binomial
 </title>
-<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1032,-828 762,-828 762,-756 1032,-756 1032,-828"></polygon> <text text-anchor="middle" x="897" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node4" class="node">
+<g id="a_node3"><a href="../distributions/binomial.html" title="Binomial Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1444,-1152 1156,-1152 1156,-1080 1444,-1080 1444,-1152"></polygon> <text text-anchor="middle" x="1300" y="-1108.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Binomial Distribution</text> </a> </g> </g> <!-- contingency --> <g id="node6" class="node">
 <title>
 contingency
 </title>
-<g id="a_node4"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1154,-612 884,-612 884,-540 1154,-540 1154,-612"></polygon> <text text-anchor="middle" x="1019" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge2" class="edge">
+<g id="a_node6"><a href="../categorical/contingency.html" title="Contingency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1573,-936 1285,-936 1285,-864 1573,-864 1573,-936"></polygon> <text text-anchor="middle" x="1429" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Contingency</text> </a> </g> </g> <!-- binomial&#45;&gt;contingency --> <g id="edge2" class="edge">
 <title>
 binomial-&gt;contingency
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M917.15,-755.66C939.82,-715.89 976.43,-651.68 999.03,-612.03"></path> </g> <!-- normal --> <g id="node15" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1321.3,-1079.66C1345.27,-1039.89 1383.98,-975.68 1407.88,-936.03"></path> </g> <!-- normal --> <g id="node16" class="node">
 <title>
 normal
 </title>
-<g id="a_node15"><a href="../distributions/normal.html" title="Normal Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="825,-720 555,-720 555,-648 825,-648 825,-720"></polygon> <text text-anchor="middle" x="690" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Normal Distribution</text> </a> </g> </g> <!-- binomial&#45;&gt;normal --> <g id="edge3" class="edge">
+<g id="a_node16"><a href="../distributions/normal.html" title="Normal Distribution"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1224,-1044 936,-1044 936,-972 1224,-972 1224,-1044"></polygon> <text text-anchor="middle" x="1080" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Normal Distribution</text> </a> </g> </g> <!-- binomial&#45;&gt;normal --> <g id="edge3" class="edge">
 <title>
 binomial-&gt;normal
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M828.65,-756C806.15,-744.48 781.15,-731.68 758.63,-720.15"></path> </g> <!-- central_tendency --> <g id="node5" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1227.35,-1080C1203.45,-1068.48 1176.87,-1055.68 1152.95,-1044.15"></path> </g> <!-- central_tendency --> <g id="node4" class="node">
 <title>
 central_tendency
 </title>
-<g id="a_node5"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="907,-936 637,-936 637,-864 907,-864 907,-936"></polygon> <text text-anchor="middle" x="772" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node7" class="node">
+<g id="a_node4"><a href="../describingData/centralTendency.html" title="Central Tendency"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1310,-1260 1022,-1260 1022,-1188 1310,-1188 1310,-1260"></polygon> <text text-anchor="middle" x="1166" y="-1216.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Central Tendency</text> </a> </g> </g> <!-- dispersion --> <g id="node8" class="node">
 <title>
 dispersion
 </title>
-<g id="a_node7"><a href="../describingData/dispersion.html" title="Dispersion"> <polygon fill="white" stroke="#006688" stroke-width="5" points="744,-828 474,-828 474,-756 744,-756 744,-828"></polygon> <text text-anchor="middle" x="609" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dispersion</text> </a> </g> </g> <!-- central_tendency&#45;&gt;dispersion --> <g id="edge4" class="edge">
+<g id="a_node8"><a href="../describingData/dispersion.html" title="Dispersion"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1138,-1152 850,-1152 850,-1080 1138,-1080 1138,-1152"></polygon> <text text-anchor="middle" x="994" y="-1108.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dispersion</text> </a> </g> </g> <!-- central_tendency&#45;&gt;dispersion --> <g id="edge4" class="edge">
 <title>
 central_tendency-&gt;dispersion
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M718.18,-864C700.46,-852.48 680.77,-839.68 663.05,-828.15"></path> </g> <!-- correlations --> <g id="node6" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1109.2,-1188C1090.51,-1176.48 1069.74,-1163.68 1051.03,-1152.15"></path> </g> <!-- coding --> <g id="node5" class="node">
 <title>
-correlations
+coding
 </title>
-<g id="a_node6"><a href="../distributions/correlations.html" title="Correlations"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="531,-396 261,-396 261,-324 531,-324 531,-396"></polygon> <text text-anchor="middle" x="396" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node16" class="node">
-<title>
-partial_correlations
-</title>
-<g id="a_node16"><a href="../correlations/partialCorrelations.html" title="Partial Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="558,-288 288,-288 288,-216 558,-216 558,-288"></polygon> <text text-anchor="middle" x="423" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Partial Correlations</text> </a> </g> </g> <!-- correlations&#45;&gt;partial_correlations --> <g id="edge5" class="edge">
-<title>
-correlations-&gt;partial_correlations
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M404.92,-324C407.83,-312.54 411.08,-299.81 414,-288.33"></path> </g> <!-- correlations&#45;&gt;permutation --> <g id="edge32" class="edge">
-<title>
-correlations-&gt;permutation
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M480.51,-323.93C575.21,-284.7 718.97,-225.38 745,-216 779.86,-203.43 818.18,-190.95 853.25,-180.04"></path> </g> <!-- simple_regression --> <g id="node20" class="node">
-<title>
-simple_regression
-</title>
-<g id="a_node20"><a href="../regressions/simpleRegressions.html" title="Simple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="270,-288 0,-288 0,-216 270,-216 270,-288"></polygon> <text text-anchor="middle" x="135" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Simple Regression</text> </a> </g> </g> <!-- correlations&#45;&gt;simple_regression --> <g id="edge6" class="edge">
-<title>
-correlations-&gt;simple_regression
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M309.82,-324C281.46,-312.48 249.93,-299.68 221.54,-288.15"></path> </g> <!-- dispersion&#45;&gt;normal --> <g id="edge7" class="edge">
-<title>
-dispersion-&gt;normal
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M635.75,-756C644.5,-744.54 654.23,-731.81 663,-720.33"></path> </g> <!-- fdr --> <g id="node8" class="node">
-<title>
-fdr
-</title>
-<g id="a_node8"><a href="../multipleTesting/fdr.html" title="False Discovery Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1358,-828 1088,-828 1088,-756 1358,-756 1358,-828"></polygon> <text text-anchor="middle" x="1223" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">False Discovery Rate</text> </a> </g> </g> <!-- fwer_vs_fdr --> <g id="node10" class="node">
-<title>
-fwer_vs_fdr
-</title>
-<g id="a_node10"><a href="../multipleTesting/fwer_vs_fdr.html" title="FWER vs. FDR"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1502,-720 1232,-720 1232,-648 1502,-648 1502,-720"></polygon> <text text-anchor="middle" x="1367" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">FWER vs.&nbsp;FDR</text> </a> </g> </g> <!-- fdr&#45;&gt;fwer_vs_fdr --> <g id="edge8" class="edge">
-<title>
-fdr-&gt;fwer_vs_fdr
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M1270.55,-756C1286.12,-744.54 1303.41,-731.81 1319.01,-720.33"></path> </g> <!-- fwer --> <g id="node9" class="node">
-<title>
-fwer
-</title>
-<g id="a_node9"><a href="../multipleTesting/fwer.html" title="Family-Wise Error Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1646,-828 1376,-828 1376,-756 1646,-756 1646,-828"></polygon> <text text-anchor="middle" x="1511" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Family-Wise Error Rate</text> </a> </g> </g> <!-- fwer&#45;&gt;fwer_vs_fdr --> <g id="edge9" class="edge">
-<title>
-fwer-&gt;fwer_vs_fdr
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M1463.45,-756C1447.88,-744.54 1430.59,-731.81 1414.99,-720.33"></path> </g> <!-- glm --> <g id="node11" class="node">
-<title>
-glm
-</title>
-<g id="a_node11"><a href="../GeneralLinearModels/generalLinearModels.html" title="General Linear Models"> <polygon fill="white" stroke="#006688" stroke-width="5" points="866,-612 596,-612 596,-540 866,-540 866,-612"></polygon> <text text-anchor="middle" x="731" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">General Linear Models</text> </a> </g> </g> <!-- ttests --> <g id="node24" class="node">
-<title>
-ttests
-</title>
-<g id="a_node24"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1107,-504 837,-504 837,-432 1107,-432 1107,-504"></polygon> <text text-anchor="middle" x="972" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- glm&#45;&gt;ttests --> <g id="edge10" class="edge">
-<title>
-glm-&gt;ttests
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M810.58,-540C836.77,-528.48 865.88,-515.68 892.09,-504.15"></path> </g> <!-- mediation --> <g id="node12" class="node">
-<title>
-mediation
-</title>
-<polygon fill="red" stroke="#006688" stroke-width="5" points="270,-72 0,-72 0,0 270,0 270,-72"></polygon> <text text-anchor="middle" x="135" y="-28.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mediation</text> </g> <!-- mixed_anova --> <g id="node13" class="node">
-<title>
-mixed_anova
-</title>
-<g id="a_node13"><a href="../GeneralLinearModels/mixedAnova.html" title="Mixed ANOVA"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="1107,-396 837,-396 837,-324 1107,-324 1107,-396"></polygon> <text text-anchor="middle" x="972" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mixed ANOVA</text> </a> </g> </g> <!-- mixed_anova&#45;&gt;ancova --> <g id="edge11" class="edge">
-<title>
-mixed_anova-&gt;ancova
-</title>
-<path fill="none" stroke="black" stroke-width="5" d="M972,-324C972,-312.54 972,-299.81 972,-288.33"></path> </g> <!-- multiple_regression --> <g id="node14" class="node">
+<g id="a_node5"><a href="../regressions/coding.html" title="Dummy and effect coding"> <polygon fill="white" stroke="#006688" stroke-width="5" points="995,-504 707,-504 707,-432 995,-432 995,-504"></polygon> <text text-anchor="middle" x="851" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Dummy and effect coding</text> </a> </g> </g> <!-- multiple_regression --> <g id="node15" class="node">
 <title>
 multiple_regression
 </title>
-<g id="a_node14"><a href="../regressions/multipleRegressions.html" title="Multiple Regression"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="270,-180 0,-180 0,-108 270,-108 270,-180"></polygon> <text text-anchor="middle" x="135" y="-136.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Multiple Regression</text> </a> </g> </g> <!-- multiple_regression&#45;&gt;mediation --> <g id="edge12" class="edge">
+<g id="a_node15"><a href="../regressions/multipleRegressions.html" title="Multiple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1167,-396 879,-396 879,-324 1167,-324 1167,-396"></polygon> <text text-anchor="middle" x="1023" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Multiple Regression</text> </a> </g> </g> <!-- coding&#45;&gt;multiple_regression --> <g id="edge5" class="edge">
+<title>
+coding-&gt;multiple_regression
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M907.8,-432C926.49,-420.48 947.26,-407.68 965.97,-396.15"></path> </g> <!-- ttests --> <g id="node25" class="node">
+<title>
+ttests
+</title>
+<g id="a_node25"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="white" stroke="#006688" stroke-width="5" points="842,-396 554,-396 554,-324 842,-324 842,-396"></polygon> <text text-anchor="middle" x="698" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- coding&#45;&gt;ttests --> <g id="edge6" class="edge">
+<title>
+coding-&gt;ttests
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M800.48,-432C783.85,-420.48 765.37,-407.68 748.73,-396.15"></path> </g> <!-- correlations --> <g id="node7" class="node">
+<title>
+correlations
+</title>
+<g id="a_node7"><a href="../correlations/correlations.html" title="Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1267,-720 979,-720 979,-648 1267,-648 1267,-720"></polygon> <text text-anchor="middle" x="1123" y="-676.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Correlations</text> </a> </g> </g> <!-- partial_correlations --> <g id="node17" class="node">
+<title>
+partial_correlations
+</title>
+<g id="a_node17"><a href="../correlations/partialCorrelations.html" title="Partial Correlations"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1301,-612 1013,-612 1013,-540 1301,-540 1301,-612"></polygon> <text text-anchor="middle" x="1157" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Partial Correlations</text> </a> </g> </g> <!-- correlations&#45;&gt;partial_correlations --> <g id="edge7" class="edge">
+<title>
+correlations-&gt;partial_correlations
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1134.23,-648C1137.9,-636.54 1141.99,-623.81 1145.67,-612.33"></path> </g> <!-- correlations&#45;&gt;permutation --> <g id="edge35" class="edge">
+<title>
+correlations-&gt;permutation
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1266.34,-647.86C1283.02,-638.57 1298.25,-626.83 1310,-612 1349.81,-561.75 1329,-533.11 1329,-469 1329,-469 1329,-469 1329,-251 1329,-159.61 1069.96,-94.37 900.22,-61.43"></path> </g> <!-- simple_regression --> <g id="node21" class="node">
+<title>
+simple_regression
+</title>
+<g id="a_node21"><a href="../regressions/simpleRegressions.html" title="Simple Regression"> <polygon fill="white" stroke="#006688" stroke-width="5" points="995,-612 707,-612 707,-540 995,-540 995,-612"></polygon> <text text-anchor="middle" x="851" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Simple Regression</text> </a> </g> </g> <!-- correlations&#45;&gt;simple_regression --> <g id="edge8" class="edge">
+<title>
+correlations-&gt;simple_regression
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1033.18,-648C1003.63,-636.48 970.77,-623.68 941.19,-612.15"></path> </g> <!-- dispersion&#45;&gt;normal --> <g id="edge9" class="edge">
+<title>
+dispersion-&gt;normal
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1022.4,-1080C1031.69,-1068.54 1042.02,-1055.81 1051.34,-1044.33"></path> </g> <!-- fdr --> <g id="node9" class="node">
+<title>
+fdr
+</title>
+<g id="a_node9"><a href="../multipleTesting/fdr.html" title="False Discovery Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1788,-1152 1500,-1152 1500,-1080 1788,-1080 1788,-1152"></polygon> <text text-anchor="middle" x="1644" y="-1108.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">False Discovery Rate</text> </a> </g> </g> <!-- fwer_vs_fdr --> <g id="node11" class="node">
+<title>
+fwer_vs_fdr
+</title>
+<g id="a_node11"><a href="../multipleTesting/fwer_vs_fdr.html" title="FWER vs. FDR"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1941,-1044 1653,-1044 1653,-972 1941,-972 1941,-1044"></polygon> <text text-anchor="middle" x="1797" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">FWER vs.&nbsp;FDR</text> </a> </g> </g> <!-- fdr&#45;&gt;fwer_vs_fdr --> <g id="edge10" class="edge">
+<title>
+fdr-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1694.52,-1080C1711.15,-1068.48 1729.63,-1055.68 1746.27,-1044.15"></path> </g> <!-- fwer --> <g id="node10" class="node">
+<title>
+fwer
+</title>
+<g id="a_node10"><a href="../multipleTesting/fwer.html" title="Family-Wise Error Rate"> <polygon fill="white" stroke="#006688" stroke-width="5" points="2094,-1152 1806,-1152 1806,-1080 2094,-1080 2094,-1152"></polygon> <text text-anchor="middle" x="1950" y="-1108.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Family-Wise Error Rate</text> </a> </g> </g> <!-- fwer&#45;&gt;fwer_vs_fdr --> <g id="edge11" class="edge">
+<title>
+fwer-&gt;fwer_vs_fdr
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M1899.48,-1080C1882.85,-1068.48 1864.37,-1055.68 1847.73,-1044.15"></path> </g> <!-- glm --> <g id="node12" class="node">
+<title>
+glm
+</title>
+<g id="a_node12"><a href="../GeneralLinearModels/generalLinearModels.html" title="General Linear Models"> <polygon fill="white" stroke="#006688" stroke-width="5" points="890,-828 602,-828 602,-756 890,-756 890,-828"></polygon> <text text-anchor="middle" x="746" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">General Linear Models</text> </a> </g> </g> <!-- glm&#45;&gt;ttests --> <g id="edge12" class="edge">
+<title>
+glm-&gt;ttests
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M733.65,-755.89C721.79,-720.2 704.72,-663.04 698,-612 687.93,-535.53 691.78,-444.82 695.12,-396.11"></path> </g> <!-- mediation --> <g id="node13" class="node">
+<title>
+mediation
+</title>
+<polygon fill="red" stroke="#006688" stroke-width="5" points="1244,-288 956,-288 956,-216 1244,-216 1244,-288"></polygon> <text text-anchor="middle" x="1100" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mediation</text> </g> <!-- mixed_anova --> <g id="node14" class="node">
+<title>
+mixed_anova
+</title>
+<g id="a_node14"><a href="../GeneralLinearModels/mixedAnova.html" title="Mixed ANOVA"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="594,-288 306,-288 306,-216 594,-216 594,-288"></polygon> <text text-anchor="middle" x="450" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Mixed ANOVA</text> </a> </g> </g> <!-- mixed_anova&#45;&gt;ancova --> <g id="edge13" class="edge">
+<title>
+mixed_anova-&gt;ancova
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M472.12,-216C479.37,-204.54 487.41,-191.81 494.67,-180.33"></path> </g> <!-- multiple_regression&#45;&gt;mediation --> <g id="edge14" class="edge">
 <title>
 multiple_regression-&gt;mediation
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M135,-108C135,-96.54 135,-83.81 135,-72.33"></path> </g> <!-- normal&#45;&gt;contingency --> <g id="edge14" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1048.43,-324C1056.75,-312.54 1066,-299.81 1074.34,-288.33"></path> </g> <!-- normal&#45;&gt;contingency --> <g id="edge16" class="edge">
 <title>
 normal-&gt;contingency
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M798.64,-648C834.48,-636.45 874.34,-623.61 910.19,-612.06"></path> </g> <!-- normal&#45;&gt;correlations --> <g id="edge13" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1195.24,-972C1233.26,-960.45 1275.55,-947.61 1313.58,-936.06"></path> </g> <!-- normal&#45;&gt;correlations --> <g id="edge15" class="edge">
 <title>
 normal-&gt;correlations
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M622.95,-647.82C609.28,-637.89 596.27,-625.92 587,-612 541.67,-543.95 599.91,-495.98 549,-432 537.33,-417.34 521.93,-405.57 505.4,-396.16"></path> </g> <!-- normal&#45;&gt;glm --> <g id="edge15" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1003.34,-971.96C989.96,-962.28 977.83,-950.37 970,-936 931.73,-865.75 926.95,-823.43 970,-756 979.45,-741.19 992.88,-729.42 1007.9,-720.08"></path> </g> <!-- normal&#45;&gt;glm --> <g id="edge17" class="edge">
 <title>
 normal-&gt;glm
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M703.54,-648C707.97,-636.54 712.89,-623.81 717.34,-612.33"></path> </g> <!-- skewness --> <g id="node21" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1002.91,-971.92C981.16,-961.17 957.77,-948.79 937,-936 883.38,-903 826.1,-858.77 788.41,-828.29"></path> </g> <!-- skewness --> <g id="node22" class="node">
 <title>
 skewness
 </title>
-<g id="a_node21"><a href="../distributions/skewness.html" title="Skewness"> <polygon fill="white" stroke="#006688" stroke-width="5" points="536,-612 266,-612 266,-540 536,-540 536,-612"></polygon> <text text-anchor="middle" x="401" y="-568.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Skewness</text> </a> </g> </g> <!-- normal&#45;&gt;skewness --> <g id="edge16" class="edge">
+<g id="a_node22"><a href="../distributions/skewness.html" title="Skewness"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1267,-936 979,-936 979,-864 1267,-864 1267,-936"></polygon> <text text-anchor="middle" x="1123" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Skewness</text> </a> </g> </g> <!-- normal&#45;&gt;skewness --> <g id="edge18" class="edge">
 <title>
 normal-&gt;skewness
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M594.57,-648C563.17,-636.48 528.26,-623.68 496.82,-612.15"></path> </g> <!-- probability --> <g id="node18" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1094.2,-972C1098.85,-960.54 1104.01,-947.81 1108.67,-936.33"></path> </g> <!-- probability --> <g id="node19" class="node">
 <title>
 probability
 </title>
-<g id="a_node18"><a href="../statsBasics/probability.html" title="Probability"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1276,-936 1006,-936 1006,-864 1276,-864 1276,-936"></polygon> <text text-anchor="middle" x="1141" y="-892.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Probability</text> </a> </g> </g> <!-- probability&#45;&gt;contingency --> <g id="edge20" class="edge">
+<g id="a_node19"><a href="../statsBasics/probability.html" title="Probability"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1702,-1260 1414,-1260 1414,-1188 1702,-1188 1702,-1260"></polygon> <text text-anchor="middle" x="1558" y="-1216.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Probability</text> </a> </g> </g> <!-- probability&#45;&gt;contingency --> <g id="edge23" class="edge">
 <title>
 probability-&gt;contingency
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1104.47,-863.94C1094.99,-853.19 1085.6,-840.8 1079,-828 1042.23,-756.72 1027.55,-662.41 1022.04,-612.12"></path> </g> <!-- probability&#45;&gt;fdr --> <g id="edge22" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1518.19,-1187.95C1508.06,-1177.29 1498.06,-1164.94 1491,-1152 1452.53,-1081.46 1437.55,-986.85 1432.01,-936.32"></path> </g> <!-- probability&#45;&gt;fdr --> <g id="edge25" class="edge">
 <title>
 probability-&gt;fdr
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1168.08,-864C1176.94,-852.54 1186.79,-839.81 1195.67,-828.33"></path> </g> <!-- probability&#45;&gt;fwer --> <g id="edge21" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1586.4,-1188C1595.69,-1176.54 1606.02,-1163.81 1615.34,-1152.33"></path> </g> <!-- probability&#45;&gt;fwer --> <g id="edge24" class="edge">
 <title>
 probability-&gt;fwer
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1263.18,-864C1303.49,-852.45 1348.31,-839.61 1388.64,-828.06"></path> </g> <!-- repeated_measures_anova --> <g id="node19" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1687.44,-1188C1730.15,-1176.45 1777.64,-1163.61 1820.36,-1152.06"></path> </g> <!-- repeated_measures_anova --> <g id="node20" class="node">
 <title>
 repeated_measures_anova
 </title>
-<g id="a_node19"><a href="../GeneralLinearModels/repeatedAnova.html" title="Repeated Measures"> <polygon fill="red" stroke="#006688" stroke-width="5" points="819,-396 549,-396 549,-324 819,-324 819,-396"></polygon> <text text-anchor="middle" x="684" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Repeated Measures</text> </a> </g> </g> <!-- repeated_measures_anova&#45;&gt;ancova --> <g id="edge23" class="edge">
+<g id="a_node20"><a href="../GeneralLinearModels/repeatedAnova.html" title="Repeated Measures"> <polygon fill="red" stroke="#006688" stroke-width="5" points="288,-288 0,-288 0,-216 288,-216 288,-288"></polygon> <text text-anchor="middle" x="144" y="-244.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Repeated Measures</text> </a> </g> </g> <!-- repeated_measures_anova&#45;&gt;ancova --> <g id="edge26" class="edge">
 <title>
 repeated_measures_anova-&gt;ancova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M779.1,-324C810.39,-312.48 845.18,-299.68 876.51,-288.15"></path> </g> <!-- repeated_measures_anova&#45;&gt;permutation --> <g id="edge30" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M267.17,-216C307.8,-204.45 352.99,-191.61 393.64,-180.06"></path> </g> <!-- repeated_measures_anova&#45;&gt;permutation --> <g id="edge33" class="edge">
 <title>
 repeated_measures_anova-&gt;permutation
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M713.33,-324C740.7,-292.87 783.84,-247.53 828,-216 846.83,-202.56 868.59,-190.37 889.39,-180.03"></path> </g> <!-- simple_regression&#45;&gt;multiple_regression --> <g id="edge17" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M186.62,-215.85C228.98,-182.8 297.1,-134.55 364,-108 442.75,-76.75 535.89,-59.15 611.62,-49.29"></path> </g> <!-- simple_regression&#45;&gt;coding --> <g id="edge20" class="edge">
+<title>
+simple_regression-&gt;coding
+</title>
+<path fill="none" stroke="black" stroke-width="5" d="M851,-540C851,-528.54 851,-515.81 851,-504.33"></path> </g> <!-- simple_regression&#45;&gt;multiple_regression --> <g id="edge19" class="edge">
 <title>
 simple_regression-&gt;multiple_regression
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M135,-216C135,-204.54 135,-191.81 135,-180.33"></path> </g> <!-- transforming --> <g id="node23" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M962.51,-539.9C978.49,-530.52 993.16,-518.74 1004,-504 1026.85,-472.93 1029.09,-427.49 1027.24,-396.22"></path> </g> <!-- transforming --> <g id="node24" class="node">
 <title>
 transforming
 </title>
-<g id="a_node23"><a href="../distributions/transforming.html" title="Transforming Data"> <polygon fill="white" stroke="#006688" stroke-width="5" points="540,-504 252,-504 252,-432 540,-432 540,-504"></polygon> <text text-anchor="middle" x="396" y="-460.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Transforming Data</text> </a> </g> </g> <!-- skewness&#45;&gt;transforming --> <g id="edge18" class="edge">
+<g id="a_node24"><a href="../distributions/transforming.html" title="Transforming Data"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1267,-828 979,-828 979,-756 1267,-756 1267,-828"></polygon> <text text-anchor="middle" x="1123" y="-784.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Transforming Data</text> </a> </g> </g> <!-- skewness&#45;&gt;transforming --> <g id="edge21" class="edge">
 <title>
 skewness-&gt;transforming
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M399.35,-540C398.81,-528.54 398.21,-515.81 397.67,-504.33"></path> </g> <!-- stats_basics --> <g id="node22" class="node">
+<path fill="none" stroke="black" stroke-width="5" d="M1123,-864C1123,-852.54 1123,-839.81 1123,-828.33"></path> </g> <!-- stats_basics --> <g id="node23" class="node">
 <title>
 stats_basics
 </title>
-<g id="a_node22"><a href="../statsBasics/statsBasics.html" title="Statistics Basics"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1051,-1044 781,-1044 781,-972 1051,-972 1051,-1044"></polygon> <text text-anchor="middle" x="916" y="-1000.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Statistics Basics</text> </a> </g> </g> <!-- stats_basics&#45;&gt;central_tendency --> <g id="edge24" class="edge">
+<g id="a_node23"><a href="../statsBasics/statsBasics.html" title="Statistics Basics"> <polygon fill="white" stroke="#006688" stroke-width="5" points="1463,-1368 1175,-1368 1175,-1296 1463,-1296 1463,-1368"></polygon> <text text-anchor="middle" x="1319" y="-1324.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">Statistics Basics</text> </a> </g> </g> <!-- stats_basics&#45;&gt;central_tendency --> <g id="edge27" class="edge">
 <title>
 stats_basics-&gt;central_tendency
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M868.45,-972C852.88,-960.54 835.59,-947.81 819.99,-936.33"></path> </g> <!-- stats_basics&#45;&gt;probability --> <g id="edge25" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1268.48,-1296C1251.85,-1284.48 1233.37,-1271.68 1216.73,-1260.15"></path> </g> <!-- stats_basics&#45;&gt;probability --> <g id="edge28" class="edge">
 <title>
 stats_basics-&gt;probability
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M990.3,-972C1014.75,-960.48 1041.93,-947.68 1066.4,-936.15"></path> </g> <!-- transforming&#45;&gt;correlations --> <g id="edge19" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1397.92,-1296C1423.89,-1284.48 1452.76,-1271.68 1478.75,-1260.15"></path> </g> <!-- transforming&#45;&gt;correlations --> <g id="edge22" class="edge">
 <title>
 transforming-&gt;correlations
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M396,-432C396,-420.54 396,-407.81 396,-396.33"></path> </g> <!-- ttests&#45;&gt;between_anova --> <g id="edge27" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M1123,-756C1123,-744.54 1123,-731.81 1123,-720.33"></path> </g> <!-- ttests&#45;&gt;between_anova --> <g id="edge30" class="edge">
 <title>
 ttests-&gt;between_anova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1067.1,-432C1098.39,-420.48 1133.18,-407.68 1164.51,-396.15"></path> </g> <!-- ttests&#45;&gt;mixed_anova --> <g id="edge26" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M717.15,-324C723.42,-312.54 730.39,-299.81 736.67,-288.33"></path> </g> <!-- ttests&#45;&gt;mixed_anova --> <g id="edge29" class="edge">
 <title>
 ttests-&gt;mixed_anova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M972,-432C972,-420.54 972,-407.81 972,-396.33"></path> </g> <!-- ttests&#45;&gt;permutation --> <g id="edge33" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M616.11,-324C589.16,-312.48 559.2,-299.68 532.23,-288.15"></path> </g> <!-- ttests&#45;&gt;permutation --> <g id="edge36" class="edge">
 <title>
 ttests-&gt;permutation
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M1107.25,-463.29C1219.41,-457.03 1366.37,-440.32 1404,-396 1501.55,-281.11 1267.68,-206.55 1107.33,-170.5"></path> </g> <!-- ttests&#45;&gt;repeated_measures_anova --> <g id="edge28" class="edge">
+<path fill="none" stroke="black" stroke-width="5" d="M842.07,-337.15C868.3,-326.53 892.54,-310.91 909,-288 962.01,-214.23 867.33,-121.7 804.72,-72.16"></path> </g> <!-- ttests&#45;&gt;repeated_measures_anova --> <g id="edge31" class="edge">
 <title>
 ttests-&gt;repeated_measures_anova
 </title>
-<path fill="none" stroke="black" stroke-width="5" d="M876.9,-432C845.61,-420.48 810.82,-407.68 779.49,-396.15"></path> </g> </g>
+<path fill="none" stroke="black" stroke-width="5" d="M553.83,-335.26C477.35,-322.21 381.88,-305.21 297,-288 294.06,-287.4 291.09,-286.8 288.11,-286.17"></path> </g> </g>
 </svg>
 </p>
 </div>
@@ -815,8 +837,6 @@ ttests-&gt;repeated_measures_anova
 </div>
 </div>
 </div>
-<section id="one-way-anova" class="level2">
-<h2 class="anchored" data-anchor-id="one-way-anova">One Way ANOVA</h2>
 <p>The mathematics behind a one-way ANOVA is actually just an extension of the GLM approach to independent samples t-tests. To illustrate this, we will investigate if there are significant differences in life expectancy between Africa, the Americas and Europe using gapminder data. Let’s first focus on the relevant contents in this dataset and then capture the sum of squares around the mean (i.e.&nbsp;the total sum of squares):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
@@ -828,16 +848,149 @@ ttests-&gt;repeated_measures_anova
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  gapminder_2007, </span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  continent <span class="sc">==</span> <span class="st">"Europe"</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">"Africa"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>total_ss <span class="ot">=</span> <span class="fu">sum</span>((gapminder_3_continents<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>total_ss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Before we start, lets visualise the three types of variance/sum of squares we will want to capture for our ANOVAs: <strong>Total, Between Subject</strong> and <strong>Error.</strong></p>
+<section id="total" class="level3">
+<h3 class="anchored" data-anchor-id="total">Total</h3>
+<p>In ANOVAs we are trying to explain variance around the mean. The total variance around the mean can be visualised as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>lifeExpMean <span class="ot">=</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean <span class="ot">=</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_3_continents, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> continent,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> lifeExpMean,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>, </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">3.45</span>, </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> lifeExpMean,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> lifeExpMean</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="oneWayAnova_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The sum of squares is the <strong>sum of the</strong> <strong>square</strong> of all of these residuals, to give you the <strong>total sum of squares</strong>.</p>
+</section>
+<section id="between" class="level3">
+<h3 class="anchored" data-anchor-id="between">Between</h3>
+<p>The variance for <strong>Between</strong> is the variance that is explained by each group. In this case it’s the difference between the grand mean and each group’s mean:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lm_3_continents <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lm_3_continents$coefficients</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mean(gapminder_3_continents$lifeExp[gapminder_3_continents$continent=="Europe"])</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean <span class="ot">=</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_3_continents, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> continent_mean)) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#position = "jitter",</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">height=</span><span class="dv">0</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> continent,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> lifeExpMean,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Between Var"</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>, </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">3.45</span>, </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> lifeExpMean,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> lifeExpMean</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Life Expectancy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="oneWayAnova_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The <strong>sum</strong> of <strong>squares</strong> for <strong>between</strong> is the <strong>sum</strong> of the square of these variances.</p>
+</section>
+<section id="error" class="level3">
+<h3 class="anchored" data-anchor-id="error">Error</h3>
+<p>Variance that is not explained by the model (in this case the between subjects factor) is the error. In this case, it’s the residuals around the means for each continent:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_3_continents, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> continent,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> continent_mean,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.55</span>, </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">1.45</span>, </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1.55</span>, </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">2.45</span>, </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">2.55</span>, </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">3.45</span>, </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">3.45</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Overall Mean"</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="oneWayAnova_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The sum square of the error is the sum of the square of these residuals (error).</p>
+<p>Now that we’ve visualised the types of variance we address in a one-way ANOVA, lets start discussing how to calculate the variance for each variable.</p>
+</section>
+<section id="one-way-anova" class="level2">
+<h2 class="anchored" data-anchor-id="one-way-anova">One Way ANOVA</h2>
+<p>As highlighted above, ANOVAs aim to calculate what proportion of the total variance around the mean can be explained by your factors. So let’s start by calculating the total sum of squares:</p>
+<p><span class="math display">\[
+SS_{total} = \sum{(x_i - \mu)^2}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>total_ss <span class="ot">=</span> <span class="fu">sum</span>((gapminder_3_continents<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>total_ss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17477.99</code></pre>
 </div>
 </div>
-<p>So 1.7477987^{4} is the all the variance to be explained. The general linear model we will run is to see how much variance is explained by the mean of each continent. The formula for this is:</p>
+<p>So 1.7477987^{4} is the all the variance around the mean to be explained. The general linear model we will run is to see how much variance is explained by the mean of each continent. The formula for this is:</p>
 <p><span class="math display">\[
-SS_{between} = \sum_{group}{(\sum_{item}\bar{x}_{group} - \mu)^2}
+SS_{between} = \sum_{group}{(\sum_{item}(\bar{x}_{group} - \mu)^2})
 \]</span></p>
 <p>Or, applied to our current data:</p>
 <p><span class="math display">\[
@@ -848,51 +1001,47 @@ SS_{between} = \sum_{continent}{(\sum_{country}(\bar{x}_{continent} - \mu)^2)}
 <li><p><span class="math inline">\(\bar{x}_{group}\)</span> represents the mean of the group</p></li>
 <li><p>Similarly, <span class="math inline">\(\bar{x}_{continent}\)</span> is the mean across all countries in a continent</p></li>
 </ul>
-<p>In English, for each country the model predicts that the value will be the mean across its continent. So for Algeria, Angola and Botswana, the model predicts that the life expectancy will be 54.8060385. To capture all the variance that this model captures, we need to compare the predicted values to the group mean. We square these differences to make all the numbers positive so that when we sum then we don’t get (close to) zero after all the values above the mean balance out those below the mean. In terms of how this looks manually in R:</p>
+<p>In English, for each country the model predicts that the value will be the mean life expectancy in its continent. So for Algeria, Angola and Botswana, the model predicts that the life expectancy will be 54.8060385. To capture all the variance that this model captures, we need to compare the predicted values to the group mean. We square these differences to make all the numbers positive so that when we sum then we don’t get (close to) zero after all the values above the mean balance out those below the mean. In terms of how this looks manually in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Manual calculation</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ss_between <span class="ot">=</span> (</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SS for mean of Europe compared to the grand mean across all countries</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SS for mean of Americas compared to the grand mean across all countries</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SS for mean of Africa compared to the grand mean across all countries</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>) </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ss_between</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Manual calculation</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ss_between <span class="ot">=</span> (</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SS for mean of Europe compared to the grand mean across all countries</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SS for mean of Americas compared to the grand mean across all countries</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SS for mean of Africa compared to the grand mean across all countries</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ((<span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>])<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>) </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ss_between</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12016.81</code></pre>
 </div>
 </div>
 <p>So, let’s just confirm that our manual calculation is the same as what a package will give us:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))[[<span class="dv">1</span>]][[<span class="st">"Sum Sq"</span>]][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                   Df Sum Sq Mean Sq F value Pr(&gt;F)    
-factor(continent)   2  12017    6008   114.4 &lt;2e-16 ***
-Residuals         104   5461      53                   
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<pre><code>[1] 12016.81</code></pre>
 </div>
 </div>
-<p>Looks good, the R output is just a rounded version of our manually calculated version. Let’s confirm what the effect size for this is next.</p>
+<p>Looks good. Let’s confirm what the effect size for this is next.</p>
 </section>
 <section id="r2-and-r2_adj" class="level2">
 <h2 class="anchored" data-anchor-id="r2-and-r2_adj"><span class="math inline">\(R^2\)</span> and <span class="math inline">\(R^2_{adj}\)</span></h2>
-<p>The variance explained by the GLM model is the <span class="math inline">\(R^2\)</span> value, which is:</p>
+<p>The variance explained by the model is the <span class="math inline">\(R^2\)</span> value, which is:</p>
 <p><span class="math display">\[
 R^2 = \frac{SS_{between}}{SS_{total}}
 \]</span></p>
 <p>If we manually calculate it we get:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ss_between<span class="sc">/</span>total_ss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ss_between<span class="sc">/</span>total_ss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6875397</code></pre>
 </div>
 </div>
 <p>Let’s double check this with a function based calculation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -946,26 +1095,26 @@ R^2_{adj} = 1 - \frac{SS_{error}/df_{error}}{SS_{total}/df_{total}} = \frac{MSE}
 \]</span></p>
 <p>Let’s see what we get when we calculate this manually</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>error_ss <span class="ot">=</span> total_ss<span class="sc">-</span>ss_between</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">=</span>  error_ss<span class="sc">/</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(gapminder_3_continents)[<span class="dv">1</span>] <span class="sc">-</span> <span class="co"># N</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3-1</span>)                        <span class="sc">-</span> <span class="co"># levels - 1</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>mst <span class="ot">=</span> total_ss<span class="sc">/</span>(</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(gapminder_3_continents)[<span class="dv">1</span>] <span class="sc">-</span> <span class="co"># N</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a> )</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span>(mse<span class="sc">/</span>mst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>error_ss <span class="ot">=</span> total_ss<span class="sc">-</span>ss_between</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">=</span>  error_ss<span class="sc">/</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(gapminder_3_continents)[<span class="dv">1</span>] <span class="sc">-</span> <span class="co"># N</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3-1</span>)                        <span class="sc">-</span> <span class="co"># levels - 1</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>mst <span class="ot">=</span> total_ss<span class="sc">/</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>(gapminder_3_continents)[<span class="dv">1</span>] <span class="sc">-</span> <span class="co"># N</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span>(mse<span class="sc">/</span>mst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6815309</code></pre>
 </div>
 </div>
-<p>So is this value the same as you get when using a function:</p>
+<p>Let’s check if this value the same as you get when using a function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>this_summary <span class="ot">=</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>this_summary<span class="sc">$</span>adj.r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>this_summary <span class="ot">=</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>this_summary<span class="sc">$</span>adj.r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6815309</code></pre>
 </div>
@@ -975,7 +1124,7 @@ R^2_{adj} = 1 - \frac{SS_{error}/df_{error}}{SS_{total}/df_{total}} = \frac{MSE}
 <h2 class="anchored" data-anchor-id="eta-squared-eta2">Eta-Squared (<span class="math inline">\(\eta^2\)</span>)</h2>
 <p>Eta-squared ( <span class="math inline">\(\eta^2\)</span> ) is actually the same as <span class="math inline">\(R^2\)</span>, but is the terminology associated with ANOVAs rather than linear models. Let’s confirm with a function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">etaSquared</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lsr<span class="sc">::</span><span class="fu">etaSquared</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     eta.sq eta.sq.part
 factor(continent) 0.6875397   0.6875397</code></pre>
@@ -984,58 +1133,120 @@ factor(continent) 0.6875397   0.6875397</code></pre>
 </section>
 <section id="p-value-calculation" class="level2">
 <h2 class="anchored" data-anchor-id="p-value-calculation">P-value calculation</h2>
-<p>To calculate the p-value we need to calculate the F-value and then compare it to an f-distribution. The F-value is basically the sum of squares of what can be explained divided by the sum of squares of what cannot be explained:</p>
+<p>To calculate the p-value we need to calculate the F-value and then compare it to an f-distribution. The F-value is basically the sum of squares of what can be explained divided by the sum of squares of what cannot be explained, when controlling for degrees of freedom:</p>
 <p><span class="math display">\[
-F = \frac{SS_{between}}{SS_{error}}
+F = \frac{SS_{between}/df_{between}}{SS_{error}/df_{error}}
+\]</span></p>
+<p><span class="math display">\[
+df_{between} = (levels - 1)
+\]</span></p>
+<p><span class="math display">\[
+df_{error} = (N - (levels-1) - 1)
 \]</span></p>
 <p>In our case, this is:</p>
 <div class="cell">
-
-</div>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>totalSS <span class="ot">=</span> <span class="fu">sum</span>((gapminder_3_continents<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>shortcut_ss_within <span class="ot">=</span> totalSS <span class="sc">-</span> ss_between</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>ss_within_long <span class="ot">=</span> <span class="fu">sum</span>(</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>]))<span class="sc">^</span><span class="dv">2</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Americas"</span>]))<span class="sc">^</span><span class="dv">2</span>,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  (gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>]<span class="sc">-</span><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Africa"</span>]))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>(ss_between<span class="sc">/</span><span class="dv">2</span>)<span class="sc">/</span>(ss_within_long<span class="sc">/</span>(<span class="fu">length</span>(gapminder_3_continents<span class="sc">$</span>lifeExp)<span class="sc">-</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(ss_between<span class="sc">/</span><span class="dv">2</span>)<span class="sc">/</span>(error_ss<span class="sc">/</span>(<span class="dv">107</span> <span class="sc">-</span> (<span class="dv">3-1</span>) <span class="sc">-</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 114.4212</code></pre>
 </div>
 </div>
+<p>Let’s confirm using a function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>this_summary <span class="ot">=</span> <span class="fu">summary</span>(<span class="fu">aov</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>this_summary[[<span class="dv">1</span>]][[<span class="st">"F value"</span>]][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 114.4212</code></pre>
+</div>
+</div>
+<p>How significant is this? Let’s draw our F-distribution</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + </span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> df, <span class="at">args =</span><span class="fu">list</span>(<span class="at">df1 =</span><span class="dv">104</span>, <span class="at">df2=</span><span class="dv">2</span>), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">114.4</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stat_function(fun = df, args =list(df1 =100, df2=2), color = "red") +</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stat_function(fun = df, args =list(df1 =100, df2=3), color = "green") +</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotate("label", x = 2, y = .4, label  = "df1 = 100, df2=1", colour="blue") +</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotate("label", x = 2, y = .35, label = "df1 = 100, df2=2", colour="red") +</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># annotate("label", x = 2, y = .3, label  = "df1 = 100, df2=3", colour="green") +</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"F-Value"</span>) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="oneWayAnova_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As we can see above, there is almost nothing under the curve (it’s imperceptible) for F of 114.4 and above. That means that the p-value will be tiny to reflect this very minimal area under the curve. Let’s check:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>this_summary[[<span class="dv">1</span>]][[<span class="st">"Pr(&gt;F)"</span>]][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.362027e-27</code></pre>
+</div>
+</div>
+<p>That looks a fair representation of the proportion of area under the curve is greater than 114.4.</p>
+</section>
+<section id="glm-approach" class="level1">
+<h1>GLM approach</h1>
+<p>ANOVAs and regressions are general linear models that often achieve the same broad statistical goals but framed in different ways. You could also investigate the main effect of continent by dummy coding the continents and running a multiple regression with these dummy codes as predictors, and life expectancy as the outcome:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), gapminder_3_continents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ factor(continent), data = gapminder_3_continents)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-15.193  -3.934  -0.339   3.121  21.636 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                 54.806      1.005   54.54   &lt;2e-16 ***
+factor(continent)Americas   18.802      1.764   10.66   &lt;2e-16 ***
+factor(continent)Europe     22.843      1.661   13.75   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.246 on 104 degrees of freedom
+Multiple R-squared:  0.6875,    Adjusted R-squared:  0.6815 
+F-statistic: 114.4 on 2 and 104 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>We can see that R has automatically dummy coded the data so that Americas and Europe are dummy variables (and Africa is the baseline/default continent). The F-value output is the same (114.4)</p>
+</section>
+<section id="note-that-advantages-of-an-anova-approach-compared-to-glm-or-vice-versa" class="level1">
+<h1>note that advantages of an ANOVA approach compared to GLM (or vice-versa)</h1>
+</section>
+<section id="nico---can-you-please-relocate-below-and-complete-gaps-ive-created-above" class="level1">
+<h1>Nico - can you please relocate below and complete gaps I’ve created above?</h1>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents[<span class="st">'continent'</span>] <span class="op">=</span> gapminder_3_continents[<span class="st">'continent'</span>].astype(<span class="st">'category'</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> ols(<span class="st">'lifeExp ~ continent'</span>, data <span class="op">=</span> gapminder_3_continents).fit()</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>aov_table3 <span class="op">=</span> sm.stats.anova_lm(model3, typ<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>aov_table3</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>ss_between <span class="op">=</span> (gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>)<span class="op">+</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>)<span class="op">+</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>totalSS <span class="op">=</span> <span class="bu">sum</span>((gapminder_3_continents[<span class="st">'lifeExp'</span>] <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>within1_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>within1<span class="op">=</span> <span class="bu">sum</span>(within1_all)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>within2_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>within2<span class="op">=</span> <span class="bu">sum</span>(within2_all)</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>within3_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>within3<span class="op">=</span> <span class="bu">sum</span>(within3_all)</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>ss_within_long <span class="op">=</span> within1 <span class="op">+</span> within2 <span class="op">+</span> within3</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>(ss_between<span class="op">/</span><span class="dv">2</span>)<span class="op">/</span>(ss_within_long<span class="op">/</span>(<span class="bu">len</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>])<span class="op">-</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents[<span class="st">'continent'</span>] <span class="op">=</span> gapminder_3_continents[<span class="st">'continent'</span>].astype(<span class="st">'category'</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> ols(<span class="st">'lifeExp ~ continent'</span>, data <span class="op">=</span> gapminder_3_continents).fit()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>aov_table3 <span class="op">=</span> sm.stats.anova_lm(model3, typ<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>aov_table3</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ss_between <span class="op">=</span> (gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>)<span class="op">+</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>)<span class="op">+</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>].mean() <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>totalSS <span class="op">=</span> <span class="bu">sum</span>((gapminder_3_continents[<span class="st">'lifeExp'</span>] <span class="op">-</span> gapminder_3_continents[<span class="st">'lifeExp'</span>].mean())<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>within1_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Europe"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>within1<span class="op">=</span> <span class="bu">sum</span>(within1_all)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>within2_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Americas"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>within2<span class="op">=</span> <span class="bu">sum</span>(within2_all)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>within3_all<span class="op">=</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>]<span class="op">-</span>gapminder_3_continents[<span class="st">'lifeExp'</span>][gapminder_3_continents[<span class="st">'continent'</span>]<span class="op">==</span><span class="st">"Africa"</span>].mean())<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>within3<span class="op">=</span> <span class="bu">sum</span>(within3_all)</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>ss_within_long <span class="op">=</span> within1 <span class="op">+</span> within2 <span class="op">+</span> within3</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>(ss_between<span class="op">/</span><span class="dv">2</span>)<span class="op">/</span>(ss_within_long<span class="op">/</span>(<span class="bu">len</span>(gapminder_3_continents[<span class="st">'lifeExp'</span>])<span class="op">-</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>114.42116407168957</code></pre>
 </div>
@@ -1047,66 +1258,66 @@ F = \frac{SS_{between}}{SS_{error}}
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lm_3_continents <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>lm_3_continents<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>lm_3_continents <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(lifeExp <span class="sc">~</span> <span class="fu">factor</span>(continent), <span class="at">data =</span> gapminder_3_continents))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>lm_3_continents<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          Estimate Std. Error  t value     Pr(&gt;|t|)
 (Intercept)               54.80604   1.004904 54.53856 2.466786e-78
 factor(continent)Americas 18.80208   1.763600 10.66119 2.243512e-18
 factor(continent)Europe   22.84256   1.661388 13.74908 3.900175e-25</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp[gapminder_3_continents<span class="sc">$</span>continent<span class="sc">==</span><span class="st">"Europe"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 77.6486</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean <span class="ot">=</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>]</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_3_continents, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"jitter"</span>,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> continent,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> continent_mean,</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.55</span>, </span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">1.45</span>, </span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1.55</span>, </span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">2.45</span>, </span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">2.55</span>, </span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">3.45</span>, </span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>,</span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">3.45</span>,</span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
-<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
-<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Overall Mean"</span></span>
-<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean <span class="ot">=</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># intercept, which is mean for Africa as there are only "Americas" and "Europe" factors.</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Americas"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="ot">=</span> gapminder_3_continents<span class="sc">$</span>continent_mean[gapminder_3_continents<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">"Europe"</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>]</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapminder_3_continents, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#arrow = arrow(length = unit(0.01, "npc"),ends = "first"),</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> continent,</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> continent_mean,</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"resid"</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">0.55</span>, </span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">1.45</span>, </span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1.55</span>, </span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">2.45</span>, </span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">2.55</span>, </span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> <span class="fl">3.45</span>, </span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>],</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">3</span>,<span class="dv">1</span>] <span class="sc">+</span> lm_3_continents<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fl">0.55</span>,</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> <span class="fl">3.45</span>,</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">yend =</span> <span class="fu">mean</span>(gapminder_3_continents<span class="sc">$</span>lifeExp),</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Overall Mean"</span></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Use of `gapminder_3_continents$lifeExp` is discouraged.
 ℹ Use `lifeExp` instead.
@@ -1114,20 +1325,20 @@ Use of `gapminder_3_continents$lifeExp` is discouraged.
 ℹ Use `lifeExp` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="oneWayAnova_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="oneWayAnova_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> <span class="bu">dict</span>(x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, data<span class="op">=</span>gapminder_3_continents)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>sns.stripplot(<span class="op">**</span>spec, size<span class="op">=</span><span class="dv">4</span>, palette<span class="op">=</span><span class="st">"deep"</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>sns.pointplot(<span class="op">**</span>spec, join<span class="op">=</span><span class="va">False</span>, ci<span class="op">=</span><span class="dv">0</span>, capsize<span class="op">=</span><span class="fl">.7</span>, scale<span class="op">=</span><span class="dv">0</span>, palette<span class="op">=</span><span class="st">"deep"</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>gapminder_3_continents[<span class="st">"lifeExp"</span>].mean(), color<span class="op">=</span><span class="st">'red'</span>, ls<span class="op">=</span><span class="st">'-'</span>)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> <span class="bu">dict</span>(x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, data<span class="op">=</span>gapminder_3_continents)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>sns.stripplot(<span class="op">**</span>spec, size<span class="op">=</span><span class="dv">4</span>, palette<span class="op">=</span><span class="st">"deep"</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>sns.pointplot(<span class="op">**</span>spec, join<span class="op">=</span><span class="va">False</span>, ci<span class="op">=</span><span class="dv">0</span>, capsize<span class="op">=</span><span class="fl">.7</span>, scale<span class="op">=</span><span class="dv">0</span>, palette<span class="op">=</span><span class="st">"deep"</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>gapminder_3_continents[<span class="st">"lifeExp"</span>].mean(), color<span class="op">=</span><span class="st">'red'</span>, ls<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

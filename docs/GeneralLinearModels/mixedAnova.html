@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R, incomplete)</a>
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R)</a>
   </div>
 </li>
       </ul>
@@ -358,7 +358,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests (R, Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -578,7 +578,7 @@ lm(formula = lifeExp ~ factor(year) * factor(continent), data = gapminder_2_by_2
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--15.1930  -4.7758  -0.1898   3.1180  22.4188 
+-15.1930  -4.7759  -0.1898   3.1180  22.4188 
 
 Coefficients:
                                          Estimate Std. Error t value Pr(&gt;|t|)
@@ -635,14 +635,16 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>overallMeanLifeExp <span class="ot">=</span> <span class="fu">mean</span>(gapminder_2_by_2<span class="sc">$</span>lifeExp)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>totalVar <span class="ot">=</span> <span class="fu">sum</span>((gapminder_2_by_2<span class="sc">$</span>lifeExp <span class="sc">-</span> <span class="fu">mean</span>(gapminder_2_by_2<span class="sc">$</span>lifeExp))<span class="sc">^</span><span class="dv">2</span>)</span>
@@ -744,7 +746,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
  8 Afghanistan Asia       1987    40.8 13867957      852.
  9 Afghanistan Asia       1992    41.7 16317921      649.
 10 Afghanistan Asia       1997    41.8 22227415      635.
-# … with 1,694 more rows</code></pre>
+# ℹ 1,694 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20319</span> <span class="sc">+</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="dv">68</span> <span class="sc">+</span></span>
@@ -842,7 +844,7 @@ lm(formula = lifeExp ~ factor(year) * factor(continent), data = gapminder_2_by_2
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--15.1930  -4.7758  -0.1898   3.1180  22.4188 
+-15.1930  -4.7759  -0.1898   3.1180  22.4188 
 
 Coefficients:
                                          Estimate Std. Error t value Pr(&gt;|t|)

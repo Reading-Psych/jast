@@ -83,9 +83,9 @@ digraph "Course Overview" {
 			label = "Contingency"
 		]
 		correlations[
-		  URL = "../distributions/correlations.html",
+		  URL = "../correlations/correlations.html",
 			fixedsize = true,
-			fillcolor = "orange",
+			fillcolor = "white",
 			label= "Correlations"
 		]
 		dispersion[
@@ -128,7 +128,7 @@ digraph "Course Overview" {
 		multiple_regression[
 		  label     = "Multiple Regression",
 		  URL       = "../regressions/multipleRegressions.html",
-		  fillcolor = "orange"
+		  fillcolor = "white"
 		]
 		normal[
 		  URL = "../distributions/normal.html",

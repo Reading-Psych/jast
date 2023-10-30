@@ -1,71 +1,216 @@
 ---
-title: "Multiple Regressions (R, incomplete)"
+title: "Multiple Regressions (R)"
 format: html
 editor: visual
 ---
 
 {{< include ../overview.qmd >}}
 
-## Will be released by October 20th
+# Creating a model to predict your outcome
+
+Multiple regressions build on the principles of simple regression, but allows you to investigate **multiple** predictors. Importantly, it allows you to control for overlap between the predictors on the outcome variables, and thus identify how much variance each predictor individually explains. To illustrate the principles of multiple regression we'll use the gapminder data from 2007, to look at predictors of life expectancy.
 
 ```{r}
+# to make numbers more readable we are turning off e-numbers
+options(scipen = 999)
+
+# load gapminder data
 library(gapminder)
 gapminder_2007 <- subset(
   gapminder, 
   year==2007
 )
+rmarkdown::paged_table(gapminder_2007)
 ```
 
-## Notes for Anthony
-
-R2 = SSR/SSTO = 1 - SSE/SSTO
+Let's investigate if life expectancy is well predicted by population and gdp of a country. The challenge is that if you do 2 simple regressions, you don't have any insight into how much overlap there is in how population and GDP predict life expectancy. One way to visualise this is a venn diagram of overlapping variance:
 
 ```{r}
+library(eulerr)
+set.seed(3)
 
-sse  = sum((gapminder_2007$lifeExp - gapminder_2007$fitted)^2)
-ssto = sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
-rsqr = 1-(sse/ssto)
+# Overview
+plot(
+  euler(
+    pos_neg_1_vd <- list(
+      "Life Expectancy" = 0:50,
+      "GDP" = 45:90,
+      "Population" = c(40:45,90:130)
+    ),
+    shape = "ellipse"
+  ), 
+  fills = list(
+    fill = c(
+      "dark green", # Positive
+      "purple",      # False Negative
+      "light blue"
+    ),
+    alpha = 0.5
+  ), 
+)
+
 ```
 
-If your model is minimising the error, then what happens if you have 2 predictors:
+We can see in the above figure that there is some covariance between GDP and population, and GDP and life expectancy, and that there is some covariance between all three. To identify how GDP predicts life expectancy after controlling for overlap of GDP and life expectancy with population, we need to capture:
 
-$$
-Y = a + b_1X_1 + b_2X_2 + e
-$$
+-   what is the variance in GDP that is not explained by population?
 
-Save the residuals after 1 correlation:
+-   what is the variance in life expectancy that is not explained by population?
+
+If all goes well, our new venn diagram should look something like:
+
+![](venndiagram.png){width="634"}
+
+In which we've cancelled out variance in population's overlap with life expectancy and GDP.
+
+To calculate variance in GDP not explained by population, we will need to capture the **residuals** of GDP left over that are not explained by the population as a predictor.
 
 ```{r}
-# res_gdp = gapminder_2007$lifeExp - gapminder_2007$fitted
-# cor.test(gapminder_2007$pop, res_gdp)
+pop_pred_gdp <- lm(gdpPercap ~ pop,gapminder_2007)
+gdp_without_pop = pop_pred_gdp$residuals # i.e. variance in GDP not explained by population
 ```
 
-## 
+To confirm we have now captured variance in GDP that is not explained by population, we can test if there's any association with this new variable with population (there shouldn't be):
 
-Now lets see if the same logic works when there are 2 or more predictors that interact to predict each other:
+```{r}
+# before controlling variance in gdp for population
+cor.test(gapminder_2007$pop, gapminder_2007$gdpPercap)
+# after controlling variance in gdp for population
+cor.test(gapminder_2007$pop, gdp_without_pop)
+```
+
+The association is pretty close to zero once you've controlled for co-variance between gdp and population, showing that you have controlled for co-variance. The fact it isn't quite zero is a symptom of a rounding error rather than any meaningful association left over. To visualise this (lack of) association:
+
+```{r}
+library("ggplot2")
+ggplot(gapminder_2007, aes(x = pop, y = gdp_without_pop)) + 
+  geom_point() +
+  geom_smooth(method = "lm", formula = "y ~ x")
+```
+
+Pretty flat line, confirming there's no covariance/association between population and GDP once you've controlled for GDPs covariance with population. We will be calculating the variance of more variables after controlling for covariance with other variables, and if you were to do similar calculations of correlations and plots you would expect to find the same thing again and again, that there's no remaining association between the newly calculated variable and the predictor that has been controlled for.
+
+Next, we need the residuals of life expectancy that isn't predicted by population
+
+```{r}
+pop_pred_life_exp <- lm(lifeExp ~ pop,gapminder_2007)
+lifeExp_without_pop = pop_pred_life_exp$residuals # i.e. variance in life expectancy not explained by population
+```
+
+Now we can conduct a regression of the residuals for gdp as a predictor for the residuals of life expectancy:
+
+```{r}
+summary(lm(lifeExp_without_pop ~ gdp_without_pop))
+```
+
+So we now have calculated that GDP is a significant predictor of life expectancy even when controlling for overlapping variance it has with population. Let's check if population is a significant predictor for life expectancy once you control for gdp. We'll need to calculate the:
+
+-   variance in population not explained by GDP
+
+```{r}
+gdp_pred_pop <- lm(pop ~ gdpPercap,gapminder_2007)
+pop_without_gdp <- gdp_pred_pop$residuals # i.e. variance in population not explained by GDP 
+```
+
+-   variance in life expectancy not explained by GDP
+
+```{r}
+gdp_pred_lifeExp <- lm(lifeExp ~ gdpPercap,gapminder_2007)
+lifeExp_without_gdp <- gdp_pred_lifeExp$residuals # i.e. variance in life expectancy not explained by GDP
+```
+
+Now we can predict the residuals for life expectancy using the residuals for population that are not explained by GDP
+
+```{r}
+summary(lm(lifeExp_without_gdp ~ pop_without_gdp))
+```
+
+It looks like population is not a significant predictor of life expectancy once you control for their overlap with GDP. (Which is actually also the case even without controlling for population)
+
+Importantly, we have now taken some steps to calculate the gradient for population (.000000007) and gdp (.0006416085) as predictors of life expectancy. We can compare the results of the above to a multiple regression function to see if the estimate is the same:
+
+```{r}
+summary(lm(lifeExp ~ pop + gdpPercap, gapminder_2007))
+```
+
+The estimates for population (.000000007001) and GDP (.000641608517) are the same for both the step-by-step regressions above and the multiple regression directly above.
+
+The principles above can be extended to more and more complex multiple regressions - you address the covariance of one predictor at a time until you're left with only variance in your predictor and outcome variable that is no longer explained by any other predictor. Ultimately you are working towards being able to predict the outcome from one or more predictors, making a formula with the following structure:
 
 $$
-r = \frac{var_{xyz}}{totalVariance} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})(z_i-\bar{z})}
-                                      {\sqrt{\sum(x_i-\bar{x})^2*\sum(y_i-\bar{y})^2 * \sum(z_i-\bar{z})^2}}
+Y = a + b_1X_i + b_2X_2 + e
+$$
+
+-   $a$ is the intercept, i.e. what Y is when $X_1$ and $X_2$ are 0. We won't be going through how this is calculated as this value becomes less and less insightful the more predictors you have.
+
+-   $b_1$ is the coefficient for the first variable
+
+-   $b_2$ is the coefficient for the second variable
+
+-   $X_1$ is the value of the first variables data point.
+
+-   $X_2$ is the value of the second variables data point.
+
+-   $e$ is error, i.e. the difference between your predicted $Y$ value using the rest of the formula and the actual $Y$ value.
+
+Or, using the coefficients from our calculations above, we could predict:
+
+$$
+LifeExp = 59.205198140717 + .000000007001*X_i + .000641608517*X_i + e
+$$
+
+Now that you have your model, the next challenge is to test whether it's significantly better than the mean as a model.
+
+# Testing how significant your model is
+
+Now that you have a model, we can investigate how much variance is explained by it to calculate $R^2$. First, let's establish the total variance we aim to explain, i.e. the Total Sum of Squares ($SSTotal$):
+
+$$
+SSTotal = \sum{(x_i-\bar{x})}
 $$
 
 ```{r}
-sum(
-  (gapminder_2007$lifeExp-mean(gapminder_2007$lifeExp)) * 
-  (gapminder_2007$gdpPercap-mean(gapminder_2007$gdpPercap)) *
-  (gapminder_2007$pop-mean(gapminder_2007$pop))  
-  )/
-  sqrt(
-    sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2) *
-    sum((gapminder_2007$gdpPercap - mean(gapminder_2007$gdpPercap))^2) * 
-    sum((gapminder_2007$pop - mean(gapminder_2007$pop))^2) 
-  )
+sstotal = sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
 ```
+
+Whilst we want to capture how much variance is **explained** by the model, it can be easier to first of all summarise the variance that is **not** explained by it, i.e. the residuals left over. This is an extension of [getting residuals in a simple regression](../regressions/simpleRegressions.html#fig-simple-regressions-gdp-life-expectancy-residuals.), but is a bit harder to visualise as there are 2 predictors. However, the principle is the same, so to capture all the variance that isn't explained we sum the square of the $e$ in the above model, i.e. the residual left over that isn't explained by the model.
+
+R can give us the Sum of Square Error (SSError) easily enough:
 
 ```{r}
-summary(lm(lifeExp ~  gdpPercap + pop, data = gapminder_2007))
+sserror = sum(summary(lm(lifeExp ~ pop + gdpPercap, gapminder_2007))$residuals ^ 2)
 ```
 
-#### 
+We can now deduce that any variance that is not error is explained by the model, and so the Sum Square of the Model (SSM) is:
 
-# Interactions (AKA Moderation)
+$$
+SSModel = SSTotal - SSError
+$$
+
+So let's calculate that now:
+
+```{r}
+ssmodel = sstotal - sserror
+```
+
+$R^2$ is our statistic for how much variance is explained by the model, and so the formula reflects the proportion of total variance that is explained by the model, i.e.:
+
+$$
+R^2 = \frac{SSModel}{SSTotal}
+$$
+
+Making our $R^2$
+
+```{r}
+ssmodel/sstotal
+```
+
+Let's compare the above to the output from a function to report the $R^2$ from a multiple regression:
+
+```{r}
+summary(lm(lifeExp ~ pop + gdpPercap, gapminder_2007))$r.squared
+```
+
+Looks the same!
+
+{{< include multipleRegressionsQuestions.qmd >}}

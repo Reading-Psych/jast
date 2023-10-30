@@ -343,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R, incomplete)</a>
+  <a href="../regressions/multipleRegressions.html" class="sidebar-item-text sidebar-link">Multiple Regressions (R)</a>
   </div>
 </li>
       </ul>
@@ -363,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests (R, Python)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -413,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R)</a>
+  <a href="../itemAnalyses/cronbachsAlpha.html" class="sidebar-item-text sidebar-link">Cronbach’s Alpha (R,Python)</a>
   </div>
 </li>
       </ul>
@@ -695,14 +695,16 @@ eq39 0.3494996 0.20808361 0.31606800 0.2923009 1.0000000</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -742,7 +744,8 @@ The following object is masked from 'package:dplyr':
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
-am sorry, to do these rotations requires the GPArotation package to be installed</code></pre>
+am sorry, to do these rotations requires the GPArotation package to be
+installed</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Factor Analysis using method =  minres
@@ -800,14 +803,14 @@ Cumulative Proportion 0.51 0.82 1.00
 Mean item complexity =  1.8
 Test of the hypothesis that 3 factors are sufficient.
 
-The degrees of freedom for the null model are  780  and the objective function was  22.46 with Chi Square of  1209.17
-The degrees of freedom for the model are 663  and the objective function was  14.34 
+df null model =  780  with the objective function =  22.46 with Chi Square =  1209.17
+df of  the model are 663  and the objective function was  14.34 
 
 The root mean square of the residuals (RMSR) is  0.09 
 The df corrected root mean square of the residuals is  0.1 
 
-The harmonic number of observations is  69 with the empirical chi square  833.94  with prob &lt;  6.5e-06 
-The total number of observations was  69  with Likelihood Chi Square =  743.36  with prob &lt;  0.016 
+The harmonic n.obs is  69 with the empirical chi square  833.94  with prob &lt;  6.5e-06 
+The total n.obs was  69  with Likelihood Chi Square =  743.36  with prob &lt;  0.016 
 
 Tucker Lewis Index of factoring reliability =  0.754
 RMSEA index =  0.039  and the 90 % confidence intervals are  0.02 0.058
@@ -872,10 +875,24 @@ Minimum correlation of possible factor scores     0.80 0.70 0.50</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
-am sorry, to do these rotations requires the GPArotation package to be installed</code></pre>
+am sorry, to do these rotations requires the GPArotation package to be
+installed</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Joining, by = "item"</code></pre>
+<pre><code>Joining with `by = join_by(item)`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `across(where(is.numeric), round, 3)`.
+Caused by warning:
+! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
+Supply arguments directly to `.fns` through an anonymous function instead.
+
+  # Previously
+  across(a:b, mean, na.rm = TRUE)
+
+  # Now
+  across(a:b, \(x) mean(x, na.rm = TRUE))</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   item   MR1   MR2   MR3 Communality Uniqueness Complexity
@@ -922,24 +939,24 @@ am sorry, to do these rotations requires the GPArotation package to be installed
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cog_eq_sum <span class="ot">=</span> (</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq14 <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq15 <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq29 <span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq34 <span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq35</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>cog_eq_mean <span class="ot">=</span> (</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq14 <span class="sc">+</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq15 <span class="sc">+</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq29 <span class="sc">+</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq34 <span class="sc">+</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq35</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>)<span class="sc">/</span><span class="dv">5</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(eq14 <span class="sc">~</span> cog_eq_sum, eq_processed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cog_eq_sum <span class="ot">=</span> (</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq14 <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq15 <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq29 <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq34 <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq35</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>cog_eq_mean <span class="ot">=</span> (</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq14 <span class="sc">+</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq15 <span class="sc">+</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq29 <span class="sc">+</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq34 <span class="sc">+</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  eq_processed<span class="sc">$</span>eq35</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>)<span class="sc">/</span><span class="dv">5</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(eq14 <span class="sc">~</span> cog_eq_sum, eq_processed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -949,7 +966,7 @@ Coefficients:
 (Intercept)   cog_eq_sum  
     -0.3124       0.2341  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(eq14 <span class="sc">~</span> cog_eq_mean, eq_processed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(eq14 <span class="sc">~</span> cog_eq_mean, eq_processed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -959,23 +976,21 @@ Coefficients:
 (Intercept)  cog_eq_mean  
     -0.3124       1.1705  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>bop<span class="ot">&lt;-</span><span class="fu">lm</span>(cog_eq_mean <span class="sc">~</span> eq14 <span class="sc">+</span> eq15 <span class="sc">+</span> eq29 <span class="sc">+</span> eq34 <span class="sc">+</span> eq35, eq_processed)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>bop<span class="sc">$</span>coefficients </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>bop<span class="ot">&lt;-</span><span class="fu">lm</span>(cog_eq_mean <span class="sc">~</span> eq14 <span class="sc">+</span> eq15 <span class="sc">+</span> eq29 <span class="sc">+</span> eq34 <span class="sc">+</span> eq35, eq_processed)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>bop<span class="sc">$</span>coefficients </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  (Intercept)          eq14          eq15          eq29          eq34 
--6.163388e-16  2.000000e-01  2.000000e-01  2.000000e-01  2.000000e-01 
-         eq35 
- 2.000000e-01 </code></pre>
+<pre><code>(Intercept)        eq14        eq15        eq29        eq34        eq35 
+-1.1501e-15  2.0000e-01  2.0000e-01  2.0000e-01  2.0000e-01  2.0000e-01 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eq_subscales_r) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">"Cognitive"</span>, <span class="st">"Social"</span>, <span class="st">"Emotion"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>eq_subscales_r <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">cell_spec</span>(</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        .x, </span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">ifelse</span>(.x <span class="sc">&lt;</span> .<span class="dv">4</span>, <span class="st">"black"</span>, <span class="st">"white"</span>),</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">background =</span> <span class="fu">ifelse</span>(.x <span class="sc">&gt;</span> .<span class="dv">4</span>, <span class="st">"red"</span>,<span class="st">" white"</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">escape =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eq_subscales_r) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">"Cognitive"</span>, <span class="st">"Social"</span>, <span class="st">"Emotion"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>eq_subscales_r <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">cell_spec</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        .x, </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">ifelse</span>(.x <span class="sc">&lt;</span> .<span class="dv">4</span>, <span class="st">"black"</span>, <span class="st">"white"</span>),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">background =</span> <span class="fu">ifelse</span>(.x <span class="sc">&gt;</span> .<span class="dv">4</span>, <span class="st">"red"</span>,<span class="st">" white"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">escape =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1086,13 +1101,13 @@ Coefficients:
 <p>This is quite dense, but in broad terms, we want to cluster items that correlate with each other into one component (AKA factor AKA subscale).</p>
 <p>If we use a package in R we can start identifying the top 3 components and check if the questions map on to what we would expect for each of the three subscales:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>eq_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(eq_processed)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">abs</span>(eq_pca<span class="sc">$</span>rotation[,<span class="dv">1</span>]),<span class="at">decreasing =</span> T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>eq_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(eq_processed)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">abs</span>(eq_pca<span class="sc">$</span>rotation[,<span class="dv">1</span>]),<span class="at">decreasing =</span> T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     eq16      eq20      eq22      eq18      eq13 
 0.2752500 0.2436235 0.2428536 0.2329153 0.2315572 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(eq_pca<span class="sc">$</span>rotation[,<span class="dv">1</span>],<span class="at">decreasing =</span> T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(eq_pca<span class="sc">$</span>rotation[,<span class="dv">1</span>],<span class="at">decreasing =</span> T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       eq37        eq11        eq21         eq4        eq38 
  0.03183132 -0.02479062 -0.03616440 -0.04118648 -0.04219994 </code></pre>
@@ -1105,12 +1120,12 @@ Coefficients:
 <h1>I think the below are just notes or wrong</h1>
 <p>So how do we start doing this? We can make a regression to determine the loading of all the items onto the total:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>eq_total <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(eq_processed)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>first_component <span class="ot">&lt;-</span> <span class="fu">lm</span>(eq_total <span class="sc">~</span> ., eq_processed)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>first_component<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>eq_total <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(eq_processed)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>first_component <span class="ot">&lt;-</span> <span class="fu">lm</span>(eq_total <span class="sc">~</span> ., eq_processed)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>first_component<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)          eq1          eq2          eq3          eq4          eq5 
-1.197234e-14 1.000000e+00 1.000000e+00 1.000000e+00 1.000000e+00 1.000000e+00 
+1.542403e-14 1.000000e+00 1.000000e+00 1.000000e+00 1.000000e+00 1.000000e+00 
          eq6          eq7          eq8          eq9         eq10         eq11 
 1.000000e+00 1.000000e+00 1.000000e+00 1.000000e+00 1.000000e+00 1.000000e+00 
         eq12         eq13         eq14         eq15         eq16         eq17 
@@ -1131,7 +1146,7 @@ Coefficients:
 <section id="using-r-package" class="level3">
 <h3 class="anchored" data-anchor-id="using-r-package">using r package</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(<span class="fu">cov</span>(eq_processed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigen</span>(<span class="fu">cov</span>(eq_processed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>eigen() decomposition
 $values
@@ -1227,87 +1242,87 @@ $vectors
 [39,] -0.168248949  0.12052077 -0.146240053 -0.1386520615  0.229948767
 [40,] -0.055521030  0.03278789  0.280474287 -0.0010935095 -0.095309650
              [,11]        [,12]        [,13]        [,14]       [,15]
- [1,] -0.253868134 -0.026378923  0.139382716  0.044761895 -0.08948919
- [2,] -0.022810667  0.020994584 -0.077046746  0.346488286  0.08691651
- [3,]  0.120914913 -0.072314901  0.187086205  0.301066309 -0.32564864
- [4,] -0.088050052 -0.243189034 -0.267756742  0.072911971 -0.03630678
- [5,] -0.072822847 -0.288424864 -0.078123589 -0.273594921 -0.01349082
- [6,] -0.203816671 -0.275828938 -0.203716874  0.094047851  0.11443579
- [7,]  0.005326963  0.006993484  0.014542079 -0.149687164  0.15293618
- [8,]  0.045712400  0.076175741 -0.265109868  0.202428397  0.02931851
- [9,]  0.138159936 -0.024521607 -0.160244586 -0.348243157 -0.23199313
-[10,]  0.264929142  0.043684988  0.050768359  0.145715076  0.18998061
-[11,]  0.110870762  0.403955313 -0.073179826  0.010223102  0.14049182
-[12,]  0.070954746  0.093634203 -0.128963760  0.049677031 -0.30365893
-[13,] -0.114143158 -0.269418949 -0.071534229 -0.078927689  0.15602113
-[14,] -0.173753963 -0.040394180  0.164228968  0.052666105  0.04110498
-[15,] -0.144614985  0.053256450 -0.053968648  0.066967560  0.28890074
-[16,] -0.116896928  0.230041437  0.075767587 -0.041653811  0.25641550
-[17,] -0.429776496  0.243035922 -0.261530553  0.093768297 -0.17357371
-[18,]  0.316419980  0.178596105  0.051927948  0.007019879  0.21310623
-[19,]  0.136542837  0.018220133  0.087625887  0.084760908 -0.21910180
-[20,]  0.058038535  0.002380763  0.297734072  0.115009764  0.12710823
-[21,] -0.185384319 -0.138466933  0.134471641  0.071194368  0.07846002
-[22,]  0.168649625 -0.179815303  0.017623692  0.114531283 -0.11851323
-[23,]  0.011044629 -0.023558273  0.317489916  0.100585874  0.01445311
-[24,] -0.097156222  0.155450721 -0.175588489 -0.079492243  0.08651245
-[25,] -0.066388538  0.306500289 -0.188557761 -0.005850511 -0.05072269
-[26,] -0.216927702 -0.043321064  0.077391489 -0.210244505  0.00799991
-[27,] -0.149843296  0.131568176  0.016582460 -0.022052581 -0.11290888
-[28,]  0.072210654 -0.274295719  0.023933918  0.071539745  0.01341991
-[29,]  0.070641695  0.027451376  0.070896954 -0.336881264  0.19055657
-[30,] -0.219397023  0.021368869  0.280512041 -0.193161328 -0.25095271
-[31,]  0.027619178  0.121965742 -0.060345272 -0.044247910 -0.10288207
-[32,] -0.110944046 -0.033972122 -0.114297377  0.183704630  0.03051556
-[33,] -0.069234258  0.128769313  0.022270597 -0.116804666  0.16698083
-[34,]  0.017632909  0.061659269  0.160647608  0.162520062 -0.04542429
-[35,]  0.176403011  0.121207893 -0.055449911 -0.202345939 -0.33783961
-[36,] -0.065575303  0.141128952  0.145660585 -0.095775914 -0.10261327
-[37,] -0.091821121  0.066421466  0.215964244 -0.150725673  0.04461417
-[38,] -0.227886499  0.068254196  0.004405031  0.075515277 -0.06253901
-[39,]  0.210024433 -0.096319225 -0.318256877 -0.058321039  0.04186827
-[40,]  0.098775253 -0.135888673 -0.007911576 -0.228873442  0.07877680
+ [1,] -0.253868134 -0.026378923  0.139382716  0.044761895  0.08948919
+ [2,] -0.022810667  0.020994584 -0.077046746  0.346488286 -0.08691651
+ [3,]  0.120914913 -0.072314901  0.187086205  0.301066309  0.32564864
+ [4,] -0.088050052 -0.243189034 -0.267756742  0.072911971  0.03630678
+ [5,] -0.072822847 -0.288424864 -0.078123589 -0.273594921  0.01349082
+ [6,] -0.203816671 -0.275828938 -0.203716874  0.094047851 -0.11443579
+ [7,]  0.005326963  0.006993484  0.014542079 -0.149687164 -0.15293618
+ [8,]  0.045712400  0.076175741 -0.265109868  0.202428397 -0.02931851
+ [9,]  0.138159936 -0.024521607 -0.160244586 -0.348243157  0.23199313
+[10,]  0.264929142  0.043684988  0.050768359  0.145715076 -0.18998061
+[11,]  0.110870762  0.403955313 -0.073179826  0.010223102 -0.14049182
+[12,]  0.070954746  0.093634203 -0.128963760  0.049677031  0.30365893
+[13,] -0.114143158 -0.269418949 -0.071534229 -0.078927689 -0.15602113
+[14,] -0.173753963 -0.040394180  0.164228968  0.052666105 -0.04110498
+[15,] -0.144614985  0.053256450 -0.053968648  0.066967560 -0.28890074
+[16,] -0.116896928  0.230041437  0.075767587 -0.041653811 -0.25641550
+[17,] -0.429776496  0.243035922 -0.261530553  0.093768297  0.17357371
+[18,]  0.316419980  0.178596105  0.051927948  0.007019879 -0.21310623
+[19,]  0.136542837  0.018220133  0.087625887  0.084760908  0.21910180
+[20,]  0.058038535  0.002380763  0.297734072  0.115009764 -0.12710823
+[21,] -0.185384319 -0.138466933  0.134471641  0.071194368 -0.07846002
+[22,]  0.168649625 -0.179815303  0.017623692  0.114531283  0.11851323
+[23,]  0.011044629 -0.023558273  0.317489916  0.100585874 -0.01445311
+[24,] -0.097156222  0.155450721 -0.175588489 -0.079492243 -0.08651245
+[25,] -0.066388538  0.306500289 -0.188557761 -0.005850511  0.05072269
+[26,] -0.216927702 -0.043321064  0.077391489 -0.210244505 -0.00799991
+[27,] -0.149843296  0.131568176  0.016582460 -0.022052581  0.11290888
+[28,]  0.072210654 -0.274295719  0.023933918  0.071539745 -0.01341991
+[29,]  0.070641695  0.027451376  0.070896954 -0.336881264 -0.19055657
+[30,] -0.219397023  0.021368869  0.280512041 -0.193161328  0.25095271
+[31,]  0.027619178  0.121965742 -0.060345272 -0.044247910  0.10288207
+[32,] -0.110944046 -0.033972122 -0.114297377  0.183704630 -0.03051556
+[33,] -0.069234258  0.128769313  0.022270597 -0.116804666 -0.16698083
+[34,]  0.017632909  0.061659269  0.160647608  0.162520062  0.04542429
+[35,]  0.176403011  0.121207893 -0.055449911 -0.202345939  0.33783961
+[36,] -0.065575303  0.141128952  0.145660585 -0.095775914  0.10261327
+[37,] -0.091821121  0.066421466  0.215964244 -0.150725673 -0.04461417
+[38,] -0.227886499  0.068254196  0.004405031  0.075515277  0.06253901
+[39,]  0.210024433 -0.096319225 -0.318256877 -0.058321039 -0.04186827
+[40,]  0.098775253 -0.135888673 -0.007911576 -0.228873442 -0.07877680
              [,16]        [,17]       [,18]        [,19]        [,20]
- [1,] -0.094923537  0.192238711 -0.09534877 -0.159657019 -0.263154099
- [2,] -0.121152744  0.268133556 -0.02037691 -0.073369010 -0.361937208
- [3,]  0.136792271  0.170694040 -0.21878266 -0.140875936 -0.102684603
- [4,]  0.149548107 -0.007767771 -0.20848356 -0.067509154  0.185568114
- [5,]  0.481794881  0.188839707  0.11141921  0.038518180 -0.038908091
- [6,] -0.036236361 -0.342278526 -0.18683115 -0.093753777 -0.030993709
- [7,] -0.028349776  0.033031614 -0.06621637  0.343806212 -0.194590135
- [8,] -0.033311715 -0.133706153  0.08596254 -0.020568295 -0.217074430
- [9,]  0.055467903 -0.043113458 -0.01553761  0.204987535 -0.198908488
-[10,]  0.343420406 -0.069697224 -0.28911609 -0.273611058  0.069972436
-[11,]  0.214466094 -0.108083332 -0.13501143  0.101843466 -0.033521223
-[12,] -0.056667299  0.215770902 -0.19729269  0.124579893  0.175846777
-[13,] -0.208146922 -0.061091112 -0.08383813 -0.164370003  0.230492665
-[14,] -0.027594081  0.007459796 -0.02565145  0.335406003  0.283029151
-[15,]  0.079017018  0.125565686 -0.06598592 -0.042522877 -0.040319330
-[16,] -0.003111449  0.284897471  0.08718054  0.005253693  0.204073473
-[17,]  0.013151740 -0.083604440  0.23870805 -0.133560752  0.093053343
-[18,] -0.010005348 -0.192489223  0.20382396 -0.036038300 -0.031016716
-[19,] -0.007722025 -0.089276259  0.25784135  0.005659660  0.280583546
-[20,]  0.027470624 -0.239427325 -0.05417795 -0.058508189 -0.056329942
-[21,] -0.157064450  0.136480572 -0.06166973 -0.012169958  0.045251810
-[22,]  0.009507169  0.186098407 -0.10823197  0.227906483  0.032039812
-[23,] -0.164121480  0.078152996  0.13108411  0.243008214 -0.176144583
-[24,]  0.086174771  0.241328036 -0.05969505  0.140081716 -0.027124119
-[25,]  0.011038704  0.172615827 -0.11747661  0.068862712  0.111035856
-[26,]  0.128928264  0.053620643  0.05692409 -0.245700805 -0.216982410
-[27,] -0.102461867 -0.233335740 -0.15346714  0.017944021 -0.003563527
-[28,]  0.013283549 -0.023721311  0.14159740  0.176211916  0.042775237
-[29,]  0.062276826  0.144201758 -0.08689177 -0.202104892 -0.100007284
-[30,] -0.010394611 -0.202151342 -0.02704892 -0.090903607 -0.145816766
-[31,] -0.026404981 -0.214858055 -0.31276877  0.044056190  0.114886719
-[32,]  0.320797860 -0.083951261  0.43460631  0.046631181 -0.005060487
-[33,] -0.353547954  0.025710715  0.02007452 -0.076692996  0.079746128
-[34,]  0.085732769 -0.034358582  0.21586470 -0.122799869  0.069852372
-[35,] -0.147264008  0.100313953  0.12993224 -0.301260599  0.037329184
-[36,]  0.185613773 -0.122754928 -0.02132291  0.016540313 -0.159091609
-[37,]  0.079922147 -0.126452053 -0.16708879  0.071711947  0.129862952
-[38,]  0.104901845 -0.187108097 -0.06353429  0.331486099 -0.184810504
-[39,] -0.271893227 -0.130433763  0.03299805  0.035128750 -0.284171868
-[40,] -0.065532585 -0.003331394  0.14907648  0.019462781  0.111738238
+ [1,] -0.094923537 -0.192238711 -0.09534877 -0.159657019 -0.263154099
+ [2,] -0.121152744 -0.268133556 -0.02037691 -0.073369010 -0.361937208
+ [3,]  0.136792271 -0.170694040 -0.21878266 -0.140875936 -0.102684603
+ [4,]  0.149548107  0.007767771 -0.20848356 -0.067509154  0.185568114
+ [5,]  0.481794881 -0.188839707  0.11141921  0.038518180 -0.038908091
+ [6,] -0.036236361  0.342278526 -0.18683115 -0.093753777 -0.030993709
+ [7,] -0.028349776 -0.033031614 -0.06621637  0.343806212 -0.194590135
+ [8,] -0.033311715  0.133706153  0.08596254 -0.020568295 -0.217074430
+ [9,]  0.055467903  0.043113458 -0.01553761  0.204987535 -0.198908488
+[10,]  0.343420406  0.069697224 -0.28911609 -0.273611058  0.069972436
+[11,]  0.214466094  0.108083332 -0.13501143  0.101843466 -0.033521223
+[12,] -0.056667299 -0.215770902 -0.19729269  0.124579893  0.175846777
+[13,] -0.208146922  0.061091112 -0.08383813 -0.164370003  0.230492665
+[14,] -0.027594081 -0.007459796 -0.02565145  0.335406003  0.283029151
+[15,]  0.079017018 -0.125565686 -0.06598592 -0.042522877 -0.040319330
+[16,] -0.003111449 -0.284897471  0.08718054  0.005253693  0.204073473
+[17,]  0.013151740  0.083604440  0.23870805 -0.133560752  0.093053343
+[18,] -0.010005348  0.192489223  0.20382396 -0.036038300 -0.031016716
+[19,] -0.007722025  0.089276259  0.25784135  0.005659660  0.280583546
+[20,]  0.027470624  0.239427325 -0.05417795 -0.058508189 -0.056329942
+[21,] -0.157064450 -0.136480572 -0.06166973 -0.012169958  0.045251810
+[22,]  0.009507169 -0.186098407 -0.10823197  0.227906483  0.032039812
+[23,] -0.164121480 -0.078152996  0.13108411  0.243008214 -0.176144583
+[24,]  0.086174771 -0.241328036 -0.05969505  0.140081716 -0.027124119
+[25,]  0.011038704 -0.172615827 -0.11747661  0.068862712  0.111035856
+[26,]  0.128928264 -0.053620643  0.05692409 -0.245700805 -0.216982410
+[27,] -0.102461867  0.233335740 -0.15346714  0.017944021 -0.003563527
+[28,]  0.013283549  0.023721311  0.14159740  0.176211916  0.042775237
+[29,]  0.062276826 -0.144201758 -0.08689177 -0.202104892 -0.100007284
+[30,] -0.010394611  0.202151342 -0.02704892 -0.090903607 -0.145816766
+[31,] -0.026404981  0.214858055 -0.31276877  0.044056190  0.114886719
+[32,]  0.320797860  0.083951261  0.43460631  0.046631181 -0.005060487
+[33,] -0.353547954 -0.025710715  0.02007452 -0.076692996  0.079746128
+[34,]  0.085732769  0.034358582  0.21586470 -0.122799869  0.069852372
+[35,] -0.147264008 -0.100313953  0.12993224 -0.301260599  0.037329184
+[36,]  0.185613773  0.122754928 -0.02132291  0.016540313 -0.159091609
+[37,]  0.079922147  0.126452053 -0.16708879  0.071711947  0.129862952
+[38,]  0.104901845  0.187108097 -0.06353429  0.331486099 -0.184810504
+[39,] -0.271893227  0.130433763  0.03299805  0.035128750 -0.284171868
+[40,] -0.065532585  0.003331394  0.14907648  0.019462781  0.111738238
              [,21]        [,22]        [,23]         [,24]        [,25]
  [1,]  0.057672069 -0.010551627  0.014968636  0.1097851744 -0.127171088
  [2,]  0.052742405 -0.075167540  0.097918946  0.1288066938 -0.003167578
@@ -1350,136 +1365,136 @@ $vectors
 [39,] -0.193488224 -0.243956538 -0.083020835 -0.2744093864  0.146703443
 [40,]  0.074083456 -0.267947912 -0.056702045  0.2101688044 -0.049783535
               [,26]         [,27]        [,28]        [,29]        [,30]
- [1,]  0.1261976960  0.4845188015 -0.057770949  0.140507882 -0.025772829
- [2,]  0.0206144478 -0.0230884426  0.046307863 -0.072373564  0.116750147
- [3,] -0.1823751123 -0.3561312586  0.054947467 -0.045154503 -0.087922747
- [4,]  0.0628123080  0.2343519072  0.265168309  0.030656805  0.115630452
- [5,]  0.1310736588 -0.0070743408 -0.236793636 -0.081898799  0.211634066
- [6,] -0.0385937111 -0.0711048529 -0.076164795  0.214972619 -0.145522262
- [7,]  0.1315442218 -0.0630451939 -0.215327781  0.048833432  0.096518845
- [8,]  0.1082669211 -0.2519390034 -0.070704782 -0.135653858  0.045384229
- [9,]  0.0007944122  0.0104994599  0.354746023 -0.149582306 -0.404848848
-[10,]  0.1693863971  0.2743603613 -0.081317473 -0.102996515  0.010999736
-[11,] -0.0540792995 -0.1594418821  0.174381159 -0.030223976  0.344251588
-[12,] -0.0202520296  0.1014750013 -0.181411806  0.024019058  0.049655459
-[13,] -0.1328828723 -0.1352276350 -0.107243577 -0.020129689  0.224284343
-[14,]  0.1904037295  0.0278573378  0.148270272 -0.091071121 -0.130051812
-[15,] -0.0500101508  0.1702298879  0.036838424 -0.230090443 -0.341186432
-[16,] -0.1878720247 -0.0648672691 -0.097741463 -0.219430770  0.001730235
-[17,]  0.2170308246 -0.0699135511  0.021538774 -0.008099121 -0.086690936
-[18,]  0.0231632243  0.2378415260 -0.133672035  0.262831366 -0.045238335
-[19,]  0.4182285733  0.0008798547 -0.145151997 -0.134670728 -0.074284223
-[20,]  0.1228706469 -0.0773181768  0.036874934  0.028801053 -0.263699822
-[21,]  0.0121871913 -0.1863299304  0.034246740 -0.091247102 -0.080131451
-[22,]  0.0344283810 -0.1150367069  0.007291642  0.484909202  0.002420392
-[23,]  0.1977979813  0.0840537503  0.172241134 -0.078706373  0.311691231
-[24,] -0.0948390259  0.0524647864 -0.279020221 -0.009544148 -0.206553405
-[25,]  0.0594849896  0.1131241478  0.287880918  0.279527786  0.060239844
-[26,]  0.2191918037 -0.1605031941  0.056036613 -0.055933637  0.198444513
-[27,]  0.1295629163  0.0536864258  0.209225746 -0.149040005  0.122131930
-[28,] -0.1925996747  0.1089079117  0.143821576 -0.307285752 -0.007699667
-[29,]  0.2814053783 -0.2656112376  0.242592735  0.161992159 -0.120451289
-[30,] -0.1902429386  0.1809669527 -0.043648890  0.098491666  0.114197959
-[31,] -0.0155084650 -0.0417931104 -0.065406659 -0.193334011  0.228112371
-[32,] -0.2192327733 -0.0642663334  0.158876673  0.273290637  0.034993759
-[33,] -0.1525868353 -0.0520388087  0.046093380  0.168706570  0.011836742
-[34,] -0.0269458077  0.0352368012  0.008205491 -0.010828145 -0.000423724
-[35,] -0.0329725008 -0.0413906875 -0.186302842 -0.027645914 -0.039720160
-[36,] -0.4193815101  0.0725158797  0.032464427 -0.093732182 -0.024994670
-[37,]  0.0150865842 -0.1766856815 -0.162448843  0.112129715 -0.128435264
-[38,]  0.0649681396 -0.0300664309 -0.297040601  0.058548849 -0.019733263
-[39,]  0.0403027971  0.0616921497 -0.089968170 -0.124814120 -0.005028767
-[40,] -0.1082104252  0.1119012875  0.129789422  0.024299983  0.172421644
+ [1,]  0.1261976960  0.4845188015 -0.057770949 -0.140507882 -0.025772829
+ [2,]  0.0206144478 -0.0230884426  0.046307863  0.072373564  0.116750147
+ [3,] -0.1823751123 -0.3561312586  0.054947467  0.045154503 -0.087922747
+ [4,]  0.0628123080  0.2343519072  0.265168309 -0.030656805  0.115630452
+ [5,]  0.1310736588 -0.0070743408 -0.236793636  0.081898799  0.211634066
+ [6,] -0.0385937111 -0.0711048529 -0.076164795 -0.214972619 -0.145522262
+ [7,]  0.1315442218 -0.0630451939 -0.215327781 -0.048833432  0.096518845
+ [8,]  0.1082669211 -0.2519390034 -0.070704782  0.135653858  0.045384229
+ [9,]  0.0007944122  0.0104994599  0.354746023  0.149582306 -0.404848848
+[10,]  0.1693863971  0.2743603613 -0.081317473  0.102996515  0.010999736
+[11,] -0.0540792995 -0.1594418821  0.174381159  0.030223976  0.344251588
+[12,] -0.0202520296  0.1014750013 -0.181411806 -0.024019058  0.049655459
+[13,] -0.1328828723 -0.1352276350 -0.107243577  0.020129689  0.224284343
+[14,]  0.1904037295  0.0278573378  0.148270272  0.091071121 -0.130051812
+[15,] -0.0500101508  0.1702298879  0.036838424  0.230090443 -0.341186432
+[16,] -0.1878720247 -0.0648672691 -0.097741463  0.219430770  0.001730235
+[17,]  0.2170308246 -0.0699135511  0.021538774  0.008099121 -0.086690936
+[18,]  0.0231632243  0.2378415260 -0.133672035 -0.262831366 -0.045238335
+[19,]  0.4182285733  0.0008798547 -0.145151997  0.134670728 -0.074284223
+[20,]  0.1228706469 -0.0773181768  0.036874934 -0.028801053 -0.263699822
+[21,]  0.0121871913 -0.1863299304  0.034246740  0.091247102 -0.080131451
+[22,]  0.0344283810 -0.1150367069  0.007291642 -0.484909202  0.002420392
+[23,]  0.1977979813  0.0840537503  0.172241134  0.078706373  0.311691231
+[24,] -0.0948390259  0.0524647864 -0.279020221  0.009544148 -0.206553405
+[25,]  0.0594849896  0.1131241478  0.287880918 -0.279527786  0.060239844
+[26,]  0.2191918037 -0.1605031941  0.056036613  0.055933637  0.198444513
+[27,]  0.1295629163  0.0536864258  0.209225746  0.149040005  0.122131930
+[28,] -0.1925996747  0.1089079117  0.143821576  0.307285752 -0.007699667
+[29,]  0.2814053783 -0.2656112376  0.242592735 -0.161992159 -0.120451289
+[30,] -0.1902429386  0.1809669527 -0.043648890 -0.098491666  0.114197959
+[31,] -0.0155084650 -0.0417931104 -0.065406659  0.193334011  0.228112371
+[32,] -0.2192327733 -0.0642663334  0.158876673 -0.273290637  0.034993759
+[33,] -0.1525868353 -0.0520388087  0.046093380 -0.168706570  0.011836742
+[34,] -0.0269458077  0.0352368012  0.008205491  0.010828145 -0.000423724
+[35,] -0.0329725008 -0.0413906875 -0.186302842  0.027645914 -0.039720160
+[36,] -0.4193815101  0.0725158797  0.032464427  0.093732182 -0.024994670
+[37,]  0.0150865842 -0.1766856815 -0.162448843 -0.112129715 -0.128435264
+[38,]  0.0649681396 -0.0300664309 -0.297040601 -0.058548849 -0.019733263
+[39,]  0.0403027971  0.0616921497 -0.089968170  0.124814120 -0.005028767
+[40,] -0.1082104252  0.1119012875  0.129789422 -0.024299983  0.172421644
              [,31]        [,32]        [,33]        [,34]        [,35]
- [1,] -0.005285036  0.095671366  0.362669996 -0.075026530  0.256949901
- [2,]  0.047241314 -0.129880583 -0.171559066  0.062743492 -0.011831095
- [3,] -0.179963877 -0.182123169  0.229944920  0.052705836 -0.243545580
- [4,]  0.065330152 -0.006442492  0.024953194  0.104563270 -0.225150004
- [5,] -0.099246907 -0.165657889 -0.017576778 -0.094494620  0.125111701
- [6,]  0.059648892 -0.241617969  0.028130687 -0.106557684  0.044271074
- [7,]  0.043603714 -0.164488559  0.036121656 -0.145801394 -0.268208583
- [8,] -0.145619084 -0.104948317  0.116804770  0.070658222 -0.032969525
- [9,]  0.072534068  0.160581542  0.006577853  0.183568634  0.134790458
-[10,] -0.043770994  0.074002509 -0.199079595  0.036967109  0.071912736
-[11,]  0.127870572  0.138243771  0.103167731  0.176322129  0.044751754
-[12,]  0.105832554  0.040878065 -0.086816445  0.038220317 -0.077038975
-[13,]  0.179294997  0.207385697 -0.103749520  0.033863939 -0.084784671
-[14,] -0.529819581 -0.070162827 -0.307188494  0.057524336 -0.082446819
-[15,]  0.125905285 -0.085982086  0.013164536  0.159670837 -0.184808072
-[16,]  0.053060644 -0.005975088  0.155502672  0.046662792  0.203062673
-[17,]  0.176991929 -0.113835961 -0.032571784  0.195103156 -0.097601918
-[18,] -0.106374816 -0.067451324  0.062083040 -0.100758259 -0.290523662
-[19,]  0.338499323 -0.197941205  0.143060977 -0.046817105  0.022158101
-[20,]  0.121979299  0.097650425 -0.228833000  0.008650852  0.204777437
-[21,] -0.139447134  0.013564983  0.013160832 -0.242048930  0.215330608
-[22,]  0.267660218  0.072902335 -0.171193028  0.177660811  0.183336672
-[23,]  0.159061372 -0.036625689 -0.129476338  0.066902922 -0.077137870
-[24,] -0.001760595  0.149350084 -0.165395951  0.079268775 -0.127497158
-[25,] -0.101506547 -0.132957416 -0.003244448 -0.409846775 -0.077441806
-[26,]  0.041238846  0.167653465 -0.287651030 -0.013824433 -0.131389342
-[27,]  0.012913498 -0.018952004 -0.049094191 -0.230797744  0.078360916
-[28,]  0.215459561  0.259797084  0.206417389 -0.330109002 -0.306608622
-[29,]  0.021474757  0.034663509  0.251998016 -0.097911377 -0.102434203
-[30,] -0.111966020  0.046733618 -0.006348328  0.296835870 -0.306842570
-[31,] -0.125057428  0.100691359  0.134749324 -0.049949966  0.187708449
-[32,] -0.120308756  0.218260472 -0.043708172 -0.133946110  0.102506222
-[33,]  0.049378303  0.035365911 -0.024571688  0.049369481 -0.004062730
-[34,] -0.160559696  0.155298421  0.083712835  0.087568979  0.016760536
-[35,] -0.121709018  0.108066329 -0.202750214 -0.197156269 -0.004401274
-[36,]  0.266985321 -0.424111202 -0.278967339 -0.246098196  0.127739333
-[37,]  0.057620012 -0.068837143  0.085662409 -0.001810040 -0.163490334
-[38,] -0.035917404  0.231057296  0.202006601  0.008825165  0.113581983
-[39,] -0.175329611 -0.005886550 -0.108221959 -0.006970761  0.045771796
-[40,] -0.135862455 -0.405241707  0.181725669  0.347622397  0.204562583
+ [1,] -0.005285036 -0.095671366  0.362669996 -0.075026530  0.256949901
+ [2,]  0.047241314  0.129880583 -0.171559066  0.062743492 -0.011831095
+ [3,] -0.179963877  0.182123169  0.229944920  0.052705836 -0.243545580
+ [4,]  0.065330152  0.006442492  0.024953194  0.104563270 -0.225150004
+ [5,] -0.099246907  0.165657889 -0.017576778 -0.094494620  0.125111701
+ [6,]  0.059648892  0.241617969  0.028130687 -0.106557684  0.044271074
+ [7,]  0.043603714  0.164488559  0.036121656 -0.145801394 -0.268208583
+ [8,] -0.145619084  0.104948317  0.116804770  0.070658222 -0.032969525
+ [9,]  0.072534068 -0.160581542  0.006577853  0.183568634  0.134790458
+[10,] -0.043770994 -0.074002509 -0.199079595  0.036967109  0.071912736
+[11,]  0.127870572 -0.138243771  0.103167731  0.176322129  0.044751754
+[12,]  0.105832554 -0.040878065 -0.086816445  0.038220317 -0.077038975
+[13,]  0.179294997 -0.207385697 -0.103749520  0.033863939 -0.084784671
+[14,] -0.529819581  0.070162827 -0.307188494  0.057524336 -0.082446819
+[15,]  0.125905285  0.085982086  0.013164536  0.159670837 -0.184808072
+[16,]  0.053060644  0.005975088  0.155502672  0.046662792  0.203062673
+[17,]  0.176991929  0.113835961 -0.032571784  0.195103156 -0.097601918
+[18,] -0.106374816  0.067451324  0.062083040 -0.100758259 -0.290523662
+[19,]  0.338499323  0.197941205  0.143060977 -0.046817105  0.022158101
+[20,]  0.121979299 -0.097650425 -0.228833000  0.008650852  0.204777437
+[21,] -0.139447134 -0.013564983  0.013160832 -0.242048930  0.215330608
+[22,]  0.267660218 -0.072902335 -0.171193028  0.177660811  0.183336672
+[23,]  0.159061372  0.036625689 -0.129476338  0.066902922 -0.077137870
+[24,] -0.001760595 -0.149350084 -0.165395951  0.079268775 -0.127497158
+[25,] -0.101506547  0.132957416 -0.003244448 -0.409846775 -0.077441806
+[26,]  0.041238846 -0.167653465 -0.287651030 -0.013824433 -0.131389342
+[27,]  0.012913498  0.018952004 -0.049094191 -0.230797744  0.078360916
+[28,]  0.215459561 -0.259797084  0.206417389 -0.330109002 -0.306608622
+[29,]  0.021474757 -0.034663509  0.251998016 -0.097911377 -0.102434203
+[30,] -0.111966020 -0.046733618 -0.006348328  0.296835870 -0.306842570
+[31,] -0.125057428 -0.100691359  0.134749324 -0.049949966  0.187708449
+[32,] -0.120308756 -0.218260472 -0.043708172 -0.133946110  0.102506222
+[33,]  0.049378303 -0.035365911 -0.024571688  0.049369481 -0.004062730
+[34,] -0.160559696 -0.155298421  0.083712835  0.087568979  0.016760536
+[35,] -0.121709018 -0.108066329 -0.202750214 -0.197156269 -0.004401274
+[36,]  0.266985321  0.424111202 -0.278967339 -0.246098196  0.127739333
+[37,]  0.057620012  0.068837143  0.085662409 -0.001810040 -0.163490334
+[38,] -0.035917404 -0.231057296  0.202006601  0.008825165  0.113581983
+[39,] -0.175329611  0.005886550 -0.108221959 -0.006970761  0.045771796
+[40,] -0.135862455  0.405241707  0.181725669  0.347622397  0.204562583
              [,36]         [,37]         [,38]       [,39]        [,40]
- [1,]  0.244326165  0.0501747541 -0.2315007970 -0.17547431  0.078770995
- [2,] -0.085172793 -0.0759354260 -0.1858912569  0.11116683 -0.215113387
- [3,]  0.068358919  0.0398635451  0.0260460921 -0.02390101  0.178979276
- [4,]  0.195618764 -0.0008855799  0.3197706794  0.09261320 -0.006997310
- [5,]  0.001502148  0.2576485944 -0.0212546037 -0.05249582 -0.090096107
- [6,] -0.038159226  0.0670506960  0.0140246217  0.03845332 -0.045665900
- [7,] -0.029133901  0.0497009518 -0.1920633907  0.18738462 -0.088841123
- [8,] -0.053461951 -0.0218726127  0.0461044923 -0.12622211 -0.106671788
- [9,] -0.043885140  0.0862392074 -0.0614831164 -0.09778282 -0.020327619
-[10,] -0.186209621 -0.0888611492 -0.0706582484  0.01518650 -0.114230174
-[11,]  0.120340393  0.3278214335 -0.1641696384 -0.21115901  0.057664465
-[12,] -0.229308135 -0.1979234421 -0.1168577444 -0.27029655 -0.151943116
-[13,]  0.144553818  0.1675228333 -0.1400509886 -0.17850566 -0.154876675
-[14,]  0.218005076 -0.1311067276 -0.2524749274 -0.04521873 -0.044447817
-[15,] -0.115393273  0.3053230377 -0.0969374632  0.29192731  0.195652441
-[16,]  0.063659508 -0.1636733999  0.0206192800  0.12419974  0.175717931
-[17,]  0.141229582 -0.0208500695  0.0345781766  0.03327614 -0.025750113
-[18,]  0.150466496 -0.0492700753  0.1441325754 -0.02837943  0.241912548
-[19,] -0.017377953 -0.0230954095 -0.0519550921 -0.14972177  0.086935243
-[20,] -0.051367020  0.0979172830  0.1714410958 -0.08356675 -0.061367095
-[21,] -0.091586177  0.2201593051  0.3064906796 -0.21811964  0.131133911
-[22,]  0.023719095  0.0177512129 -0.0228983328  0.24364490  0.208023114
-[23,]  0.183655595  0.2118349124  0.3173764676  0.04431162 -0.087332055
-[24,]  0.137963463  0.0264323982  0.3851340417 -0.13456836 -0.077712060
-[25,] -0.301414941  0.1852321285  0.1478868193 -0.14162335  0.039431992
-[26,] -0.272319726 -0.2741940562  0.0486628335 -0.08115931  0.468360897
-[27,] -0.129320753  0.0979887680 -0.1528028907  0.27741106  0.003484819
-[28,] -0.147749684 -0.1038570541 -0.0292333278  0.01503290 -0.016058463
-[29,]  0.197127324 -0.2683584658  0.0487320315  0.06206444 -0.367092546
-[30,] -0.089745164  0.0348900477  0.0139841398 -0.04933249 -0.034584420
-[31,]  0.217162094 -0.1668069152  0.1585038194  0.23097806  0.138162324
-[32,]  0.080284021 -0.0379183151 -0.1966031382  0.05139139  0.048958139
-[33,] -0.187418155 -0.0762541603 -0.0460621960 -0.02493730 -0.099627545
-[34,] -0.196632023  0.1957248038  0.1228955621 -0.02848968 -0.368780317
-[35,]  0.089749909  0.3050936576  0.0004155838  0.42447525 -0.070759808
-[36,]  0.203597809 -0.1878196348  0.0624564958 -0.11330999 -0.133260770
-[37,] -0.051601091  0.2322390049 -0.1856901054 -0.11559402  0.090593822
-[38,] -0.229945498 -0.1338359623  0.2083725429  0.19506462 -0.111049767
-[39,]  0.092251226  0.0630984759 -0.0212128281 -0.23065965  0.195879030
-[40,] -0.311167064 -0.0321359755  0.1218812603  0.08324526  0.010208762</code></pre>
+ [1,]  0.244326165  0.0501747541 -0.2315007970  0.17547431  0.078770995
+ [2,] -0.085172793 -0.0759354260 -0.1858912569 -0.11116683 -0.215113387
+ [3,]  0.068358919  0.0398635451  0.0260460921  0.02390101  0.178979276
+ [4,]  0.195618764 -0.0008855799  0.3197706794 -0.09261320 -0.006997310
+ [5,]  0.001502148  0.2576485944 -0.0212546037  0.05249582 -0.090096107
+ [6,] -0.038159226  0.0670506960  0.0140246217 -0.03845332 -0.045665900
+ [7,] -0.029133901  0.0497009518 -0.1920633907 -0.18738462 -0.088841123
+ [8,] -0.053461951 -0.0218726127  0.0461044923  0.12622211 -0.106671788
+ [9,] -0.043885140  0.0862392074 -0.0614831164  0.09778282 -0.020327619
+[10,] -0.186209621 -0.0888611492 -0.0706582484 -0.01518650 -0.114230174
+[11,]  0.120340393  0.3278214335 -0.1641696384  0.21115901  0.057664465
+[12,] -0.229308135 -0.1979234421 -0.1168577444  0.27029655 -0.151943116
+[13,]  0.144553818  0.1675228333 -0.1400509886  0.17850566 -0.154876675
+[14,]  0.218005076 -0.1311067276 -0.2524749274  0.04521873 -0.044447817
+[15,] -0.115393273  0.3053230377 -0.0969374632 -0.29192731  0.195652441
+[16,]  0.063659508 -0.1636733999  0.0206192800 -0.12419974  0.175717931
+[17,]  0.141229582 -0.0208500695  0.0345781766 -0.03327614 -0.025750113
+[18,]  0.150466496 -0.0492700753  0.1441325754  0.02837943  0.241912548
+[19,] -0.017377953 -0.0230954095 -0.0519550921  0.14972177  0.086935243
+[20,] -0.051367020  0.0979172830  0.1714410958  0.08356675 -0.061367095
+[21,] -0.091586177  0.2201593051  0.3064906796  0.21811964  0.131133911
+[22,]  0.023719095  0.0177512129 -0.0228983328 -0.24364490  0.208023114
+[23,]  0.183655595  0.2118349124  0.3173764676 -0.04431162 -0.087332055
+[24,]  0.137963463  0.0264323982  0.3851340417  0.13456836 -0.077712060
+[25,] -0.301414941  0.1852321285  0.1478868193  0.14162335  0.039431992
+[26,] -0.272319726 -0.2741940562  0.0486628335  0.08115931  0.468360897
+[27,] -0.129320753  0.0979887680 -0.1528028907 -0.27741106  0.003484819
+[28,] -0.147749684 -0.1038570541 -0.0292333278 -0.01503290 -0.016058463
+[29,]  0.197127324 -0.2683584658  0.0487320315 -0.06206444 -0.367092546
+[30,] -0.089745164  0.0348900477  0.0139841398  0.04933249 -0.034584420
+[31,]  0.217162094 -0.1668069152  0.1585038194 -0.23097806  0.138162324
+[32,]  0.080284021 -0.0379183151 -0.1966031382 -0.05139139  0.048958139
+[33,] -0.187418155 -0.0762541603 -0.0460621960  0.02493730 -0.099627545
+[34,] -0.196632023  0.1957248038  0.1228955621  0.02848968 -0.368780317
+[35,]  0.089749909  0.3050936576  0.0004155838 -0.42447525 -0.070759808
+[36,]  0.203597809 -0.1878196348  0.0624564958  0.11330999 -0.133260770
+[37,] -0.051601091  0.2322390049 -0.1856901054  0.11559402  0.090593822
+[38,] -0.229945498 -0.1338359623  0.2083725429 -0.19506462 -0.111049767
+[39,]  0.092251226  0.0630984759 -0.0212128281  0.23065965  0.195879030
+[40,] -0.311167064 -0.0321359755  0.1218812603 -0.08324526  0.010208762</code></pre>
 </div>
 </div>
 </section>
 <section id="learning-from-httpsuc-r.github.iopca" class="level2">
 <h2 class="anchored" data-anchor-id="learning-from-httpsuc-r.github.iopca">learning from https://uc-r.github.io/pca</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># data manipulation and visualization</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)  <span class="co"># plot arrangement</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># data manipulation and visualization</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)  <span class="co"># plot arrangement</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'gridExtra'</code></pre>
@@ -1489,8 +1504,8 @@ Attaching package: 'gridExtra'</code></pre>
 
     combine</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"USArrests"</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(USArrests, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"USArrests"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(USArrests, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Murder Assault UrbanPop Rape
 Alabama       13.2     236       58 21.2
@@ -1504,12 +1519,12 @@ Delaware       5.9     238       72 15.8
 Florida       15.4     335       80 31.9
 Georgia       17.4     211       60 25.8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>scaled_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(USArrests, <span class="dv">2</span>, scale)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>arrests.cov <span class="ot">&lt;-</span> <span class="fu">cov</span>(scaled_df)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>arrests.eigen <span class="ot">&lt;-</span> <span class="fu">eigen</span>(arrests.cov)</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>arrests.cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>scaled_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(USArrests, <span class="dv">2</span>, scale)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>arrests.cov <span class="ot">&lt;-</span> <span class="fu">cov</span>(scaled_df)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>arrests.eigen <span class="ot">&lt;-</span> <span class="fu">eigen</span>(arrests.cov)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>arrests.cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             Murder   Assault   UrbanPop      Rape
 Murder   1.00000000 0.8018733 0.06957262 0.5635788
@@ -1517,7 +1532,7 @@ Assault  0.80187331 1.0000000 0.25887170 0.6652412
 UrbanPop 0.06957262 0.2588717 1.00000000 0.4113412
 Rape     0.56357883 0.6652412 0.41134124 1.0000000</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>eigen() decomposition
 $values
@@ -1530,23 +1545,23 @@ $vectors
 [3,] 0.2781909 -0.8728062 -0.3780158  0.13387773
 [4,] 0.5434321 -0.1673186  0.8177779  0.08902432</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>temp_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(scaled_df[,<span class="dv">1</span>] <span class="sc">~</span> scaled_df[,<span class="dv">2</span>])</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(temp_1<span class="sc">$</span>residuals, scaled_df[,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>temp_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(scaled_df[,<span class="dv">1</span>] <span class="sc">~</span> scaled_df[,<span class="dv">2</span>])</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(temp_1<span class="sc">$</span>residuals, scaled_df[,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3569992</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(temp_1<span class="sc">$</span>residuals, scaled_df[,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(temp_1<span class="sc">$</span>residuals, scaled_df[,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.663918e-18</code></pre>
+<pre><code>[1] 5.328079e-17</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(arrests.eigen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(arrests.eigen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 2
  $ values : num [1:4] 2.48 0.99 0.357 0.173
  $ vectors: num [1:4, 1:4] 0.536 0.583 0.278 0.543 0.418 ...
  - attr(*, "class")= chr "eigen"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>eigen() decomposition
 $values
@@ -1559,11 +1574,11 @@ $vectors
 [3,] 0.2781909 -0.8728062 -0.3780158  0.13387773
 [4,] 0.5434321 -0.1673186  0.8177779  0.08902432</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen<span class="sc">$</span>values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen<span class="sc">$</span>values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.4802416 0.9897652 0.3565632 0.1734301</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen<span class="sc">$</span>vectors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>arrests.eigen<span class="sc">$</span>vectors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          [,1]       [,2]       [,3]        [,4]
 [1,] 0.5358995  0.4181809 -0.3412327  0.64922780
@@ -1571,7 +1586,7 @@ $vectors
 [3,] 0.2781909 -0.8728062 -0.3780158  0.13387773
 [4,] 0.5434321 -0.1673186  0.8177779  0.08902432</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>(beep <span class="ot">&lt;-</span> arrests.eigen<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>(beep <span class="ot">&lt;-</span> arrests.eigen<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          [,1]       [,2]
 [1,] 0.5358995  0.4181809
@@ -1579,11 +1594,11 @@ $vectors
 [3,] 0.2781909 -0.8728062
 [4,] 0.5434321 -0.1673186</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>beep <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(scaled_df)</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>beep<span class="sc">$</span>rotation <span class="ot">&lt;-</span> beep<span class="sc">$</span>rotation <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>beep<span class="sc">$</span>rotation <span class="ot">&lt;-</span> beep<span class="sc">$</span>x <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(beep, <span class="at">scale =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>beep <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(scaled_df)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>beep<span class="sc">$</span>rotation <span class="ot">&lt;-</span> beep<span class="sc">$</span>rotation <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>beep<span class="sc">$</span>rotation <span class="ot">&lt;-</span> beep<span class="sc">$</span>x <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(beep, <span class="at">scale =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="cfa_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>

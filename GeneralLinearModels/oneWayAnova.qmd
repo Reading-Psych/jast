@@ -312,7 +312,7 @@ $$
 In our case, this is:
 
 ```{r}
-(ss_between/2)/(sse/(107 - (3-1) - 1))
+(ss_between/2)/(error_ss/(107 - (3-1) - 1))
 ```
 
 Let's confirm using a function
@@ -344,9 +344,15 @@ As we can see above, there is almost nothing under the curve (it's imperceptible
 this_summary[[1]][["Pr(>F)"]][1]
 ```
 
-That looks right.
+That looks a fair representation of the proportion of area under the curve is greater than 114.4.
 
+# GLM approach
+ANOVAs and regressions are general linear models that often achieve the same broad statistical goals but framed in different ways. You could also investigate the main effect of continent by dummy coding the continents and running a multiple regression with these dummy codes as predictors, and life expectancy as the outcome:
 
+```{r}
+summary(lm(lifeExp ~ factor(continent), gapminder_3_continents))
+```
+We can see that R has automatically dummy coded the data so that Americas and Europe are dummy variables (and Africa is the baseline/default continent). The F-value output is the same (114.4) 
 
 # note that advantages of an ANOVA approach compared to GLM (or vice-versa)
 

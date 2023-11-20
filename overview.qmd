@@ -180,7 +180,7 @@ digraph "Course Overview" {
 		ttests [
 		  label     = "T-Tests",
 		  URL       = "../GeneralLinearModels/TTests.html",
-		  fillcolor = "white"
+		  fillcolor = "orange"
 		]
 	}
 	/* connections */

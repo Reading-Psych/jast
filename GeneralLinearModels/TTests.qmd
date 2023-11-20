@@ -1,5 +1,5 @@
 ---
-title: "T-Tests (R, Python)"
+title: "T-Tests (R, Python incomplete)"
 editor: visual
 ---
 
@@ -8,22 +8,28 @@ editor: visual
 ::: callout-note
 ## T-values and F-Values
 
-As you'll see below, we'll discuss t-values and F-values you can calculate. T-values are from t-tests, in which there are only 2 conditions or 2 groups of participants you are comparing between. F-values are from a variety of tests and are not restricted to comparisons between 2 conditions or 2 groups. For example, you can run ANOVAs to get F-Values on 2 or more conditions. The underlying statistics between calculating T and F-Values is similar when comparing 2 conditions/groups, which is why $t = \sqrt{F}$ and $F = t^2$ .
+As you'll see below, we'll discuss T-values and F-values you can calculate. T-values are from T-tests, in which there are only 2 conditions or 2 groups of participants you are comparing between. F-values are from a variety of tests and are not restricted to comparisons between 2 conditions or 2 groups. For example, you can run ANOVAs to get F-Values on 2 or more conditions. The underlying statistics between calculating T and F-Values is similar when comparing 2 conditions/groups, which is why $t = \sqrt{F}$ and $F = t^2$ .
 
 When describing a GLM approach, this is more aligned with how you would calculate an F-value.
 :::
 
-In all general linear models you are trying to compare how much of the variance is explained by a model compared to what's not being explained by a model. In short
+In all general linear models you are trying to compare how much of the variance is explained by a model compared to what's not being explained by a model. However, there are a few outcomes you can be working towards calculating:
+
+To capture how much more is explained by a model than is not explained we calculate $F$
 
 $$
-\frac{var_{explained}}{var_{unexplained}} = \frac{SS_{explained}}{SS_{unexplained}}
+F =  \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}}
 $$
 
-For each type of t-test, the way we calculate this is slightly different:
+For comparisons between two conditions we can use T-tests to calculate $t$ (which is the square root of F)
+
+$$
+T = \frac{var_{explained}}{var_{unexplained}} 
+$$
 
 ## One-Sample t-tests
 
-### GLM approach
+### General Linear Model (GLM) approach
 
 One sample t-tests try to explain whether variance of data is better explained around one specific value (sample mean) compared to another (previously assumed value). For example, imagine that you wanted to test whether life expectancy is higher than 55 across the world:
 
@@ -118,17 +124,25 @@ $$
 y = \bar{y} + e
 $$
 
--   Y is the data point value you are trying to predict. Note that for this formula you will **always** have the same predicted outcome (the mean).
+-   $y$ is the data point value you are trying to predict.
 
--   $\bar{y}$ is mean of all y data points. You are only interested in whether predicting y based on y's mean captures a significant amount of the variance of the y-values around the $\mu$.
+-   $\bar{y}$ is mean of all y data points. Note that for this formula you will **always** have the same predicted outcome (the mean).
 
 -   $e$ is the error, i.e. the residuals that the module do not predict effectively.
 
-If the sample mean is a useful model, then it will explain a large proportion of the variance around the "population" mean (and will also suggested that there is significant reason to reject the population mean). The total variance using sum of squares is thus:
+If the sample mean is a useful model, then it will explain a large proportion of the variance around the [Mu]{#population_tippy style="color:#006688"} ($\mu$) and will also suggested that there is significant reason to reject the $\mu$ as the real mean of your population.
+
+```{r echo=FALSE}
+tippy::tippy_this(elementId = "population_tippy", tooltip = "Baseline value")
+```
+
+First, we need to capture how much variance there is around the $\mu$, which we'll do using sum of squares:
 
 $$
-SS_{total} = \sum(x_i-\mu)^2
+SS_{total} = \sum(y_i-\mu)^2
 $$
+
+-   $y_i$ is an individual data point
 
 Which for the above data would give us:
 
@@ -156,7 +170,15 @@ np.sum((gapminder_2007['lifeExp'] - 55) ** 2)
 ```
 :::
 
-So your explained variance by this model is any difference between the Mu ($\mu$) and the sample mean ($\bar{x}$). To summarise this using sum of squares, for each data point you subtract the two from each other and square them, as this difference is what we can explain of variance away from the MU:
+So we have to explain 41025.16 in variance around the $\mu$.
+
+Our model's explanation of variance around the $\mu$ is the sample mean ($\bar{y}$). For each data point the variance explained (from the $mu$) is the difference between $\mu$ and $\bar{y}$, and then that leaves the unexplained variance (from the $mu$) as the difference between the data point and the sample mean ($\bar{y}$). If we visualise this for a single data point it should look something like:
+
+![](mu_vs_mean/Slide1.png)
+
+For the above data point the variance (around the $\mu$) explained is $\bar{y} - \mu = 67.007 - 55 = 22.007$. However, we can see that the model isn't perfect for this data point, and so there is a residual left over, i.e. a difference between the predicted value of 67.007 and the actual value of 58.04, meaning the unexplained variance is $67.007 - 58.04 = 8.967$.
+
+Your explained variance by this model is thus a repetition of comparisons of the $\mu$ and $\bar{y}$ as many times as there are data points (and squaring this difference to make the values positive):
 
 $$
 SS_{explained} = N * (\mu - \bar{x})^2
@@ -184,7 +206,7 @@ len(gapminder_2007['lifeExp']) *( 55 - gapminder_2007['lifeExp'].mean())**2
 ```
 :::
 
-Unexplained variance would be the residuals around the sample mean, as this is variance that is not explained by the model. Conveniently, we can calculate the sum of squared around the sample mean quite elegantly:
+As described above, unexplained variance is the residuals around the sample mean, as this is variance that is not explained by the model. We can summarise what we get when we calculate the sum of squares of these residuals around the sample mean as follows:
 
 $$
 SS_{unexplained} = \sum(x_i-\bar{x})^2
@@ -212,9 +234,7 @@ np.sum((gapminder_2007['lifeExp'] - gapminder_2007['lifeExp'].mean()) ** 2)
 ```
 :::
 
-In general linear models we calculate $F$-values as a statistic of how effective a model is at explaining the variance. These $F$-values use degrees of freedom (see [here](../describingData/dispersion.html#degrees-of-freedom) for a reminder) to adjust for
-
-So the F-value should be:
+To capture the effectiveness of the model we can calculate the F-value:
 
 $$
 F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \frac{20473.3/(Predictors)}{20551.85/(N-1)} = \frac{20473.3/1}{20551.85/141} 
@@ -256,6 +276,44 @@ print(f_value)
 140.46109673488004
 ```
 :::
+
+It isn't conventional to calculate $R^2$ for one-sample t-tests, so feel free to skip the next part
+
+::: callout-note
+## Variance explained by a one-sample t-test
+
+To summarise what proportion of the variance has been explained, we could calculate the $R^2$ value:
+
+$$
+R^2 = \frac{SS_{explained}}{SS_{Total}} = \frac{20473.3}{41025.16} = .499
+$$
+
+As this isn't conventional there isn't a function that can be used to double check this
+:::
+
+### ANVOA vs. T-test formula
+
+Great. So now that we've highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:
+
+$$
+T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} =
+$$
+
+$$
+\sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+$$ where:
+
+-   T is the t-value
+-   F is the f-value
+-   $SS_{exp}$ is the sum of squares of the data explained by the model
+-   $SS_{unexp}$ is the sum of squares of the data not explained by the model (i.e. the residuals)
+-   $df_{exp}$ is the degrees of freedom for the model. As there is only one predictor (the sample mean) and it's only got 2 levels (1 or 0, however, in all cases the model is comparing the data to the mean, so it's less intuitive that there are 2 levels).
+
+To confirm, the formula for a one-sample t-test is just:
+
+$$
+T = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+$$
 
 F-values are squares of t-values, so let's see if this is true here also:
 
@@ -299,33 +357,9 @@ p-value: 6.463174215427706e-23
 ```
 :::
 
-### ANVOA vs. T-test formula
-
-Great. So now that we've highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:
-
-$$
-T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} =
-$$
-
-$$
-\sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
-$$ where:
-
--   T is the t-value
--   F is the f-value
--   $SS_{exp}$ is the sum of squares of the data explained by the model
--   $SS_{unexp}$ is the sum of squares of the data not explained by the model (i.e. the residuals)
--   $df_{exp}$ is the degrees of freedom for the model. As there is only one predictor (the sample mean) and it's only got 2 levels (1 or 0, however, in all cases the model is comparing the data to the mean, so it's less intuitive that there are 2 levels).
-
-To confirm, the formula for a one-sample t-test is just:
-
-$$
-T = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
-$$
-
 ## Paired samples t-tests
 
-Paired samples t-tests can be approached like 1-sample t-tests, but you first of all need to collapse the data to have a single variable to compare to a $\mu$ of zero. Let's do this for gapminder data, comparing life expectancies between 2002 and 2007:
+Paired samples t-tests can be approached like 1-sample t-tests, but you first of all need to collapse the data to have a single variable to compare to a $\mu$ of zero. Let's do this for gapminder data, comparing life expectancy between 2002 and 2007:
 
 ::: panel-tabset
 ## R
@@ -407,11 +441,76 @@ Where
 
 -   $N$ is the number of participants
 
-You can rewrite the above formula to compare $\bar{x_3}$ to $\mu$, as we know $\mu$ is zero, which would make this formula (effectively) identical to the one above for one-sample t-tests: \$\$
+You can rewrite the above formula to compare $\bar{x_3}$ to $\mu$, as we know $\mu$ is zero, which would make this formula (effectively) identical to the one above for one-sample t-tests:
 
 $$
 \frac{\bar{x_3} - \mu}{\sigma_{pooled}/\sqrt{N}}
 $$
+
+[The following explains how to calculate F and $R^2$ values if analysing your data as a model. This isn't necessary if you just want to complete a t-test, but does help clarify how t-tests overlap with ANOVAs and regressions. ]{style="color:red"}
+
+::: callout-note
+## F and $R^2$ values
+
+To calculate the F value we will use the following formula:
+
+$$
+F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}}
+$$
+
+So the question is, what is our model, and what is explained and what is not explained by it. Our model is that life expectancy is explained by year. We predict that any difference between 2002 and 2007 in life expectancy in ***any*** country's is the ***mean*** life expectancy difference across all countries. The sum of squares thus is the mean difference between 2007 and 2002's life expectancy multiplied by the number of countries:
+
+$$
+SS_{explained} = \sum_{country}{{((\bar{lifeExp}_{2007} - \bar{lifeExp}_{2002}})^2)} = ((\bar{lifeExp}_{2007} - \bar{lifeExp}_{2002})^2) * N_{countries}
+$$
+
+```{r}
+library(tidyverse)
+gapminder %>% 
+  filter(year == 2007 | year == 2002) -> gapminder_2007_2002
+explained_ss = ((mean(gapminder_2007_2002$lifeExp[gapminder_2007_2002$year == 2002]) - mean(gapminder_2007_2002$lifeExp[gapminder_2007_2002$year == 2007]))^2) * length(unique(gapminder_2007_2002$country))
+explained_ss
+```
+
+$$
+SS_{unexplained} = SS_{total} - SS_{explained}
+$$
+
+So we need to calculate the total Sum of Squares, which is all variance between 2002 and 2007 for each country (squared):
+
+$$
+SS_{total} = \sum{((lifeExp_{2007} - lifeExp_{2002})^2)}
+$$
+
+```{r}
+# restructuring data to simplify processing
+gapminder_2007_2002 %>% 
+  select(country, year, lifeExp) %>% 
+  pivot_wider(names_from=year, values_from = lifeExp)  -> gapminder_wide
+
+total_ss = sum((gapminder_wide[["2002"]] - gapminder_wide[["2007"]])^2)
+total_ss
+```
+
+To calculate the unexplained variance, let's subtract the explained from total sum of squares
+
+```{r}
+unexplained_ss = total_ss - explained_ss
+unexplained_ss
+```
+
+Now we can complete the above formula taking into account the explained degrees of freedom is 1 (2 levels -1 = 1), and the unexplained degrees of freedom is 141 (142 countries - 1 = 141):
+
+$$
+F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \frac{244.6172/1}{160.3876/141} = 215.048
+$$
+
+Let's check if this is the same value we get using a function:
+
+```{r}
+ez::ezANOVA(gapminder_2007_2002, within = year, dv= lifeExp, wid = country)$ANOVA$F
+```
+:::
 
 ## Independent Samples t-tests
 
@@ -807,7 +906,8 @@ bottom_half = (ss_within/(len(gapminder_americas_europe['lifeExp']) - 2))
 
 top_half/bottom_half
 ```
-```
+
+```         
 16.14453
 ```
 
@@ -830,7 +930,8 @@ Ttest_indResult(statistic=4.018025720342183, pvalue=0.00018637488941352037)
 
 4.018 ** 2
 ```
-```
+
+```         
 16.144530689331322
 ```
 :::
@@ -866,7 +967,8 @@ summary(lm(lifeExp ~ contEffect, gapminder_americas_europe))$r.squared
 
 222.6202/953.4478
 ```
-```
+
+```         
 0.23348965722087775
 ```
 
@@ -882,7 +984,8 @@ r_squared = model.rsquared
 # Print the R-squared value
 print("R-squared:", r_squared)
 ```
-```
+
+```         
 0.2334896271386857
 ```
 :::
@@ -955,6 +1058,7 @@ plt.title('T-Distribution Density Curves')
 # Show the plot
 plt.show()
 ```
+
 ![T-Distribution Density Curves'](TTests_Figure5.png){fig-align="left" width="650"}
 :::
 
@@ -994,6 +1098,7 @@ df = pd.DataFrame({'x': [-4, 4]})
     + stat_function(fun=lambda x: t.pdf(x, df=100), color="green")
 )
 ```
+
 ![Figure with the area under the curve for a t-value of 2'](TTests_Figure6.png){fig-align="left" width="650"}
 :::
 
@@ -1047,7 +1152,8 @@ df = 5
 area_above_2 = 1 - t.cdf(t_value, df=df)
 area_above_2
 ```
-```
+
+```         
 0.050969739414929105
 ```
 
@@ -1064,7 +1170,8 @@ df = 20
 area_above_2 = 1 - t.cdf(t_value, df=df)
 area_above_2
 ```
-```
+
+```         
 0.02963276772328527
 ```
 
@@ -1081,7 +1188,8 @@ df = 100
 area_above_2 = 1 - t.cdf(t_value, df=df)
 area_above_2
 ```
-```
+
+```         
 0.024106089365566796
 ```
 :::
@@ -1090,7 +1198,7 @@ Note that if you wanted a 2-tailed test (i.e. you didn't have an expected direct
 
 Similar principles apply for an F-distribution, described next.
 
-## Calculating p-values from f-distributions
+## Calculating p-values from F-distributions
 
 As F-values are based on the **sum of squares**, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions, such as comparisons of more than 2 levels. This means that they can have a variety of shapes. First, let's look at some distributions for designs with 2 conditions but differing numbers of participants:
 
@@ -1149,6 +1257,7 @@ df = pd.DataFrame({'x': [0, 4]})
     + labs(x="F-Value", y="Density")
 )
 ```
+
 ![F-Distribution Density Curves'](TTests_Figure7.png){fig-align="left" width="650"}
 :::
 
@@ -1207,6 +1316,7 @@ df = pd.DataFrame({'x': [0, 4]})
     + labs(x="F-Value", y="Density")
 )
 ```
+
 ![F-Distribution Density Curves'](TTests_Figure8.png){fig-align="left" width="650"}
 :::
 
@@ -1216,7 +1326,43 @@ In all cases, you get your p-value from calculating the area under the curve for
 
 If we were to more strictly conceptualise this as a linear model, then we need to create a model that predicts the life expectancy based on the continent. As continent is a categorical variable, we need to allocate numbers for each continent. This can either be dummy coding (1 for 0 for each continent) or effect coding (1 or -1 for each continent). Let's go through both approaches.
 
-# FINISH HERE
+### Dummy coding
+
+In this model, we will dummy code America as 1 and Europe as 0. This means that our model will tell us how much life expectancy increases/decreases when you live in America compared to Europe. A general linear model with 1 predictor is generally structured as follows:
+
+$$
+Y = a + B*X  + e
+$$
+
+Or in relation to our variables
+
+$$
+GDP = a + B_{continent} * X_{continent} + e =
+$$
+
+-   $X$ refers to the value of our dummy coded variable, which is either 0 (Europe) or 1 (Americas).
+
+-   $a$ is the intercept, i.e. the value of $Y$ when $X = 0$. Thus, as $X=0$ for Europe, $a$ is the mean life expectancy in Europe. This will be clarified below.
+
+-   $B$ is the gradient (AKA Coefficient AKA Beta) of the predictor. In our case, this will be the difference in means between Europe and the Americas, which will be further clarified below.
+
+-   $e$ is the error, or residual (i.e. the difference between the predicted value and the actual value).
+
+So it's been claimed that $a$ will be the mean life expectancy in Europe. We can see why this is the case by seeing what happens when $X=0$, which follows our dummy coding of Europe as 0.
+
+$$
+LifeExp = a + B_{continent} * 0 + e = a + e 
+$$
+
+So predicting GDP for Europe is just $a$ and whatever is not predicted by $a$ is the error ($e$). The best prediction of GDP in Europe is calculating the mean of life expectancy in Europe. Thus $a$ is the mean life expectancy in Europe.
+
+Now, to get the gradient ($B$), we need to calculate how much life expectancy goes up or down as $X$ increases by 1.
+
+```{r}
+gapminder_americas_europe
+```
+
+### Effect coding
 
 # Effect sizes
 
@@ -1339,10 +1485,10 @@ eta_squared = anova_table['sum_sq'][0] / (anova_table['sum_sq'][0] + anova_table
 
 print("Eta-squared (η²):", eta_squared)
 ```
-```
+
+```         
 Eta-squared (η²): 0.2334896271386854
 ```
-
 :::
 
 Boom, you got effect sizes for F-tests like ANOVAs.

@@ -3,6 +3,10 @@ title: "Family-Wise Error (R)"
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "fwer"
+```
+
 {{< include ../overview.qmd >}}
 
 {{< include positiveNegative.qmd >}}

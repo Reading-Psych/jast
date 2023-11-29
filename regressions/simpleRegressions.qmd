@@ -6,6 +6,10 @@ format:
 editor: visual
 ---
 
+```{r}
+this_page = "simple_regression"
+```
+
 {{< include ../overview.qmd >}}
 
 ## Prediction using regression

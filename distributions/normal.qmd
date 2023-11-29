@@ -6,6 +6,10 @@ format:
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "normal"
+```
+
 {{< include ../overview.qmd >}}
 
 ## Bell curve (AKA normal distribution)
@@ -200,7 +204,7 @@ plt.show()
 
 ## Excel
 
-Download and open the [normal_z\_scores.xlsx](normal_z_scores.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
+Download and open the [normal_z_scores.xlsx](normal_z_scores.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
 
 ![Normal Distribution Z - scores](normal_z.png){fig-align="left" width="700" height="500"}
 
@@ -340,7 +344,7 @@ plt.show()
 
 ## Excel
 
-Download and open the [normal_z\_scores_0\_plus.xlsx](normal_z_scores_0_plus.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
+Download and open the [normal_z_scores_0_plus.xlsx](normal_z_scores_0_plus.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
 
 ![Normal Distribution Z-scores with percentages for each boundary](normal_z_0_plus.png){fig-align="left" width="700" height="500"}
 
@@ -514,7 +518,7 @@ plt.show()
 
 ## Excel
 
-Download and open the [normal_z\_scores_percentages.xlsx](normal_z_scores_percentages.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
+Download and open the [normal_z_scores_percentages.xlsx](normal_z_scores_percentages.xlsx) file in this repository to see data being used to create the below figure. To get the colors you need to use the "Select Data..." option when right clicking on the chart:
 
 ![Normal Distribution Z-scores and percentages](normal_z_percentages.png){fig-align="left" width="700" height="500"}
 

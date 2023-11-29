@@ -6,6 +6,10 @@ format:
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "central_tendency"
+```
+
 {{< include ../overview.qmd >}}
 
 Central tendancy describes typical values of a variable, such as it's mean and median.

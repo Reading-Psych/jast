@@ -4,6 +4,10 @@ format: html
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "permutation"
+```
+
 {{< include ../overview.qmd >}}
 
 # Permutation analysis

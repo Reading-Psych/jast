@@ -6,6 +6,10 @@ format:
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "glm"
+```
+
 {{< include ../overview.qmd >}}
 
 ## What are general linear models?

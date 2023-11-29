@@ -7,6 +7,10 @@ editor: visual
 bibliography: ../references.bib
 ---
 
+```{r echo=FALSE}
+this_page = "contingency"
+```
+
 {{< include ../overview.qmd >}}
 
 Imagine you want to estimate if males or females are more likely to go into certain professions. We could start by looking at a psychology department and analysing the number of female and male lecturers (i.e. frequency). Let's imagine a department from the 1953, in which there were 5 female and 50 male lecturers, which now in 2023 has 50 female and 50 male lecturers. Whilst we can see that the ratio is more even now than it was in the 1953, but can we quantify how strong the effect of time is, and how significant the result is (and thus whether we are inclined to assume that the change in this department is representative of a general change in all departments).
@@ -184,7 +188,7 @@ Using the above formula, let's estimate all four cells
 Now that we've calculated the expected values for each cell, we can compare our observed values against the expected values and square the difference:
 
 | [**Observed**]{style="color:blue"} **vs. [Expected]{style="color:red"}** | 1953                                      | 2023                                        | Total |
-|--------------------------------------------------------------------------|-------------------------------------------|---------------------------------------------|-------|
+|---------------------------|---------------|----------------|---------------|
 | Female                                                                   | $(5 - 19.51613)^2$ = `r (5 - 19.51613)^2` | $(50 - 35.48387)^2 =$ `r (50 - 35.48387)^2` | 55    |
 | Male                                                                     | $(50 -35.48387)^2$ = `r (50 -35.48387)^2` | $(50 - 64.51613)^2 =$ `r (50 - 64.51613)^2` | 100   |
 | Total                                                                    | 55                                        | 100                                         | 155   |

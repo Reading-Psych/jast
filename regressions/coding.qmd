@@ -4,6 +4,10 @@ format: html
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "dummy_effect"
+```
+
 {{< include ../overview.qmd >}}
 
 When running a linear model, such as a simple regression or multiple regression, it can be helpful to include categorical variables. However, these categorical variables will not (usually?) have sensible numbers that can be associated with them, and predictors in regressions need to be numeric. We can address this by using **dummy** or **effect** coding. We'll start by addressing this for binary categorical variables.

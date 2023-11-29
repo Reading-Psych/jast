@@ -4,6 +4,12 @@ format: html
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "mixed_anova"
+```
+
+{{< include ../overview.qmd >}}
+
 ## 2 x 2 ANOVA
 
 Let's create data to allow us to compare between 2 years, and between Europe and Americas
@@ -177,8 +183,6 @@ print(tabulate(gapminder[:10], headers=gapminder.head(), tablefmt="fancy_grid",s
 
 ```
 :::
-
-
 
 ## 3 way ANOVA
 

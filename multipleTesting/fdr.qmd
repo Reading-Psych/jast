@@ -3,6 +3,10 @@ title: "False Discovery Rate(R)"
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "fdr"
+```
+
 {{< include ../overview.qmd >}}
 
 {{< include positiveNegative.qmd >}}

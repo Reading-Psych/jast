@@ -6,6 +6,10 @@ format:
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "transforming"
+```
+
 {{< include ../overview.qmd >}}
 
 A lot of analyses is dependent on data being <a href="normal">normally distributed</a>. One problem with your data might be that it is <a href="skewness.html" target="_blank">skewed</a>. Lets focus on the **gapminder** data from 2007 to see if the **gdp** and **life expectancy** data is skewed, and how this could be addressed.
@@ -873,8 +877,7 @@ plt.show()
 
 ![Correlation with original data - 10 to both variables (an additive change)](transforming_Table10.png){fig-align="left" width="600"}
 
-![Correlation with multiplication of 5 to both variables (multiplicative)](transforming_Table11.png){fig-align="left" width="600"} 
-![Grid comparing the 4 transformations](transforming_Figure10.png){fig-align="left" width="650"}
+![Correlation with multiplication of 5 to both variables (multiplicative)](transforming_Table11.png){fig-align="left" width="600"} ![Grid comparing the 4 transformations](transforming_Figure10.png){fig-align="left" width="650"}
 :::
 
 You can see that the transformations being linear haven't changed the nature of the associations.
@@ -978,11 +981,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Correlation between 'gdpPercap' and 'lifeExp'](transforming_Table8.png){fig-align="left" width="600"}
-![Correlation between 'gdpPercap' and 'lifeExp' after log transformation](transforming_Table12.png){fig-align="left" width="600"}
-![Correlation between 'gdpPercap' and 'lifeExp' after square root transformation](transforming_Table13.png){fig-align="left" width="600"}
-![Correlation between 'gdpPercap' and 'lifeExp' after squared transformation](transforming_Table14.png){fig-align="left" width="600"}
-![Grid comparing the 4 transformations](transforming_Figure11.png){fig-align="left" width="650"}
+![Correlation between 'gdpPercap' and 'lifeExp'](transforming_Table8.png){fig-align="left" width="600"} ![Correlation between 'gdpPercap' and 'lifeExp' after log transformation](transforming_Table12.png){fig-align="left" width="600"} ![Correlation between 'gdpPercap' and 'lifeExp' after square root transformation](transforming_Table13.png){fig-align="left" width="600"} ![Correlation between 'gdpPercap' and 'lifeExp' after squared transformation](transforming_Table14.png){fig-align="left" width="600"} ![Grid comparing the 4 transformations](transforming_Figure11.png){fig-align="left" width="650"}
 :::
 
 ::: callout-warning
@@ -1010,8 +1009,8 @@ spssSkewKurtosis((gapminder_2007$gdpPercap[gapminder_2007$continent ==  "Africa"
 spssSkewKurtosis(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"])
 spssSkewKurtosis(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"])
 ```
-![Table with skweness and kurtosis for 'gdpPercap' for Europe](transforming_Table15.png){fig-align="left" width="600"}
-![Table with skweness and kurtosis for 'gdpPercap' for Africa](transforming_Table16.png){fig-align="left" width="600"}
+
+![Table with skweness and kurtosis for 'gdpPercap' for Europe](transforming_Table15.png){fig-align="left" width="600"} ![Table with skweness and kurtosis for 'gdpPercap' for Africa](transforming_Table16.png){fig-align="left" width="600"}
 :::
 
 So We can see that there's a significant problem with skewness for countries from Africa (zScore \> 1.96) but not from Europe. The correct thing to do is to apply any transformation (to address skewness) to Africa to Europe also to avoid differences between the groups reflecting bias from the distortions. Logarithmic transformations can help reduce skewness, so let's see how the means compare after applying the log transformation to both groups:
@@ -1032,11 +1031,12 @@ mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
 np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"]).mean()
 np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"]).mean()
 ```
-```
+
+```         
 9.985978130053216
 ```
 
-```
+```         
 7.486539235254513
 ```
 :::
@@ -1059,8 +1059,8 @@ spssSkewKurtosis(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Afri
 spssSkewKurtosis(np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"]))
 spssSkewKurtosis(np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"]))
 ```
-![Table with skweness and kurtosis for 'gdpPercap' for Europe after log transformation](transforming_Table17.png){fig-align="left" width="600"}
-![Table with skweness and kurtosis for 'gdpPercap' for Africa after log transformation](transforming_Table18.png){fig-align="left" width="600"}
+
+![Table with skweness and kurtosis for 'gdpPercap' for Europe after log transformation](transforming_Table17.png){fig-align="left" width="600"} ![Table with skweness and kurtosis for 'gdpPercap' for Africa after log transformation](transforming_Table18.png){fig-align="left" width="600"}
 :::
 
 Looking good. Now, what **would have happened** if we had only log-transformed Africa's data as it had the skewed distribution:
@@ -1081,10 +1081,12 @@ mean(gapminder_2007$gdpPercap_log[gapminder_2007$continent ==  "Africa"])
 gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Europe"].mean()
 np.log(gapminder_2007['gdpPercap'].loc[gapminder_2007['continent'] ==  "Africa"])
 ```
-```
+
+```         
 25054.481635933338
 ```
-```
+
+```         
 7.486539235254513
 ```
 :::

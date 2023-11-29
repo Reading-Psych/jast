@@ -5,183 +5,89 @@ editor: visual
 ::: {.callout-note collapse="false"}
 ## Course Overview
 
-```{dot}
-//| fig-height: 5
-//| fig-width: 10
-digraph "Course Overview" {
+```{r echo=FALSE}
+
+page_colors = list(
+  
+  
+  ancova_bg = "white",                  ancova_text = "black",
+  between_anova_bg = "orange",           between_anova_text = "black",
+  binomial_bg = "white",                binomial_text = "black",
+  central_tendency_bg = "white",        central_tendency_text = "black",
+  contingency_bg = "white",             contingency_text = "black",
+  correlations_bg = "white",            correlations_text = "black",
+  dispersion_bg = "white",              dispersion_text = "black",
+  dummy_effect_bg = "white",            dummy_effect_text = "black",
+  fdr_bg = "white",                     fdr_text = "black",
+  fwer_bg = "white",                    fwer_text = "black",
+  fwer_vs_fdr_bg = "white",             fwer_vs_fdr_text = "black",
+  glm_bg = "white",                     glm_text = "black",
+  kurtosis_bg = "red",                kurtosis_text = "black",
+  mediation_bg = "red",               mediation_text = "black",
+  mixed_anova_bg = "orange",             mixed_anova_text = "black",
+  multiple_regression_bg = "white",     multiple_regression_text = "black",
+  normal_bg = "white",                  normal_text = "black",
+  partial_correlations_bg = "white",    partial_correlations_text = "black",
+  permutation_bg = "white",             permutation_text = "black",
+  probability_bg = "white",             probability_text = "black",
+  rep_measures_anova_bg = "red",      rep_measures_anova_text = "black",
+  simple_regression_bg = "white",       simple_regression_text = "black",
+  skewness_bg = "white",                skewness_text = "black",
+  stats_basics_bg = "white",            stats_basics_text = "black",
+  transforming_bg = "white",            transforming_text = "black",
+  ttests_bg = "orange",                  ttests_text = "black"
+  
+)
+if(exists("this_page")){
+  page_colors[[paste(this_page,"_bg", sep="")]] = "blue"
+  page_colors[[paste(this_page,"_text", sep="")]] = "white"
+}
+
+
+
+DiagrammeR::grViz(paste(
+  '
+  digraph "Course Overview" {
   rankdir=TB;
   fontname="Helvetica,Arial,sans-serif"
 	node [fontname="Helvetica,Arial,sans-serif"]
 	edge [fontname="Helvetica,Arial,sans-serif"]
-	graph [
-		newrank = true,
-		nodesep = 0.25,
-		ranksep = .5,
-		overlap = false,
-		splines = curve,
-	]
-	node [
-		fixedsize = false,
-		fillcolor = "white",
-		fontsize = 24,
-		height = 1,
-		shape = box,
-		style = "filled,setlinewidth(5)",
-		width = 4
-	]
-	edge [
-		arrowhead = none,
-		arrowsize = 0.5,
-		labelfontname = "Ubuntu",
-		weight = 10,
-		style = "filled,setlinewidth(5)"
-	]
+	graph [ newrank = true, nodesep = 0.25, ranksep = .5, overlap = false, splines = curve,]
+	node [ fixedsize = false, fillcolor = "white", fontsize = 24, height = 1, shape = box, style = "filled,setlinewidth(5)", width = 4]
+	edge [arrowhead = none,arrowsize = 0.5,labelfontname = "Ubuntu",weight = 10,style = "filled,setlinewidth(5)"]
 	
 	subgraph system {
 	  
 		node [color = "#006688"]
 		edge [color = "#006688"]
 		
-		ancova[
-      label = "ANCOVA",
-      fillcolor = "red",
-      URL = "../GeneralLinearModels/ancova.html"
-    ]
-    between_anova[
-      label = "One-way ANOVA",
-      fillcolor = "orange",
-      URL = "../GeneralLinearModels/oneWayAnova.html"
-    ]
-		binomial [
-			URL = "../distributions/binomial.html",
-			fixedsize = true,
-			# fillcolor = "#d9e7ee",
-			label = "Binomial Distribution",
-		]
-		central_tendency[
-		  URL = "../describingData/centralTendency.html",
-			fillcolor = white,
-			fixedsize = true,
-			#row = func,
-			label= "Central Tendency"
-		]
-		#cooksd[
-		#  label     = "Cook's D",
-		#  URL       = "",
-		#  fillcolor = red
-		#]
-	  coding[
-		  URL = "../regressions/coding.html",
-			fixedsize = true,
-			fillcolor = "white",
-			label= "Dummy and effect coding"
-		]
-		contingency[
-		  URL = "../categorical/contingency.html",
-			fixedsize = true,
-		#	fillcolor = "orange",
-			label = "Contingency"
-		]
-		correlations[
-		  URL = "../correlations/correlations.html",
-			fixedsize = true,
-			fillcolor = "white",
-			label= "Correlations"
-		]
-		dispersion[
-		  URL       = "../describingData/dispersion.html",
-			label     = "Dispersion",
-			# fillcolor = "orange"
-		]
-		fdr[
-      URL = "../multipleTesting/fdr.html",
-      label = "False Discovery Rate"
-    ]
-	  fwer[
-		  URL = "../multipleTesting/fwer.html",
-		  label = "Family-Wise Error Rate"
-    ]
-    fwer_vs_fdr[
-      label = "FWER vs. FDR",
-      URL = "../multipleTesting/fwer_vs_fdr.html"
-    ]
-    glm[
-      URL       = "../GeneralLinearModels/generalLinearModels.html",
-      label     = "General Linear Models",
-      fillcolor = "white"
-    ]
-    #kurtosis[
-    #  URL       = "",
-    #  label     = "Kurtosis",
-    #  fillcolor = "red"
-    #]
-    mediation[
-      URL = "",
-      fillcolor = "red",
-      label = "Mediation"
-    ]
-    mixed_anova[
-		  label = "Mixed ANOVA",
-		  fillcolor = "orange",
-		  URL = "../GeneralLinearModels/mixedAnova.html",
-		]
-		multiple_regression[
-		  label     = "Multiple Regression",
-		  URL       = "../regressions/multipleRegressions.html",
-		  fillcolor = "white"
-		]
-		normal[
-		  URL = "../distributions/normal.html",
-			fillcolor = white,
-			fixedsize = true,
-			#row = func,
-			label= "Normal Distribution"
-		]
-		partial_correlations[
-		    label ="Partial Correlations",
-		    URL = "../correlations/partialCorrelations.html",
-		]
-		permutation[
-		  label = "Permutations",
-		  fillcolor = "white",
-		  URL = "permutations.html",
-		  #width = 15,
-		]
-		probability [
-			label = "Probability",
-			URL = "../statsBasics/probability.html",
-      #fillcolor = "#d9e7ee",
-			fixedsize = true,
-			# row = func,
-		]
-		repeated_measures_anova[
-		  label = "Repeated Measures",
-		  fillcolor = "red",
-		  URL = "../GeneralLinearModels/repeatedAnova.html",
-		]
-		simple_regression[
-		  label="Simple Regression",
-		  URL = "../regressions/simpleRegressions.html",
-		]
-		skewness[
-		  label = "Skewness",
-		  URL   = "../distributions/skewness.html"
-		]
-		stats_basics[
-		  label = "Statistics Basics",
-		  URL   = "../statsBasics/statsBasics.html"
-		]
-		transforming [
-			fillcolor = "white",
-			label     = "Transforming Data",
-			URL       = "../distributions/transforming.html"
-			width = 4
-		]
-		ttests [
-		  label     = "T-Tests",
-		  URL       = "../GeneralLinearModels/TTests.html",
-		  fillcolor = "orange"
-		]
+		ancova              [fillcolor="', page_colors[["ancova_bg"]] ,'",fontcolor="', page_colors[["ancova_text"]],'"label = "ANCOVA", URL = "../GeneralLinearModels/ancova.html"]
+    between_anova       [fillcolor="', page_colors[["between_anova_bg"]] ,'",fontcolor="', page_colors[["between_anova_text"]],'"label = "One-way ANOVA", URL = "../GeneralLinearModels/oneWayAnova.html"]
+		binomial            [fillcolor="', page_colors[["binomial_bg"]] ,'",fontcolor="', page_colors[["binomial_text"]],'"URL = "../distributions/binomial.html", label = "Binomial Distribution"]
+		central_tendency    [fillcolor="', page_colors[["central_tendency_bg"]] ,'",fontcolor="', page_colors[["central_tendency_text"]],'"URL = "../describingData/centralTendency.html", fixedsize = true, label= "Central Tendency"]
+		#cooksd[ label     = "Cooks D", URL       = "", fillcolor = red]
+		contingency         [fillcolor="', page_colors[["contingency_bg"]] ,'",fontcolor="', page_colors[["contingency_text"]],'"URL = "../categorical/contingency.html", fixedsize = true, label = "Contingency"]
+		correlations        [fillcolor="', page_colors[["correlations_bg"]] ,'",fontcolor="', page_colors[["correlations_text"]],'"URL = "../correlations/correlations.html", fixedsize = true, label= "Correlations"]
+		dispersion          [fillcolor="', page_colors[["dispersion_bg"]] ,'",fontcolor="', page_colors[["dispersion_text"]],'"URL       = "../describingData/dispersion.html",label     = "Dispersion"]
+		dummy_effect        [fillcolor="', page_colors[["dummy_effect_bg"]] ,'",fontcolor="', page_colors[["dummy_effect_text"]],'"URL       = "../describingData/dispersion.html",label     = "Dummy and Effect Coding"]
+		fdr                 [fillcolor="', page_colors[["fdr_bg"]] ,'",fontcolor="', page_colors[["fdr_text"]],'"URL = "../multipleTesting/fdr.html",label = "False Discovery Rate"]
+	  fwer                [fillcolor="', page_colors[["fwer_bg"]] ,'",fontcolor="', page_colors[["fwer_text"]],'"URL = "../multipleTesting/fwer.html",label = "Family-Wise Error Rate"]
+    fwer_vs_fdr         [fillcolor="', page_colors[["fwer_vs_fdr_bg"]] ,'",fontcolor="', page_colors[["fwer_vs_fdr_text"]],'"label = "FWER vs. FDR",URL = "../multipleTesting/fwer_vs_fdr.html"]
+    glm                 [fillcolor="', page_colors[["glm_bg"]] ,'",fontcolor="', page_colors[["glm_text"]],'"URL       = "../GeneralLinearModels/generalLinearModels.html",label     = "General Linear Models"]
+    #kurtosis            [fillcolor="', page_colors[["kurtosis_bg"]] ,'",fontcolor="', page_colors[["kurtosis_text"]],'"URL       = "",label     = "Kurtosis",fillcolor = "red"]
+    mediation           [fillcolor="', page_colors[["mediation_bg"]] ,'",fontcolor="', page_colors[["mediation_text"]],'"URL = "",fillcolor = "red",label = "Mediation"]
+    mixed_anova         [fillcolor="', page_colors[["mixed_anova_bg"]] ,'",fontcolor="', page_colors[["mixed_anova_text"]],'"label = "Mixed ANOVA",URL = "../GeneralLinearModels/mixedAnova.html",]
+		multiple_regression [fillcolor="', page_colors[["multiple_regression_bg"]] ,'",fontcolor="', page_colors[["multiple_regression_text"]],'"label     = "Multiple Regression",URL       = "../regressions/multipleRegressions.html"]
+		normal              [fillcolor="', page_colors[["normal_bg"]] ,'",fontcolor="', page_colors[["normal_text"]],'"URL = "../distributions/normal.html", label= "Normal Distribution"]
+		partial_correlations[fillcolor="', page_colors[["partial_correlations_bg"]] ,'",fontcolor="', page_colors[["partial_correlations_text"]],'"label ="Partial Correlations",URL = "../correlations/partialCorrelations.html",]
+		permutation         [fillcolor="', page_colors[["permutation_bg"]] ,'",fontcolor="', page_colors[["permutation_text"]],'"label = "Permutations",URL = "../permutations/permutations.html",]
+		probability         [fillcolor="', page_colors[["probability_bg"]] ,'",fontcolor="', page_colors[["probability_text"]],'"label = "Probability",URL = "../statsBasics/probability.html",fixedsize = true]
+		rep_measures_anova  [fillcolor="', page_colors[["rep_measures_anova_bg"]] ,'",fontcolor="', page_colors[["rep_measures_anova_text"]],'"label = "Repeated Measures",URL = "../GeneralLinearModels/repeatedAnova.html",]
+		simple_regression   [fillcolor="', page_colors[["simple_regression_bg"]] ,'",fontcolor="', page_colors[["simple_regression_text"]],'"label="Simple Regression", URL = "../regressions/simpleRegressions.html",]
+		skewness            [fillcolor="', page_colors[["skewness_bg"]] ,'",fontcolor="', page_colors[["skewness_text"]],'"label = "Skewness", URL   = "../distributions/skewness.html"]
+		stats_basics        [fillcolor="', page_colors[["stats_basics_bg"]] ,'",fontcolor="', page_colors[["stats_basics_text"]],'"label = "Statistics Basics",URL   = "../statsBasics/statsBasics.html"]
+		transforming        [fillcolor="', page_colors[["transforming_bg"]] ,'",fontcolor="', page_colors[["transforming_text"]],'" label = "Transforming Data", URL = "../distributions/transforming.html"]
+		ttests              [fillcolor="', page_colors[["ttests_bg"]] ,'",fontcolor="', page_colors[["ttests_text"]],'", label = "T-Tests", URL = "../GeneralLinearModels/TTests.html",]
 	}
 	/* connections */
 	between_anova -> ancova
@@ -191,12 +97,12 @@ digraph "Course Overview" {
     #row = func
 	]
 	central_tendency -> dispersion
-	coding -> multiple_regression
-	coding -> ttests
 	#correlations -> cooksd
 	correlations -> partial_correlations
 	correlations -> simple_regression
 	dispersion -> normal
+	dummy_effect -> multiple_regression
+	dummy_effect -> ttests
 	fdr -> fwer_vs_fdr
 	fwer -> fwer_vs_fdr
 	glm -> ttests
@@ -211,24 +117,24 @@ digraph "Course Overview" {
     #row = func
 	]
 	simple_regression -> multiple_regression
-	simple_regression -> coding
+	simple_regression -> dummy_effect
 	skewness -> transforming
 	transforming -> correlations
 	probability -> contingency
 	probability -> fwer
 	probability -> fdr
-	repeated_measures_anova -> ancova
+	rep_measures_anova -> ancova
 	stats_basics -> central_tendency
 	stats_basics -> probability
 	ttests -> mixed_anova
 	ttests -> between_anova
-	ttests -> repeated_measures_anova
+	ttests -> rep_measures_anova
 	
 	
 	
   # edge[ style = invis ];
   ancova -> permutation
-  repeated_measures_anova -> permutation
+  rep_measures_anova -> permutation
   between_anova -> permutation
   correlations -> permutation
   #mediation -> permutation  [
@@ -246,7 +152,10 @@ digraph "Course Overview" {
 	#] 
   ttests -> permutation
 }
+  '
+, sep=""))
 ```
+
 
 [**Red**]{style="color:red"} means that the page does not exist yet
 

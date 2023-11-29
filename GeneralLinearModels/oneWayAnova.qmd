@@ -4,6 +4,10 @@ format: html
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "between_anova"
+```
+
 {{< include ../overview.qmd >}}
 
 The mathematics behind a one-way ANOVA is actually just an extension of the GLM approach to independent samples t-tests. To illustrate this, we will investigate if there are significant differences in life expectancy between Africa, the Americas and Europe using gapminder data. Let's first focus on the relevant contents in this dataset and then capture the sum of squares around the mean (i.e. the total sum of squares):
@@ -23,7 +27,7 @@ gapminder_3_continents <- subset(
 
 Before we start, lets visualise the three types of variance/sum of squares we will want to capture for our ANOVAs: **Total, Between Subject** and **Error.**
 
-### Total 
+### Total
 
 In ANOVAs we are trying to explain variance around the mean. The total variance around the mean can be visualised as follows:
 
@@ -199,7 +203,7 @@ summary(aov(lifeExp ~ factor(continent), data = gapminder_3_continents))[[1]][["
 
 Looks good. Let's confirm what the effect size for this is next.
 
-##  $R^2$ and $R^2_{adj}$  
+## $R^2$ and $R^2_{adj}$
 
 The variance explained by the model is the $R^2$ value, which is:
 
@@ -285,7 +289,7 @@ this_summary = summary(lm(lifeExp ~ factor(continent), data = gapminder_3_contin
 this_summary$adj.r.squared
 ```
 
-##  Eta-Squared ($\eta^2$) 
+## Eta-Squared ($\eta^2$)
 
 Eta-squared ( $\eta^2$ ) is actually the same as $R^2$, but is the terminology associated with ANOVAs rather than linear models. Let's confirm with a function:
 
@@ -347,12 +351,14 @@ this_summary[[1]][["Pr(>F)"]][1]
 That looks a fair representation of the proportion of area under the curve is greater than 114.4.
 
 # GLM approach
+
 ANOVAs and regressions are general linear models that often achieve the same broad statistical goals but framed in different ways. You could also investigate the main effect of continent by dummy coding the continents and running a multiple regression with these dummy codes as predictors, and life expectancy as the outcome:
 
 ```{r}
 summary(lm(lifeExp ~ factor(continent), gapminder_3_continents))
 ```
-We can see that R has automatically dummy coded the data so that Americas and Europe are dummy variables (and Africa is the baseline/default continent). The F-value output is the same (114.4) 
+
+We can see that R has automatically dummy coded the data so that Americas and Europe are dummy variables (and Africa is the baseline/default continent). The F-value output is the same (114.4)
 
 # note that advantages of an ANOVA approach compared to GLM (or vice-versa)
 

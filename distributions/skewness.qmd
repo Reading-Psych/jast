@@ -6,6 +6,10 @@ format:
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "skewness"
+```
+
 {{< include ../overview.qmd >}}
 
 **Parametric** analyses are based on the assumption that the data you are analysing is normally distributed (see below):

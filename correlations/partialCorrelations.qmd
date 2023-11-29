@@ -6,6 +6,11 @@ format:
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "partial_correlations"
+```
+
+
 {{< include ../overview.qmd >}}
 
 As you may have heard, correlation does not equal causation. One possible reason for this is that there's a third variable that explains an association. Let's imagine that we are trying to understand whether life expectancy goes up over time and why. First of all, let's check if lifeExpectancy is going up over time using the **gapminder** data:

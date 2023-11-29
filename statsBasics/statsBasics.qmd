@@ -6,6 +6,10 @@ format:
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "stats_basics"
+```
+
 {{< include ../overview.qmd >}}
 
 ## What is a variable?

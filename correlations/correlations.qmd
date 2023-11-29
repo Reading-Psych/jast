@@ -5,6 +5,11 @@ format:
     code-fold: false
 editor: visual
 ---
+
+```{r echo=FALSE}
+this_page = "correlations"
+```
+
 {{< include ../overview.qmd >}}
 
 Please make sure you've read about variance within the <a href="../describingData/dispersion.html" target="_blank">dispersion section</a> before proceeding with this page.
@@ -269,7 +274,7 @@ $$
 Or, to use the figures above:
 
 |                     |                                                             |        |                                                         |
-|---------------------|-------------------------------------------------------------|--------|---------------------------------------------------------|
+|-------------|------------------------|-------------|----------------------|
 | \$Total\$ \$Var\$ = | sqrt(![](life_exp_resid.png) \\\^2) \$\$ \\frac{}{N-1} \$\$ | \$\*\$ | sqrt(![](gdp_resid.png) \\\^ 2) \$\$ \\frac{}{N-1} \$\$ |
 
 This is analogous to understanding the total area of a rectangle by multiplying the length of each side with each other.
@@ -837,4 +842,3 @@ As both Pearson's R and Spearman's Rank are calculations of the [***proportion**
 ### Consolidation questions
 
 {{< include correlationsQuestions.qmd >}}
-

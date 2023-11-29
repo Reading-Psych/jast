@@ -4,6 +4,10 @@ format: html
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "multiple_regression"
+```
+
 {{< include ../overview.qmd >}}
 
 # Creating a model to predict your outcome

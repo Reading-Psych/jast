@@ -124,6 +124,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="../site_libs/viz-1.8.2/viz.js"></script>
+<link href="../site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="../site_libs/grViz-binding-1.0.10/grViz.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -361,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests (R, Python)</a>
+  <a href="../GeneralLinearModels/TTests.html" class="sidebar-item-text sidebar-link">T-Tests (R, Python incomplete)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -558,6 +562,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="cell">
+
+</div>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -570,6 +577,12 @@ Course Overview
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-eacce692e862d8f168d0" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-eacce692e862d8f168d0">{"x":{"diagram":"\n  digraph \"Course Overview\" {\n  rankdir=TB;\n  fontname=\"Helvetica,Arial,sans-serif\"\n\tnode [fontname=\"Helvetica,Arial,sans-serif\"]\n\tedge [fontname=\"Helvetica,Arial,sans-serif\"]\n\tgraph [ newrank = true, nodesep = 0.25, ranksep = .5, overlap = false, splines = curve,]\n\tnode [ fixedsize = false, fillcolor = \"white\", fontsize = 24, height = 1, shape = box, style = \"filled,setlinewidth(5)\", width = 4]\n\tedge [arrowhead = none,arrowsize = 0.5,labelfontname = \"Ubuntu\",weight = 10,style = \"filled,setlinewidth(5)\"]\n\t\n\tsubgraph system {\n\t  \n\t\tnode [color = \"#006688\"]\n\t\tedge [color = \"#006688\"]\n\t\t\n\t\tancova              [fillcolor=\"white\",fontcolor=\"black\"label = \"ANCOVA\", fillcolor = \"red\", URL = \"../GeneralLinearModels/ancova.html\"]\n    between_anova       [fillcolor=\"orange\",fontcolor=\"black\"label = \"One-way ANOVA\", fillcolor = \"orange\", URL = \"../GeneralLinearModels/oneWayAnova.html\"]\n\t\tbinomial            [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/binomial.html\", label = \"Binomial Distribution\"]\n\t\tcentral_tendency    [fillcolor=\"white\",fontcolor=\"black\"URL = \"../describingData/centralTendency.html\", fixedsize = true, label= \"Central Tendency\"]\n\t\t#cooksd[ label     = \"Cooks D\", URL       = \"\", fillcolor = red]\n\t  coding              [fillcolor=\"\",fontcolor=\"\"URL = \"../regressions/coding.html\", fixedsize = true, fillcolor = \"white\", label= \"Dummy and effect coding\"]\n\t\tcontingency         [fillcolor=\"white\",fontcolor=\"black\"URL = \"../categorical/contingency.html\", fixedsize = true,  fillcolor = \"orange\", label = \"Contingency\"]\n\t\tcorrelations        [fillcolor=\"white\",fontcolor=\"black\"URL = \"../correlations/correlations.html\", fixedsize = true, fillcolor = \"white\", label= \"Correlations\"]\n\t\tdispersion          [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dispersion\", fillcolor = \"orange\"]\n\t\tfdr                 [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fdr.html\",label = \"False Discovery Rate\"]\n\t  fwer                [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fwer.html\",label = \"Family-Wise Error Rate\"]\n    fwer_vs_fdr         [fillcolor=\"white\",fontcolor=\"black\"label = \"FWER vs. FDR\",URL = \"../multipleTesting/fwer_vs_fdr.html\"]\n    glm                 [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../GeneralLinearModels/generalLinearModels.html\",label     = \"General Linear Models\",fillcolor = \"white\"]\n    #kurtosis            [fillcolor=\"red\",fontcolor=\"black\"URL       = \"\",label     = \"Kurtosis\",fillcolor = \"red\"]\n    mediation           [fillcolor=\"red\",fontcolor=\"black\"URL = \"\",fillcolor = \"red\",label = \"Mediation\"]\n    mixed_anova         [fillcolor=\"orange\",fontcolor=\"black\"label = \"Mixed ANOVA\",fillcolor = \"orange\",URL = \"../GeneralLinearModels/mixedAnova.html\",]\n\t\tmultiple_regression [fillcolor=\"white\",fontcolor=\"black\"label     = \"Multiple Regression\",URL       = \"../regressions/multipleRegressions.html\",fillcolor = \"white\"]\n\t\tnormal              [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/normal.html\",fillcolor = white,fixedsize = true, label= \"Normal Distribution\"]\n\t\tpartial_correlations[fillcolor=\"white\",fontcolor=\"black\"label =\"Partial Correlations\",URL = \"../correlations/partialCorrelations.html\",]\n\t\tpermutation         [fillcolor=\"white\",fontcolor=\"black\"label = \"Permutations\",fillcolor = \"white\",URL = \"permutations.html\",]\n\t\tprobability         [fillcolor=\"white\",fontcolor=\"black\"label = \"Probability\",URL = \"../statsBasics/probability.html\",fixedsize = true]\n\t\trep_measures_anova  [fillcolor=\"red\",fontcolor=\"black\"label = \"Repeated Measures\",fillcolor = \"red\",URL = \"../GeneralLinearModels/repeatedAnova.html\",]\n\t\tsimple_regression   [fillcolor=\"white\",fontcolor=\"black\"label=\"Simple Regression\", URL = \"../regressions/simpleRegressions.html\",]\n\t\tskewness            [fillcolor=\"white\",fontcolor=\"black\"label = \"Skewness\", URL   = \"../distributions/skewness.html\"]\n\t\tstats_basics        [fillcolor=\"blue\",fontcolor=\"white\"label = \"Statistics Basics\",URL   = \"../statsBasics/statsBasics.html\"]\n\t\ttransforming        [fillcolor=\"white\",fontcolor=\"black\" label = \"Transforming Data\", URL = \"../distributions/transforming.html\"]\n\t\tttests              [fillcolor=\"orange\",fontcolor=\"black\", label = \"T-Tests\", URL = \"../GeneralLinearModels/TTests.html\",]\n\t}\n\t/* connections */\n\tbetween_anova -> ancova\n\tbinomial -> contingency\n\tbinomial -> normal[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tcentral_tendency -> dispersion\n\tcoding -> multiple_regression\n\tcoding -> ttests\n\t#correlations -> cooksd\n\tcorrelations -> partial_correlations\n\tcorrelations -> simple_regression\n\tdispersion -> normal\n\tfdr -> fwer_vs_fdr\n\tfwer -> fwer_vs_fdr\n\tglm -> ttests\n  mixed_anova -> ancova\n\tmultiple_regression -> mediation\n\tnormal -> correlations\n\tnormal -> contingency\n\tnormal -> glm\n\t#normal -> kurtosis\n\tnormal -> skewness[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tsimple_regression -> multiple_regression\n\tsimple_regression -> coding\n\tskewness -> transforming\n\ttransforming -> correlations\n\tprobability -> contingency\n\tprobability -> fwer\n\tprobability -> fdr\n\trep_measures_anova -> ancova\n\tstats_basics -> central_tendency\n\tstats_basics -> probability\n\tttests -> mixed_anova\n\tttests -> between_anova\n\tttests -> rep_measures_anova\n\t\n\t\n\t\n  # edge[ style = invis ];\n  ancova -> permutation\n  rep_measures_anova -> permutation\n  between_anova -> permutation\n  correlations -> permutation\n  #mediation -> permutation  [\n  #  style = \"dashed\",\n    #row = func\n\t#] \n  #multiple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  #partial_correlations -> permutation\n  #simple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  ttests -> permutation\n}\n  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 <div class="cell" data-fig-height="5" data-fig-width="10">
 <div class="cell-output-display">
 <div>
@@ -651,7 +664,7 @@ coding-&gt;multiple_regression
 <title>
 ttests
 </title>
-<g id="a_node25"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="white" stroke="#006688" stroke-width="5" points="842,-396 554,-396 554,-324 842,-324 842,-396"></polygon> <text text-anchor="middle" x="698" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- coding&#45;&gt;ttests --> <g id="edge6" class="edge">
+<g id="a_node25"><a href="../GeneralLinearModels/TTests.html" title="T-Tests"> <polygon fill="orange" stroke="#006688" stroke-width="5" points="842,-396 554,-396 554,-324 842,-324 842,-396"></polygon> <text text-anchor="middle" x="698" y="-352.8" font-family="Helvetica,Arial,sans-serif" font-size="24.00">T-Tests</text> </a> </g> </g> <!-- coding&#45;&gt;ttests --> <g id="edge6" class="edge">
 <title>
 coding-&gt;ttests
 </title>

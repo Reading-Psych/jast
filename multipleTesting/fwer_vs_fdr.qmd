@@ -3,6 +3,10 @@ title: "FWER, FDR, Positive and Negative effects(R)"
 editor: visual
 ---
 
+```{r echo=FALSE}
+this_page = "fwer_vs_fdr"
+```
+
 {{< include ../overview.qmd >}}
 
 {{< include positiveNegative.qmd >}}

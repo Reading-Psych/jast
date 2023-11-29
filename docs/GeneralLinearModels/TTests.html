@@ -616,8 +616,8 @@ Course Overview
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f793b908ee62bdf7c401" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-f793b908ee62bdf7c401">{"x":{"diagram":"\n  digraph \"Course Overview\" {\n  rankdir=TB;\n  fontname=\"Helvetica,Arial,sans-serif\"\n\tnode [fontname=\"Helvetica,Arial,sans-serif\"]\n\tedge [fontname=\"Helvetica,Arial,sans-serif\"]\n\tgraph [ newrank = true, nodesep = 0.25, ranksep = .5, overlap = false, splines = curve,]\n\tnode [ fixedsize = false, fillcolor = \"white\", fontsize = 24, height = 1, shape = box, style = \"filled,setlinewidth(5)\", width = 4]\n\tedge [arrowhead = none,arrowsize = 0.5,labelfontname = \"Ubuntu\",weight = 10,style = \"filled,setlinewidth(5)\"]\n\t\n\tsubgraph system {\n\t  \n\t\tnode [color = \"#006688\"]\n\t\tedge [color = \"#006688\"]\n\t\t\n\t\tancova              [fillcolor=\"white\",fontcolor=\"black\"label = \"ANCOVA\", fillcolor = \"red\", URL = \"../GeneralLinearModels/ancova.html\"]\n    between_anova       [fillcolor=\"orange\",fontcolor=\"black\"label = \"One-way ANOVA\", URL = \"../GeneralLinearModels/oneWayAnova.html\"]\n\t\tbinomial            [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/binomial.html\", label = \"Binomial Distribution\"]\n\t\tcentral_tendency    [fillcolor=\"white\",fontcolor=\"black\"URL = \"../describingData/centralTendency.html\", fixedsize = true, label= \"Central Tendency\"]\n\t\t#cooksd[ label     = \"Cooks D\", URL       = \"\", fillcolor = red]\n\t\tcontingency         [fillcolor=\"white\",fontcolor=\"black\"URL = \"../categorical/contingency.html\", fixedsize = true, label = \"Contingency\"]\n\t\tcorrelations        [fillcolor=\"white\",fontcolor=\"black\"URL = \"../correlations/correlations.html\", fixedsize = true, label= \"Correlations\"]\n\t\tdispersion          [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dispersion\"]\n\t\tdummy_effect        [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dummy and Effect Coding\"]\n\t\tfdr                 [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fdr.html\",label = \"False Discovery Rate\"]\n\t  fwer                [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fwer.html\",label = \"Family-Wise Error Rate\"]\n    fwer_vs_fdr         [fillcolor=\"white\",fontcolor=\"black\"label = \"FWER vs. FDR\",URL = \"../multipleTesting/fwer_vs_fdr.html\"]\n    glm                 [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../GeneralLinearModels/generalLinearModels.html\",label     = \"General Linear Models\"]\n    #kurtosis            [fillcolor=\"red\",fontcolor=\"black\"URL       = \"\",label     = \"Kurtosis\",fillcolor = \"red\"]\n    mediation           [fillcolor=\"red\",fontcolor=\"black\"URL = \"\",fillcolor = \"red\",label = \"Mediation\"]\n    mixed_anova         [fillcolor=\"orange\",fontcolor=\"black\"label = \"Mixed ANOVA\",fillcolor = \"orange\",URL = \"../GeneralLinearModels/mixedAnova.html\",]\n\t\tmultiple_regression [fillcolor=\"white\",fontcolor=\"black\"label     = \"Multiple Regression\",URL       = \"../regressions/multipleRegressions.html\"]\n\t\tnormal              [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/normal.html\", label= \"Normal Distribution\"]\n\t\tpartial_correlations[fillcolor=\"white\",fontcolor=\"black\"label =\"Partial Correlations\",URL = \"../correlations/partialCorrelations.html\",]\n\t\tpermutation         [fillcolor=\"white\",fontcolor=\"black\"label = \"Permutations\",fillcolor = \"white\",URL = \"permutations.html\",]\n\t\tprobability         [fillcolor=\"white\",fontcolor=\"black\"label = \"Probability\",URL = \"../statsBasics/probability.html\",fixedsize = true]\n\t\trep_measures_anova  [fillcolor=\"red\",fontcolor=\"black\"label = \"Repeated Measures\",fillcolor = \"red\",URL = \"../GeneralLinearModels/repeatedAnova.html\",]\n\t\tsimple_regression   [fillcolor=\"white\",fontcolor=\"black\"label=\"Simple Regression\", URL = \"../regressions/simpleRegressions.html\",]\n\t\tskewness            [fillcolor=\"white\",fontcolor=\"black\"label = \"Skewness\", URL   = \"../distributions/skewness.html\"]\n\t\tstats_basics        [fillcolor=\"white\",fontcolor=\"black\"label = \"Statistics Basics\",URL   = \"../statsBasics/statsBasics.html\"]\n\t\ttransforming        [fillcolor=\"white\",fontcolor=\"black\" label = \"Transforming Data\", URL = \"../distributions/transforming.html\"]\n\t\tttests              [fillcolor=\"blue\",fontcolor=\"white\", label = \"T-Tests\", URL = \"../GeneralLinearModels/TTests.html\",]\n\t}\n\t/* connections */\n\tbetween_anova -> ancova\n\tbinomial -> contingency\n\tbinomial -> normal[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tcentral_tendency -> dispersion\n\t#correlations -> cooksd\n\tcorrelations -> partial_correlations\n\tcorrelations -> simple_regression\n\tdispersion -> normal\n\tdummy_effect -> multiple_regression\n\tdummy_effect -> ttests\n\tfdr -> fwer_vs_fdr\n\tfwer -> fwer_vs_fdr\n\tglm -> ttests\n  mixed_anova -> ancova\n\tmultiple_regression -> mediation\n\tnormal -> correlations\n\tnormal -> contingency\n\tnormal -> glm\n\t#normal -> kurtosis\n\tnormal -> skewness[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tsimple_regression -> multiple_regression\n\tsimple_regression -> dummy_effect\n\tskewness -> transforming\n\ttransforming -> correlations\n\tprobability -> contingency\n\tprobability -> fwer\n\tprobability -> fdr\n\trep_measures_anova -> ancova\n\tstats_basics -> central_tendency\n\tstats_basics -> probability\n\tttests -> mixed_anova\n\tttests -> between_anova\n\tttests -> rep_measures_anova\n\t\n\t\n\t\n  # edge[ style = invis ];\n  ancova -> permutation\n  rep_measures_anova -> permutation\n  between_anova -> permutation\n  correlations -> permutation\n  #mediation -> permutation  [\n  #  style = \"dashed\",\n    #row = func\n\t#] \n  #multiple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  #partial_correlations -> permutation\n  #simple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  ttests -> permutation\n}\n  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ea0f8bfdc230de25cc40" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ea0f8bfdc230de25cc40">{"x":{"diagram":"\n  digraph \"Course Overview\" {\n  rankdir=TB;\n  fontname=\"Helvetica,Arial,sans-serif\"\n\tnode [fontname=\"Helvetica,Arial,sans-serif\"]\n\tedge [fontname=\"Helvetica,Arial,sans-serif\"]\n\tgraph [ newrank = true, nodesep = 0.25, ranksep = .5, overlap = false, splines = curve,]\n\tnode [ fixedsize = false, fillcolor = \"white\", fontsize = 24, height = 1, shape = box, style = \"filled,setlinewidth(5)\", width = 4]\n\tedge [arrowhead = none,arrowsize = 0.5,labelfontname = \"Ubuntu\",weight = 10,style = \"filled,setlinewidth(5)\"]\n\t\n\tsubgraph system {\n\t  \n\t\tnode [color = \"#006688\"]\n\t\tedge [color = \"#006688\"]\n\t\t\n\t\tancova              [fillcolor=\"white\",fontcolor=\"black\"label = \"ANCOVA\", URL = \"../GeneralLinearModels/ancova.html\"]\n    between_anova       [fillcolor=\"orange\",fontcolor=\"black\"label = \"One-way ANOVA\", URL = \"../GeneralLinearModels/oneWayAnova.html\"]\n\t\tbinomial            [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/binomial.html\", label = \"Binomial Distribution\"]\n\t\tcentral_tendency    [fillcolor=\"white\",fontcolor=\"black\"URL = \"../describingData/centralTendency.html\", fixedsize = true, label= \"Central Tendency\"]\n\t\t#cooksd[ label     = \"Cooks D\", URL       = \"\", fillcolor = red]\n\t\tcontingency         [fillcolor=\"white\",fontcolor=\"black\"URL = \"../categorical/contingency.html\", fixedsize = true, label = \"Contingency\"]\n\t\tcorrelations        [fillcolor=\"white\",fontcolor=\"black\"URL = \"../correlations/correlations.html\", fixedsize = true, label= \"Correlations\"]\n\t\tdispersion          [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dispersion\"]\n\t\tdummy_effect        [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dummy and Effect Coding\"]\n\t\tfdr                 [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fdr.html\",label = \"False Discovery Rate\"]\n\t  fwer                [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fwer.html\",label = \"Family-Wise Error Rate\"]\n    fwer_vs_fdr         [fillcolor=\"white\",fontcolor=\"black\"label = \"FWER vs. FDR\",URL = \"../multipleTesting/fwer_vs_fdr.html\"]\n    glm                 [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../GeneralLinearModels/generalLinearModels.html\",label     = \"General Linear Models\"]\n    #kurtosis            [fillcolor=\"red\",fontcolor=\"black\"URL       = \"\",label     = \"Kurtosis\",fillcolor = \"red\"]\n    mediation           [fillcolor=\"red\",fontcolor=\"black\"URL = \"\",fillcolor = \"red\",label = \"Mediation\"]\n    mixed_anova         [fillcolor=\"orange\",fontcolor=\"black\"label = \"Mixed ANOVA\",URL = \"../GeneralLinearModels/mixedAnova.html\",]\n\t\tmultiple_regression [fillcolor=\"white\",fontcolor=\"black\"label     = \"Multiple Regression\",URL       = \"../regressions/multipleRegressions.html\"]\n\t\tnormal              [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/normal.html\", label= \"Normal Distribution\"]\n\t\tpartial_correlations[fillcolor=\"white\",fontcolor=\"black\"label =\"Partial Correlations\",URL = \"../correlations/partialCorrelations.html\",]\n\t\tpermutation         [fillcolor=\"white\",fontcolor=\"black\"label = \"Permutations\",URL = \"../permutations/permutations.html\",]\n\t\tprobability         [fillcolor=\"white\",fontcolor=\"black\"label = \"Probability\",URL = \"../statsBasics/probability.html\",fixedsize = true]\n\t\trep_measures_anova  [fillcolor=\"red\",fontcolor=\"black\"label = \"Repeated Measures\",URL = \"../GeneralLinearModels/repeatedAnova.html\",]\n\t\tsimple_regression   [fillcolor=\"white\",fontcolor=\"black\"label=\"Simple Regression\", URL = \"../regressions/simpleRegressions.html\",]\n\t\tskewness            [fillcolor=\"white\",fontcolor=\"black\"label = \"Skewness\", URL   = \"../distributions/skewness.html\"]\n\t\tstats_basics        [fillcolor=\"white\",fontcolor=\"black\"label = \"Statistics Basics\",URL   = \"../statsBasics/statsBasics.html\"]\n\t\ttransforming        [fillcolor=\"white\",fontcolor=\"black\" label = \"Transforming Data\", URL = \"../distributions/transforming.html\"]\n\t\tttests              [fillcolor=\"blue\",fontcolor=\"white\", label = \"T-Tests\", URL = \"../GeneralLinearModels/TTests.html\",]\n\t}\n\t/* connections */\n\tbetween_anova -> ancova\n\tbinomial -> contingency\n\tbinomial -> normal[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tcentral_tendency -> dispersion\n\t#correlations -> cooksd\n\tcorrelations -> partial_correlations\n\tcorrelations -> simple_regression\n\tdispersion -> normal\n\tdummy_effect -> multiple_regression\n\tdummy_effect -> ttests\n\tfdr -> fwer_vs_fdr\n\tfwer -> fwer_vs_fdr\n\tglm -> ttests\n  mixed_anova -> ancova\n\tmultiple_regression -> mediation\n\tnormal -> correlations\n\tnormal -> contingency\n\tnormal -> glm\n\t#normal -> kurtosis\n\tnormal -> skewness[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tsimple_regression -> multiple_regression\n\tsimple_regression -> dummy_effect\n\tskewness -> transforming\n\ttransforming -> correlations\n\tprobability -> contingency\n\tprobability -> fwer\n\tprobability -> fdr\n\trep_measures_anova -> ancova\n\tstats_basics -> central_tendency\n\tstats_basics -> probability\n\tttests -> mixed_anova\n\tttests -> between_anova\n\tttests -> rep_measures_anova\n\t\n\t\n\t\n  # edge[ style = invis ];\n  ancova -> permutation\n  rep_measures_anova -> permutation\n  between_anova -> permutation\n  correlations -> permutation\n  #mediation -> permutation  [\n  #  style = \"dashed\",\n    #row = func\n\t#] \n  #multiple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  #partial_correlations -> permutation\n  #simple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  ttests -> permutation\n}\n  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><span style="color:red"><strong>Red</strong></span> means that the page does not exist yet</p>
@@ -625,6 +625,18 @@ Course Overview
 </div>
 </div>
 </div>
+<div class="callout-tip callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+T-tests use the same underlying mathematics as ANOVAs. There is an argument that it’s better to just use the ANOVA mathematics as this will allow you more flexibility in future to do more complex analyses
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>In the tests below we will frequently come across the following concepts:</p>
 <p><strong>Total sum of squares</strong> represents all the variance around the mean. We create models to try to explain why data points are different to the mean.</p>
 <p><strong>Explained sum of squares</strong> represents the variance around the mean that is explained by your model.</p>
@@ -653,6 +665,9 @@ F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \f
 t = \sqrt{F} = \sqrt{\frac{SS_{explained}}{SS_{unexplained}/df_{unexplained}}}
 \]</span></p>
 <p><span class="math inline">\(t\)</span> values are used for <span class="math inline">\(t\)</span>-tests, which we’ll address below.</p>
+</div>
+</div>
+</div>
 <section id="one-sample-t-tests" class="level2">
 <h2 class="anchored" data-anchor-id="one-sample-t-tests">One-Sample t-tests</h2>
 <section id="t-test-approach" class="level3">
@@ -1118,7 +1133,7 @@ p-value: 6.463174215427706e-23</code></pre>
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section"></h2>
 <div class="callout-note callout callout-style-simple no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1127,10 +1142,10 @@ F-value approach (AKA General Linear Model (GLM) approach)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1139,7 +1154,7 @@ internal callout
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>beep bop</p>
 </div>
@@ -1157,8 +1172,8 @@ y = \bar{y} + e
 <p>If the sample mean is a useful model, then it will explain a large proportion of the variance around the <span id="population_tippy" style="color:#006688">Mu</span> (<span class="math inline">\(\mu\)</span>) and will also suggested that there is significant reason to reject the <span class="math inline">\(\mu\)</span> as the real mean of your population.</p>
 <div class="cell">
 <div class="cell-output-display">
-<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-ec0da9cb659e7b197d00" width="100%"></span>
-<script type="application/json" data-for="htmlwidget-ec0da9cb659e7b197d00">{"x":{"element":"population_tippy","opts":{"content":"Baseline value"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-aa28905de7029f6b1f50" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-aa28905de7029f6b1f50">{"x":{"element":"population_tippy","opts":{"content":"Baseline value"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>First, we need to capture how much variance there is around the <span class="math inline">\(\mu\)</span>, which we’ll do using sum of squares:</p>
@@ -2492,6 +2507,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>
+// select all elements with the data-bs-toggle attribute
+const elements = document.querySelectorAll('[data-bs-toggle]');
+
+// loop through the elements and toggle their collapsed state
+elements.forEach(element => {
+  const isCollapsed = element.classList.contains('collapsed');
+  if (!isCollapsed) {
+    element.click();
+  }
+});
+</script>
 
 
 

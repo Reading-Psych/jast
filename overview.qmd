@@ -2,6 +2,33 @@
 editor: visual
 ---
 
+<style>
+#hide_show_button{
+  position:fixed;
+  right: 10px;
+  top: 80px;
+}
+</style>
+
+
+<button class="btn bi bi-arrows-angle-expand" id="hide_show_button" style="color: white; background-color:#006599">Show/Hide all</button>
+
+<script>
+document.getElementById("hide_show_button").onclick = function(){
+  //alert('hi');
+  // select all elements with the data-bs-toggle attribute
+  const elements = document.querySelectorAll('[data-bs-toggle]');
+
+  // loop through the elements and toggle their collapsed state
+  elements.forEach(element => {
+    const isCollapsed = element.classList.contains('collapsed');
+    //if (!isCollapsed) {
+      element.click();
+    //}
+  });
+}
+</script>
+
 ::: {.callout-note collapse="false"}
 ## Course Overview
 

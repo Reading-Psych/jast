@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Just Another Statistics Textbook"
+  title: 'Just Another Statistics Textbook'
   favicon: "logo/logo.jpeg"
   navbar:
     background: "#006599"
@@ -15,7 +15,9 @@ website:
         text: Request a clarification
       - href: https://github.com/Reading-Psych/jast/discussions/categories/suggest-content
         text: Suggest Content
-
+    tools:
+      - icon: save
+        
   sidebar:
     style: "docked"
     search: true

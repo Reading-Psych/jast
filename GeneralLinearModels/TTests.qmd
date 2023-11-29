@@ -9,6 +9,9 @@ this_page = "ttests"
 
 {{< include ../overview.qmd >}}
 
+::: {.callout-tip collapse="true" appearance="minimal"}
+## T-tests use the same underlying mathematics as ANOVAs. There is an argument that it's better to just use the ANOVA mathematics as this will allow you more flexibility in future to do more complex analyses
+
 In the tests below we will frequently come across the following concepts:
 
 **Total sum of squares** represents all the variance around the mean. We create models to try to explain why data points are different to the mean.
@@ -50,6 +53,7 @@ t = \sqrt{F} = \sqrt{\frac{SS_{explained}}{SS_{unexplained}/df_{unexplained}}}
 $$
 
 $t$ values are used for $t$-tests, which we'll address below.
+:::
 
 ## One-Sample t-tests
 

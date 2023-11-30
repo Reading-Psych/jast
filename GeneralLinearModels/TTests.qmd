@@ -1,6 +1,8 @@
 ---
 title: "T-Tests (R, Python incomplete)"
 editor: visual
+code-fold: true
+code-tools: true
 ---
 
 ```{r echo=FALSE}
@@ -9,8 +11,12 @@ this_page = "ttests"
 
 {{< include ../overview.qmd >}}
 
-::: {.callout-tip collapse="true" appearance="minimal"}
-## T-tests use the same underlying mathematics as ANOVAs. There is an argument that it's better to just use the ANOVA mathematics as this will allow you more flexibility in future to do more complex analyses
+## T-tests and ANOVAs
+
+T-tests use the same underlying mathematics as ANOVAs. There is an argument that it's better to just use the ANOVA mathematics as this will allow you more flexibility in future to do more complex analyses. Expand this for insights into the ANOVA concepts and how they overlap with t-tests.
+
+::: {.callout-caution collapse="true" appearance="minimal"}
+## Expand this for insights into the ANOVA concepts and how they overlap with t-tests.
 
 In the tests below we will frequently come across the following concepts:
 
@@ -32,13 +38,17 @@ $$
 
 -   $df_{explained}$ is the **degrees of freedom (df)** for the model explaining the variance. This is generally the number of levels in your model minus 1. For example, if you were testing if life expectancy is explained by which continent a country is in, then the number of levels is the number of continents in your analysis (e.g. 5 continents), and the **df** would be 5-1=4. The **df** is used to address [uncertainty because we are using a sample to estimate a population](../describingData/dispersion.html#degrees-of-freedom), but you don't need to understand this to continue on this page.
 
--    $df_{unexplained}$ is the **degrees of freedom (df)** that is not addressed by the model. Generally this is the number of subjects minus 1. Using the above example about continents and life expectancy, each subject could be one of 142 countries in your analysis, and so the **df** would be 142-1=141.
+-   $df_{unexplained}$ is the **degrees of freedom (df)** that is not addressed by the model. Generally this is the number of subjects minus 1. Using the above example about continents and life expectancy, each subject could be one of 142 countries in your analysis, and so the **df** would be 142-1=141.
 
 The key points in the above formula are:
 
 -   The better your model is the more Sum of Squares will be explained, which will increase F
 
 -   The more data points (e.g. subjects) you have, the higher your $df_{unexplained}$ will be, which will also increase F
+:::
+
+::: {.callout-warning collapse="true" appearance="minimal"}
+## How F-values for a test with 2 levels can be simplified to calculate a t-value
 
 On this page we will be focusing on simpler analyses that only compare between 2 conditions, which means $df_{explained}$ will be (2-1=) 1, which simplifies the above formula:
 
@@ -51,13 +61,16 @@ This allows us to complete simpler analyses to calculate $t$ values, which are t
 $$
 t = \sqrt{F} = \sqrt{\frac{SS_{explained}}{SS_{unexplained}/df_{unexplained}}}
 $$
-
-$t$ values are used for $t$-tests, which we'll address below.
 :::
 
-## One-Sample t-tests
+$t$ values are used for $t$-tests, which we'll address below.
 
-### T-test approach
+## One-sample t-tests
+
+One-sample t-tests test whether your sample's values are significantly higher or lower than a pre-specified value ($\mu$). You can do this by seeing how big the difference is between the **mean in your sample** ($\bar{x}$) and the $\mu$, when taking into account the general variance in your data and the number of participants you have.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Formula for a one-sample t-test
 
 One sample t-tests try to explain whether variance of data is better explained around one specific value (sample mean $\bar{x}$) compared to another (previously assumed value $\mu$), when compared to the general variance in the data ( $\sigma/\sqrt{N}$ explained more below).
 
@@ -70,6 +83,10 @@ For example, imagine that you wanted to test whether life expectancy is higher t
 -   Your $\mu$ would be 55. This can be thought of as the assumed population mean that we want to use our sample to test.
 
 -   Your $\bar{x}$ would be the sample mean.
+:::
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## An example of a one-sample t-test
 
 Let's visualise these values using gapminder data from 2007:
 
@@ -149,7 +166,7 @@ plt.show()
 
 ```
 
-![Scatterplot with Mu and Sample Mean of 'Life expectancy'](TTests_Figure1.png){fig-align="left" width="650"}
+![Scatterplot with Mu and Sample Mean of 'Life expectancy'](TTests_Figure1.png){alt="Scatterplot with Mu and Sample Mean of 'Life expectancy'" fig-align="left" width="650"}
 :::
 
 So the t-value will reflect how significantly higher or lower the sample mean ($\bar{x}$) is than the assumed population mean ($\mu$). Let's apply the data from our data to the general formula:
@@ -188,8 +205,14 @@ p-value: 6.463174215427706e-23
 :::
 
 We can see that the t-value we calculated is the same as calculated by functions (once you take into account rounding numbers). You may have noticed that there is also a p-value associated with t-tests that is **very** small, suggesting that it is very unlikely that our sample would have such high life expectancy if the $\mu$ was correct, i.e. if the life expectancy across countries was actually 55 years old. So, the next question is how do we calculate p-values like this using t-values?
+:::
 
-## Calculating p-values from t-distributions
+## T-values Calculating p-values from t-distributions
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## T-values can be used to calculate p-values 
+
+## 
 
 Similar to the [normal distribution](../distributions/normal.html#z-scores-and-the-z-distribution), we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution. A t-distribution is like a normal distribution (it's a bell curve), but also takes into account the number of participants (or data points) using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:
 
@@ -373,6 +396,7 @@ area_above_2
 Note that if you wanted a 2-tailed test (i.e. you didn't have an expected direction of your finding) you would double the area under the curve/p-value.
 
 Similar principles apply for an F-distribution, described next.
+:::
 
 ## Calculating p-values from F-distributions
 
@@ -434,7 +458,7 @@ df = pd.DataFrame({'x': [0, 4]})
 )
 ```
 
-![F-Distribution Density Curves'](TTests_Figure7.png){alt="F-Distribution Density Curves'" fig-align="left" width="650"}
+![F-Distribution Density Curves'](TTests_Figure7.png){fig-align="left" width="650"}
 :::
 
 The shape is roughly the same, but shifts slightly as you get more people. What happens if we look at distributions where there are about 100 people but 2 or more conditions (df2 = 2 or more).
@@ -493,7 +517,7 @@ df = pd.DataFrame({'x': [0, 4]})
 )
 ```
 
-![F-Distribution Density Curves'](TTests_Figure8.png){alt="F-Distribution Density Curves'" fig-align="left" width="650"}
+![F-Distribution Density Curves'](TTests_Figure8.png){fig-align="left" width="650"}
 :::
 
 In all cases, you get your p-value from calculating the area under the curve for that F-value or above.

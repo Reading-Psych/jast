@@ -2,6 +2,7 @@
 editor: visual
 ---
 
+```{=html}
 <style>
 #hide_show_button{
   position:fixed;
@@ -9,27 +10,30 @@ editor: visual
   top: 80px;
 }
 </style>
-
-
+```
 <button class="btn bi bi-arrows-angle-expand" id="hide_show_button" style="color: white; background-color:#006599">Show/Hide all</button>
 
-<script>
-document.getElementById("hide_show_button").onclick = function(){
-  //alert('hi');
-  // select all elements with the data-bs-toggle attribute
-  const elements = document.querySelectorAll('[data-bs-toggle]');
+In this website you can choose to expand or shrink the page to match the level of understanding you want.
 
-  // loop through the elements and toggle their collapsed state
-  elements.forEach(element => {
-    const isCollapsed = element.classList.contains('collapsed');
-    //if (!isCollapsed) {
-      element.click();
-    //}
-  });
-}
-</script>
+-   If you do not expand any (green) subsections then you will only see the most superficial level of description about the statistics. If you expand the green subsections you will get details that are required to complete the tests, but perhaps not all the explanations for why the statistics work.
 
-::: {.callout-note collapse="false"}
+::: {.callout-tip appearance="minimal"}
+## An example of a green subsection
+:::
+
+-   If you expand the orange subsections you will also see some explanations that will give you a more complete understanding. If you are completing MSc-level statistics you would be expected to understand all the orange subsections.
+
+::: {.callout-caution appearance="minimal"}
+## An example of an orange subsection
+:::
+
+-   Red subsections will go deeper than what is expected at MSc level, such as testing higher level concepts.
+
+::: {.callout-warning appearance="minimal"}
+## An example of a red subsection
+:::
+
+::: {.callout-note collapse="true"}
 ## Course Overview
 
 ```{r echo=FALSE}
@@ -183,8 +187,25 @@ DiagrammeR::grViz(paste(
 , sep=""))
 ```
 
-
 [**Red**]{style="color:red"} means that the page does not exist yet
 
 [**Orange**]{style="color:orange"} means that the page is started
 :::
+
+```{=html}
+<script>
+document.getElementById("hide_show_button").onclick = function(){
+  //alert('hi');
+  // select all elements with the data-bs-toggle attribute
+  const elements = document.querySelectorAll('[data-bs-toggle]');
+
+  // loop through the elements and toggle their collapsed state
+  elements.forEach(element => {
+    const isCollapsed = element.classList.contains('collapsed');
+    //if (!isCollapsed) {
+      element.click();
+    //}
+  });
+}
+</script>
+```

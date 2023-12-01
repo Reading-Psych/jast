@@ -15,8 +15,8 @@ this_page = "ttests"
 
 T-tests use the same underlying mathematics as ANOVAs. There is an argument that it's better to just use the ANOVA mathematics as this will allow you more flexibility in future to do more complex analyses. Expand this for insights into the ANOVA concepts and how they overlap with t-tests.
 
-::: {.callout-caution collapse="true" appearance="minimal"}
-## Expand this for insights into the ANOVA concepts and how they overlap with t-tests.
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Expand this for key terminology for ANOVAs.
 
 In the tests below we will frequently come across the following concepts:
 
@@ -166,7 +166,7 @@ plt.show()
 
 ```
 
-![Scatterplot with Mu and Sample Mean of 'Life expectancy'](TTests_Figure1.png){alt="Scatterplot with Mu and Sample Mean of 'Life expectancy'" fig-align="left" width="650"}
+![Scatterplot with Mu and Sample Mean of 'Life expectancy'](TTests_Figure1.png){fig-align="left" width="650"}
 :::
 
 So the t-value will reflect how significantly higher or lower the sample mean ($\bar{x}$) is than the assumed population mean ($\mu$). Let's apply the data from our data to the general formula:
@@ -207,14 +207,32 @@ p-value: 6.463174215427706e-23
 We can see that the t-value we calculated is the same as calculated by functions (once you take into account rounding numbers). You may have noticed that there is also a p-value associated with t-tests that is **very** small, suggesting that it is very unlikely that our sample would have such high life expectancy if the $\mu$ was correct, i.e. if the life expectancy across countries was actually 55 years old. So, the next question is how do we calculate p-values like this using t-values?
 :::
 
-## T-values Calculating p-values from t-distributions
+## Calculating p-values from t-distributions
+
+Similar to the [normal distribution](../distributions/normal.html#z-scores-and-the-z-distribution), we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution that represents the likelihood of getting any t-value. For example, if you wanted to calculate the likelihood of getting a t-value of 2 or higher you could generate a figure as follows (note the area under the curve):
+
+::: panel-tabset
+## R
+
+```{r}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dt,   args =list(df =5), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = dt, args =list(df =5), color = "blue")
+```
+
+## Python
+:::
+
+::: {.callout-warning collapse="true" appearance="minimal"}
+## Why is a t-distribution bell-curved?
+
+A t-distribution reflects the likelihood of getting a particular t-value **if the null hypothesis is correct**. So the most likely t-value you will get is 0. It's equally likely that you will get a positive and negative t-value, so the distribution will be **symmetrical**. The bell shape reflects how data clusters around a mean (same as for a normal distribution).
+:::
 
 ::: {.callout-tip collapse="true" appearance="minimal"}
-## T-values can be used to calculate p-values 
+## Degrees of freedom, t-distributions and p-values
 
-## 
-
-Similar to the [normal distribution](../distributions/normal.html#z-scores-and-the-z-distribution), we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution. A t-distribution is like a normal distribution (it's a bell curve), but also takes into account the number of participants (or data points) using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:
+A t-distribution is like a normal distribution (it's a bell curve), but also takes into account the number of participants (or data points) using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:
 
 ::: panel-tabset
 ## R
@@ -258,7 +276,7 @@ plt.title('T-Distribution Density Curves')
 plt.show()
 ```
 
-![T-Distribution Density Curves'](TTests_Figure5.png){alt="T-Distribution Density Curves'" fig-align="left" width="650"}
+![T-Distribution Density Curves'](TTests_Figure5.png){fig-align="left" width="650"}
 :::
 
 We can see that the slopes get steeper the higher the $df$ is (i.e. the more participants you have). This means that the results become more significant even with the same t-value. Not convinced? Let's use a t-value of 2 to illustrate this. In the following figure you can see that the area under the curve for a t-value of 2 or more gets visually smaller the more participants/the higher the $df$ value is:
@@ -298,7 +316,7 @@ df = pd.DataFrame({'x': [-4, 4]})
 )
 ```
 
-![Figure with the area under the curve for a t-value of 2'](TTests_Figure6.png){alt="Figure with the area under the curve for a t-value of 2'" fig-align="left" width="650"}
+![Figure with the area under the curve for a t-value of 2'](TTests_Figure6.png){fig-align="left" width="650"}
 :::
 
 Remember, area under the curve **IS** the p-value, so the area under the curve for a t-value of 2 or above for each degrees of freedom is:
@@ -400,7 +418,24 @@ Similar principles apply for an F-distribution, described next.
 
 ## Calculating p-values from F-distributions
 
-As F-values are based on the **sum of squares**, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions, such as having both **explained** and **unexplained** degrees of freedom. This means that they can have a variety of shapes to reflect these differences in degrees of freedom. First, let's look at some distributions for designs with 2 conditions but differing numbers of participants:
+As F-values are based on the **sum of [*squares*]{.underline}**, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions. Put together, the distributions are not symmetrical. However, the principle of calculating an F-value and comparing it to an F-distribution to get a p-value is the same as for t-values above. For example, if you wanted to calculate the likelihood of getting an F-value of 2 or higher you would calculate the area under the curve for an F-distribution (note the highlighted area):
+
+::: panel-tabset
+## R
+
+```{r}
+ggplot(data.frame(x = c(0, 4)), aes(x)) +
+  stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = df, args =list(df1 =5, df2=1), color = "blue")
+```
+
+## Python
+:::
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Degrees of freedom, f-distributions and p-values
+
+The shape of F-distributions is influenced by having both **explained** and **unexplained** degrees of freedom. This means that they can have a variety of shapes to reflect these differences in degrees of freedom. First, let's look at some distributions for designs with 2 conditions but differing numbers of participants:
 
 ::: panel-tabset
 ## R
@@ -458,7 +493,7 @@ df = pd.DataFrame({'x': [0, 4]})
 )
 ```
 
-![F-Distribution Density Curves'](TTests_Figure7.png){fig-align="left" width="650"}
+![F-Distribution Density Curves'](TTests_Figure7.png){alt="F-Distribution Density Curves'" fig-align="left" width="650"}
 :::
 
 The shape is roughly the same, but shifts slightly as you get more people. What happens if we look at distributions where there are about 100 people but 2 or more conditions (df2 = 2 or more).
@@ -517,12 +552,13 @@ df = pd.DataFrame({'x': [0, 4]})
 )
 ```
 
-![F-Distribution Density Curves'](TTests_Figure8.png){fig-align="left" width="650"}
+![F-Distribution Density Curves'](TTests_Figure8.png){alt="F-Distribution Density Curves'" fig-align="left" width="650"}
 :::
 
 In all cases, you get your p-value from calculating the area under the curve for that F-value or above.
 
 ## 
+:::
 
 ::: {.callout-note collapse="true" appearance="minimal"}
 ## F-value approach (AKA General Linear Model (GLM) approach)

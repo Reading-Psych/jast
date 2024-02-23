@@ -1,0 +1,10 @@
+---
+title: "Does ANCOVA protect against regression to the mean"
+editor: visual
+---
+
+Simulate data that has regression to the mean
+
+Run a t-test/Mixed ANOVA
+
+Run an ANCOVA - confirm if it was less influenced by regression to the mean

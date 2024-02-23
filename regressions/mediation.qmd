@@ -1,0 +1,10 @@
+---
+title: "Mediation"
+editor: visual
+---
+
+manual calculation of indirect effect
+
+manual calculation of direct effect
+
+refer to packages to capture direct and indirect effects

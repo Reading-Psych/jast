@@ -12,17 +12,17 @@ this_page = "stats_basics"
 
 {{< include ../overview.qmd >}}
 
-## What is a variable?
+# What is a variable?
 
 In **statistics**, a **variable** is any (measurable) attribute that describes any organism or object. It's called a variable because they **vary** from organism to organism or object to object. Height is a good example of a variable within humans, as height changes from person to person.
 
 Within **coding**, a **variable** tends to refer to a particular **object** in your code, such as a specific value, list, dataset, etc. In R the terminology for a variable tends to be **object**.
 
-## What is a hypothesis?
+# What is a hypothesis?
 
 A(n **experimental) hypothesis** is a possible outcome for the study you will run. Sometimes researchers think in terms of **null hypotheses**, which is what you would expect if your (experimental) hypothesis is incorrect.
 
-## What is a p-value?
+# What is a p-value?
 
 **Oversimplification:** A p-value tells you how likely your hypothesis is correct
 
@@ -60,7 +60,7 @@ In terms of whether your research conclusions are valid, there are 4 broad possi
 +--------------+------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
 :::
 
-## What is the alpha value?
+# What is the alpha value?
 
 $Alpha$ (⍺) is the p-value threshold that identifies if a result is "significant" or not. Within psychology, the alpha value is .05, in which we believe that if the p-value is less than .05 then the result is "significant" (i.e. so unlikely that this would have happened by chance that we conclude this didn't happen randomly).
 
@@ -68,7 +68,7 @@ $Alpha$ (⍺) is the p-value threshold that identifies if a result is "significa
 
 Setting alpha at 0.05 is a convention that means we would only do this 5% of the time, and if we wanted to be more or less strict with the false-positive rate, we could adjust this value (this has been a contentious issue in recent years, see [here](https://www.nature.com/articles/s41562-017-0189-z "Redefine statistical significance") and [here](https://www.nature.com/articles/s41562-018-0311-x "Justify your alpha")).
 
-## What is power (and what is the beta value)
+# What is power (and what is the beta value)
 
 Power tells you how likely you are to get a significant result (assuming the effect you are investigating is real) based on:
 
@@ -81,5 +81,13 @@ Power tells you how likely you are to get a significant result (assuming the eff
 To explore this, you might find the following interactive tool helpful to see what happens when you change the above:
 
 [https://observablehq.com/\@patrickmineault/interactive-demo-in-pure-js](https://observablehq.com/@patrickmineault/interactive-demo-in-pure-js)
+
+# Signal vs. noise
+
+Signal reflects changes in the data that can be explained by one or more factor that you're measuring. For example, if you are trying to predict someone's weight, then height would be a source of signal, as it **helps** you explain differences in weight between individuals.
+
+Noise is a term to describe factors that are influencing your results/outcome that you haven't taken into account. Going back to our example with height and weight, there are other factors that might not have been measured (e.g. muscle density) which are sources of noise.
+
+Your prediction of findings will be more accurate if you have more signal (accurate predictors) you are measuring and less noise (predictors you have overlooked).
 
 {{< include basicsQuestions.qmd >}}

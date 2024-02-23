@@ -11,7 +11,7 @@ this_page = "ttests"
 
 {{< include ../overview.qmd >}}
 
-## T-tests and ANOVAs
+# T-tests and ANOVAs
 
 T-tests use the same underlying mathematics as ANOVAs. There is an argument that it's better to just use the ANOVA mathematics as this will allow you more flexibility in future to do more complex analyses. Expand this for insights into the ANOVA concepts and how they overlap with t-tests.
 
@@ -47,7 +47,7 @@ The key points in the above formula are:
 -   The more data points (e.g. subjects) you have, the higher your $df_{unexplained}$ will be, which will also increase F
 :::
 
-::: {.callout-warning collapse="true" appearance="minimal"}
+::: {.callout-note collapse="true" appearance="minimal"}
 ## How F-values for a test with 2 levels can be simplified to calculate a t-value
 
 On this page we will be focusing on simpler analyses that only compare between 2 conditions, which means $df_{explained}$ will be (2-1=) 1, which simplifies the above formula:
@@ -63,9 +63,35 @@ t = \sqrt{F} = \sqrt{\frac{SS_{explained}}{SS_{unexplained}/df_{unexplained}}}
 $$
 :::
 
+::: callout-note
+### \[probably delete\] ANVOA vs. T-test formula
+
+Great. So now that we've highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:
+
+$$
+T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} =
+$$
+
+$$
+\sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+$$ where:
+
+-   $T$ is the t-value
+-   $F$ is the f-value
+-   $SS_{exp}$ is the sum of squares of the data explained by the model
+-   $SS_{unexp}$ is the sum of squares of the data not explained by the model (i.e. the residuals)
+-   $df_{exp}$ is the degrees of freedom for the model. As there is only one predictor (the sample mean) and it's only got 2 levels (1 or 0, however, in all cases the model is comparing the data to the mean, so it's less intuitive that there are 2 levels).
+
+To confirm, the formula for a one-sample t-test is just:
+
+$$
+T = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
+$$
+:::
+
 $t$ values are used for $t$-tests, which we'll address below.
 
-## One-sample t-tests
+# One-sample t-tests
 
 One-sample t-tests test whether your sample's values are significantly higher or lower than a pre-specified value ($\mu$). You can do this by seeing how big the difference is between the **mean in your sample** ($\bar{x}$) and the $\mu$, when taking into account the general variance in your data and the number of participants you have.
 
@@ -204,604 +230,26 @@ p-value: 6.463174215427706e-23
 ```
 :::
 
-We can see that the t-value we calculated is the same as calculated by functions (once you take into account rounding numbers). You may have noticed that there is also a p-value associated with t-tests that is **very** small, suggesting that it is very unlikely that our sample would have such high life expectancy if the $\mu$ was correct, i.e. if the life expectancy across countries was actually 55 years old. So, the next question is how do we calculate p-values like this using t-values?
+We can see that the t-value we calculated is the same as calculated by functions (once you take into account rounding numbers). You may have noticed that there is also a p-value associated with t-tests that is **very** small, suggesting that it is very unlikely that our sample would have such high life expectancy if the $\mu$ was correct, i.e. if the life expectancy across countries was actually 55 years old. So, the next question you might have is how do we calculate [p-values like this using t-values](#calculating-p-values-from-t-distributions)?
 :::
 
-## Calculating p-values from t-distributions
+# Paired samples t-tests
 
-Similar to the [normal distribution](../distributions/normal.html#z-scores-and-the-z-distribution), we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution that represents the likelihood of getting any t-value. For example, if you wanted to calculate the likelihood of getting a t-value of 2 or higher you could generate a figure as follows (note the area under the curve):
-
-::: panel-tabset
-## R
-
-```{r}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-  stat_function(fun = dt,   args =list(df =5), xlim = c(2,4), geom = "area") + 
-  stat_function(fun = dt, args =list(df =5), color = "blue")
-```
-
-## Python
-:::
-
-::: {.callout-warning collapse="true" appearance="minimal"}
-## Why is a t-distribution bell-curved?
-
-A t-distribution reflects the likelihood of getting a particular t-value **if the null hypothesis is correct**. So the most likely t-value you will get is 0. It's equally likely that you will get a positive and negative t-value, so the distribution will be **symmetrical**. The bell shape reflects how data clusters around a mean (same as for a normal distribution).
-:::
+Paired samples t-tests are generally used when you have a group of participants who have completed 2 conditions.
 
 ::: {.callout-tip collapse="true" appearance="minimal"}
-## Degrees of freedom, t-distributions and p-values
-
-A t-distribution is like a normal distribution (it's a bell curve), but also takes into account the number of participants (or data points) using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:
-
-::: panel-tabset
-## R
-
-```{r}
-curve(dt(x, df=100), from=-4, to=4, col='green')
-curve(dt(x, df=20), from=-4, to=4, col='red', add=TRUE)
-curve(dt(x, df=5), from=-4, to=4, col='blue', add = TRUE) 
-
-#add legend
-legend(-4, .3, legend=c("df=5", "df=20", "df=100"),
-       col=c("blue", "red", "green"), lty=1, cex=1.2)
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.stats import t
-
-# Define the x values
-x = np.linspace(-4, 4, 1000)
-
-# Create density curves for different degrees of freedom
-plt.plot(x, t.pdf(x, df=100), color='green', label='df=100')
-plt.plot(x, t.pdf(x, df=20), color='red', label='df=20')
-plt.plot(x, t.pdf(x, df=5), color='blue', label='df=5')
-
-# Add a legend
-plt.legend(loc='upper left')
-
-# Set axis labels and plot title
-plt.xlabel('x')
-plt.ylabel('Density')
-plt.title('T-Distribution Density Curves')
-
-# Show the plot
-plt.show()
-```
-
-![T-Distribution Density Curves'](TTests_Figure5.png){fig-align="left" width="650"}
-:::
-
-We can see that the slopes get steeper the higher the $df$ is (i.e. the more participants you have). This means that the results become more significant even with the same t-value. Not convinced? Let's use a t-value of 2 to illustrate this. In the following figure you can see that the area under the curve for a t-value of 2 or more gets visually smaller the more participants/the higher the $df$ value is:
-
-::: panel-tabset
-## R
-
-```{r}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-  stat_function(fun = dt,   args =list(df =5), xlim = c(2,4), geom = "area") + 
-  stat_function(fun = dt, args =list(df =5), color = "blue") +
-  stat_function(fun = dt, args =list(df =20), color = "red") +
-  stat_function(fun = dt, args =list(df =100), color = "green") 
-  
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-from plotnine import ggplot, aes, stat_function, xlim, geom_area, geom_line
-from scipy.stats import t
-
-import pandas as pd
-
-# Define the data frame with x values
-df = pd.DataFrame({'x': [-4, 4]})
-
-# Create the  plot
-(
-    ggplot(df, aes(x='x'))
-    + stat_function(fun=lambda x: t.pdf(x, df=5), geom="area", xlim=(2, 4), fill="blue")
-    + stat_function(fun=lambda x: t.pdf(x, df=5), color="blue")
-    + stat_function(fun=lambda x: t.pdf(x, df=20), color="red")
-    + stat_function(fun=lambda x: t.pdf(x, df=100), color="green")
-)
-```
-
-![Figure with the area under the curve for a t-value of 2'](TTests_Figure6.png){fig-align="left" width="650"}
-:::
-
-Remember, area under the curve **IS** the p-value, so the area under the curve for a t-value of 2 or above for each degrees of freedom is:
-
-::: panel-tabset
-## R
-
-```{r}
-# area under the curve for 2 and above
-pt(
-  # t-value
-  q=2, 
-  # degrees of freedom
-  df=5, 
-  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
-  lower.tail = FALSE
-)
-pt(
-  # t-value
-  q=2, 
-  # degrees of freedom
-  df=20, 
-  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
-  lower.tail = FALSE
-)
-pt(
-  # t-value
-  q=2, 
-  # degrees of freedom
-  df=100, 
-  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
-  lower.tail = FALSE
-)
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-from scipy.stats import t
-
-# t-value
-t_value = 2
-
-# Degrees of freedom
-df = 5
-
-# Calculate the area under the curve for t >= 2
-area_above_2 = 1 - t.cdf(t_value, df=df)
-area_above_2
-```
-
-```         
-0.050969739414929105
-```
-
-```{python}
-#| eval: false
-
-# t-value
-t_value = 2
-
-# Degrees of freedom
-df = 20
-
-# Calculate the area under the curve for t >= 2
-area_above_2 = 1 - t.cdf(t_value, df=df)
-area_above_2
-```
-
-```         
-0.02963276772328527
-```
-
-```{python}
-#| eval: false
-
-# t-value
-t_value = 2
-
-# Degrees of freedom
-df = 100
-
-# Calculate the area under the curve for t >= 2
-area_above_2 = 1 - t.cdf(t_value, df=df)
-area_above_2
-```
-
-```         
-0.024106089365566796
-```
-:::
-
-Note that if you wanted a 2-tailed test (i.e. you didn't have an expected direction of your finding) you would double the area under the curve/p-value.
-
-Similar principles apply for an F-distribution, described next.
-:::
-
-## Calculating p-values from F-distributions
-
-As F-values are based on the **sum of [*squares*]{.underline}**, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions. Put together, the distributions are not symmetrical. However, the principle of calculating an F-value and comparing it to an F-distribution to get a p-value is the same as for t-values above. For example, if you wanted to calculate the likelihood of getting an F-value of 2 or higher you would calculate the area under the curve for an F-distribution (note the highlighted area):
-
-::: panel-tabset
-## R
-
-```{r}
-ggplot(data.frame(x = c(0, 4)), aes(x)) +
-  stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
-  stat_function(fun = df, args =list(df1 =5, df2=1), color = "blue")
-```
-
-## Python
-:::
-
-::: {.callout-tip collapse="true" appearance="minimal"}
-## Degrees of freedom, f-distributions and p-values
-
-The shape of F-distributions is influenced by having both **explained** and **unexplained** degrees of freedom. This means that they can have a variety of shapes to reflect these differences in degrees of freedom. First, let's look at some distributions for designs with 2 conditions but differing numbers of participants:
-
-::: panel-tabset
-## R
-
-```{r}
-ggplot(data.frame(x = c(0, 4)), aes(x)) +
-  # stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
-  stat_function(fun = df, args =list(df1 =5, df2=1), color = "blue") +
-  stat_function(fun = df, args =list(df1 =20, df2=1), color = "red") +
-  stat_function(fun = df, args =list(df1 =100, df2=1), color = "green") +
-  annotate("label", x = 2, y = .4, label = "df1 = 5, df2=1", colour="blue") +
-  annotate("label", x = 2, y = .35, label = "df1 = 20, df2=1", colour="red") +
-  annotate("label", x = 2, y = .3, label = "df1 = 100, df2=1", colour="green") +
-  xlab("F-Value") +
-  ylab("Density")
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-import pandas as pd
-from plotnine import ggplot, aes, stat_function, annotate, labs
-from scipy.stats import f
-
-# Create a DataFrame with x values
-df = pd.DataFrame({'x': [0, 4]})
-
-# Create the plot
-(
-    ggplot(df, aes(x='x'))
-    + stat_function(
-        fun=lambda x: f.pdf(x, dfn=5, dfd=1),
-        color='blue'
-    )
-    + stat_function(
-        fun=lambda x: f.pdf(x, dfn=20, dfd=1),
-        color='red'
-    )
-    + stat_function(
-        fun=lambda x: f.pdf(x, dfn=100, dfd=1),
-        color='green'
-    )
-    + annotate(
-        "label", x=2, y=0.4, label="df1=5, df2=1", color="blue"
-    )
-    + annotate(
-        "label", x=2, y=0.35, label="df1=20, df2=1", color="red"
-    )
-    + annotate(
-        "label", x=2, y=0.3, label="df1=100, df2=1", color="green"
-    )
-    + labs(x="F-Value", y="Density")
-)
-```
-
-![F-Distribution Density Curves'](TTests_Figure7.png){alt="F-Distribution Density Curves'" fig-align="left" width="650"}
-:::
-
-The shape is roughly the same, but shifts slightly as you get more people. What happens if we look at distributions where there are about 100 people but 2 or more conditions (df2 = 2 or more).
-
-::: panel-tabset
-## R
-
-```{r}
-ggplot(data.frame(x = c(0, 4)), aes(x)) +
-  # stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
-  stat_function(fun = df, args =list(df1 =100, df2=1), color = "blue") +
-  stat_function(fun = df, args =list(df1 =100, df2=2), color = "red") +
-  stat_function(fun = df, args =list(df1 =100, df2=3), color = "green") +
-  annotate("label", x = 2, y = .4, label  = "df1 = 100, df2=1", colour="blue") +
-  annotate("label", x = 2, y = .35, label = "df1 = 100, df2=2", colour="red") +
-  annotate("label", x = 2, y = .3, label  = "df1 = 100, df2=3", colour="green") +
-  xlab("F-Value") +
-  ylab("Density")
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-from plotnine import ggplot, aes, stat_function, annotate, labs
-
-# Create a DataFrame with x values
-df = pd.DataFrame({'x': [0, 4]})
-
-# Create the plot
-(
-    ggplot(df, aes(x='x'))
-    + stat_function(
-        fun=lambda x: f.pdf(x, dfn=100, dfd=1),
-        color='blue'
-    )
-    + stat_function(
-        fun=lambda x: f.pdf(x, dfn=100, dfd=2),
-        color='red'
-    )
-    + stat_function(
-        fun=lambda x: f.pdf(x, dfn=100, dfd=3),
-        color='green'
-    )
-    + annotate(
-        "label", x=2, y=0.4, label="df1=100, df2=1", color="blue"
-    )
-    + annotate(
-        "label", x=2, y=0.35, label="df1=100, df2=2", color="red"
-    )
-    + annotate(
-        "label", x=2, y=0.3, label="df1=100, df2=3", color="green"
-    )
-    + labs(x="F-Value", y="Density")
-)
-```
-
-![F-Distribution Density Curves'](TTests_Figure8.png){alt="F-Distribution Density Curves'" fig-align="left" width="650"}
-:::
-
-In all cases, you get your p-value from calculating the area under the curve for that F-value or above.
-
-## 
-:::
-
-::: {.callout-note collapse="true" appearance="minimal"}
-## F-value approach (AKA General Linear Model (GLM) approach)
-
-::: {.callout-tip collapse="true"}
-## internal callout
-
-beep bop
-:::
-
-To calculate the F-Value, we want to create a model that captures **explained variance** and **unexplained variance**. This model will aim to explain any variance around the population mean (mu or $\mu$). The sample mean could be modeled as such:
+## Formula for paired-samples t-test
 
 $$
-y = \bar{y} + e
+ t_{paired} = \frac{\bar{x_1} - \bar{x_2}}{\sigma_{pooled}/\sqrt{N}}
 $$
-
--   $y$ is the data point value you are trying to predict.
-
--   $\bar{y}$ is mean of all y data points. Note that for this formula you will **always** have the same predicted outcome (the mean).
-
--   $e$ is the error, i.e. the residuals that the module do not predict effectively.
-
-If the sample mean is a useful model, then it will explain a large proportion of the variance around the [Mu]{#population_tippy style="color:#006688"} ($\mu$) and will also suggested that there is significant reason to reject the $\mu$ as the real mean of your population.
-
-```{r echo=FALSE}
-tippy::tippy_this(elementId = "population_tippy", tooltip = "Baseline value")
-```
-
-First, we need to capture how much variance there is around the $\mu$, which we'll do using sum of squares:
-
-$$
-SS_{total} = \sum(y_i-\mu)^2
-$$
-
--   $y_i$ is an individual data point
-
-### 
-
-Which for the above data would give us:
-
-::: panel-tabset
-## R
-
-```{r}
-sum((gapminder_2007$lifeExp - 55)^2)
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-# import numpy 
-import numpy as np
-
-# calculate the squared dfference
-np.sum((gapminder_2007['lifeExp'] - 55) ** 2)
-```
-
-```         
-41025.157014
-```
 :::
 
-So we have to explain 41025.16 in variance around the $\mu$.
+! check the above formula !
 
-Our model's explanation of variance around the $\mu$ is the sample mean ($\bar{y}$). For each data point the variance explained (from the $mu$) is the difference between $\mu$ and $\bar{y}$, and then that leaves the unexplained variance (from the $mu$) as the difference between the data point and the sample mean ($\bar{y}$). If we visualise this for a single data point it should look something like:
+This is a more powerful analysis than [independent samples t-tests](#independent-samples-t-tests) because you don't have [noise](../statsBasics/statsBasics.html#signal-vs.-noise) from the differences between individuals when comparing between the conditions.
 
-![](mu_vs_mean/Slide1.png)
-
-For the above data point the variance (around the $\mu$) explained is $\bar{y} - \mu = 67.007 - 55 = 22.007$. However, we can see that the model isn't perfect for this data point, and so there is a residual left over, i.e. a difference between the predicted value of 67.007 and the actual value of 58.04, meaning the unexplained variance is $67.007 - 58.04 = 8.967$.
-
-Your explained variance by this model is thus a repetition of comparisons of the $\mu$ and $\bar{y}$ as many times as there are data points (and squaring this difference to make the values positive):
-
-$$
-SS_{explained} = N * (\mu - \bar{x})^2
-$$
-
-Which for the above data would give us:
-
-::: panel-tabset
-## R
-
-```{r}
-length(gapminder_2007$lifeExp) * (55- mean(gapminder_2007$lifeExp))^2
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-len(gapminder_2007['lifeExp']) *( 55 - gapminder_2007['lifeExp'].mean())**2
-```
-
-```         
-20473.303823352093
-```
-:::
-
-As described above, unexplained variance is the residuals around the sample mean, as this is variance that is not explained by the model. We can summarise what we get when we calculate the sum of squares of these residuals around the sample mean as follows:
-
-$$
-SS_{unexplained} = \sum(x_i-\bar{x})^2
-$$
-
-Which for the above data would give us
-
-::: panel-tabset
-## R
-
-```{r}
-sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2)
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-np.sum((gapminder_2007['lifeExp'] - gapminder_2007['lifeExp'].mean()) ** 2)
-```
-
-```         
-20551.853190647882
-```
-:::
-
-To capture the effectiveness of the model we can calculate the F-value:
-
-$$
-F = \frac{SS_{explained}/df_{explained}}{SS_{unexplained}/df_{unexplained}} = \frac{20473.3/(Predictors)}{20551.85/(N-1)} = \frac{20473.3/1}{20551.85/141} 
-$$
-
-::: panel-tabset
-## R
-
-```{r}
-f_value = (length(gapminder_2007$lifeExp) * (55- mean(gapminder_2007$lifeExp))^2) / (
-  (sum((gapminder_2007$lifeExp - mean(gapminder_2007$lifeExp))^2))/(length(gapminder_2007$lifeExp)-1)
-  
-)
-f_value
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-# Calculate the sum of squared differences between each value in 'lifeExp' and the mean
-ss_between = len(gapminder_2007['lifeExp']) * (55 - gapminder_2007['lifeExp'].mean()) ** 2
-
-# Calculate the sum of squared differences within groups
-ss_within = np.sum((gapminder_2007['lifeExp'] - gapminder_2007['lifeExp'].mean()) ** 2)
-
-# Calculate the degrees of freedom for between groups and within groups
-df_between = 1
-df_within = len(gapminder_2007['lifeExp']) - 1
-
-# Calculate the F-statistic
-f_value = (ss_between / df_between) / (ss_within / df_within)
-
-print(f_value)
-```
-
-```         
-140.46109673488004
-```
-:::
-
-### 
-:::
-
-### 
-
-### ANVOA vs. T-test formula
-
-Great. So now that we've highlighted the GLM approach works for t-tests, can we see how our formula for a GLM simplifies to the formula we usually use for one-sample t-tests:
-
-$$
-T = \sqrt{F} = \sqrt{\frac{SS_{exp}/df_{exp}}{SS_{unexp}/df_{unexp}}} = \sqrt{\frac{N * (\mu - \bar{x})^2/(levelsOfPredictors - 1)}{\sum(x_i-\bar{x})^2/(N-1)}} =
-$$
-
-$$
-\sqrt{\frac{N * (\mu - \bar{x})^2/(2-1)}{\sigma^2}} = \frac{\sqrt{N * (\mu - \bar{x})^2}}{\sqrt{\sigma^2}} = \frac{\sqrt{(\mu - \bar{x})^2}}{\sigma/\sqrt{N}} = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
-$$ where:
-
--   $T$ is the t-value
--   $F$ is the f-value
--   $SS_{exp}$ is the sum of squares of the data explained by the model
--   $SS_{unexp}$ is the sum of squares of the data not explained by the model (i.e. the residuals)
--   $df_{exp}$ is the degrees of freedom for the model. As there is only one predictor (the sample mean) and it's only got 2 levels (1 or 0, however, in all cases the model is comparing the data to the mean, so it's less intuitive that there are 2 levels).
-
-To confirm, the formula for a one-sample t-test is just:
-
-$$
-T = \frac{\mu - \bar{x}}{\sigma/\sqrt{N}}
-$$
-
-F-values are squares of t-values, so let's see if this is true here also:
-
-::: panel-tabset
-## R
-
-```{r}
-sqrt(f_value)
-
-t.test(gapminder_2007$lifeExp, mu=55)
-```
-
-## Python
-
-```{python}
-#| eval: false
-
-from scipy import stats
-
-# Calculate the square root of the F-value
-np.sqrt(f_value)
-```
-
-```         
-11.851628442323022
-```
-
-```{python}
-#| eval: false
-
-# Perform a t-test
-t_statistic, p_value = stats.ttest_1samp(gapminder_2007['lifeExp'], popmean=55)
-
-print("t-statistic:", t_statistic)
-print("p-value:", p_value)
-```
-
-```         
-t-statistic: 11.851628442323024
-p-value: 6.463174215427706e-23
-```
-:::
-
-## Paired samples t-tests
+FORMULA HERE?
 
 Paired samples t-tests can be approached like 1-sample t-tests, but you first of all need to collapse the data to have a single variable to compare to a $\mu$ of zero. Let's do this for gapminder data, comparing life expectancy between 2002 and 2007:
 
@@ -956,7 +404,7 @@ ez::ezANOVA(gapminder_2007_2002, within = year, dv= lifeExp, wid = country)$ANOV
 ```
 :::
 
-## Independent Samples t-tests
+# Independent Samples t-tests {#independent-samples-t-tests}
 
 ### ANOVA approach
 
@@ -1502,6 +950,359 @@ gapminder_americas_europe
 ```
 
 ### Effect coding
+
+# Calculating p-values from t-distributions {#calculating-p-values-from-t-distributions}
+
+Similar to the [normal distribution](../distributions/normal.html#z-scores-and-the-z-distribution), we can calculate how likely it is that you would get a t-value or higher (or lower) by drawing a t-distribution that represents the likelihood of getting any t-value. For example, if you wanted to calculate the likelihood of getting a t-value of 2 or higher you could generate a figure as follows (note the area under the curve):
+
+::: panel-tabset
+## R
+
+```{r}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dt,   args =list(df =5), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = dt, args =list(df =5), color = "blue")
+```
+
+## Python
+:::
+
+::: {.callout-warning collapse="true" appearance="minimal"}
+## Why is a t-distribution bell-curved?
+
+A t-distribution reflects the likelihood of getting a particular t-value **if the null hypothesis is correct**. So the most likely t-value you will get is 0. It's equally likely that you will get a positive and negative t-value, so the distribution will be **symmetrical**. The bell shape reflects how data clusters around a mean (same as for a normal distribution).
+:::
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Degrees of freedom, t-distributions and p-values
+
+A t-distribution is like a normal distribution (it's a bell curve), but also takes into account the number of participants (or data points) using degrees of freedom (N-1). Here are the t-distributions you would get for 101, 21 and 6 participants:
+
+::: panel-tabset
+## R
+
+```{r}
+curve(dt(x, df=100), from=-4, to=4, col='green')
+curve(dt(x, df=20), from=-4, to=4, col='red', add=TRUE)
+curve(dt(x, df=5), from=-4, to=4, col='blue', add = TRUE) 
+
+#add legend
+legend(-4, .3, legend=c("df=5", "df=20", "df=100"),
+       col=c("blue", "red", "green"), lty=1, cex=1.2)
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import t
+
+# Define the x values
+x = np.linspace(-4, 4, 1000)
+
+# Create density curves for different degrees of freedom
+plt.plot(x, t.pdf(x, df=100), color='green', label='df=100')
+plt.plot(x, t.pdf(x, df=20), color='red', label='df=20')
+plt.plot(x, t.pdf(x, df=5), color='blue', label='df=5')
+
+# Add a legend
+plt.legend(loc='upper left')
+
+# Set axis labels and plot title
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.title('T-Distribution Density Curves')
+
+# Show the plot
+plt.show()
+```
+
+![T-Distribution Density Curves'](TTests_Figure5.png){fig-align="left" width="650"}
+:::
+
+We can see that the slopes get steeper the higher the $df$ is (i.e. the more participants you have). This means that the results become more significant even with the same t-value. Not convinced? Let's use a t-value of 2 to illustrate this. In the following figure you can see that the area under the curve for a t-value of 2 or more gets visually smaller the more participants/the higher the $df$ value is:
+
+::: panel-tabset
+## R
+
+```{r}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dt,   args =list(df =5), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = dt, args =list(df =5), color = "blue") +
+  stat_function(fun = dt, args =list(df =20), color = "red") +
+  stat_function(fun = dt, args =list(df =100), color = "green") 
+  
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+from plotnine import ggplot, aes, stat_function, xlim, geom_area, geom_line
+from scipy.stats import t
+
+import pandas as pd
+
+# Define the data frame with x values
+df = pd.DataFrame({'x': [-4, 4]})
+
+# Create the  plot
+(
+    ggplot(df, aes(x='x'))
+    + stat_function(fun=lambda x: t.pdf(x, df=5), geom="area", xlim=(2, 4), fill="blue")
+    + stat_function(fun=lambda x: t.pdf(x, df=5), color="blue")
+    + stat_function(fun=lambda x: t.pdf(x, df=20), color="red")
+    + stat_function(fun=lambda x: t.pdf(x, df=100), color="green")
+)
+```
+
+![Figure with the area under the curve for a t-value of 2'](TTests_Figure6.png){fig-align="left" width="650"}
+:::
+
+Remember, area under the curve **IS** the p-value, so the area under the curve for a t-value of 2 or above for each degrees of freedom is:
+
+::: panel-tabset
+## R
+
+```{r}
+# area under the curve for 2 and above
+pt(
+  # t-value
+  q=2, 
+  # degrees of freedom
+  df=5, 
+  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
+  lower.tail = FALSE
+)
+pt(
+  # t-value
+  q=2, 
+  # degrees of freedom
+  df=20, 
+  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
+  lower.tail = FALSE
+)
+pt(
+  # t-value
+  q=2, 
+  # degrees of freedom
+  df=100, 
+  # is the test of the t-value and below (TRUE) or the t-value and above (FALSE)
+  lower.tail = FALSE
+)
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+from scipy.stats import t
+
+# t-value
+t_value = 2
+
+# Degrees of freedom
+df = 5
+
+# Calculate the area under the curve for t >= 2
+area_above_2 = 1 - t.cdf(t_value, df=df)
+area_above_2
+```
+
+```         
+0.050969739414929105
+```
+
+```{python}
+#| eval: false
+
+# t-value
+t_value = 2
+
+# Degrees of freedom
+df = 20
+
+# Calculate the area under the curve for t >= 2
+area_above_2 = 1 - t.cdf(t_value, df=df)
+area_above_2
+```
+
+```         
+0.02963276772328527
+```
+
+```{python}
+#| eval: false
+
+# t-value
+t_value = 2
+
+# Degrees of freedom
+df = 100
+
+# Calculate the area under the curve for t >= 2
+area_above_2 = 1 - t.cdf(t_value, df=df)
+area_above_2
+```
+
+```         
+0.024106089365566796
+```
+:::
+
+Note that if you wanted a 2-tailed test (i.e. you didn't have an expected direction of your finding) you would double the area under the curve/p-value.
+
+Similar principles apply for an F-distribution, described next.
+:::
+
+# Calculating p-values from F-distributions
+
+As F-values are based on the **sum of [*squares*]{.underline}**, which are always positive, they cannot be negative. Also, F distributions can reflect more complex designs than t-distributions. Put together, the distributions are not symmetrical. However, the principle of calculating an F-value and comparing it to an F-distribution to get a p-value is the same as for t-values above. For example, if you wanted to calculate the likelihood of getting an F-value of 2 or higher you would calculate the area under the curve for an F-distribution (note the highlighted area):
+
+::: panel-tabset
+## R
+
+```{r}
+ggplot(data.frame(x = c(0, 4)), aes(x)) +
+  stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = df, args =list(df1 =5, df2=1), color = "blue")
+```
+
+## Python
+:::
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Degrees of freedom, f-distributions and p-values
+
+The shape of F-distributions is influenced by having both **explained** and **unexplained** degrees of freedom. This means that they can have a variety of shapes to reflect these differences in degrees of freedom. First, let's look at some distributions for designs with 2 conditions but differing numbers of participants:
+
+::: panel-tabset
+## R
+
+```{r}
+ggplot(data.frame(x = c(0, 4)), aes(x)) +
+  # stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = df, args =list(df1 =5, df2=1), color = "blue") +
+  stat_function(fun = df, args =list(df1 =20, df2=1), color = "red") +
+  stat_function(fun = df, args =list(df1 =100, df2=1), color = "green") +
+  annotate("label", x = 2, y = .4, label = "df1 = 5, df2=1", colour="blue") +
+  annotate("label", x = 2, y = .35, label = "df1 = 20, df2=1", colour="red") +
+  annotate("label", x = 2, y = .3, label = "df1 = 100, df2=1", colour="green") +
+  xlab("F-Value") +
+  ylab("Density")
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+import pandas as pd
+from plotnine import ggplot, aes, stat_function, annotate, labs
+from scipy.stats import f
+
+# Create a DataFrame with x values
+df = pd.DataFrame({'x': [0, 4]})
+
+# Create the plot
+(
+    ggplot(df, aes(x='x'))
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=5, dfd=1),
+        color='blue'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=20, dfd=1),
+        color='red'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=1),
+        color='green'
+    )
+    + annotate(
+        "label", x=2, y=0.4, label="df1=5, df2=1", color="blue"
+    )
+    + annotate(
+        "label", x=2, y=0.35, label="df1=20, df2=1", color="red"
+    )
+    + annotate(
+        "label", x=2, y=0.3, label="df1=100, df2=1", color="green"
+    )
+    + labs(x="F-Value", y="Density")
+)
+```
+
+![F-Distribution Density Curves'](TTests_Figure7.png){fig-align="left" width="650"}
+:::
+
+The shape is roughly the same, but shifts slightly as you get more people. What happens if we look at distributions where there are about 100 people but 2 or more conditions (df2 = 2 or more).
+
+::: panel-tabset
+## R
+
+```{r}
+ggplot(data.frame(x = c(0, 4)), aes(x)) +
+  # stat_function(fun = df, args =list(df1 =5, df2=1), xlim = c(2,4), geom = "area") + 
+  stat_function(fun = df, args =list(df1 =100, df2=1), color = "blue") +
+  stat_function(fun = df, args =list(df1 =100, df2=2), color = "red") +
+  stat_function(fun = df, args =list(df1 =100, df2=3), color = "green") +
+  annotate("label", x = 2, y = .4, label  = "df1 = 100, df2=1", colour="blue") +
+  annotate("label", x = 2, y = .35, label = "df1 = 100, df2=2", colour="red") +
+  annotate("label", x = 2, y = .3, label  = "df1 = 100, df2=3", colour="green") +
+  xlab("F-Value") +
+  ylab("Density")
+```
+
+## Python
+
+```{python}
+#| eval: false
+
+from plotnine import ggplot, aes, stat_function, annotate, labs
+
+# Create a DataFrame with x values
+df = pd.DataFrame({'x': [0, 4]})
+
+# Create the plot
+(
+    ggplot(df, aes(x='x'))
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=1),
+        color='blue'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=2),
+        color='red'
+    )
+    + stat_function(
+        fun=lambda x: f.pdf(x, dfn=100, dfd=3),
+        color='green'
+    )
+    + annotate(
+        "label", x=2, y=0.4, label="df1=100, df2=1", color="blue"
+    )
+    + annotate(
+        "label", x=2, y=0.35, label="df1=100, df2=2", color="red"
+    )
+    + annotate(
+        "label", x=2, y=0.3, label="df1=100, df2=3", color="green"
+    )
+    + labs(x="F-Value", y="Density")
+)
+```
+
+![F-Distribution Density Curves'](TTests_Figure8.png){fig-align="left" width="650"}
+:::
+
+In all cases, you get your p-value from calculating the area under the curve for that F-value or above.
+:::
+
+## 
 
 # Effect sizes
 

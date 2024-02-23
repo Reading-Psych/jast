@@ -1,0 +1,174 @@
+---
+title: "Logistic Regressions"
+editor: visual
+---
+
+The aim of logistic regressions is to try to predict a binary outcome. For example, will an individual pass an exam? You can have continuous predictors (e.g. the amount of time revising for an exam), and categorical predictors (although for a simple logistic regression you could simply do a [Chi-Square](../categorical/contingency.html#chi-squared-chi2) test if you only have one or two predictors and they are both categorical). Let's start with the basics, what distributions of likelihood we expect with logistic regressions.
+
+## Likelihood distribution
+
+Let's imagine we want to know how likely someone is to perform above average in test 2, based on their score in test 1. We **will** assume that someone who has the mean score in test 1 will have a 50% chance of performing above average in test 2. The question is how much does your likelihood of performing above in test 2 go up or down depending on how far away from the mean your score was in test 1?
+
+Some smart people (such as Pierre François Verhulst; <https://en.wikipedia.org/wiki/Pierre_Fran%C3%A7ois_Verhulst>) have come up with a way to model such a simple using a logistic curve. It can be summarised in the following formula:
+
+$$
+p(x) = \frac{1}{1 + e^{-(x-\mu)/s}}
+$$
+
+-   $x$ is the individual's score in test 1
+
+-   $p(x)$ is the likelihood of getting above the mean in test 2, given the individual's score of $x$ in test 1
+
+-   $e$ is Euler's number. It's a specific number similar to $\pi$ that has magical properties we won't go into here.
+
+-   $\mu$ is the score in test 1 which gives a 50% chance of getting above the mean in test 2. We have assumed this is the mean score of test 1, ***but this is only as a simplification.***
+
+-   $s$ is standard deviation in test 1
+
+Let's imagine there were 100 students doing both tests, and they (miraculously) got every score from 1 to 100. We could plot the likelihood of getting above the mean in test 2 based on their scores in test 1, if we assumed that someone who got the mean score from
+
+```{r}
+
+this_mu = 50.5
+#this_value = 10
+this_sd = 29 # based on the SD of all values from 1 to 100 
+
+y_vector = rep(1,100)
+for(i in 1:100){
+  this_value = i
+  y_vector[i] = 1/(1 + exp(1)^(-(this_value-this_mu)/this_sd))
+}
+
+plot(y_vector, xlab = "score in test 1",ylab = "p of getting above mean score in test 2")
+abline(h = .5, v = 50.5, col=4)
+```
+
+If we want to update the above figure to visualise the general distribution of likelihood of an outcome depending on SDs, we could summarise the x-axis in SDs:
+
+```{r}
+this_mu = 50.5
+#this_value = 10
+this_sd = 29
+
+x_vector = rep(1,100)
+y_vector = rep(1,100)
+for(i in 1:100){
+  this_value = i
+  x_vector[i] = (this_value - this_mu)/this_sd
+  y_vector[i] = 1/(1 + exp(1)^(-(this_value-this_mu)/this_sd))
+}
+
+plot(x_vector, y_vector, xlab = "score in test 1 in SDs from the mean",ylab = "p of getting above mean score in test 2")
+abline(h = .5, v = 0, col=4)
+```
+
+Now this distribution is quite flat, but you can see a small curve in it. Let's slightly reimagine this so that we're no longer treating each data point as a participant, but as a score. We're going to change our calculations to reduce the standard deviation to 10, to reflect the fact that most participants will get a score between 40 and 50 in the original test (see [normal distribution](../distributions/normal.html#bell-curve-aka-normal-distribution) for visualisation of this).
+
+```{r}
+this_mu = 50.5
+#this_value = 10
+this_sd = 10 
+
+y_vector = rep(1,100)
+for(i in 1:100){
+  this_value = i
+  y_vector[i] = 1/(1 + exp(1)^(-(this_value-this_mu)/this_sd))
+}
+
+plot(y_vector, xlab = "score in test 1",ylab = "p of getting above mean score in test 2",type = "l")
+abline(h = .5, v = 50.5, col=4)
+abline(h = .73, v = 60.5, col=3) #.73 was selected through trial and error
+```
+
+This figure suggests that someone with a score of 60.5 in test 1 has almost about a 73% chance of scoring above the mean in test 2. Or, if you want to see the shape in terms of how many SDs above or below the mean the score was in test 1:
+
+```{r}
+this_mu = 50.5
+#this_value = 10
+this_sd = 10 
+
+x_vector = rep(1,100)
+y_vector = rep(1,100)
+for(i in 1:100){
+  this_value = i
+  x_vector[i] = (this_value - this_mu)/this_sd
+  y_vector[i] = 1/(1 + exp(1)^(-(this_value-this_mu)/this_sd))
+}
+
+plot(x_vector,y_vector, xlab = "score in test 1 in SDs from the mean",ylab = "p of getting above mean score in test 2",type = "l")
+abline(h = .5, v = 0, col=4)
+abline(h = .73, v = 1, col=3) #.72 was selected through trial and error
+```
+
+Similarly to the above, if someone is 1 standard deviation above the mean score in test 1, they have about a 73% chance of getting above the mean in test 2.
+
+Whilst this exercise illustrates the broad relationship between a continuous predictor and the likelihood of a binary outcome, there are some considerations.
+
+[RESUME HERE WHEN I HAVE FINISHED WITH WIKI example]{style="color:red"}
+
+-   We have $\mu$ as the mean of test 1,
+
+## Simple logistic regressions
+
+```{r}
+### wiki example
+wiki_df <- data.frame(
+  hours = c(0.50,0.75,1.00,1.25,1.50,1.75,1.75,2.00,2.25,2.50,2.75,3.00,3.25,3.50,4.00,4.25,4.50,4.75,5.00,5.50),
+  pass = c(0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1) 
+)
+```
+
+```{r}
+mean(wiki_df$hours * wiki_df$pass)
+```
+
+```{r}
+summary(glm(pass ~ hours, data = wiki_df))
+```
+
+$$
+p(x) = \frac{1}{1 + e^{-(x-\mu)/s}}
+$$
+
+-   $\mu$ is whichever value there is a 50% chance of passing.
+
+-   $e$ is Euler's number
+
+-   $s$ is standard deviation??
+
+```{r}
+this_mu = 50
+this_value = 10
+this_sd = 10
+1/(1 + exp(1)^(-(this_value-this_mu)/this_sd))
+```
+
+```{r}
+y_vector = rep(0,100)
+for(i in 1:100){
+  this_value = i
+  y_vector[i] = 1/(1 + exp(1)^(-(this_value-this_mu)/this_sd))
+}
+
+plot(y_vector)
+```
+
+```{r}
+exp_vector = rep(0,13)
+for(i in -6:6){
+  exp_vector[i+7] = exp(i)/(exp(i) + 1)
+}
+plot(exp_vector)
+#exp(-1)/(exp(0) + 1)
+#exp(0)/(exp(0) + 1)
+```
+
+```{r}
+
+```
+
+::: callout-note
+## Why not a single categorical predictor for a simple logistic regression?
+
+If you
+:::

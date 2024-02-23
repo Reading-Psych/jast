@@ -44,7 +44,7 @@ page_colors = list(
   rep_measures_anova_bg = "red",        rep_measures_anova_text = "black",
   simple_regression_bg = "grey",       simple_regression_text = "black",
   skewness_bg = "grey",                skewness_text = "black",
-  stats_basics_bg = "grey",            stats_basics_text = "black",
+  stats_basics_bg = "white",            stats_basics_text = "black",
   transforming_bg = "grey",            transforming_text = "black",
   ttests_bg = "orange",                 ttests_text = "black"
   

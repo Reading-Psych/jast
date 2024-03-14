@@ -24,7 +24,7 @@ page_colors = list(
   ancova_bg = "grey",                  ancova_text = "black",
   between_anova_bg = "orange",         between_anova_text = "black",
   binomial_bg = "grey",                binomial_text = "black",
-  central_tendency_bg = "grey",        central_tendency_text = "black",
+  central_tendency_bg = "white",       central_tendency_text = "black",
   contingency_bg = "grey",             contingency_text = "black",
   correlations_bg = "grey",            correlations_text = "black",
   dispersion_bg = "grey",              dispersion_text = "black",
@@ -127,19 +127,24 @@ DiagrammeR::grViz(paste(
     #style = "dashed",
     #row = func
 	]
-	simple_regression -> multiple_regression
-	simple_regression -> dummy_effect
-	skewness -> transforming
-	transforming -> correlations
 	probability -> contingency
 	probability -> fwer
 	probability -> fdr
-	rep_measures_anova -> ancova
+	simple_regression -> multiple_regression
+	simple_regression -> dummy_effect
+	skewness -> transforming
 	stats_basics -> central_tendency
 	stats_basics -> probability
+	# not invcluding the below because it makes the figure less readable
+	#r_fundamentals -> central_tendency
+	#r_fundamentals -> probability
+	#excel_fundamentals -> central_tendency
+	#excel_fundamentals -> probability
+	transforming -> correlations
 	ttests -> mixed_anova
 	ttests -> between_anova
 	ttests -> rep_measures_anova
+	rep_measures_anova -> ancova
 	
 	
 	

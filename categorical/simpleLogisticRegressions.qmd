@@ -15,9 +15,15 @@ $$
 p(x) = \frac{1}{1 + e^{-(x-\mu)/s}}
 $$
 
--   $x$ is the individual's score in test 1
+-   $x$ is the individual's score in test 1. $x$ is a **continuous** variable.
 
--   $p(x)$ is the likelihood of getting above the mean in test 2, given the individual's score of $x$ in test 1
+-   $p(x)$ is the likelihood of getting above the mean in test 2, given the individual's score of $x$ in test 1. $p(x)$ is thus the likelihood of a **dichotomous** outcome, above mean vs. below mean (note that if it is possible to score the exact mean, then you would need to change this outcome to be make it dichotomous, e.g.
+
+    -   above or equal to the mean **vs** below the mean
+
+    -   above the mean **vs** below or equal to the mean
+
+    ). When coding this dichotomous variable we tend to assign a 0 or 1 as the value.
 
 -   $e$ is Euler's number. It's a specific number similar to $\pi$ that has magical properties we won't go into here.
 

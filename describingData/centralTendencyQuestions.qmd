@@ -5,16 +5,18 @@ editor: visual
 #### Question 1
 
 Which of the following is most influenced by outliers?
+
 ```{ojs}
 //| echo: false
-viewof central_tendency_1_response = Inputs.radio(['Mean','Median','Mode']);
+viewof central_tendency_1_response = Inputs.radio(['Mean','Median']);
 correct_central_tendency_1 = 'Mean';
 central_tendency_1_result = {
   if(central_tendency_1_response == correct_central_tendency_1){
-    return 'Correct! Mode and median are unlikely to be influenced by a single value, whereas an extreme value can drag the mean up or down.';
+    return 'Correct! Median is unlikely to be influenced by a single value, whereas an extreme value can drag the mean up or down.';
   } else {
     return 'Incorrect or incomplete.';
   };
 }
 ```
-${central_tendency_1_result}
+
+\${central_tendency_1_result}

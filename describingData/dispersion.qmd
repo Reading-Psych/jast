@@ -15,7 +15,7 @@ this_page = "dispersion"
 
 To understand distributions such as the [normal distribution](../distributions/normal.html), it's helpful to clarify some more basic concepts around how data is **dispersed** or spread.
 
-## Range
+## Range {#range}
 
 **Range** simply captures the min(imum) and the max(imum) values. Lets look at the min and max for the life expectancy data from 2007:
 
@@ -83,15 +83,102 @@ and the **maxifs** function to get the max life expectancy in 2007:
 ![](images/clipboard-2288828094.png)
 
 82.603
+
+## JASP
+
+To get the max and minimum values across the whole data, you can use the descriptives interface:
+
+{{< video jaspMinMax.mp4 >}}
+
+But if you want the minimum and maximum values for just 2007 data, you will need to apply a filter first:
+
+{{< video jaspMinMax2007.mp4 >}}
 :::
 
 So the **range** for life expectancy in 2007 was between 39.613 and 82.603.
 
 ## Variance
 
+**Variance** is how much the data varies or fluctuates around a mean. If there's a lot of **variance** around a mean then that suggests the mean isn't very representative of your data. Let's imagine you have 2 sets of 5 pets, and you want to know what the **mean** height is, and how much **variance** there is around the mean.
+
+```{r echo=FALSE}
+
+# description of plot here
+
+
+pet_data <- data.frame(
+  id = 1:10,
+  group  = c(rep("dog",5), rep("cat",5)),
+  height = c(100,105,95,102,98, 55,70,30,80,100)
+)
+library(ggplot2)
+ggplot(pet_data, aes(x = group, y = height, color=group))   + geom_jitter()  + geom_errorbar(stat="summary", fun=mean, width=0.8, aes(ymax=after_stat(y), ymin=after_stat(y), color=factor(group)), linewidth=1)
+```
+
+The variance in height among cats is **higher** than among dogs, as there is very little fluctuation (around the mean) in the dog data, but a lot of fluctuation in height within the cats. **Population variance** refers to variance when you have measured all items/animals/people within a population. For example, if there were only 5 cats and 5 dogs in the world, then you could calculate the **population variance** using the height of all 10 of the animals. However, there are quite a lot more than 10 cats and dogs in the world, so it would not be realistic to measure all of their heights. Thus you would calculate the **sample variance** instead on a sample of cats and dogs (e.g. 5 of each). Importantly, the calculation for the population vs. sample variance are slightly different (see [degrees of freedom](#degrees-of-freedom) for an explanation of why), **and you will almost always use the calculation for sample variance** (as you rarely have every member of a group that you are investigating).
+
 ### Population Variance
 
-**Variance** is how much the data varies around a mean. To capture this, we compare each individual's score with the mean, so lets do this with our gapminder data's life expectancy:
+The **population variance** is a summary statistic of how much data varies around the mean. It does this by calculating the mean **squared** difference between each data point and the group mean.
+
+Using our pet example from above, we would calculate the average squared distance for cats and dogs by first capturing the difference between the animal's height and their group mean:
+
+![](images/clipboard-4094962458.png)So for dog 1 there was no difference between its height and the mean height for dogs. Dog 2 is 5 centimeters taller than the mean, so the difference is 5. However, dog 3 is 5cm shorter than the mean, so its difference is -5cm. If we calculated the mean **before** squaring these differences, we would get 0 ($(0 + 5 - 5 + 2 - 2)/5 = 0/5 = 0$). So we need to square all the numbers to make them positive:
+
+![](images/clipboard-3502740431.png)And then we can average of these squared numbers to get our **variance** score:
+
+$variance = (0 + 25 + 25+ 4+4)/5 = 58/5 = 11.6$
+
+```{r echo=FALSE}
+# currently commenting this out, but the table below is what the above figures are based on
+# #| label: tbl-cat-dog-sum-of-squares
+# #| tbl-cap: "A table including the steps needed to calculate the variance of height for cats and dogs"
+
+pet_data[["group mean"]][pet_data$group == "cat"] = mean(pet_data$height[pet_data$group == "cat"])
+pet_data[["group mean"]][pet_data$group == "dog"] = mean(pet_data$height[pet_data$group == "dog"])
+pet_data[["difference"]]= pet_data$height - pet_data[["group mean"]]
+pet_data[["difference^2"]]= pet_data[["difference"]]^2
+# knitr::kable(pet_data)
+```
+
+::: {.callout-note collapse="true" icon="false"}
+## Formula for population variance
+
+$$
+\sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
+$$
+
+-   $\sigma^2$ means **population variance**. The $^2$ refers to the fact that variance is the square of **standard deviation**,which is explained below.
+
+-   $\sum$ means the sum. When $\sum$ is used it means that you are applying a single calculation to all valid data points, and then adding the total of all these calculations together.
+
+-   $x_i$ refers to each data point ($i$ is an arbitrary letter in this case)
+
+-   $N$ refers to the number of data points
+:::
+
+::: {.callout-tip collapse="true" icon="false"}
+## Using R, Python, Excel and JASP to calculate *population* variance *step by step*
+
+To capture this, we do the following steps:
+
+-   Calculate how far from the mean each data point is by subtracting the mean from it
+
+e.g. the life expectancy of Afghanistan in 2007 was 43.828, and the mean life expectancy across all countries in 2007 was 67.007, so the difference for this country is $43.828 - 67.007 = -23.179$
+
+-   Square this difference so that all the differences are positive
+
+For Afghanistan we **square** the previously calculated difference value $(-23.179)^2 = 537.266$
+
+-   Calculate the **mean** of all the **squared** values. This will involve the 2 steps of calculating the mean, **summing the squares** and then **dividing by the number of values**:
+
+After doing a similar calculation for all the countries in the world that we did for Afghanistan, when we add together the squares from all the countries, we get $20551.853$. (see below for a worked through example). There are 142 countries, so we divide this **sum of squares** by 142: $20551.853/142 = 144.73$.
+
+$$
+\sigma^2 = mean(difference^2) = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
+$$
+
+To capture this, we compare each individual's score with the mean, so lets do this with our gapminder data's life expectancy:
 
 ::: panel-tabset
 ## R
@@ -124,10 +211,35 @@ life_expectancy_variance_table = pd.DataFrame(life_expectancy_variance_table)
 print(tabulate(life_expectancy_variance_table[:10], headers=life_expectancy_variance_table.head(), tablefmt="fancy_grid",showindex=False))
 ```
 
-![Table](dispersion-Table1.png){fig-align="left" height="500"}
+![](images/clipboard-3311903525.png){width="480"}
+
+## Excel
+
+To calculate the difference from mean, we will subtract the **average** (i.e. mean) of the life expectancy column from the life expectancy for that country:
+
+![](images/clipboard-1763045334.png)
+
+However, if we want to focus on just the 2007 data, we will need to calculate a new column that compares each row to the mean life expectancy only for the year 2007:
+
+![](images/clipboard-3630779731.png)
+
+## JASP
+
+You can use the add new column functionality (click on the **+** where you want a new column) to calculate the difference from the mean. We will subtract the mean life expectancy column from the life expectancy for that country:
+
+{{< video jaspLifeExpDiff.mp4 >}}
+
+If you are focusing on just 2007, you would need to **calculate** the difference of the life expectancy for each country from the mean life expectancy **only** for the year 2007 (see how there is now \[year == 2007\]):
+
+![](images/clipboard-1463016010.png)
 :::
 
-So we know for **each** country how different their life expectacy is to the mean life expectancy. But ideally we would like a single value to summarise variance. Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:
+So we know for **each** country how different their life expectancy is to the mean life expectancy. But ideally we would like a single value to summarise variance across all countries.
+
+::: {.callout-tip collapse="true"}
+## Optional - what happens if you calculate the mean of these differences
+
+Lets see what would happen if we tried to summarise these differences from the mean by calculating the mean difference from the mean:
 
 ::: panel-tabset
 ## R
@@ -146,9 +258,36 @@ life_expectancy_variance_table['diff_from_mean'].mean()
 ```         
 5.254013186958487e-15
 ```
+
+## Excel
+
+We can use the **average** function to see the mean of the differences across all the data:
+
+![](images/clipboard-3168316199.png){width="460"}
+
+And then we can calculate the mean of our new lifeExpDiffMean2007 for just the year 2007 by using **averageifs:**
+
+![](images/clipboard-3956410545.png)
+
+## JASP
+
+Using the same descriptives button as above (e.g. as shown in [range](#range)), you should be able to calculate the mean of the differences:
+
+![](images/clipboard-294087889.png)
+
+To get the mean for just 2007, you would need to apply a **filter (see icon in red)**:
+
+![](images/clipboard-508248814.png)
+
+And then you can calculate the mean of the new **lifeExpDiff2007** data:
+
+![](images/clipboard-1612025826.png)
 :::
 
-We get a number that is effectively zero (go <a href="../statsBasics/eNumbers.html" target="_blank">here</a> for an explanation about e-numbers), because all the values above the mean balance out those below the mean. So to address this, we can square the differences to force all the numbers to be positive:
+We get a number that is effectively zero (go <a href="../statsBasics/eNumbers.html" target="_blank">here</a> for an explanation about e-numbers), because all the values above the mean balance out those below the mean.
+:::
+
+As the mean of the differences is zero, we square the differences to force all the numbers to be positive:
 
 ::: panel-tabset
 ## R
@@ -167,10 +306,20 @@ life_expectancy_variance_table['diff_squared'] = life_expectancy_variance_table[
 print(tabulate(life_expectancy_variance_table[:10], headers=life_expectancy_variance_table.head(), tablefmt="fancy_grid",showindex=False))
 ```
 
-![Table](dispersion-Table2.png){fig-align="left" height="500"}
+## Excel
+
+Squaring data can be done by applying the power of (\^) 2, so you can do this either for the general difference:
+
+![](images/clipboard-3856613326.png)
+
+Or the differences based on the mean for 2007:
+
+![](images/clipboard-2741020574.png)
+
+## JASP
 :::
 
-If we calculate the average of this, then we get a summary of the variance that is more informative:
+If we calculate the average of this, then we get the **population variance**:
 
 ::: panel-tabset
 ## R
@@ -189,7 +338,23 @@ life_expectancy_variance_table['diff_squared'].mean()
 ```         
 144.73136049752028
 ```
+
+## Excel
+
+Population variance across all countries and times:
+
+![](images/clipboard-4018640621.png)
+
+Population variance for just 2007 needs to use the **averageifs** function to only focus on 2007 rows (you'll need to zoom in...):
+
+![](images/clipboard-181453844.png)
+
+## JASP
 :::
+
+$$
+\sigma^2_p = mean(difference^2) = \frac{\sum((x_i- \bar{x}{} )^2)} {N}
+$$
 
 However, as mean is what you get when you add all the items together and then divide it by the number of items, this can also be done in 2 steps in R (this will help us understand the formula later):
 
@@ -214,6 +379,10 @@ this_variance
 ```         
 144.73136049752028
 ```
+
+## Excel
+
+## JASP
 :::
 
 We can represent the above in the following formula for the **population**'s (remember, this is when you have everyone from the group you are measuring) variance:
@@ -225,20 +394,103 @@ $$
 Let's break down each of the above symbols: σ\^2 is population variance Σ is sum **x**i refers to the value for each participant x̄ refers to the mean for all participants N refers to the number of participants
 
 **(note that the above is written as if we're looking at the variance of a group of participants, but the principles still work if looking at non-participant data)**
+:::
 
 ### Sample variance
 
-To calculate the variance for a **sample** of participants, rather than every participant in the group you're measuring, you need a slightly different formula:
+To calculate the variance for a **sample** of participants, rather than the entire population of the group you're measuring, you need to correct for the fact you are only measuring a sample, not the entire population (this is explained further in the degrees of freedom section below). This means that instead of calculating the mean of the differences squared (see above), you need to do a slightly different calculation. The normal calculation for mean is the sum of all scores divided by the number of items you have. For **sample variance**, you correct for uncertainty by dividing by N-1 instead of dividing by N.
 
-$$
-S^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N - 1}
-$$ *Note that Sample variance is represented by S\^2 rather than σ\^2*
+Let's apply this to the dog example above:
 
-So why do we divide by N-1 rather than N? This is because the sample variance is an *estimate* rather than the actual population variance. When estimating the population variance you take into account the actual number of people (N) in the sample, whereas when you are estimating what happens generally in the population based on your sample, you take into account the **degrees of freedom** (N-1). In broad terms this reduces the risk of you under-estimating the variance of the population. You don't necessarily need to understand **degrees of freedom** beyond the idea that you are controlling for the fact that you are analysing a sample rather than the population they represent, *so don't worry if the next section isn't completely clear*.
+![](images/clipboard-3502740431.png)
+
+Instead of dividing the differences squared (58) and by the number of items (5), we divide 58 by the number of items minus 1 (4):
+
+$58/(5-1) = 58/4 = 14.5$
+
+::: {.callout-note collapse="true" icon="false"}
+## Comparison between sample variance formula and population variance formula
+
+| Population variance                             | Sample Variance                                |
+|-------------------------------------------------|------------------------------------------------|
+| $$                                              
+ \sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}  
+ $$                                               | $$                                             
+                                                   S^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N - 1}  
+                                                   $$                                              |
+
+*Note that Sample variance is represented by* $S^2$ *rather than* $σ^2$.
+:::
+
+::: {.callout-note collapse="true" icon="false"}
+## So why do we divide by N-1 rather than N?
+
+This is because the sample variance is an *estimate* rather than the actual population variance. When estimating the population variance you take into account the actual number of people (N) in the sample, whereas when you are estimating what happens generally in the population based on your sample, you take into account the **degrees of freedom** (N-1). In broad terms this reduces the risk of you underestimating the variance of the population. You don't necessarily need to understand **degrees of freedom** beyond the idea that you are controlling for the fact that you are analysing a sample rather than the population they represent, *so don't worry if the next section isn't completely clear*.
+:::
+
+::: {.callout-tip icon="false"}
+## Sample variance in R, Python, Excel and JASP using simple functions
+
+::: panel-tabset
+## R
+
+You can use the **var** function which automatically calculates sample variance.
+
+```{r}
+var(c(100,105,95,102,98))
+```
+
+## Python
+
+You can use the numpy package, but note that you will need to include 1 degree of freedom to confirm that you are calculating sample not population variance.
+
+```{python}
+import numpy as np
+np.var([100,105,95,102,98], ddof = 1)
+```
+
+## Excel
+
+Use the **var.s** function. (If you want the **population** **variance** then you can use the **var.p** function)
+
+## JASP
+
+Use the **descriptives** functionality and click on the **variance** checkbox within the **Dispersion** interface:
+
+![](images/clipboard-215013184.png)
+:::
+:::
 
 ## Degrees of Freedom
 
-Degrees of freedom calculations can be useful to address statistics that are vulnerable to bias within a sample (i.e. the sample being distorted compared to the population). Interestingly, **mean** is not, but **variance** is. Lets see this by looking at differences between the population and sample for mean and variance, looking at the height of three people, and combining them into every combination of 2 people possible:
+::: {.callout-note collapse="true" icon="false"}
+## What are degrees of freedom?
+
+**Degrees of freedom** refers to how many values could change in your variable once you know what the outcome of the relevant statistic is. For example, if you're interested in the variance of the height of the three people, then you only have 2 degrees of freedom, because once you know the height of 2 of the participants **AND** the variance of the height, then the remaining participant only has 1 possible height (so their height isn't **free** to change).
+:::
+
+Degrees of freedom are used to address how analyses of **samples** can sometimes underestimate **dispersion** (e.g. variance) that would be found in the population. Degrees of freedom are applied by adapting certain formulas that would normally include an N value (number of items/people/data points) to increase the estimate, e.g. estimated variance. For example, let's compare the formulas for population vs. sample variance:
+
+| Population variance                             | Sample Variance                                |
+|-------------------------------------------------|------------------------------------------------|
+| $$                                              
+ \sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N}  
+ $$                                               | $$                                             
+                                                   S^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N - 1}  
+                                                   $$                                              |
+
+In the population formula you divide by $N$, in the sample formula you divide by the degrees of freedom $N-1$. Note that the **sample variance** formula has $N-1$ as the denominator (i.e. bottom half), which will increase the estimate compared to having just $N$ as the denominator.
+
+::: {.callout-warning collapse="true" icon="false"}
+## How variance is more susceptible to bias than mean
+
+Degrees of freedom calculations are useful to address statistics that are vulnerable to [bias](../statsBasics/statsBasics.html#bias) within a sample due to underestimation of the dispersion of the data. Therefore **mean** is not vulnerable to bias, but **variance** is. Lets illustrate this by looking at differences between the population and sample for mean and variance in the height of three people. We'll treat the **three people** as the **population**, and combining them into every combination of **2 people possible** as our **samples**. These three people have the heights of 150, 160 and 170cm. The mean of their height is 160cm $(150 + 160 + 170)/3 = 160$. The population variance of their height would be:
+
+$$
+\sigma^2 = \frac{\sum((x_i- \bar{x}{} )^2)} {N} = \frac{(150 - 160)^2 + (160-160)^2 + (170-160^2)}{3} = \frac{100 + 0 + 100}{3} = 66.67
+$$
+
+We will assess now if **on average** the calculation of mean and variance in our samples are similar or different to the population mean and variance.
 
 ::: panel-tabset
 ## R
@@ -266,15 +518,15 @@ sample_heights$mean = c(
 )
 
 sample_heights$pop_var = c(
-  sum((c(three_heights[1], three_heights[2]) - mean(c(three_heights[1], three_heights[2])))^2)/3,
-  sum((c(three_heights[1], three_heights[3]) - mean(c(three_heights[1], three_heights[3])))^2)/3,
-  sum((c(three_heights[2], three_heights[3]) - mean(c(three_heights[2], three_heights[3])))^2)/3
+  sum((c(three_heights[1], three_heights[2]) - mean(c(three_heights[1], three_heights[2])))^2)/2,
+  sum((c(three_heights[1], three_heights[3]) - mean(c(three_heights[1], three_heights[3])))^2)/2,
+  sum((c(three_heights[2], three_heights[3]) - mean(c(three_heights[2], three_heights[3])))^2)/2
 )
 
 sample_heights$sample_var = c(
-  sum((c(three_heights[1], three_heights[2]) - mean(c(three_heights[1], three_heights[2])))^2)/(3-1),
-  sum((c(three_heights[1], three_heights[3]) - mean(c(three_heights[1], three_heights[3])))^2)/(3-1),
-  sum((c(three_heights[2], three_heights[3]) - mean(c(three_heights[2], three_heights[3])))^2)/(3-1)
+  sum((c(three_heights[1], three_heights[2]) - mean(c(three_heights[1], three_heights[2])))^2)/(2-1),
+  sum((c(three_heights[1], three_heights[3]) - mean(c(three_heights[1], three_heights[3])))^2)/(2-1),
+  sum((c(three_heights[2], three_heights[3]) - mean(c(three_heights[2], three_heights[3])))^2)/(2-1)
 )
 
 
@@ -311,11 +563,19 @@ mean = [three_heights.iloc[0:2].mean(),three_heights.iloc[[0,2],].mean(),three_h
 mean = pd.DataFrame(mean)
 sample_heights['mean']=mean
 
-pop_var=[((three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2))/3,((three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2))/3,((three_heights.iloc[1] - three_heights.iloc[1:3].mean()).pow(2) + (three_heights.iloc[2] - three_heights.iloc[1:3].mean()).pow(2))/3]
+pop_var=[
+  ((three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2) + (three_heights.iloc[1] - three_heights.iloc[0:2].mean()).pow(2))/2,
+  ((three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2) + (three_heights.iloc[2] - three_heights.iloc[[0,2],].mean()).pow(2))/2,
+  ((three_heights.iloc[1] - three_heights.iloc[1:3].mean()).pow(2) + (three_heights.iloc[2] - three_heights.iloc[1:3].mean()).pow(2))/2
+]
 pop_var = pd.DataFrame(pop_var)
 sample_heights['pop_var']= pop_var
 
-sample_var=[((three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2))/(3-1),((three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2))/(3-1),((three_heights.iloc[1] - three_heights.iloc[1:3].mean()).pow(2) + (three_heights.iloc[2] - three_heights.iloc[1:3].mean()).pow(2))/(3-1)]
+sample_var=[
+  ((three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[0:2].mean()).pow(2))/(2-1),
+  ((three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2) + (three_heights.iloc[0] - three_heights.iloc[[0,2],].mean()).pow(2))/(2-1),
+  ((three_heights.iloc[1] - three_heights.iloc[1:3].mean()).pow(2) + (three_heights.iloc[2] - three_heights.iloc[1:3].mean()).pow(2))/(2-1)
+]
 sample_var=pd.DataFrame(sample_var)
 sample_heights['sample_var']=sample_var
 
@@ -329,7 +589,41 @@ mean_sample_variance = sample_heights['sample_var'].mean()
 mean_population_variance = sample_heights['pop_var'].mean()
 ```
 
-![Table](dispersion-Table3.png){fig-align="left" height="200" width="600"}
+![](images/clipboard-3969675485.png)
+
+## Excel
+
+You can access the spreadsheet described below [here](excelVarianceBias.xlsx). There are three participants in our population:
+
+![](images/clipboard-1826315177.png)
+
+To investigate whether there is bias in estimations of mean and variance when sampling from this population of three, there are three samples of 2 participants that we can analyse:
+
+![](images/clipboard-2055568082.png)
+
+We can calculate the mean from each pair, and then look at the mean of these means to see if the estimates of mean from the samples are **on average** different to the actual mean. The actual mean height is 160cm:
+
+![](images/clipboard-4232889159.png)
+
+And the mean for each pair is the **average** for the column with that pair in it:
+
+![](images/clipboard-3337344242.png)
+
+The **population** variance for each pair is calculated using the var.p (**.p** for population) function:
+
+![](images/clipboard-307881418.png)
+
+The **sample** variance for each pair is calculated using the var.s (**.s** for sample) function:
+
+![](images/clipboard-220124643.png)
+
+After calculating the mean, population variance and sample variance for each pair, we can average across the estimates for each pair to assess if any of the measures are biased:
+
+![](images/clipboard-1846501627.png)
+
+## JASP
+
+JASP doesn't appear to allow for easy estimations of **population** variance, and so please check one of the other platforms for the explanation of bias in variance.
 :::
 
 When comparing the population mean to the mean sample mean (i.e., what is the typical mean for any sample), they're identical (i.e. ***NOT*** biased):
@@ -356,7 +650,25 @@ dtype: float64
 
 160.0
 ```
+
+## Excel
+
+Population mean height (i.e. the actual mean across all three people):
+
+![](images/clipboard-3248977933.png)
+
+The average height across the three pairs of samples:
+
+![](images/clipboard-3971976816.png)
+
+Both give 160, suggesting that there is no bias in how mean is estimated when analysing samples.
+
+## JASP
+
+JASP doesn't appear to allow for easy estimations of **population** variance, and so please check one of the other platforms for the explanation of bias in variance.
 :::
+
+(**Note, the mean of a sample may still not be representative of the population, but there is not a systematic bias in the calculation of mean on a sample that biases it).**
 
 Whereas when comparing the actual population variance (**population_height_variance**) to the mean (to identify what is a typical) estimate of variance using the **population formula that should not be used for samples (mean_population_variance)** finds the estimate of variance is typically smaller than the actual variance in the population:
 
@@ -379,12 +691,19 @@ mean_population_variance
 ```         
 0    66.666667
 dtype: float64
-
-33.333333333333336
+50.0
 ```
+
+## Excel
+
+![](images/clipboard-1001400401.png)
+
+## JASP
+
+JASP doesn't appear to allow for easy estimations of **population** variance, and so please check one of the other platforms for the explanation of bias in variance.
 :::
 
-As this bias (almost) always underestimates the population variance, **degrees of freedom** is a useful correction to address this within calculations of sample variance. Lets compare the **actual** population height variance (population_height_variance) to the mean estimate using degrees of freedom that **should be used for samples (mean_sample_variance)**.
+As this bias (almost) always underestimates the population variance, **degrees of freedom** is a useful correction to address this within calculations of sample variance. Lets compare the **actual** population height variance (population_height_variance) to the mean estimate using degrees of freedom that ***should be used*** **for samples (mean_sample_variance)**.
 
 ::: panel-tabset
 ## R
@@ -405,35 +724,70 @@ mean_sample_variance
 ```         
 0    66.666667
 dtype: float64
-
-50.0
+100.0
 ```
+
+## Excel
+
+![](images/clipboard-3757466572.png)
+
+## JASP
+
+JASP doesn't appear to allow for easy estimations of **population** variance, and so please check one of the other platforms for the explanation of bias in variance.
 :::
 
-So, not perfect, but this is less under-representative of the variance.
+It might seem that you have to choose between bias of underestimating variance using the **population** formula, or overestimating variance using the **sample** formula. It is conservative to err on the side of overestimating variance as that reduces the risk of false positives. The overestimation also will get smaller the larger the sample is, as the relative disparity between $N$ vs. $N-1$ gets smaller (for example, dividing by 2 vs. 1 is a big difference compared to dividing by 501 vs. 500).
 
-One thing to bear in mind is that calculation of some statistics does **not** require use of the degrees of freedom to correct for *bias* (as seen above, **mean** was not susceptible to bias).
-
-If you would like to understand how degrees of freedom are determined, and what the thinking is behind this term, read on for a brief description of this (otherwise, feel free to skip to the next section).
-
-**Degrees of freedom** refers to how many values could change in your variable once you know what the outcome of the relevant statistic is. For example, if you're interested in the variance of the height of the three people, then you only have 2 degrees of freedom, because once you know the height of 2 of the participants **AND** the variance of the height, then there the remaining participant only has a 2 possible heights (so their height isn't **free** to change).
+One thing to remember is that calculation of some statistics does **not** require use of the degrees of freedom to correct for *bias* (as seen above, **mean** was not susceptible to bias).
+:::
 
 ## Standard deviation (SD)
 
-**Standard deviation** is the **square root** of the variance. This takes into account that that the variance includes the **square** of the difference between the individual values and the mean:
+**Standard deviation** is the **square root** of the variance. This takes into account that that the **variance** includes the **square** of the difference between the individual values and the mean:
 
-|              |                                                                                                                                                                Population                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Sample                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|----------|:--------:|:---------------------------------------------------:|
-| **Variance** |                   $$                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                \sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}                 
-                                                                                                                                                                                                                                                                                                                                                     $$    |                                                                                                                                                                                                                                                                                                                          $$                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  S^2 = \frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       $$    |
-| **SD**       |                   $$                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                               \sigma = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}               
-                                                                                                                                                                                                                                                                                                                                                     $$    |                                                                                                                                                                                                                                                                                                                          $$                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 S = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}               
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       $$    |
+|              |                                                                                                                                                                                           Population                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Sample                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|-----------------|:---------------:|:-------------------------------------:|
+| **Variance** |                   $$                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                   \sigma^2 = \frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}                    
+                                                                                                                                                                                                                                                                                                                                                                                                           $$    |                                                                                                                                                                                                                                                                                                                                                                                $$                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     S^2 = \frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}                    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             $$    |
+| **SD**       |                   $$                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                  \sigma = \sqrt\frac{\sum((x_i- \bar{x}{})\color{Black}{^2}\color{Black})} {N}                  
+                                                                                                                                                                                                                                                                                                                                                                                                           $$    |                                                                                                                                                                                                                                                                                                                                                                                $$                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    S = \sqrt\frac{\sum((x_i- \bar{x}{} )\color{Black}{^2}\color{Black})} {N - 1}                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             $$    |
+
+::: {.callout-tip icon="false"}
+## R, Python, Excel and JASP functions for sample SD
+
+::: panel-tabset
+## R
+
+```{r}
+sd(c(150,160,170))
+```
+
+## Python
+
+```{python}
+#| eval: false
+import statistics
+statistics.stdev([150,160,170])
+
+```
+
+## Excel
+
+Use the **stdev.s** function for the sample SD. You also have the option of the stdev.p function if you want the population SD, but as highlighted above, you are unlikely to need this function.
+
+## JASP
+
+Within the **descriptives** interface you can click on **Std. deviation:**
+
+![](images/clipboard-3130798981.png)
+:::
+:::
 
 ## Effect size
 
@@ -441,19 +795,21 @@ Effect size is basically what it sounds like, it is a measure of how big the eff
 
 Cohen's $d$ is used to capture the effect size in three situations:
 
--   Comparing a set of data against a single value
+-   Comparing a set of data against a single value (e.g. how much is life expectancy higher than 55 years)
 
--   Comparing two conditions (within-subject)
+-   Comparing two conditions (within-subject; e.g. how much has life expectancy gone up or down between 2002 and 2007)
 
--   Comparing two groups of participants (between-subject)
+-   Comparing two groups of participants (between-subject; e.g. how different is life expectancy between 2 countries)
 
-Let's do a within-subject comparison of life expectancy between 2002 and 2007 across the world to illustrate the above.
+::: {.callout-note collapse="true" icon="false"}
+## Formula for Cohen's D
 
-The general formula for Cohen's D when you are comparing within subject is:
+The general formula for Cohen's D when you are comparing **within-subject** is:
 
 $$
 d = \frac{M_{difference}}{SD_{difference}}
 $$
+:::
 
 The general benchmarks for how big or small a Cohen's $d$ value are as follows:
 
@@ -468,6 +824,11 @@ The general benchmarks for how big or small a Cohen's $d$ value are as follows:
 -   1.2 is very large [@sawilowsky2009new]
 
 -   2 is huge [@sawilowsky2009new]
+
+::: {.callout-tip collapse="false" icon="false"}
+## Using R, Python, Excel and JASP to calculate within-subject Cohen's D
+
+Let's do a within-subject comparison of life expectancy between 2002 and 2007 across the world to illustrate the above.
 
 ::: panel-tabset
 ## R
@@ -498,9 +859,60 @@ life_exp_diff.mean()/life_exp_diff.std(ddof=1)
 1.0665367479612573
 1.230618637856515
 ```
+
+## Excel
+
+As there doesn't appear to be a Cohen's D function in excel, we will calculate it using some formulas.
+
+### Easier way using restructured data
+
+The originally formatted gapminder data is a bit awkward to calculate Cohen's D for elegantly, so there is a restructured version [here](../gapminder2002_vs_2007.xlsx). To calculate a paired samples Cohen's D we can subtract the life expectancy of 2002 from 2007:
+
+![](images/clipboard-1053099954.png)
+
+Then you can calculate the mean of this new difference column using the **average** function, the standard deviation of the column using the **stdev.s** function, and then divide the mean by the standard deviation to get your Cohen's D:
+
+![](images/clipboard-2414329429.png)
+
+### Harder way to do it with the original data
+
+As we are pairing data from the same country across 2 years, we will create a new column that compares each 2007 row to its partner 2002 row. To do this, we will combine three concepts:
+
+-   Use an **if** statement to check if the current row is in 2007
+
+-   use the **averageifs** function to return the life expectancy for the same country in 2002
+
+-   Subtract the 2002 life expectancy from the 2007 life expectancy
+
+![](images/clipboard-4214025579.png)
+
+You'll see that most rows are blank in this new column because most of the data isn't from 2007. Next, we will calculate the mean (using the **average) function** and the SD (using the **stdev.s** function) of this column, which will allow us to calculate the Cohen's D by dividing the mean by the SD:
+
+![](images/clipboard-80188098.png)
+
+Giving us a Cohen's D of 1.2306
+
+## JASP
+
+To do this comparison in JASP, you will need a **wide** version of the data, in which each country is a single row, and each year (2002 and 2007) are separate columns. You can access a sheet like this [here](../gapminder2002_vs_2007.csv). To calculate the Cohen's D you will need to run a paired samples t-test:
+
+![](images/clipboard-2673932235.png)
+
+select the columns for 2002 and 2007:
+
+![](images/clipboard-3401966181.png)
+
+and make sure the Effect size option is turned on:
+
+![](images/clipboard-2629421746.png)
+
+and then you should see the Cohen's D in the output:
+
+![](images/clipboard-1759906280.png)
+:::
 :::
 
-Now, you may be thinking that we already had insight into the effect size simply by comparing means, in which we can see that life expectancy has gone up by 1.31 years between 2002 and 2007. That's true, and depending on your research question you may want to acknowledge whether the change is meaningful (i.e. is one year's higher life expectancy a big deal?). However, you might not say an average increase of 1.31 years in life expectancy is a large effect if the change of life expectancy is very inconsistent between countries (e.g. some countries life expectancy decreased). *Effect size* calculation takes into consideration the how consistent the data is (e.g. how small the SD is), and so gives you further insight than a simple mean difference. The large effect size (1.23) confirms that there is a large effect of time on life expectancy, that there is a big difference relative to the general variation in the data.
+Now, you may be thinking that we already had insight into the effect size simply by comparing means, in which we can see that life expectancy has gone up by 1.31 years between 2002 and 2007. That's true, and depending on your research question you may want to acknowledge whether the change is meaningful (i.e. is one year's higher life expectancy a big deal?). However, you might not say an average increase of 1.31 years in life expectancy is a large effect if the change of life expectancy is very inconsistent between countries (e.g. some countries life expectancy decreased). *Effect size* calculation takes into consideration the how consistent the data is and so gives you further insight than a simple mean difference. The large effect size (1.23) confirms that there is a large effect of time on life expectancy, that there is a big difference relative to the general variation in the data.
 
 Note that many tests described later have their own effect size calculations associated with them:
 

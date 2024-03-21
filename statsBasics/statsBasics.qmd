@@ -12,9 +12,17 @@ this_page = "stats_basics"
 
 {{< include ../overview.qmd >}}
 
+# Population vs. sample
+
+Statistics generally involves analyses on **samples** to allow us to draw conclusions about the **population**. For example, if we wanted to assess whether dogs are taller than cats on average, we could measure the height of every dog and every cat, and then we would have the **population** average for each animal. However, as there are billions of dogs and cats, it's not realistic to test all of them. So we instead would recruit a few animals in a **sample** of dogs and cats and then **estimate** what the population average is based on these animals in our sample. Much of the statistics on this website aims to draw conclusions about a population based on a sample.
+
+# Bias
+
+**Bias** can have a few meanings, but often refers to how **recruitment** or **analysis** of a sample will systematically (i.e. more often than chance) misrepresent the population. For example, if you wanted to investigate whether Dutch people tend to be taller than Swedish people, you would create bias if you only **recruited** males within the Dutch population, and females within the Swedish population, as males tend to be taller than females. **Analyses** can increase bias if they increase the risk of over or underestimating an effect size. For example, if you did your statistics in such a way as to exaggerate the differences in height between Dutch and Swedish people, that would create **bias**.
+
 # What is a variable?
 
-In **statistics**, a **variable** is any (measurable) attribute that describes any organism or object. It's called a variable because they **vary** from organism to organism or object to object. Height is a good example of a variable within humans, as height changes from person to person.
+In statistics, a **variable** is any (measurable) attribute that describes any organism or object. It's called a variable because they **vary** from organism to organism or object to object. Height is a good example of a variable within humans, as height changes from person to person.
 
 Within **coding**, a **variable** tends to refer to a particular **object** in your code, such as a specific value, list, dataset, etc. In R the terminology for a variable tends to be **object**.
 
@@ -72,11 +80,13 @@ Setting alpha at 0.05 is a convention that means we would only do this 5% of the
 
 Power tells you how likely you are to get a significant result (assuming the effect you are investigating is real) based on:
 
--   the **sample size** of participants you have. The more participants you have, the more powerful your analysis will be (i.e. the more likely you are to find a significant result).
+-   the **sample size** of how many participants you have. The more participants you have, the more powerful your analysis will be (i.e. the more likely you are to find a significant result).
 
 -   the **effect size** (e.g. Cohen's *d*). The bigger the effect size, the more powerful your analysis will be. Effect sizes in power calculations are generally based on previous studies with similar paradigms.
 
 -   the $alpha$ **(⍺) threshold**. A smaller $alpha$ threshold requires a higher powered analysis to get a significant result.
+
+$Beta$ is the risk of a false-negative, so power is $1-Beta$.
 
 To explore this, you might find the following interactive tool helpful to see what happens when you change the above:
 

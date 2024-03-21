@@ -27,7 +27,7 @@ page_colors = list(
   central_tendency_bg = "white",       central_tendency_text = "black",
   contingency_bg = "grey",             contingency_text = "black",
   correlations_bg = "grey",            correlations_text = "black",
-  dispersion_bg = "grey",              dispersion_text = "black",
+  dispersion_bg = "white",              dispersion_text = "black",
   dummy_effect_bg = "grey",            dummy_effect_text = "black",
   fdr_bg = "grey",                     fdr_text = "black",
   fwer_bg = "grey",                    fwer_text = "black",

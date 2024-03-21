@@ -1,5 +1,5 @@
 ---
-title: "Central Tendency (R, Python, Excel)"
+title: "Central Tendency (R, Python, Excel, JASP)"
 format: 
   html:
       code-fold: false

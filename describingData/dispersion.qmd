@@ -1,5 +1,5 @@
 ---
-title: "Dispersion (R,Python, Excel)"
+title: "Dispersion (R,Python, Excel, JASP)"
 format:
   html:
     code-fold: false

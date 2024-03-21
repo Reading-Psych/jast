@@ -271,12 +271,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R,Python)</a>
+  <a href="../describingData/centralTendency.html" class="sidebar-item-text sidebar-link">Central Tendency (R, Python, Excel, JASP)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python)</a>
+  <a href="../describingData/dispersion.html" class="sidebar-item-text sidebar-link">Dispersion (R,Python, Excel, JASP)</a>
   </div>
 </li>
       </ul>
@@ -565,8 +565,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<style>
+#hide_show_button{
+  position:fixed;
+  right: 10px;
+  bottom: 10px;
+}
+</style>
+<button class="btn bi bi-arrows-angle-expand" id="hide_show_button" style="color: white; background-color:#006599">
+Show/Hide all
+</button>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -575,21 +585,86 @@ Course Overview
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7cc17442364279870a3e" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-7cc17442364279870a3e">{"x":{"diagram":"\n  digraph \"Course Overview\" {\n  rankdir=TB;\n  fontname=\"Helvetica,Arial,sans-serif\"\n\tnode [fontname=\"Helvetica,Arial,sans-serif\"]\n\tedge [fontname=\"Helvetica,Arial,sans-serif\"]\n\tgraph [ newrank = true, nodesep = 0.25, ranksep = .5, overlap = false, splines = curve,]\n\tnode [ fixedsize = false, fillcolor = \"white\", fontsize = 24, height = 1, shape = box, style = \"filled,setlinewidth(5)\", width = 4]\n\tedge [arrowhead = none,arrowsize = 0.5,labelfontname = \"Ubuntu\",weight = 10,style = \"filled,setlinewidth(5)\"]\n\t\n\tsubgraph system {\n\t  \n\t\tnode [color = \"#006688\"]\n\t\tedge [color = \"#006688\"]\n\t\t\n\t\tancova              [fillcolor=\"white\",fontcolor=\"black\"label = \"ANCOVA\", fillcolor = \"red\", URL = \"../GeneralLinearModels/ancova.html\"]\n    between_anova       [fillcolor=\"orange\",fontcolor=\"black\"label = \"One-way ANOVA\", fillcolor = \"orange\", URL = \"../GeneralLinearModels/oneWayAnova.html\"]\n\t\tbinomial            [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/binomial.html\", label = \"Binomial Distribution\"]\n\t\tcentral_tendency    [fillcolor=\"white\",fontcolor=\"black\"URL = \"../describingData/centralTendency.html\", fixedsize = true, label= \"Central Tendency\"]\n\t\t#cooksd[ label     = \"Cooks D\", URL       = \"\", fillcolor = red]\n\t  coding              [fillcolor=\"\",fontcolor=\"\"URL = \"../regressions/coding.html\", fixedsize = true, fillcolor = \"white\", label= \"Dummy and effect coding\"]\n\t\tcontingency         [fillcolor=\"white\",fontcolor=\"black\"URL = \"../categorical/contingency.html\", fixedsize = true,  fillcolor = \"orange\", label = \"Contingency\"]\n\t\tcorrelations        [fillcolor=\"white\",fontcolor=\"black\"URL = \"../correlations/correlations.html\", fixedsize = true, fillcolor = \"white\", label= \"Correlations\"]\n\t\tdispersion          [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dispersion\"]\n\t\tfdr                 [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fdr.html\",label = \"False Discovery Rate\"]\n\t  fwer                [fillcolor=\"white\",fontcolor=\"black\"URL = \"../multipleTesting/fwer.html\",label = \"Family-Wise Error Rate\"]\n    fwer_vs_fdr         [fillcolor=\"blue\",fontcolor=\"white\"label = \"FWER vs. FDR\",URL = \"../multipleTesting/fwer_vs_fdr.html\"]\n    glm                 [fillcolor=\"white\",fontcolor=\"black\"URL       = \"../GeneralLinearModels/generalLinearModels.html\",label     = \"General Linear Models\",fillcolor = \"white\"]\n    #kurtosis            [fillcolor=\"red\",fontcolor=\"black\"URL       = \"\",label     = \"Kurtosis\",fillcolor = \"red\"]\n    mediation           [fillcolor=\"red\",fontcolor=\"black\"URL = \"\",fillcolor = \"red\",label = \"Mediation\"]\n    mixed_anova         [fillcolor=\"orange\",fontcolor=\"black\"label = \"Mixed ANOVA\",fillcolor = \"orange\",URL = \"../GeneralLinearModels/mixedAnova.html\",]\n\t\tmultiple_regression [fillcolor=\"white\",fontcolor=\"black\"label     = \"Multiple Regression\",URL       = \"../regressions/multipleRegressions.html\",fillcolor = \"white\"]\n\t\tnormal              [fillcolor=\"white\",fontcolor=\"black\"URL = \"../distributions/normal.html\",fillcolor = white,fixedsize = true, label= \"Normal Distribution\"]\n\t\tpartial_correlations[fillcolor=\"white\",fontcolor=\"black\"label =\"Partial Correlations\",URL = \"../correlations/partialCorrelations.html\",]\n\t\tpermutation         [fillcolor=\"white\",fontcolor=\"black\"label = \"Permutations\",fillcolor = \"white\",URL = \"permutations.html\",]\n\t\tprobability         [fillcolor=\"white\",fontcolor=\"black\"label = \"Probability\",URL = \"../statsBasics/probability.html\",fixedsize = true]\n\t\trep_measures_anova  [fillcolor=\"red\",fontcolor=\"black\"label = \"Repeated Measures\",fillcolor = \"red\",URL = \"../GeneralLinearModels/repeatedAnova.html\",]\n\t\tsimple_regression   [fillcolor=\"white\",fontcolor=\"black\"label=\"Simple Regression\", URL = \"../regressions/simpleRegressions.html\",]\n\t\tskewness            [fillcolor=\"white\",fontcolor=\"black\"label = \"Skewness\", URL   = \"../distributions/skewness.html\"]\n\t\tstats_basics        [fillcolor=\"white\",fontcolor=\"black\"label = \"Statistics Basics\",URL   = \"../statsBasics/statsBasics.html\"]\n\t\ttransforming        [fillcolor=\"white\",fontcolor=\"black\" label = \"Transforming Data\", URL = \"../distributions/transforming.html\"]\n\t\tttests              [fillcolor=\"orange\",fontcolor=\"black\", label = \"T-Tests\", URL = \"../GeneralLinearModels/TTests.html\",]\n\t}\n\t/* connections */\n\tbetween_anova -> ancova\n\tbinomial -> contingency\n\tbinomial -> normal[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tcentral_tendency -> dispersion\n\tcoding -> multiple_regression\n\tcoding -> ttests\n\t#correlations -> cooksd\n\tcorrelations -> partial_correlations\n\tcorrelations -> simple_regression\n\tdispersion -> normal\n\tfdr -> fwer_vs_fdr\n\tfwer -> fwer_vs_fdr\n\tglm -> ttests\n  mixed_anova -> ancova\n\tmultiple_regression -> mediation\n\tnormal -> correlations\n\tnormal -> contingency\n\tnormal -> glm\n\t#normal -> kurtosis\n\tnormal -> skewness[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tsimple_regression -> multiple_regression\n\tsimple_regression -> coding\n\tskewness -> transforming\n\ttransforming -> correlations\n\tprobability -> contingency\n\tprobability -> fwer\n\tprobability -> fdr\n\trep_measures_anova -> ancova\n\tstats_basics -> central_tendency\n\tstats_basics -> probability\n\tttests -> mixed_anova\n\tttests -> between_anova\n\tttests -> rep_measures_anova\n\t\n\t\n\t\n  # edge[ style = invis ];\n  ancova -> permutation\n  rep_measures_anova -> permutation\n  between_anova -> permutation\n  correlations -> permutation\n  #mediation -> permutation  [\n  #  style = \"dashed\",\n    #row = func\n\t#] \n  #multiple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  #partial_correlations -> permutation\n  #simple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  ttests -> permutation\n}\n  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-98b71c34202c4af50638" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-98b71c34202c4af50638">{"x":{"diagram":"\n  digraph \"Course Overview\" {\n  rankdir=TB;\n  fontname=\"Helvetica,Arial,sans-serif\"\n\tnode [fontname=\"Helvetica,Arial,sans-serif\"]\n\tedge [fontname=\"Helvetica,Arial,sans-serif\"]\n\tgraph [ newrank = true, nodesep = 0.25, ranksep = .5, overlap = false, splines = curve,]\n\tnode [ fixedsize = false, fillcolor = \"white\", fontsize = 24, height = 1, shape = box, style = \"filled,setlinewidth(5)\", width = 4]\n\tedge [arrowhead = none,arrowsize = 0.5,labelfontname = \"Ubuntu\",weight = 10,style = \"filled,setlinewidth(5)\"]\n\t\n\tsubgraph system {\n\t  \n\t\tnode [color = \"#006688\"]\n\t\tedge [color = \"#006688\"]\n\t\t\n\t\tancova              [fillcolor=\"grey\",fontcolor=\"black\"label = \"ANCOVA\", URL = \"../GeneralLinearModels/ancova.html\"]\n    between_anova       [fillcolor=\"orange\",fontcolor=\"black\"label = \"One-way ANOVA\", URL = \"../GeneralLinearModels/oneWayAnova.html\"]\n\t\tbinomial            [fillcolor=\"grey\",fontcolor=\"black\"URL = \"../distributions/binomial.html\", label = \"Binomial Distribution\"]\n\t\tcentral_tendency    [fillcolor=\"white\",fontcolor=\"black\"URL = \"../describingData/centralTendency.html\", fixedsize = true, label= \"Central Tendency\"]\n\t\t#cooksd[ label     = \"Cooks D\", URL       = \"\", fillcolor = red]\n\t\tcontingency         [fillcolor=\"grey\",fontcolor=\"black\"URL = \"../categorical/contingency.html\", fixedsize = true, label = \"Contingency\"]\n\t\tcorrelations        [fillcolor=\"grey\",fontcolor=\"black\"URL = \"../correlations/correlations.html\", fixedsize = true, label= \"Correlations\"]\n\t\tdispersion          [fillcolor=\"grey\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dispersion\"]\n\t\tdummy_effect        [fillcolor=\"grey\",fontcolor=\"black\"URL       = \"../describingData/dispersion.html\",label     = \"Dummy and Effect Coding\"]\n\t\tfdr                 [fillcolor=\"grey\",fontcolor=\"black\"URL = \"../multipleTesting/fdr.html\",label = \"False Discovery Rate\"]\n\t  fwer                [fillcolor=\"grey\",fontcolor=\"black\"URL = \"../multipleTesting/fwer.html\",label = \"Family-Wise Error Rate\"]\n    fwer_vs_fdr         [fillcolor=\"blue\",fontcolor=\"white\"label = \"FWER vs. FDR\",URL = \"../multipleTesting/fwer_vs_fdr.html\"]\n    glm                 [fillcolor=\"grey\",fontcolor=\"black\"URL       = \"../GeneralLinearModels/generalLinearModels.html\",label     = \"General Linear Models\"]\n    #kurtosis            [fillcolor=\"red\",fontcolor=\"black\"URL       = \"\",label     = \"Kurtosis\",fillcolor = \"red\"]\n    mediation           [fillcolor=\"red\",fontcolor=\"black\"URL = \"\",fillcolor = \"red\",label = \"Mediation\"]\n    mixed_anova         [fillcolor=\"orange\",fontcolor=\"black\"label = \"Mixed ANOVA\",URL = \"../GeneralLinearModels/mixedAnova.html\",]\n\t\tmultiple_regression [fillcolor=\"grey\",fontcolor=\"black\"label     = \"Multiple Regression\",URL       = \"../regressions/multipleRegressions.html\"]\n\t\tnormal              [fillcolor=\"grey\",fontcolor=\"black\"URL = \"../distributions/normal.html\", label= \"Normal Distribution\"]\n\t\tpartial_correlations[fillcolor=\"grey\",fontcolor=\"black\"label =\"Partial Correlations\",URL = \"../correlations/partialCorrelations.html\",]\n\t\tpermutation         [fillcolor=\"grey\",fontcolor=\"black\"label = \"Permutations\",URL = \"../permutations/permutations.html\",]\n\t\tprobability         [fillcolor=\"grey\",fontcolor=\"black\"label = \"Probability\",URL = \"../statsBasics/probability.html\",fixedsize = true]\n\t\trep_measures_anova  [fillcolor=\"red\",fontcolor=\"black\"label = \"Repeated Measures\",URL = \"../GeneralLinearModels/repeatedAnova.html\",]\n\t\tsimple_regression   [fillcolor=\"grey\",fontcolor=\"black\"label=\"Simple Regression\", URL = \"../regressions/simpleRegressions.html\",]\n\t\tskewness            [fillcolor=\"grey\",fontcolor=\"black\"label = \"Skewness\", URL   = \"../distributions/skewness.html\"]\n\t\tstats_basics        [fillcolor=\"white\",fontcolor=\"black\"label = \"Statistics Basics\",URL   = \"../statsBasics/statsBasics.html\"]\n\t\ttransforming        [fillcolor=\"grey\",fontcolor=\"black\" label = \"Transforming Data\", URL = \"../distributions/transforming.html\"]\n\t\tttests              [fillcolor=\"orange\",fontcolor=\"black\", label = \"T-Tests\", URL = \"../GeneralLinearModels/TTests.html\",]\n\t}\n\t/* connections */\n\tbetween_anova -> ancova\n\tbinomial -> contingency\n\tbinomial -> normal[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tcentral_tendency -> dispersion\n\t#correlations -> cooksd\n\tcorrelations -> partial_correlations\n\tcorrelations -> simple_regression\n\tdispersion -> normal\n\tdummy_effect -> multiple_regression\n\tdummy_effect -> ttests\n\tfdr -> fwer_vs_fdr\n\tfwer -> fwer_vs_fdr\n\tglm -> ttests\n  mixed_anova -> ancova\n\tmultiple_regression -> mediation\n\tnormal -> correlations\n\tnormal -> contingency\n\tnormal -> glm\n\t#normal -> kurtosis\n\tnormal -> skewness[\n    #style = \"dashed\",\n    #row = func\n\t]\n\tprobability -> contingency\n\tprobability -> fwer\n\tprobability -> fdr\n\tsimple_regression -> multiple_regression\n\tsimple_regression -> dummy_effect\n\tskewness -> transforming\n\tstats_basics -> central_tendency\n\tstats_basics -> probability\n\t# not invcluding the below because it makes the figure less readable\n\t#r_fundamentals -> central_tendency\n\t#r_fundamentals -> probability\n\t#excel_fundamentals -> central_tendency\n\t#excel_fundamentals -> probability\n\ttransforming -> correlations\n\tttests -> mixed_anova\n\tttests -> between_anova\n\tttests -> rep_measures_anova\n\trep_measures_anova -> ancova\n\t\n\t\n\t\n  # edge[ style = invis ];\n  ancova -> permutation\n  rep_measures_anova -> permutation\n  between_anova -> permutation\n  correlations -> permutation\n  #mediation -> permutation  [\n  #  style = \"dashed\",\n    #row = func\n\t#] \n  #multiple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  #partial_correlations -> permutation\n  #simple_regression -> permutation  [\n  #  style = \"dashed\",\n  #  #row = func\n\t#] \n  ttests -> permutation\n}\n  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><span style="color:red"><strong>Red</strong></span> means that the page does not exist yet</p>
+<p><span style="color:gray"><strong>Gray</strong></span> means that the page doesn’t yet have separation of different levels of understanding</p>
 <p><span style="color:orange"><strong>Orange</strong></span> means that the page is started</p>
+<p>In this website you can choose to expand or shrink the page to match the level of understanding you want.</p>
+<ul>
+<li>If you do not expand any (green) subsections then you will only see the most superficial level of description about the statistics. If you expand the green subsections you will get details that are required to complete the tests, but perhaps not all the explanations for why the statistics work.</li>
+</ul>
+<div class="callout-tip callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+An example of a green subsection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<ul>
+<li>If you expand the blue subsections you will also see some explanations that will give you a more complete understanding. If you are completing MSc-level statistics you would be expected to understand all the blue subsections.</li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+An example of a blue subsection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<ul>
+<li>Red subsections will go deeper than what is expected at MSc level, such as testing higher level concepts.</li>
+</ul>
+<div class="callout-warning callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+An example of a red subsection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
 </div>
 </div>
 </div>
+</div>
+</div>
+<script>
+document.getElementById("hide_show_button").onclick = function(){
+  //alert('hi');
+  // select all elements with the data-bs-toggle attribute
+  const elements = document.querySelectorAll('[data-bs-toggle]');
+
+  // loop through the elements and toggle their collapsed state
+  elements.forEach(element => {
+    const isCollapsed = element.classList.contains('collapsed');
+    //if (!isCollapsed) {
+      element.click();
+    //}
+  });
+}
+</script>
 <div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -598,7 +673,7 @@ Click here for a reminder about what positive and negative effects are in the po
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the context of multiple testing we will refer to effects in the population that do exist as <strong>positives</strong>, and effects that don’t exist in the population as <strong>negatives</strong>. This means that a test on a negative effect should ideally you give you a non-significant (negative) result in your sample so that your sample reflects the population (and gives you a <strong>true negative</strong>). Similarly, if an effect in the population exists, ideally your test on your sample will give you a significant result to reflect a <strong>true positive</strong>.</p>
 </div>
@@ -735,7 +810,7 @@ FDR = \frac{\color{red}{FalsePositives}}{\color{red}{FalsePositives} + \color{gr
 </div>
 <p>The false discovery rate is highest when only 20% of the effects in the population are positive, and lowest when 70% of the effects in the population are positive. Let’s visualise this with some Venn Diagrams:</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -744,7 +819,7 @@ Expand to see code for the below Venn diagrams
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eulerr)</span>
@@ -925,7 +1000,7 @@ Expand to see code for the below Venn diagrams
 </ul>
 <p>A Benjamini-Hochberg procedure will be applied to try to attain the FDR required for each simulation:</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -934,7 +1009,7 @@ Expand to see calculation for this simulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
@@ -1044,7 +1119,7 @@ Expand to see calculation for this simulation
 </div>
 <p>The above simulations show an interaction between the <strong>false discovery rate</strong> a researcher sets (known as <span class="math inline">\(q\)</span>) and the actual <strong>false discovery rate</strong> depending on the proportion of positive and negative findings in the population. Whilst it might seem problematic that the underlying number of positives and negatives in the population impacts the <strong>actual</strong> false discovery rate, the good news is that even if only 10% of your tests should be positive (Proportion Positive = .1) based on the population, the Benjamini-Hochberg will <strong>on average</strong> keep the FDR below the researcher specified FDR.</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1053,7 +1128,7 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Let’s now visualise what the expected proportion of false-positives is compared to all negatives (both false-positives and true negatives):</p>
 <div class="cell">
@@ -1404,7 +1479,7 @@ Optional: expand to see likelihood of a negative becoming a false-positive
 </ul>
 <p>A Holm-Šidák procedure will be applied to try to keep the FWER to .05:</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1413,7 +1488,7 @@ Expand to see calculation for this simulation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
